@@ -1,0 +1,132 @@
+body {
+    background-color: black;
+    color: white;
+    font-family:cursive,serif;
+    text-decoration:none;
+}
+
+.seller a {
+     text-decoration:none;
+}
+
+.body {
+    height: 1500px;
+}
+/********************************************
+.navbar {
+    background-color: white;
+    color: black;
+    display: flex;
+    text-align: center;
+    height: 100px;
+    
+}
+*************************************************/
+.navbar {
+    background-color: white;
+    color: black;
+    display: flex;
+    text-align: center;
+    height: 80px;
+    border-radius: 60PX 60PX 0PX 0PX;
+    position: fixed;
+    width: 100%;
+    margin-top: 770px;
+    margin-left: -9px;
+    justify-content: space-around;
+
+}
+
+.home {
+    text-align: center;
+    
+    margin-bottom: 5px;
+    margin-top: 0px;
+    font-size: 20px;
+
+}
+
+.home img {
+    width: 40px;
+    height: 40px;
+}
+
+.home h3 {
+    margin: -2px;
+}
+
+.header {
+    background-color: white;
+    color: black;
+    display: flex;
+    height: 60px;
+    position: fixed;
+    width: 100%;
+    border-radius:  0PX 0PX 60PX 60PX;
+
+}
+
+.homepage {
+    text-align: center;
+    margin-right: 600px;
+    margin-left: 450px;
+    margin-top: 4px;
+}
+
+.logu {
+    border-radius: 190px;
+    background-color: white;
+    border: #000 2px solid;
+    width: 250px;
+    height: 250px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    align-items: center;
+    margin-left: 400px;
+
+}
+
+.firstBorder {
+    background-color: white;
+    height: 150px;
+    color: black;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 5px;
+    justify-content: space-around;
+    margin-top:50px;
+
+}
+
+.heading h3 {
+    text-align: center;
+    padding: 3px;
+    text-decoration: underline;
+}
+
+.seller {
+    display: flex;
+    justify-content: space-around;
+    height:300px;
+
+
+}
+
+.pic {
+    width: 100px;
+    height: 100px;
+    margin-right: 150px;
+    margin-left: 150PX;
+}
+
+.seller img {
+    width: 120px;
+    height: 120px
+}
+
+
+.seller h1 {
+    text-align:center;
+    text-decoration:none;
+    color: black;
+}

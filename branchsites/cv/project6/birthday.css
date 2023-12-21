@@ -1,0 +1,2030 @@
+
+body {
+    background-image: url('photos/back.png');
+    background-size: cover;
+}
+
+
+.main {
+    display: flex;
+    background-color:#680c88;
+    height: 75px;
+    border-radius: 0px 0px 25px 25px;
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+}
+
+.logo{
+    width: 12%;
+    margin-left: -20px;
+    
+}
+
+.logo img {
+    width: 85%;
+    height: 100%;
+}
+
+.mmm106 {
+    font-size: 20px;
+    color: white;
+    width: 30%;
+    align-items: flex-start;
+    margin-top: -10px;
+}
+
+.contain {
+    width: 50%;    
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.contain a {
+    text-decoration: none;
+    margin: 3px;
+    color: black;
+    padding-top: 5px;
+    text-align: center;
+    font-weight: 1000;
+    transition: all 0.3s;
+    font-size: 20px;
+}
+
+
+.contain a:hover {
+    color: whitesmoke;
+    background-color: black;
+    margin: 3px;
+    padding-top: 15px;
+    text-align: center;
+    font-weight: 1000;
+    transition: all 0.5s;
+}
+
+.p p {
+    text-shadow: #c3b2c9 5px 5px 5px;
+}
+
+.father {
+    margin: 2%;
+    margin-top: 17%;
+    padding: 2%;
+    height: 410px;
+    width: 90%;
+    background-color: #e9dadaaa;
+    border-radius: 20px;
+    color: white;
+    border: yellow solid 5px;
+
+}
+
+.card {
+    position: relative;
+    margin: -20px;
+    margin-bottom: 0px;
+    width: 101.5%;
+    height: 120px;
+    padding: 1.5%;
+    background-color: rgba(233, 233, 10, 0.8);
+    border: 10px solid rgba(222, 222, 231, 0.789)violet;
+    border-radius: 15px 15px 0px 0px;
+
+}
+
+.textme {
+    float: left;
+    position:absolute;
+    justify-content: center;
+    
+}
+
+.pa {
+    float: right;
+}
+
+.pa p{
+    color: black;
+    font-weight: 900;
+    font-size: 100%;
+}
+
+
+
+
+
+/* CSS */
+.button-15 {
+  background-image: linear-gradient(#42A1EC, #0070C9);
+  border: 1px solid #0077CC;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  direction: ltr;
+  display: block;
+  font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 290%;
+  font-weight: 800;
+  letter-spacing: -.022em;
+  line-height: 1.47059;
+  min-width: 100%;
+  overflow: visible;
+  padding: 4px 15px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  
+}
+
+.button-15:disabled {
+  cursor: default;
+  opacity: .3;
+}
+
+.button-15:hover {
+  background-image: linear-gradient(#51A9EE, #147BCD);
+  border-color: #1482D0;
+  text-decoration: none;
+}
+
+.button-15:active {
+  background-image: linear-gradient(#3D94D9, #0067B9);
+  border-color: #006DBC;
+  outline: none;
+}
+
+.button-15:focus {
+  box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+  outline: none;
+}
+
+
+
+.description {
+    position: relative;
+    border: 5px;
+    width: 100%;
+    height: 150px;
+    margin-left: 7.5px;
+
+
+}
+
+.pic {
+    float:left;
+    width: 40%;
+
+}
+
+.pic img {
+    margin-left: 20%;
+}
+
+.des {
+    float:right;
+    width: 40%;
+}
+
+.des p {
+    font-weight: 900;
+    margin-bottom: 5px;
+    font-size: 110%;
+    
+}
+
+
+
+@keyframes wave {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+  }
+
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 150px 150px 150px 150px
+                        150px 150px 150px 150px
+                        150px 150px 150px 150px
+                        150px 150px ;
+    grid-gap:10px 10px ;
+    margin: 0 10% 0 500px;
+    position: relative;
+
+}
+
+.box {
+    background-color: #c3b2c9;
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+    margin-left: -500px;
+
+
+}
+
+
+
+
+.box img {
+    width: 250px;
+    height: 100%;
+    justify-items: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+
+
+.box1 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 0.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #006DBC;
+    z-index: 5;
+
+
+}
+
+.box2 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 2.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc0084;
+    z-index: 5;
+
+
+}
+
+.box3 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 4.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+
+.box4 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 6.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #d6dabf;
+    z-index: 5;
+
+
+}
+
+.box5 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 8.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #0f1104;
+    z-index: 5;
+
+
+}
+
+.box6 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 10.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #4187d7;
+    z-index: 5;
+
+
+}
+
+.box7 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 12.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a3565a;
+    z-index: 5;
+
+
+}
+
+.box8 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 14.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #4e0d8b;
+    z-index: 5;
+
+
+}
+
+.box9 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 16.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #051857;
+    z-index: 5;
+
+
+}
+
+.box10 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 18.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #ddded2;
+    z-index: 5;
+
+
+}
+
+.box11 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 20.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #18d69a;
+    z-index: 5;
+
+
+}
+
+.box12 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 22.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #ecedde;
+    z-index: 5;
+
+
+}
+
+.box13 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 24.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box14 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 26.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #13140a;
+    z-index: 5;
+
+
+}
+
+.box15 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 28.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #036363;
+    z-index: 5;
+
+
+}
+
+.box16 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 30.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc00bc;
+    z-index: 5;
+
+
+}
+
+.box17 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 32.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box18 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 34.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #1d0d63;
+    z-index: 5;
+
+
+}
+
+.box19 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 36.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #6b7808;
+    z-index: 5;
+
+
+}
+
+
+.box20 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 38.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #1180cf;
+    z-index: 5;
+
+
+}
+
+.box21 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 40.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc0084;
+    z-index: 5;
+
+
+}
+
+.box22 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 42.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc1c00;
+    z-index: 5;
+
+
+}
+
+
+.box23 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 44.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #00bc26;
+    z-index: 5;
+
+
+}
+
+.box24 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 46.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box25 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 48.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #101201;
+    z-index: 5;
+
+
+}
+
+.box26 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 50.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #f4f4f0;
+    z-index: 5;
+
+
+}
+
+.box27 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 52.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #007dbc;
+    z-index: 5;
+
+
+}
+
+.box28 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 54.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #087462;
+    z-index: 5;
+
+
+}
+
+.box29 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 56.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #d8deb0;
+    z-index: 5;
+
+
+}
+
+.box30 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 58.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc0090;
+    z-index: 5;
+
+
+}
+
+.box31 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 60.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #627971;
+    z-index: 5;
+
+
+}
+
+.box32 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 62.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #3d3f30;
+    z-index: 5;
+
+
+}
+
+.box33 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 64.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #00bc4b;
+    z-index: 5;
+
+
+}
+
+.box34 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 66.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box35 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 68.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #fcfcf8;
+    z-index: 5;
+
+
+}
+
+.box36 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 70.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #0000bc;
+    z-index: 5;
+
+
+}
+
+.box37 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 72.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc0096;
+    z-index: 5;
+
+
+}
+
+.box38 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 74.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #0048bc74;
+    z-index: 5;
+
+
+}
+
+.box39 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 76.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #101010;
+    z-index: 5;
+
+
+}
+
+.box40 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 78.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #6400bc;
+    z-index: 5;
+
+
+}
+
+.box41 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 80.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc7700;
+    z-index: 5;
+
+
+}
+
+
+.box42 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 82.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #6100bc;
+    z-index: 5;
+
+
+}
+
+.box43 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 84.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #0038bc;
+    z-index: 5;
+
+
+}
+
+.box44 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 86.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #57584f;
+    z-index: 5;
+
+
+}
+
+.box45 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 88.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box46 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 90.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #0042bc;
+    z-index: 5;
+
+
+}
+
+.box47 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 92.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc1f00;
+    z-index: 5;
+
+
+}
+
+.box48 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 94.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #784a41;
+    z-index: 5;
+
+
+}
+
+.box49 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 96.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box50 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 98.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #0f1003;
+    z-index: 5;
+
+
+}
+
+.box51 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 100.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #00a6bc;
+    z-index: 5;
+
+
+}
+
+.box52 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 102.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #595a52;
+    z-index: 5;
+
+
+}
+
+.box53 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 104.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #26bc00;
+    z-index: 5;
+
+
+}
+
+.box54 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 106.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box55 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 108.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #00bc87;
+    z-index: 5;
+
+
+}
+
+.box56 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 110.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc0051;
+    z-index: 5;
+
+
+}
+
+.box57 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 112.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #b300bc;
+    z-index: 5;
+
+
+}
+
+.box58 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 114.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #21567b;
+    z-index: 5;
+
+
+}
+
+.box59 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 116.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc0084;
+    z-index: 5;
+
+
+}
+
+.box60 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 118.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+
+.box61 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 120.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box62 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 122.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #121402;
+    z-index: 5;
+
+
+}
+
+.box63 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 124.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #f3f4ee;
+    z-index: 5;
+
+
+}
+
+.box64 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 126.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box65 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 128.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #06bc00;
+    z-index: 5;
+
+
+}
+
+.box66 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 130.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc007a;
+    z-index: 5;
+
+
+}
+
+.box67 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 132.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc7a00;
+    z-index: 5;
+
+
+}
+
+.box68 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 134.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #00a6bc;
+    z-index: 5;
+
+
+}
+
+.box69 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 136.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box70 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 1138.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #f8f9f1;
+    z-index: 5;
+
+
+}
+
+.box71 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 140.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #1c1e11;
+    z-index: 5;
+
+
+}
+
+.box72 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 142.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #edeee1;
+    z-index: 5;
+
+
+}
+
+.box73 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 144.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc0099;
+    z-index: 5;
+
+
+}
+
+.box74 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 146.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #00bc7d;
+    z-index: 5;
+
+
+}
+
+.box75 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 148.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #839211;
+    z-index: 5;
+
+
+}
+
+.box76 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 150.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #9d00bc;
+    z-index: 5;
+
+
+}
+
+.box77 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 152.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #006DBC;
+    z-index: 5;
+
+
+}
+
+.box78 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 154.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc0084;
+    z-index: 5;
+
+
+}
+
+.box79 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 156.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+
+.box80 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 158.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #f0f1e5;
+    z-index: 5;
+
+
+}
+
+.box81 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 160.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #00bc84;
+    z-index: 5;
+
+
+}
+
+.box82 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 162.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #676d39;
+    z-index: 5;
+
+
+}
+
+.box83 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 164.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #762a39;
+    z-index: 5;
+
+
+}
+
+.box84 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 166.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box85 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 168.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #dcddd2;
+    z-index: 5;
+
+
+}
+
+.box86 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 170.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #141605;
+    z-index: 5;
+
+
+}
+
+.box87 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 172.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc0000;
+    z-index: 5;
+
+
+}
+
+.box88 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 174.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box89 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 176.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #0026bc;
+    z-index: 5;
+
+
+}
+
+.box90 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 178.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #505242;
+    z-index: 5;
+
+
+}
+
+.box91 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 180.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc0000;
+    z-index: 5;
+
+
+}
+
+.box92 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 182.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+.box93 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 184.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #00bcb6;
+    z-index: 5;
+
+
+}
+
+.box94 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 186.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #8700bc;
+    z-index: 5;
+
+
+}
+
+.box95 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 188.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #bc0900;
+    z-index: 5;
+
+
+}
+
+
+.box96 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 190.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+
+.box97 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 192.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc00;
+    z-index: 5;
+
+
+}
+
+
+.box98 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 194.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #e7ebce;
+    z-index: 5;
+
+
+}
+
+.box99 {
+    animation-name: box1;
+    animation-duration: 100s ;
+    animation-delay: 196.5s;
+    animation-direction: ;
+    animation-iteration-count:infinite;
+    animation-timing-function: ;
+    animation-play-state: running;
+    animation-fill-mode: ;
+    background-color: #a6bc0000;
+    z-index: 5;
+
+
+}
+
+
+
+@keyframes box1 {
+    0% {
+        translate: 0% 0%;
+    }
+    2% {
+        translate: 100% 0%;
+    }
+    4% {
+        translate: 200% 0%;
+    }
+    6% {
+        translate: 300% 0%;
+    }
+    8% {
+        translate: 300% 100%;
+    }
+    10% {
+        translate: 200% 100%;
+    }
+    12% {
+        translate: 100% 100%;
+    }
+    14% {
+        translate: 0% 100%;
+    }
+    16% {
+        translate: 0% 200%;
+    }
+    18% {
+        translate: 100% 200%;
+    }
+    20% {
+        translate: 200% 200%;
+    }
+    22% {
+        translate: 300% 200%;
+    }
+    24% {
+        translate: 300% 300%;
+    }
+    26% {
+        translate: 200% 300%;
+    }
+    28% {
+        translate: 100% 300%;
+    }
+    30% {
+        translate: 0% 300%;
+    }
+    32% {
+        translate: 0% 400%;
+    }
+    34% {
+        translate: 100% 400%;
+    }
+    36% {
+        translate: 200% 400%;
+    }
+    38% {
+        translate: 300% 400%;
+    }
+    40% {
+        translate: 300% 500%;
+    }
+    42% {
+        translate: 200% 500%;
+    }
+    44% {
+        translate: 100% 500%;
+    }
+    46% {
+        translate: 0% 500%;
+    }
+    48% {
+        translate: 0% 600%;
+    }
+    50% {
+        translate: 100% 600%;
+    }
+    52% {
+        translate: 200% 600%;
+    }
+    54% {
+        translate: 300% 600%;
+    }
+    56% {
+        translate: 300% 700%;
+    }
+    34% {
+        translate: 200% 700%;
+    }
+    36% {
+        translate: 100% 700%;
+    }
+    38% {
+        translate: 0% 700%;
+    }
+    40% {
+        translate: 0% 800%;
+    }
+    42% {
+        translate: 100% 800%;
+    }
+    44% {
+        translate: 200% 800%;
+    }
+    46% {
+        translate: 300% 800%;
+    }
+    48% {
+        translate: 300% 900%;
+    }
+    50% {
+        translate: 200% 900%;
+    }
+    52% {
+        translate: 100% 900%;
+    }
+    54% {
+        translate: 0% 900%;
+    }
+    56% {
+        translate: 0% 1000%;
+    }
+    58% {
+        translate: 100% 1000%;
+    }
+    60% {
+        translate: 200% 1000%;
+    }
+    62% {
+        translate: 300% 1000%;
+    }
+    64% {
+        translate: 300% 1100%;
+    }
+    66% {
+        translate: 200% 1100%;
+    }
+    68% {
+        translate: 100% 1100%;
+    }
+    70% {
+        translate: 0% 1100%;
+    }
+    72% {
+        translate: 0% 1200%;
+    }
+    74% {
+        translate: 100% 1200%;
+    }
+    76% {
+        translate: 200% 1200%;
+    }
+    78% {
+        translate: 300% 1200%;
+    }
+    80% {
+        translate: 300% 1300%;
+    }
+    82% {
+        translate: 200% 1300%;
+    }
+    84% {
+        translate: 100% 1300%;
+    }
+    86% {
+        translate: 0% 1300%;
+    }
+    88% {
+        translate: 0% 1400%;
+    }
+    90% {
+        translate: 100% 1400%;
+    }
+    92% {
+        translate: 200% 1400%;
+    }
+    94% {
+        translate: 300% 1400%;
+    }
+    96% {
+        translate: 300% 1500%;
+    }
+    98% {
+        translate: 200% 1500%;
+    }
+    100% {
+        translate: 0% 1500%;
+    }
+    
+}
+
+
+
+
+
+
+
+/*********************************Textarea*********************************/
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+.container1 {
+    width: 100px;
+    margin: 0 auto;
+    
+    padding: 0px;
+    translate: -900px -15px ;
+    
+}
+
+
+
+form {
+  margin-top: 0px;
+  margin-left: -100px;
+  
+}
+
+textarea {
+  width: 500%;
+  padding: 10px;
+  font-size: 14px;
+  border: 0px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  background-color: #a4c5de;
+}
+
+button {
+  display: block;
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+
+/****************************Timer***************************************/
+
+
+
+.container2 {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  color: whitesmoke;
+}
+
+h1 {
+  margin-bottom: 20px;
+  
+}
+
+#timer {
+  font-size: 1000%;
+  font-weight: bold;
+}
+
+
+/***********************************************************************/
+
+
+.vid-cont {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-template-rows: 250px 250px;
+}
+
+.vid-box {
+    width: 50%;
+    height: 200px;
+}
+

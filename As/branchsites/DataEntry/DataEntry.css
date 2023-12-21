@@ -1,0 +1,232 @@
+body {
+    padding: 0px;
+    margin-top: 100px;
+    background-color: black;
+}
+
+.main {
+    display: flex;
+    background-color:#680c88;
+    height: 75px;
+    border-radius: 0px 0px 25px 25px;
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+}
+
+.logo{
+    width: 12%;
+    margin-left: -20px;
+    
+}
+
+.logo img {
+    width: 85%;
+    height: 100%;
+}
+
+.mmm106 {
+    font-size: 20px;
+    color: white;
+    width: 30%;
+    align-items: flex-start;
+    margin-top: -10px;
+}
+
+.contain {
+    width: 50%;    
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.contain a {
+    text-decoration: none;
+    margin: 3px;
+    color: black;
+    padding-top: 5px;
+    text-align: center;
+    font-weight: 900;
+    transition: all 0.3s;
+    font-size: 20px;
+}
+
+
+.contain a:hover {
+    color: whitesmoke;
+    background-color: black;
+    margin: 3px;
+    padding-top: 15px;
+    text-align: center;
+    font-weight: 900;
+    transition: all 0.5s;
+}
+/*-----------------------------------------------------------------------------*/
+
+.photos {
+    height: 300px;
+ /*  ------------ border: 5px #680c88 solid;
+    padding: 5px;
+    background-color: whitesmoke;
+---------------   */ 
+}
+
+
+/*-----------------------------------------------------------------------------*/
+
+
+
+
+
+.section2 {
+    background-color: whitesmoke;
+    height:auto;
+    text-align: center;
+    justify-items: center;
+    margin: 5px;
+    border: 5px #680c88 solid;
+
+}
+
+
+.DataEntry {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.DataEntry a button {
+    width: 120px;
+    height: 55px;
+    border: 2px black solid;
+}
+
+.DataEntry a button {
+    font-size: 20px;
+    font-weight: 200;
+    text-decoration: none;
+    color: #360c88;
+    cursor: pointer;
+
+}
+
+
+.DataEntry button:hover {
+    background-color: #680c88;
+    color: whitesmoke;
+
+}
+
+.DataEntry a button :hover {
+    background-color: #680c88;
+    color: whitesmoke;
+    text-decoration: none;
+
+}
+/*-----------------------------------------------------------------------------*/
+.tabs {
+    background-color:white;
+    display: flex;
+    justify-content:space-between;
+    
+}
+
+.tabs p {
+    font-size:28px;
+    font-weight:400;
+    color:#360c38;
+    border:5px black solid;
+    border-radius:50px;
+    padding:10px;
+    
+}
+
+.tabs a {
+    text-decoration:none;
+    
+}
+
+/*-----------------------------------------------------------------------------*/
+
+.cv {
+    justify-content: space-between;
+    height: 750px;
+    display: flex;
+}
+
+.cv1 {
+    border: 5px #360c38 solid;
+    width: 45%;
+    height: 500px;
+    background-color: whitesmoke;
+    transition: all 0.3s;
+}
+
+.cv1:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+
+
+
+.footer {
+    background-color: #680c88;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 0px;
+    border: 5px white solid;
+
+}
+
+.ownername {
+    width: 30%;
+    color: whitesmoke;
+    margin-left: 5px;
+    font-weight: 600;
+}
+
+.ownername p {
+    font-size: 20px;
+}
+
+.map {
+    width: 35%;
+
+}
+
+.socialicons {
+    width: 35%;
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+    justify-items: center;
+    padding-top: 15px;
+}
+
+.socialicons img {
+    color: white;
+    width: 50px;
+    height: 50px;
+
+}
+/*-----------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+

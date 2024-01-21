@@ -65,83 +65,42 @@
     
 
 /******************table style**********************************************************************/
-
-
-.container {
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    margin-left: 2%;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-h2 {
-  font-size: 26px;
-  margin: 20px 0;
-  text-align: center;
-  small {
-    font-size: 0.5em;
-  }
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
 }
 
-.responsive-table {
-  li {
-    border-radius: 3px;
-    padding: 25px 30px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-  }
-  .table-header {
-    background-color: #95A5A6;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-  .table-row {
-    background-color: #ffffff;
-    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
-  }
-  .col-1 {
-    flex-basis: 10%;
-  }
-  .col-2 {
-    flex-basis: 40%;
-  }
-  .col-3 {
-    flex-basis: 25%;
-  }
-  .col-4 {
-    flex-basis: 25%;
-  }
-  
-  @media all and (max-width: 767px) {
-    .table-header {
-      display: none;
-    }
-    .table-row{
-      
-    }
-    li {
-      display: block;
-    }
-    .col {
-      
-      flex-basis: 100%;
-      
-    }
-    .col {
-      display: flex;
-      padding: 10px 0;
-      &:before {
-        color: #6C7A89;
-        padding-right: 10px;
-        content: attr(data-label);
-        flex-basis: 50%;
-        text-align: right;
-      }
-    }
-  }
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
 }
 
 
@@ -279,48 +238,92 @@ https://www.tooplate.com/view/2124-vertex
 
 <!--------------------------- start table ------------------------------------------------------------------->
 
-<div class="container">
-    <h2>Responsive Tables Using LI <small>Triggers on 767px</small></h2>
-    <ul class="responsive-table">
-      <li class="table-header" style="color: #fff;">
-        <div class="col col-1">logo</div>
-        <div class="col col-2">AI Name</div>
-        <div class="col col-3">Price</div>
-        <div class="col col-4">description</div>
-      </li>
-      <li class="table-row">
-        <div class="col col-1" data-label="Job Id">
-            <a href="https://www.timehero.com/"><img src="img/gallery/img-01.jpg" alt="" style="width: 40%;"></a>
-        </div>
-        <a href="https://www.timehero.com/" style="color: #000; text-align: left;"><div class="col col-2" data-label="Customer Name">TimeHero</div></a>
-        <div class="col col-3" data-label="Amount" style="margin-left: 25%;">try free for 7 days</div>
-        <div class="col col-4" data-label="Payment Status">
-            Schedule, manage, and automate work from daily tasks, projects and calendar events — all in one place.
-        </div>
-      </li>
-      <li class="table-row">
-        <div class="col col-1" data-label="Job Id">42442</div>
-        <div class="col col-2" data-label="Customer Name">Jennifer Smith</div>
-        <div class="col col-3" data-label="Amount">$220</div>
-        <div class="col col-4" data-label="Payment Status">Pending</div>
-      </li>
-      <li class="table-row">
-        <div class="col col-1" data-label="Job Id">42257</div>
-        <div class="col col-2" data-label="Customer Name">John Smith</div>
-        <div class="col col-3" data-label="Amount">$341</div>
-        <div class="col col-4" data-label="Payment Status">Pending</div>
-      </li>
-      <li class="table-row">
-        <div class="col col-1" data-label="Job Id">42311</div>
-        <div class="col col-2" data-label="Customer Name">John Carpenter</div>
-        <div class="col col-3" data-label="Amount">$115</div>
-        <div class="col col-4" data-label="Payment Status">Pending</div>
-      </li>
-    </ul>
-  </div>
-
-
-
+<table class="styled-table" >
+    <thead>
+        <tr>
+            <th>logo</th>
+            <th>AI Name</th>
+            <th>Price</th>
+            <th>description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="color: white;">
+            <td>
+                <a href="">
+                    <img src="img/gallery/img-03.jpg" alt="" width="30px">
+                </a>
+            </td>
+            <td>
+                <a href="">
+                    TimeHero
+                </a>
+            </td>
+            <td>
+                try free for 7 days
+            </td>
+            <td>
+                Schedule, manage, and automate work from daily tasks, 
+                projects and calendar events — all in one place.
+            </td>
+        </tr>
+        <tr class="active-row">
+            <td>
+                <a href="">
+                    <img src="img/gallery/img-03.jpg" alt="" width="30px">
+                </a>
+            </td>
+            <td>
+                <a href="" style="color: #009879;">
+                    name
+                </a>
+            </td>
+            <td>
+                brice
+            </td>
+            <td>
+                discribtion
+            </td>
+        </tr>
+        <tr style="color: white;">
+            <td>
+                <a href="">
+                    <img src="img/gallery/img-03.jpg" alt="" width="30px">
+                </a>
+            </td>
+            <td>
+                <a href="">
+                    name
+                </a>
+            </td>
+            <td>
+                brice
+            </td>
+            <td>
+                discribtion
+            </td>
+        </tr>
+        <tr class="active-row">
+            <td>
+                <a href="">
+                    <img src="img/gallery/img-03.jpg" alt="" width="30px">
+                </a>
+            </td>
+            <td>
+                <a href="" style="color: #009879;">
+                    name
+                </a>
+            </td>
+            <td>
+                brice
+            </td>
+            <td>
+                discribtion
+            </td>
+        </tr>
+        <!-- and so on... -->
+    </tbody>
+</table>
 
 
 <!---------------------------end table ------------------------------------------------------------------->

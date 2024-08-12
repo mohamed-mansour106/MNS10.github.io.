@@ -56,7 +56,7 @@
     text-align: center;
     position: absolute; 
     color: black;
-">1. The Separator </h1>
+">1.   </h1>
 
     <div class="container" style="display: inline-block; 
                                     padding: 0% 2% ; 
@@ -67,17 +67,7 @@
         
         <div style="float: left; width: 90%; margin: 0%;">
             <h4>
-                The gas line :-
-                To increase or decrease the orifice (run the orifice) you need to do the following 
-<br>
-                1/ open the equalizer and open the gate then adjust from the carrier to make it in the upper chamber or down chamber finally open the upper chamber valve then close all previous valves inverse gate valve and equalizer.
-                Gas line can go to the production line and go for burner line by a diverter in the gas line in the Separator 
-<br>
-                The oil line:- 
-                I can adjust the level from the lcv box to make the level stable and control form the pcv only
-<br>
-                The Separator can be three phases 
-                (water, oil and water) or two phases (liquid and gas)
+                
 
             </h4>
             <hr class="hr1">   
@@ -87,6 +77,437 @@
         
     </div>
 
+
+                    
+                    
+                <h1 style=" text-align: center;
+                margin-top: 5%;
+                text-align: center;
+                position: absolute; 
+                color: black;
+                ">2. modbus Setup  </h1>
+
+                <div class="container" style="display: inline-block; 
+                                                padding: 0% 2% ; 
+                                                
+                                                margin-left: 2%;
+                                                margin-right: 2%; 
+                                                width: 90%;">
+                        
+                        <div style="float: right; width: 90%; margin: 0%;">
+                            <img src="photos/modbus/modbus5.png" style="width: 100%;"  alt="">
+                        </div>
+                    <div style="float: left; width: 90%; margin: 0%;">
+                        <h4>
+                            Open MBConfig to launch modbus
+                        </h4>
+
+                        <div style="float: right; width: 90%; margin: 0%;">
+                            <img src="photos/modbus/modbus2.png" style="width: 100%;"  alt="">
+                        </div>
+                    <div style="float: left; width: 90%; margin: 0%;">
+                        <h4>
+                            Modbus Screen to start adding sensors to it 
+                        </h4>
+
+                        <div style="float: right; width: 90%; margin: 0%;">
+                            <img src="photos/modbus/modbus3.png" style="width: 100%;"  alt="">
+                        </div>
+                    <div style="float: left; width: 90%; margin: 0%;">
+                        <h4>
+                            right click to add fields of sensors 
+                        </h4>
+
+                        <div style="float: right; width: 90%; margin: 0%;">
+                            <img src="photos/modbus/modbus4.png" style="width: 100%;"  alt="">
+                        </div>
+                    <div style="float: left; width: 90%; margin: 0%;">
+                        <h4>
+                           Add the following fileds with sensors  
+                        </h4>
+
+                        <ul style="color: black;">
+                            <li>
+                                add wellhead
+                                <ol>
+                                    <li >
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);"> CasePressure 		(keep) </span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: WHP</li>
+                                            <li>Type: psi</li>
+                                        </ul>
+                                    </li>
+                                    <li><span style="background-color: rgba(255, 255, 0, 0.756);">CaseTemperature 		(keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: WHT</li>
+                                            <li>Type: DegC</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">TubePressure 		(keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: Ann</li>
+                                            <li>Type: psi</li>
+                                        </ul>
+                                    </li>
+                                    <li style="text-decoration: line-through;">TubeTemperature 		(Delete)</li>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">DownstreamPressure 	(keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: DSP</li>
+                                            <li>Type: psi</li>
+                                        </ul>
+                                    </li>
+                                    <li style="text-decoration: line-through;">DownstreamTemperature 	(Delete) </li>
+                                    
+                                </ol>
+                            </li>
+                            
+
+                            <li>add gas meter = gas orifice meter
+                                <ol>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">Diff				(keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: Diff_P</li>
+                                            <li>Type: psi</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">MeterStatic			(keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: SEP_P</li>
+                                            <li>Type: psi</li>
+                                        </ul>
+                                    </li>
+                                    <li> 
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">MeterTemperature		(keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: SEP_T</li>
+                                            <li>Type: degC</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <li>add oil meter = measured rate meter (for 2inch)
+                                <ol>
+                                    <li style="text-decoration: line-through;">MeterOilApiDensity		(Delete)</li>
+                                    <li style="text-decoration: line-through;">MeterTemperatureApi	(Delete)</li>
+                                    <li >
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">MeterStaticSeparator	(keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: Oil2Inch_P </li>
+                                            <li>Type: psi </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">MeterTemperature_Separator (keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: Oil2Inch_T </li>
+                                            <li>Type: DegC </li>
+                                        </ul>
+                                    </li>
+                                    <li style="text-decoration: line-through;">MeterTemperature_Stocktank (Delete) </li>
+                                    <li style="text-decoration: line-through;">MeterStatic			(Delete) </li>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">MeterMeasuredLIquidRate	(keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: Oil2Inch_R </li>
+                                            <li>Type: bbl/d </li>
+                                        </ul>
+                                    </li>
+                                    <li style="text-decoration: line-through;">MeterTemperature		(Delete) </li>
+                                </ol>
+                            </li>
+
+                            <li>add oil meter = measured rate meter (for 1inch)
+                                <ol>
+                                    <li style="text-decoration: line-through;">MeterOilApiDensity		(Delete)</li>
+                                    <li style="text-decoration: line-through;">MeterTemperatureApi	(Delete)</li>
+                                    <li>MeterStaticSeparator	(keep)
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: Oil1Inch_P </li>
+                                            <li>Type: psi </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">MeterTemperature_Separator (keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: Oil1Inch_T </li>
+                                            <li>Type: DegC </li>
+                                        </ul>
+                                    </li>
+                                    <li style="text-decoration: line-through;">MeterTemperature_Stocktank (Delete) </li>
+                                    <li style="text-decoration: line-through;">MeterStatic			(Delete) </li>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">MeterMeasuredLIquidRate	(keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: Oil1Inch_R </li>
+                                            <li>Type: bbl/d </li>
+                                        </ul>
+                                    </li>
+                                    <li style="text-decoration: line-through;">MeterTemperature		(Delete) </li>
+                                </ol>
+                            </li>
+
+                            <li>add water meter = produce volume meter
+                                <ol>
+                                    <li style="text-decoration: line-through;">MeterStatic			(Delete)</li>
+                                    <li style="text-decoration: line-through;">MeterTemperature		(Delete)</li>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">MeterLiquidVolume		(Keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: MeterLiquidVolume </li>
+                                            <li>Type: bbls </li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <li>add water meter = measure rate meter
+                                <ol>
+                                    <li style="text-decoration: line-through;">MeterStatic			(Delete)</li>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">MeterMeasuredLiquidRate	(Keep)</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: Water_Meter </li>
+                                            <li>Type: bbl/d </li>
+                                        </ul>
+                                    </li>
+                                    <li style="text-decoration: line-through;">MeterTemperature		(Delete)</li>
+                                </ol>
+                            </li>
+
+                            <li>add Aux channel (add Aux channel = pressure channel)
+                                <ol>
+                                    <li>
+                                        <span style="background-color: rgba(255, 255, 0, 0.756);">AuxStatic</span>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Name: ReInj_P </li>
+                                            <li>Type: psi </li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </li>
+
+                        </ul>
+
+
+                        <div style="float: right; width: 90%; margin: 0%;">
+                            <img src="photos/modbus/modbus1.png" style="width: 100%;"  alt="">
+                        </div>
+                    <div style="float: left; width: 90%; margin: 0%;">
+                        <h4>
+                           the final appearance for the modbus  
+                        </h4>
+
+                        
+
+
+                        <hr class="hr1">   
+                    </div>
+                    
+                    
+                    
+                </div>
+
+
+
+
+            <h1 style=" text-align: center;
+                margin-top: 5%;
+                text-align: center;
+                position: absolute; 
+                color: black;
+            ">3. fekete </h1>
+
+                <div class="container" style="display: inline-block; 
+                                                padding: 0% 2% ; 
+                                                
+                                                margin-left: 2%;
+                                                margin-right: 2%; 
+                                                width: 90%;">
+                    
+                    <div style="float: left; width: 90%; margin: 0%;">
+                        <h4>
+                            <ul>
+                                <li>when you play depug the fekete it load the file of the modbus.</li>
+                                <li>when you make the chart you need to click plot tap and add / remove series</li>
+                            </ul>
+
+                            <p>to do the report of flow test from the fekete on barge :-</p>
+                            <ol>
+                                <li>we add comments in the fekete </li>
+                                <li>we add all data required like (Co2, H2s, Shrinkage, API, ) </li>
+                                <li>go to cleanup sheet and filter it from the filter icon and filter the time of the test </li>
+                                <li>after filtering the sheet go to file list and save the file as CSV and check on (filter on) </li>
+                                <li>we take the data from the file we saved and we put it in a report file </li>
+                                <li>we remove all rows we do not need </li>
+                                <li>in the chokemanifold side we choose 1 for positive and 2 for the adjustable side </li>
+                                <li>we copy the comments and paste it in Activity Log sheet </li>
+                                <li>in case if we do only flow back we do not add some data like :
+                                    <ul>
+                                        <li>Gase rate </li>
+                                        <li>total Gase rate</li>
+                                        <li>Oil rate @60F</li>
+                                        <li>GOR1</li>
+                                        <li>GOR2</li>
+                                        <li>total GOR</li>
+                                        <li>API</li>
+                                    </ul>     
+                                </li>
+                                <li></li>
+                            </ol>
+
+                        </h4>
+
+
+                        <hr class="hr1">   
+                    </div>
+                    
+                    
+                    
+                </div>
+
+
+                <h1 style=" text-align: center;
+                margin-top: 5%;
+                text-align: center;
+                position: absolute; 
+                color: black;
+            ">4. modbus in Island Sarb </h1>
+            
+                <div class="container" style="display: inline-block; 
+                                                padding: 0% 2% ; 
+                                                
+                                                margin-left: 2%;
+                                                margin-right: 2%; 
+                                                width: 90%;">
+                    
+                    <div style="float: left; width: 90%; margin: 0%;">
+                        <h4>
+                            <ul>
+                                <li>open the data logger (ip: 192.168.1.10 ) 
+                                    <ul style="list-style-type: lower-alpha;">
+                                        <li>username: "admin"</li>
+                                        <li>password: "default"</li>
+                                    </ul>
+                                </li>
+                                <li>1 bar = 14.5 psi</li>
+                                <li>add the following:
+                                    <ul style="list-style-type: lower-alpha;">
+                                        <li>WLP = wellhead pressure</li>
+                                        <li>WLT = wellhead Temperature</li>
+                                        <li>WLD = wellhead differential pressure</li>
+                                        <li>WLF = wellhead flow meter</li>
+                                    </ul>
+                                </li>
+                                <li>For every add change the properties to :-
+                                    <ul style="list-style-type: lower-alpha;">
+                                        <li>sample rate (time out) = minutes </li>
+                                        <li>value = 1</li>
+                                        <li>baud = 38400</li>
+                                        <li>ports = com7 <sub> ( we can know the the number of the port from device manager) </sub></li>
+                                        <li>rtu2 = ID: 232</li>
+                                    </ul>
+                                </li>
+                                <li>add well head:
+                                    <ul style="list-style-type: lower-alpha;">
+                                        <li>Case pressure name = annulus</li>
+                                        <li>ID/ address = 4ddd5 </li>
+                                        <li>Pressure = psi Guage</li>
+                                        <li>Temperature = celicius (C°)</li>
+                                    </ul>
+                                </li>
+                                <li>Choke manifold:
+                                    <ul style="list-style-type: lower-alpha;">
+                                        <li>Case pressure name = annulus</li>
+                                        <li>ID/ address = 4ddd5 </li>
+                                        <li>Pressure = psi Guage</li>
+                                        <li>Temperature = celicius (C°)</li>
+                                    </ul>
+                                </li>
+                                <li>Choke manifold: 
+                                    <ul style="list-style-type: lower-alpha;">
+                                        <li>WHP= well head pressure</li>
+                                        <li>WHT= well head temperature</li>
+                                        <li>DSP= Downstream pressure </li>
+                                        <li>Annulus</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Separator names that will change
+                                    <ul style="list-style-type: lower-alpha;">
+                                        <li>SEP.P= Separator Pressure (metric static)</li>
+                                        <li>SEP.T= Separator temperature(metric Temperature)</li>
+                                        <li>Diff.= Differential Pressure</li>
+                                    </ul>
+                                </li>
+                                <li>2inch oil
+                                    <ul style="list-style-type: lower-alpha;">
+                                        <li>Volume of the liquid</li>
+                                    </ul>
+                                </li>
+                                <li>1inch oil</li>
+                                <li>1inch water</li>
+                                <li>2inchwater</li>
+                                <li>Gas meter For 6inch
+                                    <ul style="list-style-type: lower-alpha;">
+                                       <li>Orifice meter
+                                            <ol style="list-style-type: lower-roman;">
+                                                <li>Meter position = downstream</li>
+                                                <li>Run size = ...</li>
+                                                <li>Bore ID = 5761</li>
+                                                <li>Tube tap = flange</li>
+                                            </ol>
+                                       </li>
+                                       <li>diff
+                                        <ol style="list-style-type: lower-roman;">
+                                            <li>Address = 40045</li>
+                                            <li>Type = inches of water</li>
+                                        </ol>
+                                       </li>
+                                    </ul>
+                                </li>
+                                <li><u>Oil meter =》</u> Volume meter / oil 2 inch
+                                    <ul style="list-style-type: lower-alpha;">
+                                        <li>- oil fluid volume</li>
+                                        <li>meter static
+                                            name = oil2 Sep.p
+                                            </li>
+                                        <li>meter temperature 
+                                            name = oil2 sep.T
+                                            </li>
+                                        <li>meter liquid volume 
+                                            <ol>
+                                                <li>name = oil2 volume </li>
+                                                <li>Type = barrels</li>
+                                                <li>Rate = bpd ( barrel per day )
+                                                    <sub>If we need rate and volume from the flow, put the last digit for rate 7 and for volume 5 </sub>
+                                                    </li>
+                                            </ol>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>Aux channels ( for extra sensors ) 
+                                    <ul>
+                                        <li>Differential =》 inches of water</li>
+                                        <li>Revision: ( wh - gas6inch - orifice meter - gas3inch - oil2inch - oil1inch - aux - water - coriolis meter )</li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+            
+                        </h4>
+                        <hr class="hr1">   
+                    </div>
+                    
+                    
+                    
+                </div>
+            
+            
 
 
     <h3 style=" text-align: center;
@@ -118,8 +539,67 @@
         
     </div>
 
+    
+
+    <h3 style=" text-align: center;
+    margin-top: 5%;
+    text-align: center;
+    position: absolute; 
+    color: black;
+">1. Calculating Oil SG  </h3>
+
+    <div class="container" style="display: inline-block; 
+                                    padding: 0% 2% ; 
+                                    
+                                    margin-left: 2%;
+                                    margin-right: 2%; 
+                                    width: 90%;">
+        
+        <div style="float: left; width: 90%; margin: 1%;">
+            <h4>
+                SG-oil = 141.5 / (131.5+ API)
+            </h4>
+            <hr class="hr1">   
+        </div>
+        
+        
+        
+    </div>
+
             
-           
+    
+    <h3 style=" text-align: center;
+    margin-top: 5%;
+    text-align: center;
+    position: absolute; 
+    color: black;
+">1. Notes  </h3>
+
+    <div class="container" style="display: inline-block; 
+                                    padding: 0% 2% ; 
+                                    
+                                    margin-left: 2%;
+                                    margin-right: 2%; 
+                                    width: 90%;">
+        
+        <div style="float: left; width: 90%; margin: 1%;">
+            <h4>
+                <ul>
+                    <li>6" gas line meter size in fekete = 5.187"</li>
+                    <li>3" gas line meter size in fekete = 3.088"</li>
+                    <li style="margin-right: -12%;">Gas Oil Ratio = Gas Rate (sfc/d) <sub>standard cubing feet per day</sub> / Oil Rate (bbl/d)  </li>
+                    <li>GOR <sub>estimation</sub> = 0.1 X (depth per feet) </li>
+                </ul>
+            </h4>
+            <hr class="hr1">   
+        </div>
+        
+        
+        
+    </div>
+
+            
+        
                 
 
     <div style=" margin-top: 0%;

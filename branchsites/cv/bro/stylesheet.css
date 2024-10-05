@@ -1,0 +1,340 @@
+body {
+    background-image: url('background.png');
+
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgb(0, 0, 0, 0.75), rgb(0, 0, 0, 0.75)), url(background.jpg);
+    background-size: cover;
+    background-position: center;
+
+}
+
+.navbar {
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    cursor: pointer;
+    width: 120px;
+
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.navbar ul li::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #009688;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+.navbar ul li:hover::after {
+    width: 100%;
+}
+
+
+
+
+.big {
+    display: grid;
+    grid-template-columns: 15% 15% 15% 15% 15% 15%  ;
+    grid-template-rows: 100px 100px 100px ;
+    margin: 0%;
+    margin-left: 15%;
+}
+
+.box {
+    margin: 8%;
+}
+
+.img {
+    width: 220%;
+    margin: 0%;
+    padding: 0%;
+    opacity: 0.5%;
+}
+
+
+.box1 {
+    translate: 150% 5%;
+}
+.box2 {
+    translate: -145% -45%;
+}
+.box3 {
+    translate: -200% -102%;
+}
+.box4 {
+    translate: -265% 128%;
+}
+.box5 {
+    translate: -320% 123%;
+}
+.box6 {
+    translate: -380% -125%;
+}
+.box7 {
+    translate: 320% -320%;
+}
+.box8 {
+    translate: 260% -152%;
+}
+.box9 {
+    translate: 200% 107%;
+}
+.box10 {
+    translate: 140% -157%;
+}
+.box11 {
+    translate: 80% -168%;
+}
+.box12 {
+    translate: -25% -51%;
+}
+
+
+
+
+
+
+
+
+.box13 {
+    translate: 40% -190%;
+}
+.box14 {
+    translate: 0% -280%;
+}
+.box15 {
+    translate: -80% -267%;
+}
+.box16 {
+    translate: -135% -340%;
+}
+.box17 {
+    translate: -100% -260%;
+}
+.box18 {
+    translate: -170% -300%;
+}
+.box19 {
+    translate: 457% -81%;
+}
+.box20 {
+    translate: 370% -72%;
+}
+.box21 {
+    translate: 290% -70%;
+}
+.box22 {
+    translate: 215% -70%;
+}
+.box23 {
+    translate: -555% -36%;
+}
+.box24 {
+    translate: 120% -60%;
+}
+
+
+
+
+
+
+/*************
+.box13 {
+    translate: 50% 40%;
+}
+.box14 {
+    translate: 50% 40%;
+}
+.box15 {
+    translate: 50% 40%;
+}
+.box16 {
+    translate: 50% 40%;
+}
+.box17 {
+    translate: 50% 40%;
+}
+.box18 {
+    translate: 50% 40%;
+}
+.box19 {
+    translate: 50% 40%;
+}
+.box20 {
+    translate: 50% 40%;
+}
+
+***************************************/
+
+
+
+.img:hover {
+    opacity: 100%;
+    
+    
+}
+
+.big:hover {
+    z-index: 5;
+}   
+  
+
+
+
+/**********************************************
+
+.big {
+    position: absolute;
+    translate: 30% -350%;
+    width: 100%;
+    display: inline; 
+    color: #fff;
+}
+
+.image1 {
+    width: 24.5%;
+    opacity: 100%;
+    display: inline;
+
+}
+
+.image1:active {
+    width: 24.5%;
+    opacity: 100%;
+    transition-timing-function: 5s;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+
+.cont {
+    display: inline;
+    background-image: url('logo.png');
+    width: 24px;
+    height: 100px;
+}
+
+
+
+.soso {
+    width: 100px; 
+    height: 100px; 
+    background-color: aqua;
+    margin: 15%;
+}
+
+.momo {
+    z-index: 1000;
+    position: absolute;
+    translate: 30% -50%;
+}
+
+.so1 {
+    z-index: 1000;
+    position: absolute;
+    translate: 30% -350%;
+}
+
+.so2 {
+    z-index: 1000;
+    position: relative;
+    translate: 150% -350%;
+    background-image: url('logo.png');
+}
+
+
+.dis {
+    display: grid;
+    grid-template-columns: 15% 15% 15% 15% 15% 15% ;
+    grid-template-rows: 200px 200px ;
+    align-items: center;
+    margin-top: 100px;
+    width: 90%;
+    translate: 0% -140%;
+}
+
+.bobo {
+    width: 80%;
+    height: 50%;
+    background-color: rgb(255, 0, 0);
+    margin: 50%;
+    margin-left: 35%;
+    padding: 10%;
+    
+    
+}
+
+
+.bobo:hover {
+    background-image: url('logo.png');
+}
+
+
+.bobo1 {
+    translate: 0% -50%;
+    animation-name: ai1;
+    animation-delay: 5s;
+    animation-duration: 0.5s;
+}
+
+
+@keyframes ai1 {
+    0% {;
+        background-color: rgb(255, 0, 0);
+        ;
+    }
+    25% {
+        background-image: url('logo.png');
+    }
+    50% {
+        background-image: url('logo.png');
+    }
+    75% {
+        background-image: url('logo.png');
+    }
+    100% {
+        background-color: rgb(255, 0, 0);
+        
+    }
+}
+
+
+*******/
+
+
+
+
+

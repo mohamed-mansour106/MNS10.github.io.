@@ -1,0 +1,169 @@
+body {
+    background-image: url("img/background/img-background.jpg");
+}
+
+
+.main {
+    display: flex;
+    background-color:#680c88;
+    height: 75px;
+    border-radius: 0px 0px 25px 25px;
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+}
+
+.logo{
+    width: 12%;
+    margin-left: -20px;
+    
+}
+
+.logo img {
+    width: 85%;
+    height: 100%;
+}
+
+.mmm106 {
+    font-size: 20px;
+    color: white;
+    width: 30%;
+    align-items: flex-start;
+    margin-top: -10px;
+}
+
+.contain {
+    width: 50%;    
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.contain a {
+    text-decoration: none;
+    margin: 3px;
+    color: black;
+    padding-top: 5px;
+    text-align: center;
+    font-weight: 1000;
+    transition: all 0.3s;
+    font-size: 20px;
+}
+
+
+.contain a:hover {
+    color: whitesmoke;
+    background-color: black;
+    margin: 3px;
+    padding-top: 15px;
+    text-align: center;
+    font-weight: 1000;
+    transition: all 0.5s;
+}
+
+.active {
+    color: whitesmoke;
+    background-color: black;
+    margin: 3px;
+    padding-top: 15px;
+    text-align: center;
+    font-weight: 1000;
+    transition: all 0.5s;
+}
+
+
+.big-container {
+
+    margin: 10%;
+    margin-top: 20%;
+    color: rgba(61, 16, 198, 0.83);
+}
+
+.small-container {
+    justify-content: space-between;
+    display: flex;
+
+}
+
+.fix {
+    display: inline;
+    margin-left: -40%;
+    position: absolute;
+    translate: 415% -100%;
+    font-size: 100%;
+
+}
+
+
+.text {
+    letter-spacing: 10px;
+    font-size: 500%;
+}
+
+.text0 {
+    text-decoration: none;
+}
+
+.text0:active {
+    text-shadow: 0px 0px 0px black;
+    color: rgb(0, 0, 0);
+}
+
+.text:hover {
+    background-color: antiquewhite;
+    border-radius: 50px;
+
+}
+
+.text:active {
+    color: white;
+}
+
+.text1 {
+    text-shadow: 5px 5px 5px rgb(47, 150, 26);
+}
+
+.text2 {
+    text-shadow: 5px 5px 5px rgb(255, 255, 255);
+}
+
+.text3 {
+    text-shadow: 5px 5px 5px rgb(130, 215, 239);
+}
+
+.text4 {
+    text-shadow: 5px 5px 5px rgb(205, 130, 130);
+}
+
+.text5 {
+    text-shadow: 5px 5px 5px rgb(187, 205, 130);
+}
+
+
+.text6 {
+    text-shadow: 5px 5px 5px rgb(150, 26, 26);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -38,6 +38,83 @@
 
 		</style>
 
+
+
+
+<style>
+	
+        /*start next and previous buttons*/
+
+        #gallerywrapper {
+            width:100%;
+			height: 100px;
+            margin:0 auto;
+            position:relative;
+            font-family:verdana, arial, sans-serif;
+            margin-top: 0%;
+        } 
+
+        #gallerywrapper #gallery {
+            position:absolute;
+            left:0;
+            top:0;
+            height:450px;
+            width:100%;
+            overflow:hidden;
+            text-align:center;
+        } 
+
+        #gallerywrapper #gallery div {
+            width:100%; 
+            height:900px; 
+            padding-top:0px; 
+            position:relative;
+        } 
+
+        #gallerywrapper #gallery div img {
+            clear:both; 
+            display:block; 
+            margin:0 auto; 
+            border:0;
+        } 
+
+        #gallerywrapper #gallery div h3 {
+            padding:10px 0 0 0; 
+            margin:0; 
+            font-size:18px;
+        } 
+
+        #gallerywrapper #gallery div p {
+            padding:5px 0; 
+            margin:0; 
+            font-size:12px; 
+            line-height:18px;
+        } 
+
+        #gallery .previous{ 
+            display:inline;
+            float:left;
+            margin-left:80px;
+            text-decoration:none;
+            color: aliceblue;
+        } 
+
+        #gallery .next{ 
+            display:inline;
+            float:right;
+            margin-right:80px;
+            text-decoration:none;
+            color: aliceblue;
+        }
+
+		
+
+        /*end next and previous buttons*/
+
+</style>
+
+
+
 </head>
 <body>
 
@@ -110,6 +187,96 @@
 		</div>
 	</div>
 </div>
+
+
+		
+        <!-------------------start next and previous buttons------------------------>
+
+
+        <div id="gallerywrapper" style="background-color: rgb(46, 6, 42);">
+            <div id="gallery" style="margin-top: 5%;">
+                
+                <div id="pic1">
+					<img src="images/logo1.png" alt="" style="display: inline;" > 
+					<img src="images/logo1.png" alt="" style="display: inline;">
+					<img src="images/logo1.png" alt="" style="display: inline;">
+					<a class="previous" href="#pic3">
+                        <img src="prev.png" alt="" style="width: 80%; height: 30px;">
+                    </a>
+                    <a class="next" href="#pic2">
+                        <img src="next.png" alt="" style="width: 80%; height: 30px;">
+                    </a>
+                    
+                </div>
+
+				<div id="pic2">
+					<img src="images/logo1.png" alt="" style="display: inline;"> 
+					<img src="images/logo1.png" alt="" style="display: inline;">
+					<img src="images/logo1.png" alt="" style="display: inline;">
+					<a class="previous" href="#pic1">
+                        <img src="prev.png" alt="" style="width: 80%; height: 30px;">
+                    </a>
+                    <a class="next" href="#pic3">
+                        <img src="next.png" alt="" style="width: 80%; height: 30px;">
+                    </a>
+                    
+                </div>
+
+				<div id="pic3">
+					<img src="images/logo1.png" alt="" style="display: inline;"> 
+					<img src="images/logo1.png" alt="" style="display: inline;">
+					<img src="images/logo1.png" alt="" style="display: inline;">
+					<a class="previous" href="#pic2">
+                        <img src="prev.png" alt="" style="width: 80%; height: 30px;">
+                    </a>
+                    <a class="next" href="#pic1">
+                        <img src="next.png" alt="" style="width: 80%; height: 30px;">
+                    </a>
+                    
+                </div>
+<!-----------------------
+                <div id="pic2">
+					<a class="previous" href="#pic1">
+                        <img src="prev.png" alt="" style="width: 80%; height: 30px;">
+                    </a>
+                    <a class="next" href="#pic3">
+                        <img src="next.png" alt="" style="width: 80%; height: 30px;">
+                    </a>
+                    <h4 style="color: aliceblue;">
+                        2-Elements And Browser
+                    </h4>
+                </div>
+
+                <div id="pic3">
+                    <iframe style="margin-bottom: 2%;" height="350" width="90%" src="https://www.youtube.com/embed/QG5aEmS9Fu0?list=PLDoPjvoNmBAw_t_XWUFbBX-c9MafPk9ji" title="Learn HTML In Arabic 2021 - #03 - First Project And First Page" frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <a class="previous" href="#pic2">
+                        <img src="prev.png" alt="" style="width: 80%; height: 30px;">
+                    </a>
+                    <a class="next" href="#pic4">
+                        <img src="next.png" alt="" style="width: 80%; height: 30px;">
+                    </a>
+                    <h4 style="color: aliceblue;">
+                        3-First Project And First Page
+                    </h4>
+                </div>
+
+
+---------------->
+
+                
+            </div>
+        </div>
+
+
+        <!-------------------end next and previous buttons------------------------>
+
+
+
+
+
+
+
+
 <div class="page-single">
 	<div class="container">
 		<div class="row">

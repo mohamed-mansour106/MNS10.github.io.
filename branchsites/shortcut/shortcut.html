@@ -1,0 +1,776 @@
+<DOCTYPEhtml!>
+
+<html>
+    <head>
+        <title> Movies </title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="workers.css" >
+        <link rel="stylesheet" href="MMM.css" >
+        <link rel="shortcut icon" href="img/logo/favicon.ico" type="">
+        
+    <style>
+        .div-click:hover {
+            box-shadow: 10px 10px 10px 10px rgb(77, 98, 161) ;
+            width: 300px ;
+            height: 300px ;
+            
+
+        }
+
+        .section-petro {
+            padding: 20px;
+            border: dashed 5px rgb(203, 0, 206) ;
+            border-radius: 50px;
+            margin: 50px;
+        }
+
+        .section-soft {
+            padding: 20px;
+            border: dashed 5px rgb(0, 124, 206) ;
+            border-radius: 50px;
+            margin: 50px;
+        }
+
+        .section-Teacher {
+            padding: 20px;
+            border: dashed 5px rgb(192, 221, 32) ;
+            border-radius: 50px;
+            margin: 50px;
+        }
+        
+    </style>
+
+        <style>
+            ul li {
+                width: 85%;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                margin: 1.5em;
+                cursor: pointer;
+                padding: 1em;
+                background: rgb(43, 43, 43);
+                position: relative;
+                color: white;
+                border-radius: 5px;
+            }
+
+            ul li::before,
+            ul li::after {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    border-radius: 5px;
+                    width: 105%;
+                    transition: all 0.4s;
+            }
+            ul li::before {
+                    left: 0%;
+                    height: 130%;
+                    background: linear-gradient(to right, #021B79, #0575E6);
+            }
+            ul li::after {
+                    left: -10%;
+                    height: 120%;
+                    background: #ffffff56;
+                    backdrop-filter: blur(10px);
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.164);
+            }
+            ul li:hover::before {
+                    transform: translateX(-2.5%);
+            }
+            ul li:hover::after {
+                    transform: translateX(15%);
+            }
+
+            .s {
+                font-size: xx-large;
+                color: ;
+            }
+        </style>
+
+        
+    
+    </head>
+    <body style="background-image: url(img/back.png);">
+        <div class="main">
+            <div class="logo" >
+                <img src="img/logo/MMM.png" width=100%>
+            </div>
+            <div class="mmm106">
+                <p> <b>MMM106</b></p>
+                <p style="font-size: 13px;color: black" padding-left:15px; ><i> <u> Educational Website</u></i> </p>
+            </div>
+            <div class="contain">
+                <a href="../../index.html">  <p>Home</p> </a>
+                <a href="">  <p>join us </p> </a>
+                <a href="">  <p> News </p> </a>
+                <a href="">  <p> Vlogs </p> </a>
+                <a href="">  <p>MMM team</p> </a>
+                <a href="https://mmm100601999.000webhostapp.com/">   <p>second web</p> </a>
+                
+            </div>
+            
+        </div>
+           <!-- 
+            <div >
+                <img src="../photos/MMM.png" class="logu">
+
+            </div>
+            -->
+            <!----------------------------------------------------------------------->
+            
+
+
+           <!----------------------------start websites to watch movies------------------------>
+
+
+                <h1 style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-style: italic; font-size: 50px; ">websites to watch movies</h1>
+                <div class="section-petro" style="border: rgb(255, 85, 0) 5px dashed; ">    
+                <div class="seller" style="display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            height: 100vh;
+                                            overflow: scroll;">
+                        <div class="LIST1" style="width: 95%; ">
+                            <ul>
+                                <a href="">
+                                    <li>
+                                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxQSEBUQEhIQEBUVEBYVFxYVExIVEBESGhUXFxUVGBgYHzQgGB4lGxYVITEhJTUsLi4uGB8/OD8tNygtLisBCgoKDg0OGhAQGi0lHyUtLS0tLi0tLS0tLS0tLS0tLS8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBEQACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABwEDBAUGAgj/xABHEAABAwIDBQQGBQkFCQAAAAABAAIDBBEFEiEGBzFBURMiYYEUMnGRobFCUnLB0RUjVGKClKPS4ZKisvDxCBckJTM1c3SE/8QAGwEBAAIDAQEAAAAAAAAAAAAAAAECAwUGBAf/xAA0EQEAAgECBAIHCAIDAQAAAAAAAQIDBBEFEiExQVETIjJhgbHRBhQzNEJxoeGRwYKS8CP/2gAMAwEAAhEDEQA/AIqssipZAsgWQLIFkCyBZAsgWQLIFkCyBZAsgWQLIFkCyBZAsgWQLIFkCyBZAsgWQLIPVlIWQLIFkCyBZAsgWQLIFkCyBZAsgWQLIFkCyBZAsgWQLIFkCyBZAsgWQLIFkCyCtkCyBZAsgWQLIFkCyBZAsgWQLIFkCyBZAsgWQLIFkCyBZAsgWQLIFkCyBZAsgWQEBAQEBAQEBAQCbIOmwTYOuqgHNh7Jh4PmJjaR1DbFx9trKN4NnX0W57nNWeUcVrftOdr7go5k7M4boKb9Jq/4H8ijnNluXc/B9GqqB9psTh8AE5jZqK3dBUNB7Gpgl8HsfFp7RmU80Gzi8f2fqKJ4ZURll/VcDmjf1yuHH2cVMTEoatSCAgICAgICAgICAgICAgICAgICAgv0VI+aRsMTTI97srWjiT93Mk8gCgm/Yrd9DRhsswbPUccxF44T0jB5j6x1PhwVJsmIdoqpEBAQEGLieHRVEToZmNlY7i0/Ag8QRyI1CCENttjX4c/O281K91g4i7onHg1/Q9HcD4FVyU549WdpevSaquG22SsWpPeJ+fwc2+kBF2n8F5a6y1Z5bw32bgWHNSMmmt0nw7x/nuxZIy3iLfJe6mSt/Zlzup0mbTztlrt8nhXeURIgICAgICAgICAgICAgICAgmzdRssKenFXK389O27bjWKE6tHgXaOPkOSpaUw75VSICAgIK2QUsgtVVMyVjopGtex7S1zXC7XNPEEIIK2w2Zdh1RkGZ1PKSYXnUtPONx6j4jXrbz6nDz15o7w33BOIThyehvPq27e6f7aZwvodVrK2ms7w7DJjpkry3jeGJNR82+78FsMOs8L/5cxr+Ad76f/r9GIQvfE7xvDl7Vms7WjaVFKBAQEBAQEBAQEBAQEBAQbrYzB/S66GAi7C/NJ/4md5wPtsG/tKJIfSCxrCAg8yyBrS5xDWtFy4kBrQOJJPAII52k3rxRkx0bPSHDTtX3bAD+qPWf8B0JVoqjdH2J7cV8981VIwH6MP5po8AWd4+ZKtsjdpJauR2rpJXnq573H4lSLlPiU0esc88f2JZG/IoOmwjeTXwEZpG1LfqzNBdbwe2zr+Juo2g3dxBtRRYzTuopr00rx3WvIIEo1a+J/BxB5GxOullXbZO6MqimfFI+CUZZInljxyuOBHgRYg9CtTqcXJfp2l33CNZ9508c3tR0lbXnbRangDvA9fxXowai2Ofc1fEeF49XXeOl/Cfr7mvewg2OhW3peLxvDhc+C+C848kbTDyrMQgICAgICAgICAgICAgk3cfQ3mqagj1I2RNP23Fz/8AAz3qtkwl1USILNXVMijdLI4MYxpc5x4NaOJQQPt1trJXvLG5o6Zru7HwMhHB8nU8w3gPbqskRsrMuTUggICAgINlJikkz2GV2dwYI85uXvaPUzn6RHq5jqRa97Ly6vHzU38m44JqvQ6mKz2t0+krq1DuxBaqIcw8Rw/BejT5/R269mq4pw+uqxbx7Udvo1q3DgpiYnaRSgQEBAQEBAQEBAQEBBNG5OG1DK/61W73NjjHzuqWTCQlVIgiHfHtGXSDD43d1lnzW+lIRdjD4AWdbq5vRXrCJRmrIe4WXcB1WPLfkpNnq0OnjUaiuKZ6TLLkox9HT28CvDj1s77XdJq/s7jmu+Cdp8p6xP8AuGG9hBsRZbCl4vG9Zcvn0+TBfkyV2l5VmEQEFQVExvGya2mtotHeG1a64B6i60V68tph9M0+WMuKt48YiVVRmEGBWss6/XXz5rb6S/Nj28nC8d03otTvHa3X4+LHXqaYQEBAQEBAQEBAQEBBOO5s/wDLP/pkv7mqlkw7lVS8yyBrS46BoJPsAuUHy/iNc6eaSd180sjpD4ZiSB5Cw8llVY6C7S+uPP5FYNT+FLZcH/O4/j8myWlfQVHtBFiLq9L2pO9ZYc+nxZ68mSu8MOajI1br4c/6rY4tZFul+nvcpruAXx72wetHl4/382KvY52YmJ2kUgiGxo3XYPC4Wo1ddsku94Hk59HX3bwvLytuIMTEPo+f3LY6Gfacr9po/Dn92Gtg5YQEBAQEBAQEBAQEBBM25Ka9FMz6tWT5Ojj+8FUsmEiKqWs2ncRQ1RHEUkxHt7JymB80BZFRBdpfXHn8isGp/ClsuD/ncfx+TZLSvoIgqgxK+1h1v528VsNFN9/c5f7Rfd+WO3Pv8dvewlsXKCIZ9B6p+19wWr1vtw7P7Ofl7fuyF4nQiDCr3d4DoPmtpoq7UmXG/aPNzZ608o+bFXtc8ICAgICAgICAgICAgk/cdWWkqYCfWZHIBz7pc1x/vMVbJhLaolZrKcSRvjPB8bmH2OaR96D5cLC3uu0I0PtGhWVVRBdpfXHn8isGp/ClsuD/AJ3H8fk2S0r6Co5wAudArUpa07RDDmz48NebJMRDEmrOTdPHn/RbHFo4jrfq5XXcfvfemn6R5+P9fyxSV7Y6dnO2tNp3md5UUoEGxo22YPEk/d9y1Gstvk28nc8BxcmkifOZleXlboJtqprEzO0KZLxjrN7dojdqpH3JPUre46clYq+barPOfNbJPjLyrsAgICAgICAgICAgICDqd2WI9hicJNgJM0JP2x3f77WKJ7D6BWNYQfOW3FB2GI1MdiB2xe3xbJaQW/tW8lkjsq0Ske4X2cD0WPLSb0msPVodRGnz1yT2hlyVgHq6+3gF4MeitM+v0dNq/tDirX/4RvPv6RH+5Yb3km5N1sKUrSNqw5bUanLntzZLby8q7AICD0xtzYc1W9orWZllwYbZskY695bVosAOgWitbmmZl9KxYoxY60jwjYVWRi10v0B5/gtho8P65+Dl+P6/aPu9P+X0YS2LlBAQEBAQEBAQEBAQEBB6jkLSHNOVzSHNPRwNwfIgIPpnAcTbVU0VS3hJGHEfVdwc3ycCPJY5WZ6gRLvtwmz4axo0c0wvP6wu+P3gv9wV6olGBb8Ui0StbHasRM9p7KKyggICAgIM+kgy948T8AtXqs8W9WvZ2fBOGTgr6bLHrT2jyj6sheJ0C3PLlF+fILPgwzkt7mu4lr66TFv+qe0f+8GtJvqVuYiIjaHz+97XtNrTvMqKVRAQEBAQEBAQEBAQEBAQSpuWx7/qUDz1liv/ABWD4O83KtoTCVlRLT7W4MKyjlptMzm3YTwbK3vMPvFj4EqYkfPFOzV0TwQQTodHNcNHDwI+4rz6nmpMZK/FveDei1FbaXNHTvHunx2eJqUjh3h8fcrYtVS/SeksOt4JnwTNqRzV93f/AAx16mmmJgRAiXuOMu4C/wAlS+StPal6NPpc2onbFXdmwUobqdT8Atbn1U36V6Q63hvBaaefSZetv4j6r68bfPMkgaLn+pWTFinJbaHl1msx6XH6S/wjzlrZZC43P+gW5x44x15YfPtVqsmpyTkvP9Q8LI84gICAgICAgICAgICAgICDIw+tfBKyeI5XxvDmnlccj1BFwR0JQfRuzOOR1tMyoj0zaObzjkHrMPs+IIPNY5jZZtVAhje3s6YKkV0Y/NzO79uDJ7cfAPAv7QeqmYi9ZrLJhy2w5IyV7xLkmPuARzWlyUmlprL6PptRXPijJXtI9gPEA+WqmuW9e0qZtHgze3SJ+HVb9Fb0+J/FZfveXzeKeCaOf0/zKrado+iPPX5qs6nJPiyY+EaOnbHHx6/NcWGZme7Y1rFY2iNoFCXmWUNFz7uZWXFhtknaHj1uuxaSnNeevhHjLWyylxuf9FuMWKuOu0OC1msyarJz3n9o8IeFkeUQEBAQEBAQEBAQEBAQEBAQEHRbE7VPw+fOLvifYSx/WHJ7ejxy68D1ETG4n7DMRjqImzwvEkbxcOHxBHIjgQdQqbLPOL4bHUwPp5RmZI2x6jo4dCDYg9QoHz5i+FSUNS+lm5G7X27sjD6rx4HmORB6LBqcPpK80d4brgnEPu+T0V59W38T/bwtU7dRAQVQWJ6gN04n5e1erBprZOs9IafiHGMWmjkp61v4j9/owHvJNzqtrSlaRtVxWfUZM95vkneXlWYRAQEBAQEBAQEBAQEBAQEBAQEBButmNp56CQvhcC1xGeJ1zFJ4kcnW+kNfaNFExuJi2b3h0lUA1zxSynTJK4BpP6j/AFXfA+Cpyyndm7abLR4hT5CQ2Rt3RS8criOB6sOlx7DxCROxKDainkgldTTtMcjDax5jkQeYPI814dVp/wBdXWcF4rFojBmnr4T/AKVsvA6Zbkma3ifIalZsenvftDwaniem0/S9uvlHWWHNVk6Duj4rYYtJWnW3WXL67jmbP6uP1a/zP0Y69bRCJEBAQEBAQEBAQEBAQEBAQEBAQEBAQEGZQ4rPDpDPPCOkcr2N9wNkFcTxaepLXTyvmLRZpfYuA6X4qNj3sV0zjxJ96pXFSs7xD1ZNdqckbWyTt+7wsjyCJEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQd/u73bvrwKmdz4Ka/dy27Wosdct/VZfTNz1t1VZlMQlil2BwqLLF6JTOda4Ev52RwHE/nCSVXeUuO3wbIUlPQCop6eKne2dgJjGUOY4OBaWjTjlN+OntVqzMyiUMqyBAQEBAQEBAQEBAQEBAQEHY7sNnqauqpIquQNaIfzbO1EckkrnCxZrd2UB1xr6wuomdiGfvB3ZvoGGpge6opwe/mA7aC+gLraPbfmALXGlrlRFtyYcrsnhbauugpXuexssmVzmZc4GVztMwI5cwpkdXvN2DgwyKGSGWolMspYRKYiAAwuuMjB05qKzumWv2S3d1GIwGohlp2NEjo7SGQOuA0k91pFu8Em2yNm42M3XtrY53SVLonQVktMQxgc1xjyguBdY6kn3JM7J2b/d1sDQT08j54TPJFWVEBcZJmtcI5CGnI1waO7ZRMybIhxSn7KomiHCOeWMexkjmj5K6HT7sdjxiVS4S5hBE0OkLTYvcTZkYPK9nEka2byuComdiEtf7psL/R5P3mq/nVOaVtnaQQtYxrGNDWtaGtaBZrWgWAA5ABQI6x7dxNUYyzEm1LWxiWGQgh3bM7INHZx8srsp5i2d2h52iemyHjfziLWUEVPcZpqgG3PJGC5zv7RjH7SVJQQrqpTwjddA7DW4jPUVGtH6SY4xE0Adn2gbdzSTpz0VebrstsjbCKUTVEELiWiWohicW2zAPkawkX0uA48VZCQd4+7mnw6kbUQzVUjjO2O0phLLFrjfuMBv3QqxbdMsql3X0zsJbiBnq+0OH+k5Q6Hss/Y9plt2ebLfTje3NObqbOU3f7FvxOZzc/YxRBpkky5nXdfKxg4EmztTw8bgKZnZGzttpd3mFUlNMTUzGeKnfIGGog7Z5DSW9zLzNhoOarEzKdkPq6BAQEBAQEBAQd1sZuzfiVL6S2qZCO1czK6Fzzdtu9cPHX4Ks22Nk4Ybg7xQCjqpRVO7F0T5Mpb2rSC0Egkm+UgE31IJ5qqyPdjd1MlNVw1Zq2SCGZ/cELml+XPH62fS/Hgpm3RGzqN52yTsRgia2ZsPZS5rlhfmzDJbQi3G6iJ2TLO2C2a/JtL6KZRM4yPkLg3IDfKLBtybABuvikzuL+ymBehCdhkEhqK6epGmXKJCDk46kAcUmdxXZLZ/0Jk7O07Xtq2aoBy5cokIOTib2tx5qJHzVtK69dVnrXVJ/jvWVVIm7Xb+hw+hEErJxKZXvkcyNrmyEnuG9+TAxtvAqto3lMSmHBsSFTAyoaySNsjczRI0NeWn1XZQTYEa66qiWag0+1O0sGHwGeocQL5WNaLySvsSGNHXTibAc1MRuPm3a3aOXEKl1TLpplYwG7YoxwaOp5k8yeQsBeI2VaZSJ+3XbS09Xh0eHyOYJY4OwdE4gOlhDcjXN+sCywNuB8r0tHVMNTSbmDDVxTx1t44qiOUMfBeQhj2vyl4fYk5bXsPYnMbNrv2/7Yz/ANyP/BIor3JbzZmiM+A08AdlMuFRx5iLhuenDb252vwSe6WFuw2Skw6OZrpmTNkl0tGWFrmF0br3cbg2B8NeN0md0RDTbY7pfTKySrjq+xMpDnMfD2lnBobdrg8aWaND/RTFtjZCNXD2cj473ySOZfhfK4tv8FdC0gICAgICAgIMmnxGaMZY554m3vlZNIxt+tmm10Qu/lqp/S6v94n/AJkSkfZ2iopMJE8+KVUMxc7O4VsrXxP7QjIIc3euLG5BJzXVJ33Swt58UFMIPQa+pkc++dgrZZm5AAWyE5jlN/fy4KakuANfMXiUzTmRugeZZDI0HjZ97jyVkKT180jmvkmnkc31XPlke9n2XON2+SC9+Wan9Kq/3if+ZBhOcSSSSSTck6knmSeaCiCY9329WJlOKevcYzEwNjlax7xKwCwa4MBIeALX4HwPGs18kxKUMBxRtVTRVTGua2VmdodbMGnhe3OypPRKOf8AaBd/wtKOfpTjbnYRPBPxHvVqolCSugQCP8+KCUqqio48DbUx4jUCpMTCMtbKC6c2zQ9iHaAd4cLgC5Kr4p8HL7GUDsTqxSVNXVCPs3yXMzn2c2wFhIS2/eUz2QlbbTaOlw7CzQwTh0opRTwtZIHTMGTsxK4t1blGt9LkaKsRvO6ZlBjcYqRwqqseyomGvM+sroV/LVT+l1f7zP8AzIMJxubm5J1JOpJ6oKICAgICAgICAgIFkCyAgICAgICCTMJ3sGlw6Gkhp7zRR9nnkcOxAF8rg1veceFwcvtKrNeqd3CY7jtRWS9tUyulcAQ29gxjSb5WNGjRw8TYXurIa5AQECyCjmg6EA+1Aa0DgAEFUBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEH//2Q=="
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">Arabseed</span>
+                                        
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="data:image/png;base64,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"
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">mycima</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="data:image/webp;base64,UklGRkwBAABXRUJQVlA4WAoAAAAQAAAAHwAAHwAAQUxQSHAAAAARX6C2jSQ1djlG+AwREdCWFWrc/AS3sW2rysVdcnJi+qAEd81dUzpwyd3ttsewkQYi+h8isldtiVxVXSLyqmxCO7owjBNUA1rRiQFsXWiF+kD97wQjT7xR5YBLTKIf5YFn3GMfQyhvB4WgSKY6dIkIVlA4ILYAAACQBgCdASogACAAPtEutFooIagoGAEAGglsAJ0zGyufmf2gdpbBkuhA4AD9jutS8mYE1c5rQTxk08UShMcwAP7tp0m96wOh5yzXlJPRJX4r7/a02ldrFeP03EV97Gv6K57CqsllC3BHCCsyJjCzjgm99mzvQ09FOr/+ykQ1xCCQWF/iJ7xiEBENvb+cgY2qo2+wilsuHUT0bC1FFx3Al5+uXeXFijUAHYKSQKFEenRy5N6awwAAAA==" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">Netflix</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://cache.cdn.fushaar.com/">
+                                    <li>
+                                        <img src="data:image/webp;base64,UklGRuAAAABXRUJQVlA4INQAAACQBQCdASocABwAPtEutFooIagoGAEAGglAGM+xddvt5bH5UNdQm2WVGQPUvNeHc3JnBMuFQAD+4vT8SART2kiZJhD8m1Pywd5hwKh2TiijE0EB6ha/P42NWqaU1NmiaU5oVpszrBjeUWilts/NMW5gPXXctyPPa/fykE5bEmi6zsmYCqyNs53FzSJE3WyVJReA5kXqwT17cvfZDffhj26I2Jg8151tPKyf1UhCyD3ebX0VBs+7tSTTxMM2CvMMCeHv9mDuz9wX/uyYVNGonjF1x9gAAA==" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">Fushaar</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg">
+                                    <li>
+                                        <img src="data:image/webp;base64,UklGRvYBAABXRUJQVlA4WAoAAAAQAAAAHwAAHwAAQUxQSEsAAAARN6CgbRs2phbEkPwbEYH9VCHYxLbV6A8WGHosZAm/Z5OBH/yr+K/dMqL/E0BNPciZqnn4S8fBIshWhP33VoQF2Qcp1WJfoqYRzgQAVlA4IIQBAAAwCACdASogACAAPtEutFooIagoGAEAGglsAJ0y4iXB0W2A8QDJAN5Qb9n7y1ATLPoAbYAOzY6Bsu9Psu7XZGHIeYo/NkYoCc4AAAD+0QW4BiHzhChiM5l3NbXE89jObDE5ciZXpSPG0/i4MXfcYZ9o0s7z23o2OY+JW795QUe5uwTJyglIIv9+VRuUPTJK2bO2SlRtIwXy+lDzH+CSPD23LcpRqzidlmnAVpQThBgUA+c8T9yx7BE6rPbY07jMnePe+P/in36/986dc4sDe/Po9E7vw/2yISI2XUXEoaOaYLqdGYKGeGy3W8dpsfhdiVtYPNC5pVP35Q/BTOg6oi/HEE9cAqDJ4nNsvF9twXhMJast/asqim86aOcxc/9h5bGm5yLJilGVryOA/lHzi77x3UyRIISFgqJ4VMCrfM237TTHonnWKmpDg4pFJc44d3YRlVSWJL9or+LeeLzwqT3NZD/Bo2P+Lt8xMI7YRw/2ntaHie2NzKG/WdoZOTJPfhwprsAA" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">Justwatch</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://egybest.onl/">
+                                    <li>
+                                        <img src="data:image/webp;base64,UklGRpYBAABXRUJQVlA4WAoAAAAQAAAAHwAAHwAAQUxQSGAAAAARV6CobSM22HHjdQwOWyMicK6k9dtgU1t7kz+hykACEjLHAZGACuZM9Db3zya9zhH9nwASRbOcAbSBSd6E3ZpFOOh2R+RwROFoe9n3t/9rPKK6IzI+4vrzPs1JjHtCkwBWUDggEAEAADAHAJ0BKiAAIAA+0T60WigiKCgUAQAaCWoAxPjByAbaC7AN5EKxnzymYJ5Y9gDyAEQsOGE8v0roV+s+v4uuVtrjBAD+/BA5aWl+aTgz5W+8n5R+5t3nXo3hki7anUBw35z8vPZ17XqwvH/6MGY7aEEZvunI8ucD+QBC3H8eH17ZHPZ9nc2U3VLcX/K0RJgui7oI2RHUvta3Z65/4oWlRs9lEFidMdcZEnn8LxEoJhXe+t3s7hqrgC5wGQ46IxWY1+JtgAf0zvktHdipUW8VMUCzRR3g+YvDsE+iZeA9pJazzRQbc9qmwALtQf5XkRxqy1eny3Mnf+FRlRpRfQSYjADEw2k4MmkjIgckSRgVoAAA" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">EgyBest</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/justwatchtv">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/321804885/s100/justwatchtv.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">JustwatchTV</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/ad-tv">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/308693657/s100/adtv.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">ADTV</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/disney-plus">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/313118777/s100/disneyplus.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">disney-plus</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/crunchyroll">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/127445869/s100/crunchyroll.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">crunchyroll</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/takflix">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/300757493/s100/takflix.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">takflix</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/tod">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/293968021/s100/tod.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">tod</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/shahid-vip">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/280600874/s100/shahidvip.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">shahid-vip</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/filmbox-plus">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/269959825/s100/filmbox.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">filmbox-plus</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/public-domain-movies">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/254580265/s100/publicdomainmovies.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">public-domain-movies</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/irokotv">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/273903329/s100/irokotv.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">irokotv</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/cultpix">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/264459628/s100/cultpix.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">cultpix</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/eventive">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/258768419/s100/eventive.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">eventive</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/iqiyi">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/313528607/s100/iqiyi.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">https://www.justwatch.com/eg/provider/iqiyi</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/osn">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/301451262/s100/osn.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">OSN</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/rakuten-viki">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/149297567/s100/viki.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">VIKI</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/south-park">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/209527714/s100/southpark.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">south-park</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/hoichoi">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/141253805/s100/hoichoi.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">hoichoi</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/true-story">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/244289819/s100/truestory.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">true-story</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/zee5">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/93795879/s100/zee5.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">zee5</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/google-play-movies">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/169478387/s100/play.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">google-play-movies</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/filmzie">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/269433194/s100/filmzie.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">filmzie</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/aha">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/242563117/s100/aha.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">aha</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/broadwayhd">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/243239329/s100/broadwayhd.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">broadwayhd</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/magellan-tv">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/243233518/s100/magellantv.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">magellan-tv</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/argo">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/242706549/s100/argo.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">argo</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/spamflix">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/240831409/s100/spamflix.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">spamflix</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/sun-nxt">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/138047862/s100/sunnxt.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">sun-nxt</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/curiosity-stream">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/48600036/s100/curiositystream.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">curiosity-stream</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/iwanttfc">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/209565388/s100/iwanttfc.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">iwanttfc</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/mubi">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/164970114/s100/mubi.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">mubi</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/flixole">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/273964237/s100/flixole.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">flixole</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/apple-tv-plus">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/152862153/s100/appletvplus.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">apple-tv-plus</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://www.justwatch.com/eg/provider/amazon-prime-video">
+                                    <li>
+                                        <img src="https://www.justwatch.com/images/icon/52449861/s100/amazonprimevideo.%7Bformat%7D/icon.webp" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">amazon-prime-video</span> 
+                                    </li>
+                                </a>
+
+
+                                <a href="https://terabox.com/s/1QLHJP12_4Y-ebUyW256gSg">
+                                    <li>
+                                        <img src="data:image/png;base64,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" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">my movies</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://ciimawbas.mycima.cc/topvideos.php?c=all-english-movies">
+                                    <li>
+                                        <img src="data:image/webp;base64,UklGRlABAABXRUJQVlA4WAoAAAAQAAAAGwAAGwAAQUxQSFcAAAARV6AkABA0R2WAQ/SICBCi8nfUBJsAjJyEOjMioTjAAhJeAhKQwXg7LUITmoCI/k8AvtwY26Qd7A3WBksjCo1LpjEZHIx4pNVGSAnSDClyrYRUQ107/C0AVlA4INIAAABQBQCdASocABwAPrUurVanIacnG/DgFolsAJ0yhHAw9w4gdGCiGCuFHaLjLG6tnQsbewAA+wN39epNCm/R3d4qbp/IDZHb9OuAUrXQKpkyvvj/8m/QfRILwSbmyD5m5qJi4lDHEmbsoBVPDXaKwyod/OdaAsZ/0AP+bI/7N26JdKP6ayPGZBjih82zQFbhsNKHYz2LkvpwNFDCwIjxMPaCfOM54/R36FVZ8Heru0o4+b/kf1w06S3VP3Y9GfDmg47YccxZLABi2syC+BnjEDyAAAA=" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">سيما وبس</span> 
+                                    </li>
+                                </a>
+
+                                <a href="https://moviesanywhere.com/home">
+                                    <li>
+                                        <img src="https://images.moviesanywhere.com/6cd4ca683babf3fbda2ef88ea1d10e42/a6493e24-eced-46a7-a738-d09f54eb35b7.jpg?r=3x1&w=2400" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">moviesanywhere</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" 
+                                        alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+                            </ul>
+
+                            
+
+                        </div>
+                            
+    
+                    </div>
+           
+            </div>   
+
+
+
+            <!--------------------------END websites to watch movies-------------------------------->
+            
+            
+            <h1 style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-style: italic; font-size: 50px; ">...</h1>
+                <div class="section-petro" style="border: rgb(255, 85, 0) 5px dashed; ">    
+                <div class="seller" style="display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            height: 100vh;">
+                        <div class="LIST1" style="width: 95%;">
+                            <ul>
+                                <a href="">
+                                    <li>
+                                        <img src="" alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+
+                                <a href="">
+                                    <li>
+                                        <img src="" alt="" style="width: 50px; height: 50px; margin-right: 10%;">
+                                        <span class="s">html</span> 
+                                    </li>
+                                </a>
+                            </ul>
+
+                            
+
+                        </div>
+                            
+    
+                    </div>
+           
+            </div>   
+
+          
+
+           
+            
+           
+           
+
+        
+
+
+            <div class="seller" style="justify-content: space-around; padding-top: 50px; opacity:5%; ">
+                        <div class="pic" style="float:right;">
+                            <img src="../photos/MMM.png" class="div-click">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">بناء وواجهات حجرية</h1>
+                        </div>
+                        <div class="pic" style="float: left;">
+                            <img src="../photos/MMM.png" class="div-click">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">حداد</h1>
+                        </div>
+                        <div class="pic" style="float: left;">
+                            <img src="../photos/MMM.png" class="div-click">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">باركيه</h1>
+                        </div>
+                </div>
+            <div class="seller" style="justify-content: space-around; padding-top: 50px; opacity:5%;">
+                        <div class="pic" style="float:right;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">جبس وكرانيش</h1>
+                        </div>
+                        <div class="pic" style="float: left;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">جبسيوم بورد</h1>
+                        </div>
+                        <div class="pic" style="float: left;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">رخام وجرانيت</h1>
+                        </div>
+                </div>
+            <div class="seller" style="justify-content: space-around; padding-top: 50px; opacity:5%;">
+                        <div class="pic" style="float:right;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold; opacity:5%;">الوميتال</h1>
+                        </div>
+                        <div class="pic" style="float: left;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">زجاج وسيكوريت</h1>
+                        </div>
+                        <div class="pic" style="float: left;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">استرجي</h1>
+                        </div>
+                </div>
+            <div class="seller" style="justify-content: space-around; padding-top: 50px; opacity:5%;">
+                        <div class="pic" style="float:right;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">ستائر وتنجيد</h1>
+                        </div>
+                        <div class="pic" style="float: left;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">صيانة دش</h1>
+                        </div>
+                        <div class="pic" style="float: left;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">صيانة تكييف</h1>
+                        </div>
+                </div>
+            <div class="seller" style="justify-content: space-around; padding-top: 50px; opacity:5%;">
+                        <div class="pic" style="float:right;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">صيانة أجهزة منزلية</h1>
+                        </div>
+                        <div class="pic" style="float: left;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">حمامات سباحة</h1>
+                        </div>
+                        <div class="pic" style="float: left;">
+                            <img src="../photos/MMM.png">
+                            <h1 style="text-align: center; color: white; font-weight: bold;">مكافحة حشرات وقوارض</h1>
+                        </div>
+                </div>
+  
+            
+                
+            
+
+
+            <!-------------------------------------------------------------------------->
+            <footer class="navbar"  >
+                <div class="logo">
+                    <img src="../photos/MMM.png" width="80px" height="80px" >
+                </div>
+                <div class="home">
+                   <a href="../index.html"> <img src="../photos/MMM.png"></a>
+                    <a href="../index.html" style="text-decoration: none; color: black;"><h3>الرئيسية</h3></a>
+                </div>
+                <div class="home">
+                    <img src="../photos/MMM.png">
+                    <h3>شرح التطبيق</h3>
+                </div>
+                <div class="home">
+                    <img src="../photos/MMM.png">
+                    <h3>طلباتي</h3>
+                </div>
+                <div class="home">
+                    <img src="../photos/MMM.png">
+                    <h3>الاعدادات</h3>
+                </div>                
+            </footer>
+        
+        </div>
+
+    </body>
+    
+</html>

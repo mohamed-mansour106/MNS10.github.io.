@@ -4,19 +4,6 @@ body {
     background-color: black;
 }
 
-/* Ensure the body and html take full height */
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Main content area */
-body > *:not(.footer) {
-    flex: 1; /* Push the footer to the bottom */
-}
-
 .main {
     display: flex;
     background-color:#680c88;
@@ -375,19 +362,13 @@ body > *:not(.footer) {
 
 
 .footer {
-    background-color: #680c88; /* Purple background */
-    color: white; /* White text color */
-    padding: 20px; /* Add padding around the footer */
-    text-align: center; /* Center-align text */
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    width: 90%; /* Adjust width to fit the page */
-    max-width: 600px; /* Limit the maximum width */
-    margin: auto; /* Center horizontally */
-    position: absolute; /* Position the footer absolutely */
-    top: 50%; /* Move it to the middle of the body */
-    left: 50%; /* Center it horizontally */
-    transform: translate(-50%, -50%); /* Adjust for the center alignment */
+    background-color: #680c88;
+    display: flex;
+    width: 97%;
+    justify-content: space-between;
+    padding: 10px 0px;
+    border: 5px white solid;
+
 }
 
 /* Footer container */
@@ -398,8 +379,6 @@ body > *:not(.footer) {
     text-align: center; /* Center-align text */
     border-top: 4px solid #ddd; /* Add a subtle border at the top */
     margin-top: 20px; /* Add spacing above the footer */
-    width: 100%; /* Ensure the footer spans the full width */
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 /* Owner name section */

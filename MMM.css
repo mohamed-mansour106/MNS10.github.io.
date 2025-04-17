@@ -362,13 +362,19 @@ body {
 
 
 .footer {
-    background-color: #680c88;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    padding: 10px 0px;
-    border: 5px white solid;
-
+    background-color: #680c88; /* Purple background */
+    color: white; /* White text color */
+    padding: 20px; /* Add padding around the footer */
+    text-align: center; /* Center-align text */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    width: 90%; /* Adjust width to fit the page */
+    max-width: 600px; /* Limit the maximum width */
+    margin: auto; /* Center horizontally */
+    position: absolute; /* Position the footer absolutely */
+    top: 50%; /* Move it to the middle of the body */
+    left: 50%; /* Center it horizontally */
+    transform: translate(-50%, -50%); /* Adjust for the center alignment */
 }
 
 /* Footer container */

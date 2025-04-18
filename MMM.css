@@ -10,7 +10,7 @@ body {
     height: 75px;
     border-radius: 0px 0px 25px 25px;
     position: fixed;
-    width: 100%;
+    width: 97%;
     left: 0px;
     top: 0px;
     z-index: 1000;
@@ -279,6 +279,7 @@ body {
 
 .marquee {
     display: flex;
+    width: 97%;
     overflow: hidden;
     animation: scroll 10s linear infinite;
 }

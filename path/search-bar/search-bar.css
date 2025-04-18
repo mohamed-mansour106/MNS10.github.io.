@@ -1,0 +1,12 @@
+
+#searchInput {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+  }
+
+
+
+  .hidden {
+    display: none;
+  }

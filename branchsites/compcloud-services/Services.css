@@ -1,0 +1,284 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header Section */
+.header {
+    background-color: #a30000;
+    color: white;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.social-icons img {
+    width: 20px;
+    margin-left: 10px;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    width: 150px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    background: linear-gradient(to bottom, #a30000, #f4f4f9);
+    padding: 50px 20px;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: #fff;
+    color: #a30000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #a30000;
+    color: white;
+}
+
+/* Blog Section */
+.blog {
+    display: flex;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 25%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+    font-size: 20px;
+    color: #a30000;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar ul li a:hover {
+    color: #a30000;
+}
+
+.blog-posts {
+    display: grid; /* Use CSS Grid for layout */
+    grid-template-columns: repeat(4, 1fr); /* Default: Three equal columns */
+    gap: 20px; /* Space between grid items */
+    padding: 20px; /* Padding around the grid */
+    background-color: #f9f9f9; /* Optional: Background color for the section */
+    border-radius: 10px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better design */
+}
+
+.post {
+    background-color: #fff; /* Background color for each post */
+    border-radius: 10px; /* Rounded corners for each post */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for each post */
+    padding: 20px; /* Padding inside each post */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.post:hover {
+    transform: scale(1.05); /* Slightly enlarge the post on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.post img {
+    width: 100%; /* Make the image take the full width of the post */
+    border-radius: 10px; /* Rounded corners for the image */
+    margin-bottom: 15px; /* Space below the image */
+}
+
+.post h2 {
+    font-size: 18px; /* Font size for the post title */
+    color: #a30000; /* Title color */
+    margin: 10px 0; /* Space around the title */
+}
+
+.post p {
+    font-size: 14px; /* Font size for the post description */
+    color: #555; /* Text color */
+    margin-bottom: 15px; /* Space below the description */
+}
+
+.read-more {
+    text-decoration: none; /* Remove underline from the link */
+    color: #a30000; /* Link color */
+    font-weight: bold; /* Make the link bold */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.read-more:hover {
+    color: #800000; /* Darker color on hover */
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: #f4f4f9;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 28px;
+    color: #a30000;
+    margin-bottom: 20px;
+}
+
+.testimonial-slider {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.testimonial {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.testimonial p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.testimonial span {
+    font-size: 14px;
+    color: #a30000;
+    font-weight: bold;
+}
+
+/* Footer Section */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-content h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-content ul li {
+    margin: 5px 0;
+}
+
+.footer-content ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-content ul li a:hover {
+    text-decoration: underline;
+}
+
+.newsletter input {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.newsletter button {
+    padding: 10px 20px;
+    background-color: #a30000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.newsletter button:hover {
+    background-color: #800000;
+}
+
+/* Responsive Design for Medium Screens */
+@media (max-width: 1024px) {
+    .blog-posts {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+    }
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+    .blog-posts {
+        grid-template-columns: 1fr; /* One column on small screens */
+    }
+}

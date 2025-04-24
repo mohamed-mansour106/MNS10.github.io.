@@ -1,416 +1,870 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title> MMM106</title>
-    <link rel="stylesheet" href="MMM.css">
-    <link rel="stylesheet" href="path/search-bar/search-bar.css">
-    <link rel="shortcut icon" href="photos/logo/favicon.ico" type="image/x-icon" />
-    <meta name="description" content="MMM106 - Educational Website">
-    <meta name="keywords" content="Education, MMM106, Online Services">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7574629944177880"
-    crossorigin="anonymous"></script>
-    <!-- <script>
-        (function helloName(){
-            "use strict";
-            var name = prompt("What's your name?");
-            return name;
-        })();
-        var hello = helloName();
-        document.getElementById("hi").innerHTML = "Hello " + helloName();
-        
-    </script>
-    --> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed & Sara - Engagement Anniversary</title>
+  <link rel="shortcut icon" href="image19.ico" type="image/x-icon">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fffafc;
+      color: #333;
+      overflow-x: hidden;
+    }
 
+    .popup-video, .popup-image, .popup-final {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
 
+    .skip-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      color: #000;
+      padding: 8px 16px;
+      border: none;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    video {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 30px;
+    }
+
+    .card {
+      width: 220px;
+      height: 280px;
+      perspective: 1000px;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aa3377;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .card-back {
+      background-size: cover;
+      background-position: center;
+      transform: rotateY(180deg);
+    }
+
+    .caption {
+      text-align: center;
+      font-style: italic;
+      color: #aa3377;
+      margin-top: 3px;
+      font-size: 1rem;
+    }
+
+    .final-btn {
+      display: block;
+      margin: 40px auto 60px;
+      padding: 14px 28px;
+      background-color: #ff80ab;
+      border: none;
+      color: white;
+      font-size: 1.2em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body style="width: 100%;">
-    <div class="main">
-        <div class="logo">
-            <img src="photos/logo/MMM.png" alt="MMM Logo">
+<body>
+  <!-- Background Music -->
+  <audio autoplay loop hidden>
+    <source src="your-background-music.mp3" type="audio/mpeg">
+  </audio>
+
+
+  <!-- Initial Video Popup -->
+  <div class="popup-video" id="introPopup">
+    <iframe 
+      id="introVideo" 
+      src="vid/intro.mp4" 
+      frameborder="0" 
+      allow="autoplay; encrypted-media" 
+      allowfullscreen 
+      style="width: 90%; height: 90%; border-radius: 12px;">
+    </iframe>
+    <button class="skip-btn" onclick="skipIntro()" aria-label="Close video popup">
+      ✖ Close
+    </button>
+  </div>
+
+
+  
+
+
+  <!-- Gallery Section -->
+  <div class="gallery" id="gallery">
+  <!-- Card 1 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image1.JPG');"></div>
         </div>
-        <div class="mmm106">
-            <p><b>MMM106</b></p>
-            <p><i><u>Educational Website</u></i></p>
+        <p class="caption">Our first photo together</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card" onclick="flipCard(this, 'img/image2.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image2.JPG');"></div>
         </div>
-        
-        
+        <p class="caption">A special moment</p>
+      </div>
 
-        <div class="contain">
-            <a href="https://mohamed-mansour106.github.io/MNS10.github.io./">Home</a>
-            <a href="#">Join Us</a>
-            <a href="#">News</a>
-            <a href="#">Vlogs</a>
-            <a href="#">MMM Team</a>
-            <a href="https://mmm100601999.000webhostapp.com/">Second Web</a>
+      <!-- Card 6 -->
+      <div class="card" onclick="flipCard(this, 'img/image6.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image6.JPG');"></div>
         </div>
-    </div>
+        <p class="caption">Another beautiful day</p>
+      </div>
 
-    <!---------------------------------------------------------------------------------->
-
-    
-
-    <!--------------------------------------------------------------------------------------------->
-    
-    <div class="apk">
-        <div class="ai">
-            <a href="https://www.mediafire.com/file/0sc7qqjngxki7nx/MMM106.apk/file">
-                <img src="photos/logo/MMM.png" alt="MMM Logo">
-            </a>
-            <a href="https://www.mediafire.com/file/0sc7qqjngxki7nx/MMM106.apk/file">
-                <h2>Download Now</h2>
-            </a>
-            <a href="https://www.mediafire.com/file/0sc7qqjngxki7nx/MMM106.apk/file">
-                <h2>تنزيل الان</h2>
-            </a>
+      <!-- Card 7 -->
+      <div class="card" onclick="flipCard(this, 'img/image7.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image7.JPG');"></div>
         </div>
-        <div class="ai">
-            <h1>MMM تطبيق</h1>
-            <p>START UP MALL</p>
+        <p class="caption">Another beautiful day</p>
+      </div>
+
+          <!-- Card 8 -->
+      <div class="card" onclick="flipCard(this, 'img/image8.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image8.JPG');"></div>
         </div>
+        <p class="caption">Our first photo together</p>
+      </div>
 
-        
-
-    </div>
-    
-    
-    
-    <!------------------------------------------------------------------------------
-    
-    <div class="marquee">
-        <img src="photos/marque/1.png" alt="p1" height="250px">
-        <img src="photos/marque/1.png" alt="p1" height="250px">
-        <img src="photos/marque/2.jpg" alt="p2" height="250px">
-        <img src="photos/marque/3.jpg" alt="p3" height="250px">
-        <img src="photos/marque/4.jpg" alt="p4" height="250px">
-        <img src="photos/marque/5.jpg" alt="p5" height="250px">
-        ...
-    </div>
-    
-
-    --------------->
-
-    <div class="call "  >
-        <div  style="margin-top:120px;"><p  id="test" >Hey Yo</p>
+      <!-- Card 9 -->
+      <div class="card" onclick="flipCard(this, 'img/image9.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image9.JPG');"></div>
         </div>
-    </div>
+        <p class="caption">A special moment</p>
+      </div>
 
-    <!--------------------------------------------------------------------------------------------->
-
-    <div class="section2 " style="border-radius: 15px 15px 0px 0px; ">
-        <div class="DataEntry" >
-            <a href="index.html">
-                <button value=""><b>Search in MMM</b></button>
-            </a>
-            <br>
-            <br>
-            <br>
-            <!--------------------start search bar---------------------------------------->
-            <div class="search-container">
-                <input type="text" placeholder="Search..." id="searchInput">
-                <div class="search"></div>
-            </div>
-            <script defer src="path/search-bar/search.js"></script>
-            <!-----------------------------End search bar------------------------------->
+      <!-- Card 10 -->
+      <div class="card" onclick="flipCard(this, 'img/image10.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image10.JPG');"></div>
         </div>
-    </div>
-    
-    <!--------------------------------------------------------------------------------------------->
-        
-    <div class="section2" >
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="branchsites/compcloud-services/Services.html">
-                    <button value="" style='width:250px; border-radius:10px; box-shadow:black 2px 2px 2px; background-image:url(""); background-size:cover; height:220px;     '> 
-                        <b><p style="font-size:30px;">ES</p> Electronic Services الخدمات الالكترونية</b>
-                    </button>
-                </a>             
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="branchsites/College/OFU.html">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >OFU</P>  Online Freelancing University    </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="branchsites/AI/ai2/ai.html" >
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px; '> 
-                        <b>  <P style="font-size:30px;" >AI</P> Artifitial Intelegence     </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="branchsites/Movies/movie0/movieslight/English.html">
-                    <button value="" style='width:250px; border-radius:10px; box-shadow:black 2px 2px 2px; background-image:url(""); background-size:cover; height:220px;     '> 
-                        <b> <P style="font-size:30px;" >Movie-night</P>  Movies</b> 
-                    </button> 
-                </a>             
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="branchsites/making-money/money.html">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >Money</P>  Making Money     </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="https://subsequent-manager-30c.notion.site/Roadmap-Goals-1be2cd9813c8801e8e7de0a887d1caac" >
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px; '> 
-                        <b>  <P style="font-size:30px;" >Notion AI</P> Notion AI     </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="branchsites/jobs/jobs.html">
-                    <button value="" style='width:250px; border-radius:10px; box-shadow:black 2px 2px 2px; height:220px;     '> 
-                        <b> <P style="font-size:30px;" >MV</P> JOBS   </b> 
-                    </button> 
-                </a>             
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >L</P> Languages    </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px; '> 
-                        <b> <P style="font-size:30px;" >DN</P>    Dairy Notes  </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="branchsites/classroom/bookbackbag.html">
-                    <button value="" style='width:250px; border-radius:10px; box-shadow:black 2px 2px 2px; height:220px;     '> 
-                        <b> <P style="font-size:30px;" >TC</P>  Teaching Classroom   </b> 
-                    </button> 
-                </a>             
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >GD</P>  Graphic Designer    </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course" style="background-color: transparent;">
-                <a href="branchsites/marketmall/market.html" >
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px; '> 
-                        <b>  <P style="font-size:30px;" >MM</P>  Market Mall     </b> 
-                    </button> 
-                </a> 
-            </div>
-                
-            <div class="DataEntry course" style="  background-color: transparent;" >
-                <a href="branchsites/shortcut/shortcut.html">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >Shortcuts</P>  Shortcuts    </b> 
-                    </button> 
-                </a> 
-            </div>             
-                
-            <div class="DataEntry course" style="  background-color: transparent;" >    
-                <a href="branchsites/freelanceme/freelancers.html">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >F</P>  FreeLanceMe    </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course" style="  background-color: transparent;">
-                <a href="branchsites/Idiols/human1/profile.html" >
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px; '> 
-                        <b>  <P style="font-size:30px;" >Idiols</P>  Pioneers     </b> 
-                    </button> 
-                </a>     
-            </div>
-                
-            <div class="DataEntry course" style="  background-color: transparent;" >    
-                <a href="branchsites/cv/ann/anniversary.html">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >Ann</P>  anonymous     </b> 
-                    </button> 
-                </a>     
-            </div>             
-                
-            
-            <div class="DataEntry course" style="  background-color: transparent;" >    
-                <a href="">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >wait</P>  Coming Soon     </b> 
-                    </button> 
-                </a>     
-            </div>
-            
-            <div class="DataEntry course" style="  background-color: transparent;">    
-                <a href="" >
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px; '> 
-                        <b>  <P style="font-size:30px;" >wait</P>  Coming Soon      </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course" style="  background-color: transparent;" >    
-                <a href="">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >wait</P>  Coming Soon     </b> 
-                    </button> 
-                </a>     
-            </div>             
-                
-            
-            <div class="DataEntry course" style="  background-color: transparent;" >
-                <a href="">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >wait</P>  Coming Soon     </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course" style="  background-color: transparent;">
-                <a href="" >
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px; '> 
-                        <b>  <P style="font-size:30px;" >wait</P>  Coming Soon      </b> 
-                    </button> 
-                </a> 
-            </div>
-            
-            <div class="DataEntry course"  style="  background-color: transparent;">
-                <a href="">
-                    <button value="" style='width:250px; border-radius:10px; box-shadow:black 2px 2px 2px; background-image:url(""); background-size:cover; height:220px;     '> 
-                        <b> <P style="font-size:30px;" >..</P> Coming Soon</b> 
-                    </button> 
-                </a>                 
-            </div>
-                
-            <div class="DataEntry course" style="  background-color: transparent;">
-                <a href="">
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px;  '> 
-                        <b> <P style="font-size:30px;" >...</P>  Coming Soon    </b> 
-                    </button> 
-                </a> 
-            </div>
-                
-            <div class="DataEntry course" style="  background-color: transparent;">
-                <a href="" >
-                    <button value="" style='width:250px; height:220px;  border-radius:10px; box-shadow:black 2px 2px 2px; '> 
-                        <b>  <P style="font-size:30px;" >...</P> Coming Soon     </b> 
-                    </button> 
-                </a> 
-            </div>
-                
-    </div>
+        <p class="caption">Our favorite place</p>
+      </div>
 
+      <!-------------------------------------------------------------------------------------->
 
-<!----------------------------------------------------------------------------------------------------->
-    
-    <!---------------------
-    
-
-        <div class="section2">
-        <div class="DataEntry" >
-            
-            <a href="https://mmm10060.000webhostapp.com/branchsites/classroom/bookbackbag.html"> <button value="" style="width:250px; height:100;" > <b>  classroom حصة انجليزي</b> </button> </a> 
-            
-            <p>a classroom of English subject in school </p>
+      <!-- Card 14 -->
+      <div class="card" onclick="flipCard(this, 'img/image14.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image14.JPG');"></div>
         </div>
-        
-    
-    </div>
-    
-    
-    
-    
+        <p class="caption">Another beautiful daydi </p>
+      </div> 
 
-        <div class="section2">
-        <div class="DataEntry">
-            
-            <a href="https://mmm10060.000webhostapp.com/branchsites/marketmall/market.html"> <button value="" style="width:250px; height:100;"> <b > MarketMallماركت مول </b> </button></a> 
-            
-            <p>اشتري اونلاين من اي حته لاي حته  </p>
+      <!-- Card 15 -->
+      <div class="card" onclick="flipCard(this, 'img/image15.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('image15.jpg');"></div>
         </div>
-        
-    
-    </div>
+        <p class="caption">Another beautiful daydi </p>
+      </div> 
 
-    
-    
-    
-    
-    
-    
-        <div class="section2">
-        <div class="DataEntry">
-            
-            <a href=""> <button value="" ><b> Graphic Design </b></button> </a> 
-            
-            <p>We are MMM startup, we try to simpliest all services to our clients </p>
+      <!-- Card 16 -->
+      <div class="card" onclick="flipCard(this, 'img/image16.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image16.JPG');"></div>
         </div>
-        
-    
+        <p class="caption">Another beautiful daydi </p>
+      </div> 
+
+       <!-- Card 16 -->
+       <div class="card" onclick="flipCard(this, 'img/img.png')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/img.png');"></div>
+        </div>
+        <p class="caption">Another beautiful daydi </p>
+      </div> 
+
+      <!-- Card 17 -->
+      <div class="card" onclick="flipCard(this, 'img/image17.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image17.JPG');"></div>
+        </div>
+        <p class="caption">Our first photo together</p>
+      </div>
+
+      <!-- Card 18 -->
+      <div class="card" onclick="flipCard(this, 'img/image18.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image18.JPG');"></div>
+        </div>
+        <p class="caption">A special moment</p>
+      </div>
+
+      <!-- Card 19 -->
+      <div class="card" onclick="flipCard(this, 'img/image19.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image19.JPG');"></div>
+        </div>
+        <p class="caption">Our favorite place</p>
+      </div>
+
+      <!-- Card 20 -->
+      <div class="card" onclick="flipCard(this, 'img/image20.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image20.JPG');"></div>
+        </div>
+        <p class="caption">A cherished memory</p>
+      </div>
+
+      <!----------------------------------------------------------------------------------------->
+
+      <!-- Card 21 -->
+      <div class="card" onclick="flipCard(this, 'img/image21.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image21.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful day</p>
+      </div>
+
+      <!-- Card 22 -->
+      <div class="card" onclick="flipCard(this, 'img/image22.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image22.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful day</p>
+      </div>
+
+
+      <!-- Card 3 -->
+      <div class="card" onclick="flipCard(this, 'img/image3.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image3.JPG');"></div>
+        </div>
+        <p class="caption">Our favorite place</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card" onclick="flipCard(this, 'img/image4.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image4.JPG');"></div>
+        </div>
+        <p class="caption">A cherished memory</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card" onclick="flipCard(this, 'img/image5.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image5.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful day</p>
+      </div>
+
+      <!-- Card 23 -->
+      <div class="card" onclick="flipCard(this, 'img/image23.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image23.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful day</p>
+      </div>
+
+          <!-- Card 24 -->
+      <div class="card" onclick="flipCard(this, 'img/image24.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image24.JPG');"></div>
+        </div>
+        <p class="caption">Our first photo together</p>
+      </div>
+
+      <!-- Card 25 -->
+      <div class="card" onclick="flipCard(this, 'img/image25.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image25.JPG');"></div>
+        </div>
+        <p class="caption">A special moment</p>
+      </div>
+
+      <!-- Card 26 -->
+      <div class="card" onclick="flipCard(this, 'img/image26.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image26.JPG');"></div>
+        </div>
+        <p class="caption">Our favorite place</p>
+      </div>
+
+      <!-- Card 27 -->
+      <div class="card" onclick="flipCard(this, 'img/image27.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image27.JPG');"></div>
+        </div>
+        <p class="caption">A cherished memory</p>
+      </div>
+
+      <!-- Card 28 -->
+      <div class="card" onclick="flipCard(this, 'img/image28.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image28.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful day</p>
+      </div>
+
+      <!-- Card 29 -->
+      <div class="card" onclick="flipCard(this, 'img/image29.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image29.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful day</p>
+      </div>
+
+      <!-- Card 30 -->
+      <div class="card" onclick="flipCard(this, 'img/image30.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image30.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful daydi </p>
+      </div> 
+
+      <!------------------------------------------------------------------------------------------>
+
+      <!-- Card 31 -->
+      <div class="card" onclick="flipCard(this, 'img/image31.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image31.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful daydi </p>
+      </div> 
+
+      <!-- Card 32 -->
+      <div class="card" onclick="flipCard(this, 'img/image32.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image32.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful daydi </p>
+      </div> 
+    <!-- Card 33 -->
+    <div class="card" onclick="flipCard(this, 'img/image33.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image33.JPG');"></div>
+      </div>
+      <p class="caption">Our first photo together</p>
     </div>
-    
-    
-    
-    
-    ------------------------------------------------------------------>
-    
-    
-    
-    <footer class="footer">
-    <div class="ownername">
-        <p><b>&copy; Mohamed Mansour</b></p>
-        <a href="mailto:midomans987654321@gmail.com" style="text-decoration: none;">
-            <p>midomans987654321@gmail.com</p>
-        </a>
+
+    <!-- Card 34 -->
+    <div class="card" onclick="flipCard(this, 'img/image34.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image34.JPG');"></div>
+      </div>
+      <p class="caption">A special moment</p>
     </div>
-    <div class="socialicons">
-        <a href="https://www.facebook.com/profile.php?id=100019142286045">
-            <img src="photos/footer/socialicons/facebook.png" alt="Facebook">
-        </a>
-        <a href="https://twitter.com/midomans9876541">
-            <img src="photos/footer/socialicons/twitter.png" alt="Twitter">
-        </a>
-        <a href="https://www.youtube.com/channel/UCtSMXsl8LojF1JnPrfdFfDw">
-            <img src="photos/footer/socialicons/youtube.jpg" alt="YouTube">
-        </a>
-        <a href="https://github.com/mohamed-mansour106">
-            <img src="photos/footer/socialicons/github.png" alt="GitHub">
-        </a>
-        <a href="https://www.mediafire.com/file/j4gaafji70vclgb/com.t4w.ostora516-1.apk/file">
-            <img src="photos/footer/socialicons/enhance.png" alt="Enhance">
-        </a>
-        <a href="https://www.mediafire.com/file/z7iptmfespe2uko/info.t4w.vp-280.apk/file">
-            <img src="photos/footer/socialicons/enhance.png" alt="Enhance">
-        </a>
+
+    <!-- Card 35 -->
+    <div class="card" onclick="flipCard(this, 'img/image35.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image35.JPG');"></div>
+      </div>
+      <p class="caption">Our favorite place</p>
     </div>
-</footer>
+
+    <!-- Card 36 -->
+    <div class="card" onclick="flipCard(this, 'img/image36.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image36.JPG');"></div>
+      </div>
+      <p class="caption">A cherished memory</p>
+    </div>
+
+    <!-- Card 37 -->
+    <div class="card" onclick="flipCard(this, 'img/image37.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image37.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful day</p>
+    </div>
+
+    <!-- Card 38 -->
+    <div class="card" onclick="flipCard(this, 'img/image38.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image38.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful day</p>
+    </div>
+
+    <!-- Card 39 -->
+    <div class="card" onclick="flipCard(this, 'img/image39.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image39.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful day</p>
+    </div>
+
+        <!-- Card 40 -->
+    <div class="card" onclick="flipCard(this, 'img/image40.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image40.JPG');"></div>
+      </div>
+      <p class="caption">Our first photo together</p>
+    </div>
+
+    <!-------------------------------------------------------------------------------------------->
+
+    <!-- Card 41 -->
+    <div class="card" onclick="flipCard(this, 'img/image41.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image41.JPG');"></div>
+      </div>
+      <p class="caption">A special moment</p>
+    </div>
+
+    <!-- Card 42 -->
+    <div class="card" onclick="flipCard(this, 'img/image42.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image42.JPG');"></div>
+      </div>
+      <p class="caption">Our favorite place</p>
+    </div>
+
+    <!-- Card 43 -->
+    <div class="card" onclick="flipCard(this, 'img/image43.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image43.JPG');"></div>
+      </div>
+      <p class="caption">A cherished memory</p>
+    </div>
+
+    <!-- Card 44 -->
+    <div class="card" onclick="flipCard(this, 'img/image44.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image44.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful day</p>
+    </div>
+
+    <!-- Card 45 -->
+    <div class="card" onclick="flipCard(this, 'img/image45.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image45.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful day</p>
+    </div>
+
+    <!-- Card 46 -->
+    <div class="card" onclick="flipCard(this, 'img/image46.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image46.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful daydi </p>
+    </div> 
+
+    <!-- Card 47 -->
+    <div class="card" onclick="flipCard(this, 'img/image47.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image47.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful daydi </p>
+    </div> 
+
+    <!-- Card 48 -->
+    <div class="card" onclick="flipCard(this, 'img/image48.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image48.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful daydi </p>
+    </div> 
+
     
-    
-    
-    <script>
-         const name = prompt("What's your name?");
-         if (name) {
-             document.getElementById("test").innerHTML = `Hello ${name}`;
-         }
-     </script>
-   
-    
+      <!-- Card 11 -->
+      <div class="card" onclick="flipCard(this, 'img/image11.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image11.JPG');"></div>
+        </div>
+        <p class="caption">A cherished memory</p>
+      </div>
+
+      <!-- Card 12 -->
+      <div class="card" onclick="flipCard(this, 'img/image12.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image12.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful day</p>
+      </div>
+
+      <!-- Card 13 -->
+      <div class="card" onclick="flipCard(this, 'img/image13.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image13.JPG');"></div>
+        </div>
+        <p class="caption">Another beautiful day</p>
+      </div>
+
+
+    <!-- Card 49 -->
+    <div class="card" onclick="flipCard(this, 'img/image49.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image49.JPG');"></div>
+      </div>
+      <p class="caption">Our first photo together</p>
+    </div>
+
+    <!-- Card 50 -->
+    <div class="card" onclick="flipCard(this, 'img/image50.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image50.JPG');"></div>
+      </div>
+      <p class="caption">A special moment</p>
+    </div>
+
+    <!---------------------------------------------------------------------------->
+
+    <!-- Card 51 -->
+    <div class="card" onclick="flipCard(this, 'img/image51.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image51.JPG');"></div>
+      </div>
+      <p class="caption">Our favorite place</p>
+    </div>
+
+    <!-- Card 52 -->
+    <div class="card" onclick="flipCard(this, 'img/image52.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image52.JPG');"></div>
+      </div>
+      <p class="caption">A cherished memory</p>
+    </div>
+
+    <!-- Card 53 -->
+    <div class="card" onclick="flipCard(this, 'img/image53.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image53.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful day</p>
+    </div>
+
+    <!-- Card 54 -->
+    <div class="card" onclick="flipCard(this, 'img/image54.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image54.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful day</p>
+    </div>
+
+    <!-- Card 55 -->
+    <div class="card" onclick="flipCard(this, 'img/image55.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image55.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful day</p>
+    </div>
+
+        <!-- Card 56 -->
+    <div class="card" onclick="flipCard(this, 'img/image56.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image56.JPG');"></div>
+      </div>
+      <p class="caption">Our first photo together</p>
+    </div>
+
+    <!-- Card 57 -->
+    <div class="card" onclick="flipCard(this, 'img/image57.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image57.JPG');"></div>
+      </div>
+      <p class="caption">A special moment</p>
+    </div>
+
+    <!-- Card 58 -->
+    <div class="card" onclick="flipCard(this, 'img/image58.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image58.JPG');"></div>
+      </div>
+      <p class="caption">Our favorite place</p>
+    </div>
+
+    <!-- Card 59 -->
+    <div class="card" onclick="flipCard(this, 'img/image59.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image59.JPG');"></div>
+      </div>
+      <p class="caption">A cherished memory</p>
+    </div>
+
+    <!-- Card 60 -->
+    <div class="card" onclick="flipCard(this, 'img/image60.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image60.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful day</p>
+    </div>
+
+    <!----------------------------------------------------------------------------->
+
+    <!-- Card 61 -->
+    <div class="card" onclick="flipCard(this, 'img/image61.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image61.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful day</p>
+    </div>
+
+    <!-- Card 62 -->
+    <div class="card" onclick="flipCard(this, 'img/image62.JPG')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('img/image62.JPG');"></div>
+      </div>
+      <p class="caption">Another beautiful daydi </p>
+    </div> 
+
+    <!-- Card 61 -->
+    <div class="card" onclick="flipCard(this, 'image5.jpg')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('image5.jpg');"></div>
+      </div>
+      <p class="caption">Another beautiful daydi </p>
+    </div> 
+
+    <!-- Card 62 -->
+    <div class="card" onclick="flipCard(this, 'image5.jpg')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('image5.jpg');"></div>
+      </div>
+      <p class="caption">Another beautiful daydi </p>
+    </div> 
+
+    <!-- Card 61 -->
+    <div class="card" onclick="flipCard(this, 'image5.jpg')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('image5.jpg');"></div>
+      </div>
+      <p class="caption">Another beautiful daydi </p>
+    </div> 
+
+    <!-- Card 62 -->
+    <div class="card" onclick="flipCard(this, 'image5.jpg')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('image5.jpg');"></div>
+      </div>
+      <p class="caption">Another beautiful daydi </p>
+    </div> 
+
+    <!-- Card 63 -->
+    <div class="card" onclick="flipCard(this, 'image5.jpg')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('image5.jpg');"></div>
+      </div>
+      <p class="caption">Another beautiful daydi </p>
+    </div> 
+
+    <!-- Card 64 -->
+    <div class="card" onclick="flipCard(this, 'image5.jpg')">
+      <div class="card-inner">
+        <div class="card-front">Click to Reveal</div>
+        <div class="card-back" style="background-image: url('image5.jpg');"></div>
+      </div>
+      <p class="caption">Another beautiful daydi </p>
+    </div> 
+
+
+</div> <!--galler div-->
 
 
 
+
+
+
+
+  <!-- Final Button -->
+  <button class="final-btn" onclick="showFinalVideo()">Unforgettable Moments</button>
+
+  <!-- Image Popup -->
+  <div class="popup-image" id="imagePopup" style="display: none;">
+    <div class="popup-content">
+      <img id="popupImg" src="" style="max-width: 90%; max-height: 80%; border-radius: 12px;" />
+      <button class="skip-btn" onclick="closeImagePopup()" aria-label="Close image popup">
+        ✖ Close
+      </button>
+    </div>
+  </div>
+
+  <!-- Final Video Popup -->
+  <div class="popup-video" id="finalPopup" style="display: none;">
+    <iframe 
+      id="finalVideo" 
+      src="vid/final.mp4" 
+      frameborder="0" 
+      allow="autoplay; encrypted-media" 
+      allowfullscreen 
+      style="width: 90%; height: 90%; border-radius: 12px;">
+    </iframe>
+    <button class="skip-btn" onclick="closeFinalVideo()" aria-label="Close video popup">
+      ✖ Close
+    </button>
+  </div>
+
+  <script>
+    const introPopup = document.getElementById('introPopup');
+    const introVideo = document.getElementById('introVideo');
+
+    introVideo.onended = function () {
+      introPopup.style.display = 'none';
+    };
+
+    function skipIntro() {
+      introPopup.style.display = 'none';
+    }
+
+    function flipCard(card, imgSrc) {
+      // Add the 'flipped' class to the card for the flip animation
+      card.classList.add('flipped');
+
+      // Wait for the flip animation to complete before showing the popup
+      setTimeout(() => {
+        const popupImg = document.getElementById('popupImg');
+        const imagePopup = document.getElementById('imagePopup');
+
+        // Set the image source for the popup
+        popupImg.src = imgSrc;
+
+        // Display the popup
+        imagePopup.style.display = 'flex';
+      }, 800);
+    }
+
+    // Close the popup when clicking the close button
+    function closeImagePopup() {
+      const imagePopup = document.getElementById('imagePopup');
+      imagePopup.style.display = 'none';
+    }
+
+    function showFinalVideo() {
+      const finalPopup = document.getElementById('finalPopup');
+      const finalVideo = document.getElementById('finalVideo');
+
+      // Show the popup
+      finalPopup.style.display = 'flex';
+
+      // Reload the iframe to ensure autoplay
+      finalVideo.src = finalVideo.src;
+    }
+
+    function closeFinalVideo() {
+      document.getElementById('finalPopup').style.display = 'none';
+    }
+  </script>
 </body>
 </html>

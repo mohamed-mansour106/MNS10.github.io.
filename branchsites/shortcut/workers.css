@@ -6,16 +6,24 @@ body {
 .body {
     height: 1500px;
 }
-/********************************************
-.navbar {
-    background-color: white;
-    color: black;
-    display: flex;
-    text-align: center;
-    height: 100px;
-    
-}
-*************************************************/
+
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --font-family: 'Arial, sans-serif';
+    --spacing: 16px;
+  }
+  
+  body {
+    font-family: var(--font-family);
+    color: var(--primary-color);
+    margin: var(--spacing);
+  }
+
+
+
+
 .navbar {
     background-color: white;
     color: black;
@@ -123,3 +131,176 @@ a {
     background-color: white;
     border-radius: 150px;
 }
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.item {
+  flex: 1 1 calc(33.333% - 16px); /* 3 items per row */
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .item {
+    flex: 1 1 calc(50% - 16px); /* 2 items per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .item {
+    flex: 1 1 100%; /* 1 item per row */
+  }
+}
+
+
+
+body {
+    font-size: 16px; /* Base font size */
+  }
+  
+  h1 {
+    font-size: 2rem; /* 2 times the base font size */
+  }
+  
+  p {
+    font-size: 1rem; /* Same as the base font size */
+  }
+
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+
+  @media (max-width: 768px) {
+    /* Styles for tablets and smaller devices */
+    .header {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* Styles for mobile devices */
+    .header {
+      font-size: 1.2rem;
+    }
+  }
+
+
+  
+            /******************************************************************************/
+             /* Basic styling for the tabs */
+             .tab-container {
+                width: 100%;
+                max-width: 600px;
+                margin: 20px auto;
+                font-family: Arial, sans-serif;
+              }
+          
+              .tab-buttons {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Responsive columns */
+                gap: 10px; /* Space between buttons */
+                padding: 10px; /* Optional padding around the grid */
+                }
+            
+            .tab-buttons button {
+                flex: 1;
+                padding: 10px 20px;
+                cursor: pointer;
+                background-color: #f1f1f1;
+                border: none;
+                outline: none;
+                transition: background-color 0.3s ease;
+                text-align: center; 
+                font-family: Verdana, Geneva, Tahoma, sans-serif; font-style: italic; font-size: 100%;
+                    
+            
+                }
+            
+                .tab-buttons button.active {
+                background-color: transparent;
+                color: white;
+                font-weight: bold;
+                text-align: center; 
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-style: italic; font-size: 100%;
+                }
+            
+                .tab-content {
+                display: none;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-top: none;
+                }
+            
+                .tab-content.active {
+                display: block;
+                }
+
+
+                /****************************************************/
+
+            ul li {
+                width: 85%;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                margin: 1.5em;
+                cursor: pointer;
+                padding: 1em;
+                background: rgb(43, 43, 43);
+                position: relative;
+                color: white;
+                border-radius: 5px;
+            }
+
+            ul li::before,
+            ul li::after {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    border-radius: 5px;
+                    width: 105%;
+                    transition: all 0.4s;
+            }
+            ul li::before {
+                    left: 0%;
+                    height: 130%;
+                    background: linear-gradient(to right, #021B79, #0575E6);
+            }
+            ul li::after {
+                    left: -10%;
+                    height: 120%;
+                    background: #ffffff56;
+                    backdrop-filter: blur(10px);
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.164);
+            }
+            ul li:hover::before {
+                    transform: translateX(-2.5%);
+            }
+            ul li:hover::after {
+                    transform: translateX(15%);
+            }
+
+            .s {
+                font-size: xx-large;
+                color: ;
+            }
+
+            .LIST1 {
+                margin-top: 1870%;
+            }
+
+
+
+              /******************************************************/
+
+
+        .sites {
+            width: 80%;
+        }

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="../../../../../../../../../img/logo/favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESD Exam</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f0f4f8;
+      padding: 20px;
+      margin: 0;
+      color: #333;
+    }
+
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .form-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .form-container input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .question:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .question p {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #34495e;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      font-size: 16px;
+      color: #555;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-left: 10px;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 30px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: #27ae60;
+      display: none; /* Initially hidden */
+    }
+
+    #result.celebration {
+      color: #d35400;
+      font-size: 28px;
+      animation: pulse 1s infinite;
+    }
+
+    .certificate {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      border: 2px solid #3498db;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .certificate h2 {
+      font-size: 28px;
+      color: #2c3e50;
+    }
+
+    .certificate p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    /* Pulse animation for the result */
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Celebration background animation */
+    @keyframes glow {
+      0%, 100% {
+        background-color: #f0f4f8;
+      }
+      50% {
+        background-color: #ffeb3b;
+      }
+    }
+
+    body.celebration {
+      animation: glow 1s infinite;
+      overflow: hidden;
+    }
+
+    /* Confetti animation */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #ff4081;
+      animation: fall 3s linear infinite;
+      z-index: 1000;
+    }
+
+    .confetti:nth-child(odd) {
+      background-color: #3f51b5;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Popup Certificate Styles */
+    .popup-certificate {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .popup-content h2 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    .popup-content p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .popup-content button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .popup-content button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Fade-in animation for the popup */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+    <div class="logo container" style="text-align: center;   ">
+      <img src="../../../../../../../../../img/logo/MMM.png" style="border-radius: 90%; " alt="">
+    </div>
+
+    <h1>SWT2 - Emergency Shut Down (ESD) Exam</h1>
+
+
+  <div class="form-container">
+    <input type="text" id="userName" placeholder="  write your name here" required>
+  </div>
+
+  <div class="question">
+    <p>1. What is the main purpose of the Emergency Shutdown (ESD) system?</p>
+    <label><input type="radio" name="q1" value="0">A. Increase well production</label>
+    <label><input type="radio" name="q1" value="0">B. Cool down the separator</label>
+    <label><input type="radio" name="q1" value="0">C. Open the flowline valve in emergencies</label>
+    <label><input type="radio" name="q1" value="1">D. Quickly close the well during emergency situations</label>
+  </div>
+
+  <div class="question">
+    <p>2. What component is NOT part of the ESD control skid?</p>
+    <label><input type="radio" name="q2" value="0"> A. Hydraulic pump</label>
+    <label><input type="radio" name="q2" value="1"> B. Pressure relief valve</label>
+    <label><input type="radio" name="q2" value="0"> C. Air reservoir </label>
+    <label><input type="radio" name="q2" value="0"> D. Hose reels </label>
+  </div>
+
+  <div class="question">
+    <p>3. How many hose reels are included in the ESD control skid?</p>
+    <label><input type="radio" name="q3" value="0"> A. 1</label>
+    <label><input type="radio" name="q3" value="0"> B. 2</label>
+    <label><input type="radio" name="q3" value="1"> C. 3</label>
+    <label><input type="radio" name="q3" value="0"> D. 4</label>
+  </div>
+
+  <div class="question">
+    <p>4. What is the maximum hydraulic pressure supported by the ESD actuator system?</p>
+    <label><input type="radio" name="q4" value="0"> A. 3000 psi</label>
+    <label><input type="radio" name="q4" value="0"> B. 4500 psi</label>
+    <label><input type="radio" name="q4" value="1"> C. 6000 psi</label>
+    <label><input type="radio" name="q4" value="0"> D. 7500 psi</label>
+  </div>
+
+  <div class="question">
+    <p>5. Where should at least two ESD stations be installed?</p>
+    <label><input type="radio" name="q5" value="0"> A. Only at the flow head</label>
+    <label><input type="radio" name="q5" value="1"> B. On the separator and in a safe area</label>
+    <label><input type="radio" name="q5" value="0"> C. On the choke manifold</label>
+    <label><input type="radio" name="q5" value="0"> D. Inside the hydraulic pump unit</label>
+  </div>
+
+  <div class="question">
+    <p>6. What triggers the high-pressure pilot to close the valve?</p>
+    <label><input type="radio" name="q6" value="0"> A. Pressure falls below a low threshold</label>
+    <label><input type="radio" name="q6" value="0"> B. Manual reset is activated</label>
+    <label><input type="radio" name="q6" value="1"> C. Pressure rises above a preset threshold</label>
+    <label><input type="radio" name="q6" value="0"> D. Valve temperature increases</label>
+  </div>
+
+  <div class="question">
+    <p>7. What happens when either the high or low pilot is triggered?</p>
+    <label><input type="radio" name="q7" value="0"> A. Hydraulic pump shuts off permanently</label>
+    <label><input type="radio" name="q7" value="0"> B. Pressure is boosted in the system</label>
+    <label><input type="radio" name="q7" value="1"> C. Air is vented, hydraulic pressure is released, and the valve closes</label>
+    <label><input type="radio" name="q7" value="0">  D. The valve opens for emergency flow</label>
+  </div>
+
+  <div class="question">
+    <p>8. What pressure do the high/low pilots and ESD stations typically operate at?</p>
+    <label><input type="radio" name="q8" value="0"> A. 10 psi</label>
+    <label><input type="radio" name="q8" value="0"> B. 50 psi</label>
+    <label><input type="radio" name="q8" value="1"> C. 30 psi</label>
+    <label><input type="radio" name="q8" value="0"> D. 150 psi</label>
+  </div>
+
+  <div class="question">
+    <p>9. What component is located between the flow head and choke manifold?</p>
+    <label><input type="radio" name="q9" value="0"> A. Flowline valve actuator</label>
+    <label><input type="radio" name="q9" value="1"> B. Surface Safety Valve (SSV)</label>
+    <label><input type="radio" name="q9" value="0"> C. Separator</label>
+    <label><input type="radio" name="q9" value="0"> D. Steam exchanger</label>
+  </div>
+
+  <div class="question">
+    <p>10. What does the interface valve do in the ESD panel?</p>
+    <label><input type="radio" name="q10" value="0"> A. Regulates temperature</label>
+    <label><input type="radio" name="q10" value="1"> B. Releases hydraulic pressure to close the valve</label>
+    <label><input type="radio" name="q10" value="0"> C. Controls oil flow rate</label>
+    <label><input type="radio" name="q10" value="0"> D. Pumps air into the separator</label>
+  </div>
+
+  <button onclick="calculateScore()">Submit your paper</button>
+
+  <div id="result"></div>
+
+  <div class="certificate" id="certificate">
+    <h2>Certificate/h2>
+    <p>Excellent <span id="certificateName"></span>!</p>
+    <p>    You did a Good Job !</p>
+  </div>
+
+  <div class="popup-certificate" id="popupCertificate">
+    <div class="popup-content">
+      <h2>🎉 شهادة تقدير 🎉</h2>
+      <p>تهانينا <span id="popupCertificateName"></span>!</p>
+      <p>لقد حصلت على نتيجة رائعة في الاختبار!</p>
+      <button onclick="closePopup()">إغلاق</button>
+    </div>
+  </div>
+
+  <script>
+    function createConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDelay = Math.random() * 2 + "s";
+        document.body.appendChild(confetti);
+
+        // Remove confetti after animation ends
+        setTimeout(() => {
+          confetti.remove();
+        }, 3000);
+      }
+    }
+
+    function calculateScore() {
+      let totalScore = 0;
+      for (let i = 1; i <= 10; i++) { // Adjust based on the number of questions
+        const answer = document.querySelector(`input[name="q${i}"]:checked`);
+        if (answer) {
+          totalScore += parseInt(answer.value);
+        }
+      }
+
+      const userName = document.getElementById("userName").value || "ضيف";
+      let resultText = "";
+
+      if (totalScore === 10) { // Adjust based on the total score
+        resultText = `🎉 إنتي تعرفيني كويس جدًا! ${totalScore}/10 🎉`;
+        document.body.classList.add("celebration");
+        createConfetti(); // Trigger confetti
+
+        // Show popup certificate
+        const popupCertificate = document.getElementById("popupCertificate");
+        const popupCertificateName = document.getElementById("popupCertificateName");
+        popupCertificateName.innerText = userName;
+        popupCertificate.style.display = "flex"; // Show the popup
+      } else if (totalScore >= 7) {
+        resultText = `Great Bro! Keep Going💪 ${totalScore}/10`;
+        document.body.classList.remove("celebration");
+      } else {
+        resultText = `Oops You failed ! You should study harder 💪💪💪 ${totalScore}/10`;
+        document.body.classList.remove("celebration");
+      }
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerText = resultText;
+      resultDiv.style.display = "block"; // Ensure the result is visible
+    }
+
+    function closePopup() {
+      const popupCertificate = document.getElementById("popupCertificate");
+      popupCertificate.style.display = "none"; // Hide the popup
+    }
+  </script>
+
+
+<br><br><br>
+  <footer style="text-align: center; margin-top: 50px; font-size: 14px; color: #777;">
+    &copy; 2023 جميع الحقوق محفوظة.
+  </footer> 
+</body>
+</html>

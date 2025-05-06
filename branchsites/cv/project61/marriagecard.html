@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vlog" content="width=device-width, initial-scale=1.0">
+    <title>Marriage card</title>
+    <link rel="stylesheet" href="marriagecard.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2a7a8c;
+            background-image: url('https://s5.ezgif.com/tmp/ezgif-5b02deebf7f4fa.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #timer {
+            font-size: 10rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        /* Animation for glowing effect */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        /* Additional animation for numbers */
+        .digit {
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container2">
+        <div id="timer"></div>
+    </div>
+
+    <audio src="" autoplay></audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set the target date for the countdown (change as needed)
+            const targetDate = new Date("2025-06-26 23:59:59").getTime();
+
+            // Update the countdown every second
+            setInterval(function() {
+                const now = new Date().getTime();
+                const timeRemaining = targetDate - now;
+
+                // Calculate days, hours, minutes, and seconds
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                // Display the countdown timer with animated digits
+                document.getElementById("timer").innerHTML = `
+                    <span class="digit">${days}d</span> 
+                    <span class="digit">${hours}h</span> 
+                    <span class="digit">${minutes}m</span> 
+                    <span class="digit">${seconds}s</span>
+                `;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

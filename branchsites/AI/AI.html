@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed & Sara - Engagement Anniversary</title>
+  <link rel="shortcut icon" href="image19.ico" type="image/x-icon">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fffafc;
+      color: #333;
+      overflow-x: hidden;
+      
+    }
+
+  
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 50px;
+      background-image: url('https://media.tenor.com/DComov1WYRMAAAAM/yugi-moto.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      position: relative;
+
+      overflow: scroll;
+
+    }
+
+    .card {
+      width: 240px;
+      height: 350px;
+      perspective: 1000px;
+    }
+
+    .card:hover {
+      cursor: grabbing;
+      cursor: -webkit-grabbing; 
+      transform: scale(1.05);
+      transition: transform 0.3s;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .card-front {
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 0.7rem;
+      padding: 4%;
+      background-image: url('front.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-front p {
+      color: #c1c1c1;
+      
+    }
+    .card-front h3 {
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+      font-size: 1.5rem;
+
+    }
+
+    
+
+    .card-back {
+      background-size: cover;
+      background-position: center;
+      transform: rotateY(180deg);
+    }
+
+    .caption {
+      text-align: center;
+      font-style: italic;
+      color: #aa3377;
+      margin-top: 3px;
+      font-size: 1rem;
+    }
+
+    
+  </style>
+
+  <style>
+
+.card5 {
+            padding-top: 5%;
+            width: 100%;
+            height: 100%;
+            background-color: #007b8a;
+            border: 7px solid #4E4E6E;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+            background-image: url('back.png');
+            background-size: cover;
+            background-position: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+.card-header {
+            background-color: #b25634ac;
+            color:#000000b8;
+            text-align: center;
+            padding: 2.5px;
+            font-size: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 2% 5% 0 5%;
+            border: 1.5px solid #4E4E6E;
+            box-shadow: 5px 5px 5px 5px rgba(2, 0, 0, 0.666);
+            width: 84%;
+            display: flex;
+            justify-content: space-between;
+
+            align-items: center;
+            border-radius: 10px;
+
+        }
+
+.card-header p {
+            margin: 1% 0;
+            font-size: 70%;
+            color: #ffffffd3;
+        }
+
+        .card-header img {
+            border-radius: 50%;
+            width: 12%;
+            height: 10%; 
+        }
+
+             
+        .card-image {
+            width: 70%;
+            height: 150px;
+            margin: auto ;
+            text-align: center;
+            object-fit: cover;
+            border-bottom: 3px solid #004d66;
+            margin: 5% 12% 0;
+            border: 7px solid #edf7fb;
+            border-radius: 10px;    
+
+        }
+
+.COLLO {
+            border-radius: 10px;
+            margin: 0% 5% 5% 5%;
+            background-color: #dabdacde;
+            border: 3px solid #e7a178de;
+
+        }
+
+.card-body {
+            padding: 1%;
+            background-color: transparent;
+            color: #000;
+            font-size: 55%;
+            text-align: justify;
+            line-height: 110%;
+        }
+
+    .card-footer {
+            background-color: #004d66;
+            color: #fff;
+            text-align: center;
+            padding: 5%;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+
+
+        
+        
+  </style>
+
+
+<!----------------------search ---------------------------->
+
+  <style>
+
+  </style>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="path/search-bar/search-bar.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7574629944177880"
+  crossorigin="anonymous"></script>
+
+</head>
+<body>
+  
+
+        
+        
+        <!--------------------start search bar---------------------------------------->
+        <div class="search-container">
+            <input type="text" placeholder="Search..." id="searchInput">
+            <div class="search"></div>
+        </div>
+        <script defer src="path/search-bar/search.js"></script>
+        <!-----------------------------End search bar------------------------------->
+  
+
+
+  <!-- Gallery Section -->
+  <div class="gallery" id="gallery">
+  <!-- Card 1 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+          <div class="card-front">
+            <h3>ChatGPT</h3>
+            <p style="margin: 5%; ">ChatGPT is an advanced AI language model developed by OpenAI. It’s designed to understand and generate human-like text based on the input it receives. ChatGPT can answer questions, assist with writing, translate languages, explain code, brainstorm ideas, simulate conversations, and more.
+
+              It is built on the GPT (Generative Pre-trained Transformer) architecture and trained on a large dataset of internet text, allowing it to provide coherent, context-aware responses in natural language.
+              
+              ChatGPT is widely used in education, business, customer support, content creation, and everyday tasks, thanks to its ability to hold dynamic, intelligent conversations.</p>
+          </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> Chat GPT</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://infinitynetworking.com/wp-content/uploads/2023/09/ChatGPT.jpg" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table>
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>ChatGPT </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>texting</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ATK:</td>
+                                                <td>3000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>DEF:</td>
+                                                <td>2500</td>
+                                            </tr> 
+                                        </table>
+                                        
+                                    <a href="" class="link">
+                                      <div class="card-footer">Limited Edition</div>
+                                    </a>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+       <!-- Card 2 -->
+       <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> Chat GPT</P>
+                                    <img src="1.png" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="2.png" alt="The Seal of Orichalcos" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        
+                                        <p>All monsters you control gain 500 ATK. Once per turn, this card cannot be destroyed by card effects. While you control 2 or more face-up Attack Position monsters, your opponent cannot target your monster(s) with the lowest ATK for an attack. When this card is activated: Destroy all Special Summoned monsters you control.  </p>
+                                    <div class="card-footer">Limited Edition</div>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      
+      <!-- Card 2 -->
+      <div class="card" onclick="flipCard(this, 'img/image2.JPG')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image2.JPG');"></div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card" onclick="flipCard(this, 'img/image6.jpg')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image2.jpg');"></div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="card" onclick="flipCard(this, 'img/image7.jpg')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image7.jpg');"></div>
+        </div>
+      </div>
+
+          <!-- Card 8 -->
+      <div class="card" onclick="flipCard(this, 'img/image8.jpg')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image8.jpg');"></div>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="card" onclick="flipCard(this, 'img/image9.jpg')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image9.jpg');"></div>
+        </div>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="card" onclick="flipCard(this, 'img/image10.jpg')">
+        <div class="card-inner">
+          <div class="card-front">Click to Reveal</div>
+          <div class="card-back" style="background-image: url('img/image10.jpg');"></div>
+        </div>
+      </div>
+
+      <!-------------------------------------------------------------------------------------->
+
+      <!-- Card 14 -->
+          
+
+</div> <!--galler div-->
+
+
+
+
+
+
+
+
+  <script>
+    
+
+
+    function flipCard(card, imgSrc) {
+      // Add the 'flipped' class to the card for the flip animation
+      card.classList.add('flipped');
+    }
+
+    
+
+    
+  </script>
+</body>
+</html>

@@ -3,206 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohamed & Sara - Engagement Anniversary</title>
-  <link rel="shortcut icon" href="image19.ico" type="image/x-icon">
+  <title> AI</title>
+  <link rel="shortcut icon" href="ai.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #fffafc;
-      color: #333;
-      overflow-x: hidden;
-      
-    }
-
-  
-
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 40px 20px;
-      gap: 50px;
-      background-image: url('https://media.tenor.com/DComov1WYRMAAAAM/yugi-moto.gif');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 100vh;
-      position: relative;
-
-      overflow: scroll;
-
-    }
-
-    .card {
-      width: 240px;
-      height: 350px;
-      perspective: 1000px;
-    }
-
-    .card:hover {
-      cursor: grabbing;
-      cursor: -webkit-grabbing; 
-      transform: scale(1.05);
-      transition: transform 0.3s;
-    }
-
-    .card-inner {
-      width: 100%;
-      height: 100%;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-      position: relative;
-    }
-
-    .card.flipped .card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-
-    .card-front {
-      color: #ffffff;
-      font-weight: bold;
-      font-size: 0.7rem;
-      padding: 4%;
-      background-image: url('front.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .card-front p {
-      color: #c1c1c1;
-      
-    }
-    .card-front h3 {
-      color: #fff;
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-      font-size: 1.5rem;
-
-    }
+    
 
     
 
-    .card-back {
-      background-size: cover;
-      background-position: center;
-      transform: rotateY(180deg);
-    }
+    
 
-    .caption {
-      text-align: center;
-      font-style: italic;
-      color: #aa3377;
-      margin-top: 3px;
-      font-size: 1rem;
-    }
+    
 
+    
     
   </style>
 
   <style>
-
-.card5 {
-            padding-top: 5%;
-            width: 100%;
-            height: 100%;
-            background-color: #007b8a;
-            border: 7px solid #4E4E6E;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
-            background-image: url('back.png');
-            background-size: cover;
-            background-position: center;
-            justify-content: center;
-            align-items: center;
-        }
-
-.card-header {
-            background-color: #b25634ac;
-            color:#000000b8;
-            text-align: center;
-            padding: 2.5px;
-            font-size: 100%;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin: 2% 5% 0 5%;
-            border: 1.5px solid #4E4E6E;
-            box-shadow: 5px 5px 5px 5px rgba(2, 0, 0, 0.666);
-            width: 84%;
-            display: flex;
-            justify-content: space-between;
-
-            align-items: center;
-            border-radius: 10px;
-
-        }
-
-.card-header p {
-            margin: 1% 0;
-            font-size: 70%;
-            color: #ffffffd3;
-        }
-
-        .card-header img {
-            border-radius: 50%;
-            width: 12%;
-            height: 10%; 
-        }
-
-             
-        .card-image {
-            width: 70%;
-            height: 150px;
-            margin: auto ;
-            text-align: center;
-            object-fit: cover;
-            border-bottom: 3px solid #004d66;
-            margin: 5% 12% 0;
-            border: 7px solid #edf7fb;
-            border-radius: 10px;    
-
-        }
-
-.COLLO {
-            border-radius: 10px;
-            margin: 0% 5% 5% 5%;
-            background-color: #dabdacde;
-            border: 3px solid #e7a178de;
-
-        }
-
-.card-body {
-            padding: 1%;
-            background-color: transparent;
-            color: #000;
-            font-size: 55%;
-            text-align: justify;
-            line-height: 110%;
-        }
-
-    .card-footer {
-            background-color: #004d66;
-            color: #fff;
-            text-align: center;
-            padding: 5%;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
 
 
 
@@ -243,12 +60,11 @@
       <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
         <div class="card-inner">
           <div class="card-front">
-            <h3>ChatGPT</h3>
-            <p style="margin: 5%; ">ChatGPT is an advanced AI language model developed by OpenAI. It’s designed to understand and generate human-like text based on the input it receives. ChatGPT can answer questions, assist with writing, translate languages, explain code, brainstorm ideas, simulate conversations, and more.
-
-              It is built on the GPT (Generative Pre-trained Transformer) architecture and trained on a large dataset of internet text, allowing it to provide coherent, context-aware responses in natural language.
-              
-              ChatGPT is widely used in education, business, customer support, content creation, and everyday tasks, thanks to its ability to hold dynamic, intelligent conversations.</p>
+              <br> 
+            <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+            style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+            <br>
+            <br>
           </div>
           <div class="card-back" >
                       <div class="card5">
@@ -260,19 +76,18 @@
                                     alt="">
                                 </div>
                             </div>
-                
                             <img src="https://infinitynetworking.com/wp-content/uploads/2023/09/ChatGPT.jpg" 
                             alt="ChatGPT" class="card-image">
                             <div class="COLLO">
                                 <div class="card-body">
-                                        <table>
+                                        <table >
                                             <tr>
                                               <th>Name:</th>
                                               <th>ChatGPT </th>
                                             </tr>
                                             <tr>
                                                 <td>Type:</td>
-                                                <td>texting</td>
+                                                <td>texting <br> image</td>
                                             </tr>
                                             <tr>
                                                 <td>study:</td>
@@ -283,19 +98,40 @@
                                                 <td>free use</td>
                                             </tr>
                                             <tr>
-                                                <td>ATK:</td>
-                                                <td>3000</td>
+                                                <td>rate:</td>
+                                                <td>8.5/10</td>
                                             </tr>
                                             <tr>
-                                                <td>DEF:</td>
-                                                <td>2500</td>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li>ChatGPT</li>  
+                                                  <li>Conversational AI</li>
+                                                  <li>Language Translation</li>
+                                                  <li>answer questions</li>
+                                                  <li>assist with writing</li>
+                                                  <li>explain code</li>
+                                                  <li>brainstorm ideas</li>
+                                                  <li>create images</li>
+                                                </ul>
+                                              </td>
                                             </tr> 
                                         </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li>Conversational</li>
+                                          <li>Translation</li>
+                                          <li>Summarization</li>  
+                                          <li>Text generation</li>
+                                          <li>create images</li>
+                                        </ul>
                                         
-                                    <a href="" class="link">
-                                      <div class="card-footer">Limited Edition</div>
-                                    </a>
+                                    
                                 </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
                             </div>  
                         </div>
                     </div>
@@ -304,28 +140,479 @@
       </div>
 
 
-       <!-- Card 2 -->
-       <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+
+      <!-- Card 2 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
         <div class="card-inner">
-          <div class="card-front">Click to Reveal</div>
+          <div class="card-front">
+            <br> 
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAWlBMVEUCwswIuc4NrdEZo9QjldcyiNhOuNmt3ev////u9fyH1OLY5Phryt02eN9FcNwCmNRQYeBeTuMlhd5qO+grU+WAi+w8Zeh6Kumvs/RHM+5KTPFzJ/BZNvdkJ/qcqMW7AAABD0lEQVR4AXXPBRLDMAxEUVMTOcyc+1+zK6kMv4N9s3JrvrLIOe99uHybYYQG4N9l+LN0fzCB3YfvmBKKmfuBGVFe2IIog3lY+WYZP5hRvA2rh2GRsvG0FisrY/kDxGP6J1LKaxiGQDHLR0GIKNGjglIkEvI+T2oQjlbNHXGVCd1uwhrjrMM5/jlCAckO1honZcBapGMSU/SuFmRCpVrbtsZzdcEoIqTWM/IzRPFOQz6q9YZv4VokAkzlNA0jDWLzbDptIcqHCcFGmSmWPBkitBmGZqFlhYGAQlxOeDcSTGaCk7Rt2zrmkeLSrqB9VhRBUO44QPusahQODXTuSE3wDudx7mr3pX6tvRtQ4R3vegWNXiIGxpIzCAAAAABJRU5ErkJggg==" 
+          style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+          <br>
+          <br>
+        </div>
           <div class="card-back" >
                       <div class="card5">
                         <div class="backimg">
                             <div class="dadcardhead">
                                 <div class="card-header">
-                                    <P> Chat GPT</P>
-                                    <img src="1.png" 
+                                    <P> Canva</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAWlBMVEUCwswIuc4NrdEZo9QjldcyiNhOuNmt3ev////u9fyH1OLY5Phryt02eN9FcNwCmNRQYeBeTuMlhd5qO+grU+WAi+w8Zeh6Kumvs/RHM+5KTPFzJ/BZNvdkJ/qcqMW7AAABD0lEQVR4AXXPBRLDMAxEUVMTOcyc+1+zK6kMv4N9s3JrvrLIOe99uHybYYQG4N9l+LN0fzCB3YfvmBKKmfuBGVFe2IIog3lY+WYZP5hRvA2rh2GRsvG0FisrY/kDxGP6J1LKaxiGQDHLR0GIKNGjglIkEvI+T2oQjlbNHXGVCd1uwhrjrMM5/jlCAckO1honZcBapGMSU/SuFmRCpVrbtsZzdcEoIqTWM/IzRPFOQz6q9YZv4VokAkzlNA0jDWLzbDptIcqHCcFGmSmWPBkitBmGZqFlhYGAQlxOeDcSTGaCk7Rt2zrmkeLSrqB9VhRBUO44QPusahQODXTuSE3wDudx7mr3pX6tvRtQ4R3vegWNXiIGxpIzCAAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                    
+                            <img src="https://sadesign.ai/pictures/picfullsizes/2024/11/27/gmi1732697134.jpg" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>Canva </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>designer <br> video <br> photo </td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td>
+                                                  <a href="">
+                                                    course
+                                                  </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>8/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li>Drag-and-drop editor – Easy design for all users</li>
+                                                  <li>Templates – Ready-made designs for social media, resumes, posters</li>
+                                                  <li>Elements – Access to icons, shapes, photos, and videos</li>
+                                                  <li>Text Tools – Stylish fonts and text effects</li>
+                                                  <li>Brand Kit – Save logos, fonts, and colors </li>
+                                                  <li>Collaboration – Share and edit designs with teams</li>
+                                                  <li>Animation & Video Editing – Create videos and GIFs</li>
+                                                  <li>Export Options – Download in JPG, PNG, PDF, MP4,</li>
+                                                  <li>Create Instagram posts, stories, logos, and flyers</li>
+                                                  <li>Design presentations and infographics</li>
+                                                  <li>Make YouTube thumbnails and channel art</li>
+                                                  <li>Create invitations, business cards, and certificates</li>
+                                                  <li>Edit videos and reels</li>
+                                                  <li>Plan content with Canva Docs and content calendar</li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li>images, videos</li>
+                                          <li>cards, mockup </li>
+                                          <li>presentations </li>
+                                          <li>posts, stories, </li>
+                                          <li>infographics </li>
+                                          <li>logos, flyers.</li>
+                                          <li>certificates.</li>
+                                        </ul>                                
+                                </div>
+                                <a href="https://www.canva.com/" class="link">
+                                  <div class="card-footer">Use Tool</div>
+                                </a>
+                            </div> 
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Card 3 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+            <div class="card-front">
+                <br> 
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAA80lEQVR4AZTRIYyDMBjF8efxBn3qfFD1IcGiUFOIyVokAos6h8IjEXNIfD6DqUXOVb7jNnK027pkf9mfeE0LvukjtOtifJRp6BpdqAi3kquDLSJV6KYbJjF/5zXGA8/o6SU4OYhyHzQyX4bupwSWA4FvOMUKpYvVtjlOsqz322QunumXP6A1MpGcK62eUQGoSKPBZ2QOQMj+JWYREIUwzVqgCWFCACaIM5AMIWQJxEG0ADxsdswUyfEB7R0lQm7J3EfKDcdZVm4ZbhX/yM55eHs1Mk84kDmaWp9S51O7AxkDwFda6Lrth8s+gN/BTaMgUWMCAITxMqVHQtVcAAAAAElFTkSuQmCC" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> Notion</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAA80lEQVR4AZTRIYyDMBjF8efxBn3qfFD1IcGiUFOIyVokAos6h8IjEXNIfD6DqUXOVb7jNnK027pkf9mfeE0LvukjtOtifJRp6BpdqAi3kquDLSJV6KYbJjF/5zXGA8/o6SU4OYhyHzQyX4bupwSWA4FvOMUKpYvVtjlOsqz322QunumXP6A1MpGcK62eUQGoSKPBZ2QOQMj+JWYREIUwzVqgCWFCACaIM5AMIWQJxEG0ADxsdswUyfEB7R0lQm7J3EfKDcdZVm4ZbhX/yM55eHs1Mk84kDmaWp9S51O7AxkDwFda6Lrth8s+gN/BTaMgUWMCAITxMqVHQtVcAAAAAElFTkSuQmCC" 
                                     alt="">
                                 </div>
                             </div>
                 
-                            <img src="2.png" alt="The Seal of Orichalcos" class="card-image">
+                            <img src="https://framerusercontent.com/images/Q0LlCNrzoTuAEMD0fvAI3wjc.png" 
+                            alt="ChatGPT" class="card-image">
                             <div class="COLLO">
                                 <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>Notion </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>workspace</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td>
+                                                  <a href="https://www.notion.so/Notion-1be2cd9813c880419c46ceb6b06a574d?pvs=25">
+                                                    course
+                                                  </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>9/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li>All-in-one workspace – Notes, tasks, databases</li>
+                                                  <li>Templates – For planning, journaling, managing projects</li>
+                                                  <li>Databases – Tables, kanban, calendars, and lists</li>
+                                                  <li>Markdown support – Easy formatting for text</li>
+                                                  <li>Collaboration – Share and edit with teams in real-time</li>
+                                                  <li>Customization – Add icons, covers, toggle lists, and embeds</li>
+                                                  <li>Integrations – Sync with tools like Slack, Google Drive, and more</li>
+                                                  <li>Offline mode – Access notes without internet</li>
+                                                  <li>Take notes, write journals, and organize ideas</li>
+                                                  <li>Build to-do lists, task trackers, and habit logs</li>
+                                                  <li>Manage projects and team workflows</li>
+                                                  <li>Create personal dashboards or knowledge bases</li>
+                                                  <li>Use for studying, content creation, or startup planning</li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li>Notes, tasks, databases</li>
+                                          <li>Sync, Offline mode</li>
+                                          <li>team workflows.</li>
+                                          <li>startup planning.</li>
+                                          <li>managing projects</li>
+                                          <li>studying, content creation</li>
+                                          <li>to-do lists, journaling</li>
+                                        </ul>
                                         
-                                        <p>All monsters you control gain 500 ATK. Once per turn, this card cannot be destroyed by card effects. While you control 2 or more face-up Attack Position monsters, your opponent cannot target your monster(s) with the lowest ATK for an attack. When this card is activated: Destroy all Special Summoned monsters you control.  </p>
-                                    <div class="card-footer">Limited Edition</div>
+                                    
                                 </div>
+                                <a href="https://www.notion.com/" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Card 4 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+            <div class="card-front">
+                <br> 
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEmklEQVR4AWJhIBI0GANKrwcoSbItCsPfuZnZtrvHtm3bnmk8Y4xn28bYtm3btq22VXeMvCujplbNWSuNfx9F7Mh962zbhY26slIXFuxCv67oEibUkhfrdQ/Wa65PNZdiog7EFwr43ip58QY/bWNPdAOI5tuASO/fwsqSb6Rkeq3mrFryFzzVKQHfWTX3aGS/zxwY1EsoBJoEBQF0j/C1SEbVag6tJb/ANC0iaRFfXyUvlrN78L2gHmj3FpoiAojQiHBIJPfUGxbrkICRq+SV27gdS5fZVlWhgFJ+Pywd4Y5u3a3croDd3s8cVweDqjMuhVTAo/kxwsAUrurVy2ItBey4Su6RuRADK2HFLUGr8kdrERgUyYX9+ulRCpD5Q7B0FRwCC2/AwEWgOds+izB0neb3FCIEHzLC75sEbL1KXiKzPwRUwFcbzfb/ZKdjGbI0gUD/pVj3cFb9Mwvtjii2omxNOHDQYItDAvwkQuMzGKko9xoj2ehg5syk0ZNN/jtH/yXmGrA06/6PRm9g8b2Zf+dCOWVr6sFPIW3+/hEus0fk6glfaySbfY+pYzlzNDf+Ppsd06z0h/HWP/QzOMBiezPvjuWQFkOZ7DlsuL4J2wbdA61u645kq4/hZ+/N+Bd45pLwxGkNQxcYoIQDLPIdRuwIlZvRLdg2YeOqfV9/JNt+jyljOf1jeGDQkqw0pruUkvZioW8yfPsC3jwLGyWs2GrdNhrJDh/DT96bsS8AQ5Zkm8Pp2keHYv6vM3TbFgcsRFgpBQtEAd9kJDt/j8ljOW5v3v0486FLskMlvDrm/SqDtybKIWPBhP5N074lu3+PaZM4em/e+Rjeeyi7dAIOMGIM/dYqTlyhXyrLL7eYWET25SMR5VuYEAjAPVdx7r/o3ofvHMGQhQhMeZsL9mXmJJ2KN05l4u0I4jPg+JR4sZyBG07nwn/ReyBfP5JBCxJ490ku7YSI107m3SvKTSDCSyl4QIsVvOV0Lv0XvQYy+igGLgSMfZKr92VWB0W8ehLvXF4cAwLAgym4IVDe4PbTufJf9BzI7kcyYCEC457koZOna2tr0168fAJvXQqEliKuT4lLgxlVxuOu07n2YxE7HUn/hVhku2yJMbO9+dI4sydrGS8ex5uXFBk1M6bj0oSJiTMDVbf7TufGf9HjAxGnss6vQqOth8d/3d/tBzN7iqZ4/hhev7jYoijsW3bWx2yCPwdzIqqdz4Onc9t/qHX9CHjbQXWTnqqZ+CR3f+8zEc8dw2sXFUkXjgmzM3+BBHg6+F/k9i3Yw6dyzfe4+luMf4IATHyKuw/koV/zyvkV/W7u8aF4ChJACr8MHoeovnn1ZiY+h2Kip77Iu3dUWDIEAI9nftHKlE5LYcfg3QC09xhVZqPakokwVrYjplXZ8mcSW2BsCau+tV4zpSXj3ZxtjmegSgDcn1gLj6cOZC9QAQfxcdmztXE/fJEAeKbOavg3Zldm3QJWaJoj+1dbm9XwDHRUAEzD92osF5wYTK+ER+n7zMCJOVsG38e0Tl8d4yl8PXFwsC02jrAiFojQHyKbgBfxQOaGnDt+ef4eGqY3fseeOFAAAAAASUVORK5CYII=" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> whimsical ai</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEmklEQVR4AWJhIBI0GANKrwcoSbItCsPfuZnZtrvHtm3bnmk8Y4xn28bYtm3btq22VXeMvCujplbNWSuNfx9F7Mh962zbhY26slIXFuxCv67oEibUkhfrdQ/Wa65PNZdiog7EFwr43ip58QY/bWNPdAOI5tuASO/fwsqSb6Rkeq3mrFryFzzVKQHfWTX3aGS/zxwY1EsoBJoEBQF0j/C1SEbVag6tJb/ANC0iaRFfXyUvlrN78L2gHmj3FpoiAojQiHBIJPfUGxbrkICRq+SV27gdS5fZVlWhgFJ+Pywd4Y5u3a3croDd3s8cVweDqjMuhVTAo/kxwsAUrurVy2ItBey4Su6RuRADK2HFLUGr8kdrERgUyYX9+ulRCpD5Q7B0FRwCC2/AwEWgOds+izB0neb3FCIEHzLC75sEbL1KXiKzPwRUwFcbzfb/ZKdjGbI0gUD/pVj3cFb9Mwvtjii2omxNOHDQYItDAvwkQuMzGKko9xoj2ehg5syk0ZNN/jtH/yXmGrA06/6PRm9g8b2Zf+dCOWVr6sFPIW3+/hEus0fk6glfaySbfY+pYzlzNDf+Ppsd06z0h/HWP/QzOMBiezPvjuWQFkOZ7DlsuL4J2wbdA61u645kq4/hZ+/N+Bd45pLwxGkNQxcYoIQDLPIdRuwIlZvRLdg2YeOqfV9/JNt+jyljOf1jeGDQkqw0pruUkvZioW8yfPsC3jwLGyWs2GrdNhrJDh/DT96bsS8AQ5Zkm8Pp2keHYv6vM3TbFgcsRFgpBQtEAd9kJDt/j8ljOW5v3v0486FLskMlvDrm/SqDtybKIWPBhP5N074lu3+PaZM4em/e+Rjeeyi7dAIOMGIM/dYqTlyhXyrLL7eYWET25SMR5VuYEAjAPVdx7r/o3ofvHMGQhQhMeZsL9mXmJJ2KN05l4u0I4jPg+JR4sZyBG07nwn/ReyBfP5JBCxJ490ku7YSI107m3SvKTSDCSyl4QIsVvOV0Lv0XvQYy+igGLgSMfZKr92VWB0W8ehLvXF4cAwLAgym4IVDe4PbTufJf9BzI7kcyYCEC457koZOna2tr0168fAJvXQqEliKuT4lLgxlVxuOu07n2YxE7HUn/hVhku2yJMbO9+dI4sydrGS8ex5uXFBk1M6bj0oSJiTMDVbf7TufGf9HjAxGnss6vQqOth8d/3d/tBzN7iqZ4/hhev7jYoijsW3bWx2yCPwdzIqqdz4Onc9t/qHX9CHjbQXWTnqqZ+CR3f+8zEc8dw2sXFUkXjgmzM3+BBHg6+F/k9i3Yw6dyzfe4+luMf4IATHyKuw/koV/zyvkV/W7u8aF4ChJACr8MHoeovnn1ZiY+h2Kip77Iu3dUWDIEAI9nftHKlE5LYcfg3QC09xhVZqPakokwVrYjplXZ8mcSW2BsCau+tV4zpSXj3ZxtjmegSgDcn1gLj6cOZC9QAQfxcdmztXE/fJEAeKbOavg3Zldm3QJWaJoj+1dbm9XwDHRUAEzD92osF5wYTK+ER+n7zMCJOVsG38e0Tl8d4yl8PXFwsC02jrAiFojQHyKbgBfxQOaGnDt+ef4eGqY3fseeOFAAAAAASUVORK5CYII=" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="data:image/jpeg;base64,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" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>whimsical ai </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>mind map <br> subtitles</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td>
+                                                  <a href="https://www.notion.so/websites-1be2cd9813c88023b55ac739bb815683?pvs=4#1de2cd9813c880ef9f03cf259aaaea4d">
+                                                    course
+                                                  </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>7/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li>AI-Powered Idea Generation – Generate flowcharts, wireframes, and mind maps using AI prompts</li>
+                                                  <li>Real-Time Collaboration – Work with teammates simultaneously on the same board</li>
+                                                  <li>Multiple Visual Tools
+                                                    <ul>
+                                                      <li>Flowcharts for processes</li>
+                                                      <li>Wireframes for UI/UX mockups</li>
+                                                      <li>Mind Maps for brainstorming</li>
+                                                      <li>Sticky Notes and Docs</li>
+                                                    </ul>
+                                                  </li>
+                                                  <li>Clean, Drag-and-Drop Interface – Intuitive UI for creating diagrams easily</li>
+                                                  <li>Integration – Can embed content or export visuals to tools like Notion, Slack,</li>
+                                                  <li>Markdown & Shortcuts – Fast editing and writing using keyboard commands</li>
+                                                  <li>Cross-Device Sync – Works on browser and mobile with cloud sync</li>
+                                                  <li>Create mind maps to brainstorm ideas quickly</li>
+                                                  <li>Design wireframes for app or website UI</li>
+                                                  <li>Visualize flowcharts for workflows or algorithms</li>
+                                                  <li>Build strategic plans or roadmaps for teams</li>
+                                                  <li>Use AI prompts to generate quick diagrams or content</li>
+                                                  <li>Collaborate live with remote teams on shared boards</li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li>Create mind maps</li>
+                                          <li>brainstorm ideas</li>
+                                          <li>Design wireframes</li>
+                                          <li>Visualize flowcharts</li>
+                                          <li>strategic plans</li>
+                                          <li>diagrams </li>
+                                          <li>Collaborate teams</li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="https://whimsical.com/L88Vnw57c2uui379CAvJ8j" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Card 5 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4ab.svg" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> Gumroad</P>
+                                    <img src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4ab.svg" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0R-XHQBqMjPDvZqNYl2NAboHYxxI0bu7kuA&s" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>Gumroad </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>selling platform</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td>
+                                                  <a href="https://www.notion.so/Gumroad-1c12cd9813c880a5b5dfc7f31df7a81c?pvs=25">
+                                                    course
+                                                  </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>No Monthly Fee</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>5/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li>Digital Product Sales – Sell ebooks, courses, music, art, software, etc</li>
+                                                  <li>Physical Products Support – Option to sell physical goods with shipping tools</li>
+                                                  <li>Pay-What-You-Want Pricing – Let customers choose the price (with a minimum)</li>
+                                                  <li>Email Marketing Tools – Send newsletters or automated emails to buyers/followers</li>
+                                                  <li>Analytics Dashboard – Track sales, traffic sources, and conversions easily</li>
+                                                  <li>Affiliate Program – Allow others to promote your products for a commission</li>
+                                                  <li>Customization – Personalize your storefront or embed products on your website</li>
+                                                  <li>No Monthly Fee – Pay-per-sale commission model (starts at ~10% and reduces as you earn more)</li>
+                                                  <li>Indie creators can sell digital goods directly to audiences</li>
+                                                  <li>Writers and artists use it to monetize ebooks, music, or art</li>
+                                                  <li>Course creators share video or PDF-based learning content</li>
+                                                  <li>Developers offer software, plugins, or tools</li>
+                                                  <li>Small businesses sell printables, merch, or niche products</li>
+                                                  <li>Use it as a mini eCommerce site or integrate with existing websites</li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li>sell digital goods</li>
+                                          <li>Products sales</li>
+                                          <li>Email Marketing</li>
+                                          <li>Affiliate Program</li>
+                                          <li>share video or PDF</li>
+                                          <li>mini eCommerce</li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="https://gumroad.com/" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+      
+
+       <!-- Card 6 -->
+       <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAUVBMVEVHcEz////////////////////////////////////////////09PTV1dXh4eGysrIAAAASEhJiYmJ/f3/Hx8e/v78yMjJLS0smJiadnZ0/Pz8lrdOIAAAADHRSTlMABVKJwef/CnPXMMCSwOBcAAAA6klEQVR4AXSRBQ7EMAwEg1tML1j6/z/L6bkHI1yNlNheluFCKg1oJQVnT4qywk1VFtTVDR409dsJfCH+OmJr/OR4uWgAtKbFhulwh2afqgTwstYZtN7a0CJaaxOAkjFeAV2/5QHJbkQcoQUqfkxj3JZHTLtMGPfQHTPJLPtTxreUTGXpjN9liC5LxXSWO+NoN7LUDFROgUpQ6YbOzI5K8uxkADPRZxV9Nib6rGKSyuDtSb9LeVYy2A/8WQyvzts+SdjPdx4e4ekmbJS5MqQwzBdDiMiV5bLbG1L2OlzJBF8Cw5c0CSdqvNkBAHXwG+ORb+0GAAAAAElFTkSuQmCC" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P>Weights AI</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAUVBMVEVHcEz////////////////////////////////////////////09PTV1dXh4eGysrIAAAASEhJiYmJ/f3/Hx8e/v78yMjJLS0smJiadnZ0/Pz8lrdOIAAAADHRSTlMABVKJwef/CnPXMMCSwOBcAAAA6klEQVR4AXSRBQ7EMAwEg1tML1j6/z/L6bkHI1yNlNheluFCKg1oJQVnT4qywk1VFtTVDR409dsJfCH+OmJr/OR4uWgAtKbFhulwh2afqgTwstYZtN7a0CJaaxOAkjFeAV2/5QHJbkQcoQUqfkxj3JZHTLtMGPfQHTPJLPtTxreUTGXpjN9liC5LxXSWO+NoN7LUDFROgUpQ6YbOzI5K8uxkADPRZxV9Nib6rGKSyuDtSb9LeVYy2A/8WQyvzts+SdjPdx4e4ekmbJS5MqQwzBdDiMiV5bLbG1L2OlzJBF8Cw5c0CSdqvNkBAHXwG+ORb+0GAAAAAElFTkSuQmCC" 
+                                    alt="">
+                                </div>
+                            </div>
+                            
+                            <img src="https://lh3.googleusercontent.com/I-SaAFDXdJvPqQMhyaoC9_BF_IcyXhNpwfGN4Zo_gJSI4I_5yDhhUPFR6nefxceIRsFO8BzPkkl1AQ9Q8zIc_ubwHhHbce-9UHuu=h200" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>Weights AI </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>image <br> voices</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td>
+                                                  <a href="">
+                                                    course
+                                                  </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>7/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="https://www.weights.com/" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
                             </div>  
                         </div>
                     </div>
@@ -335,57 +622,1345 @@
 
 
 
-
-      
-      <!-- Card 2 -->
-      <div class="card" onclick="flipCard(this, 'img/image2.JPG')">
-        <div class="card-inner">
-          <div class="card-front">Click to Reveal</div>
-          <div class="card-back" style="background-image: url('img/image2.JPG');"></div>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="card" onclick="flipCard(this, 'img/image6.jpg')">
-        <div class="card-inner">
-          <div class="card-front">Click to Reveal</div>
-          <div class="card-back" style="background-image: url('img/image2.jpg');"></div>
-        </div>
-      </div>
-
       <!-- Card 7 -->
-      <div class="card" onclick="flipCard(this, 'img/image7.jpg')">
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
         <div class="card-inner">
-          <div class="card-front">Click to Reveal</div>
-          <div class="card-back" style="background-image: url('img/image7.jpg');"></div>
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
         </div>
       </div>
 
-          <!-- Card 8 -->
-      <div class="card" onclick="flipCard(this, 'img/image8.jpg')">
+
+      <!-- Card 8 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
         <div class="card-inner">
-          <div class="card-front">Click to Reveal</div>
-          <div class="card-back" style="background-image: url('img/image8.jpg');"></div>
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
         </div>
       </div>
+
 
       <!-- Card 9 -->
-      <div class="card" onclick="flipCard(this, 'img/image9.jpg')">
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
         <div class="card-inner">
-          <div class="card-front">Click to Reveal</div>
-          <div class="card-back" style="background-image: url('img/image9.jpg');"></div>
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
         </div>
       </div>
 
       <!-- Card 10 -->
-      <div class="card" onclick="flipCard(this, 'img/image10.jpg')">
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
         <div class="card-inner">
-          <div class="card-front">Click to Reveal</div>
-          <div class="card-back" style="background-image: url('img/image10.jpg');"></div>
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
         </div>
       </div>
 
+
       <!-------------------------------------------------------------------------------------->
+
+     
+      <!-- Card 11 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+      
+
+       <!-- Card 12 -->
+       <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                            
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Card 13 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Card 14 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Card 15 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 16 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- Card 17 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+       <!-- Card 18 -->
+       <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                            
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Card 19 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Card 20 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Card 21 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 22 -->
+      <div class="card" onclick="flipCard(this, 'img/image1.JPG')">
+        <div class="card-inner">
+              <div class="card-front">
+                <br> 
+              <img src="https://simplifyai.in/wp-content/uploads/2024/08/ChatGPT-logo-new.png" 
+              style="width: 80px; height: 80px ; border-radius: 50%; opacity: 30%; " alt="">
+              <br>
+              <br>
+            </div>
+          <div class="card-back" >
+                      <div class="card5">
+                        <div class="backimg">
+                            <div class="dadcardhead">
+                                <div class="card-header">
+                                    <P> AI tool</P>
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACRElEQVRYhe3WS4iOURgH8J/raEqhmJSVy5iSWbiklIUViyk2LospSSZsLBSRbFiZDQvGihRCxoShRNm4pJFyv5SQUhZCiJI+i/N8zfH6Rr7PJ5v5b85z/ud5zvN/zznPeQ+DGMR/xpAaYtqwEk14ii7cr6eogdCA1yjhCo7gcfRPYSbWoR3j/oWAr7hRge8MESV8yexL9Uy+HZ8LXAteRbIdhbHZ+IQP9UjeFJNtiP4o9ETic9LWlDGsEFvCvr9Jflz/ki4I7g7eSitQRivehN/OjF8bXE04G8FTCgIeSVtCWo2yXw9WZYIXozHssdUmn5slVxDwIARsyZKdLsTvCf5JtCOrFXDMzyc+F3ArS7wUS7J+WxYzBleDn1GtgPtSeeUC5od9F70VYs6E30NMyvgDfnMOhg7Av8OEAteaxfRViLmFF3gmlef+4NdFu3kgEZWwyc+qy3t6OZIU615wD8NuL8QfwrVqBIgJDmb9iVIJlnC+gv8F3At7TkFApxr+F80xSR/GZ/wifIux5Vih/xDeDp95BQE3cbRaAQ0xyaNouwrj3VnijdgavkUB08KeVa2AMRHYiIX6v7pDWu6SdFOWr99t0t8xF9ASbXe1ycsoYU3WL18+zzE141vxXjojuYASDteaHPb6/V3eiIvhcwIjgu/AR3V6F7yV3gLzC/yuSPwMkwtjn6QtqRt69S/p98zeXcG3z69vh7pgNJZhNaZLZVU+DydxPfovMfxPJ63lUZqjGeulUnsjVUVdn2KDGMQ/xw/hZKtMGA891gAAAABJRU5ErkJggg==" 
+                                    alt="">
+                                </div>
+                            </div>
+                
+                            <img src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/04/cover.png?ssl=1&quality=80&w=f" 
+                            alt="ChatGPT" class="card-image">
+                            <div class="COLLO">
+                                <div class="card-body">
+                                        <table >
+                                            <tr>
+                                              <th>Name:</th>
+                                              <th>. </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>study:</td>
+                                                <td><a href="">course</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>costs:</td>
+                                                <td>free use</td>
+                                            </tr>
+                                            <tr>
+                                                <td>rate:</td>
+                                                <td>0/10</td>
+                                            </tr>
+                                            <tr>
+                                              <td colspan="2" style="display: none;"> 
+                                                <ul>
+                                                  <!---hashtags to search about -->
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                </ul>
+                                              </td>
+                                            </tr> 
+                                        </table>
+
+                                        <ul>
+                                          <h5>Features:</h5>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                          <li></li>
+                                        </ul>
+                                        
+                                    
+                                </div>
+                                <a href="" class="link">
+                                  <div class="card-footer">Use Tool </div>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-------------------------------------------------------------------------------->
+
+
+
+
+
 
       <!-- Card 14 -->
           

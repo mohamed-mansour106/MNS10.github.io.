@@ -1,0 +1,571 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    position: relative; /* Set position to relative for the pseudo-element */
+    color: white;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Cover the entire body */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background from repeating */
+    background-color: rgba(114, 23, 146, 0.8); /* Add a semi-transparent black overlay */
+    opacity: 0.85; /* Adjust the overall opacity */
+    z-index: -1; /* Place the pseudo-element behind the content */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #680c88; /* Dark purple background */
+    position: fixed; /* Fix the header to the top */
+    width: 94%; /* Full width */
+    z-index: 1001; /* Ensure it stays above other content */
+    border-radius: 0 0 30% 30% ;
+    padding-right: 5% /* Add padding to the right */;
+}
+
+header .logo {
+    display: flex;
+    align-items: center ;
+}
+
+header .logo img {
+    width: 50px; /* Adjust the logo size */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Make the logo circular */    
+    
+}   
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+
+header .logo h1 {
+    color: #ffffff;
+    font-size: 24px;
+}
+
+header .navbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header .navbar input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+
+header .navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+header .navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+header .navbar ul li a:hover {
+    color: #ff0077;
+}
+
+/* Hero Section Styling */
+.hero {
+    position: relative; /* Set position to relative for overlay */
+    background-image: url('https://hse.cern/sites/default/files/default_images/background.png'); /* Path to your GIF file */
+    background-size: cover; /* Ensure the GIF covers the entire section */
+    background-position: center; /* Center the GIF */
+    background-repeat: no-repeat; /* Prevent the GIF from repeating */
+    height: 60vh; /* Adjust the height as needed */
+    display: flex; /* Use Flexbox for centering content */
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    text-align: center; /* Center-align text */
+    color: white; /* White text for contrast */
+    padding: 20px; /* Add padding for spacing */
+    z-index: 1000;
+    opacity: 0.75; /* Adjust the overall opacity */
+
+}
+
+/* Add an overlay to fade the background */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+    z-index: 1; /* Place the overlay behind the content */
+}
+
+/* Ensure the content is above the overlay */
+.hero-content {
+    position: relative;
+    z-index: 2; /* Place content above the overlay */
+}
+
+.hero h2 {
+    color: #ff0077;
+    font-size: 36px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin: 20px 0;
+}
+
+.hero button {
+    padding: 10px 20px;
+    background-color: #ff0077;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background-color: #e6006e;
+}
+
+/* Hero Content Styling */
+.hero-content h1 {
+    font-size: 3rem; /* Large font size for the main heading */
+    margin-bottom: 20px; /* Add spacing below the heading */
+}
+
+.hero-content h2 {
+    font-size: 1.5rem; /* Smaller font size for the subtitle */
+    margin-bottom: 10px; /* Add spacing below the subtitle */
+}
+
+.hero-content button {
+    background-color: #ff0077; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding inside the button */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Font size for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.hero-content button:hover {
+    background-color: #e6006e; /* Darker shade on hover */
+}
+
+.most-popular {
+    padding: 50px;
+    text-align: center;
+    margin: 0 auto; /* Center the section */
+    height: 70rem; /* Full height */
+}
+
+.most-popular h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.most-popular h2 span {
+    color: #ff0077;
+}
+
+/* Game Grid Styling */
+.game-grid {
+    display: grid; /* Use CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr)); /* Responsive columns */
+    gap: 20px; /* Space between grid items */
+    padding: 20px; /* Padding around the grid */
+    justify-items: center; /* Center-align items in the grid */
+    flex: 1; /* Allow the game grid to take up the remaining space */
+}
+
+/* Game Card Styling */
+.game-card {
+    background-color: #2a2a2a; /* Dark background for cards */
+    color: white; /* White text for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    overflow: hidden; /* Ensure content stays inside the card */
+    text-align: center; /* Center-align text */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    width: 200px; /* Fixed width for cards */
+    max-width: 100%; /* Ensure cards don't exceed their container */
+    margin: 5%;
+}
+
+/* Hover Effect for Cards */
+.game-card:hover {
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+    margin: 5%;
+}
+
+/* Game Card Image */
+.game-card img {
+    width: 100%; /* Make the image take the full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    border-bottom: 2px solid #ff0077; /* Add a border below the image */
+}
+
+/* Game Card Text */
+.game-card h3 {
+    margin: 10px 0 5px; /* Add spacing around the title */
+    font-size: 18px; /* Font size for the title */
+    color: #ff0077; /* Highlighted color for the title */
+}
+
+.game-card p {
+    margin: 0 0 10px; /* Add spacing below the description */
+    font-size: 14px; /* Font size for the description */
+    color: #ccc; /* Subtle text color */
+}
+
+.discover-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff0077;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.discover-btn:hover {
+    background-color: #e6006e;
+}
+
+.gaming-library {
+    padding: 50px;
+    text-align: center;
+}
+
+.gaming-library h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.gaming-library h2 span {
+    color: #ff0077;
+}
+
+.library-table {
+    margin-top: 20px;
+}
+
+.library-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.library-row .game-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.library-row img {
+    width: 50px;
+    border-radius: 5px;
+}
+
+.library-row button {
+    padding: 10px 20px;
+    background-color: #ff0077;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.library-row button:hover {
+    background-color: #e6006e;
+}
+
+.view-library-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff0077;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-library-btn:hover {
+    background-color: #e6006e;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2a2a2a;
+    color: white;
+    font-size: 14px;
+}
+
+/* Features Section */
+.features {
+    background: linear-gradient(to right, #d17ded, #680c88); /* Gradient background */
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.feature-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Ensures responsiveness */
+}
+
+.feature-box {
+    background: transparent;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 15px 0; /* Add margin for spacing */
+    flex: 1 1 calc(25% - 40px); /* Responsive width */
+}
+
+.fade-box1 {
+    background-image: url('photos/Equipments.png'); 
+    background-size: cover;
+}
+.fade-box1:hover {
+    background-image: url('photos/Equipments-fadeed.jpg'); 
+    background-size: cover;
+}
+
+/*************************************/
+.fade-box2 {
+    background-image: url('photos/locations.png'); 
+    background-size: cover;
+}
+.fade-box2:hover {
+    background-image: url('photos/locations-faded.jpg'); 
+    background-size: cover;
+}
+
+
+/*************************************/
+.fade-box3 {
+    background-image: url('photos/operations.png'); 
+    background-size: cover;
+}
+.fade-box3:hover {
+    background-image: url('photos/operations-faded.jpg'); 
+    background-size: cover;
+}
+
+/*************************************/
+.fade-box4 {
+    background-image: url('photos/software.png'); 
+    background-size: cover;
+}
+.fade-box4:hover {
+    background-image: url('photos/software.jpg'); 
+    background-size: cover;
+}
+
+
+.text-colored {
+    color: white;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature-icon {
+    background: transparent;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    opacity: 0%;
+}
+
+.feature-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+.feature-box h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0 0;
+}
+
+#game-section {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+#game-section[style*="display: block"] {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Game Tab Content Styling */
+.game-tab-content {
+    display: flex; /* Use Flexbox */
+    flex-wrap: wrap; /* Allow wrapping to the next row if needed */
+    gap: 20px; /* Space between the cards */
+    justify-content: center; /* Center-align the cards horizontally */
+    align-items: center; /* Align the cards vertically */
+    
+}
+
+/* Sidebar Styles */
+.game-tab-sidebar {
+    background-color: #680c88; /* Dark purple background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    width: 250px;
+    height: 100vh; /* Full viewport height */
+    position: fixed; /* Fix the sidebar to the left */
+    top: 0; /* Align to the top of the viewport */
+    left: 0; /* Align to the left of the viewport */
+    overflow-y: auto; /* Add scrolling if content overflows */
+    text-align: center;
+}
+
+/* Feature Container */
+.feature-container h3 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 2px solid #ff0077; /* Accent color */
+    padding-bottom: 10px;
+}
+
+/* List Styles */
+.feature-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-container ul li {
+    margin: 15px 0;
+}
+
+/* Link Styles */
+.feature-container ul li a {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #ff0077; /* Accent color */
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.feature-container ul li a:hover {
+    background-color: #e6006e; /* Darker shade on hover */
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.feature-container ul li a:active {
+    transform: translateY(1px); /* Pressed effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Styling */
+.game-tab-sidebar {
+    width: 25%; /* Fixed width for the sidebar */
+    background-color: #680C88; /* Dark background */
+    color: white; /* White text for contrast */
+    padding: 20px; /* Add padding inside the sidebar */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    position: fixed;
+    top: 100px; /* Adjust the top position */   
+    z-index: 500;
+
+}
+
+.game-tab-sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #000000; /* Highlighted color for the heading */
+}
+
+.game-tab-sidebar ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+}
+
+.game-tab-sidebar ul li {
+    margin-bottom: 10px; /* Add spacing between links */
+    width: 100%;
+
+}
+
+.game-tab-sidebar ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* White text for links */
+    font-size: 14px;
+    transition: color 0.3s ease; /* Smooth color transition */
+    width: 100%;
+
+}
+
+.game-tab-sidebar ul li a:hover {
+    color: #ff0077; /* Highlight link on hover */
+    width: 100%;
+
+}
+
+
+
+
+
+
+
+

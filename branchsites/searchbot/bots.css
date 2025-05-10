@@ -1,0 +1,302 @@
+/* General Body Styling */
+body {
+    background-color: black; /* Keeps the dark background */
+    color: white; /* Ensures text is visible on the dark background */
+    margin: 0; /* Removes default margin */
+    font-family: Arial, sans-serif; /* Sets a clean font */
+}
+
+.body {
+    height: auto; /* Adjusts height dynamically based on content */
+    min-height: 100vh; /* Ensures the body spans the full viewport height */
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: white; /* Light background for contrast */
+    color: black; /* Text color for readability */
+    display: flex; /* Aligns items horizontally */
+    text-align: center;
+    height: 80px; /* Sets a consistent height */
+    border-radius: 60px 60px 0 0; /* Rounds the top corners */
+    position: fixed; /* Fixes the navbar at the top */
+    width: 100%; /* Spans the full width */
+    top: 0; /* Positions the navbar at the top */
+    justify-content: space-around; /* Adds space between items */
+    z-index: 1000; /* Ensures the navbar stays above other elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+}
+
+/* Home Section Styling */
+.home {
+    text-align: center;
+    margin: 0; /* Removes unnecessary margins */
+    font-size: 20px; /* Sets a readable font size */
+}
+
+.home img {
+    width: 40px; /* Sets a consistent size for icons */
+    height: 40px;
+}
+
+.home h3 {
+    margin: 5px 0; /* Adds spacing around the heading */
+}
+
+/* Header Section Styling */
+.header {
+    background-color: white; /* Matches the navbar */
+    color: black;
+    display: flex;
+    height: 60px;
+    position: fixed;
+    width: 100%;
+    border-radius: 0 0 60px 60px; /* Rounds the bottom corners */
+    top: 80px; /* Positions the header below the navbar */
+    z-index: 999; /* Ensures it stays below the navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for separation */
+}
+
+/* Homepage Links Styling */
+.homepage {
+    margin-left: 50px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center; /* Centers items vertically */
+}
+
+.homepage1 {
+    margin-left: auto; /* Pushes this section to the right */
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+}
+
+/* Link Styling */
+a {
+    text-decoration: none; /* Removes underline from links */
+    color: black; /* Sets link color */
+    font-weight: bold; /* Makes links more prominent */
+    transition: color 0.3s ease; /* Adds a smooth hover effect */
+}
+
+a:hover {
+    color: #a30000; /* Changes color on hover */
+}
+
+/* Logo Styling */
+.logu {
+    border-radius: 190px; /* Makes the logo circular */
+    background-color: white;
+    border: #000 2px solid; /* Adds a black border */
+    width: 250px;
+    height: 250px;
+    margin: 80px auto; /* Centers the logo horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* First Border Section Styling */
+.firstBorder {
+    background-color: black;
+    height: auto; /* Adjusts height dynamically */
+    color: white;
+    margin: 10px;
+    border-radius: 10px; /* Rounds the corners */
+    padding: 20px; /* Adds padding inside the section */
+    display: flex;
+    flex-direction: column; /* Stacks content vertically */
+    align-items: center; /* Centers content horizontally */
+    text-align: center; /* Centers text */
+}
+
+/* Heading Styling */
+.heading h3 {
+    text-align: center;
+    padding: 3px;
+    text-decoration: underline; /* Underlines the heading */
+    font-size: 24px; /* Increases font size */
+    margin-bottom: 10px; /* Adds spacing below the heading */
+}
+
+/* Seller Section Styling */
+.seller {
+    display: flex;
+    justify-content: space-around; /* Adds space between items */
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    gap: 20px; /* Adds spacing between items */
+    margin: 20px 0; /* Adds spacing above and below the section */
+}
+
+.seller img {
+    width: 200px; /* Sets a consistent size for images */
+    height: 200px;
+    background-color: white;
+    border-radius: 50%; /* Makes images circular */
+    border: 2px solid #fff; /* Adds a white border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adds hover effects */
+}
+
+.seller img:hover {
+    transform: scale(1.1); /* Enlarges the image on hover */
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2); /* Adds a glow effect */
+}
+
+/* Footer Styling */
+.fooing {
+    background-color: #333; /* Dark background for the footer */
+    color: white; /* White text for contrast */
+    padding: 20px; /* Padding around the footer */
+    text-align: center; /* Center-align text */
+}
+
+.footer-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between sections */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px; /* Space between sections */
+}
+
+.footer-section {
+    flex: 1; /* Make sections take equal space */
+    min-width: 250px; /* Ensure sections don't shrink too small */
+}
+
+.footer-section h3 {
+    font-size: 18px; /* Font size for section titles */
+    margin-bottom: 10px; /* Space below titles */
+}
+
+.footer-section ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.footer-section ul li {
+    margin: 5px 0; /* Space between list items */
+}
+
+.footer-section ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* White text for links */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.footer-section ul li a:hover {
+    color: #a30000; /* Change color on hover */
+}
+
+.footer-section form {
+    display: flex; /* Align input and button horizontally */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px; /* Space between input and button */
+}
+
+.footer-section input {
+    padding: 10px; /* Padding inside the input field */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    flex: 1; /* Make input take available space */
+}
+
+.footer-section button {
+    padding: 10px 20px; /* Padding inside the button */
+    background-color: #a30000; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+.footer-section button:hover {
+    background-color: #800000; /* Darker background on hover */
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form input, form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #a30000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #800000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stacks navbar items vertically */
+        height: auto; /* Adjusts height dynamically */
+        padding: 10px 0; /* Adds padding */
+    }
+
+    .header {
+        flex-direction: column; /* Stacks header items vertically */
+        height: auto; /* Adjusts height dynamically */
+        padding: 10px 0; /* Adds padding */
+    }
+
+    .seller {
+        flex-direction: column; /* Stacks seller items vertically */
+        align-items: center; /* Centers items */
+    }
+
+    .logu {
+        width: 200px; /* Reduces logo size */
+        height: 200px;
+    }
+
+    .footer-container {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center-align sections */
+    }
+
+    .footer-section {
+        text-align: center; /* Center-align text in sections */
+    }
+
+    .footer-section form {
+        flex-direction: column; /* Stack input and button vertically */
+        width: 100%; /* Full width for form */
+    }
+
+    .footer-section input,
+    .footer-section button {
+        width: 100%; /* Full width for input and button */
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        font-size: 14px; /* Reduces font size for smaller screens */
+    }
+
+    .seller img {
+        width: 150px; /* Reduces image size */
+        height: 150px;
+    }
+
+    .heading h3 {
+        font-size: 20px; /* Adjusts heading size */
+    }
+}

@@ -102,7 +102,7 @@ header .navbar ul li a:hover {
     text-align: center; /* Center-align text */
     color: white; /* White text for contrast */
     padding: 20px; /* Add padding for spacing */
-    z-index: 1000;
+    z-index: 5;
     opacity: 0.75; /* Adjust the overall opacity */
 
 }
@@ -457,7 +457,7 @@ footer {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    width: 250px;
+    width: 25%;
     height: 100vh; /* Full viewport height */
     position: fixed; /* Fix the sidebar to the left */
     top: 0; /* Align to the top of the viewport */

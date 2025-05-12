@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+
+<head>
+	<!-- Basic need -->
+	<title>English Movies</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/style.css">
+        <link rel="shortcut icon" href="img/logo/favicon.ico" type="">
+
+		<style>
+			
+.contain a {
+    text-decoration: none;
+    margin: 3px;
+    color: black;
+    padding-top: 5px;
+    text-align: center;
+    font-weight: 1000;
+    transition: all 0.3s;
+    font-size: 200%;
+	color: black;
+}
+
+
+
+
+.contain a:hover {
+    color: whitesmoke;
+    background-color: black;
+    margin: 3px;
+    padding-top: 15px;
+    text-align: center;
+    font-weight: 1000;
+    transition: all 0.5s;
+}
+
+		</style>
+
+
+
+
+<style>
+	
+        /*start next and previous buttons*/
+
+        #gallerywrapper {
+            width:100%;
+			height: 100px;
+            margin:0 auto;
+            position:relative;
+            font-family:verdana, arial, sans-serif;
+            margin-top: 0%;
+        } 
+
+        #gallerywrapper #gallery {
+            position:absolute;
+            left:0;
+            top:0;
+            height:450px;
+            width:100%;
+            overflow:hidden;
+            text-align:center;
+        } 
+
+        #gallerywrapper #gallery div {
+            width:100%; 
+            height:900px; 
+            padding-top:0px; 
+            position:relative;
+        } 
+
+        #gallerywrapper #gallery div img {
+            clear:both; 
+            display:block; 
+            margin:0 auto; 
+            border:0;
+        } 
+
+        #gallerywrapper #gallery div h3 {
+            padding:10px 0 0 0; 
+            margin:0; 
+            font-size:18px;
+        } 
+
+        #gallerywrapper #gallery div p {
+            padding:5px 0; 
+            margin:0; 
+            font-size:12px; 
+            line-height:18px;
+        } 
+
+        #gallery .previous{ 
+            display:inline;
+            float:left;
+            margin-left:80px;
+            text-decoration:none;
+            color: aliceblue;
+        } 
+
+        #gallery .next{ 
+            display:inline;
+            float:right;
+            margin-right:80px;
+            text-decoration:none;
+            color: aliceblue;
+        }
+
+		
+
+        /*end next and previous buttons*/
+
+</style>
+
+
+
+</head>
+<body>
+
+
+<!-- BEGIN | Header -->
+<header class="ht-header">
+	<div class="main" style="
+		display: flex;
+    background-color:#680c88;
+    height: 75px;
+    border-radius: 0px 0px 25px 25px;
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;		
+		">
+		<div class="logo" style="
+		 width: 12%;
+		 margin-left: -20px;
+		">
+			<img src="../../img/logo/MMM.png" width=100% style="
+			width: 85%;
+			height: 100%;
+			">
+		</div>
+		<div class="mmm106" style="
+		font-size: 20px;
+    color: white;
+    width: 30%;
+    align-items: flex-start;
+    margin-top: -10px;
+		">
+			<p> <b>MMM106</b></p>
+			<p style="font-size: 13px;color: black" padding-left:15px; ><i> <u> Educational Website</u></i> </p>
+		</div>
+		<div class="contain" style="
+		width: 50%;    
+    display: flex;
+    justify-content: space-between;">
+			<a href="">  <p>Home</p> </a>
+			<a href="">  <p>join us </p> </a>
+			<a href="">  <p> News </p> </a>
+			<a href="">  <p> Vlogs </p> </a>
+			<a href="">  <p>MMM team</p> </a>
+			<a href="https://mmm100601999.000webhostapp.com/">   <p>second web</p> </a>
+			
+		</div>
+		
+	</div>
+
+
+
+
+</header>
+<!-- END | Header -->
+
+<div class="hero common-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hero-ct">
+					<h1>Movie Listing - Grid Fullwidth</h1>
+					<ul class="breadcumb">
+						<li class="active"> <span class="ion-ios-arrow-right"><a href="#"></span> High rated Movies</a></li>
+					</ul>
+					<!---------search bar----------->
+						<div class="search-container">
+							<input type="text" placeholder="Search..." id="searchInput">
+							<div class="search"></div>
+						</div>
+						<script defer src="path/search-bar/search.js"></script>
+					<!---------search bar----------->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+		
+
+
+    
+
+        <!-------------------end next and previous buttons------------------------>
+
+
+
+
+
+
+
+
+<div class="page-single">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				
+				<div class="flex-wrap-movielist mv-grid-fw">
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://play-lh.googleusercontent.com/ZLV0OMp2U9bMqUfI8xp8D9UF53ix_p3PsAbIdT4mwLHKdW54JgGsgw28Gio8JiWKFWsc" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/spiderman.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/spiderman.html">amazing spider man </a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							</div>
+						</div>	
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://m.media-amazon.com/images/M/MV5BYzIxMmU0MzktZGQ3ZS00NDQ4LWFmMDctZjg4OWRmYzZiYzhlXkEyXkFqcGc@._V1_.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/manVsBee.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/manVsBee.html">Man VS Bee </a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>	
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://m.media-amazon.com/images/M/MV5BMjA2NzEzNjIwNl5BMl5BanBnXkFtZTgwNzgwMTEzNzE@._V1_.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/Central-Intellegence.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/Central-Intellegence.html">Central Intellegence </a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://upload.wikimedia.org/wikipedia/en/0/02/Extraction_2_poster.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/Extraction.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/Extraction.html"> Extraction 2</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/GodFather1.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/GodFather1.html">God father1  </a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
+							</div>
+						</div>
+
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://m.media-amazon.com/images/M/MV5BMDIxMzBlZDktZjMxNy00ZGI4LTgxNDEtYWRlNzRjMjJmOGQ1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/GodFather2.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/GodFather2.html">God father2</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.2</span> /10</p>
+							</div>
+						</div>
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://m.media-amazon.com/images/M/MV5BMDVjODgzNTEtNjBiNS00ODBjLWEwZjUtMDljZTFhOTA4M2MxXkEyXkFqcGc@._V1_.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/GodFather3.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/GodFather3.html">God father3</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
+							</div>
+						</div>
+
+
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://play-lh.googleusercontent.com/0lx0UX3W09MdgiCSoF9MNFAguKb6XQ3ZFZoa0q0xDFcvSTKhc1JtysYn0XV_zqmHjmJZuzzoumrTDbHnC60" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/AnneWithAnE1.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/AnneWithAnE1.html">AnneWithAnE1</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+
+	            			<img src="https://pbs.twimg.com/profile_images/1234277104671494144/LmYbpvFU_400x400.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/AnneWithAnE2.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/AnneWithAnE2.html">AnneWithAnE2</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://m.media-amazon.com/images/I/51iQLQsHncL._AC_UF1000,1000_QL80_.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/AnneWithAnE3.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/AnneWithAnE3.html">AnneWithAnE3</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://upload.wikimedia.org/wikipedia/en/6/61/BreakingBadS1DVD.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/breakingbad1.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/breakingbad1.html ">Breaking Bad 1</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6GWcR6JZU4zocnzmZB62IJW55s1eppCzkQg&s" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/breakingbad2.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/breakingbad2.html">Breaking Bad 2</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://upload.wikimedia.org/wikipedia/en/8/87/Breaking_Bad_season_3_DVD.png" alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/breakingbad3.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/breakingbad3.html">Breaking Bad 3</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://upload.wikimedia.org/wikipedia/en/d/d9/Breaking_Bad_season_4_DVD.png" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/breakingbad4.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/breakingbad4.html">Breaking Bad 4</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://resizing.flixster.com/qeGRjEC1edJQu8dLViQ1BXLeZos=/ems.cHJkLWVtcy1hc3NldHMvdHZzZWFzb24vUlRUVjYyNzkzLndlYnA=" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/breakingbad5.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/breakingbad5.html">Breaking Bad 5</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://m.media-amazon.com/images/M/MV5BYTYxMjI2YzUtODQ5Mi00M2JmLTlmNzItOTlkM2MyM2ExM2RlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/El-Camino.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/El-Camino.html"> El Camino</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1625603942i/40605223.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="moviesingle.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="#">I am thinking of end things</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://m.media-amazon.com/images/M/MV5BYmJiNTUwYWUtZDllNi00ODdjLWFmNTEtOTVlNmYxYTZhNzYzXkEyXkFqcGc@._V1_.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/watch-men.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/watch-men.html">Watch Men</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+						
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZq9OAtD0TkmW6dqQZo-6ik0RE3yA0UlwNQQ&s" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/12AngryMen.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/12AngryMen.html"> 12 Angry Men</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://upload.wikimedia.org/wikipedia/en/a/a0/Incendies.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/Incedies.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/Incedies.html">Incendies</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://m.media-amazon.com/images/I/51xzgsOYaZL._AC_UF1000,1000_QL80_.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Rocky1.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Rocky1.html">Rocky 1</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							</div>
+						</div>
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://images.justwatch.com/poster/310153061/s718/rocky-2.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Rocky2.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Rocky2.html">  Rocky 2</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMHXoOEGQJ2BQrjXXRuD66QkSSNTUOO7WliA&s" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Rocky3.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Rocky3.html">Rocky 3</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							</div>
+						</div>
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://m.media-amazon.com/images/M/MV5BNjJiYzRiYWMtZTgyZC00YjliLWIwZWMtZTJlYjkyYzc2MDMxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Rocky4.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Rocky4.html">Rocky 4</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>
+
+						
+						
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://upload.wikimedia.org/wikipedia/en/0/03/M3GAN_Poster.jpeg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/M3GAN.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/M3GAN.html">M3GAN</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							</div>
+						</div>	
+						
+						
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p21702_p_v10_ab.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Rush.Hour.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Rush.Hour.html">Rush Hour</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmfh-oQ90lMXo1ua0DqDABu5L4AZAndjpcfg&s" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Samaritan.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Samaritan.html">Samaritan</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							</div>
+						</div>
+						
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNmEyYjBiMjI1Y2M5XkEyXkFqcGc@._V1_.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Fight_Club.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Fight_Club.html">Fight_Club</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>
+						
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Fq_lDd2_wyLsYfRBFMbTDCD7VCAakVVOew&s" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="moviesingle.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="#">Rocky 5</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							</div>
+						</div>	
+						
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://m.media-amazon.com/images/M/MV5BMGM0OTM4NGYtYzkzMC00OGZmLWEwZTItOTg4ZTdkYTIxOTc0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="moviesingle.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="#">Rush Hour 2</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://m.media-amazon.com/images/M/MV5BMTA0Nzg5NjQ0MDBeQTJeQWpwZ15BbWU3MDE4Mzg5NDE@._V1_FMjpg_UX1000_.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="moviesingle.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="#">Rush Hour 3</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							</div>
+						</div>	
+						
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://upload.wikimedia.org/wikipedia/en/4/4b/Official_movie_poster_for_Business_Ethics_%28film%29.png" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Bussiness-Ethics.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Bussiness-Ethics.html">Business Ethics</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSl9LLoCIGbMRACGLwNTsqNccz1mflHxt0Wg&s" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Blow.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Blow.html">Blow 2001</a></h6>
+								<p class="rate"><i class="ion-android-star"></i>2001</p>
+							</div>
+						</div>
+						
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://m.media-amazon.com/images/M/MV5BZDExNWI4ZDMtNjhiZi00NDBkLTljMTctMDNiNTZhOThkOWNmXkEyXkFqcGc@._V1_.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="moviesingle.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="#">prodigy 2019</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>2019</span> م</p>
+							</div>
+						</div>
+
+						
+
+							<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://m.media-amazon.com/images/M/MV5BYjIyNDExOWItM2Y4ZC00NmY3LWFlN2ItYTJlZDQ1NTJlZTUwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="moviesingle.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="#">The Curious of Benjamin</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>
+
+						
+							<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyT7u51DAJO9i29W_L3m2KLIH8Ul6tvnkayA&s" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="moviesingle.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="#">Dunkirk</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>
+						
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="data:image/jpeg;base64,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" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/the-fault-in-our-stars.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/the-fault-in-our-stars.html">the fault in our stars </a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>
+
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://upload.wikimedia.org/wikipedia/ar/d/de/%D9%85%D9%84%D8%B5%D9%82_%D9%81%D9%8A%D9%84%D9%85_%D8%AC%D9%88%D8%A7%D8%A8_%D8%A7%D8%B9%D8%AA%D9%82%D8%A7%D9%84.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Jawab-E3tekal.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Jawab-E3tekal.html">جواب اعتقال</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							</div>
+						</div>		
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://media0078.elcinema.com/uploads/_315x420_1c7ba89fd01e404b486f700ecf86104587be2e3e27a38eb563ed2c9053519845.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/Batn-ELhout.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/Batn-ELhout.html">بطن الحوت</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
+							</div>
+						</div>					 
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://upload.wikimedia.org/wikipedia/ar/1/14/Hassan_el_Masry_poster.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/hassanElmassry.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/hassanElmassry.html">حسن المصري</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>		
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7-xhWzHQlFt8ZM9rNul64TGCwajIkmk-GrA&s" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/Giza-killer.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/Giza-killer.html">سفاح الجيزه </a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://media0078.elcinema.com/uploads/_315x420_1fb9f166854f7683a11d276e42402df6e34702223d4d3b843dc5929dfb1f1375.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/saharElyally.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/saharElyally.html"> سهر الليالي  </a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
+							</div>
+						</div>
+						
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://upload.wikimedia.org/wikipedia/ar/5/56/%D9%85%D9%84%D8%B5%D9%82_%D9%81%D9%8A%D9%84%D9%85_%D8%A8%D9%86%D9%83_%D8%A7%D9%84%D8%AD%D8%B8.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/bankel7az.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/bankel7az.html">بنك الحظ </a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.2</span> /10</p>
+							</div>
+						</div>
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+							<img src="https://upload.wikimedia.org/wikipedia/ar/thumb/d/d4/%D9%85%D9%84%D8%B5%D9%82_%D9%81%D9%8A%D9%84%D9%85_%D8%A3%D9%86%D8%A7_%D9%84%D8%AD%D8%A8%D9%8A%D8%A8%D9%8A.jpg/300px-%D9%85%D9%84%D8%B5%D9%82_%D9%81%D9%8A%D9%84%D9%85_%D8%A3%D9%86%D8%A7_%D9%84%D8%AD%D8%A8%D9%8A%D8%A8%D9%8A.jpg" 
+							alt="" style="height: 130%">
+							<div class="hvr-inner">
+	            				<a  href="movie1/ana_lhababi.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="movie1/ana_lhababi.html">انا لحبيبي </a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
+							</div>
+						</div>
+
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://m.media-amazon.com/images/M/MV5BZmQyMGJjM2ItM2E5ZS00OTFkLWE5MjctMzY3MGQzMDQ0YzA2XkEyXkFqcGc@._V1_QL75_UY281_CR5,0,190,281_.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/Mo7y.El.Deen.Abo.El3ez.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/Mo7y.El.Deen.Abo.El3ez.html">محي الدين </a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+
+	            			<img src="https://upload.wikimedia.org/wikipedia/ar/thumb/1/15/%D9%85%D9%84%D8%B5%D9%82_%D9%83%D9%8A%D8%B1%D8%A9_%D9%88%D8%A7%D9%84%D8%AC%D9%86_%28%D9%81%D9%8A%D9%84%D9%85%29.jpeg/300px-%D9%85%D9%84%D8%B5%D9%82_%D9%83%D9%8A%D8%B1%D8%A9_%D9%88%D8%A7%D9%84%D8%AC%D9%86_%28%D9%81%D9%8A%D9%84%D9%85%29.jpeg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/Kira.Wel.Gen.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/Kira.Wel.Gen.html"> كيرا والجن </a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+						
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://media0078.elcinema.com/uploads/_315x420_f9be56df80b6c9ce456ba420aa06a917427de1a1c587516a7b2c954b389af573.jpg" alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/5ly-balk-men-zizi.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/5ly-balk-men-zizi.html"> خلي بالك من زيزي</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	            			</div>
+	            		</div>
+						
+						<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://media0078.elcinema.com/uploads/_320x_a9c11dab04a9c99c525ffb117747714ca152c695df2e8766e10f92204cb94281.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/Ibrahim.Labyad.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/Ibrahim.Labyad.html"> ابراهيم الابيض</a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>2009</span>م </p>
+	            			</div>
+	            		</div>
+
+						
+	            		<div class="movie-item-style-2 movie-item-style-1 course">
+	            			<img src="https://upload.wikimedia.org/wikipedia/ar/f/fb/%D8%BA%D9%84%D8%A7%D9%81_%D8%B9%D8%B3%D9%84_%D8%A5%D8%B3%D9%88%D8%AF_%282010%29.jpg" 
+							alt="" style="height: 130%">
+	            			<div class="hvr-inner">
+	            				<a  href="movie1/3sl-eswed.html"> Watch <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+	            			<div class="mv-item-infor">
+	            				<h6><a href="movie1/3sl-eswed.html">عسل اسود </a></h6>
+	            				<p class="rate"><i class="ion-android-star"></i><span>2010</span>م</p>
+	            			</div>
+	            		</div>
+						
+						
+				</div>		
+				
+			</div>
+		</div>
+	</div>
+</div>
+<!-- footer section-->
+<footer class="ht-footer">
+	<div class="container">
+		<div class="flex-parent-ft">
+			<div class="flex-child-ft item1">
+				 <a href="../../../../index.html"><img class="logo" src="../../img/logo/MMM.png" alt="" style="width: 50%; margin-left: 25%;"></a>
+				 
+		</div>
+	</div>
+	<div class="ft-copyright">
+		<div class="ft-left">
+			<p><a target="_blank" href="../../index.html">MMM Hub</a></p>
+		</div>
+		<div class="backtotop">
+			<p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>
+		</div>
+	</div>
+</footer>
+<!-- end of footer section-->
+
+</body>
+
+</html>

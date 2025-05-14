@@ -30,7 +30,7 @@ header {
     background-color: #680c88; /* Dark purple background */
     position: fixed; /* Fix the header to the top */
     width: 94%; /* Full width */
-    z-index: 1001; /* Ensure it stays above other content */
+    z-index: 5001; /* Ensure it stays above other content */
     border-radius: 0 0 30% 30% ;
     padding-right: 5% /* Add padding to the right */;
 }

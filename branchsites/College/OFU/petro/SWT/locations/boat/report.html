@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report </title>
+    <link rel="stylesheet" href="../../data.css">
+    <link rel="shortcut icon" href="../../../../../img/logo/favicon.ico" type="image/x-icon">
+<script src="libs/turn.js-master/turn.js"></script>
+<script src="libs/turn.js-master/turn.min.js"></script>
+
+    
+
+    <!-------------------------------->
+    <style>
+
+.book {
+    width: 600px;
+    height: 800px;
+    perspective: 2000px;
+    position: relative;
+    left: 15%;
+}
+.page {
+    width: 100%;
+    height: 100%;
+    background: white;
+    position: absolute;
+    transform-origin: left;
+    transition: transform 1s;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+.page-content {
+    padding: 20px;
+}
+.page.flipped {
+    transform: rotateY(-180deg);
+}
+.controls {
+    position: absolute;
+    bottom: -50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+button {
+    padding: 10px 20px;
+    border: none;
+    background: #333;
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    background: #555;
+}
+</style>
+
+    
+</head>
+<body>
+    
+
+    <div class="tabs-container">
+        
+        <div class="tab-main">
+            
+            <!------------------------------------>
+                <h2>Well testing Book </h2>
+                    <div class="book" id="book" id="mon">
+                        <div class="page" id="page1">
+                            <div class="page-content" style="background-image: url('photos/cover.png'); background-position: 0%; background-repeat: no-repeat; background-size: cover; width: 100%; height: 100%;">
+                                
+                            </div>
+                        </div>
+
+                        <div class="page" id="page2" style="z-index: -1;">
+                            <div class="page-content">
+                                <h1>Page 50</h1>
+                                <p>This is the second page.</p>
+                            </div>
+                        </div>
+
+                        <div class="page" id="page3" style="z-index: -2;">
+                            <div class="page-content">
+                                <img src="img/report/1.png" style="width: 100%;" alt="">
+                            </div>
+                        </div>
+
+                        <div class="page" id="page4" style="z-index: -3;">
+                            <div class="page-content">
+                                <img src="img/report/2.png" style="width: 100%;" alt="">
+
+                            </div>
+                        </div>
+
+                        <div class="page" id="page5" style="z-index: -4;">
+                            <div class="page-content">
+                                <img src="img/report/3.png" style="width: 100%;" alt="">
+                            </div>
+                        </div>
+
+                        <div class="page" id="page6" style="z-index: -5;">
+                            <div class="page-content">
+                                <img src="img/report/4.png" style="width: 100%;" alt="">
+
+
+                            </div>
+                        </div>
+
+                        <div class="page" id="page7" style="z-index: -6;">
+                            <div class="page-content">
+                                <img src="img/report/5.png" style="width: 100%;" alt="">
+                            </div>
+                        </div>
+
+                        
+
+
+                        <div class="controls">
+                            <button onclick="prevPage()">Previous</button>
+                            <button onclick="nextPage()">Next</button>
+                        </div>
+                    </div>
+
+
+                <hr class="hr1">
+            </div>
+        </div>
+            <script>
+                let currentPage = 0;
+                const pages = document.querySelectorAll('.page');
+                function nextPage() {
+                    if (currentPage < pages.length - 1) {
+                        pages[currentPage].classList.add('flipped');
+                        currentPage++;
+                    }
+                }
+                function prevPage() {
+                    if (currentPage > 0) {
+                        currentPage--;
+                        pages[currentPage].classList.remove('flipped');
+                    }
+                }
+            </script>
+            <!------------------------------------>
+            
+             
+
+
+            
+        </div>
+    </div>
+    
+</body>
+</html>

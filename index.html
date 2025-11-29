@@ -149,7 +149,7 @@
             <div class="DataEntry course" style="background-color: transparent;">
                 <a href="branchsites/compcloud-services/Services.html">
                     <button value="" style='width:250px; border-radius:10px; box-shadow:black 2px 2px 2px; background-image:url(""); background-size:cover; height:220px;     '> 
-                        <b><p style="font-size:30px;">ES</p> Electronic Services الخدمات الالكترونية</b>
+                        <b><p style="font-size:30px;">CompCloud-services</p> Electronic Services الخدمات الالكترونية</b>
                     </button>
                 </a>             
             </div>
@@ -379,15 +379,67 @@
     
     
     
-    <script>
-         const name = prompt("What's your name?");
+    <!---<script>
+         const name = prompt("Tell us your name to welcome you or you can skip ");
          if (name) {
              document.getElementById("test").innerHTML = `Hello ${name}`;
          }
      </script>
-   
-    
+    ----->
 
+    <!-- modal popup for sign up / sign in -->
+    <style>
+        .mm-modal-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.6); display:flex; align-items:center; justify-content:center; z-index:9999; }
+        .mm-modal{ background:#fff; border-radius:8px; padding:18px; width:340px; box-shadow:0 6px 20px rgba(0,0,0,.3); text-align:center; font-family:inherit; position:relative; }
+        .mm-modal h3{ margin:0 0 8px; font-size:18px; }
+        .mm-actions{ display:flex; gap:8px; justify-content:center; margin-top:12px; flex-wrap:wrap; }
+        .mm-btn{ display:inline-block; padding:9px 12px; border-radius:6px; text-decoration:none; color:#111; background:#eee; font-weight:600; cursor:pointer; }
+        .mm-btn.primary{ background:#0b74ff; color:#fff; }
+        .mm-btn.secondary{ background:#f3f3f3; }
+        .mm-close{ position:absolute; top:8px; right:10px; background:transparent; border:0; font-size:20px; cursor:pointer; }
+    </style>
+
+    <div id="mmModalBackdrop" class="mm-modal-backdrop" role="dialog" aria-modal="true" aria-label="Welcome dialog" style="display:flex;">
+        <div class="mm-modal" role="document">
+            <button class="mm-close" id="mmCloseBtn" aria-label="Close">&times;</button>
+            <h3>Welcome to MMM106</h3>
+            <p id="mmMessage">Choose an option or skip</p>
+
+            <div class="mm-actions">
+                <!-- update hrefs below to your actual signup / signin page paths -->
+                <a class="mm-btn primary" href="signup.html">Sign Up</a>
+                <a class="mm-btn secondary" href="signin.html">Sign In</a>
+                <button class="mm-btn" id="mmSkipBtn">Skip</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function(){
+            const backdrop = document.getElementById('mmModalBackdrop');
+            const closeBtn = document.getElementById('mmCloseBtn');
+            const skipBtn = document.getElementById('mmSkipBtn');
+            const testEl = document.getElementById('test');
+
+            function closeModal(){ backdrop.style.display = 'none'; }
+
+            closeBtn.addEventListener('click', closeModal);
+            skipBtn.addEventListener('click', ()=> {
+                if(testEl) testEl.textContent = 'Welcome to MMM106';
+                closeModal();
+            });
+
+            // close when clicking outside modal content
+            backdrop.addEventListener('click', (e)=>{
+                if(e.target === backdrop) closeModal();
+            });
+
+            // show modal on load (if you want it hidden by default remove this)
+            document.addEventListener('DOMContentLoaded', ()=> {
+                backdrop.style.display = 'flex';
+            });
+        })();
+    </script>
 
 
 </body>

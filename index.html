@@ -494,6 +494,16 @@
     </script>
 
 
+        <!-----------starting fire base DSK-->
+
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+        <script src="sign/firebase-init.js"></script>
+
+        <!-------------------End Firebase SDK-->
+
 
         <!----------------------user name from log in from firebase --------------->
         <script type="module">
@@ -517,7 +527,7 @@
             if (user) {
             document.getElementById("username").innerHTML = user.displayName || user.email;
             } else {
-            window.location.href = "index.html"; // رجعه لصفحة اللوجين
+            window.location.href = "sign/login.html"; // رجعه لصفحة اللوجين
             }
         });
         </script>

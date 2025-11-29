@@ -12,19 +12,31 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-firebase.firestore(); // احتياطي إن كنت تستخدم Firestore
 
-// إضافة Google Analytics إذا أردت تتبع الإحصائيات
-if (typeof firebase.analytics !== 'undefined') {
-  firebase.analytics();
-}
+// initialize services
+firebase.analytics && firebase.analytics();
+const auth = firebase.auth();
 
-// إعادة توجيه إذا المستخدم مسجل دخول بالفعل
-firebase.auth().onAuthStateChanged(user => {
+// initialize firestore and export db
+const db = firebase.firestore();
+window.db = db; // اختياري لتسهيل الوصول من الكونسول أو سكربتات أخرى
+
+// enable offline persistence (اختياري)
+db.enablePersistence()
+  .catch(function(err) {
+    if (err.code === 'failed-precondition') {
+      console.warn('Persistence failed: multiple tabs open');
+    } else if (err.code === 'unimplemented') {
+      console.warn('Persistence not available in this browser');
+    }
+  });
+
+// redirect if already logged in
+auth.onAuthStateChanged(user => {
   if (user) {
     const path = location.pathname.split('/').pop();
     if (path === 'login.html' || path === '') {
-      location.href = 'dashboard.html';
+      location.href = 'index.html';
     }
   }
 });

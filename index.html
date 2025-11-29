@@ -65,8 +65,8 @@
 
         <div class="contain">
             <a href="https://mohamed-mansour106.github.io/MNS10.github.io./">Home</a>
-            <a href="sign/signup.html">Sign Up</a>
-            <a href="sign/login.html">Log In</a>
+            <a href="sign/dashboard.html">My Profile</a>
+            <a href="#">Contact us</a>
             <a href="#">News</a>
             <a href="#">MMM Team</a>
         </div>
@@ -116,8 +116,58 @@
 
     --------------->
 
-    <div class="call "  >
-        <div  style="margin-top:120px;"><p  id="test" >Hey <div id="username"> guest</div></p>
+
+
+    <style>
+        .userloged{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        padding:6px 12px;
+        border-radius:999px;
+        background:linear-gradient(135deg,#0b74ff 0%,#5cc8ff 100%);
+        color:#fff;
+        font-weight:700;
+        font-size:14px;
+        box-shadow:0 8px 24px rgba(11,116,255,0.12);
+        border:1px solid rgba(255,255,255,0.14);
+        vertical-align:middle;
+        }
+
+        .userloged::before{
+        content: attr(data-initial);
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        width:34px;
+        height:34px;
+        border-radius:50%;
+        background:rgba(255,255,255,0.18);
+        color:#fff;
+        font-weight:800;
+        font-size:14px;
+        margin-right:8px;
+        box-shadow:inset 0 -2px 4px rgba(0,0,0,0.12);
+        }
+
+
+        .userloged a{
+        color:inherit;
+        text-decoration:underline;
+        font-weight:700;
+        }
+
+        @media (max-width:420px){
+            .userloged{ padding:5px 8px; font-size:13px; gap:8px; }
+            .userloged::before{ width:28px; height:28px; font-size:12px; }
+        }
+    </style>
+
+    <div class="call" >
+        <div style="margin-top:120px;">
+            <p id="test">Hello <span id="username" class="userloged" data-initial="G">
+                <span class="links"><a href="sign/login.html">Please login</a> or <a href="sign/signup.html">sign up</a></span>
+            </span></p>
         </div>
     </div>
 
@@ -398,6 +448,8 @@
         .mm-close{ position:absolute; top:8px; right:10px; background:transparent; border:0; font-size:20px; cursor:pointer; }
     </style>
 
+    
+<!-------------------- modal popup for sign up / sign in ------------------
     <div id="mmModalBackdrop" class="mm-modal-backdrop" role="dialog" aria-modal="true" aria-label="Welcome dialog" style="display:flex;">
         <div class="mm-modal" role="document">
             <button class="mm-close" id="mmCloseBtn" aria-label="Close">&times;</button>
@@ -405,13 +457,14 @@
             <p id="mmMessage">Choose an option or skip</p>
 
             <div class="mm-actions">
-                <!-- update hrefs below to your actual signup / signin page paths -->
                 <a class="mm-btn primary" href="sign/signup.html">Sign Up</a>
                 <a class="mm-btn secondary" href="sign/login.html">logIn</a>
                 <button class="mm-btn" id="mmSkipBtn">Skip</button>
             </div>
         </div>
     </div>
+
+    ------------------------------------------------------------------------->
 
     <script>
         (function(){
@@ -477,6 +530,32 @@
 
 
 
+
+    <!-- call this after firebase onAuthStateChanged script (or before </body>) -->
+    <script>
+    (function(){
+        function updateInitial(){
+            const el = document.getElementById('username');
+            if(!el) return;
+            // if element contains links (not logged in) use "G" (Guest)
+            const text = el.textContent.replace(/(Please login|sign up)/gi,'').trim();
+            el.setAttribute('data-initial', text ? text.charAt(0).toUpperCase() : 'G');
+        }
+
+        // observe changes to username content (for firebase updates)
+        const usernameEl = document.getElementById('username');
+        if(usernameEl){
+            const obs = new MutationObserver(updateInitial);
+            obs.observe(usernameEl, { childList: true, subtree: true, characterData: true });
+        }
+
+        // initial run
+        document.addEventListener('DOMContentLoaded', updateInitial);
+
+        // expose helper (optional) so you can call after auth changes
+        window.updateUserInitial = updateInitial;
+    })();
+    </script>
 
 </body>
 </html>

@@ -33,10 +33,13 @@ db.enablePersistence()
 
 // redirect if already logged in
 auth.onAuthStateChanged(user => {
-  if (user) {
-    const path = location.pathname.split('/').pop();
-    if (path === 'login.html' || path === '') {
-      location.href = 'index.html';
-    }
+  if (!user) return; // لو مش عامل login، خلي في الصفحة الحالية
+
+  const current = location.pathname.split('/').pop();
+
+  // لو المستخدم داخل على login أو signup أو الصفحة الرئيسية
+  if (current === 'login.html' || current === 'signup.html' || current === '' || current === 'index.html') {
+    // بدل sign/dashboard.html، حوّله للصفحة الرئيسية
+    location.href = 'index.html';
   }
 });

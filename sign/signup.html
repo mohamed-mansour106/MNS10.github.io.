@@ -58,6 +58,35 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
 
   <script src="firebase-init.js"></script>
+
+
+
+    <script>import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+
+const auth = getAuth();
+const db = getFirestore();
+
+createUserWithEmailAndPassword(auth, email, password)
+  .then(async (userCredential) => {
+    const user = userCredential.user;
+
+    // إضافة بيانات المستخدم إلى Firestore
+    await setDoc(doc(db, "users", user.uid), {
+      email: user.email,
+      createdAt: new Date(),
+    });
+
+    alert("User added and saved to Firestore!");
+  })
+  .catch((error) => {
+    alert(error.message);
+  });
+</script>
+  
+
+
+
   <script>
     const signupBtn = document.getElementById('signupBtn');
     const msg = document.getElementById('msg');
@@ -128,5 +157,10 @@
       }
     });
   </script>
+
+
+
+
+
 </body>
 </html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>تسجيل - موقعي</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="brand">موقعي</a>
+    <nav>
+      <a href="signup.html">تسجيل</a>
+      <a href="login.html">دخول</a>
+    </nav>
+  </header>
+
+  <main class="card">
+    <h2>إنشاء حساب جديد</h2>
+
+    <label>اسم المستخدم</label>
+    <input id="username" type="text" placeholder="اسمك هنا">
+
+    <label>الصورة الشخصية</label>
+    <input id="photo" type="file" accept="image/*">
+    <img id="photoPreview" alt="معاينة الصورة" style="display:none;width:96px;height:96px;border-radius:12px;object-fit:cover;margin-top:8px;">
+
+    <label>البريد الإلكتروني</label>
+    <input id="email" type="email" placeholder="email@example.com">
+
+    <label>رقم الهاتف</label>
+    <input id="phone" type="tel" placeholder="966501234567">
+
+    <label>تاريخ الميلاد</label>
+    <input id="dob" type="date">
+
+    <label>النوع</label>
+    <select id="gender">
+      <option value="">اختر النوع</option>
+      <option value="male">ذكر</option>
+      <option value="female">أنثى</option>
+    </select>
+
+    <label>المدينة</label>
+    <input id="city" type="text" placeholder="المدينة">
+
+    <label>كلمة المرور</label>
+    <input id="password" type="password" placeholder="أدخل كلمة مرور">
+
+    <button id="signupBtn" class="btn">سجّل الآن</button>
+
+    <p id="msg" class="msg"></p>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+  <script src="firebase-init.js"></script>
+  <script>
+    const signupBtn = document.getElementById('signupBtn');
+    const msg = document.getElementById('msg');
+    const photoInput = document.getElementById('photo');
+    const photoPreview = document.getElementById('photoPreview');
+
+    // عرض معاينة محلية للصورة عند الاختيار
+    photoInput.addEventListener('change', () => {
+      const file = photoInput.files[0];
+      if (!file) { photoPreview.style.display = 'none'; photoPreview.src = ''; return; }
+      photoPreview.src = URL.createObjectURL(file);
+      photoPreview.style.display = 'block';
+    });
+
+    signupBtn.addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const username = document.getElementById('username').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const dob = document.getElementById('dob').value;
+      const gender = document.getElementById('gender').value;
+      const city = document.getElementById('city').value.trim();
+
+      msg.textContent = '';
+      if (!email || !password || !username || !phone || !dob || !gender || !city) {
+        msg.textContent = 'اكمل جميع الحقول';
+        return;
+      }
+
+      try {
+        const userCred = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        const uid = userCred.user.uid;
+
+        // رفع الصورة إن وجدت
+        let photoURL = '';
+        const file = photoInput.files[0];
+        if (file) {
+          const ext = (file.name.split('.').pop() || 'jpg').split('?')[0];
+          const storageRef = firebase.storage().ref();
+          const avatarRef = storageRef.child(`avatars/${uid}_${Date.now()}.${ext}`);
+          await avatarRef.put(file);
+          photoURL = await avatarRef.getDownloadURL();
+        }
+
+        // تحديث ملف المستخدم في Auth (displayName و photoURL إن توفر)
+        const profileUpdate = { displayName: username };
+        if (photoURL) profileUpdate.photoURL = photoURL;
+        await userCred.user.updateProfile(profileUpdate);
+
+        // حفظ بيانات المستخدم في Firestore مع رابط الصورة
+        await firebase.firestore().collection('users').doc(uid).set({
+          username,
+          email,
+          phone,
+          dob,
+          gender,
+          city,
+          photoURL: photoURL || '',
+          createdAt: new Date().toISOString()
+        });
+
+        msg.classList.remove('error'); msg.classList.add('success');
+        msg.textContent = 'تم إنشاء الحساب. سيتم تحويلك...';
+        setTimeout(()=> location.href = 'dashboard.html', 1000);
+      } catch (e) {
+        msg.classList.remove('success'); msg.classList.add('error');
+        msg.textContent = e.message;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -117,7 +117,7 @@
     --------------->
 
     <div class="call "  >
-        <div  style="margin-top:120px;"><p  id="test" >Hey Yo</p>
+        <div  style="margin-top:120px;"><p  id="test" >Hey <div id="username"> guest</div></p>
         </div>
     </div>
 
@@ -439,6 +439,43 @@
             });
         })();
     </script>
+
+
+
+        <!----------------------user name from log in from firebase --------------->
+        <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCvqJyV8wOPZkwUyc16mE67zx2dOJdeiZg",
+            authDomain: "mmm1-6e068.firebaseapp.com",
+            projectId: "mmm1-6e068",
+            storageBucket: "mmm1-6e068.firebasestorage.app",
+            messagingSenderId: "135172337344",
+            appId: "1:135172337344:web:54b7999396216266e98725",
+            measurementId: "G-QQ35MCX3EP"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+            document.getElementById("username").innerHTML = user.displayName || user.email;
+            } else {
+            window.location.href = "index.html"; // رجعه لصفحة اللوجين
+            }
+        });
+        </script>
+
+        <!---------------------------------------------------------->
+
+        
+
+        <!----------------------End user name from log in from firebase --------------->
+
+
 
 
 </body>

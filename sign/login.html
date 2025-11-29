@@ -44,7 +44,7 @@
       if (!email || !password) { msg.textContent = 'اكمل الحقول'; return; }
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password);
-        location.href = 'dashboard.html';
+        location.href = '../index.html';
       } catch (e) {
         msg.textContent = e.message;
       }

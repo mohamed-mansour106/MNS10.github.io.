@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>دخول - موقعي</title>
+<link rel="stylesheet" href="style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QQ35MCX3EP"></script>
+</head>
+<body>
+  <header class="nav">
+    <a href="../index.html" class="brand">موقعي</a>
+    <nav>
+      <a href="signup.html">تسجيل</a>
+      <a href="login.html">دخول</a>
+    </nav>
+  </header>
+
+  <main class="card">
+    <h2>تسجيل الدخول</h2>
+
+    <label>البريد الإلكتروني</label>
+    <input id="email" type="email" placeholder="email@example.com">
+
+    <label>كلمة المرور</label>
+    <input id="password" type="password" placeholder="كلمة المرور">
+
+    <button id="loginBtn" class="btn">دخول</button>
+    <p id="msg" class="msg"></p>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="firebase-init.js"></script>
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const msg = document.getElementById('msg');
+    loginBtn.addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      msg.textContent = '';
+      if (!email || !password) { msg.textContent = 'اكمل الحقول'; return; }
+      try {
+        await firebase.auth().signInWithEmailAndPassword(email, password);
+        location.href = '../index.html';
+      } catch (e) {
+        msg.textContent = e.message;
+      }
+    });
+  </script>
+</body>
+</html>

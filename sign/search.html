@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>بحث</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="brand">موقعي</a>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+    </nav>
+  </header>
+
+  <main class="card">
+    <h2>بحث داخل الموقع</h2>
+    <input id="q" placeholder="اكتب كلمة وابحث..." />
+    <div id="results"></div>
+  </main>
+
+  <script>
+    async function loadJSON(){
+      try {
+        const res = await fetch('search.json');
+        return await res.json();
+      } catch (e) { return []; }
+    }
+    const q = document.getElementById('q');
+    const results = document.getElementById('results');
+    let pages = [];
+    loadJSON().then(d=> pages = d);
+
+    q.addEventListener('input', ()=>{
+      const term = q.value.trim().toLowerCase();
+      results.innerHTML = '';
+      if (!term) return;
+      const found = pages.filter(p => (p.title + ' ' + p.content).toLowerCase().includes(term));
+      if (!found.length) { results.innerHTML = '<p>لا توجد نتائج.</p>'; return; }
+      found.forEach(p=>{
+        const el = document.createElement('div');
+        el.className = 'result';
+        el.innerHTML = '<a href="'+p.url+'">'+p.title+'</a><p>'+p.content.substring(0,150)+'…</p>';
+        results.appendChild(el);
+      });
+    });
+  </script>
+</body>
+</html>

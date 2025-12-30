@@ -1,0 +1,279 @@
+.main {
+    display: flex;
+    background-color:#680c88;
+    height: 50px;
+    border-radius: 0px 0px 25px 25px;
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+}
+
+.logo{
+    width: 12%;
+    margin-left: -20px;
+    
+}
+
+.logo img {
+    width: 85%;
+    height: 100%;
+}
+
+.mmm106 {
+    font-size: 20px;
+    color: white;
+    width: 30%;
+    align-items: flex-start;
+    margin-top: -10px;
+}
+
+.contain {
+    width: 50%;    
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.contain a {
+    text-decoration: none;
+    margin: 3px;
+    color: black;
+    padding-top: 5px;
+    text-align: center;
+    font-weight: 1000;
+    transition: all 0.3s;
+    font-size: 20px;
+}
+
+
+.photos {
+    height: 250px;
+    margin-top: 100px;
+ /*  ------------ border: 5px #680c88 solid;
+    padding: 1px;
+    background-color: whitesmoke;
+---------------   */ 
+}
+.photos img {
+    height:250px;
+}
+
+
+
+.contain a:hover {
+    color: whitesmoke;
+    background-color: black;
+    margin: 3px;
+    padding-top: 15px;
+    text-align: center;
+    font-weight: 1000;
+    transition: all 0.5s;
+}
+
+
+
+
+.hr1 {
+    border: dashed 2px black;
+    margin-left: 10%;
+}
+
+       
+:root {
+            --primary: #6c63ff;
+            --secondary: #f9f9f9;
+            --accent: #e009f4;
+            --text: #222266;
+            --bg: #181824;
+            --tab-bg: #fff;
+            --aside-width: 85%; /* Define aside width as a variable */
+            --tab-active: #e0e7ff;
+        }
+        body {
+            color: var(--text);
+            background: linear-gradient(135deg, #f3e7fa 0%, #e3eeff 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            min-height: 150vh;
+        }
+        .main {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 2rem 0 2rem;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+        }
+        .logo img {
+            max-width: 80px;
+            border-radius: 16px;
+            background: #fff;
+            padding: 6px;
+        }
+        .mmm106 {
+            flex: 1;
+        }
+        .mmm106 p {
+            margin: 0;
+        }
+        .contain {
+            display: flex;
+            gap: 1.2rem;
+        }
+        .contain a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .contain a:hover {
+            color: var(--accent);
+        }
+
+        /* Tabs */
+        .tabs-container {
+            display: flex;
+            max-width: 950px;
+            margin: 6rem auto 0 auto;
+            background: var(--tab-bg);
+            border-radius: 18px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+            overflow: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        .tab-aside {
+            width: var(--aside-width);
+            background: var(--primary);
+            color: #fff;
+            transition: transform 0.4s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+            box-shadow: 2px 0 8px rgba(108,99,255,0.08);
+            z-index: 2;
+            position: absolute;
+        }
+        .tab-aside.hide {
+            transform: translateX(-100%);
+            box-shadow: none;
+        }
+        .tab-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .tab-list li {
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+        }
+        .tab-btn {
+            width: 100%;
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 1.1rem;
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            outline: none;
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background: #fff;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .tab-main {
+            flex: 1;
+            padding: 2rem 2.5rem;
+            margin: 5% ; /* var(--aside-width) Make space for the aside */
+            transition: margin-left 0.4s cubic-bezier(.4,2,.6,1);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* When aside is hidden, main content takes full width */
+        .tab-aside.hide + .tab-main {
+            margin-left: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        h1, h2, h3, h4 {
+            color: var(--primary);
+        }
+        ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        .hr1 {
+            border: none;
+            border-top: 2px solid var(--accent);
+            margin: 1.5rem 0;
+        }
+        .toggle-tabs-btn {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            z-index: 3;
+            background: #fff;
+            color: var(--primary);
+            border: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            box-shadow: 0 2px 8px rgba(108,99,255,0.12);
+            cursor: pointer;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .toggle-tabs-btn:hover {
+            background: #e0e7ff;
+        }
+        /* Responsive - Consolidated and clarified */
+        @media (max-width: 900px) {
+            /* If you want a stacked layout on smaller screens, uncomment flex-direction */
+            .tabs-container {
+                /* flex-direction: column; */
+                /* min-height: unset; */
+            }
+            .tab-aside {
+                /* If .tabs-container is flex-direction: column, this might be 100% */
+                /* width: 100%; */
+            }
+            .tab-main {
+                padding: 1rem;
+                /* If .tabs-container is flex-direction: column, margin-left should be 0 */
+                /* margin-left: 0; */
+            }
+            .toggle-tabs-btn { left: 12px; top: 12px; }
+        }
+
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgb(255, 255, 255);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e009f4;
+        }

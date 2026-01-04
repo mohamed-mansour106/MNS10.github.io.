@@ -220,6 +220,42 @@ body {
 }
 /*-----------------------------------------------------------------------------*/
 
+/* Added product-list styles */
+.app-list {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 12px;
+}
+.app-row {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #d6e2e8;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+    padding: 18px;
+    margin: 18px 0;
+    border-radius: 4px;
+}
+.left { display:flex; align-items:center; width:28%; gap:12px; }
+.logo-box { width:64px; height:64px; border:1px solid #e6eef3; border-radius:6px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#fff; }
+.logo-box img { max-width:100%; max-height:100%; display:block; }
+.app-name a { color:#0a66c2; text-decoration:none; font-weight:600; font-size:18px; }
+.middle { width:44%; padding-left:10px; }
+.features-label { font-weight:700; color:#333; margin-bottom:8px; }
+.features { display:flex; align-items:center; gap:12px; }
+.progress { flex:1; background:#f1f7fa; border-radius:12px; padding:4px; height:14px; display:flex; align-items:center; }
+.progress-fill { height:100%; background:linear-gradient(90deg,#17a84b,#21b24a); border-radius:10px; width:50%; transition:width .5s ease; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.08); }
+.features-count { color:#6b7785; font-weight:600; white-space:nowrap; }
+.info { display:inline-block; width:20px; height:20px; border-radius:50%; background:#1e88e5; color:#fff; text-align:center; line-height:20px; margin-left:6px; font-size:12px; }
+.right { width:18%; text-align:left; padding-left:10px; }
+.rating-label { font-weight:700; color:#333; margin-bottom:8px; }
+.stars { color:#ff9b1a; font-size:18px; letter-spacing:2px; margin-right:8px; }
+.score { color:#0a66c2; font-weight:700; }
+.cta { width:10%; text-align:right; }
+.visit { background: linear-gradient(#ff6f00,#ff7a00); color:white; padding:12px 18px; border-radius:28px; text-decoration:none; font-weight:700; display:inline-block; }
+.visit .ext { margin-left:6px; }
+@media (max-width:900px) { .app-row{flex-direction:column; align-items:flex-start} .left,.middle,.right,.cta{width:100%;} .cta{text-align:left;margin-top:10px;} .features{width:100%} }
+
 
 
 

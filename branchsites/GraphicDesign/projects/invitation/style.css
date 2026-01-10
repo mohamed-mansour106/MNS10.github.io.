@@ -1,0 +1,580 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --brown: #3d2f28;
+  --gold: #c9a961;
+  --cream: #f5f1e8;
+  --light-cream: #faf8f3;
+  --dark-brown: #2a1f1a;
+}
+
+body {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--brown);
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 101;
+  visibility: visible;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  pointer-events: none;
+}
+
+.screen.active {
+  opacity: 102;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#initial-screen {
+  background-color: var(--brown);
+  z-index: 30;
+}
+
+.initial-letter {
+  font-size: 180px;
+  font-weight: 400;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  animation: fadeInLetter 1.5s ease-in-out;
+}
+
+
+
+#envelope-screen {
+  background-color: var(--brown);
+  z-index: 100;
+}
+
+.envelope-container {
+  text-align: center;
+}
+
+
+
+.invitation-title {
+  font-size: 32px;
+  letter-spacing: 8px;
+  color: var(--gold);
+  font-weight: 300;
+  margin-bottom: 60px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.envelope-wrapper {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.envelope-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.envelope {
+  position: relative;
+  width: 380px;
+  height: 280px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #f5e6d3 0%, #f0dcc4 100%);
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 190px solid transparent;
+  border-right: 190px solid transparent;
+  border-top: 140px solid #e8d4b8;
+  transform-origin: top center;
+  transition: transform 0.6s ease;
+  z-index: 2;
+}
+
+.envelope.opening .envelope-flap {
+  transform: rotateX(-180deg);
+}
+
+.envelope-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f5e6d3 0%, #f0dcc4 100%);
+  border-radius: 8px;
+}
+
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--gold) 0%, #b89450 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+  border: 3px solid #a07d3e;
+}
+
+.seal-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark-brown);
+  font-family: 'Playfair Display', serif;
+}
+
+.flowers {
+  position: absolute;
+  top: 50%;
+  width: 80px;
+  height: 80px;
+  opacity: 0.7;
+}
+
+.flowers-left {
+  left: -100px;
+  transform: translateY(-50%) rotate(-15deg);
+  background: radial-gradient(circle at 30% 40%, #f5e6d3 20%, transparent 20%),
+              radial-gradient(circle at 60% 30%, #f5e6d3 15%, transparent 15%),
+              radial-gradient(circle at 50% 60%, #f0dcc4 18%, transparent 18%);
+}
+
+.flowers-right {
+  right: -100px;
+  transform: translateY(-50%) rotate(15deg);
+  background: radial-gradient(circle at 30% 40%, #f5e6d3 20%, transparent 20%),
+              radial-gradient(circle at 60% 30%, #f5e6d3 15%, transparent 15%),
+              radial-gradient(circle at 50% 60%, #f0dcc4 18%, transparent 18%);
+}
+
+.tap-text {
+  margin-top: 50px;
+  font-size: 24px;
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.tap-indicator {
+  width: 40px;
+  height: 40px;
+  margin: 20px auto;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+}
+
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.countdown.hidden {
+  display: none;
+}
+
+.countdown-number {
+  font-size: 120px;
+  color: var(--gold);
+  font-weight: 700;
+  animation: countdownPulse 1s ease-in-out;
+  font-family: 'Playfair Display', serif;
+}
+
+@keyframes countdownPulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+#invitation-screen {
+  background-color: var(--light-cream);
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.invitation-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  position: relative;
+  animation: fadeInContent 1.2s ease-out;
+}
+
+@keyframes fadeInContent {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.decorative-element {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  opacity: 0.15;
+}
+
+.decorative-element.top-left {
+  top: 20px;
+  left: 20px;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+  border-radius: 50px 0 0 0;
+}
+
+.decorative-element.top-right {
+  top: 20px;
+  right: 20px;
+  border-top: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+  border-radius: 0 50px 0 0;
+}
+
+.decorative-element.bottom-left {
+  bottom: 20px;
+  left: 20px;
+  border-bottom: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 0 0 50px;
+}
+
+.decorative-element.bottom-right {
+  bottom: 20px;
+  right: 20px;
+  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+  border-radius: 0 0 50px 0;
+}
+
+.invitation-header {
+  margin-bottom: 40px;
+}
+
+.subtitle {
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: var(--brown);
+  font-weight: 400;
+  margin: 5px 0;
+}
+
+.names-section {
+  margin: 50px 0;
+}
+
+.bride-name,
+.groom-name {
+  font-size: 56px;
+  font-weight: 400;
+  color: var(--dark-brown);
+  font-family: 'Playfair Display', serif;
+  margin: 10px 0;
+}
+
+.heart-icon {
+  font-size: 24px;
+  color: var(--gold);
+  margin: 15px 0;
+}
+
+.date-box {
+  border: 2px solid var(--gold);
+  padding: 20px 40px;
+  display: inline-block;
+  margin: 30px 0;
+}
+
+.wedding-date {
+  font-size: 20px;
+  color: var(--gold);
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.details-section {
+  margin: 60px 0;
+}
+
+.section-title {
+  font-size: 32px;
+  color: var(--dark-brown);
+  font-weight: 400;
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gold);
+  max-width: 100px;
+}
+
+.calendar-icon {
+  font-size: 28px;
+  margin: 0 20px;
+}
+
+.event-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.event-card {
+  background: white;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.event-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.event-name {
+  font-size: 28px;
+  color: var(--dark-brown);
+  font-weight: 400;
+  margin: 15px 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.event-time,
+.event-location {
+  font-size: 18px;
+  color: var(--brown);
+  margin: 10px 0;
+}
+
+.event-address {
+  font-size: 16px;
+  color: #8b7355;
+  margin-top: 8px;
+}
+
+.rsvp-section {
+  margin: 60px 0;
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.rsvp-text {
+  font-size: 16px;
+  color: var(--brown);
+  margin: 20px 0 30px;
+}
+
+.rsvp-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.rsvp-btn {
+  padding: 15px 35px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.confirm-btn {
+  background-color: var(--gold);
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #b89450;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(201, 169, 97, 0.4);
+}
+
+.decline-btn {
+  background-color: #e8e8e8;
+  color: var(--brown);
+}
+
+.decline-btn:hover {
+  background-color: #d4d4d4;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.check-icon,
+.x-icon {
+  margin-right: 8px;
+}
+
+.footer-section {
+  margin-top: 60px;
+  padding: 40px 20px;
+  background: var(--brown);
+  border-radius: 12px;
+  color: var(--gold);
+}
+
+.love-text {
+  font-size: 14px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.couple-names {
+  font-size: 36px;
+  font-weight: 400;
+  margin: 20px 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.heart-divider {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.hashtag {
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 15px;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .initial-letter {
+    font-size: 120px;
+  }
+
+  .invitation-title {
+    font-size: 24px;
+    letter-spacing: 4px;
+  }
+
+  .envelope {
+    width: 300px;
+    height: 220px;
+  }
+
+  .envelope-flap {
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #e8d4b8;
+  }
+
+  .wax-seal {
+    width: 60px;
+    height: 60px;
+  }
+
+  .seal-text {
+    font-size: 16px;
+  }
+
+  .flowers {
+    display: none;
+  }
+
+  .bride-name,
+  .groom-name {
+    font-size: 42px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .event-card {
+    padding: 25px;
+  }
+
+  .event-name {
+    font-size: 24px;
+  }
+
+  .rsvp-buttons {
+    flex-direction: column;
+  }
+
+  .rsvp-btn {
+    width: 100%;
+  }
+
+  .couple-names {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitación de Boda</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="envelope-screen" class=" active screen">
+      <div class="envelope-container " >
+        <h1 class="invitation-title">ESTÁS INVITADO</h1>
+
+        <div class="envelope-wrapper envelope" id="envelope" onclick="openEnvelope()">
+          <div class="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-body"></div>
+            <div class="wax-seal">
+              <div class="seal-text">I&C</div>
+            </div>
+          </div>
+          <div class="flowers flowers-left"></div>
+          <div class="flowers flowers-right"></div>
+        </div>
+
+        <p class="tap-text">Toca para abrir</p>
+        <div class="tap-indicator"></div>
+      </div>
+
+      
+    </div>
+
+    <div id="invitation-screen main-site" class="screen">
+      <div class="invitation-content">
+        <div class="decorative-element top-left"></div>
+        <div class="decorative-element top-right"></div>
+
+        <div class="invitation-header">
+          <p class="subtitle">ESTÁS CORDIALMENTE</p>
+          <p class="subtitle">INVITADO A NUESTRA BODA</p>
+        </div>
+
+        <div class="names-section">
+          <h2 class="bride-name">María</h2>
+          <div class="heart-icon">♥</div>
+          <h2 class="groom-name">Carlos</h2>
+        </div>
+
+        <div class="date-box">
+          <p class="wedding-date">15 de Junio, 2025</p>
+        </div>
+
+        <div class="details-section">
+          <h3 class="section-title">Los Detalles</h3>
+          <div class="divider">
+            <span class="calendar-icon">📅</span>
+          </div>
+
+          <div class="event-cards">
+            <div class="event-card">
+              <div class="event-icon">⛪</div>
+              <h4 class="event-name">Ceremonia</h4>
+              <p class="event-time">🕓 4:00 PM</p>
+              <p class="event-location">📍 Parroquia Santa María</p>
+              <p class="event-address">Calle Principal 123, Ciudad</p>
+            </div>
+
+            <div class="event-card">
+              <div class="event-icon">🎉</div>
+              <h4 class="event-name">Recepción</h4>
+              <p class="event-time">🕕 6:00 PM</p>
+              <p class="event-location">📍 Jardín Las Rosas</p>
+              <p class="event-address">Av. Los Jardines 456, Ciudad</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rsvp-section">
+          <h3 class="section-title">Confirma tu Asistencia</h3>
+          <p class="rsvp-text">Por favor confirma antes del 1 de Mayo, 2025</p>
+
+          <div class="rsvp-buttons">
+            <button class="rsvp-btn confirm-btn" id="confirmBtn">
+              <span class="check-icon">✓</span> Asistiré
+            </button>
+            <button class="rsvp-btn decline-btn" id="declineBtn">
+              <span class="x-icon">✕</span> No podré
+            </button>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <p class="love-text">CON TODO NUESTRO AMOR</p>
+          <p class="couple-names">María & Carlos</p>
+          <div class="heart-divider">♥</div>
+          <p class="hashtag">#MaríaYCarlos2025</p>
+        </div>
+
+        <div class="decorative-element bottom-left"></div>
+        <div class="decorative-element bottom-right"></div>
+      </div>
+    </div>
+
+    <script>
+      function openEnvelope() {
+        const envelopeScreen = document.getElementById("envelope-screen");
+        const mainSite = document.getElementById("main-site");
+
+        envelopeScreen.style.opacity = "0";
+        envelopeScreen.style.visibility = "hidden";
+
+        setTimeout(() => {
+            envelopeScreen.style.display = "none";
+            mainSite.style.display = "block";
+            document.body.style.overflow = "auto";
+        }, 700);
+    }
+    </script>
+  </body>
+</html>

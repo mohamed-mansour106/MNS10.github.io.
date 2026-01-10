@@ -5,10 +5,309 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Invitación de Boda</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f5f0eb;
+            color: #5a4a42;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f5f0eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .decorative-art {
+            position: absolute;
+            opacity: 0.15;
+            stroke: #c9a55c;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .arch-left {
+            top: 20px;
+            left: 10px;
+            width: 80px;
+            height: 120px;
+        }
+
+        .arch-right {
+            top: 20px;
+            right: 10px;
+            width: 80px;
+            height: 120px;
+        }
+
+        .arch-bottom-left {
+            bottom: 40px;
+            left: 10px;
+            width: 60px;
+            height: 80px;
+        }
+
+        .arch-bottom-right {
+            bottom: 40px;
+            right: 10px;
+            width: 60px;
+            height: 80px;
+        }
+
+        .invitation-text {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #b89968;
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 300;
+        }
+
+        .names-container {
+            margin: 40px 0;
+        }
+
+        .name {
+            font-size: 48px;
+            font-family: 'Georgia', serif;
+            color: #5a4a42;
+            font-weight: 400;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .divider-line {
+            width: 80px;
+            height: 1px;
+            background-color: #c9a55c;
+        }
+
+        .heart {
+            color: #c9a55c;
+            font-size: 20px;
+            margin: 0 15px;
+        }
+
+        .date-box {
+            border: 2px solid #c9a55c;
+            display: inline-block;
+            padding: 15px 40px;
+            margin-top: 30px;
+        }
+
+        .date {
+            font-size: 20px;
+            color: #c9a55c;
+            font-style: italic;
+        }
+
+        .cta-button {
+            background-color: #2c2c2c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 40px;
+            font-size: 13px;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Details Section */
+        .details-section {
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #5a4a42;
+            margin-bottom: 10px;
+        }
+
+        .title-icon {
+            color: #c9a55c;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .details-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .detail-card {
+            background-color: white;
+            padding: 35px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            color: #5a4a42;
+            margin-bottom: 15px;
+        }
+
+        .card-time {
+            font-size: 16px;
+            color: #8b7355;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .card-location {
+            font-size: 15px;
+            color: #8b7355;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .location-icon {
+            color: #c9a55c;
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .rsvp-text {
+            font-size: 14px;
+            color: #8b7355;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+
+        .rsvp-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .rsvp-button {
+            background-color: white;
+            border: 2px solid #e0d5c7;
+            padding: 15px 35px;
+            border-radius: 4px;
+            font-size: 15px;
+            color: #5a4a42;
+            cursor: pointer;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-button:hover {
+            background-color: #f5f0eb;
+            border-color: #c9a55c;
+        }
+
+        .rsvp-button.selected {
+            background-color: #c9a55c;
+            color: white;
+            border-color: #c9a55c;
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: #3d2f28;
+            color: white;
+            text-align: center;
+            padding: 60px 30px;
+        }
+
+        .footer-tagline {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #c9a55c;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-names {
+            font-size: 36px;
+            color: #d4af37;
+            font-style: italic;
+            margin: 20px 0;
+        }
+
+        .footer-heart {
+            color: #c9a55c;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .hashtag {
+            font-size: 13px;
+            color: #8b7355;
+            margin-top: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @media (max-width: 480px) {
+            .name {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .rsvp-buttons {
+                flex-direction: column;
+            }
+
+            .rsvp-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+
   </head>
   <body>
-    <div id="envelope-screen" class=" active screen">
-      <div class="envelope-container " >
+    <div id="envelope-screen" class=" active screen" style="height: 400vh;">
+      <div class="envelope-container " style="margin-top: -300vh;">
         <h1 class="invitation-title">ESTÁS INVITADO</h1>
 
         <div class="envelope-wrapper envelope" id="envelope" onclick="openEnvelope()">
@@ -30,75 +329,336 @@
       
     </div>
 
-    <div id="invitation-screen main-site" class="screen">
-      <div class="invitation-content">
-        <div class="decorative-element top-left"></div>
-        <div class="decorative-element top-right"></div>
+    <div class="container">
+       
 
-        <div class="invitation-header">
-          <p class="subtitle">ESTÁS CORDIALMENTE</p>
-          <p class="subtitle">INVITADO A NUESTRA BODA</p>
-        </div>
+    <div class="container"  >
+      
+       <!-- Cake Section -->
+        <section class="hero">
+                          
 
-        <div class="names-section">
-          <h2 class="bride-name">María</h2>
-          <div class="heart-icon">♥</div>
-          <h2 class="groom-name">Carlos</h2>
-        </div>
+                          
 
-        <div class="date-box">
-          <p class="wedding-date">15 de Junio, 2025</p>
-        </div>
+              <style>
+                
 
-        <div class="details-section">
-          <h3 class="section-title">Los Detalles</h3>
-          <div class="divider">
-            <span class="calendar-icon">📅</span>
-          </div>
+                /* ========= Cake Wrapper ========= */
+                .cake {
+                  position: relative;
+                  width: 250px;
+                  height: 300px;
+                  top: 50%;
+                  left: 50%;
+                  margin-top: -70px;
+                  margin-left: -125px;
+                  
+                }
 
-          <div class="event-cards">
-            <div class="event-card">
-              <div class="event-icon">⛪</div>
-              <h4 class="event-name">Ceremonia</h4>
-              <p class="event-time">🕓 4:00 PM</p>
-              <p class="event-location">📍 Parroquia Santa María</p>
-              <p class="event-address">Calle Principal 123, Ciudad</p>
+                .cake > * {
+                  position: absolute;
+                }
+
+                /* ========= Plate ========= */
+                .plate {
+                  width: 270px;
+                  height: 110px;
+                  position: absolute;
+                  bottom: -10px;
+                  left: -10px;
+                  background-color: #ccc;
+                  border-radius: 50%;
+                  box-shadow:
+                    0 2px 0 #b3b3b3,
+                    0 4px 0 #b3b3b3,
+                    0 5px 40px rgba(0,0,0,0.5);
+                }
+
+                /* ========= Cake Layers ========= */
+                .layer {
+                  width: 250px;
+                  height: 100px;
+                  border-radius: 50%;
+                  background-color: #553c13;
+                  box-shadow:
+                    0 2px 0 #5d4219,
+                    0 4px 0 #3f2c0f,
+                    0 6px 0 #3c290e,
+                    0 8px 0 #39270d,
+                    0 10px 0 #36250c,
+                    0 12px 0 #33230b,
+                    0 14px 0 #30210a,
+                    0 16px 0 #2d1f09,
+                    0 18px 0 #2a1d08,
+                    0 20px 0 #271b07,
+                    0 22px 0 #241906,
+                    0 24px 0 #211705,
+                    0 26px 0 #1e1504,
+                    0 28px 0 #1b1303,
+                    0 30px 0 #181102;
+                }
+
+                .layer-top { top: 0; }
+                .layer-middle { top: 33px; }
+                .layer-bottom { top: 66px; }
+
+                /* ========= Icing ========= */
+                .icing {
+                  top: 2px;
+                  left: 5px;
+                  width: 240px;
+                  height: 90px;
+                  background-color: #f0e4d0;
+                  border-radius: 50%;
+                }
+
+                .icing::before {
+                  content: "";
+                  position: absolute;
+                  top: 4px;
+                  right: 5px;
+                  bottom: 6px;
+                  left: 5px;
+                  background-color: #f4ead9;
+                  box-shadow:
+                    0 0 4px #f8f1e5,
+                    0 0 4px #f8f1e5,
+                    0 0 4px #f8f1e5;
+                  border-radius: 50%;
+                  z-index: 1;
+                }
+
+                /* ========= Drips ========= */
+                .drip {
+                  width: 50px;
+                  height: 60px;
+                  background-color: #f0e4d0;
+                  border-bottom-left-radius: 25px;
+                  border-bottom-right-radius: 25px;
+                }
+
+                .drip1 {
+                  top: 53px;
+                  left: 5px;
+                  width: 40px;
+                  height: 48px;
+                  transform: skewY(15deg);
+                }
+
+                .drip2 {
+                  top: 69px;
+                  left: 181px;
+                  transform: skewY(-15deg);
+                }
+
+                .drip3 {
+                  top: 54px;
+                  left: 90px;
+                  width: 80px;
+                  border-bottom-left-radius: 40px;
+                  border-bottom-right-radius: 40px;
+                }
+
+                /* ========= Candle ========= */
+                .candle {
+                  background-color: #7B020B;
+                  width: 16px;
+                  height: 50px;
+                  border-radius: 8px / 4px;
+                  top: -20px;
+                  left: 50%;
+                  margin-left: -8px;
+                  z-index: 10;
+                }
+
+                .candle::before {
+                  content: "";
+                  position: absolute;
+                  width: 16px;
+                  height: 8px;
+                  border-radius: 50%;
+                  background-color: #a30410;
+                }
+
+                /* ========= Flame ========= */
+                .flame {
+                  position: absolute;
+                  background-color: orange;
+                  width: 15px;
+                  height: 35px;
+                  border-radius: 10px 10px 10px 10px / 25px 25px 10px 10px;
+                  top: -34px;
+                  left: 50%;
+                  margin-left: -7.5px;
+                  z-index: 10;
+                  box-shadow:
+                    0 0 10px rgba(255,165,0,0.5),
+                    0 0 20px rgba(255,165,0,0.5),
+                    0 0 60px rgba(255,165,0,0.5),
+                    0 0 80px rgba(255,165,0,0.5);
+                  transform-origin: 50% 90%;
+                  animation: flicker 1s ease-in-out alternate infinite;
+                }
+
+                /* ========= Flame Animation ========= */
+                @keyframes flicker {
+                  0% {
+                    transform: skewX(5deg);
+                    box-shadow:
+                      0 0 10px rgba(255,165,0,0.2),
+                      0 0 20px rgba(255,165,0,0.2),
+                      0 0 60px rgba(255,165,0,0.2),
+                      0 0 80px rgba(255,165,0,0.2);
+                  }
+                  50% {
+                    transform: skewX(-10deg);
+                  }
+                  100% {
+                    transform: skewX(5deg);
+                    box-shadow:
+                      0 0 10px rgba(255,165,0,0.5),
+                      0 0 20px rgba(255,165,0,0.5),
+                      0 0 60px rgba(255,165,0,0.5),
+                      0 0 80px rgba(255,165,0,0.5);
+                  }
+                }
+
+              </style>
+
+
+              <div class="cake" style="margin: 50px 0 0 -50px  ; ">
+                  <div class="plate"></div>
+                  <div class="layer layer-bottom"></div>
+                  <div class="layer layer-middle"></div>
+                  <div class="layer layer-top"></div>
+                  <div class="icing"></div>
+                  <div class="drip drip1"></div>
+                  <div class="drip drip2"></div>
+                  <div class="drip drip3"></div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+              </div>
+
+              
+
+
+            
+
+        </section>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <svg class="decorative-art arch-left" viewBox="0 0 80 120">
+                <path d="M 10 10 Q 40 40, 70 10" />
+                <path d="M 20 50 L 60 50" />
+                <path d="M 10 70 Q 40 100, 70 70" />
+            </svg>
+            <svg class="decorative-art arch-right" viewBox="0 0 80 120">
+                <path d="M 10 10 Q 40 40, 70 10" />
+                <path d="M 20 50 L 60 50" />
+                <circle cx="40" cy="90" r="25" />
+            </svg>
+            <svg class="decorative-art arch-bottom-left" viewBox="0 0 60 80">
+                <path d="M 10 10 Q 30 40, 50 10" />
+            </svg>
+            <svg class="decorative-art arch-bottom-right" viewBox="0 0 60 80">
+                <path d="M 10 10 L 50 50 M 50 10 L 10 50" />
+            </svg>
+
+            <div class="invitation-text">
+                ESTÁS CORDIALMENTE<br>INVITADO A NUESTRA BODA
             </div>
 
-            <div class="event-card">
-              <div class="event-icon">🎉</div>
-              <h4 class="event-name">Recepción</h4>
-              <p class="event-time">🕕 6:00 PM</p>
-              <p class="event-location">📍 Jardín Las Rosas</p>
-              <p class="event-address">Av. Los Jardines 456, Ciudad</p>
+            <div class="names-container">
+                <div class="name">María</div>
+                <div class="divider">
+                    <span class="divider-line"></span>
+                    <span class="heart">♥</span>
+                    <span class="divider-line"></span>
+                </div>
+                <div class="name">Carlos</div>
             </div>
-          </div>
-        </div>
 
-        <div class="rsvp-section">
-          <h3 class="section-title">Confirma tu Asistencia</h3>
-          <p class="rsvp-text">Por favor confirma antes del 1 de Mayo, 2025</p>
+            <div class="date-box">
+                <div class="date">15 de Junio, 2025</div>
+            </div>
 
-          <div class="rsvp-buttons">
-            <button class="rsvp-btn confirm-btn" id="confirmBtn">
-              <span class="check-icon">✓</span> Asistiré
-            </button>
-            <button class="rsvp-btn decline-btn" id="declineBtn">
-              <span class="x-icon">✕</span> No podré
-            </button>
-          </div>
-        </div>
+        </section>
 
-        <div class="footer-section">
-          <p class="love-text">CON TODO NUESTRO AMOR</p>
-          <p class="couple-names">María & Carlos</p>
-          <div class="heart-divider">♥</div>
-          <p class="hashtag">#MaríaYCarlos2025</p>
-        </div>
+        <!-- Details Section -->
+        <section class="details-section">
+            <h2 class="section-title">Los Detalles</h2>
+            <div class="title-icon">
+                <span class="divider-line" style="display: inline-block; width: 60px; vertical-align: middle;"></span>
+                <span style="margin: 0 15px;">📅</span>
+                <span class="divider-line" style="display: inline-block; width: 60px; vertical-align: middle;"></span>
+            </div>
 
-        <div class="decorative-element bottom-left"></div>
-        <div class="decorative-element bottom-right"></div>
-      </div>
+            <div class="details-cards">
+                <div class="detail-card">
+                    <div class="card-icon">⛪</div>
+                    <h3 class="card-title">Ceremonia</h3>
+                    <div class="card-time">
+                        <span>🕐</span>
+                        <span>4:00 PM</span>
+                    </div>
+                    <div class="card-location">
+                        <span class="location-icon">📍</span>
+                        <span>Parroquia Santa María<br>Calle Principal 123, Ciudad</span>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="card-icon">🎉</div>
+                    <h3 class="card-title">Recepción</h3>
+                    <div class="card-time">
+                        <span>🕕</span>
+                        <span>6:00 PM</span>
+                    </div>
+                    <div class="card-location">
+                        <span class="location-icon">📍</span>
+                        <span>Jardín Las Rosas<br>Av. Los Jardines 456, Ciudad</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section class="rsvp-section">
+            <h2 class="section-title">Confirma tu<br>Asistencia</h2>
+            <p class="rsvp-text">
+                Por favor confirma antes del 1 de Mayo,<br>2025
+            </p>
+
+            <div class="rsvp-buttons">
+                <button class="rsvp-button" onclick="selectRSVP(this, 'yes')">
+                    <span>✓</span>
+                    <span>Asistiré</span>
+                </button>
+                <button class="rsvp-button" onclick="selectRSVP(this, 'no')">
+                    <span>✕</span>
+                    <span>No podré</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-tagline">CON TODO NUESTRO AMOR</div>
+            <div class="footer-names">María & Carlos</div>
+            <div class="footer-heart">♥</div>
+            <div class="hashtag">#MaríaYCarlos2025</div>
+        </footer>
+    </div>
+
+    <script>
+        function selectRSVP(button, choice) {
+            const buttons = document.querySelectorAll('.rsvp-button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+        }
+    </script>
     </div>
 
     <script>

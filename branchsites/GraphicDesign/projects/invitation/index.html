@@ -632,15 +632,40 @@
             </p>
 
             <div class="rsvp-buttons">
-                <button class="rsvp-button" onclick="selectRSVP(this, 'yes')">
+                <button class="rsvp-button" onclick="selectRSVP(this, 'yes')" onclick="sendTelegram('✅ I will attend')">
                     <span>✓</span>
                     <span>Asistiré</span>
                 </button>
-                <button class="rsvp-button" onclick="selectRSVP(this, 'no')">
+                <button class="rsvp-button" onclick="selectRSVP(this, 'no')" onclick="sendTelegram('❌ I will not attend')">
                     <span>✕</span>
                     <span>No podré</span>
                 </button>
             </div>
+
+
+
+
+
+<script>
+  function sendTelegram(message) {
+    fetch("https://api.telegram.org/bot8484643072:AAG18KErcc-ooutejsLy1osp8NpAHDqK6cs/sendMessage", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        chat_id: "6464763610",
+        text: message
+      })
+    });
+  }
+</script>
+
+
+
+
+
+          
         </section>
 
         <!-- Footer -->

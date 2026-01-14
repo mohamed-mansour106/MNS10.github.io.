@@ -632,41 +632,130 @@
             </p>
 
             <div class="rsvp-buttons">
-                <button class="rsvp-button" onclick="selectRSVP(this, 'yes')" onclick="sendTelegram('✅ I will attend')">
+                <button class="rsvp-button" onclick="selectRSVP(this, 'yes')">
                     <span>✓</span>
                     <span>Asistiré</span>
                 </button>
-                <button class="rsvp-button" onclick="selectRSVP(this, 'no')" onclick="sendTelegram('❌ I will not attend')">
+                <button class="rsvp-button" onclick="selectRSVP(this, 'no')">
                     <span>✕</span>
                     <span>No podré</span>
                 </button>
             </div>
+        </section>
+
+                    <!-- Comment Section -->
+            <section class="comment-section">
+
+            <h2>رسائل الحب</h2>
+            <p>اكتب تهنئتك للعروسين ❤️</p>
+
+            <form id="commentForm">
+                <input 
+                type="text" 
+                id="username" 
+                placeholder="اسمك" 
+                required
+                >
+
+                <textarea 
+                id="comment" 
+                placeholder="اكتب تهنئتك هنا..." 
+                required
+                ></textarea>
+
+                <button type="submit">
+                إرسال التهنئة
+                </button>
+            </form>
+
+            <div id="commentsContainer"></div>
+
+            </section>
 
 
 
+        <!--firestore verificatio n --><script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    onSnapshot,
+    query,
+    orderBy,
+    doc,
+    updateDoc,
+    increment,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyCj3cgGmM8IVsl0VmWgsYrocnQjhNSyXSQ",
+    authDomain: "invitation-3e091.firebaseapp.com",
+    projectId: "invitation-3e091",
+    storageBucket: "invitation-3e091.firebasestorage.app",
+    messagingSenderId: "637508785860",
+    appId: "1:637508785860:web:03b867993d1e00b9039b91"
+  };
 
-<script>
-  function sendTelegram(message) {
-    fetch("https://api.telegram.org/bot8484643072:AAG18KErcc-ooutejsLy1osp8NpAHDqK6cs/sendMessage", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        chat_id: "8484643072",
-        text: message
-      })
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ===== Comments =====
+  const form = document.getElementById("commentForm");
+  const container = document.getElementById("commentsContainer");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("username").value;
+    const comment = document.getElementById("comment").value;
+
+    await addDoc(collection(db, "comments"), {
+      name,
+      comment,
+      likes: 0,
+      timestamp: serverTimestamp()
+    });
+
+    form.reset();
+  });
+
+  function loadComments() {
+    const q = query(
+      collection(db, "comments"),
+      orderBy("timestamp", "desc")
+    );
+
+    onSnapshot(q, (snapshot) => {
+      container.innerHTML = "";
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        container.innerHTML += `
+          <div class="comment">
+            <strong>${data.name}</strong>
+            <p>${data.comment}</p>
+            <button onclick="likeComment('${docSnap.id}')">
+              ❤️ ${data.likes || 0}
+            </button>
+            <hr>
+          </div>
+        `;
+      });
     });
   }
+
+  window.likeComment = async (id) => {
+    const ref = doc(db, "comments", id);
+    await updateDoc(ref, {
+      likes: increment(1)
+    });
+  };
+
+  loadComments();
 </script>
 
-
-
-
-
-          
-        </section>
 
         <!-- Footer -->
         <footer class="footer">
@@ -701,5 +790,10 @@
         }, 700);
     }
     </script>
+
+
+
+
+
   </body>
 </html>

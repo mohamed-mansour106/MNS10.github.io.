@@ -294,37 +294,60 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ==================== Firebase Configuration ====================
 let db;
+let firebaseInitialized = false;
 
 // Initialize Firebase
 function initializeFirebase() {
-    // Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyDxxx...", // استبدل بـ API Key من Firebase
-        authDomain: "your-project.firebaseapp.com",
-        projectId: "your-project-id",
-        storageBucket: "your-project.appspot.com",
-        messagingSenderId: "your-sender-id",
-        appId: "your-app-id"
-    };
+    try {
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDxxx...", // استبدل بـ API Key من Firebase
+            authDomain: "your-project.firebaseapp.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "your-sender-id",
+            appId: "your-app-id"
+        };
 
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    db = firebase.firestore();
-    
-    console.log('Firebase initialized successfully');
+        // Check if Firebase has valid config
+        if (firebaseConfig.apiKey === "AIzaSyDxxx...") {
+            console.warn('Firebase config is not configured. Using demo mode.');
+            firebaseInitialized = false;
+            return;
+        }
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        db = firebase.firestore();
+        firebaseInitialized = true;
+        
+        console.log('Firebase initialized successfully');
+    } catch (error) {
+        console.warn('Firebase initialization failed:', error);
+        console.log('App will work in demo mode without Firebase');
+        firebaseInitialized = false;
+    }
 }
 
 // ==================== Add Product Modal ====================
-const addProductModal = document.getElementById('addProductModal');
-const btnAddProduct = document.getElementById('btnAddProduct');
-const addProductForm = document.getElementById('addProductForm');
-
 function setupAddProductModal() {
+    // Get elements - MUST be inside function after DOM loads
+    const addProductModal = document.getElementById('addProductModal');
+    const btnAddProduct = document.getElementById('btnAddProduct');
+    const addProductForm = document.getElementById('addProductForm');
+    
+    // Check if elements exist
+    if (!addProductModal || !btnAddProduct || !addProductForm) {
+        console.error('Modal elements not found!');
+        return;
+    }
+    
     // Get all close buttons
     const closeButtons = document.querySelectorAll('.close');
     
     // Open add product modal
     btnAddProduct.addEventListener('click', function() {
+        console.log('Add product button clicked');
         addProductModal.style.display = 'block';
         document.body.style.overflow = 'hidden';
     });
@@ -379,28 +402,15 @@ function setupAddProductModal() {
             return;
         }
         
-        // Add to Firestore
         try {
             // Show loading state
             const submitBtn = addProductForm.querySelector('.btn-submit');
             submitBtn.disabled = true;
             submitBtn.textContent = 'جاري الحفظ...';
             
-            // Add to Firestore
-            const docRef = await db.collection('products').add({
-                title: title,
-                category: category,
-                price: price + ' ر.س',
-                image: image,
-                description: description,
-                specs: specs,
-                createdAt: new Date(),
-                id: Date.now().toString()
-            });
-            
             // Create product object
             const newProduct = {
-                id: docRef.id,
+                id: Date.now().toString(),
                 title: title,
                 price: price + ' ر.س',
                 image: image,
@@ -408,8 +418,42 @@ function setupAddProductModal() {
                 specs: specs
             };
             
-            // Add to current category
+            // If Firebase is available, save to database
+            if (firebaseInitialized && db) {
+                try {
+                    const docRef = await db.collection('products').add({
+                        title: title,
+                        category: category,
+                        price: price + ' ر.س',
+                        image: image,
+                        description: description,
+                        specs: specs,
+                        createdAt: new Date(),
+                        id: newProduct.id
+                    });
+                    newProduct.id = docRef.id;
+                    console.log('Product saved to Firebase');
+                } catch (firebaseError) {
+                    console.warn('Firebase save failed, using local storage:', firebaseError);
+                    // Continue anyway - save locally
+                }
+            }
+            
+            // Add to current category locally
             productsByCategory[category].products[newProduct.id] = newProduct;
+            
+            // Save to localStorage as backup
+            try {
+                const allProducts = JSON.parse(localStorage.getItem('matjariProducts') || '{}');
+                if (!allProducts[category]) {
+                    allProducts[category] = {};
+                }
+                allProducts[category][newProduct.id] = newProduct;
+                localStorage.setItem('matjariProducts', JSON.stringify(allProducts));
+                console.log('Product saved to localStorage');
+            } catch (storageError) {
+                console.warn('localStorage save failed:', storageError);
+            }
             
             // Reload products if current category matches
             if (currentCategory === category) {
@@ -442,9 +486,12 @@ function setupAddProductModal() {
     });
     
     // Handle cancel button
-    document.querySelector('.btn-cancel').addEventListener('click', function() {
-        addProductForm.reset();
-        addProductModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    });
+    const cancelBtn = document.querySelector('.btn-cancel');
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            addProductForm.reset();
+            addProductModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
 }

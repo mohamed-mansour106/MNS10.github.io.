@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجري - اكتشف منتجاتنا المميزة</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBWInOFMkiyis2C2267tZD8_uVRkIo0h0g",
+    authDomain: "samygroupy.firebaseapp.com",
+    projectId: "samygroupy",
+    storageBucket: "samygroupy.firebasestorage.app",
+    messagingSenderId: "906841923235",
+    appId: "1:906841923235:web:de757131a48d9e07f36916",
+    measurementId: "G-6MH8XMBLLW"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+</head>
+<body>
+
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <span>متجري</span>
+                    <span class="icon">🛍️</span>
+                </div>
+                <nav class="nav-menu">
+                    <a href="#" class="nav-link active" data-category="electronics">الكترونيات</a>
+                    <a href="#" class="nav-link" data-category="fashion">أزياء</a>
+                    <a href="#" class="nav-link" data-category="home">منزل وديكور</a>
+                    <a href="#" class="nav-link" data-category="sports">رياضة</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">🎁 عروض حصرية احصل على %20 خصم</div>
+            <h1 class="hero-title">اكتشف منتجاتنا <span class="highlight">المميزة</span></h1>
+            <p class="hero-subtitle">تسوق الآن واحصل على أفضل المنتجات بأسعار تنافسية مع شحن مجاني لجميع الطلبات</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="sectionTitle">الكترونيات</h2>
+                <button class="btn-add-product" id="btnAddProduct">+</button>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Product 1 -->
+                <div class="product-card" data-product="1" data-category="electronics">
+                    <div class="product-badge">4999 ر.س</div>
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" alt="لابتوب للألعاب">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">لابتوب للألعاب</h3>
+                        <p class="product-desc">لابتوب قوي مع شاشة 15.6 بوصة RTX 4080 مع ذاكرة</p>
+                        <button class="btn-buy">شراء الآن</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-product="2" data-category="electronics">
+                    <div class="product-badge">2499 ر.س</div>
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=600" alt="كاميرا احترافية">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">كاميرا احترافية</h3>
+                        <p class="product-desc">كاميرا DSLR تصوير احترافي مع عدسة متعددة</p>
+                        <button class="btn-buy">شراء الآن</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-product="3" data-category="electronics">
+                    <div class="product-badge">599 ر.س</div>
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/393047/pexels-photo-393047.jpeg?auto=compress&cs=tinysrgb&w=600" alt="ساعة ذكية متطورة">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ساعة ذكية متطورة</h3>
+                        <p class="product-desc">ساعة ذكية مع شاشة عالية الدقة ومقاومة للماء</p>
+                        <button class="btn-buy">شراء الآن</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-product="4" data-category="electronics">
+                    <div class="product-badge">299 ر.س</div>
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=600" alt="ساعات رياضية بلوتوث">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ساعات رياضية بلوتوث</h3>
+                        <p class="product-desc">سماعات لاسلكية مع جودة صوت عالية وبطارية تدوم 24 ساعة</p>
+                        <button class="btn-buy">شراء الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">دعم 24/7</h3>
+                    <p class="feature-desc">فريق دعم متاح على مدار الساعة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3 class="feature-title">ضمان الجودة</h3>
+                    <p class="feature-desc">ضمان لمدة سنة على جميع المنتجات</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3 class="feature-title">شحن مجاني</h3>
+                    <p class="feature-desc">على جميع المنتجات فوق 200 ر.س</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">المنتجات</a></li>
+                        <li><a href="#">من نحن</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <ul class="footer-contact">
+                        <li>📞 4567 123 50 966+</li>
+                        <li>📧 info@matjari.com</li>
+                        <li>📍 الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تابعنا</h4>
+                    <p>متجرك الأول للتسوق الإلكتروني. نتشرف أفضل المنتجات بأفضل الأسعار مع خدمة ممتازة ودعم</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="بريدك الإلكتروني">
+                        <button>اشترك</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 متجري. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content modal-form">
+            <span class="close">&times;</span>
+            <h2>إضافة منتج جديد</h2>
+            <form id="addProductForm">
+                <div class="form-group">
+                    <label for="productTitle">اسم المنتج</label>
+                    <input type="text" id="productTitle" required placeholder="أدخل اسم المنتج">
+                </div>
+
+                <div class="form-group">
+                    <label for="productCategory">القسم</label>
+                    <select id="productCategory" required>
+                        <option value="">اختر القسم</option>
+                        <option value="electronics">الكترونيات</option>
+                        <option value="fashion">أزياء</option>
+                        <option value="home">منزل وديكور</option>
+                        <option value="sports">رياضة</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="productPrice">السعر</label>
+                    <input type="number" id="productPrice" required placeholder="أدخل السعر">
+                </div>
+
+                <div class="form-group">
+                    <label for="productImage">رابط الصورة</label>
+                    <input type="url" id="productImage" required placeholder="أدخل رابط الصورة">
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription">الوصف</label>
+                    <textarea id="productDescription" rows="4" required placeholder="أدخل وصف المنتج"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="productSpecs">المواصفات (مفصولة بفواصل)</label>
+                    <textarea id="productSpecs" rows="3" required placeholder="أدخل المواصفات مفصولة بفواصل"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">حفظ المنتج</button>
+                    <button type="button" class="btn-cancel">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <div class="modal-price" id="modalPrice"></div>
+                    <p id="modalDescription"></p>
+                    <div class="modal-specs">
+                        <h3>المواصفات:</h3>
+                        <ul id="modalSpecs"></ul>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn-add-cart">أضف إلى السلة</button>
+                        <button class="btn-buy-now">اشترِ الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

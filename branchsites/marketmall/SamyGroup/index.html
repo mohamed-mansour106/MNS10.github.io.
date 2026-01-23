@@ -190,9 +190,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="productImage">صورة المنتج</label>
-                    <input type="file" id="productImage" required accept="image/*" placeholder="اختر صورة المنتج">
-                    <small>صيغ مدعومة: JPG, PNG, GIF</small>
+                    <label for="productImage">رابط الصورة</label>
+                    <input type="url" id="productImage" required placeholder="أدخل رابط الصورة">
                 </div>
 
                 <div class="form-group">
@@ -243,7 +242,6 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js"></script>
     
     <!-- Firestore Products Handler -->
     <script type="module">
@@ -257,12 +255,6 @@
             orderBy,
             serverTimestamp 
         } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
-        import {
-            getStorage,
-            ref,
-            uploadBytes,
-            getDownloadURL
-        } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 
         // Firebase Config
         const FIREBASE_CONFIG = {
@@ -277,7 +269,6 @@
         // Initialize Firebase
         const app = initializeApp(FIREBASE_CONFIG);
         const db = getFirestore(app);
-        const storage = getStorage(app);
 
         console.log('✅ Firestore Products Handler initialized');
 
@@ -292,39 +283,16 @@
                     const title = document.getElementById('productTitle').value;
                     const category = document.getElementById('productCategory').value;
                     const price = document.getElementById('productPrice').value;
-                    const imageFile = document.getElementById('productImage').files[0];
+                    const image = document.getElementById('productImage').value;
                     const description = document.getElementById('productDescription').value;
                     const specsText = document.getElementById('productSpecs').value;
 
-                    if (!imageFile) {
-                        alert('الرجاء اختيار صورة للمنتج');
-                        return;
-                    }
-
-                    // Show uploading message
-                    const submitBtn = addProductForm.querySelector('.btn-submit');
-                    const originalText = submitBtn.textContent;
-                    submitBtn.textContent = 'جاري الرفع...';
-                    submitBtn.disabled = true;
-
-                    // Upload image to Firebase Storage
-                    const timestamp = Date.now();
-                    const fileName = `products/${timestamp}-${imageFile.name}`;
-                    const storageRef = ref(storage, fileName);
-                    
-                    console.log('📤 Uploading image to Firebase Storage...');
-                    await uploadBytes(storageRef, imageFile);
-                    
-                    // Get download URL
-                    const imageUrl = await getDownloadURL(storageRef);
-                    console.log('✅ Image uploaded successfully:', imageUrl);
-
-                    // Save to Firestore with image URL
+                    // Save to Firestore
                     await addDoc(collection(db, 'firestore_products'), {
                         title: title,
                         category: category,
                         price: price + ' ج.م',
-                        image: imageUrl,
+                        image: image,
                         description: description,
                         specs: specsText,
                         createdAt: serverTimestamp(),
@@ -335,10 +303,6 @@
                     alert('تم إضافة المنتج بنجاح! ✓');
                     addProductForm.reset();
 
-                    // Restore button
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-
                     // Close modal
                     document.getElementById('addProductModal').style.display = 'none';
                     document.body.style.overflow = 'auto';
@@ -346,9 +310,6 @@
                 } catch (error) {
                     console.error('❌ Error adding product:', error);
                     alert('خطأ في إضافة المنتج: ' + error.message);
-                    const submitBtn = addProductForm.querySelector('.btn-submit');
-                    submitBtn.textContent = 'حفظ المنتج';
-                    submitBtn.disabled = false;
                 }
             });
         }

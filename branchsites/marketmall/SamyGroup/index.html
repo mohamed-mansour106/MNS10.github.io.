@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجري - اكتشف منتجاتنا المميزة</title>
+    <title>SamyGroup Store</title>
+    <meta name="description" content="تسوق الآن واحصل على أفضل المنتجات بأسعار تنافسية مع شحن مجاني لجميع الطلبات سامي جروب للفرز الثاني والمستعمل والادوات الكهربائية للكسر الزيرو موبايلات والاثاث المنزلي">
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="img/Logo/SG.ico" type="image/x-icon">
     
     <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
@@ -18,14 +20,14 @@
         <div class="container">
             <div class="nav-wrapper">
                 <div class="logo">
-                    <span>متجري</span>
-                    <span class="icon">🛍️</span>
+                    <span>SamyGroup</span>
+                    <span class="icon"><img src="img/Logo/SG.png" alt="SG logo" style="width: 30px;"> </span>
                 </div>
                 <nav class="nav-menu">
-                    <a href="#" class="nav-link active" data-category="electronics">الكترونيات</a>
-                    <a href="#" class="nav-link" data-category="fashion">أزياء</a>
-                    <a href="#" class="nav-link" data-category="home">منزل وديكور</a>
-                    <a href="#" class="nav-link" data-category="sports">رياضة</a>
+                    <a href="#" class="nav-link active" data-category="electronics">موبايلات</a>
+                    <a href="#" class="nav-link" data-category="fashion">أثاث منزلي</a>
+                    <a href="#" class="nav-link" data-category="home">أجهزة منزلية</a>
+                    <a href="#" class="nav-link" data-category="sports">أخري</a>
                 </nav>
             </div>
         </div>
@@ -36,7 +38,133 @@
         <div class="container">
             <div class="badge">🎁 عروض حصرية احصل على %20 خصم</div>
             <h1 class="hero-title">اكتشف منتجاتنا <span class="highlight">المميزة</span></h1>
-            <p class="hero-subtitle">تسوق الآن واحصل على أفضل المنتجات بأسعار تنافسية مع شحن مجاني لجميع الطلبات</p>
+            <p class="hero-subtitle">تسوق الآن واحصل على أفضل المنتجات بأسعار تنافسية مع شحن مجاني لجميع الطلبات سامي جروب للفرز الثاني والمستعمل والادوات الكهربائية للكسر الزيرو موبايلات والاثاث المنزلي</p>
+        </div>
+    </section>
+
+    <section class="searchBar">
+        <div class="container">
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="ابحث عن المنتجات..." 
+                        autocomplete="off"
+                    >
+                    <button class="search-btn" onclick="performSearch()">
+                        <span>🔍</span>
+                    </button>
+                </div>
+                <div class="search-results" id="searchResults" style="display: none;">
+                    <div class="results-header">
+                        <h3>نتائج البحث</h3>
+                        <span class="results-count" id="resultsCount">0</span>
+                    </div>
+                    <div class="results-list" id="resultsList"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who Are Us Section -->
+    <section class="whoAreUsVideo" hidden>
+        <div class="container">
+            <div class="who-are-us-content">
+                <div class="who-are-us-text" >
+                    <div class="section-badge">عن السامي جروب</div>
+                    <h2 class="who-are-us-title">من نحن</h2>
+                    <p class="who-are-us-description">
+                        نحن متجر سامي جروب المتخصص في بيع المنتجات المستعملة والفرز الثاني بأسعار تنافسية. 
+                        نقدم لكم أفضل المنتجات من الإلكترونيات والأثاث والملابس وأدوات البيت بجودة عالية وأسعار مناسبة.
+                    </p>
+                    <div class="who-are-us-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">منتجات أصلية وموثوقة</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">أسعار منافسة وعروض حصرية</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">خدمة عملاء متميزة على مدار الساعة</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">توصيل سريع وآمن</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="who-are-us-video">
+                    <div class="video-wrapper">
+                        <!-- غيّر معرف الفيديو (8q4mUwLrOTY) برابط فيديوك الخاص -->
+                        <iframe 
+                            src="img/product/fridge.mp4" 
+                            title="من نحن - سامي جروب" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                        <div class="video-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <!--Only video ads-->
+    <div class="video-wrapper" hidden>
+                        <!-- غيّر معرف الفيديو (8q4mUwLrOTY) برابط فيديوك الخاص -->
+                        <iframe 
+                            src="img/product/fridge.mp4" 
+                            title="من نحن - سامي جروب" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                        <div class="video-overlay"></div>
+                        <img src="img/product/ad.png" alt="">
+                    </div>
+
+    <!-- ads Section -->
+    <section class="ads" hidden>
+        <div class="container">
+            <div class="ads-grid">
+                <!-- Ad 1 -->
+                <div class="ad-card ad-card-1">
+                    <div class="ad-badge">عرض حصري</div>
+                    <div class="ad-content">
+                        <h3>تخفيضات الشتاء</h3>
+                        <p>احصل على خصم يصل إلى 50% على المنتجات المختارة</p>
+                        <a href="https://chat.whatsapp.com/CVWwGii7v1LGHYd4nfm8iz" class="ad-link">اشتر الآن</a>
+                    </div>
+                </div>
+
+                <!-- Ad 2 -->
+                <div class="ad-card ad-card-2">
+                    <div class="ad-badge">عرض حصري</div>
+                    <div class="ad-content">
+                        <h3>منتجات جديدة</h3>
+                        <p>اكتشف أحدث المنتجات الوصولة حديثاً</p>
+                        <a href="https://chat.whatsapp.com/CVWwGii7v1LGHYd4nfm8iz" class="ad-link">تصفح الآن</a>
+                    </div>
+                </div>
+
+                <!-- Ad 3 -->
+                <div class="ad-card ad-card-3">
+                    <div class="ad-badge">عرض حصري</div>
+                    <div class="ad-content">
+                        <h3>شحن مجاني</h3>
+                        <p>على جميع الطلبات فوق 200 ج.م</p>
+                        <a href="https://chat.whatsapp.com/CVWwGii7v1LGHYd4nfm8iz" class="ad-link">تسوق الآن</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -44,20 +172,20 @@
     <section class="products">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" id="sectionTitle">الكترونيات</h2>
+                <h2 class="section-title" id="sectionTitle">موبايلات</h2>
                 <button class="btn-add-product" id="btnAddProduct">+</button>
             </div>
             <div class="products-grid" id="productsGrid">
                 <!-- Product 1 -->
                 <div class="product-card" data-product="1" data-category="electronics">
-                    <div class="product-badge">6500 ج.م</div>
+                    <div class="product-badge">150 ج.م</div>
                     <div class="product-image">
-                        <img src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" alt="اتنين سرير عمولة  ">
+                        <img src="img/product/charger1.png" alt="شاحن سامسونج adapter    ">
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">اتنين سرير عمولة  </h3>
-                        <p class="product-desc">اتنين سرسر عمولة مستعمل حاله زيرو استعمال خفيف.</p>
-                        <a class="btn-buy" href="google.com">شراء الآن</a>
+                        <h3 class="product-title">شاحن سامسونج adapter    </h3>
+                        <p class="product-desc">"شاحن سامسونج adapter 150 جنيه مصري موجود بكميات  .</p>
+                        <button class="btn-buy">شراء الآن</button>
                     </div>
                 </div>
 
@@ -65,24 +193,24 @@
                 <div class="product-card" data-product="2" data-category="electronics">
                     <div class="product-badge">6500 ج.م</div>
                     <div class="product-image">
-                        <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=600" alt="كاميرا احترافية">
+                        <img src="img/product/iphonexls1.png" alt="كاميرا احترافية">
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">كاميرا احترافية</h3>
-                        <p class="product-desc">كاميرا DSLR تصوير احترافي مع عدسة متعددة</p>
+                        <h3 class="product-title">ايفون xs </h3>
+                        <p class="product-desc">  ايفون xs مساحة 256 بطارية 73 </p>
                         <button class="btn-buy">شراء الآن</button>
                     </div>
                 </div>
 
                 <!-- Product 3 -->
                 <div class="product-card" data-product="3" data-category="electronics">
-                    <div class="product-badge">599 ج.م</div>
+                    <div class="product-badge">4000 ج.م</div>
                     <div class="product-image">
-                        <img src="https://images.pexels.com/photos/393047/pexels-photo-393047.jpeg?auto=compress&cs=tinysrgb&w=600" alt="ساعة ذكية متطورة">
+                        <img src="img/product/phone2.png" alt="هواوي نوفا Y61" >
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">ساعة ذكية متطورة</h3>
-                        <p class="product-desc">ساعة ذكية مع شاشة عالية الدقة ومقاومة للماء</p>
+                        <h3 class="product-title">هواوي نوفا Y61 </h3>
+                        <p class="product-desc">تليفون هواوي نوفا Y61 رامات اربعه جيجاذاكرة64 جيجا</p>
                         <button class="btn-buy">شراء الآن</button>
                     </div>
                 </div>
@@ -92,6 +220,7 @@
                     <div class="product-badge">299 ج.م</div>
                     <div class="product-image">
                         <img src="https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=600" alt="ساعات رياضية بلوتوث">
+                        <img src="img/product/bed2.jpg" alt="">
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">ساعات رياضية بلوتوث</h3>
@@ -120,7 +249,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">🚚</div>
                     <h3 class="feature-title">شحن مجاني</h3>
-                    <p class="feature-desc">على جميع المنتجات فوق 200 ج.م</p>
+                    <p class="feature-desc">على جميع المنتجات فوق 20000 ج.م</p>
                 </div>
             </div>
         </div>
@@ -133,8 +262,8 @@
                 <div class="footer-section">
                     <h4>روابط سريعة</h4>
                     <ul class="footer-links">
-                        <li><a href="#">الرئيسية</a></li>
-                        <li><a href="#">المنتجات</a></li>
+                        <li><a href="../../../index.html">الرئيسية</a></li>
+                        <li><a href="#sectionTitle">المنتجات</a></li>
                         <li><a href="#">من نحن</a></li>
                         <li><a href="#">اتصل بنا</a></li>
                     </ul>
@@ -142,14 +271,14 @@
                 <div class="footer-section">
                     <h4>تواصل معنا</h4>
                     <ul class="footer-contact">
-                        <li>📞 4567 123 50 966+</li>
-                        <li>📧 info@matjari.com</li>
-                        <li>📍 الرياض، المملكة العربية السعودية</li>
+                        <li>📞 201062929804+</li>
+                        <li>📧 MohamedMansour10060@gmail.com</li>
+                        <li>📍  الشرقية / الزقازيق / طاروط أمام كوبري يعقوب  </li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>تابعنا</h4>
-                    <p>متجرك الأول للتسوق الإلكتروني. نتشرف أفضل المنتجات بأفضل الأسعار مع خدمة ممتازة ودعم</p>
+                    <p>سامي جروب متجرك الأول للتسوق الإلكتروني. نتشرف أفضل المنتجات بأفضل الأسعار مع خدمة ممتازة ودعم</p>
                     <div class="newsletter">
                         <input type="email" placeholder="بريدك الإلكتروني">
                         <button>اشترك</button>
@@ -157,7 +286,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 متجري. جميع الحقوق محفوظة</p>
+                <p>© 2024 <img src="../../../MMM.png" alt="MMM106" width="5%"> <span style="color: aliceblue;">MMM106</span>. جميع الحقوق محفوظة</p>
             </div>
         </div>
     </footer>
@@ -177,10 +306,10 @@
                     <label for="productCategory">القسم</label>
                     <select id="productCategory" required>
                         <option value="">اختر القسم</option>
-                        <option value="electronics">الكترونيات</option>
-                        <option value="fashion">أزياء</option>
-                        <option value="home">منزل وديكور</option>
-                        <option value="sports">رياضة</option>
+                        <option value="electronics">موبايلات</option>
+                        <option value="fashion">أثاث منزلي</option>
+                        <option value="home">أجهزة منزلية</option>
+                        <option value="sports">أخري</option>
                     </select>
                 </div>
 

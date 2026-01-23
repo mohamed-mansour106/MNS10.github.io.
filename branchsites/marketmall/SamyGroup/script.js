@@ -1,28 +1,28 @@
 // Product data by category
 const productsByCategory = {
     electronics: {
-        title: "الكترونيات",
+        title: "موبايلات",
         products: {
             1: {
-                title: "اتنين سرير عمولة ",
-                price: "6500 ج.م",
-                image: "https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600",
-                description: "اتنين سرسر عمولة مستعمل حاله زيرو استعمال خفيف.",
-                specs: ["اتنين سرير", " السريرين معمولين عمولة", "حالة ممتازة ", " خشب زان ", " عرض متر ونص السرير", "   قابل للشحن "]
+                title: "شاحن سامسونج adapter   ",
+                price: "150 ج.م",
+                image: "img/product/charger1.png",
+                description: "شاحن سامسونج adapter 150 جنيه مصري موجود بكميات .",
+                specs: [" شاحن سريع", " سعر رائع ", "حالة ممتازة ", " adapter  ", " شاحن سامسونج ", "   بكميات  "]
             },
             2: {
-                title: "كاميرا احترافية",
-                price: "2499 ج.م",
-                image: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "كاميرا DSLR احترافية مثالية للمصورين المحترفين والهواة. تأتي مع عدسة متعددة الاستخدامات وجودة تصوير استثنائية في جميع الظروف. مثالية للتصوير الفوتوغرافي والفيديو.",
-                specs: ["مستشعر 24.2 ميجابكسل", "تصوير فيديو 4K بمعدل 60 إطار/ثانية", "عدسة 18-55mm متضمنة", "شاشة لمس دوارة 3 بوصة", "واي فاي وبلوتوث مدمج", "عمر بطارية يصل إلى 800 صورة"]
+                title: "ايفون xs ",
+                price: "15000 ج.م",
+                image: "img/product/iphonexls1.png",
+                description: "ايفون xs مساحة 256 بطارية 73    .",
+                specs: ["مساحة 256 . ", "بطارية 73 ", " نموذج M ", "شريحة 👆", "وتر بروف   ", "كسر كسر زيرو عليه ضريبه", "الموبايل وارد من الخارج", "لا يوجد شاحن نهائي"]
             },
             3: {
-                title: "ساعة ذكية متطورة",
-                price: "599 ج.م",
-                image: "https://images.pexels.com/photos/393047/pexels-photo-393047.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "ساعة ذكية متطورة تتتبع صحتك ولياقتك البدنية على مدار الساعة. شاشة AMOLED عالية الدقة مع مقاومة للماء حتى 50 متر. متوافقة مع جميع الهواتف الذكية.",
-                specs: ["شاشة AMOLED 1.4 بوصة", "مقاومة للماء IP68", "مراقبة معدل ضربات القلب 24/7", "تتبع النوم والأكسجين بالدم", "أكثر من 100 وضع رياضي", "عمر البطارية 7 أيام"]
+                title: "هواوي نوفا Y61  ",
+                price: "4000 ج.م",
+                image: "img/product/phone2.png",
+                description: "تليفون هواوي نوفا Y61 رامات اربعه جيجاذاكرة64 جيجا.",
+                specs: ["رامات 4 جبجا", "ذاكرة 64 جيجا", "بالكرتونه بجميع مشتملاته", "استعمال حريمي 3 شهور", "يدعم مستشعر البصمه مدمج مع زر الباور", "منفذ Type C مع شاحن سريع بقوة  22.5واط", "البطارية تصمد للعمل لفترةطويلة خلال اليوم", "شاشة كبيرة بشكل النوتش كافية لمشاهدة الفيديوهات والالعاب"]
             },
             4: {
                 title: "سماعات رياضية بلوتوث",
@@ -34,101 +34,101 @@ const productsByCategory = {
         }
     },
     fashion: {
-        title: "أزياء",
+        title: "أثاث منزلي",
         products: {
             5: {
-                title: "فستان نسائي عصري",
-                price: "299 ج.م",
-                image: "https://images.pexels.com/photos/1055691/pexels-photo-1055691.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "فستان أنيق وعصري مصنوع من أفضل الأقمشة. مريح وسهل الحركة مع تصميم عصري يناسب جميع المناسبات.",
-                specs: ["نسيج قطني 100%", "مريح وسهل الحركة", "متوفر بأحجام متعددة", "يمكن غسله بسهولة", "تصميم عصري أنيق", "مناسب للمناسبات الرسمية"]
+                title: "2 سرير عمولة  ",
+                price: "6500 ج.م",
+                image: "img/product/bed2.jpg",
+                description: "اتنين سرير عمولة.",
+                specs: ["سريرين عمولة", "خشب زان", "حالة جيده"]
             },
             6: {
-                title: "تي شيرت رجالي",
-                price: "99 ج.م",
-                image: "https://images.pexels.com/photos/3622613/pexels-photo-3622613.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "تي شيرت عالي الجودة مريح وسهل الحركة. مصنوع من أفضل الأقمشة القطنية مع تصميم بسيط وأنيق.",
-                specs: ["قطن 100% عالي الجودة", "مريح وخفيف الوزن", "ألوان متنوعة", "مقاوم للتمزق", "سهل الغسل والتنشيف", "متوفر بأحجام مختلفة"]
+                title: "انتظرونا قريبا",
+                price: "عرض ج.م",
+                image: "img/product/ad.png",
+                description: ".",
+                specs: ["قريبا", "", "", "", "", ""]
             },
             7: {
-                title: "جاكيت شتوي دافئ",
-                price: "449 ج.م",
-                image: "https://images.pexels.com/photos/1055691/pexels-photo-1055691.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "جاكيت شتوي دافئ وأنيق مصنوع من مواد عازلة للحرارة. يوفر الدفء والحماية من البرد مع الحفاظ على المظهر الجميل.",
-                specs: ["مواد عازلة عالية الجودة", "دافئ وخفيف الوزن", "مقاوم للماء", "جيوب عملية", "تصميم أنيق", "سهل الغسل"]
+                title: "انتظرونا قريبا",
+                price: "عرض ج.م",
+                image: "img/product/ad.png",
+                description: ".",
+                specs: ["قريبا", "", "", "", "", ""]
             },
             8: {
-                title: "حذاء رياضي عصري",
-                price: "199 ج.م",
-                image: "https://images.pexels.com/photos/2529157/pexels-photo-2529157.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "حذاء رياضي عصري وقوي. مناسب للرياضة والاستخدام اليومي مع تصميم حديث وألوان جذابة.",
-                specs: ["نعل قوي ومرن", "تهوية جيدة", "دعم كامل للقدم", "مرتاح وخفيف الوزن", "ألوان عصرية متنوعة", "متين وعملي"]
+                title: "انتظرونا قريبا",
+                price: "عرض ج.م",
+                image: "img/product/ad.png",
+                description: ".",
+                specs: ["قريبا", "", "", "", "", ""]
             }
         }
     },
     home: {
-        title: "منزل وديكور",
+        title: "أجهزة منزلية",
         products: {
             9: {
-                title: "مصباح ذكي LED",
-                price: "149 ج.م",
-                image: "https://images.pexels.com/photos/459319/pexels-photo-459319.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "مصباح ذكي LED متعدد الألوان يمكن التحكم به عن بعد. يوفر إضاءة دافئة وباردة مع قدرة على التحكم في شدة الإضاءة.",
-                specs: ["ألوان RGB متعددة", "تحكم عن بعد", "توفير الطاقة 80%", "عمر بطارية طويل", "متوافق مع الهواتف الذكية", "تركيب سهل"]
+                title: "  ثلاجة 18 قدم",
+                price: "15000 ج.م",
+                image: "img/product/fridge.png",
+                description: "تلاجه تمنتاشر قدم.",
+                specs: ["18 قدم", "الكومبو 500", "الباب الزجاج", "عرض الجمله"]
             },
             10: {
-                title: "سجادة عصرية فاخرة",
-                price: "499 ج.م",
-                image: "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "سجادة عصرية وفاخرة مصنوعة من مواد ناعمة جداً. تضيف جمالاً وراحة إلى أي غرفة في المنزل.",
-                specs: ["مادة ناعمة عالية الجودة", "ألوان أنيقة متنوعة", "مقاومة للأوساخ", "سهلة التنظيف", "أحجام مختلفة", "عازلة للحرارة والصوت"]
+                title: "شاشة LG",
+                price: "مفاجاءه ج.م",
+                image: "img/product/tv.jpg",
+                description: "شاشة ال جي 42 بوصه نوعها LCD.",
+                specs: ["42 بوصه", "LCD", "استعمال خفيف"]
             },
             11: {
-                title: "طاولة قهوة حديثة",
-                price: "699 ج.م",
-                image: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "طاولة قهوة حديثة وأنيقة تناسب جميع أنواع الديكور. مصنوعة من مواد عالية الجودة مع تصميم بسيط وعملي.",
-                specs: ["مواد عالية الجودة", "تصميم بسيط أنيق", "سطح قوي ومتين", "تخزين إضافي", "سهل التنظيف", "وزن معقول"]
+                title: "تلاجة اليكتروستار",
+                price: "عرض ج.م",
+                image: "img/product/FRIDE4.jpg",
+                description: "تلاجة اليكتروستار فرز تاني.",
+                specs: ["340 لتر", "12 قدم مكعب", "ضمان 5 سنين", "فرز تاني", "عرض"]
             },
             12: {
-                title: "وسادات مريحة",
-                price: "149 ج.م",
-                image: "https://images.pexels.com/photos/4282460/pexels-photo-4282460.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "وسادات مريحة جداً توفر دعماً كاملاً للرقبة والرأس. تساعد على النوم الهانئ والراحة الكاملة.",
-                specs: ["مادة إسفنجية مريحة", "دعم كامل للرقبة", "قابلة للغسل", "متينة وطويلة الأمد", "أحجام مختلفة", "صحية وآمنة"]
+                title: "فريزر",
+                price: "مفاجاءه ج.م",
+                image: "img/product/fridge3.png",
+                description: "فريزرات فرز تاني بساب.",
+                specs: ["فريزرات فرز تاني", "غريزر بساب", "ماتور LG", "السعة 341 لتر", "السعر مفاجاءه"]
             }
         }
     },
     sports: {
-        title: "رياضة",
+        title: "أخري",
         products: {
             13: {
-                title: "دراجة ثابتة للمنزل",
-                price: "899 ج.م",
-                image: "https://images.pexels.com/photos/2318904/pexels-photo-2318904.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "دراجة ثابتة عالية الجودة مثالية للتدريب المنزلي. توفر تمريناً فعالاً مع راحة وأمان كاملين.",
-                specs: ["حمولة تصل إلى 150 كجم", "شاشة رقمية للمراقبة", "مقعد قابل للتعديل", "مقاومة سلسة", "ضوضاء منخفضة", "سهل التخزين"]
+                title: "انتظرونا قريبا",
+                price: "عرض ج.م",
+                image: "img/product/ad.png",
+                description: ".",
+                specs: ["قريبا", "", "", "", "", ""]
             },
             14: {
-                title: "حقيبة رياضية",
-                price: "199 ج.م",
-                image: "https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "حقيبة رياضية قوية وعملية توفر مساحة تخزين كبيرة. مناسبة للألعاب الرياضية والتمارين اليومية.",
-                specs: ["مادة متينة ومقاومة", "حجرات تنظيم متعددة", "حزام ظهر مريح", "جيوب إضافية", "ألوان متنوعة", "خفيفة الوزن"]
+                title: "انتظرونا قريبا",
+                price: "عرض ج.م",
+                image: "img/product/ad.png",
+                description: ".",
+                specs: ["قريبا", "", "", "", "", ""]
             },
             15: {
-                title: "أوزان حديدية للتدريب",
-                price: "349 ج.م",
-                image: "https://images.pexels.com/photos/417047/pexels-photo-417047.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "مجموعة أوزان حديدية عالية الجودة للتدريب المنزلي. توفر تمارين متنوعة لتقوية العضلات.",
-                specs: ["حديد عالي الجودة", "أوزان متعددة متضمنة", "قبضة مريحة وآمنة", "سهل الاستخدام", "آمن وموثوق", "يدوم طويلاً"]
+                title: "انتظرونا قريبا",
+                price: "عرض ج.م",
+                image: "img/product/ad.png",
+                description: ".",
+                specs: ["قريبا", "", "", "", "", ""]
             },
             16: {
-                title: "حصيرة تمارين سميكة",
-                price: "129 ج.م",
-                image: "https://images.pexels.com/photos/4327058/pexels-photo-4327058.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "حصيرة تمارين سميكة وناعمة توفر راحة وحماية. مثالية لجميع أنواع التمارين والحركات.",
-                specs: ["سمك 10 مم للحماية الكاملة", "مادة ناعمة جداً", "مقاومة للرطوبة", "سهل التنظيف", "خفيف الوزن وقابل للطي", "ألوان متنوعة"]
+                title: "انتظرونا قريبا",
+                price: "عرض ج.م",
+                image: "img/product/ad.png",
+                description: ".",
+                specs: ["قريبا", "", "", "", "", ""]
             }
         }
     }
@@ -633,4 +633,124 @@ function setupAddProductModal() {
             document.body.style.overflow = 'auto';
         });
     }
+}
+
+// ===== SEARCH FUNCTIONALITY =====
+function getAllProducts() {
+    let allProducts = [];
+    
+    // جمع المنتجات من جميع الفئات
+    Object.keys(productsByCategory).forEach(category => {
+        const categoryProducts = productsByCategory[category].products;
+        Object.keys(categoryProducts).forEach(productId => {
+            const product = categoryProducts[productId];
+            allProducts.push({
+                id: productId,
+                category: category,
+                title: product.title,
+                price: product.price,
+                image: product.image,
+                description: product.description,
+                fromFirestore: false
+            });
+        });
+    });
+    
+    // إضافة منتجات Firestore
+    if (window.firestoreProducts && Object.keys(window.firestoreProducts).length > 0) {
+        Object.keys(window.firestoreProducts).forEach(docId => {
+            const product = window.firestoreProducts[docId];
+            allProducts.push({
+                id: docId,
+                category: product.category,
+                title: product.title,
+                price: product.price,
+                image: product.image,
+                description: product.description,
+                fromFirestore: true
+            });
+        });
+    }
+    
+    return allProducts;
+}
+
+function performSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const query = searchInput.value.trim();
+    
+    if (query.length === 0) {
+        document.getElementById('searchResults').style.display = 'none';
+        return;
+    }
+    
+    const allProducts = getAllProducts();
+    const results = allProducts.filter(product => {
+        const searchTerm = query.toLowerCase();
+        return product.title.toLowerCase().includes(searchTerm) || 
+               product.description.toLowerCase().includes(searchTerm) ||
+               product.price.toLowerCase().includes(searchTerm);
+    });
+    
+    displaySearchResults(results);
+}
+
+function displaySearchResults(results) {
+    const searchResults = document.getElementById('searchResults');
+    const resultsList = document.getElementById('resultsList');
+    const resultsCount = document.getElementById('resultsCount');
+    
+    resultsCount.textContent = results.length;
+    
+    if (results.length === 0) {
+        resultsList.innerHTML = '<div class="no-results"><div class="no-results-icon">🔍</div><p>لم نعثر على منتجات مطابقة</p></div>';
+    } else {
+        resultsList.innerHTML = results.map(product => `
+            <div class="result-item" onclick="goToProduct('${product.id}', '${product.category}')">
+                <img src="${product.image}" alt="${product.title}" onerror="this.src='https://via.placeholder.com/50'">
+                <div class="result-info">
+                    <div class="result-title">${product.title}</div>
+                    <div class="result-price">${product.price}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    searchResults.style.display = 'block';
+}
+
+function goToProduct(productId, category) {
+    // غلق نتائج البحث
+    document.getElementById('searchResults').style.display = 'none';
+    document.getElementById('searchInput').value = '';
+    
+    // إذا كان من Firestore
+    if (window.firestoreProducts && window.firestoreProducts[productId]) {
+        showFirestoreProductDetails(productId);
+    } else {
+        // البحث عن المنتج وعرضه
+        showProductDetails(productId, category);
+    }
+}
+
+// إغلاق نتائج البحث عند الضغط خارجها
+document.addEventListener('click', function(event) {
+    const searchResults = document.getElementById('searchResults');
+    const searchWrapper = document.querySelector('.search-wrapper');
+    
+    if (searchResults && !searchWrapper.contains(event.target)) {
+        searchResults.style.display = 'none';
+    }
+});
+
+// إضافة حدث البحث عند الكتابة
+const searchInput = document.getElementById('searchInput');
+if (searchInput) {
+    searchInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        } else {
+            performSearch();
+        }
+    });
 }

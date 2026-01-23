@@ -50,20 +50,20 @@
             <div class="products-grid" id="productsGrid">
                 <!-- Product 1 -->
                 <div class="product-card" data-product="1" data-category="electronics">
-                    <div class="product-badge">4999 ر.س</div>
+                    <div class="product-badge">6500 ج.م</div>
                     <div class="product-image">
-                        <img src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" alt="لابتوب للألعاب">
+                        <img src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" alt="اتنين سرير عمولة  ">
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">لابتوب للألعاب</h3>
-                        <p class="product-desc">لابتوب قوي مع شاشة 15.6 بوصة RTX 4080 مع ذاكرة</p>
-                        <button class="btn-buy">شراء الآن</button>
+                        <h3 class="product-title">اتنين سرير عمولة  </h3>
+                        <p class="product-desc">اتنين سرسر عمولة مستعمل حاله زيرو استعمال خفيف.</p>
+                        <a class="btn-buy" href="google.com">شراء الآن</a>
                     </div>
                 </div>
 
                 <!-- Product 2 -->
                 <div class="product-card" data-product="2" data-category="electronics">
-                    <div class="product-badge">2499 ر.س</div>
+                    <div class="product-badge">6500 ج.م</div>
                     <div class="product-image">
                         <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=600" alt="كاميرا احترافية">
                     </div>
@@ -76,7 +76,7 @@
 
                 <!-- Product 3 -->
                 <div class="product-card" data-product="3" data-category="electronics">
-                    <div class="product-badge">599 ر.س</div>
+                    <div class="product-badge">599 ج.م</div>
                     <div class="product-image">
                         <img src="https://images.pexels.com/photos/393047/pexels-photo-393047.jpeg?auto=compress&cs=tinysrgb&w=600" alt="ساعة ذكية متطورة">
                     </div>
@@ -89,7 +89,7 @@
 
                 <!-- Product 4 -->
                 <div class="product-card" data-product="4" data-category="electronics">
-                    <div class="product-badge">299 ر.س</div>
+                    <div class="product-badge">299 ج.م</div>
                     <div class="product-image">
                         <img src="https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=600" alt="ساعات رياضية بلوتوث">
                     </div>
@@ -120,7 +120,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">🚚</div>
                     <h3 class="feature-title">شحن مجاني</h3>
-                    <p class="feature-desc">على جميع المنتجات فوق 200 ر.س</p>
+                    <p class="feature-desc">على جميع المنتجات فوق 200 ج.م</p>
                 </div>
             </div>
         </div>
@@ -190,8 +190,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="productImage">رابط الصورة</label>
-                    <input type="url" id="productImage" required placeholder="أدخل رابط الصورة">
+                    <label for="productImage">صورة المنتج</label>
+                    <input type="file" id="productImage" required accept="image/*" placeholder="اختر صورة المنتج">
+                    <small>صيغ مدعومة: JPG, PNG, GIF</small>
                 </div>
 
                 <div class="form-group">
@@ -229,8 +230,8 @@
                         <ul id="modalSpecs"></ul>
                     </div>
                     <div class="modal-actions">
-                        <button class="btn-add-cart">أضف إلى السلة</button>
-                        <button class="btn-buy-now">اشترِ الآن</button>
+                        <a class="btn-add-cart"href="https://chat.whatsapp.com/CVWwGii7v1LGHYd4nfm8iz" > اشتري من جروبنا </a>
+                        <button class="btn-buy-now" onclick="sendWhatsAppMessage()" >اشتري الان </button>
                     </div>
                 </div>
             </div>
@@ -242,6 +243,7 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js"></script>
     
     <!-- Firestore Products Handler -->
     <script type="module">
@@ -255,6 +257,12 @@
             orderBy,
             serverTimestamp 
         } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+        import {
+            getStorage,
+            ref,
+            uploadBytes,
+            getDownloadURL
+        } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 
         // Firebase Config
         const FIREBASE_CONFIG = {
@@ -269,6 +277,7 @@
         // Initialize Firebase
         const app = initializeApp(FIREBASE_CONFIG);
         const db = getFirestore(app);
+        const storage = getStorage(app);
 
         console.log('✅ Firestore Products Handler initialized');
 
@@ -283,16 +292,39 @@
                     const title = document.getElementById('productTitle').value;
                     const category = document.getElementById('productCategory').value;
                     const price = document.getElementById('productPrice').value;
-                    const image = document.getElementById('productImage').value;
+                    const imageFile = document.getElementById('productImage').files[0];
                     const description = document.getElementById('productDescription').value;
                     const specsText = document.getElementById('productSpecs').value;
 
-                    // Save to Firestore
+                    if (!imageFile) {
+                        alert('الرجاء اختيار صورة للمنتج');
+                        return;
+                    }
+
+                    // Show uploading message
+                    const submitBtn = addProductForm.querySelector('.btn-submit');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'جاري الرفع...';
+                    submitBtn.disabled = true;
+
+                    // Upload image to Firebase Storage
+                    const timestamp = Date.now();
+                    const fileName = `products/${timestamp}-${imageFile.name}`;
+                    const storageRef = ref(storage, fileName);
+                    
+                    console.log('📤 Uploading image to Firebase Storage...');
+                    await uploadBytes(storageRef, imageFile);
+                    
+                    // Get download URL
+                    const imageUrl = await getDownloadURL(storageRef);
+                    console.log('✅ Image uploaded successfully:', imageUrl);
+
+                    // Save to Firestore with image URL
                     await addDoc(collection(db, 'firestore_products'), {
                         title: title,
                         category: category,
-                        price: price + ' ر.س',
-                        image: image,
+                        price: price + ' ج.م',
+                        image: imageUrl,
                         description: description,
                         specs: specsText,
                         createdAt: serverTimestamp(),
@@ -303,6 +335,10 @@
                     alert('تم إضافة المنتج بنجاح! ✓');
                     addProductForm.reset();
 
+                    // Restore button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+
                     // Close modal
                     document.getElementById('addProductModal').style.display = 'none';
                     document.body.style.overflow = 'auto';
@@ -310,6 +346,9 @@
                 } catch (error) {
                     console.error('❌ Error adding product:', error);
                     alert('خطأ في إضافة المنتج: ' + error.message);
+                    const submitBtn = addProductForm.querySelector('.btn-submit');
+                    submitBtn.textContent = 'حفظ المنتج';
+                    submitBtn.disabled = false;
                 }
             });
         }
@@ -368,7 +407,7 @@
 
         // Make function globally available
         window.loadFirestoreProducts = loadFirestoreProducts;
-
+loadFirestoreProducts();
     </script>
 
     <script src="script.js"></script>

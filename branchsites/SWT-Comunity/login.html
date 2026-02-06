@@ -134,6 +134,27 @@
             document.getElementById('registerBox').style.display = 'none';
             document.getElementById('loginForm').parentElement.style.display = 'block';
         });
+
+
+        const form = document.getElementById("loginForm");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault(); // 🔥 مهم جدًا
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    window.location.href = "index.html";
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+        
     </script>
+
+    
 </body>
 </html>

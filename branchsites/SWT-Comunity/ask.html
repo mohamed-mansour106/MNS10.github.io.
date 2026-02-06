@@ -104,106 +104,79 @@
     const logoutBtn = document.getElementById("logoutNavBtn");
     const profileLink = document.getElementById("profileNavLink");
 
-    const answerForm = document.getElementById("answerForm");
-    const answerWarning = document.getElementById("answerAuthWarning");
-
-    if (user) {
-      // ✅ Logged in
-      loginLink.style.display = "none";
-      logoutBtn.style.display = "inline-block";
-      profileLink.style.display = "inline-block";
-
-      answerForm.style.display = "block";
-      answerWarning.style.display = "none";
-
-      console.log("Logged in as:", user.email);
-    } else {
-      // ❌ Not logged in
-      loginLink.style.display = "inline-block";
-      logoutBtn.style.display = "none";
-      profileLink.style.display = "none";
-
-      answerForm.style.display = "none";
-      answerWarning.style.display = "block";
-    }
-  });
-    </script>
-
-    <script>
-  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
-    await firebase.auth().signOut();
-    window.location.href = "login.html";
-  });
-    </script>
-    <script>
-  firebase.auth().onAuthStateChanged((user) => {
-    const loginLink = document.getElementById("loginNavLink");
-    const logoutBtn = document.getElementById("logoutNavBtn");
-    const profileLink = document.getElementById("profileNavLink");
-
     const askForm = document.getElementById("askQuestionForm");
     const authWarning = document.getElementById("authWarning");
 
     if (user) {
-      // ✅ Logged in
+      // ===== Logged In =====
       loginLink.style.display = "none";
       logoutBtn.style.display = "inline-block";
       profileLink.style.display = "inline-block";
 
-      askForm.style.display = "block";
       authWarning.style.display = "none";
+      askForm.style.display = "block";
 
-      console.log("Logged in:", user.email);
     } else {
-      // ❌ Not logged in
+      // ===== Not Logged In =====
       loginLink.style.display = "inline-block";
       logoutBtn.style.display = "none";
       profileLink.style.display = "none";
 
-      askForm.style.display = "none";
       authWarning.style.display = "block";
+      askForm.style.display = "none";
     }
   });
 
   // Logout
-  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
-    await firebase.auth().signOut();
-    window.location.href = "login.html";
+  document.getElementById("logoutNavBtn").addEventListener("click", () => {
+    firebase.auth().signOut().then(() => {
+      window.location.href = "login.html";
+    });
   });
-    </script><script>
-  firebase.auth().onAuthStateChanged((user) => {
-    const loginLink = document.getElementById("loginNavLink");
-    const logoutBtn = document.getElementById("logoutNavBtn");
-    const profileLink = document.getElementById("profileNavLink");
 
-    const askForm = document.getElementById("askQuestionForm");
-    const authWarning = document.getElementById("authWarning");
+  // Submit Question
+  document.getElementById("askQuestionForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    if (user) {
-      // ✅ Logged in
-      loginLink.style.display = "none";
-      logoutBtn.style.display = "inline-block";
-      profileLink.style.display = "inline-block";
+    const title = document.getElementById("questionTitle").value.trim();
+    const description = document.getElementById("questionDescription").value.trim();
+    const errorBox = document.getElementById("askError");
+    const successBox = document.getElementById("askSuccess");
 
-      askForm.style.display = "block";
-      authWarning.style.display = "none";
+    errorBox.style.display = "none";
+    successBox.style.display = "none";
 
-      console.log("Logged in:", user.email);
-    } else {
-      // ❌ Not logged in
-      loginLink.style.display = "inline-block";
-      logoutBtn.style.display = "none";
-      profileLink.style.display = "none";
-
-      askForm.style.display = "none";
-      authWarning.style.display = "block";
+    if (!title || !description) {
+      errorBox.innerText = "Please fill all fields.";
+      errorBox.style.display = "block";
+      return;
     }
-  });
 
-  // Logout
-  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
-    await firebase.auth().signOut();
-    window.location.href = "login.html";
+    const user = firebase.auth().currentUser;
+    if (!user) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    try {
+      await firebase.firestore().collection("questions").add({
+        title: title,
+        description: description,
+        userId: user.uid,
+        userEmail: user.email,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+      successBox.innerText = "Question posted successfully!";
+      successBox.style.display = "block";
+
+      document.getElementById("askQuestionForm").reset();
+
+    } catch (error) {
+      errorBox.innerText = "Something went wrong. Try again.";
+      errorBox.style.display = "block";
+      console.error(error);
+    }
   });
     </script>
     

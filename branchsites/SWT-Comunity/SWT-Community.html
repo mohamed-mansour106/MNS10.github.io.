@@ -181,5 +181,64 @@ const firebaseConfig = {
     <script src="js/auth.js"></script>
     <script type="module" src="js/firestore.js"></script>
     <script src="js/app.js"></script>
+
+
+    <script>
+        // ====== عرض الأسئلة في SWT-Community.html ======
+import { getQuestionsRealtime } from './firestore.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const questionsContainer = document.getElementById('questionsContainer');
+  const loadingIndicator = document.getElementById('loadingIndicator');
+  const emptyState = document.getElementById('emptyState');
+
+  // شغل المؤقت للتحميل
+  loadingIndicator.style.display = 'block';
+  questionsContainer.style.display = 'none';
+  emptyState.style.display = 'none';
+
+  // استمع للأسئلة realtime
+  getQuestionsRealtime((questions) => {
+    loadingIndicator.style.display = 'none';
+
+    if (!questions || questions.length === 0) {
+      questionsContainer.style.display = 'none';
+      emptyState.style.display = 'block';
+      return;
+    }
+
+    // لو فيه أسئلة
+    emptyState.style.display = 'none';
+    questionsContainer.style.display = 'block';
+
+    questionsContainer.innerHTML = questions.map(q => `
+      <div class="question-card">
+        <h3 class="question-card-title">
+          <a href="question.html?id=${q.id}">${escapeHtml(q.title)}</a>
+        </h3>
+        <p class="question-card-description">${escapeHtml(q.description)}</p>
+        <div class="question-card-footer">
+          <span>Asked by <strong>${escapeHtml(q.authorName)}</strong></span>
+          <span>${formatDate(q.createdAt)}</span>
+          <span>${q.answerCount || 0} ${(q.answerCount || 0) === 1 ? 'answer' : 'answers'}</span>
+        </div>
+      </div>
+    `).join('');
+  });
+});
+
+// ====== دوال مساعدة ======
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function formatDate(timestamp) {
+  if (!timestamp) return '';
+  const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp.seconds * 1000);
+  return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+}
+    </script>
 </body>
 </html>

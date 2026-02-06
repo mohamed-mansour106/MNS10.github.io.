@@ -135,6 +135,77 @@
     window.location.href = "login.html";
   });
     </script>
+    <script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const askForm = document.getElementById("askQuestionForm");
+    const authWarning = document.getElementById("authWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      askForm.style.display = "block";
+      authWarning.style.display = "none";
+
+      console.log("Logged in:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      askForm.style.display = "none";
+      authWarning.style.display = "block";
+    }
+  });
+
+  // Logout
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+    </script><script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const askForm = document.getElementById("askQuestionForm");
+    const authWarning = document.getElementById("authWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      askForm.style.display = "block";
+      authWarning.style.display = "none";
+
+      console.log("Logged in:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      askForm.style.display = "none";
+      authWarning.style.display = "block";
+    }
+  });
+
+  // Logout
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+    </script>
     
 </body>
 </html>

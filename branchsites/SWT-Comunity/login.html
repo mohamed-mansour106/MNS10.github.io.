@@ -11,7 +11,7 @@
   <!-- Navigation -->
   <nav class="navbar">
     <div class="container nav-container">
-      <a href="index.html" class="logo">
+      <a href="swt-community.html" class="logo">
         <div class="logo-icon">W</div>
         <span class="logo-text">Well Testing</span>
       </a>
@@ -119,7 +119,7 @@
       try {
         await auth.signInWithEmailAndPassword(email, password);
         alert("Login Success ✅");
-        window.location.href = "index.html";
+        window.location.href = "swt-community.html";
       } catch (err) {
         alert(err.message);
       }
@@ -135,7 +135,7 @@
       try {
         await auth.createUserWithEmailAndPassword(email, password);
         alert("Account Created ✅");
-        window.location.href = "index.html";
+        window.location.href = "swt-community.html";
       } catch (err) {
         alert(err.message);
       }
@@ -145,7 +145,7 @@
     googleSignInBtn.onclick = googleSignUpBtn.onclick = async () => {
       try {
         await auth.signInWithPopup(provider);
-        window.location.href = "index.html";
+        window.location.href = "swt-community.html";
       } catch (err) {
         alert(err.message);
       }

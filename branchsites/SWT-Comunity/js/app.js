@@ -1,4 +1,22 @@
-// Main Application Logic
+// app.js (Modular Firebase version)
+
+import { auth } from './firebase.js';
+import { 
+  getCurrentUser,
+  getQuestionsRealtime,
+  createQuestion,
+  getQuestionById,
+  deleteQuestion,
+  createAnswer,
+  getAnswersRealtime,
+  deleteAnswer,
+  toggleLikeAnswer,
+  getUserQuestions,
+  getUserAnswers,
+  getUserData,
+  formatDate,
+  formatSimpleDate
+} from './firestore.js';
 
 let questionsUnsubscribe = null;
 let answersUnsubscribe = null;
@@ -26,7 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// =================================
 // Home Page
+// =================================
 function initHomePage() {
     const loadingIndicator = document.getElementById('loadingIndicator');
     const questionsContainer = document.getElementById('questionsContainer');
@@ -53,82 +73,69 @@ function initHomePage() {
     }
 
     function renderQuestions(questions) {
-        questionsContainer.innerHTML = questions.map(question => `
+        questionsContainer.innerHTML = questions.map(q => `
             <div class="question-card">
                 <h3 class="question-card-title">
-                    <a href="question.html?id=${question.id}">${escapeHtml(question.title)}</a>
+                    <a href="question.html?id=${q.id}">${escapeHtml(q.title)}</a>
                 </h3>
-                <p class="question-card-description">${escapeHtml(question.description)}</p>
+                <p class="question-card-description">${escapeHtml(q.description)}</p>
                 <div class="question-card-footer">
                     <div class="question-meta">
-                        <span class="meta-item">Asked by <strong>${escapeHtml(question.authorName)}</strong></span>
-                        <span class="meta-item">${formatDate(question.createdAt)}</span>
+                        <span class="meta-item">Asked by <strong>${escapeHtml(q.authorName)}</strong></span>
+                        <span class="meta-item">${formatDate(q.createdAt)}</span>
                     </div>
-                    <span class="answers-badge">${question.answerCount || 0} ${(question.answerCount || 0) === 1 ? 'answer' : 'answers'}</span>
+                    <span class="answers-badge">${q.answerCount || 0} ${(q.answerCount || 0) === 1 ? 'answer' : 'answers'}</span>
                 </div>
             </div>
         `).join('');
     }
 
+    // Search and filter
     if (searchInput) {
         let searchTimeout;
         searchInput.addEventListener('input', (e) => {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
-                const searchTerm = e.target.value.trim().toLowerCase();
-                if (searchTerm) {
-                    const filtered = allQuestionsCache.filter(q =>
-                        q.title.toLowerCase().includes(searchTerm) ||
-                        q.description.toLowerCase().includes(searchTerm)
-                    );
-                    applyFilter(filtered);
-                } else {
-                    applyFilter(allQuestionsCache);
-                }
+                const term = e.target.value.trim().toLowerCase();
+                applyFilter(term ? allQuestionsCache.filter(q =>
+                    q.title.toLowerCase().includes(term) ||
+                    q.description.toLowerCase().includes(term)
+                ) : allQuestionsCache);
             }, 300);
         });
     }
 
     if (filterSelect) {
-        filterSelect.addEventListener('change', (e) => {
-            const searchTerm = searchInput.value.trim().toLowerCase();
-            let filtered = allQuestionsCache;
-
-            if (searchTerm) {
-                filtered = filtered.filter(q =>
-                    q.title.toLowerCase().includes(searchTerm) ||
-                    q.description.toLowerCase().includes(searchTerm)
-                );
-            }
-
+        filterSelect.addEventListener('change', () => {
+            const term = searchInput.value.trim().toLowerCase();
+            let filtered = term ? allQuestionsCache.filter(q =>
+                q.title.toLowerCase().includes(term) ||
+                q.description.toLowerCase().includes(term)
+            ) : allQuestionsCache;
             applyFilter(filtered);
         });
     }
 
     function applyFilter(questions) {
-        const filterValue = filterSelect.value;
+        const filter = filterSelect.value;
         let sorted = [...questions];
-
-        if (filterValue === 'newest') {
-            sorted.sort((a, b) => {
-                const timeA = a.createdAt?.seconds || 0;
-                const timeB = b.createdAt?.seconds || 0;
-                return timeB - timeA;
-            });
-        } else if (filterValue === 'most-answered') {
+        if (filter === 'newest') {
+            sorted.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+        } else if (filter === 'most-answered') {
             sorted.sort((a, b) => (b.answerCount || 0) - (a.answerCount || 0));
         }
-
         displayQuestions(sorted);
     }
 }
 
+// =================================
 // Ask Question Page
+// =================================
 function initAskPage() {
     const authWarning = document.getElementById('authWarning');
     const askForm = document.getElementById('askQuestionForm');
 
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(user => {
         if (user) {
             authWarning.style.display = 'none';
             askForm.style.display = 'block';
@@ -141,8 +148,7 @@ function initAskPage() {
     if (askForm) {
         askForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-
-            if (!isAuthenticated()) {
+            if (!getCurrentUser()) {
                 alert('Please login to ask a question');
                 window.location.href = 'login.html';
                 return;
@@ -181,14 +187,14 @@ function initAskPage() {
     }
 }
 
+// =================================
 // Question Detail Page
+// =================================
 function initQuestionPage() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const questionId = urlParams.get('id');
-
+    const questionId = new URLSearchParams(window.location.search).get('id');
     if (!questionId) {
         alert('Question not found');
-        window.location.href = 'index.html';
+        window.location.href = 'SWT-Community.html';
         return;
     }
 
@@ -197,7 +203,7 @@ function initQuestionPage() {
     const answerAuthWarning = document.getElementById('answerAuthWarning');
     const answerForm = document.getElementById('answerForm');
 
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(user => {
         if (user) {
             answerAuthWarning.style.display = 'none';
             answerForm.style.display = 'block';
@@ -213,8 +219,7 @@ function initQuestionPage() {
     if (answerForm) {
         answerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-
-            if (!isAuthenticated()) {
+            if (!getCurrentUser()) {
                 alert('Please login to post an answer');
                 window.location.href = 'login.html';
                 return;
@@ -248,15 +253,12 @@ function initQuestionPage() {
         });
     }
 
-    async function loadQuestion(questionId) {
-        const result = await getQuestionById(questionId);
-
+    async function loadQuestion(id) {
+        const result = await getQuestionById(id);
         questionLoadingIndicator.style.display = 'none';
-
         if (result.success) {
             questionContent.style.display = 'block';
             const question = result.question;
-
             document.getElementById('questionDetailTitle').textContent = question.title;
             document.getElementById('questionAuthor').textContent = question.authorName;
             document.getElementById('questionDate').textContent = formatDate(question.createdAt);
@@ -264,20 +266,15 @@ function initQuestionPage() {
 
             const currentUser = getCurrentUser();
             const deleteBtn = document.getElementById('deleteQuestionBtn');
-
             if (currentUser && question.authorId === currentUser.uid) {
                 deleteBtn.style.display = 'block';
-                deleteBtn.addEventListener('click', async () => {
+                deleteBtn.onclick = async () => {
                     if (confirm('Are you sure you want to delete this question?')) {
-                        const result = await deleteQuestion(questionId);
-                        if (result.success) {
-                            alert('Question deleted successfully');
-                            window.location.href = 'index.html';
-                        } else {
-                            alert('Error deleting question: ' + result.error);
-                        }
+                        const res = await deleteQuestion(id);
+                        if (res.success) window.location.href = 'SWT-Community.html';
+                        else alert(res.error);
                     }
-                });
+                };
             }
 
             document.title = question.title + ' - Well Testing Community';
@@ -309,53 +306,42 @@ function initQuestionPage() {
         const answersContainer = document.getElementById('answersContainer');
         const currentUser = getCurrentUser();
 
-        answersContainer.innerHTML = answers.map(answer => {
-            const hasLiked = currentUser && answer.likedBy && answer.likedBy.includes(currentUser.uid);
-            const canDelete = currentUser && answer.authorId === currentUser.uid;
-
+        answersContainer.innerHTML = answers.map(a => {
+            const liked = currentUser && a.likedBy?.includes(currentUser.uid);
+            const canDelete = currentUser && a.authorId === currentUser.uid;
             return `
                 <div class="answer-card">
                     <div class="answer-header">
                         <div class="question-meta">
-                            <span class="meta-item">Answered by <strong>${escapeHtml(answer.authorName)}</strong></span>
-                            <span class="meta-item">${formatDate(answer.createdAt)}</span>
+                            <span class="meta-item">Answered by <strong>${escapeHtml(a.authorName)}</strong></span>
+                            <span class="meta-item">${formatDate(a.createdAt)}</span>
                         </div>
                         <div class="answer-actions">
-                            ${currentUser ? `
-                                <button class="like-btn ${hasLiked ? 'liked' : ''}" onclick="handleLikeAnswer('${answer.id}')">
-                                    ${hasLiked ? '❤️' : '🤍'} ${answer.likes || 0}
-                                </button>
-                            ` : `
-                                <span class="like-btn">🤍 ${answer.likes || 0}</span>
-                            `}
-                            ${canDelete ? `
-                                <button class="btn btn-sm btn-danger" onclick="handleDeleteAnswer('${answer.id}', '${questionId}')">Delete</button>
-                            ` : ''}
+                            ${currentUser ? `<button class="like-btn ${liked ? 'liked' : ''}" onclick="handleLikeAnswer('${a.id}')">${liked ? '❤️' : '🤍'} ${a.likes || 0}</button>` : `<span class="like-btn">🤍 ${a.likes || 0}</span>`}
+                            ${canDelete ? `<button class="btn btn-sm btn-danger" onclick="handleDeleteAnswer('${a.id}','${questionId}')">Delete</button>` : ''}
                         </div>
                     </div>
-                    <div class="answer-content">${escapeHtml(answer.content)}</div>
+                    <div class="answer-content">${escapeHtml(a.content)}</div>
                 </div>
             `;
         }).join('');
     }
 }
 
+// =================================
 // Profile Page
+// =================================
 function initProfilePage() {
     const profileLoadingIndicator = document.getElementById('profileLoadingIndicator');
     const profileContent = document.getElementById('profileContent');
 
-    auth.onAuthStateChanged(async (user) => {
-        if (!user) {
-            window.location.href = 'login.html';
-            return;
-        }
+    auth.onAuthStateChanged(async user => {
+        if (!user) return window.location.href = 'login.html';
 
         profileLoadingIndicator.style.display = 'none';
         profileContent.style.display = 'block';
 
-        const initial = (user.displayName || user.email).charAt(0).toUpperCase();
-        document.getElementById('profileInitial').textContent = initial;
+        document.getElementById('profileInitial').textContent = (user.displayName || user.email).charAt(0).toUpperCase();
         document.getElementById('profileName').textContent = user.displayName || user.email;
         document.getElementById('profileEmail').textContent = user.email;
 
@@ -370,21 +356,6 @@ function initProfilePage() {
         loadUserAnswers(user.uid);
     });
 
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetTab = btn.getAttribute('data-tab');
-
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabContents.forEach(c => c.classList.remove('active'));
-
-            btn.classList.add('active');
-            document.getElementById(targetTab + 'Tab').classList.add('active');
-        });
-    });
-
     async function loadUserQuestions(userId) {
         const container = document.getElementById('userQuestionsContainer');
         const loading = document.getElementById('userQuestionsLoading');
@@ -392,27 +363,15 @@ function initProfilePage() {
 
         const result = await getUserQuestions(userId);
         loading.style.display = 'none';
-
         if (result.success) {
-            const questions = result.questions;
-            document.getElementById('questionsCount').textContent = questions.length;
-
-            if (questions.length === 0) {
-                noQuestions.style.display = 'block';
-            } else {
-                container.style.display = 'block';
-                container.innerHTML = questions.map(q => `
-                    <div class="question-card">
-                        <h3 class="question-card-title">
-                            <a href="question.html?id=${q.id}">${escapeHtml(q.title)}</a>
-                        </h3>
-                        <div class="question-meta">
-                            <span class="meta-item">${formatDate(q.createdAt)}</span>
-                            <span class="meta-item">${q.answerCount || 0} answers</span>
-                        </div>
-                    </div>
-                `).join('');
-            }
+            const questions = result;
+            if (!questions.length) noQuestions.style.display = 'block';
+            else container.innerHTML = questions.map(q => `
+                <div class="question-card">
+                    <h3 class="question-card-title"><a href="question.html?id=${q.id}">${escapeHtml(q.title)}</a></h3>
+                    <div class="question-meta"><span>${formatDate(q.createdAt)}</span> • <span>${q.answerCount || 0} answers</span></div>
+                </div>
+            `).join('');
         }
     }
 
@@ -423,51 +382,39 @@ function initProfilePage() {
 
         const result = await getUserAnswers(userId);
         loading.style.display = 'none';
-
         if (result.success) {
-            const answers = result.answers;
-            document.getElementById('answersCount').textContent = answers.length;
-
-            if (answers.length === 0) {
-                noAnswers.style.display = 'block';
-            } else {
-                container.style.display = 'block';
-                container.innerHTML = answers.map(a => `
-                    <div class="answer-card">
-                        <div class="answer-header">
-                            <div class="question-meta">
-                                <span class="meta-item">Answered on <strong><a href="question.html?id=${a.questionId}">${escapeHtml(a.questionTitle)}</a></strong></span>
-                                <span class="meta-item">${formatDate(a.createdAt)}</span>
-                            </div>
+            const answers = result;
+            if (!answers.length) noAnswers.style.display = 'block';
+            else container.innerHTML = answers.map(a => `
+                <div class="answer-card">
+                    <div class="answer-header">
+                        <div class="question-meta">
+                            Answered on <a href="question.html?id=${a.questionId}">${escapeHtml(a.questionTitle)}</a> • ${formatDate(a.createdAt)}
                         </div>
-                        <div class="answer-content">${escapeHtml(a.content.substring(0, 200))}${a.content.length > 200 ? '...' : ''}</div>
                     </div>
-                `).join('');
-            }
+                    <div class="answer-content">${escapeHtml(a.content.substring(0,200))}${a.content.length>200?'...':''}</div>
+                </div>
+            `).join('');
         }
     }
 }
 
-// Global handler functions for inline event handlers
-window.handleLikeAnswer = async function(answerId) {
-    const result = await toggleLikeAnswer(answerId);
-    if (!result.success) {
-        alert('Error: ' + result.error);
-    }
+// =================================
+// Global handlers
+// =================================
+window.handleLikeAnswer = async (answerId) => {
+    const res = await toggleLikeAnswer(answerId);
+    if (!res.success) alert(res.error);
 };
 
-window.handleDeleteAnswer = async function(answerId, questionId) {
+window.handleDeleteAnswer = async (answerId, questionId) => {
     if (confirm('Are you sure you want to delete this answer?')) {
-        const result = await deleteAnswer(answerId, questionId);
-        if (result.success) {
-            console.log('Answer deleted successfully');
-        } else {
-            alert('Error deleting answer: ' + result.error);
-        }
+        const res = await deleteAnswer(answerId, questionId);
+        if (!res.success) alert(res.error);
     }
 };
 
-// Utility function to escape HTML
+// Escape HTML utility
 function escapeHtml(text) {
     if (!text) return '';
     const div = document.createElement('div');
@@ -475,19 +422,8 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// Cleanup on page unload
+// Cleanup
 window.addEventListener('beforeunload', () => {
     if (questionsUnsubscribe) questionsUnsubscribe();
     if (answersUnsubscribe) answersUnsubscribe();
-});
-// auth-guard.js
-
-firebase.auth().onAuthStateChanged((user) => {
-  if (!user) {
-    // مش مسجل دخول → رجعه login
-    window.location.href = "login.html";
-  } else {
-    // مسجل دخول
-    console.log("User logged in:", user.email);
-  }
 });

@@ -4,22 +4,23 @@
 
 const firebaseConfig = {
     // Your Firebase API Key
-    apiKey: "AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    apiKey: "AIzaSyC7IVEEzzmV1n-BmQlyqf16DGZbFE4rl5Y",
 
     // Your Firebase Auth Domain
-    authDomain: "your-project-id.firebaseapp.com",
+    authDomain: "swt-community.firebaseapp.com",
 
     // Your Firebase Project ID
-    projectId: "your-project-id",
+    projectId: "swt-community",
 
     // Your Firebase Storage Bucket
-    storageBucket: "your-project-id.appspot.com",
+    storageBucket: "swt-community.firebasestorage.app",
 
     // Your Firebase Messaging Sender ID
-    messagingSenderId: "123456789012",
+    messagingSenderId: "793456550808",
 
     // Your Firebase App ID
-    appId: "1:123456789012:web:abcdef1234567890abcdef"
+    appId: "1:793456550808:web:9cd86581b8764d42c541ed",
+    measurementId: "G-JC62BSQ9JR"
 };
 
 // How to get these values:

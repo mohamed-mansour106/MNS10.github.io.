@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const page = path.substring(path.lastIndexOf('/') + 1);
 
     switch (page) {
-        case 'index.html':
+        case 'SWT-Community.html':
         case '':
             initHomePage();
             break;

@@ -480,3 +480,14 @@ window.addEventListener('beforeunload', () => {
     if (questionsUnsubscribe) questionsUnsubscribe();
     if (answersUnsubscribe) answersUnsubscribe();
 });
+// auth-guard.js
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (!user) {
+    // مش مسجل دخول → رجعه login
+    window.location.href = "login.html";
+  } else {
+    // مسجل دخول
+    console.log("User logged in:", user.email);
+  }
+});

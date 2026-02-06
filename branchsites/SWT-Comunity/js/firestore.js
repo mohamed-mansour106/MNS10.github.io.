@@ -1,5 +1,5 @@
 // js/firestore.js
-import { auth } from "./firebase.js";
+import { auth } from "./firebase.js"; // تأكد إن firebase.js فيه initializeApp و export auth
 import {
   getFirestore,
   collection,
@@ -20,7 +20,7 @@ import {
   writeBatch
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const db = getFirestore();
+export const db = getFirestore();
 
 /* =========================
    Helpers
@@ -55,13 +55,17 @@ export function getQuestionsRealtime(callback) {
     orderBy("createdAt", "desc")
   );
 
-  return onSnapshot(q, (snapshot) => {
+  const unsubscribe = onSnapshot(q, (snapshot) => {
     const questions = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
     }));
     callback(questions);
+  }, (error) => {
+    console.error("Error fetching questions:", error);
   });
+
+  return unsubscribe;
 }
 
 export async function getQuestionById(id) {
@@ -130,13 +134,17 @@ export function getAnswersRealtime(questionId, callback) {
     orderBy("createdAt", "asc")
   );
 
-  return onSnapshot(q, (snapshot) => {
+  const unsubscribe = onSnapshot(q, (snapshot) => {
     const answers = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
     }));
     callback(answers);
+  }, (error) => {
+    console.error("Error fetching answers:", error);
   });
+
+  return unsubscribe;
 }
 
 export async function deleteAnswer(answerId, questionId) {
@@ -180,4 +188,14 @@ export async function toggleLikeAnswer(answerId) {
   });
 
   return { success: true, liked: !liked };
+}
+
+/* =========================
+   Users
+========================= */
+export async function getUserData(userId) {
+  const ref = doc(db, "users", userId);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) return { success: false };
+  return { success: true, userData: snap.data() };
 }

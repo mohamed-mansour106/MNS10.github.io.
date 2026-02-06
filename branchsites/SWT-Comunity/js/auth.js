@@ -1,304 +1,171 @@
+/*********************************
+ * Firebase Config
+ *********************************/
+const firebaseConfig = {
+  apiKey: "AIzaSyC7IVEEzzmV1n-BmQlyqf16DGZbFE4rl5Y",
+  authDomain: "swt-community.firebaseapp.com",
+  projectId: "swt-community",
+  storageBucket: "swt-community.firebasestorage.app",
+  messagingSenderId: "793456550808",
+  appId: "1:793456550808:web:9cd86581b8764d42c541ed",
+  measurementId: "G-JC62BSQ9JR"
+};
 
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+/*********************************
+ * Initialize Firebase (COMPAT)
+ *********************************/
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyC7IVEEzzmV1n-BmQlyqf16DGZbFE4rl5Y",
-    authDomain: "swt-community.firebaseapp.com",
-    projectId: "swt-community",
-    storageBucket: "swt-community.firebasestorage.app",
-    messagingSenderId: "793456550808",
-    appId: "1:793456550808:web:9cd86581b8764d42c541ed",
-    measurementId: "G-JC62BSQ9JR"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
-
-/***************************** */
-
-
-// Firebase Configuration
-// Replace these values with your Firebase project configuration
-
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Current User State
+/*********************************
+ * Auth Persistence (مهم جدا)
+ *********************************/
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+/*********************************
+ * Global User
+ *********************************/
 let currentUser = null;
 
-// Auth State Observer
+/*********************************
+ * Auth State Listener (قلب المشروع)
+ *********************************/
 auth.onAuthStateChanged((user) => {
-    currentUser = user;
-    updateNavigation(user);
+  currentUser = user;
+  updateNavigation(user);
 
-    if (user) {
-        console.log('User signed in:', user.email);
-    } else {
-        console.log('User signed out');
-    }
+  console.log(
+    user ? "✅ Logged in:" + user.email : "❌ Not logged in"
+  );
 });
 
-// Update Navigation Based on Auth State
+/*********************************
+ * Update Navbar
+ *********************************/
 function updateNavigation(user) {
-    const loginNavLink = document.getElementById('loginNavLink');
-    const logoutNavBtn = document.getElementById('logoutNavBtn');
-    const profileNavLink = document.getElementById('profileNavLink');
-    const mobileLoginLink = document.getElementById('mobileLoginLink');
-    const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
-    const mobileProfileLink = document.getElementById('mobileProfileLink');
+  const loginLink = document.getElementById("loginNavLink");
+  const logoutBtn = document.getElementById("logoutNavBtn");
+  const profileLink = document.getElementById("profileNavLink");
 
-    if (user) {
-        if (loginNavLink) loginNavLink.style.display = 'none';
-        if (logoutNavBtn) logoutNavBtn.style.display = 'block';
-        if (profileNavLink) profileNavLink.style.display = 'block';
-        if (mobileLoginLink) mobileLoginLink.style.display = 'none';
-        if (mobileLogoutBtn) mobileLogoutBtn.style.display = 'block';
-        if (mobileProfileLink) mobileProfileLink.style.display = 'block';
-    } else {
-        if (loginNavLink) loginNavLink.style.display = 'block';
-        if (logoutNavBtn) logoutNavBtn.style.display = 'none';
-        if (profileNavLink) profileNavLink.style.display = 'none';
-        if (mobileLoginLink) mobileLoginLink.style.display = 'block';
-        if (mobileLogoutBtn) mobileLogoutBtn.style.display = 'none';
-        if (mobileProfileLink) mobileProfileLink.style.display = 'none';
-    }
+  if (user) {
+    if (loginLink) loginLink.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
+    if (profileLink) profileLink.style.display = "inline-block";
+  } else {
+    if (loginLink) loginLink.style.display = "inline-block";
+    if (logoutBtn) logoutBtn.style.display = "none";
+    if (profileLink) profileLink.style.display = "none";
+  }
 }
 
-// Email/Password Registration
-async function registerWithEmail(name, email, password) {
-    try {
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-        const user = userCredential.user;
-
-        await user.updateProfile({
-            displayName: name
-        });
-
-        await db.collection('users').doc(user.uid).set({
-            uid: user.uid,
-            name: name,
-            email: email,
-            role: 'user',
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-
-        console.log('User registered successfully:', user.uid);
-        return { success: true, user };
-    } catch (error) {
-        console.error('Registration error:', error);
-        return { success: false, error: error.message };
-    }
-}
-
-// Email/Password Login
+/*********************************
+ * Email Login
+ *********************************/
 async function loginWithEmail(email, password) {
-    try {
-        const userCredential = await auth.signInWithEmailAndPassword(email, password);
-        console.log('User logged in successfully:', userCredential.user.uid);
-        return { success: true, user: userCredential.user };
-    } catch (error) {
-        console.error('Login error:', error);
-        return { success: false, error: error.message };
-    }
+  return auth.signInWithEmailAndPassword(email, password);
 }
 
-// Google Sign In
+/*********************************
+ * Register
+ *********************************/
+async function registerWithEmail(name, email, password) {
+  const cred = await auth.createUserWithEmailAndPassword(email, password);
+
+  await cred.user.updateProfile({ displayName: name });
+
+  await db.collection("users").doc(cred.user.uid).set({
+    uid: cred.user.uid,
+    name,
+    email,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  });
+
+  return cred.user;
+}
+
+/*********************************
+ * Google Login
+ *********************************/
 async function signInWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    try {
-        const result = await auth.signInWithPopup(provider);
-        const user = result.user;
+  const provider = new firebase.auth.GoogleAuthProvider();
+  const result = await auth.signInWithPopup(provider);
+  const user = result.user;
 
-        const userDoc = await db.collection('users').doc(user.uid).get();
-        if (!userDoc.exists) {
-            await db.collection('users').doc(user.uid).set({
-                uid: user.uid,
-                name: user.displayName,
-                email: user.email,
-                role: 'user',
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-        }
+  const doc = await db.collection("users").doc(user.uid).get();
+  if (!doc.exists) {
+    await db.collection("users").doc(user.uid).set({
+      uid: user.uid,
+      name: user.displayName,
+      email: user.email,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
 
-        console.log('Google sign-in successful:', user.uid);
-        return { success: true, user };
-    } catch (error) {
-        console.error('Google sign-in error:', error);
-        return { success: false, error: error.message };
-    }
+  return user;
 }
 
-// Logout
+/*********************************
+ * Logout
+ *********************************/
 async function logout() {
-    try {
-        await auth.signOut();
-        console.log('User signed out successfully');
-        return { success: true };
-    } catch (error) {
-        console.error('Logout error:', error);
-        return { success: false, error: error.message };
-    }
+  await auth.signOut();
+  window.location.href = "login.html";
 }
 
-// Check if User is Authenticated
+/*********************************
+ * Helpers
+ *********************************/
 function isAuthenticated() {
-    return currentUser !== null;
+  return !!auth.currentUser;
 }
 
-// Get Current User
 function getCurrentUser() {
-    return currentUser;
+  return auth.currentUser;
 }
 
-// Get User Display Name
-function getUserDisplayName() {
-    if (currentUser) {
-        return currentUser.displayName || currentUser.email;
+/*********************************
+ * Login Form
+ *********************************/
+const loginForm = document.getElementById("loginForm");
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = loginForm.loginEmail.value.trim();
+    const password = loginForm.loginPassword.value;
+
+    try {
+      await loginWithEmail(email, password);
+      window.location.href = "SWT-Community.html";
+    } catch (err) {
+      alert(err.message);
     }
-    return null;
+  });
 }
 
-// Login Form Handler
-if (document.getElementById('loginForm')) {
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const email = document.getElementById('loginEmail').value.trim();
-        const password = document.getElementById('loginPassword').value;
-        const loginBtn = document.getElementById('loginBtn');
-        const loginBtnText = document.getElementById('loginBtnText');
-        const loginBtnSpinner = document.getElementById('loginBtnSpinner');
-        const loginError = document.getElementById('loginError');
-
-        loginBtn.disabled = true;
-        loginBtnText.style.display = 'none';
-        loginBtnSpinner.style.display = 'inline-block';
-        loginError.style.display = 'none';
-
-        const result = await loginWithEmail(email, password);
-
-        if (result.success) {
-            window.location.href = 'index.html';
-        } else {
-            loginError.textContent = result.error;
-            loginError.style.display = 'block';
-            loginBtn.disabled = false;
-            loginBtnText.style.display = 'inline';
-            loginBtnSpinner.style.display = 'none';
-        }
-    });
+/*********************************
+ * Google Buttons
+ *********************************/
+const googleBtn = document.getElementById("googleSignInBtn");
+if (googleBtn) {
+  googleBtn.addEventListener("click", async () => {
+    try {
+      await signInWithGoogle();
+      window.location.href = "SWT-Community.html";
+    } catch (err) {
+      alert(err.message);
+    }
+  });
 }
 
-// Register Form Handler
-if (document.getElementById('registerForm')) {
-    document.getElementById('registerForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById('registerName').value.trim();
-        const email = document.getElementById('registerEmail').value.trim();
-        const password = document.getElementById('registerPassword').value;
-        const registerBtn = document.getElementById('registerBtn');
-        const registerBtnText = document.getElementById('registerBtnText');
-        const registerBtnSpinner = document.getElementById('registerBtnSpinner');
-        const registerError = document.getElementById('registerError');
-
-        if (password.length < 6) {
-            registerError.textContent = 'Password must be at least 6 characters';
-            registerError.style.display = 'block';
-            return;
-        }
-
-        registerBtn.disabled = true;
-        registerBtnText.style.display = 'none';
-        registerBtnSpinner.style.display = 'inline-block';
-        registerError.style.display = 'none';
-
-        const result = await registerWithEmail(name, email, password);
-
-        if (result.success) {
-            window.location.href = 'index.html';
-        } else {
-            registerError.textContent = result.error;
-            registerError.style.display = 'block';
-            registerBtn.disabled = false;
-            registerBtnText.style.display = 'inline';
-            registerBtnSpinner.style.display = 'none';
-        }
-    });
-}
-
-// Google Sign-In Button Handlers
-const googleSignInBtn = document.getElementById('googleSignInBtn');
-const googleSignUpBtn = document.getElementById('googleSignUpBtn');
-
-if (googleSignInBtn) {
-    googleSignInBtn.addEventListener('click', async () => {
-        const result = await signInWithGoogle();
-        if (result.success) {
-            window.location.href = 'index.html';
-        } else {
-            alert('Google sign-in failed: ' + result.error);
-        }
-    });
-}
-
-if (googleSignUpBtn) {
-    googleSignUpBtn.addEventListener('click', async () => {
-        const result = await signInWithGoogle();
-        if (result.success) {
-            window.location.href = 'index.html';
-        } else {
-            alert('Google sign-up failed: ' + result.error);
-        }
-    });
-}
-
-// Logout Button Handlers
-const logoutNavBtn = document.getElementById('logoutNavBtn');
-const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
-
-if (logoutNavBtn) {
-    logoutNavBtn.addEventListener('click', async () => {
-        const result = await logout();
-        if (result.success) {
-            window.location.href = 'index.html';
-        }
-    });
-}
-
-if (mobileLogoutBtn) {
-    mobileLogoutBtn.addEventListener('click', async () => {
-        const result = await logout();
-        if (result.success) {
-            window.location.href = 'index.html';
-        }
-    });
-}
-
-// Mobile Menu Toggle
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-const closeMobileMenu = document.getElementById('closeMobileMenu');
-
-if (mobileMenuBtn && mobileMenuOverlay) {
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenuOverlay.classList.add('active');
-    });
-}
-
-if (closeMobileMenu && mobileMenuOverlay) {
-    closeMobileMenu.addEventListener('click', () => {
-        mobileMenuOverlay.classList.remove('active');
-    });
+/*********************************
+ * Logout Button
+ *********************************/
+const logoutBtn = document.getElementById("logoutNavBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", logout);
 }

@@ -1,244 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Well Testing Community - Home</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Well Testing Community</title>
 
-
-    <!---Auth firebase-->
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyC7IVEEzzmV1n-BmQlyqf16DGZbFE4rl5Y",
-    authDomain: "swt-community.firebaseapp.com",
-    projectId: "swt-community",
-    storageBucket: "swt-community.firebasestorage.app",
-    messagingSenderId: "793456550808",
-    appId: "1:793456550808:web:9cd86581b8764d42c541ed",
-    measurementId: "G-JC62BSQ9JR"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'YOUR_GA_ID');
-    </script>
-
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vd03u4om43");
-</script>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">W</div>
-                <span class="logo-text">Well Testing</span>
-            </a>
 
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">W</div>
+        <span class="logo-text">Well Testing</span>
+      </a>
 
-            <div class="nav-links" id="navLinks">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="ask.html" class="nav-link" id="askNavLink">Ask Question</a>
-                <a href="profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
-                <a href="login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
-                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
-            </div>
-        </div>
-    </nav>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="ask.html" class="nav-link">Ask Question</a>
+        <a href="login.html" class="nav-link">Login</a>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-        <div class="mobile-menu-header">
-            <div class="logo-icon">W</div>
-            <button class="close-btn" id="closeMobileMenu">×</button>
-        </div>
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container">
+      <h1>Well Testing Community</h1>
+      <p>Ask questions, share experience, grow together.</p>
+      <a href="ask.html" class="btn btn-primary">Ask a Question</a>
+    </div>
+  </section>
 
-        <div class="mobile-menu-search">
-            <input type="text" placeholder="Search questions..." id="mobileSearchInput">
-        </div>
+  <!-- ===== Main Content ===== -->
+  <main class="container">
 
-        <div class="mobile-menu-content">
-            <a href="ask.html" class="mobile-menu-item btn-primary">
-                <span>+</span> Ask Question
-            </a>
-            <a href="profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
-                Profile
-            </a>
-            <a href="login.html" class="mobile-menu-item" id="mobileLoginLink">
-                Login
-            </a>
-            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
-                Sign Out
-            </button>
-        </div>
+    <h2>Latest Questions</h2>
+
+    <!-- Loading -->
+    <div id="loadingIndicator">
+      Loading questions...
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-title">Well Testing Community</h1>
-            <p class="hero-subtitle">The Q&A platform for oil & gas well testing professionals. Ask questions, share knowledge, and grow together.</p>
-            <a href="ask.html" class="btn btn-primary btn-lg">Ask a Question</a>
-        </div>
-    </section>
+    <!-- Questions List -->
+    <div id="questionsList" class="questions-list"></div>
 
-    <!-- Main Content -->
-    <main class="container main-content">
-        <!-- Search and Filter Bar -->
-        <div class="search-bar">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search questions...">
-            <select id="filterSelect" class="filter-select">
-                <option value="newest">Newest First</option>
-                <option value="most-answered">Most Answered</option>
-            </select>
-        </div>
+    <!-- Empty State -->
+    <div id="emptyState" style="display:none;">
+      <p>No questions yet.</p>
+      <a href="ask.html">Be the first to ask</a>
+    </div>
 
-        <!-- Questions List -->
-        <div class="questions-section" id="questionsContainer">
-            <h2 class="section-title">Latest Questions</h2>
+  </main>
 
-            <div id="loadingIndicator" class="loading-indicator">
-                <div class="spinner"></div>
-                <p>Loading questions...</p>
-            </div>
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Well Testing Community</p>
+    </div>
+  </footer>
 
-            <div id="questionsContainer" class="questions-list" style="display: none;">
-                <!-- Questions will be loaded dynamically -->
-            </div>
-
-            <div id="emptyState" class="empty-state" style="display: none;">
-                <div class="empty-icon">💬</div>
-                <h3>No questions yet</h3>
-                <p>Be the first to ask a question in the Well Testing Community!</p>
-                <a href="ask.html" class="btn btn-primary">Ask the First Question</a>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-  import { getAuth } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyC7IVEEzzmV1n-BmQlyqf16DGZbFE4rl5Y",
-  authDomain: "swt-community.firebaseapp.com",
-  projectId: "swt-community",
-  storageBucket: "swt-community.firebasestorage.app",
-  messagingSenderId: "793456550808",
-  appId: "1:793456550808:web:9cd86581b8764d42c541ed",
-  measurementId: "G-JC62BSQ9JR"
-};
-  };
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  // هنا تستخدم db و auth مع الكود modular اللي في firestore.js
-</script>
-    
-    <!-- Custom Scripts -->
+  <!-- ===== App Script (MODULAR ONLY) ===== -->
     <script src="js/auth.js"></script>
-    <script type="module" src="js/firestore.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/firestore.js"></script>
+  <script type="module" src="js/app.js"></script>
 
-
-    <script>
-        // ====== عرض الأسئلة في SWT-Community.html ======
-import { getQuestionsRealtime } from './firestore.js';
-
-document.addEventListener('DOMContentLoaded', () => {
-  const questionsContainer = document.getElementById('questionsContainer');
-  const loadingIndicator = document.getElementById('loadingIndicator');
-  const emptyState = document.getElementById('emptyState');
-
-  // شغل المؤقت للتحميل
-  loadingIndicator.style.display = 'block';
-  questionsContainer.style.display = 'none';
-  emptyState.style.display = 'none';
-
-  // استمع للأسئلة realtime
-  getQuestionsRealtime((questions) => {
-    loadingIndicator.style.display = 'none';
-
-    if (!questions || questions.length === 0) {
-      questionsContainer.style.display = 'none';
-      emptyState.style.display = 'block';
-      return;
-    }
-
-    // لو فيه أسئلة
-    emptyState.style.display = 'none';
-    questionsContainer.style.display = 'block';
-
-    questionsContainer.innerHTML = questions.map(q => `
-      <div class="question-card">
-        <h3 class="question-card-title">
-          <a href="question.html?id=${q.id}">${escapeHtml(q.title)}</a>
-        </h3>
-        <p class="question-card-description">${escapeHtml(q.description)}</p>
-        <div class="question-card-footer">
-          <span>Asked by <strong>${escapeHtml(q.authorName)}</strong></span>
-          <span>${formatDate(q.createdAt)}</span>
-          <span>${q.answerCount || 0} ${(q.answerCount || 0) === 1 ? 'answer' : 'answers'}</span>
-        </div>
-      </div>
-    `).join('');
-  });
-});
-
-// ====== دوال مساعدة ======
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
-}
-
-function formatDate(timestamp) {
-  if (!timestamp) return '';
-  const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp.seconds * 1000);
-  return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-}
-    </script>
 </body>
 </html>

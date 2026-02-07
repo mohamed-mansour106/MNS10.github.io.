@@ -1,87 +1,73 @@
-/*********************************
- * Firebase Config
- *********************************/
-const firebaseConfig = {
-  apiKey: "AIzaSyC7IVEEzzmV1n-BmQlyqf16DGZbFE4rl5Y",
-  authDomain: "swt-community.firebaseapp.com",
-  projectId: "swt-community",
-  storageBucket: "swt-community.firebasestorage.app",
-  messagingSenderId: "793456550808",
-  appId: "1:793456550808:web:9cd86581b8764d42c541ed",
-  measurementId: "G-JC62BSQ9JR"
-};
+// js/auth.js (MODULAR Firebase v9+)
+
+import { app } from "./firebase-config.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 /*********************************
- * Initialize Firebase (COMPAT)
+ * Init
  *********************************/
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
-
-const auth = firebase.auth();
-const db = firebase.firestore();
+export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 /*********************************
- * Auth Persistence (مهم جدا)
+ * Auth Persistence
  *********************************/
-auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+setPersistence(auth, browserLocalPersistence);
 
 /*********************************
- * Global User
+ * Auth State Listener
  *********************************/
-let currentUser = null;
-
-/*********************************
- * Auth State Listener (قلب المشروع)
- *********************************/
-auth.onAuthStateChanged((user) => {
-  currentUser = user;
-  updateNavigation(user);
-
-  console.log(
-    user ? "✅ Logged in:" + user.email : "❌ Not logged in"
-  );
-});
-
-/*********************************
- * Update Navbar
- *********************************/
-function updateNavigation(user) {
-  const loginLink = document.getElementById("loginNavLink");
-  const logoutBtn = document.getElementById("logoutNavBtn");
-  const profileLink = document.getElementById("profileNavLink");
-
-  if (user) {
-    if (loginLink) loginLink.style.display = "none";
-    if (logoutBtn) logoutBtn.style.display = "inline-block";
-    if (profileLink) profileLink.style.display = "inline-block";
-  } else {
-    if (loginLink) loginLink.style.display = "inline-block";
-    if (logoutBtn) logoutBtn.style.display = "none";
-    if (profileLink) profileLink.style.display = "none";
-  }
+export function listenToAuthState(callback) {
+  return onAuthStateChanged(auth, (user) => {
+    console.log(
+      user ? "✅ Logged in: " + user.email : "❌ Not logged in"
+    );
+    if (callback) callback(user);
+  });
 }
 
 /*********************************
  * Email Login
  *********************************/
-async function loginWithEmail(email, password) {
-  return auth.signInWithEmailAndPassword(email, password);
+export async function loginWithEmail(email, password) {
+  const cred = await signInWithEmailAndPassword(auth, email, password);
+  return cred.user;
 }
 
 /*********************************
- * Register
+ * Register with Email
  *********************************/
-async function registerWithEmail(name, email, password) {
-  const cred = await auth.createUserWithEmailAndPassword(email, password);
+export async function registerWithEmail(name, email, password) {
+  const cred = await createUserWithEmailAndPassword(auth, email, password);
 
-  await cred.user.updateProfile({ displayName: name });
+  await updateProfile(cred.user, {
+    displayName: name
+  });
 
-  await db.collection("users").doc(cred.user.uid).set({
+  await setDoc(doc(db, "users", cred.user.uid), {
     uid: cred.user.uid,
     name,
     email,
-    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    createdAt: serverTimestamp()
   });
 
   return cred.user;
@@ -90,18 +76,20 @@ async function registerWithEmail(name, email, password) {
 /*********************************
  * Google Login
  *********************************/
-async function signInWithGoogle() {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  const result = await auth.signInWithPopup(provider);
+export async function signInWithGoogle() {
+  const provider = new GoogleAuthProvider();
+  const result = await signInWithPopup(auth, provider);
   const user = result.user;
 
-  const doc = await db.collection("users").doc(user.uid).get();
-  if (!doc.exists) {
-    await db.collection("users").doc(user.uid).set({
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
+
+  if (!snap.exists()) {
+    await setDoc(ref, {
       uid: user.uid,
       name: user.displayName,
       email: user.email,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      createdAt: serverTimestamp()
     });
   }
 
@@ -111,61 +99,18 @@ async function signInWithGoogle() {
 /*********************************
  * Logout
  *********************************/
-async function logout() {
-  await auth.signOut();
+export async function logout() {
+  await signOut(auth);
   window.location.href = "login.html";
 }
 
 /*********************************
  * Helpers
  *********************************/
-function isAuthenticated() {
-  return !!auth.currentUser;
-}
-
-function getCurrentUser() {
+export function getCurrentUser() {
   return auth.currentUser;
 }
 
-/*********************************
- * Login Form
- *********************************/
-const loginForm = document.getElementById("loginForm");
-if (loginForm) {
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = loginForm.loginEmail.value.trim();
-    const password = loginForm.loginPassword.value;
-
-    try {
-      await loginWithEmail(email, password);
-      window.location.href = "SWT-Community.html";
-    } catch (err) {
-      alert(err.message);
-    }
-  });
-}
-
-/*********************************
- * Google Buttons
- *********************************/
-const googleBtn = document.getElementById("googleSignInBtn");
-if (googleBtn) {
-  googleBtn.addEventListener("click", async () => {
-    try {
-      await signInWithGoogle();
-      window.location.href = "SWT-Community.html";
-    } catch (err) {
-      alert(err.message);
-    }
-  });
-}
-
-/*********************************
- * Logout Button
- *********************************/
-const logoutBtn = document.getElementById("logoutNavBtn");
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", logout);
+export function isAuthenticated() {
+  return !!auth.currentUser;
 }

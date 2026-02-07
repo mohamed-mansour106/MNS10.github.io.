@@ -1,6 +1,9 @@
 // js/firestore.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 import {
   getFirestore,
   collection,
@@ -21,92 +24,118 @@ import {
   writeBatch
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
-import { firebaseConfig } from "../firebase-config.example.js"; // عدّل المسار حسب مكانك
+import { firebaseConfig } from "../firebase-config.example.js"; 
+// عدّل المسار لو الملف في مكان مختلف
 
-// =========================
-// Initialize Firebase
-// =========================
+/* =========================
+   Initialize Firebase
+========================= */
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-// =========================
-// Helpers
-// =========================
+/* =========================
+   Helpers
+========================= */
 export function getCurrentUser() {
   return auth.currentUser;
 }
 
-// =========================
-// Questions
-// =========================
+/* =========================
+   Questions
+========================= */
 export async function createQuestion(title, description) {
   const user = getCurrentUser();
-  if (!user) return { success: false, error: "Not authenticated" };
+  if (!user) {
+    return { success: false, error: "Not authenticated" };
+  }
 
-  const data = {
+  if (!title || !description) {
+    return { success: false, error: "Missing data" };
+  }
+
+  const docRef = await addDoc(collection(db, "questions"), {
     title,
     description,
     authorId: user.uid,
     authorName: user.displayName || user.email,
     createdAt: serverTimestamp(),
     answerCount: 0
-  };
+  });
 
-  const ref = await addDoc(collection(db, "questions"), data);
-  return { success: true, questionId: ref.id };
+  return { success: true, questionId: docRef.id };
 }
 
 export function getQuestionsRealtime(callback) {
-  const q = query(collection(db, "questions"), orderBy("createdAt", "desc"));
+  const q = query(
+    collection(db, "questions"),
+    orderBy("createdAt", "desc")
+  );
 
-  const unsubscribe = onSnapshot(
+  return onSnapshot(
     q,
-    (snapshot) => {
-      const questions = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
+    snapshot => {
+      const questions = snapshot.docs.map(d => ({
+        id: d.id,
+        ...d.data()
       }));
       callback(questions);
     },
-    (error) => console.error("Error fetching questions:", error)
+    error => console.error("Questions listener error:", error)
   );
-
-  return unsubscribe;
 }
 
-export async function getQuestionById(id) {
-  const ref = doc(db, "questions", id);
+export async function getQuestionById(questionId) {
+  const ref = doc(db, "questions", questionId);
   const snap = await getDoc(ref);
-  if (!snap.exists()) return { success: false, error: "Question not found" };
-  return { success: true, question: { id: snap.id, ...snap.data() } };
+
+  if (!snap.exists()) {
+    return { success: false, error: "Question not found" };
+  }
+
+  return {
+    success: true,
+    question: { id: snap.id, ...snap.data() }
+  };
 }
 
 export async function deleteQuestion(questionId) {
   const user = getCurrentUser();
-  if (!user) return { success: false };
+  if (!user) return { success: false, error: "Not authenticated" };
 
-  const qRef = doc(db, "questions", questionId);
-  const qSnap = await getDoc(qRef);
-  if (!qSnap.exists()) return { success: false };
-  if (qSnap.data().authorId !== user.uid) return { success: false, error: "Unauthorized" };
+  const questionRef = doc(db, "questions", questionId);
+  const questionSnap = await getDoc(questionRef);
 
-  const answersSnap = await getDocs(query(collection(db, "answers"), where("questionId", "==", questionId)));
+  if (!questionSnap.exists()) {
+    return { success: false, error: "Question not found" };
+  }
 
+  if (questionSnap.data().authorId !== user.uid) {
+    return { success: false, error: "Unauthorized" };
+  }
+
+  const answersQuery = query(
+    collection(db, "answers"),
+    where("questionId", "==", questionId)
+  );
+
+  const answersSnap = await getDocs(answersQuery);
   const batch = writeBatch(db);
-  answersSnap.forEach(doc => batch.delete(doc.ref));
-  batch.delete(qRef);
-  await batch.commit();
 
+  answersSnap.forEach(a => batch.delete(a.ref));
+  batch.delete(questionRef);
+
+  await batch.commit();
   return { success: true };
 }
 
-// =========================
-// Answers
-// =========================
+/* =========================
+   Answers
+========================= */
 export async function createAnswer(questionId, content) {
   const user = getCurrentUser();
-  if (!user) return { success: false };
+  if (!user) return { success: false, error: "Not authenticated" };
+  if (!content) return { success: false, error: "Empty answer" };
 
   await addDoc(collection(db, "answers"), {
     questionId,
@@ -126,65 +155,85 @@ export async function createAnswer(questionId, content) {
 }
 
 export function getAnswersRealtime(questionId, callback) {
-  const q = query(collection(db, "answers"), where("questionId", "==", questionId), orderBy("createdAt", "asc"));
+  const q = query(
+    collection(db, "answers"),
+    where("questionId", "==", questionId),
+    orderBy("createdAt", "asc")
+  );
 
-  const unsubscribe = onSnapshot(
+  return onSnapshot(
     q,
-    (snapshot) => {
-      const answers = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
+    snapshot => {
+      const answers = snapshot.docs.map(d => ({
+        id: d.id,
+        ...d.data()
       }));
       callback(answers);
     },
-    (error) => console.error("Error fetching answers:", error)
+    error => console.error("Answers listener error:", error)
   );
-
-  return unsubscribe;
 }
 
 export async function deleteAnswer(answerId, questionId) {
   const user = getCurrentUser();
-  if (!user) return { success: false };
+  if (!user) return { success: false, error: "Not authenticated" };
 
   const ref = doc(db, "answers", answerId);
   const snap = await getDoc(ref);
-  if (!snap.exists()) return { success: false };
-  if (snap.data().authorId !== user.uid) return { success: false, error: "Unauthorized" };
+
+  if (!snap.exists()) {
+    return { success: false, error: "Answer not found" };
+  }
+
+  if (snap.data().authorId !== user.uid) {
+    return { success: false, error: "Unauthorized" };
+  }
 
   await deleteDoc(ref);
-  await updateDoc(doc(db, "questions", questionId), { answerCount: increment(-1) });
+  await updateDoc(doc(db, "questions", questionId), {
+    answerCount: increment(-1)
+  });
 
   return { success: true };
 }
 
-// =========================
-// Likes
-// =========================
+/* =========================
+   Likes
+========================= */
 export async function toggleLikeAnswer(answerId) {
   const user = getCurrentUser();
-  if (!user) return { success: false };
+  if (!user) return { success: false, error: "Not authenticated" };
 
   const ref = doc(db, "answers", answerId);
   const snap = await getDoc(ref);
-  if (!snap.exists()) return { success: false };
 
-  const liked = snap.data().likedBy?.includes(user.uid);
+  if (!snap.exists()) {
+    return { success: false, error: "Answer not found" };
+  }
+
+  const likedBy = snap.data().likedBy || [];
+  const alreadyLiked = likedBy.includes(user.uid);
 
   await updateDoc(ref, {
-    likes: increment(liked ? -1 : 1),
-    likedBy: liked ? arrayRemove(user.uid) : arrayUnion(user.uid)
+    likes: increment(alreadyLiked ? -1 : 1),
+    likedBy: alreadyLiked
+      ? arrayRemove(user.uid)
+      : arrayUnion(user.uid)
   });
 
-  return { success: true, liked: !liked };
+  return { success: true, liked: !alreadyLiked };
 }
 
-// =========================
-// Users
-// =========================
+/* =========================
+   Users
+========================= */
 export async function getUserData(userId) {
   const ref = doc(db, "users", userId);
   const snap = await getDoc(ref);
-  if (!snap.exists()) return { success: false };
+
+  if (!snap.exists()) {
+    return { success: false, error: "User not found" };
+  }
+
   return { success: true, userData: snap.data() };
 }

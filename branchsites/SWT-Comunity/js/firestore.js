@@ -1,5 +1,6 @@
 // js/firestore.js
-import { auth } from "./firebase.js"; // تأكد إن firebase.js فيه initializeApp و export auth
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
 import {
   getFirestore,
   collection,
@@ -18,20 +19,27 @@ import {
   arrayUnion,
   arrayRemove,
   writeBatch
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
-export const db = getFirestore();
+import { firebaseConfig } from "../firstoreconfig.example.js"; // عدّل المسار حسب مكانك
 
-/* =========================
-   Helpers
-========================= */
+// =========================
+// Initialize Firebase
+// =========================
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+
+// =========================
+// Helpers
+// =========================
 export function getCurrentUser() {
   return auth.currentUser;
 }
 
-/* =========================
-   Questions
-========================= */
+// =========================
+// Questions
+// =========================
 export async function createQuestion(title, description) {
   const user = getCurrentUser();
   if (!user) return { success: false, error: "Not authenticated" };
@@ -50,20 +58,19 @@ export async function createQuestion(title, description) {
 }
 
 export function getQuestionsRealtime(callback) {
-  const q = query(
-    collection(db, "questions"),
-    orderBy("createdAt", "desc")
-  );
+  const q = query(collection(db, "questions"), orderBy("createdAt", "desc"));
 
-  const unsubscribe = onSnapshot(q, (snapshot) => {
-    const questions = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }));
-    callback(questions);
-  }, (error) => {
-    console.error("Error fetching questions:", error);
-  });
+  const unsubscribe = onSnapshot(
+    q,
+    (snapshot) => {
+      const questions = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      callback(questions);
+    },
+    (error) => console.error("Error fetching questions:", error)
+  );
 
   return unsubscribe;
 }
@@ -71,11 +78,7 @@ export function getQuestionsRealtime(callback) {
 export async function getQuestionById(id) {
   const ref = doc(db, "questions", id);
   const snap = await getDoc(ref);
-
-  if (!snap.exists()) {
-    return { success: false, error: "Question not found" };
-  }
-
+  if (!snap.exists()) return { success: false, error: "Question not found" };
   return { success: true, question: { id: snap.id, ...snap.data() } };
 }
 
@@ -86,14 +89,9 @@ export async function deleteQuestion(questionId) {
   const qRef = doc(db, "questions", questionId);
   const qSnap = await getDoc(qRef);
   if (!qSnap.exists()) return { success: false };
+  if (qSnap.data().authorId !== user.uid) return { success: false, error: "Unauthorized" };
 
-  if (qSnap.data().authorId !== user.uid) {
-    return { success: false, error: "Unauthorized" };
-  }
-
-  const answersSnap = await getDocs(
-    query(collection(db, "answers"), where("questionId", "==", questionId))
-  );
+  const answersSnap = await getDocs(query(collection(db, "answers"), where("questionId", "==", questionId)));
 
   const batch = writeBatch(db);
   answersSnap.forEach(doc => batch.delete(doc.ref));
@@ -103,9 +101,9 @@ export async function deleteQuestion(questionId) {
   return { success: true };
 }
 
-/* =========================
-   Answers
-========================= */
+// =========================
+// Answers
+// =========================
 export async function createAnswer(questionId, content) {
   const user = getCurrentUser();
   if (!user) return { success: false };
@@ -128,21 +126,19 @@ export async function createAnswer(questionId, content) {
 }
 
 export function getAnswersRealtime(questionId, callback) {
-  const q = query(
-    collection(db, "answers"),
-    where("questionId", "==", questionId),
-    orderBy("createdAt", "asc")
-  );
+  const q = query(collection(db, "answers"), where("questionId", "==", questionId), orderBy("createdAt", "asc"));
 
-  const unsubscribe = onSnapshot(q, (snapshot) => {
-    const answers = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }));
-    callback(answers);
-  }, (error) => {
-    console.error("Error fetching answers:", error);
-  });
+  const unsubscribe = onSnapshot(
+    q,
+    (snapshot) => {
+      const answers = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      callback(answers);
+    },
+    (error) => console.error("Error fetching answers:", error)
+  );
 
   return unsubscribe;
 }
@@ -154,22 +150,17 @@ export async function deleteAnswer(answerId, questionId) {
   const ref = doc(db, "answers", answerId);
   const snap = await getDoc(ref);
   if (!snap.exists()) return { success: false };
-
-  if (snap.data().authorId !== user.uid) {
-    return { success: false, error: "Unauthorized" };
-  }
+  if (snap.data().authorId !== user.uid) return { success: false, error: "Unauthorized" };
 
   await deleteDoc(ref);
-  await updateDoc(doc(db, "questions", questionId), {
-    answerCount: increment(-1)
-  });
+  await updateDoc(doc(db, "questions", questionId), { answerCount: increment(-1) });
 
   return { success: true };
 }
 
-/* =========================
-   Likes
-========================= */
+// =========================
+// Likes
+// =========================
 export async function toggleLikeAnswer(answerId) {
   const user = getCurrentUser();
   if (!user) return { success: false };
@@ -182,17 +173,15 @@ export async function toggleLikeAnswer(answerId) {
 
   await updateDoc(ref, {
     likes: increment(liked ? -1 : 1),
-    likedBy: liked
-      ? arrayRemove(user.uid)
-      : arrayUnion(user.uid)
+    likedBy: liked ? arrayRemove(user.uid) : arrayUnion(user.uid)
   });
 
   return { success: true, liked: !liked };
 }
 
-/* =========================
-   Users
-========================= */
+// =========================
+// Users
+// =========================
 export async function getUserData(userId) {
   const ref = doc(db, "users", userId);
   const snap = await getDoc(ref);

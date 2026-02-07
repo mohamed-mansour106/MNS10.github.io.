@@ -21,7 +21,7 @@ import {
   writeBatch
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
-import { firebaseConfig } from "../firstoreconfig.example.js"; // عدّل المسار حسب مكانك
+import { firebaseConfig } from "../firebase-config.example.js"; // عدّل المسار حسب مكانك
 
 // =========================
 // Initialize Firebase

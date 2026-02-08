@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const page = path.substring(path.lastIndexOf('/') + 1).toLowerCase();
 
   switch (page) {
-    case 'swt-community.html':
-    case 'index.html':
+    case 'SWT-Community.html':
+    case 'SWT-Community.html':
     case '':
       initHomePage();
       break;
@@ -260,7 +260,7 @@ function initQuestionPage() {
 
   if (!questionId) {
     alert('Question not found');
-    window.location.href = 'index.html';
+    window.location.href = 'SWT-Community.html';
     return;
   }
 
@@ -353,7 +353,7 @@ function initQuestionPage() {
             const deleteResult = await deleteQuestion(qId);
             if (deleteResult.success) {
               alert('Question deleted successfully');
-              window.location.href = 'index.html';
+              window.location.href = 'SWT-Community.html';
             } else {
               alert('Error deleting question: ' + (deleteResult.error || 'Unknown error'));
             }
@@ -363,7 +363,7 @@ function initQuestionPage() {
 
       document.title = `${question.title || 'Question'} - Well Testing Community`;
     } else if (questionContent) {
-      questionContent.innerHTML = '<div class="empty-state"><h3>Question not found</h3><a href="index.html" class="btn btn-primary">Back to Home</a></div>';
+      questionContent.innerHTML = '<div class="empty-state"><h3>Question not found</h3><a href="SWT-Community.html" class="btn btn-primary">Back to Home</a></div>';
       questionContent.style.display = 'block';
     }
   }

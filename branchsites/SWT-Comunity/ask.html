@@ -1,184 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ask Question - Well Testing Community</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Well Testing Community</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="SWT-Community.html" class="logo">
-                <div class="logo-icon">W</div>
-                <span class="logo-text">Well Testing</span>
-            </a>
 
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="SWT-Community.html" class="logo">
+        <div class="logo-icon">W</div>
+        <span class="logo-text">Well Testing</span>
+      </a>
+    </div>
+  </nav>
 
-            <div class="nav-links" id="navLinks">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="ask.html" class="nav-link active" id="askNavLink">Ask Question</a>
-                <a href="profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
-                <a href="login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
-                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
-            </div>
+  <!-- Auth Container -->
+  <main class="auth-container">
+
+    <!-- LOGIN BOX -->
+    <div class="auth-box" id="loginBox">
+      <h1 class="auth-title">Welcome Back</h1>
+      <p class="auth-subtitle">Sign in to your account</p>
+
+      <form id="loginForm" class="auth-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" class="form-input" required />
         </div>
-    </nav>
 
-    <!-- Main Content -->
-    <main class="container main-content">
-        <div class="ask-container">
-            <h1 class="page-title">Ask a Question</h1>
-            <p class="page-subtitle">Share your well testing challenges with the community</p>
-
-            <div id="authWarning" class="warning-message">
-                <p>Please <a href="login.html">login</a> to ask a question.</p>
-            </div>
-
-            <form id="askQuestionForm" class="ask-form" style="display: none;">
-                <div class="form-group">
-                    <label for="questionTitle">Question Title</label>
-                    <input
-                        type="text"
-                        id="questionTitle"
-                        class="form-input"
-                        placeholder="e.g., How to calibrate pressure gauge for DST operations?"
-                        required
-                        maxlength="200"
-                    >
-                    <span class="form-hint">Be specific and concise</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="questionDescription">Details</label>
-                    <textarea
-                        id="questionDescription"
-                        class="form-textarea"
-                        placeholder="Describe your question in detail. Include any relevant information about equipment, procedures, or conditions..."
-                        required
-                        rows="10"
-                    ></textarea>
-                    <span class="form-hint">Provide context and details to help others understand your question</span>
-                </div>
-
-                <div id="askError" class="error-message" style="display: none;"></div>
-                <div id="askSuccess" class="success-message" style="display: none;"></div>
-
-                <div class="form-actions">
-                    <a href="index.html" class="btn btn-outline">Cancel</a>
-                    <button type="submit" class="btn btn-primary" id="submitQuestionBtn">
-                        <span id="submitBtnText">Post Question</span>
-                        <span id="submitBtnSpinner" class="btn-spinner" style="display: none;"></span>
-                    </button>
-                </div>
-            </form>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" class="form-input" required />
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        <button type="submit" class="btn btn-primary btn-block">
+          Sign In
+        </button>
+      </form>
+
+      <div class="auth-divider"><span>or</span></div>
+
+      <button id="googleSignInBtn" class="btn btn-outline btn-block google-btn">
+        Continue with Google
+      </button>
+
+      <div class="auth-switch">
+        Don't have an account?
+        <a href="#" id="showRegister">Create one</a>
+      </div>
+    </div>
+
+    <!-- REGISTER BOX -->
+    <div class="auth-box" id="registerBox" style="display:none;">
+      <h1 class="auth-title">Create Account</h1>
+
+      <form id="registerForm" class="auth-form">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="registerName" class="form-input" required />
         </div>
-    </footer>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="registerEmail" class="form-input" required />
+        </div>
 
-    <!-- Custom Scripts -->
-    <script src="js/auth.js"></script>
-    <script src="js/firestore.js"></script>
-    <script src="js/app.js"></script>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="registerPassword" class="form-input" required />
+        </div>
 
-    <script>
-  firebase.auth().onAuthStateChanged((user) => {
-    const loginLink = document.getElementById("loginNavLink");
-    const logoutBtn = document.getElementById("logoutNavBtn");
-    const profileLink = document.getElementById("profileNavLink");
+        <button type="submit" class="btn btn-primary btn-block">
+          Create Account
+        </button>
+      </form>
 
-    const askForm = document.getElementById("askQuestionForm");
-    const authWarning = document.getElementById("authWarning");
+      <div class="auth-divider"><span>or</span></div>
 
-    if (user) {
-      // ===== Logged In =====
-      loginLink.style.display = "none";
-      logoutBtn.style.display = "inline-block";
-      profileLink.style.display = "inline-block";
+      <button id="googleSignUpBtn" class="btn btn-outline btn-block google-btn">
+        Sign up with Google
+      </button>
 
-      authWarning.style.display = "none";
-      askForm.style.display = "block";
+      <div class="auth-switch">
+        Already have an account?
+        <a href="#" id="showLogin">Sign in</a>
+      </div>
+    </div>
 
-    } else {
-      // ===== Not Logged In =====
-      loginLink.style.display = "inline-block";
-      logoutBtn.style.display = "none";
-      profileLink.style.display = "none";
+  </main>
 
-      authWarning.style.display = "block";
-      askForm.style.display = "none";
-    }
-  });
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
-  // Logout
-  document.getElementById("logoutNavBtn").addEventListener("click", () => {
-    firebase.auth().signOut().then(() => {
-      window.location.href = "login.html";
+  <script>
+    // 🔥 Firebase Config (بدّل القيم بتاعتك)
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7IVEEzzmV1n-BmQlyqf16DGZbFE4rl5Y",
+      authDomain: "swt-community.firebaseapp.com",
+      projectId: "swt-community",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    // ===== Login =====
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = loginEmail.value;
+      const password = loginPassword.value;
+
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+        alert("Login Success ✅");
+        window.location.href = "SWT-Community.html";
+      } catch (err) {
+        alert(err.message);
+      }
     });
-  });
 
-  // Submit Question
-  document.getElementById("askQuestionForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // ===== Register =====
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    const title = document.getElementById("questionTitle").value.trim();
-    const description = document.getElementById("questionDescription").value.trim();
-    const errorBox = document.getElementById("askError");
-    const successBox = document.getElementById("askSuccess");
+      const email = registerEmail.value;
+      const password = registerPassword.value;
 
-    errorBox.style.display = "none";
-    successBox.style.display = "none";
+      try {
+        await auth.createUserWithEmailAndPassword(email, password);
+        alert("Account Created ✅");
+        window.location.href = "SWT-Community.html";
+      } catch (err) {
+        alert(err.message);
+      }
+    });
 
-    if (!title || !description) {
-      errorBox.innerText = "Please fill all fields.";
-      errorBox.style.display = "block";
-      return;
-    }
+    // ===== Google Sign In =====
+    googleSignInBtn.onclick = googleSignUpBtn.onclick = async () => {
+      try {
+        await auth.signInWithPopup(provider);
+        window.location.href = "SWT-Community.html";
+      } catch (err) {
+        alert(err.message);
+      }
+    };
 
-    const user = firebase.auth().currentUser;
-    if (!user) {
-      window.location.href = "login.html";
-      return;
-    }
+    // ===== Switch Forms =====
+    showRegister.onclick = () => {
+      loginBox.style.display = "none";
+      registerBox.style.display = "block";
+    };
 
-    try {
-      await firebase.firestore().collection("questions").add({
-        title: title,
-        description: description,
-        userId: user.uid,
-        userEmail: user.email,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
+    showLogin.onclick = () => {
+      registerBox.style.display = "none";
+      loginBox.style.display = "block";
+    };
+  </script>
 
-      successBox.innerText = "Question posted successfully!";
-      successBox.style.display = "block";
-
-      document.getElementById("askQuestionForm").reset();
-
-    } catch (error) {
-      errorBox.innerText = "Something went wrong. Try again.";
-      errorBox.style.display = "block";
-      console.error(error);
-    }
-  });
-    </script>
-    
 </body>
 </html>

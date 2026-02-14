@@ -426,27 +426,7 @@ function initQuestionPage() {
 
 
 
-/*********/
-function getAnswersRealtime(questionId, callback) {
-  return firebase.firestore()
-    .collection('answers')
-    .where('questionId', '==', questionId)
-    .orderBy('createdAt', 'desc')
-    .onSnapshot((snapshot) => {
 
-      console.log("Snapshot size:", snapshot.size);
-
-      const answers = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-
-      callback(answers);
-    }, (error) => {
-      console.error("Error loading answers:", error);
-    });
-}
-/********/
 
 // ====== Profile Page ======
 function initProfilePage() {

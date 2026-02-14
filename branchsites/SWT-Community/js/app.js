@@ -387,6 +387,85 @@ function initQuestionPage() {
     });
   }
 
+  /********************/
+function renderAnswers(answers = [], qId) {
+  const answersContainer = document.getElementById('answersContainer');
+  const currentUser = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+
+  if (!answersContainer) {
+    console.error("answersContainer not found");
+    return;
+  }
+
+  // لو مفيش إجابات
+  if (!Array.isArray(answers) || answers.length === 0) {
+    answersContainer.innerHTML = `
+      <div class="no-answers">
+        No answers yet. Be the first to answer!
+      </div>
+    `;
+    return;
+  }
+
+  answersContainer.innerHTML = answers.map((answer) => {
+
+    const answerId = answer.id || answer.docId || "";
+    const likes = answer.likes || 0;
+    const likedBy = answer.likedBy || [];
+
+    const hasLiked = currentUser && likedBy.includes(currentUser.uid);
+    const canDelete = currentUser && answer.authorId === currentUser.uid;
+
+    // معالجة Firestore Timestamp
+    let createdAt = "";
+    if (answer.createdAt) {
+      if (answer.createdAt.toDate) {
+        createdAt = formatDate(answer.createdAt.toDate());
+      } else {
+        createdAt = formatDate(answer.createdAt);
+      }
+    }
+
+    return `
+      <div class="answer-card" id="answer-${answerId}">
+        <div class="answer-header">
+          <div class="question-meta">
+            <span class="meta-item">
+              Answered by <strong>${escapeHtml(answer.authorName || "Unknown")}</strong>
+            </span>
+            <span class="meta-item">${createdAt}</span>
+          </div>
+
+          <div class="answer-actions">
+            ${currentUser ? `
+              <button 
+                class="like-btn ${hasLiked ? 'liked' : ''}" 
+                onclick="handleLikeAnswer('${answerId}', '${qId}')">
+                ${hasLiked ? 'Liked' : 'Like'} ${likes}
+              </button>
+            ` : `
+              <span class="like-btn">Like ${likes}</span>
+            `}
+
+            ${canDelete ? `
+              <button 
+                class="btn btn-sm btn-danger" 
+                onclick="handleDeleteAnswer('${answerId}', '${qId}')">
+                Delete
+              </button>
+            ` : ''}
+          </div>
+        </div>
+
+        <div class="answer-content">
+          ${escapeHtml(answer.content || "")}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+  /****************†**/
+
   function renderAnswers(answers, qId) {
     const answersContainer = document.getElementById('answersContainer');
     const currentUser = typeof getCurrentUser === 'function' ? getCurrentUser() : null;

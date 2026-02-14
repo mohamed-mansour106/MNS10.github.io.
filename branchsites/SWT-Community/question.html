@@ -154,8 +154,13 @@
     await firebase.auth().signOut();
     window.location.href = "login.html";
   });
+
+        window.onerror = function(message, source, lineno, colno, error) {
+  debugLog("JS Error: " + message);
+};
     </script>
 
+    
     
 </body>
 </html>

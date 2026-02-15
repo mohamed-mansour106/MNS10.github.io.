@@ -1,4 +1,4 @@
-﻿// js/app.js
+// js/app.js
 // Main Application Logic (Firebase compat SDK)
 
 let questionsUnsubscribe = null;
@@ -326,35 +326,6 @@ function initQuestionPage() {
     });
   }
 
-/*********"""""*****/
-
-import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
-
-function getAnswersRealtime(questionId, callback) {
-
-  const q = query(
-    collection(db, "answers"),
-    where("questionId", "==", questionId),
-    orderBy("createdAt", "desc")
-  );
-
-  return onSnapshot(q, (snapshot) => {
-
-    const answers = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }));
-
-    callback(answers);
-
-  }, (error) => {
-    console.error("Realtime error:", error);
-  });
-}
-  
-/*****************†*/
-
-  
   async function loadQuestion(qId) {
     const result = await getQuestionById(qId);
 
@@ -416,7 +387,6 @@ function getAnswersRealtime(questionId, callback) {
     });
   }
 
-
   function renderAnswers(answers, qId) {
     const answersContainer = document.getElementById('answersContainer');
     const currentUser = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
@@ -453,10 +423,6 @@ function getAnswersRealtime(questionId, callback) {
     }).join('');
   }
 }
-
-
-
-
 
 // ====== Profile Page ======
 function initProfilePage() {

@@ -254,6 +254,27 @@ function initAskPage() {
 }
 
 // ====== Question Detail Page ======
+
+
+/****************************/
+function initQuestionPage() {
+  const params = new URLSearchParams(window.location.search);
+  const qId = params.get("id");
+
+  console.log("Question ID:", qId);
+
+  if (!qId) {
+    console.error("No question ID found in URL");
+    return;
+  }
+
+  getAnswersRealtime(qId);
+}
+
+/***************************/
+
+
+
 function initQuestionPage() {
   const urlParams = new URLSearchParams(window.location.search);
   const questionId = urlParams.get('id');

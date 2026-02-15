@@ -156,39 +156,7 @@
   });
     </script>
 
-    <script>
-        async function fixAnswersQuestionId(correctQuestionId) {
-  const db = firebase.firestore();
-
-  try {
-    const snapshot = await db.collection("answers").get();
-
-    if (snapshot.empty) {
-      console.log("No answers found.");
-      return;
-    }
-
-    let batch = db.batch();
-    let count = 0;
-
-    snapshot.forEach((doc) => {
-      const answerRef = db.collection("answers").doc(doc.id);
-
-      batch.update(answerRef, {
-        questionId: correctQuestionId
-      });
-
-      count++;
-    });
-
-    await batch.commit();
-
-    console.log(`✅ Updated ${count} answers successfully.`);
-  } catch (error) {
-    console.error("❌ Error updating answers:", error);
-  }
-        }
-    </script>
+    
     
 </body>
 </html>

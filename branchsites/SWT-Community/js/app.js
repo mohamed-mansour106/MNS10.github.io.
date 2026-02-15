@@ -331,6 +331,26 @@ function initQuestionPage() {
     });
   }
 
+  /*********************/
+       async function createAnswer(questionId, content) {
+  try {
+    const currentUser = getCurrentUser();
+    const docRef = await firebase.firestore().collection('answers').add({
+      questionId: questionId, // مهم جداً
+      authorId: currentUser.uid,
+      authorName: currentUser.displayName || currentUser.email,
+      content: content,
+      likes: 0,
+      likedBy: [],
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    return { success: true, answerId: docRef.id };
+  } catch (err) {
+    return { success: false, error: err.message };
+  }
+       }
+  /*********************/
+
   async function loadQuestion(qId) {
     const result = await getQuestionById(qId);
 

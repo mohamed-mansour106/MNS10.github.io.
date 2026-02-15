@@ -368,6 +368,10 @@ function initQuestionPage() {
     }
   }
 
+  console.log("Current Question ID:", qId);
+console.log("Snapshot size:", snapshot.size);
+
+  
   function loadAnswers(qId) {
     answersUnsubscribe = getAnswersRealtime(qId, (answers) => {
       const answersContainer = document.getElementById('answersContainer');

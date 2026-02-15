@@ -256,22 +256,6 @@ function initAskPage() {
 // ====== Question Detail Page ======
 
 
-/****************************/
-function initQuestionPage() {
-  const params = new URLSearchParams(window.location.search);
-  const qId = params.get("id");
-
-  console.log("Question ID:", qId);
-
-  if (!qId) {
-    console.error("No question ID found in URL");
-    return;
-  }
-
-  getAnswersRealtime(qId);
-}
-
-/***************************/
 
 
 
@@ -409,6 +393,8 @@ function initQuestionPage() {
     });
   }
 
+  loadAnswers();
+
   function renderAnswers(answers, qId) {
     const answersContainer = document.getElementById('answersContainer');
     const currentUser = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
@@ -445,6 +431,7 @@ function initQuestionPage() {
     }).join('');
   }
 }
+renderAnswers();
 
 // ====== Profile Page ======
 function initProfilePage() {

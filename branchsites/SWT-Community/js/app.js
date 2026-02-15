@@ -1,10 +1,6 @@
 // js/app.js
 // Main Application Logic (Firebase compat SDK)
 
-/***************/
-const questionId = params.get('id');
-const qId = questionId;
-/***************/
 
 let questionsUnsubscribe = null;
 let answersUnsubscribe = null;

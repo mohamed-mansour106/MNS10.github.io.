@@ -156,7 +156,75 @@
   });
     </script>
 
-    
+    <script>
+        function initQuestionPage() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const questionId = urlParams.get('id');
+
+  if (!questionId) {
+    alert('Question not found');
+    window.location.href = 'index.html';
+    return;
+  }
+
+  loadAnswers(questionId);
+
+  function loadAnswers(qId) {
+    const answersContainer = document.getElementById('answersContainer');
+    const answersCount = document.getElementById('answersCount');
+    const noAnswers = document.getElementById('noAnswers');
+
+    firebase.firestore()
+      .collection('answers')
+      .where('questionId', '==', qId)
+      .orderBy('createdAt', 'desc')
+      .onSnapshot((snapshot) => {
+
+        const answers = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+
+        if (answersCount) {
+          answersCount.textContent = answers.length;
+        }
+
+        if (!answers.length) {
+          if (answersContainer) answersContainer.innerHTML = '';
+          if (noAnswers) noAnswers.style.display = 'block';
+          return;
+        }
+
+        if (noAnswers) noAnswers.style.display = 'none';
+        renderAnswers(answers);
+      });
+  }
+
+  function renderAnswers(answers) {
+    const answersContainer = document.getElementById('answersContainer');
+    if (!answersContainer) return;
+
+    answersContainer.innerHTML = answers.map(answer => `
+      <div class="answer-card">
+        <div class="answer-header">
+          <div class="question-meta">
+            <span class="meta-item">
+              Answered by <strong>${escapeHtml(answer.authorName)}</strong>
+            </span>
+            <span class="meta-item">
+              ${formatDate(answer.createdAt)}
+            </span>
+          </div>
+        </div>
+
+        <div class="answer-content">
+          ${escapeHtml(answer.content)}
+        </div>
+      </div>
+    `).join('');
+  }
+  }
+    </script>
     
 </body>
 </html>

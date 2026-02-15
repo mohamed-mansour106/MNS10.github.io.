@@ -395,7 +395,7 @@ function initQuestionPage() {
     });
   }
 
-  loadAnswers();
+  
 
   function renderAnswers(answers, qId) {
     const answersContainer = document.getElementById('answersContainer');
@@ -433,7 +433,7 @@ function initQuestionPage() {
     }).join('');
   }
 }
-renderAnswers();
+
 
 // ====== Profile Page ======
 function initProfilePage() {

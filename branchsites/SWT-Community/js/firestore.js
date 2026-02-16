@@ -107,6 +107,7 @@ function getAnswersRealtime(questionId, callback) {
   return firestore
     .collection("answers")
     .where("questionId", "==", questionId)
+    .orderBy("createdAt", "asc")
     .onSnapshot(
       (snapshot) => {
         const answers = snapshot.docs.map((doc) => ({
@@ -118,7 +119,6 @@ function getAnswersRealtime(questionId, callback) {
       (error) => console.error("Error fetching answers:", error)
     );
 }
-
 
 async function deleteAnswer(answerId, questionId) {
   const user = getCurrentUser();

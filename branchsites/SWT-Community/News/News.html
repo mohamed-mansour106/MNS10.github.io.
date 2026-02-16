@@ -5,33 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Feed</title>
     <link rel="stylesheet" href="css/subfiles.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="shortcut icon" href="../../../../../img/logo/favicon.ico">
 </head>
 <body >
 
-    <div class="main">
-        <div class="logo" >
-            <img src="../../../../../img/logo/MMM.png" width=100%>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="ask.html" class="nav-link" id="askNavLink">SWT Community</a>
+                <a href="profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
         </div>
-        <div class="mmm106">
-            <p> <b>MMM106</b></p>
-            <p style="font-size: 13px;color: black" padding-left:15px; ><i> <u> Educational Website</u></i> </p>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
         </div>
-        <div class="contain">
-            <a href="../../../../../../index.html">  <p>Home</p> </a>
-            <a href="">  <p>join us </p> </a>
-            <a href="">  <p> News </p> </a>
-            <a href="">  <p> Vlogs </p> </a>
-            <a href="">  <p>MMM team</p> </a>
-            <a href="https://mmm100601999.000webhostapp.com/">   <p>second web</p> </a>
-            
-        </div>
+
         
+
+        <div class="mobile-menu-content">
+            <a href="../index.html" class="mobile-menu-item btn-primary">
+                SWT Community
+            </a>
+            <a href="../../College/OFU.html" class="mobile-menu-item" >
+                Learn
+            </a>
+            <a href="../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
     </div>
 
-    
+           <!-- publish your opinion -->
+            <section class="comment-section">
+
+            <h2>Share your Thinking 🤔💭</h2>
+            
+
+            <form id="commentForm">
+                <input 
+                type="text" 
+                id="username" 
+                placeholder="Title of the idea" 
+                required
+                >
+
+                <textarea 
+                id="comment" 
+                placeholder=" what are you thinking about ..." 
+                required
+                ></textarea>
+
+                <button type="submit">
+                    Share 
+                </button>
+            </form>
+
+
+            </section>
+
 
     <main class="feed">
+        <article id="commentsContainer"></article>
         <article class="card" data-id="1">
             <img src="photos/wellhead.jpg" alt="">
             <div class="card-content">
@@ -2577,14 +2638,215 @@
         
         <!------------------------------->
         
+                    <!-- publish your opinion -->
+            <section class="comment-section">
+
+            <h2>Share your Thinking 🤔💭</h2>
+            
+
+            <form id="commentForm">
+                <input 
+                type="text" 
+                id="username" 
+                placeholder="Your name" 
+                required
+                >
+
+                <textarea 
+                id="comment" 
+                placeholder=" what are you thinking about ..." 
+                required
+                ></textarea>
+
+                <button type="submit">
+                    Share 
+                </button>
+            </form>
+
+            <div id="commentsContainer"></div>
+
+            </section>
+
+
+
+        <!--firestore verificatio n -->
+        <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    onSnapshot,
+    query,
+    orderBy,
+    doc,
+    updateDoc,
+    increment,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC7IVEEzzmV1n-BmQlyqf16DGZbFE4rl5Y",
+    authDomain: "swt-community.firebaseapp.com",
+    projectId: "swt-community",
+    storageBucket: "swt-community.firebasestorage.app",
+    messagingSenderId: "793456550808",
+    appId: "1:793456550808:web:9cd86581b8764d42c541ed"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ===== Comments =====
+  const form = document.getElementById("commentForm");
+  const container = document.getElementById("commentsContainer");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("username").value;
+    const comment = document.getElementById("comment").value;
+
+    await addDoc(collection(db, "comments"), {
+      name,
+      comment,
+      likes: 0,
+      timestamp: serverTimestamp()
+    });
+
+    form.reset();
+  });
+
+  function loadComments() {
+    const q = query(
+      collection(db, "comments"),
+      orderBy("timestamp", "desc")
+    );
+
+    onSnapshot(q, (snapshot) => {
+      container.innerHTML = "";
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        container.innerHTML += `
+          <div class="comment">
+            <strong>${data.name}</strong>
+            <p>${data.comment}</p>
+            <button onclick="likeComment('${docSnap.id}')">
+              ❤️ ${data.likes || 0}
+            </button>
+            <hr>
+          </div>
+        `;
+      });
+    });
+  }
+
+  window.likeComment = async (id) => {
+    const ref = doc(db, "comments", id);
+    await updateDoc(ref, {
+      likes: increment(1)
+    });
+  };
+
+  loadComments();
+</script>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-tagline">CON TODO NUESTRO AMOR</div>
+            <div class="footer-names">María & Carlos</div>
+            <div class="footer-heart">♥</div>
+            <div class="hashtag">#MaríaYCarlos2025</div>
+        </footer>
+    </div>
+
+    <script>
+        function selectRSVP(button, choice) {
+            const buttons = document.querySelectorAll('.rsvp-button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+        }
+    </script>
+    </div>
+
+    <script>
+      function openEnvelope() {
+        const envelopeScreen = document.getElementById("envelope-screen");
+        const mainSite = document.getElementById("main-site");
+
+        envelopeScreen.style.opacity = "0";
+        envelopeScreen.style.visibility = "hidden";
+
+        setTimeout(() => {
+            envelopeScreen.style.display = "none";
+            mainSite.style.display = "block";
+            document.body.style.overflow = "auto";
+        }, 700);
+    }
+    </script>
+
         
         <!------------------------------->
         
         <script src="js/script.js"></script>
     </main>    
 
+    <!----------------- start Firebase database scripts---------------->
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../js/auth.js"></script>
+    <script src="../js/firestore.js"></script>
+    <script src="../js/app.js"></script>
+
+    <script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+    </script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+    </script>
 
     
+    
+       <!----------------- start Firebase database scripts---------------->
+
 
 
 

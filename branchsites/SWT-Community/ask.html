@@ -31,6 +31,34 @@
         </div>
     </nav>
 
+     <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../College/OFU.html" class="mobile-menu-item" >
+                Learn
+            </a>
+            <a href="profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="container main-content">
         <div class="ask-container">
@@ -135,6 +163,8 @@
     window.location.href = "login.html";
   });
     </script>
+    
+   
     
 </body>
 </html>

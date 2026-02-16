@@ -1,7 +1,6 @@
 // js/app.js
 // Main Application Logic (Firebase compat SDK)
 
-
 let questionsUnsubscribe = null;
 let answersUnsubscribe = null;
 let allQuestionsCache = [];
@@ -255,11 +254,6 @@ function initAskPage() {
 }
 
 // ====== Question Detail Page ======
-
-
-
-
-
 function initQuestionPage() {
   const urlParams = new URLSearchParams(window.location.search);
   const questionId = urlParams.get('id');
@@ -332,7 +326,6 @@ function initQuestionPage() {
     });
   }
 
-
   async function loadQuestion(qId) {
     const result = await getQuestionById(qId);
 
@@ -375,7 +368,6 @@ function initQuestionPage() {
     }
   }
 
-  
   function loadAnswers(qId) {
     answersUnsubscribe = getAnswersRealtime(qId, (answers) => {
       const answersContainer = document.getElementById('answersContainer');
@@ -394,8 +386,6 @@ function initQuestionPage() {
       renderAnswers(answers, qId);
     });
   }
-
-  
 
   function renderAnswers(answers, qId) {
     const answersContainer = document.getElementById('answersContainer');
@@ -433,7 +423,6 @@ function initQuestionPage() {
     }).join('');
   }
 }
-
 
 // ====== Profile Page ======
 function initProfilePage() {

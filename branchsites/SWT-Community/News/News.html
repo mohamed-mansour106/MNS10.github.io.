@@ -62,42 +62,47 @@
         </div>
     </div>
 
-           
-
-
-    <main class="feed">
-
-
-        <!-- publish your opinion -->
-            <article class="comment-section card">
+           <!-- publish your opinion -->
+            <section class="comment-section" class="card composer" data-id="composer">
 
             <h2>Share your Thinking 🤔💭</h2>
             
+                <div class="card-content">
+            <form id="postForm" >
+                <input type="text" id="postTitle" placeholder="What's on your mind?" required />
+                       <textarea id="postBody" placeholder="Share something with the community..." required></textarea>
 
-            <form id="commentForm">
-                <input 
-                type="text" 
-                id="username" 
-                placeholder="Title of the idea" 
-                required
-                >
-
-                <textarea 
-                id="comment" 
-                placeholder=" what are you thinking about ..." 
-                required
-                ></textarea>
-
-                <button type="submit">
-                    Share 
-                </button>
+                       <div class="composer-actions">
+                           <input type="hidden" id="postImageUrl" />
+                           <button type="button" id="addPhotoBtn">Add Photo</button>
+                           <span id="photoPreview" class="photo-preview"></span>
+                           <button type="submit" class="btn-post">Share</button>
+                       </div>
+                
             </form>
+            </div>
 
 
-            </article>
+            </section>
+<!----------------------------------
+            <article class="card composer" data-id="composer">
+               <div class="card-content">
+                   <form id="postForm">
+                       <input type="text" id="postTitle" placeholder="What's on your mind?" required />
+                       <textarea id="postBody" placeholder="Share something with the community..." required></textarea>
 
-        
-        
+                       <div class="composer-actions">
+                           <input type="hidden" id="postImageUrl" />
+                           <button type="button" id="addPhotoBtn">Add Photo</button>
+                           <span id="photoPreview" class="photo-preview"></span>
+                           <button type="submit" class="btn-post">Share</button>
+                       </div>
+                   </form>
+               </div>
+           </article>
+
+--------------------------------->
+    <main class="feed">
         <article id="commentsContainer"></article>
         <article class="card" data-id="1">
             <img src="photos/wellhead.jpg" alt="">
@@ -2691,36 +2696,19 @@
     serverTimestamp
   } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
-
-
-
-            
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyA3d8n_PiXZ7hFXGPFx3tI6Dgasl3DyoBY",
-    authDomain: "samygroup-1ee50.firebaseapp.com",
-    projectId: "samygroup-1ee50",
-    storageBucket: "samygroup-1ee50.firebasestorage.app",
-    messagingSenderId: "230412274397",
-    appId: "1:230412274397:web:ce031af97a29d6d8b96934",
-    measurementId: "G-7QQEFFVVF8"
+    apiKey: "AIzaSyC7IVEEzzmV1n-BmQlyqf16DGZbFE4rl5Y",
+    authDomain: "swt-community.firebaseapp.com",
+    projectId: "swt-community",
+    storageBucket: "swt-community.firebasestorage.app",
+    messagingSenderId: "793456550808",
+    appId: "1:793456550808:web:9cd86581b8764d42c541ed"
   };
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  const db = getFirestore(app);
 
-
-
-
-            
   // ===== Comments =====
   const form = document.getElementById("commentForm");
   const container = document.getElementById("commentsContainer");
@@ -2875,5 +2863,3 @@
 
 </body>
 </html>
-
-

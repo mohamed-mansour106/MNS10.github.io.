@@ -169,4 +169,3 @@ async function getUserData(userId) {
   if (!snap.exists) return { success: false };
   return { success: true, userData: snap.data() };
 }
-

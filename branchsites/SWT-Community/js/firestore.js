@@ -168,4 +168,4 @@ async function getUserData(userId) {
   const snap = await firestore.collection("users").doc(userId).get();
   if (!snap.exists) return { success: false };
   return { success: true, userData: snap.data() };
-}
+    }

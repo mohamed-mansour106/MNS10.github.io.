@@ -1,17 +1,8 @@
-function shuffleFeed() {
-    const feed = document.querySelector(".feed");
-    const cards = Array.from(feed.querySelectorAll('.card'));
-    for (let i = cards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [cards[i], cards[j]] = [cards[j], cards[i]];
-    }
-    feed.innerHTML = "";
-    cards.forEach(card => feed.appendChild(card));
-}
-
-// Cloudinary config: will be read from the composer element data attributes
-let CLOUDINARY_CLOUD_NAME = ""; // set via data-cloud-name on the composer element
-let CLOUDINARY_UPLOAD_PRESET = ""; // set via data-upload-preset on the composer element
+// ===========================
+// Cloudinary Config
+// ===========================
+let CLOUDINARY_CLOUD_NAME = "";
+let CLOUDINARY_UPLOAD_PRESET = "";
 let _uploadedImageUrl = "";
 
 function initCloudinaryWidget() {
@@ -35,144 +26,285 @@ function initCloudinaryWidget() {
     if (addPhoto) addPhoto.addEventListener('click', () => widget.open(), false);
 }
 
-// Utility to escape HTML
+// ===========================
+// Utility Functions
+// ===========================
 function escapeHtml(text) {
     return (text + '').replace(/[&<>\"']/g, function (m) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]; });
 }
 
-// Create a card element from post data and prepend to feed
+function formatDate(timestamp) {
+    if (!timestamp) return '';
+    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+    
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return `${diffMins}m`;
+    if (diffHours < 24) return `${diffHours}h`;
+    if (diffDays < 7) return `${diffDays}d`;
+    return date.toLocaleDateString();
+}
+
+// ===========================
+// Create LinkedIn-Style Card
+// ===========================
 function createCardFromData(post) {
     const article = document.createElement('article');
     article.className = 'card';
     article.dataset.id = post.id;
 
-    const imgHTML = post.imageUrl ? `<img src="${post.imageUrl}" alt="">` : '<img src="" alt="">';
-    const bodyHTML = `<div class="card-content">
-            <h3>${escapeHtml(post.title)}</h3>
-            <div class="card-text">${escapeHtml(post.body)}</div>
-        </div>`;
-
-    article.innerHTML = `${imgHTML}${bodyHTML}
-        <div class="card-actions">
-            <button class="like-btn">Like ❤️</button>
-            <span class="like-count"></span>
-            <button class="comment-toggle">💬Comment</button>
-        </div>
-        <div class="comments hidden">
-            <div class="comments-list"></div>
-            <div class="add-comment">
-                <input type="text" placeholder="write comment ....">
-                <button class="add-comment-btn">post</button>
+    // Author header section
+    const authorHeader = `
+        <div class="post-header">
+            <div class="author-info">
+                <img src="${escapeHtml(post.authorAvatar)}" alt="${escapeHtml(post.authorName)}" class="avatar-small">
+                <div class="author-details">
+                    <h4>${escapeHtml(post.authorName || 'Admin')}</h4>
+                    <span class="post-time">${formatDate(post.createdAt)}</span>
+                </div>
             </div>
-        </div>`;
+            ${post.authorId === (currentUser ? currentUser.uid : null) ? `<button class="delete-post-btn" title="Delete post">×</button>` : ''}
+        </div>
+    `;
+
+    // Post image
+    const imgHTML = post.imageUrl ? `<div class="post-image"><img src="${escapeHtml(post.imageUrl)}" alt="post"></div>` : '';
+
+    // Post content
+    const contentHTML = `
+        <div class="post-content">
+            <h3>${escapeHtml(post.title)}</h3>
+            <p>${escapeHtml(post.body)}</p>
+        </div>
+    `;
+
+    // Post stats and actions
+    const statsHTML = `
+        <div class="post-stats">
+            <span class="stat-item"><span class="like-count">0</span> Likes</span>
+            <span class="stat-item"><span class="comment-count">0</span> Comments</span>
+        </div>
+        <div class="post-actions">
+            <button class="action-btn like-btn">👍 Like</button>
+            <button class="action-btn comment-toggle">💬 Comment</button>
+        </div>
+    `;
+
+    // Comments section
+    const commentsHTML = `
+        <div class="comments-section hidden">
+            <div class="comments-list"></div>
+            <div class="add-comment-section">
+                <img src="${escapeHtml(currentUser && currentUser.photoURL ? currentUser.photoURL : 'https://ui-avatars.com/api/?name=User')}" alt="You" class="avatar-comment">
+                <div class="comment-input-wrapper">
+                    <input type="text" class="add-comment-input" placeholder="Write a comment...">
+                    <button class="add-comment-btn">Post</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    article.innerHTML = authorHeader + imgHTML + contentHTML + statsHTML + commentsHTML;
 
     const feed = document.querySelector('.feed');
-    // place after any static leading container (like commentsContainer) so it appears like feed posts
-    if (feed) feed.insertBefore(article, feed.children[0] || null);
-    attachCardHandlers(article);
+    if (feed) feed.insertBefore(article, feed.children[1]); // After composer
+
+    attachCardHandlers(article, post);
     return article;
 }
 
-function attachCardHandlers(card) {
+// ===========================
+// Attach Card Handlers
+// ===========================
+function attachCardHandlers(card, post) {
     if (!card || card.dataset.inited) return;
     card.dataset.inited = 'true';
-    const id = card.dataset.id || ('post-' + Date.now());
-    card.dataset.id = id;
+    const postId = post.id;
 
-    // Likes
-    const btn = card.querySelector('.like-btn');
-    const countEl = card.querySelector('.like-count');
-    const likeKey = 'like_' + id;
-    const saved = localStorage.getItem(likeKey);
-    const baseLikes = saved ? JSON.parse(saved).count : Math.floor(Math.random() * 120) + 10;
-    const liked = saved ? JSON.parse(saved).liked : false;
-    if (countEl) countEl.textContent = baseLikes;
-    if (liked && btn) btn.classList.add('liked');
-    if (btn) btn.addEventListener('click', () => {
-        const prev = JSON.parse(localStorage.getItem(likeKey) || JSON.stringify({count: baseLikes, liked: !!liked}));
-        let data = { count: prev.count, liked: prev.liked };
-        if (data.liked) { data.count--; data.liked = false; btn.classList.remove('liked'); }
-        else { data.count++; data.liked = true; btn.classList.add('liked'); }
-        if (countEl) countEl.textContent = data.count;
-        localStorage.setItem(likeKey, JSON.stringify(data));
-    });
+    // Delete button
+    const deleteBtn = card.querySelector('.delete-post-btn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', async () => {
+            if (confirm('Delete this post?')) {
+                const result = await deletePost(postId);
+                if (result.success) {
+                    card.remove();
+                }
+            }
+        });
+    }
 
-    // Comments
-    const toggleBtn = card.querySelector('.comment-toggle');
-    const commentBox = card.querySelector('.comments');
-    const list = card.querySelector('.comments-list');
-    const input = card.querySelector('.add-comment input');
-    const addBtn = card.querySelector('.add-comment-btn');
-    const commentsKey = 'comments_' + id;
-    const savedComments = JSON.parse(localStorage.getItem(commentsKey)) || [];
-    renderComments(list, savedComments);
-    if (toggleBtn && commentBox) toggleBtn.addEventListener('click', () => commentBox.classList.toggle('hidden'));
-    if (addBtn && input) addBtn.addEventListener('click', () => {
-        const text = input.value.trim();
-        if (!text) return;
-        const comment = { text, time: new Date().toLocaleTimeString() };
-        savedComments.unshift(comment);
-        localStorage.setItem(commentsKey, JSON.stringify(savedComments));
-        renderComments(list, savedComments);
-        input.value = '';
-    });
+    // Like button
+    const likeBtn = card.querySelector('.like-btn');
+    const likeCount = card.querySelector('.like-count');
+    if (likeBtn && post.likes !== undefined) {
+        likeCount.textContent = post.likes;
+        if (post.likedBy && post.likedBy.includes(currentUser?.uid)) {
+            likeBtn.classList.add('liked');
+        }
+        likeBtn.addEventListener('click', async () => {
+            if (!currentUser) {
+                alert('Please login to like posts');
+                return;
+            }
+            // TODO: Implement like functionality in Firestore
+        });
+    }
 
-    function renderComments(container, comments) {
-        if (!container) return;
-        container.innerHTML = '';
-        comments.forEach(c => {
-            const div = document.createElement('div');
-            div.className = 'comment';
-            div.innerHTML = `<strong>You</strong> <small>${c.time}</small><div>${escapeHtml(c.text)}</div>`;
-            container.appendChild(div);
+    // Comment toggle
+    const commentToggle = card.querySelector('.comment-toggle');
+    const commentSection = card.querySelector('.comments-section');
+    const commentCount = card.querySelector('.comment-count');
+    if (commentToggle && commentSection) {
+        commentCount.textContent = post.commentCount || 0;
+        commentToggle.addEventListener('click', () => {
+            commentSection.classList.toggle('hidden');
+        });
+    }
+
+    // Load and listen for comments
+    const commentsList = card.querySelector('.comments-list');
+    if (commentsList && typeof getCommentsRealtime === 'function') {
+        getCommentsRealtime(postId, (comments) => {
+            renderComments(commentsList, comments);
+            if (commentCount) commentCount.textContent = comments.length;
+        });
+    }
+
+    // Add comment
+    const addCommentInput = card.querySelector('.add-comment-input');
+    const addCommentBtn = card.querySelector('.add-comment-btn');
+    if (addCommentBtn && addCommentInput) {
+        addCommentBtn.addEventListener('click', async () => {
+            const text = addCommentInput.value.trim();
+            if (!text) return;
+            if (!currentUser) {
+                alert('Please login to comment');
+                return;
+            }
+            const result = await addComment(postId, text);
+            if (result.success) {
+                addCommentInput.value = '';
+            }
+        });
+        addCommentInput.addEventListener('keypress', async (e) => {
+            if (e.key === 'Enter') {
+                const text = addCommentInput.value.trim();
+                if (!text) return;
+                if (!currentUser) {
+                    alert('Please login to comment');
+                    return;
+                }
+                const result = await addComment(postId, text);
+                if (result.success) {
+                    addCommentInput.value = '';
+                }
+            }
         });
     }
 }
 
-function attachHandlersToAllCards() {
-    document.querySelectorAll('.card').forEach(card => attachCardHandlers(card));
+// ===========================
+// Render Comments
+// ===========================
+function renderComments(container, comments) {
+    if (!container) return;
+    container.innerHTML = '';
+    comments.forEach(comment => {
+        const div = document.createElement('div');
+        div.className = 'comment-item';
+        const deleteBtn = comment.authorId === (currentUser ? currentUser.uid : null) ? 
+            `<button class="delete-comment-btn" data-comment-id="${comment.id}">×</button>` : '';
+        div.innerHTML = `
+            <img src="${escapeHtml(comment.authorAvatar)}" alt="${escapeHtml(comment.authorName)}" class="avatar-comment">
+            <div class="comment-content">
+                <div class="comment-header">
+                    <strong>${escapeHtml(comment.authorName)}</strong>
+                    <span class="comment-time">${formatDate(comment.createdAt)}</span>
+                    ${deleteBtn}
+                </div>
+                <p>${escapeHtml(comment.text)}</p>
+            </div>
+        `;
+        container.appendChild(div);
+    });
 }
 
-function loadSavedPosts() {
-    const posts = JSON.parse(localStorage.getItem('posts') || '[]');
-    posts.forEach(post => createCardFromData(post));
-}
-
-// Post form
+// ===========================
+// Initialize Page
+// ===========================
 document.addEventListener('DOMContentLoaded', () => {
-    // read cloudinary config from composer dataset if present
+    // Load Cloudinary config
     const composerEl = document.querySelector('.composer');
     if (composerEl) {
         CLOUDINARY_CLOUD_NAME = composerEl.dataset.cloudName || CLOUDINARY_CLOUD_NAME;
         CLOUDINARY_UPLOAD_PRESET = composerEl.dataset.uploadPreset || CLOUDINARY_UPLOAD_PRESET;
     }
     initCloudinaryWidget();
-    loadSavedPosts();
-    attachHandlersToAllCards();
-    shuffleFeed();
 
-    const form = document.getElementById('postForm');
-    if (form) form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const title = document.getElementById('postTitle').value.trim();
-        const body = document.getElementById('postBody').value.trim();
-        const imageUrl = document.getElementById('postImageUrl').value || '';
-        if (!title && !body && !imageUrl) return;
-        const post = { id: 'post-' + Date.now(), title, body, imageUrl, created: Date.now() };
-        const posts = JSON.parse(localStorage.getItem('posts') || '[]');
-        posts.unshift(post);
-        localStorage.setItem('posts', JSON.stringify(posts));
-        createCardFromData(post);
-        form.reset();
-        const preview = document.getElementById('photoPreview'); if (preview) preview.innerHTML = '';
-    });
-});
-
-// keep read-more toggle
-document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('read-more')) {
-        const text = e.target.previousElementSibling;
-        text.classList.toggle('expanded');
-        e.target.textContent = text.classList.contains('expanded') ? 'read less' : 'read more...';
+    // Load posts from Firestore
+    if (typeof getPostsRealtime === 'function') {
+        getPostsRealtime((posts) => {
+            const feed = document.querySelector('.feed');
+            const existingCards = feed.querySelectorAll('.card[data-id]');
+            existingCards.forEach(card => {
+                // Remove old posts (keep static ones)
+                if (!card.dataset.id.startsWith('static-')) {
+                    card.remove();
+                }
+            });
+            
+            // Add new posts
+            posts.forEach(post => {
+                if (!feed.querySelector(`[data-id="${post.id}"]`)) {
+                    createCardFromData(post);
+                }
+            });
+        });
     }
+
+    // Post form submission
+    const form = document.getElementById('postForm');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!currentUser) {
+                alert('Please login to create a post');
+                return;
+            }
+
+            const title = document.getElementById('postTitle').value.trim();
+            const body = document.getElementById('postBody').value.trim();
+            const imageUrl = document.getElementById('postImageUrl').value || '';
+
+            if (!title && !body) {
+                alert('Please enter a title or description');
+                return;
+            }
+
+            const result = await createPost(title, body, imageUrl);
+            if (result.success) {
+                form.reset();
+                const preview = document.getElementById('photoPreview');
+                if (preview) preview.innerHTML = '';
+                _uploadedImageUrl = '';
+            } else {
+                alert('Error creating post: ' + (result.error || 'Unknown error'));
+            }
+        });
+    }
+
+    // Read-more toggle
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('read-more')) {
+            const text = e.target.previousElementSibling;
+            text.classList.toggle('expanded');
+            e.target.textContent = text.classList.contains('expanded') ? 'read less' : 'read more...';
+        }
+    });
 });

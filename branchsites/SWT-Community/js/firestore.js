@@ -32,22 +32,21 @@ async function createQuestion(title, description) {
   return { success: true, questionId: ref.id };
 }
 
-function getAnswersRealtime(questionId, callback) {
+function getQuestionsRealtime(callback) {
   return firestore
-    .collection("answers")
-    .where("questionId", "==", questionId)
+    .collection("questions")
+    .orderBy("createdAt", "desc")
     .onSnapshot(
       (snapshot) => {
-        const answers = snapshot.docs.map((doc) => ({
+        const questions = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data()
         }));
-        callback(answers);
+        callback(questions);
       },
-      (error) => console.error("Error fetching answers:", error)
+      (error) => console.error("Error fetching questions:", error)
     );
 }
-
 
 async function getQuestionById(id) {
   const snap = await firestore.collection("questions").doc(id).get();
@@ -108,7 +107,6 @@ function getAnswersRealtime(questionId, callback) {
   return firestore
     .collection("answers")
     .where("questionId", "==", questionId)
-    .orderBy("createdAt", "asc")
     .onSnapshot(
       (snapshot) => {
         const answers = snapshot.docs.map((doc) => ({
@@ -120,6 +118,7 @@ function getAnswersRealtime(questionId, callback) {
       (error) => console.error("Error fetching answers:", error)
     );
 }
+
 
 async function deleteAnswer(answerId, questionId) {
   const user = getCurrentUser();

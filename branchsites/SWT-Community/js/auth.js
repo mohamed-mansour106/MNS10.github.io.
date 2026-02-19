@@ -1,17 +1,4 @@
-/*********************************
- * TOGGLE BUTTON MOBILE MENU OVERLAY
- *********************************/
 
-        const openBtn = document.getElementById("mobileMenuBtn");
-        const closeBtn = document.getElementById("closeMobileMenu");
-        const overlay = document.getElementById("mobileMenuOverlay");
-        openBtn.addEventListener("click", function () {
-            overlay.classList.add("active")
-        });
-        closeBtn.addEventListener("click", function () {
-            overlay.classList.remove("active")
-        });
-        
 
 /*********************************
  * Firebase Config

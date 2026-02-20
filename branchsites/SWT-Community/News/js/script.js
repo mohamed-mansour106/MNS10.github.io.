@@ -5,6 +5,8 @@
 // ===========================
 // Cloudinary Config
 // ===========================
+
+/***********************
 let CLOUDINARY_CLOUD_NAME = "";
 let CLOUDINARY_UPLOAD_PRESET = "";
 let _uploadedImageUrl = "";
@@ -29,6 +31,8 @@ function initCloudinaryWidget() {
     const addPhoto = document.getElementById('addPhotoBtn');
     if (addPhoto) addPhoto.addEventListener('click', () => widget.open(), false);
 }
+
+********************************************/
 
 // ===========================
 // Cartoon Characters Database
@@ -326,26 +330,28 @@ document.addEventListener('DOMContentLoaded', () => {
         CLOUDINARY_CLOUD_NAME = composerEl.dataset.cloudName || CLOUDINARY_CLOUD_NAME;
         CLOUDINARY_UPLOAD_PRESET = composerEl.dataset.uploadPreset || CLOUDINARY_UPLOAD_PRESET;
     }
-    initCloudinaryWidget();
+    // initCloudinaryWidget(); // Commented out as Cloudinary config is not available
 
-    // Load posts from Firestore
-    if (typeof getPostsRealtime === 'function') {
+    // Load posts from Firestore (only if firestore is available)
+    if (typeof getPostsRealtime === 'function' && typeof firebase !== 'undefined') {
         getPostsRealtime((posts) => {
             const feed = document.querySelector('.feed');
-            const existingCards = feed.querySelectorAll('.card[data-id]');
-            existingCards.forEach(card => {
-                // Remove old posts (keep static ones)
-                if (!card.dataset.id.startsWith('static-')) {
-                    card.remove();
-                }
-            });
-            
-            // Add new posts
-            posts.forEach(post => {
-                if (!feed.querySelector(`[data-id="${post.id}"]`)) {
-                    createCardFromData(post);
-                }
-            });
+            if (feed) {
+                const existingCards = feed.querySelectorAll('.card[data-id]');
+                existingCards.forEach(card => {
+                    // Remove old posts (keep static ones)
+                    if (!card.dataset.id.startsWith('static-')) {
+                        card.remove();
+                    }
+                });
+                
+                // Add new posts
+                posts.forEach(post => {
+                    if (!feed.querySelector(`[data-id="${post.id}"]`)) {
+                        createCardFromData(post);
+                    }
+                });
+            }
         });
     }
 
@@ -355,23 +361,31 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const title = document.getElementById('postTitle').value.trim();
-            const body = document.getElementById('postBody').value.trim();
-            const imageUrl = document.getElementById('postImageUrl').value || '';
+            const titleEl = document.getElementById('postTitle');
+            const bodyEl = document.getElementById('postBody');
+            const imageUrlEl = document.getElementById('postImageUrl');
+            
+            if (!titleEl || !bodyEl) return;
+
+            const title = titleEl.value.trim();
+            const body = bodyEl.value.trim();
+            const imageUrl = imageUrlEl ? imageUrlEl.value : '';
 
             if (!title && !body) {
                 alert('Please enter a title or description');
                 return;
             }
 
-            const result = await createPost(title, body, imageUrl);
-            if (result.success) {
-                form.reset();
-                const preview = document.getElementById('photoPreview');
-                if (preview) preview.innerHTML = '';
-                _uploadedImageUrl = '';
-            } else {
-                alert('Error creating post: ' + (result.error || 'Unknown error'));
+            if (typeof createPost === 'function') {
+                const result = await createPost(title, body, imageUrl);
+                if (result.success) {
+                    form.reset();
+                    const preview = document.getElementById('photoPreview');
+                    if (preview) preview.innerHTML = '';
+                    _uploadedImageUrl = '';
+                } else {
+                    alert('Error creating post: ' + (result.error || 'Unknown error'));
+                }
             }
         });
     }
@@ -405,19 +419,19 @@ async function createPost(title, body, imageUrl = "") {
     authorId: user.uid,
     authorName: user.displayName || "Anonymous User",
     authorAvatar: user.photoURL,
-    createdAt: fieldValue.serverTimestamp(),
-    updatedAt: fieldValue.serverTimestamp(),
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
     likes: 0,
     likedBy: [],
     commentCount: 0
   };
 
-  const ref = await firestore.collection("posts").add(data);
+  const ref = await firebase.firestore().collection("posts").add(data);
   return { success: true, postId: ref.id, post: { id: ref.id, ...data } };
 }
 
 function getPostsRealtime(callback) {
-  return firestore
+  return firebase.firestore()
     .collection("posts")
     .orderBy("createdAt", "desc")
     .onSnapshot(
@@ -433,7 +447,7 @@ function getPostsRealtime(callback) {
 }
 
 async function getPostById(postId) {
-  const snap = await firestore.collection("posts").doc(postId).get();
+  const snap = await firebase.firestore().collection("posts").doc(postId).get();
   if (!snap.exists) return { success: false, error: "Post not found" };
   return { success: true, post: { id: snap.id, ...snap.data() } };
 }
@@ -441,7 +455,7 @@ async function getPostById(postId) {
 async function deletePost(postId) {
   const user = getAnonymousUser();
 
-  const pRef = firestore.collection("posts").doc(postId);
+  const pRef = firebase.firestore().collection("posts").doc(postId);
   const pSnap = await pRef.get();
   if (!pSnap.exists) return { success: false, error: "Post not found" };
   if (pSnap.data().authorId !== user.uid) {
@@ -449,13 +463,13 @@ async function deletePost(postId) {
   }
 
   // Delete all comments for this post
-  const commentsSnap = await firestore
+  const commentsSnap = await firebase.firestore()
     .collection("posts")
     .doc(postId)
     .collection("comments")
     .get();
 
-  const batch = firestore.batch();
+  const batch = firebase.firestore().batch();
   commentsSnap.forEach((doc) => batch.delete(doc.ref));
   batch.delete(pRef);
   await batch.commit();
@@ -474,27 +488,27 @@ async function addComment(postId, text) {
     authorId: user.uid,
     authorName: user.displayName || "Anonymous User",
     authorAvatar: user.photoURL,
-    createdAt: fieldValue.serverTimestamp(),
-    updatedAt: fieldValue.serverTimestamp()
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
   };
 
-  const commentRef = await firestore
+  const commentRef = await firebase.firestore()
     .collection("posts")
     .doc(postId)
     .collection("comments")
     .add(commentData);
 
   // Increment comment count on post
-  await firestore
+  await firebase.firestore()
     .collection("posts")
     .doc(postId)
-    .update({ commentCount: fieldValue.increment(1) });
+    .update({ commentCount: firebase.firestore.FieldValue.increment(1) });
 
   return { success: true, commentId: commentRef.id, comment: { id: commentRef.id, ...commentData } };
 }
 
 function getCommentsRealtime(postId, callback) {
-  return firestore
+  return firebase.firestore()
     .collection("posts")
     .doc(postId)
     .collection("comments")
@@ -514,7 +528,7 @@ function getCommentsRealtime(postId, callback) {
 async function deleteComment(postId, commentId) {
   const user = getAnonymousUser();
 
-  const cRef = firestore.collection("posts").doc(postId).collection("comments").doc(commentId);
+  const cRef = firebase.firestore().collection("posts").doc(postId).collection("comments").doc(commentId);
   const cSnap = await cRef.get();
   if (!cSnap.exists) return { success: false, error: "Comment not found" };
   if (cSnap.data().authorId !== user.uid) {
@@ -522,10 +536,10 @@ async function deleteComment(postId, commentId) {
   }
 
   await cRef.delete();
-  await firestore
+  await firebase.firestore()
     .collection("posts")
     .doc(postId)
-    .update({ commentCount: fieldValue.increment(-1) });
+    .update({ commentCount: firebase.firestore.FieldValue.increment(-1) });
 
   return { success: true };
 }

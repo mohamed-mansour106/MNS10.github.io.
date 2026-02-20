@@ -31,13 +31,70 @@ function initCloudinaryWidget() {
 }
 
 // ===========================
+// Cartoon Characters Database
+// ===========================
+
+const CARTOON_NAMES = [
+    'SpongeBob SquarePants', 'Patrick Star', 'Squidward Tentacles', 'Mr. Krabs',
+    'Mickey Mouse', 'Minnie Mouse', 'Donald Duck', 'Goofy',
+    'Tom', 'Jerry', 'Bugs Bunny', 'Daffy Duck',
+    'Tweety', 'Silvester', 'Porky Pig', 'Elmer Fudd',
+    'Scooby Doo', 'Shaggy Rogers', 'Fred Jones', 'Daphne Blake',
+    'Homer Simpson', 'Bart Simpson', 'Lisa Simpson', 'Marge Simpson',
+    'Stewie Griffin', 'Brian Griffin', 'Peter Griffin', 'Lois Griffin',
+    'Bender', 'Fry', 'Leela', 'Professor Farnsworth',
+    'Rick Sanchez', 'Morty Smith', 'Summer Smith', 'Jerry Smith',
+    'Stan Smith', 'Francine Smith', 'Steve Smith', 'Roger Smith',
+    'Finn the Human', 'Jake the Dog', 'Marceline', 'Princess Bubblegum',
+    'Goku', 'Vegeta', 'Naruto Uzumaki', 'Sasuke Uchiha',
+    'Linus van Pelt', 'Charlie Brown', 'Snoopy', 'Woodstock',
+    'Garfield', 'Odie', 'Jon Arbuckle', 'Nermal',
+    'Dory', 'Nemo', 'Marlin', 'Bruce the Shark',
+    'Simba', 'Nala', 'Mufasa', 'Scar',
+    'Elsa', 'Anna', 'Olaf', 'Hans Solo',
+    'Woody', 'Buzz Lightyear', 'Rex', 'Hamm',
+    'Lightning McQueen', 'Mater', 'Sally', 'Doc Hudson',
+    'Toothless', 'Hiccup', 'Astrid', 'Stoick',
+    'Shrek', 'Donkey', 'Princess Fiona', 'Puss in Boots',
+    'Diego', 'Sid', 'Manny', 'Scrat',
+    'Roz', 'Mike Wazowski', 'Sulley', 'Boo',
+    'Remy', 'Linguini', 'Colette', 'Chef Skinner',
+    'Carl Fredricksen', 'Russell', 'Dug', 'Kevin',
+    'Merida', 'Bow', 'Elinor', 'Fergus',
+    'Juan', 'Imelda', 'Miguel Rivera', 'Hector',
+    'Judy Hopps', 'Nick Wilde', 'Chief Bogo', 'Flash',
+    'Ralph', 'Vanellope', 'Felix', 'Sergeant Calhoun',
+    'Moana', 'Maui', 'Tamatoa', 'Te Fiti',
+    'Po', 'Shifu', 'Tigress', 'Monkey',
+    'Vitani', 'Zazu', 'Rafiki', 'Pumbaa',
+    'Aurora', 'Philip', 'Flora', 'Fauna',
+    'Rapunzel', 'Eugene', 'Mother Gothel', 'Pascal',
+    'Ariel', 'Eric', 'Sebastian', 'Flounder',
+    'Belle', 'Beast', 'Gaston', 'Mrs. Potts',
+    'Cinderella', 'Prince Charming', 'Fairy Godmother', 'Jaq'
+];
+
+// ===========================
 // Utility Functions
 // ===========================
+
+function getRandomCartoonName() {
+    return CARTOON_NAMES[Math.floor(Math.random() * CARTOON_NAMES.length)];
+}
+
+function getRandomCartoonAvatar() {
+    // Use DiceBear API with cartoon style avatars
+    const cartoonStyles = ['adventurer', 'avataaars', 'big-ears', 'bottts', 'croodles', 'pixel-art', 'personas'];
+    const randomStyle = cartoonStyles[Math.floor(Math.random() * cartoonStyles.length)];
+    const seed = Math.random().toString(36).substr(2, 9);
+    return `https://api.dicebear.com/7.x/${randomStyle}/svg?seed=${seed}`;
+}
 
 // Anonymous user helpers
 function getAnonymousUser() {
     let userId = localStorage.getItem('anon_user_id');
     let userName = localStorage.getItem('anon_user_name');
+    let userAvatar = localStorage.getItem('anon_user_avatar');
     
     if (!userId) {
         userId = 'anon_' + Math.random().toString(36).substr(2, 9);
@@ -45,15 +102,21 @@ function getAnonymousUser() {
     }
     
     if (!userName) {
-        userName = prompt('Enter your name (optional):', 'Anonymous User');
-        if (!userName) userName = 'Anonymous User';
+        // Generate random cartoon name
+        userName = getRandomCartoonName();
         localStorage.setItem('anon_user_name', userName);
+    }
+    
+    if (!userAvatar) {
+        // Generate random cartoon avatar
+        userAvatar = getRandomCartoonAvatar();
+        localStorage.setItem('anon_user_avatar', userAvatar);
     }
     
     return {
         uid: userId,
         displayName: userName,
-        photoURL: generateAvatarUrl(userName)
+        photoURL: userAvatar
     };
 }
 
@@ -465,14 +528,4 @@ async function deleteComment(postId, commentId) {
     .update({ commentCount: fieldValue.increment(-1) });
 
   return { success: true };
-}
-
-// =========================
-// Helper: Generate Avatar URL
-// =========================
-function generateAvatarUrl(username) {
-  // Using UI Avatars service for generating initials-based avatars
-  if (!username) username = "User";
-  const name = username.replace(/[^a-zA-Z0-9]/g, "").slice(0, 2).toUpperCase();
-  return `https://ui-avatars.com/api/?name=${name}&background=0a66c2&color=fff&bold=true&size=128`;
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FieldNotes Pro - Browser Console Debug</title>
+  <style>
+    body { font-family: monospace; background: #1a1a1a; color: #00ff00; padding: 20px; }
+    .section { margin: 20px 0; padding: 10px; border: 1px solid #00ff00; }
+    .green { color: #00ff00; }
+    .red { color: #ff4444; }
+    .yellow { color: #ffff00; }
+  </style>
+</head>
+<body>
+  <h2>FieldNotes Pro - Diagnostics</h2>
+  
+  <div class="section">
+    <p><strong>Instructions:</strong></p>
+    <ol>
+      <li>Open the browser Developer Console (Press F12 or Ctrl+Shift+I)</li>
+      <li>Look for messages starting with ✓ or ❌</li>
+      <li>Click the buttons below to test - watch for console messages</li>
+      <li>If nothing happens, take a screenshot of the console and share</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <p id="status" class="yellow">Loading...</p>
+  </div>
+
+  <div class="section">
+    <h3>Test Buttons:</h3>
+    <button onclick="testButton(event)" style="padding: 10px; margin: 5px; font-size: 14px;">Click Me (Check Console)</button>
+    <button onclick="location.href='index.html'">Go to Main App</button>
+  </div>
+
+  <script>
+    console.clear();
+    console.log("🔍 FieldNotes Pro - Diagnostic Helper");
+    console.log("🔍 Browser Console is open - good!");
+    
+    // Check DOM
+    console.log("\n📋 Checking DOM elements:");
+    const checks = {
+      'Desktop Window': document.querySelector('.desktop-window'),
+      'Titlebar': document.querySelector('.titlebar'),
+      'Toolbar': document.querySelector('.toolbar'),
+      'Sample Button (btnNew)': document.getElementById('btnNew'),
+      'Start Button (btnStart)': document.getElementById('btnStart'),
+      'Menu Bar': document.querySelector('.menubar'),
+      'Workspace': document.querySelector('.workspace')
+    };
+
+    let allFound = true;
+    for (const [name, elem] of Object.entries(checks)) {
+      if (elem) {
+        console.log(`  ✓ ${name}`);
+      } else {
+        console.log(`  ❌ ${name} - NOT FOUND`);
+        allFound = false;
+      }
+    }
+
+    // Check if main app loaded
+    console.log("\n📦 Checking app instance:");
+    const statusDiv = document.getElementById('status');
+    
+    if (allFound) {
+      statusDiv.innerHTML = '<span class="green">✓ All DOM elements found. Click a button above and watch console for event firing.</span>';
+      console.log("  ✓ App page structure looks good");
+      
+      // Check if event listeners work
+      const btn = document.getElementById('btnNew');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          console.log("  ✓✓✓ BUTTON CLICK DETECTED ✓✓✓");
+        });
+        console.log("  ✓ Test listener attached to btnNew");
+      }
+    } else {
+      statusDiv.innerHTML = '<span class="red">❌ Some DOM elements missing. App may not load properly.</span>';
+      console.log("  ❌ Some elements missing - reload index.html");
+    }
+
+    function testButton(e) {
+      console.log("🔘 Test button clicked!");
+      alert("Button works! Check console for messages.");
+    }
+
+    console.log("\n✅ Diagnostic page ready\n");
+  </script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FieldNotes Pro - Production Data Acquisition</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="desktop-window">
+    <header class="titlebar">
+      <div class="app-title">FieldNotes Pro - Untitled*</div>
+      <div class="title-actions">
+        <button class="win-control">_</button>
+        <button class="win-control">[]</button>
+        <button class="win-control close">X</button>
+      </div>
+    </header>
+
+    <nav class="menubar" aria-label="menu">
+      <button data-menu="file">File</button>
+      <button data-menu="data">Data</button>
+      <button data-menu="measurement">Measurement</button>
+      <button data-menu="analysis">Analysis</button>
+      <button data-menu="plot">Plot</button>
+      <button data-menu="grid">Grid</button>
+      <button data-menu="solver">Solver</button>
+      <button data-menu="ai">AI</button>
+      <button data-menu="report">Report</button>
+      <button data-menu="help">Help</button>
+    </nav>
+
+    <div class="toolbar">
+      <button id="btnNew">New</button>
+      <button id="btnOpen">Open</button>
+      <button id="btnSave">Save</button>
+      <button id="btnImportCsv">Import CSV</button>
+      <button id="btnExportCsv">Export CSV</button>
+      <button id="btnExportChart">Export Chart</button>
+      <button id="btnSimSetup">Simulation Setup</button>
+      <button id="btnStart">Start</button>
+      <button id="btnStop" disabled>Stop</button>
+      <button id="btnManual">Manual</button>
+      <button id="btnSolve">Solve</button>
+      <button id="btnForecast">Forecast</button>
+      <button id="btnDemo">Demo</button>
+    </div>
+
+    <div class="workspace">
+      <aside class="dock left-dock">
+        <div class="dock-header">Configuration</div>
+        <div class="dock-body config-form">
+          <label>Sample Interval (sec)<input id="cfgSampleInterval" type="number" min="1" value="5"></label>
+          <label>Noise Level<input id="cfgNoiseLevel" type="number" min="0" step="0.05" value="0.3"></label>
+          <label>Smoothing<input id="cfgSmoothing" type="number" min="1" max="50" value="3"></label>
+          <label>Downsample<input id="cfgDownsample" type="number" min="1" max="100" value="1"></label>
+          <label>Time Unit
+            <select id="cfgTimeUnit">
+              <option value="min">Minutes</option>
+              <option value="hr">Hours</option>
+              <option value="day">Days</option>
+            </select>
+          </label>
+          <label>Unit System
+            <select id="cfgUnitSystem">
+              <option value="field">Field</option>
+              <option value="metric">Metric</option>
+            </select>
+          </label>
+          <label class="row-check"><input id="cfgEnableAi" type="checkbox" checked> Enable AI Prediction</label>
+          <label class="row-check"><input id="cfgEnableSolver" type="checkbox" checked> Enable Solver Mode</label>
+          <label class="row-check"><input id="cfgLogScale" type="checkbox"> Log Scale Charts</label>
+          <label class="row-check"><input id="cfgOverlayWells" type="checkbox" checked> Overlay Wells</label>
+        </div>
+
+        <div class="dock-header">Well Manager</div>
+        <div class="dock-body">
+          <div class="mini-actions">
+            <button id="btnAddWell">Add</button>
+            <button id="btnRemoveWell">Remove</button>
+          </div>
+          <select id="wellSelector" size="7"></select>
+        </div>
+
+        <div class="dock-header">Quick Stats</div>
+        <div class="dock-body">
+          <pre id="quickStats" class="mono-box">No data.</pre>
+        </div>
+      </aside>
+
+      <main class="center-area">
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-tab="fieldTab">Field Measurement</button>
+          <button class="tab" data-tab="summaryTab">Production Summary</button>
+          <button class="tab" data-tab="rtaTab">Rate Transient Analysis</button>
+          <button class="tab" data-tab="declineTab">Decline Curve</button>
+          <button class="tab" data-tab="aiTab">AI Forecast</button>
+          <button class="tab" data-tab="projectTab">Project Settings</button>
+          <button class="tab" data-tab="logTab">Activity Log</button>
+        </div>
+
+        <section id="fieldTab" class="tab-panel active">
+          <div class="split-v">
+            <div class="panel">
+              <div class="panel-title">Data Grid</div>
+              <div class="grid-toolbar">
+                <input id="gridFilter" type="text" placeholder="Filter rows...">
+                <label>Rows/Page
+                  <select id="gridPageSize">
+                    <option>25</option>
+                    <option selected>50</option>
+                    <option>100</option>
+                    <option>250</option>
+                  </select>
+                </label>
+                <button id="btnToggleColumns">Columns</button>
+              </div>
+              <div id="columnPanel" class="column-panel hidden"></div>
+              <div id="gridContainer" class="grid-wrap"></div>
+              <div id="gridPager" class="pager"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-title">Pressure vs Time / Rate vs Time</div>
+              <canvas id="mainChart" width="1100" height="260"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <section id="summaryTab" class="tab-panel">
+          <div class="panel-grid two">
+            <div class="panel">
+              <div class="panel-title">Production Summary</div>
+              <pre id="productionSummary" class="mono-box">No summary.</pre>
+            </div>
+            <div class="panel">
+              <div class="panel-title">Horner Plot</div>
+              <canvas id="hornerChart" width="520" height="240"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <section id="rtaTab" class="tab-panel">
+          <div class="panel">
+            <div class="panel-title">Diagnostic Log-Log Plot</div>
+            <canvas id="diagnosticChart" width="1100" height="300"></canvas>
+          </div>
+        </section>
+
+        <section id="declineTab" class="tab-panel">
+          <div class="panel">
+            <div class="panel-title">Decline Fit Curve and Forecast</div>
+            <canvas id="declineChart" width="1100" height="300"></canvas>
+          </div>
+        </section>
+
+        <section id="aiTab" class="tab-panel">
+          <div class="panel-grid two">
+            <div class="panel">
+              <div class="panel-title">AI Forecast Curves</div>
+              <canvas id="forecastChart" width="520" height="260"></canvas>
+            </div>
+            <div class="panel">
+              <div class="panel-title">AI Insights</div>
+              <pre id="aiSummary" class="mono-box">No AI output.</pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="projectTab" class="tab-panel">
+          <div class="panel-grid two">
+            <div class="panel">
+              <div class="panel-title">Project System</div>
+              <div class="project-actions">
+                <label>Project JSON<input id="projectFile" type="file" accept=".json"></label>
+                <button id="btnLoadProject">Load Project</button>
+                <button id="btnResetProject">Reset Project</button>
+              </div>
+              <div class="project-actions">
+                <label>CSV File<input id="csvFile" type="file" accept=".csv"></label>
+                <label>Time Min<input id="expTimeMin" type="number" step="0.01"></label>
+                <label>Time Max<input id="expTimeMax" type="number" step="0.01"></label>
+                <label>Pressure Min<input id="expPressureMin" type="number" step="0.01"></label>
+                <label>Pressure Max<input id="expPressureMax" type="number" step="0.01"></label>
+                <label>Oil Min<input id="expOilMin" type="number" step="0.01"></label>
+                <label>Oil Max<input id="expOilMax" type="number" step="0.01"></label>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title">Project Notes</div>
+              <textarea id="projectNotes" rows="14" placeholder="Engineering assumptions and notes..."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section id="logTab" class="tab-panel">
+          <div class="panel-grid two">
+            <div class="panel">
+              <div class="panel-title">Activity Log</div>
+              <pre id="activityLog" class="mono-box tall"></pre>
+            </div>
+            <div class="panel">
+              <div class="panel-title">Error Handling Panel</div>
+              <pre id="errorLog" class="mono-box tall"></pre>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="dock right-dock">
+        <div class="dock-header">Solver Results</div>
+        <div class="dock-body">
+          <pre id="solverSummary" class="mono-box">Solver idle.</pre>
+          <div class="mini-actions">
+            <button id="btnApplySolver">Apply</button>
+            <button id="btnResetSolver">Reset</button>
+          </div>
+        </div>
+
+        <div class="dock-header">AI Prediction Panel</div>
+        <div class="dock-body">
+          <pre id="aiPanelSummary" class="mono-box">AI idle.</pre>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="statusbar">
+      <span id="statusMain">Ready</span>
+      <span id="statusUnit">Field</span>
+      <span id="statusPerf">0.0 ms</span>
+    </footer>
+  </div>
+
+  <dialog id="simWizard" class="wizard-dialog">
+    <form method="dialog">
+      <h3>Simulation Setup Wizard</h3>
+      <p>Define range or average/std, trend, noise and correlation for each field.</p>
+      <div class="wizard-wrap">
+        <table class="wizard-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Mode</th>
+              <th>Min</th>
+              <th>Max</th>
+              <th>Avg</th>
+              <th>Std</th>
+              <th>Trend</th>
+              <th>Noise</th>
+              <th>Correlation</th>
+            </tr>
+          </thead>
+          <tbody id="wizardBody"></tbody>
+        </table>
+      </div>
+      <div class="wizard-actions">
+        <button id="btnWizardApply">Apply</button>
+        <button id="btnWizardCancel" value="cancel">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/utils.js"></script>
+  <script src="js/projectManager.js"></script>
+  <script src="js/configEngine.js"></script>
+  <script src="js/dataEngine.js"></script>
+  <script src="js/solverEngine.js"></script>
+  <script src="js/aiEngine.js"></script>
+  <script src="js/gridEngine.js"></script>
+  <script src="js/chartEngine.js"></script>
+  <script src="js/core.js"></script>
+</body>
+</html>

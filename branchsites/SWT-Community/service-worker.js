@@ -8,7 +8,7 @@ const urlsToCache = [
   "/css/style.css",
   "/js/firestore.js"
   "/js/app.js"
-"/js/main.js"
+"/js/auth.js"
 ];
 
 self.addEventListener("install", (event) => {

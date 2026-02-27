@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic reservoir understanding Course</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../index.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link" >Learn</a>
+                <a href="../../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../learn.html" class="mobile-menu-item" >
+                Learn
+            </a>
+            <a href="../../../News/News.html" class="mobile-menu-item" >
+                Posts
+            </a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <main class="container main-content">
+                            <h1 style="margin-top: -5%; color: white; text-align: center;">Field Specialist Course</h1>
+            <div class="tabs-container" >
+                    <div class="tabs" style="visibility: hidden;">
+                    <button class="tab-button active" onclick="openTab(event, 'tab1')"> Porosity</button>
+                    <button class="tab-button" onclick="openTab(event, 'tab2')">my Summary</button>
+                    <button class="tab-button" onclick="openTab(event, 'tab3')">Q&A </button>
+                    <button class="tab-button" onclick="openTab(event, 'tab4')">Exam</button>
+                    <button class="tab-button" onclick="openTab(event, 'tab5')">Q&A </button>
+                    <button class="tab-button" onclick="openTab(event, 'tab6')">Exam</button>
+                    <button class="tab-button" onclick="openTab(event, 'tab6')">Exam</button>
+
+
+                </div>
+                <div class="big-div tab-content active" id="tab1">
+
+                    <div class="background-color1">
+                        <div class="video ">
+                            <iframe style="width: 100%; height: 100%; border-radius: 10%;" src="https://www.youtube.com/embed/KOJlRpmb5k0" title="SWT8 - Transfer Pumps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div >
+
+                    </div>
+                                    
+                <div >
+                    <div class="explain">
+                        <h3>1- Porosity (∅):-</h3>
+                        <ol>
+                            <li>
+                                <b><u>Definition of Porosity </u></b> 
+                                <span > Porosity is the fracrion of the rock volume that consists of pore spaces.</span>
+                            </li>
+                            
+                            <li>
+                                <b><u>Mathematecally: </u></b>  
+                                <div style="background: white; width: 90%; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: center;">
+                                    <p style="font-size: 28px; font-weight: bold; margin: 15px 0;">
+                                        ∅ = <span style="display: inline-block; text-align: center; vertical-align: middle;">
+                                                <span style="display: block; padding: 0 8px;">V <sub>P</sub> </span>
+                                                <span style="display: block; border-top: 1px solid black;">V <sub>P</sub> </span>
+                                            </span>
+                                    </p>
+                                    <p style="font-size: 14px; color: #555;">Porosity = Pore Volume / Bulk Volume</p>
+                                </div>
+                                <span > If a rock has 25% porosity, that means 25% of its volume can store fluids. </span>
+
+                            </li>
+                            <li>
+                                <b><u>Types of porodity: </u></b>  .
+                                <span> Total Porosity <span style="color: red; display: inline-block;">VS</span> Effective porosity</span>
+                                <ul>
+                                    <li>Total porosity = all pore spaces</li>
+                                    <li>Effective  porosity = interconnected pore spaces that allow flow</li>
+                                </ul>
+
+                            </li>    
+                            <li>
+                                <b><u>Why Porosity is important in well testing:-</u></b>
+                                <ul>
+                                    <li>How much fluid is stored in the reservoir</li>
+                                    <li>How fast pressure changes propagate</li>
+                                    <li>Tre reservoir's storage Capacity</li>
+                                </ul>
+                                <span > So porosity influences the speed of pressure response. </span>
+                                <span > Lower porosity ➡️ Less storage ➡️ faster pressure drop near the well </span>
+                                <span > Higher porosity ➡️ more storage ➡️ Slower pressure response </span>
+                            </li>
+
+                        </ol>
+                            
+                    </div>
+                </div>
+                    <div class="center" style="text-align: center; width: 100%;" >
+                        <button class="tab-button previous-btn" onclick="openTab(event, 'tab1')" style="visibility: hidden;" >
+                            <span class="arrow">
+                                ←
+                            </span>
+                            Previous 
+                        </button>
+                        <button class="tab-button next-btn" onclick="openTab(event, 'tab2')" >
+                            Next 
+                            <span class="arrow">
+                                →
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-------------------------Second Tab--------------------------->
+                <div class="big-div tab-content " id="tab2">
+
+                    <div class="background-color1">
+                        <div class="video ">
+                            <iframe style="width: 100%; height: 100%; border-radius: 10%;" src="https://www.youtube.com/embed/KOJlRpmb5k0" title="SWT8 - Transfer Pumps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div >
+
+                    </div>
+                                    
+                <div >
+                    <div class="explain">
+                        <h3>2- Permeability (K)</h3>
+                        <ol>
+                            <li>
+                                <b><u>Definition of Permeability </u></b> 
+                                <span > Permeability measures how easily fluids can move throug the rock.</span>
+                                <span > If porosity is the size of the tank, permeability is the size of the pipe connected to that tank.</span>
+                                <span > If porosity is the pores that fluid stores inside, permeability is the ID of size of these pores that are interconnetced together</span>
+                            </li>
+                            <li>
+                                <b><u>What Controls production Rate: </u></b>  
+                                <div style="background: white; width: 90%; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: center;">
+                                    <p style="font-size: 28px; font-weight: bold; margin: 15px 0;">
+                                        Q (Rate) &prop; <span style="font-size: 28px; display: inline-block; text-align: center; ">
+                                                K x ▲P
+                                            </span>
+                                    </p>
+                                    <p style="font-size: 14px; color: #555;">Darcy's Law (simplified idea)</p>
+                                </div>
+                                <span > Lower permeability ➡️ restricted flow Rate </span>
+                                <span > Higher permeability ➡️ High flow Rae </span>
+                                <span > Even if porosity is high , low permeability means fluids cannot move easily. </span>
+                            </li>
+                            <li>
+                                <b><u>Unit of Permeability </u></b> 
+                                <span > Permeability is measured in:-</span>
+                                    <ul>
+                                        <li>Darcy</li>
+                                        <li>miliDarcy</li>
+                                    </ul>
+                                <span > Typical Ranges:-</span>
+                                    <ul>
+                                        <li>Tight rock: &lt; 1 mD</li>
+                                        <li>Average reservoir: 10-500 mD</li>
+                                        <li>Very good reservoir &gt; 1 Darcy</li>
+                                    </ul>
+                            </li>
+                            <li>
+                                <b><u>Why permeability is important in well testing:-</u></b>
+                                <span>Permeability controls:</span>
+                                <ul>
+                                    <li>How fast pressure responds</li>
+                                    <li>How fast reservoir delievers fluids</li>
+                                    <li>How quickly pressure disturbance travels</li>
+                                </ul>
+                                <span > Lower permeability ➡️ slower response and sharper drawdown </span>
+                                <span > Higher permeability ➡️ faster pressure propagation </span>
+                            </li>
+                            
+                        </ol>
+                        <div class="assessment">
+                            <style>
+                                .Assess-Btn {
+                                    padding: 10px 20px;
+                                    margin: 10px;
+                                    cursor: pointer;
+                                    display: block;
+                                    background-color: black;
+                                    color: aliceblue;
+                                    border-radius: 50px;
+                                }
+                                .assessment {
+                                    box-shadow: 1, 1, 2, 0.5 rgba(red, green, blue, 0.5);
+                                    background-color: rgb(3, 2, 34);
+                                    border-radius: 20px;
+                                    color: aliceblue;
+                                    padding: 10px;
+                                }
+
+                                .correct {
+                                    color: green;
+                                    font-weight: bold;
+                                }
+                                .wrong {
+                                    color: red;
+                                    font-weight: bold;
+                                }
+                            </style>
+                            
+                            <P>👨‍🏭Now think like an Engineer: Two reservoir have the same porosity, but:</P>
+                            <BUTton class="Assess-Btn" onclick="checkAnswer(true)">Reservoir A: K = 500 mD</BUTton>
+                            <BUTton class="Assess-Btn" onclick="checkAnswer(false)">Reservoir B: K = 5 mD</BUTton>
+                            <span>Which one will show a smoother pressure drawdown curve </span>
+
+                            <p id="result"></p>
+
+                            <script>
+                                function checkAnswer(answer) {
+                                    const result = document.getElementById("result");
+                                    if (answer === true){
+                                        result.innerHTML = "Correct Answer✅";
+                                        result.className = "correct"
+                                    }
+                                    else {
+                                        result.innerHTML = "wrong Answer❌";
+                                        result.className = "wrong";
+                                    }
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                    <div class="center" style="text-align: center; width: 100%;" >
+                            <button class="tab-button previous-btn" onclick="openTab(event, 'tab1')" >
+                                <span class="arrow">
+                                    ←
+                                </span>
+                                Previous 
+                            </button>
+                            <button class="tab-button next-btn" onclick="openTab(event, 'tab3')" >
+                                Next 
+                                <span class="arrow">
+                                    →
+                                </span>
+                            </button>
+                        </div>
+                </div>
+
+                <!-------------------------Third Tab--------------------------->
+                <div class="big-div tab-content " id="tab3">
+
+                    <div class="background-color1">
+                        <div class="video ">
+                            <iframe style="width: 100%; height: 100%; border-radius: 10%;" src="https://www.youtube.com/embed/KOJlRpmb5k0" title="SWT8 - Transfer Pumps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div >
+
+                    </div>
+                                    
+                <div >
+                    <div class="explain">
+                        <h3>reservoir pressure</h3>
+                        <ol>
+                            <span>: </span>
+                            
+                            
+                            
+                        </ol>
+                        
+                    </div>
+                </div>
+                    <div class="center" style="text-align: center; width: 100%;" >
+                            <button class="tab-button previous-btn" onclick="openTab(event, 'tab2')" >
+                                <span class="arrow">
+                                    ←
+                                </span>
+                                Previous 
+                            </button>
+                            <button class="tab-button next-btn" onclick="openTab(event, 'tab4')" >
+                                Next 
+                                <span class="arrow">
+                                    →
+                                </span>
+                            </button>
+                        </div>
+                </div>
+
+                <!-------------------------Fourth Tab--------------------------->
+                <div class="big-div tab-content " id="tab4">
+
+                    <div class="background-color1">
+                        <div class="video ">
+                            <iframe style="width: 100%; height: 100%; border-radius: 10%;" src="https://www.youtube.com/embed/KOJlRpmb5k0" title="SWT8 - Transfer Pumps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div >
+
+                    </div>
+                                    
+                <div >
+                    <div class="explain">
+                        <h3>skin factor</h3>
+                        <ol>
+                            <span>: </span>
+                            
+                            
+                            
+                        </ol>
+                        
+                    </div>
+                </div>
+                    <div class="center" style="text-align: center; width: 100%;" >
+                            <button class="tab-button previous-btn" onclick="openTab(event, 'tab3')" >
+                                <span class="arrow">
+                                    ←
+                                </span>
+                                Previous 
+                            </button>
+                            <button class="tab-button next-btn" onclick="openTab(event, 'tab5')" >
+                                Next 
+                                <span class="arrow">
+                                    →
+                                </span>
+                            </button>
+                        </div>
+                </div>
+
+                <!-------------------------Fifth Tab--------------------------->
+                <div class="big-div tab-content " id="tab5">
+
+                    <div class="background-color1">
+                        <div class="video ">
+                            <iframe style="width: 100%; height: 100%; border-radius: 10%;" src="https://www.youtube.com/embed/KOJlRpmb5k0" title="SWT8 - Transfer Pumps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div >
+
+                    </div>
+                                    
+                <div >
+                    <div class="explain">
+                        <h3>productivity index</h3>
+                        <ol>
+                            <span>: </span>
+                            
+                            
+                            
+                        </ol>
+                        
+                    </div>
+                </div>
+                    <div class="center" style="text-align: center; width: 100%;" >
+                            <button class="tab-button previous-btn" onclick="openTab(event, 'tab4')" >
+                                <span class="arrow">
+                                    ←
+                                </span>
+                                Previous 
+                            </button>
+                            <button class="tab-button next-btn" onclick="openTab(event, 'tab6')" >
+                                Next 
+                                <span class="arrow">
+                                    →
+                                </span>
+                            </button>
+                        </div>
+                </div>
+
+                <!-------------------------Sixth Tab--------------------------->
+                <div class="big-div tab-content " id="tab6">
+
+                    <div class="background-color1">
+                        <div class="video ">
+                            <iframe style="width: 100%; height: 100%; border-radius: 10%;" src="https://www.youtube.com/embed/KOJlRpmb5k0" title="SWT8 - Transfer Pumps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div >
+
+                    </div>
+                                    
+                <div >
+                    <div class="explain">
+                        <h3>Basic Drive Mechanisms</h3>
+                        <ol>
+                            <span>: </span>
+                            
+                            
+                            
+                        </ol>
+                        
+                    </div>
+                </div>
+                    <div class="center" style="text-align: center; width: 100%;" >
+                            <button class="tab-button previous-btn" onclick="openTab(event, 'tab5')" >
+                                <span class="arrow">
+                                    ←
+                                </span>
+                                Previous 
+                            </button>
+                            <button class="tab-button next-btn" onclick="openTab(event, 'tab7')" >
+                                Next 
+                                <span class="arrow">
+                                    →
+                                </span>
+                            </button>
+                        </div>
+                </div>
+
+                <!-------------------------Seventh Tab--------------------------->
+                <div class="big-div tab-content " id="tab7">
+
+                    <div class="background-color1">
+                        <div class="video ">
+                            <iframe style="width: 100%; height: 100%; border-radius: 10%;" src="https://www.youtube.com/embed/KOJlRpmb5k0" title="SWT8 - Transfer Pumps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div >
+
+                    </div>
+                                    
+                <div >
+                    <div >
+                            <div class="explain">
+                                <h3>course Exam</h3>
+                                <div class="center" style="text-align: center; width: 100%;" >
+                                <button class="tab-button previous-btn" onclick="openTab(event, 'tab4')" >
+                                    <span class="arrow">
+                                        ←
+                                    </span>
+                                    Go Back to Study 
+                                </button>
+                                <button class="tab-button next-btn" onclick="openTab(event, 'tab6')" style="visibility: hidden;">
+                                    Next 
+                                    <span class="arrow">
+                                        →
+                                    </span>
+                                </button>
+                            </div>
+                                
+                                    <span>Finaly you are in the last step of achieving your Goal</span>
+                                    <h4>✅ Important Notes Before You Start the Exam</h4>
+                                        <span style="border-left: 3px solid blueviolet;">📌 Please read these carefully before pressing the “Start Exam” button:</span>
+                                        <ol>
+                                            <li>🧘‍♂️ Take a deep breath and stay calm – This exam is about understanding, not just memorizing.</li>
+                                            <li>⏰ Make sure you're in a quiet, distraction-free space – Turn off notifications and focus.</li>
+                                            <li>🔌 Ensure a stable internet connection – Losing connection may end your exam session.</li>
+                                            <li>📝 Have everything you need ready – Paper, pen, calculator (if allowed), or any permitted tools.</li>
+                                            <li>🚫 No cheating or switching tabs – Some exams monitor your activity for fairness.</li>
+                                            <li>🧠 Read each question carefully – Don’t rush. Understand before you answer.</li>
+                                            <li>🎯 Only click the button when you're 100% ready – The exam timer will start immediately.</li>
+                                        </ol>
+                                    <h4>⚠️ Note:</h4>
+                                        <span style="border-left: 3px solid blueviolet;">Leaving the page or refreshing the browser may result in automatic submission or loss of progress.</span>
+
+                                    <h4>🚀 Ready to begin?</h4>
+                                    <span style="border-left: 3px solid blueviolet; text-align: center; margin: auto;">Click the button below to start your exam. Good luck! 💪</span>
+                                    
+                                    <a href="Exam.html" style="text-decoration: none;">
+                                            <p style="text-align: center; font-size: 500%;">
+                                                <button class="button-49" role="button"><b>Go to Exam</b></button>
+
+                                            </p></a> 
+
+                                    
+                                
+                            </div>
+                        </div>
+                </div>
+                    
+                </div>
+            </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+<script>
+    function openTab(event, tabId) {
+        // Hide all tab contents
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        // Remove active class from all buttons
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => button.classList.remove('active'));
+
+        // Show the selected tab and add active class to the button
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+</script>
+    
+</body>
+</html>

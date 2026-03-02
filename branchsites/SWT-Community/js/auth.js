@@ -1,5 +1,3 @@
-
-
 /*********************************
  * Firebase Config
  *********************************/
@@ -24,7 +22,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 /*********************************
- * Auth Persistence (مهم جدا)
+ * Auth Persistence
  *********************************/
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
@@ -34,15 +32,12 @@ auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 let currentUser = null;
 
 /*********************************
- * Auth State Listener (قلب المشروع)
+ * Auth State Listener
  *********************************/
 auth.onAuthStateChanged((user) => {
   currentUser = user;
   updateNavigation(user);
-
-  console.log(
-    user ? "✅ Logged in:" + user.email : "❌ Not logged in"
-  );
+  console.log(user ? "✅ Logged in: " + user.email : "❌ Not logged in");
 });
 
 /*********************************
@@ -90,11 +85,18 @@ async function registerWithEmail(name, email, password) {
 }
 
 /*********************************
- * Google Login
+ * Google Login (Redirect)
  *********************************/
 async function signInWithGoogle() {
   const provider = new firebase.auth.GoogleAuthProvider();
-  const result = await auth.signInWithPopup(provider);
+  await auth.signInWithRedirect(provider);
+}
+
+/*********************************
+ * Handle Redirect Result
+ *********************************/
+auth.getRedirectResult().then(async (result) => {
+  if (!result || !result.user) return;
   const user = result.user;
 
   const doc = await db.collection("users").doc(user.uid).get();
@@ -107,8 +109,11 @@ async function signInWithGoogle() {
     });
   }
 
-  return user;
-}
+  window.location.href = "index.html";
+}).catch((err) => {
+  console.error(err);
+  alert(err.message);
+});
 
 /*********************************
  * Logout
@@ -136,7 +141,6 @@ const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const email = loginForm.loginEmail.value.trim();
     const password = loginForm.loginPassword.value;
 
@@ -150,14 +154,13 @@ if (loginForm) {
 }
 
 /*********************************
- * Google Buttons
+ * Google Button
  *********************************/
 const googleBtn = document.getElementById("googleSignInBtn");
 if (googleBtn) {
   googleBtn.addEventListener("click", async () => {
     try {
-      await signInWithGoogle();
-      window.location.href = "index.html";
+      await signInWithGoogle(); // Redirect
     } catch (err) {
       alert(err.message);
     }

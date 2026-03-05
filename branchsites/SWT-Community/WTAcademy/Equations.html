@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculations & Equations</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="AcademyStyle.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="Academy.html" class="nav-link">Home</a>
+                <a href="../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../News/News.html" class="nav-link" >Posts</a>
+                <a href="../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="Academy.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <main class="container main-content" style="width: 95%;">
+        
+      <div class="page">
+      
+
+      
+
+
+      <section class="section equations">
+        <h2 class="section-title">Equations Hub</h2>
+        <p class="section-subtitle">All essential well testing equations with interactive calculators.</p>
+
+        <div class="accordion open">
+          <div class="accordion-header">
+            <div class="accordion-title">Radial Flow Equation (Drawdown)</div>
+            <div>▾</div>
+          </div>
+          <div class="accordion-body">
+            <p>p(r) = pᵢ − (162.6 q B μ / (k h)) [ log₁₀ (k t / (φ μ cₜ r²)) + s ]</p>
+            <div class="two-col">
+              <div class="field">
+                <label>Flow Rate q (STB/d)</label>
+                <input type="number" class="eq-input" data-eq="radial" data-key="q" value="500" style="width: 100%;"/>
+              </div>
+              <div class="field">
+                <label>μ (cp)</label>
+                <input type="number" class="eq-input" data-eq="radial" data-key="mu" value="0.8" style="width: 100%;"/>
+              </div>
+              <div class="field">
+                <label>k (md)</label>
+                <input type="number" class="eq-input" data-eq="radial" data-key="k" value="50" style="width: 100%;"/>
+              </div>
+              <div class="field">
+                <label>h (ft)</label>
+                <input type="number" class="eq-input" data-eq="radial" data-key="h" value="30" style="width: 100%;"/>
+              </div>
+            </div>
+            <div class="result-card">
+              <div>Slope (m)</div>
+              <strong id="radial-result">52.03</strong>
+              <small>psi/cycle</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header">
+            <div class="accordion-title">Horner Time Ratio</div>
+            <div>▾</div>
+          </div>
+          <div class="accordion-body">
+            <p>Horner Time = (tₚ + Δt) / Δt</p>
+            <div class="two-col">
+              <div class="field">
+                <label>Production Time (hr)</label>
+                <input type="number" class="eq-input" data-eq="horner" data-key="tp" value="100" />
+              </div>
+              <div class="field">
+                <label>Shut-in Time (hr)</label>
+                <input type="number" class="eq-input" data-eq="horner" data-key="dt" value="10" />
+              </div>
+            </div>
+            <div class="result-card">
+              <div>Horner Time</div>
+              <strong id="horner-eq-result">11.00</strong>
+              <small>dimensionless</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header">
+            <div class="accordion-title">Permeability from Semi-Log Slope</div>
+            <div>▾</div>
+          </div>
+          <div class="accordion-body">
+            <p>k = (162.6 q B μ) / (m h)</p>
+            <div class="two-col">
+              <div class="field">
+                <label>Flow Rate q (STB/d)</label>
+                <input type="number" class="eq-input" data-eq="perm" data-key="q" value="500" style="width: 100%;"/>
+              </div>
+              <div class="field">
+                <label>μ (cp)</label>
+                <input type="number" class="eq-input" data-eq="perm" data-key="mu" value="0.8" style="width: 100%;"/>
+              </div>
+              <div class="field">
+                <label>Slope m (psi/cycle)</label>
+                <input type="number" class="eq-input" data-eq="perm" data-key="m" value="52" style="width: 100%;"/>
+              </div>
+              <div class="field">
+                <label>h (ft)</label>
+                <input type="number" class="eq-input" data-eq="perm" data-key="h" value="30" style="width: 100%;"/>
+              </div>
+            </div>
+            <div class="result-card">
+              <div>Permeability (k)</div>
+              <strong id="perm-result">50.03</strong>
+              <small>md</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+      <section class="section tools" style="visibility: collapse;">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+        <div class="tool-card" id="converter" >
+          <div class="tool-head">⇄ Unit Converter</div>
+          <div class="pill-row" id="converter-tabs">
+            <button class="pill active" data-type="pressure">Pressure</button>
+            <button class="pill" data-type="permeability">Permeability</button>
+            <button class="pill" data-type="viscosity">Viscosity</button>
+            <button class="pill" data-type="length">Length</button>
+            <button class="pill" data-type="volume">Volume</button>
+          </div>
+          <div class="field">
+            <label>Value</label>
+            <input type="number" id="conv-value" value="1000" />
+          </div>
+          <div class="field">
+            <label>From</label>
+            <select id="conv-from"></select>
+          </div>
+          <div class="field">
+            <label>To</label>
+            <select id="conv-to"></select>
+          </div>
+          <div class="result-card">
+            <div>Result</div>
+            <strong id="conv-result">6894.7600</strong>
+            <small id="conv-unit">kPa</small>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-head">⦿ Skin Factor Estimator</div>
+          <div class="two-col">
+            <div class="field">
+              <label>P1hr (psi)</label>
+              <input type="number" id="p1hr" value="3800" />
+            </div>
+            <div class="field">
+              <label>Pwf (psi)</label>
+              <input type="number" id="pwf" value="3500" />
+            </div>
+            <div class="field">
+              <label>Slope m (psi/cycle)</label>
+              <input type="number" id="slope" value="52" />
+            </div>
+            <div class="field">
+              <label>k/(φμct rw²)</label>
+              <input type="number" id="kterm" value="1000000" />
+            </div>
+          </div>
+          <div class="result-card">
+            <div>Skin Factor (S)</div>
+            <strong id="skin-result">3.45</strong>
+            <small id="skin-label">Slight damage</small>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-head">⏱ Horner Time Calculator</div>
+          <div class="two-col">
+            <div class="field">
+              <label>Production Time tp (hr)</label>
+              <input type="number" id="tp" value="100" />
+            </div>
+            <div class="field">
+              <label>Shut-in Time Δt (hr)</label>
+              <input type="number" id="dt" value="10" />
+            </div>
+          </div>
+          <div class="result-card">
+            <div>Horner Time Ratio</div>
+            <strong id="horner-result">11.000</strong>
+            <small id="horner-log">log10 = 1.0414</small>
+          </div>
+        </div>
+      </section>
+
+
+    </div>
+      
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../js/auth.js"></script>
+    <script src="../js/firestore.js"></script>
+    <script src="../js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+    
+    <script>
+      const unitMap = {
+        pressure: {
+          units: { psi: 1, kPa: 6.89476, bar: 0.0689476, MPa: 0.00689476 },
+        },
+        permeability: {
+          units: { md: 1, "m²": 9.869233e-16, "μm²": 0.0009869233 },
+        },
+        viscosity: {
+          units: { cp: 1, "Pa·s": 0.001, "mPa·s": 1 },
+        },
+        length: {
+          units: { ft: 1, m: 0.3048, in: 12 },
+        },
+        volume: {
+          units: { bbl: 1, "m³": 0.158987, L: 158.987 },
+        },
+      };
+
+      const convTabs = document.querySelectorAll("#converter-tabs .pill");
+      const convValue = document.getElementById("conv-value");
+      const convFrom = document.getElementById("conv-from");
+      const convTo = document.getElementById("conv-to");
+      const convResult = document.getElementById("conv-result");
+      const convUnit = document.getElementById("conv-unit");
+
+      let currentType = "pressure";
+
+      function populateUnits(type) {
+        const units = Object.keys(unitMap[type].units);
+        convFrom.innerHTML = units.map((u) => `<option>${u}</option>`).join("");
+        convTo.innerHTML = units.map((u) => `<option>${u}</option>`).join("");
+        convFrom.value = units[0];
+        convTo.value = units[1] || units[0];
+        updateConversion();
+      }
+
+      function updateConversion() {
+        const value = parseFloat(convValue.value) || 0;
+        const from = convFrom.value;
+        const to = convTo.value;
+        const factorFrom = unitMap[currentType].units[from];
+        const factorTo = unitMap[currentType].units[to];
+        const base = value * factorFrom;
+        const result = base / factorTo;
+        convResult.textContent = result.toFixed(4);
+        convUnit.textContent = to;
+      }
+
+      convTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          convTabs.forEach((btn) => btn.classList.remove("active"));
+          tab.classList.add("active");
+          currentType = tab.dataset.type;
+          populateUnits(currentType);
+        });
+      });
+
+      [convValue, convFrom, convTo].forEach((el) => el.addEventListener("input", updateConversion));
+      populateUnits(currentType);
+
+      const p1hr = document.getElementById("p1hr");
+      const pwf = document.getElementById("pwf");
+      const slope = document.getElementById("slope");
+      const kterm = document.getElementById("kterm");
+      const skinResult = document.getElementById("skin-result");
+      const skinLabel = document.getElementById("skin-label");
+
+      function updateSkin() {
+        const s = (parseFloat(p1hr.value) - parseFloat(pwf.value)) / (parseFloat(slope.value) || 1) - Math.log10(parseFloat(kterm.value) || 1);
+        const sVal = isFinite(s) ? s : 0;
+        skinResult.textContent = sVal.toFixed(2);
+        if (sVal < 0) skinLabel.textContent = "Stimulated";
+        else if (sVal < 5) skinLabel.textContent = "Slight damage";
+        else skinLabel.textContent = "Severe damage";
+      }
+
+      [p1hr, pwf, slope, kterm].forEach((el) => el.addEventListener("input", updateSkin));
+      updateSkin();
+
+      const tp = document.getElementById("tp");
+      const dt = document.getElementById("dt");
+      const hornerResult = document.getElementById("horner-result");
+      const hornerLog = document.getElementById("horner-log");
+
+      function updateHorner() {
+        const tpVal = parseFloat(tp.value) || 0;
+        const dtVal = parseFloat(dt.value) || 1;
+        const ratio = (tpVal + dtVal) / dtVal;
+        hornerResult.textContent = ratio.toFixed(3);
+        hornerLog.textContent = `log10 = ${Math.log10(ratio).toFixed(4)}`;
+      }
+
+      [tp, dt].forEach((el) => el.addEventListener("input", updateHorner));
+      updateHorner();
+
+      const eqInputs = document.querySelectorAll(".eq-input");
+      function updateEquations() {
+        const radial = {
+          q: parseFloat(document.querySelector('[data-eq="radial"][data-key="q"]').value) || 0,
+          mu: parseFloat(document.querySelector('[data-eq="radial"][data-key="mu"]').value) || 0,
+          k: parseFloat(document.querySelector('[data-eq="radial"][data-key="k"]').value) || 0,
+          h: parseFloat(document.querySelector('[data-eq="radial"][data-key="h"]').value) || 1,
+        };
+        const radialResult = ((162.6 * radial.q * radial.mu) / (radial.k * radial.h || 1)).toFixed(2);
+        document.getElementById("radial-result").textContent = isFinite(radialResult) ? radialResult : "0.00";
+
+        const hornerEq = {
+          tp: parseFloat(document.querySelector('[data-eq="horner"][data-key="tp"]').value) || 0,
+          dt: parseFloat(document.querySelector('[data-eq="horner"][data-key="dt"]').value) || 1,
+        };
+        document.getElementById("horner-eq-result").textContent = ((hornerEq.tp + hornerEq.dt) / hornerEq.dt).toFixed(2);
+
+        const perm = {
+          q: parseFloat(document.querySelector('[data-eq="perm"][data-key="q"]').value) || 0,
+          mu: parseFloat(document.querySelector('[data-eq="perm"][data-key="mu"]').value) || 0,
+          m: parseFloat(document.querySelector('[data-eq="perm"][data-key="m"]').value) || 1,
+          h: parseFloat(document.querySelector('[data-eq="perm"][data-key="h"]').value) || 1,
+        };
+        const permResult = (162.6 * perm.q * perm.mu) / (perm.m * perm.h || 1);
+        document.getElementById("perm-result").textContent = permResult.toFixed(2);
+      }
+
+      eqInputs.forEach((input) => input.addEventListener("input", updateEquations));
+      updateEquations();
+
+      document.querySelectorAll(".accordion-header").forEach((header) => {
+        header.addEventListener("click", () => {
+          const acc = header.closest(".accordion");
+          acc.classList.toggle("open");
+        });
+      });
+
+      const librarySearch = document.getElementById("library-search");
+      const libraryFilters = document.querySelectorAll("#library-filters .pill");
+      const libraryCards = document.querySelectorAll(".library-card");
+      let currentFilter = "all";
+
+      function filterLibrary() {
+        const query = librarySearch.value.toLowerCase();
+        libraryCards.forEach((card) => {
+          const matchesFilter = currentFilter === "all" || card.dataset.type === currentFilter;
+          const text = `${card.dataset.title} ${card.dataset.author}`.toLowerCase();
+          const matchesSearch = text.includes(query);
+          card.style.display = matchesFilter && matchesSearch ? "grid" : "none";
+        });
+      }
+
+      libraryFilters.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          libraryFilters.forEach((btn) => btn.classList.remove("active"));
+          pill.classList.add("active");
+          currentFilter = pill.dataset.filter;
+          filterLibrary();
+        });
+      });
+
+      librarySearch.addEventListener("input", filterLibrary);
+      filterLibrary();
+    </script>
+
+
+</body>
+</html>

@@ -24,7 +24,7 @@
             </button>
 
             <div class="nav-links" id="navLinks">
-                <a href="../../../index.html" class="nav-link">Home</a>
+                <a href="../../../../College/OFU.html" class="nav-link">Home</a>
                 <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
                 <a href="../../learn.html" class="nav-link" >Learn</a>
                 <a href="../../../News/News.html" class="nav-link" >Posts</a>
@@ -45,7 +45,7 @@
         
 
         <div class="mobile-menu-content">
-            <a href="../../../index.html" class="mobile-menu-item btn-primary">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">
                 Home
             </a>
             <a href="../../learn.html" class="mobile-menu-item" >
@@ -207,33 +207,6 @@
                             
                         </ol>
                         <div class="assessment">
-                            <style>
-                                .Assess-Btn {
-                                    padding: 10px 20px;
-                                    margin: 10px;
-                                    cursor: pointer;
-                                    display: block;
-                                    background-color: black;
-                                    color: aliceblue;
-                                    border-radius: 50px;
-                                }
-                                .assessment {
-                                    box-shadow: 1, 1, 2, 0.5 rgba(red, green, blue, 0.5);
-                                    background-color: rgb(3, 2, 34);
-                                    border-radius: 20px;
-                                    color: aliceblue;
-                                    padding: 10px;
-                                }
-
-                                .correct {
-                                    color: green;
-                                    font-weight: bold;
-                                }
-                                .wrong {
-                                    color: red;
-                                    font-weight: bold;
-                                }
-                            </style>
                             
                             <P>👨‍🏭Now think like an Engineer: Two reservoir have the same porosity, but:</P>
                             <BUTton class="Assess-Btn" onclick="checkAnswer(true)">Reservoir A: K = 500 mD</BUTton>
@@ -241,7 +214,6 @@
                             <span>Which one will show a smoother pressure drawdown curve </span>
 
                             <p id="result"></p>
-
                             <script>
                                 function checkAnswer(answer) {
                                     const result = document.getElementById("result");
@@ -255,6 +227,8 @@
                                     }
                                 }
                             </script>
+                        
+
                         </div>
                     </div>
                 </div>
@@ -288,11 +262,80 @@
                     <div class="explain">
                         <h3>reservoir pressure</h3>
                         <ol>
-                            <span>: </span>
-                            
-                            
-                            
+                            <li>
+                                <b><u>Definition of Reservoir pressure </u></b> 
+                                <span > reservoir pressure is the natural pressure inside the reservoir before production begins.</span>
+                                <span > It is the force that pushes fluids (gas, oil & water) towards the wellbore</span>
+                            </li> 
+                            <li>
+                                <b><u>Where Does it Come from?</u></b>
+                                <ul>
+                                    <li>the weight of the fluids above (hydrostatic pressure)</li>
+                                    <li>Depth of the reservoir</li>
+                                    <div style="background: white; width: 90%; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: center;">
+                                        <p style="font-size: 28px; font-weight: bold; margin: 15px 0;">
+                                            P (Pressure) &asymp; <span style="font-size: 20px; display: inline-block; text-align: center; ">
+                                                    Fluid denisity (&rho;) x Gravity (g) x Depth (h)
+                                                </span>
+                                        </p>
+                                        <p style="font-size: 14px; color: #555;">Deeper reservoir ➡️ higher pressure</p>
+                                    </div>
+                                </ul>
+                            </li> 
+                            <li>
+                                <b><u>Why is it important?</u></b>
+                                <span>Reservoir pressure is your reference point. From it, we calculate:</span>
+                                <ul>
+                                    <li>Drawdown = P<sub>i</sub> - P<sub>wf</sub></li>
+                                    <li>Productivity index</li>
+                                    <li>Depletion</li>
+                                    <li>Skin effect impact</li>
+                                </ul>
+                                <span>If P<sub>i</sub> is wrong, everything else becomes wrong</span>
+                            </li>  
+                            <li>
+                                <b><u>How do we meassure it?</u></b>
+                                <span>we estimate reservoir pressure from <b>Buildup test</b></span>
+                                <ol>
+                                    <li>produce the well</li>
+                                    <li>Shut the well</li>
+                                    <li>Let pressure recover</li>
+                                    <li>Use analysis (like Horner method) to estimate P<sub>i</sub></li>
+                                </ol>
+                            </li> 
+                            <li>
+                                <b><u>Important concept</u></b>
+                                <span>Reservoir pressure changes over time (It is not Constant)</span>
+                                <ul>
+                                    <li>Before production ➡️ Initial reservoir pressure</li>
+                                    <li>After years of production ➡️ Average reservoir pressure (Lower due to depletion) </li>
+                                    <li></li>
+                                </ul>
+                            </li>
                         </ol>
+                        <div class="assessment">
+                            
+                            <P>👨‍🏭Now think Carefully: If reservoir pressure is very high, but permeability is very low:</P>
+                            <span>Will production rate be high or low - and why</span>
+                            <BUTton class="Assess-Btn" onclick="checkAnswer3(true)">Low</BUTton>
+                            <BUTton class="Assess-Btn" onclick="checkAnswer3(false)">High</BUTton>
+
+                            <p id="result3"></p>
+                            <script>
+                                function checkAnswer3(answer) {
+                                    const result = document.getElementById("result3");
+                                    if (answer === true){
+                                        result3.innerHTML = "Correct Answer✅";
+                                        result3.className = "correct"
+                                    }
+                                    else {
+                                        result3.innerHTML = "wrong Answer❌";
+                                        result3.className = "wrong";
+                                    }
+                                }
+                            </script>
+
+                        </div>
                         
                     </div>
                 </div>
@@ -324,10 +367,72 @@
                                     
                 <div >
                     <div class="explain">
-                        <h3>skin factor</h3>
+                        <h3>Flow Regimes</h3>
                         <ol>
-                            <span>: </span>
-                            
+                            <span>When a Well starts producing (or after shut-in), pressure response behave is not same for all time, a Reservoir goes through differemt flow regimes: </span>
+                            <li>
+                                <b><u>Wellbore Storage</u></b>
+                                <span>What happens?</span>
+                                <p>the fluid being produced is mainly coming from the wellbore itself, not reservoir yet.</p>
+                                <span>So:</span>
+                                <ul style="margin-left: 10%;">
+                                    <li>pressure drops very quickly</li>
+                                    <li>the reservoir has not fully responded</li>
+                                    <li>Data here does not represent reservoir properties</li>
+                                </ul>
+                                <div style="background: white; width: 90%; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: center;">
+                                        <p style="font-size: 28px; font-weight: bold; margin: 15px 0;">
+                                            On a log-log derivative plot: <span style="font-size: 20px; display: inline-block; text-align: center; ">
+                                                   <img src="img/wellborePressure.png" alt="log-log derivative plot" style="width: 90%;"> 
+                                                </span>
+                                        </p>
+                                        <p style="font-size: 14px; color: #555; ">Derivative slope &asymp; 1</p>
+                                    </div>
+                                <span style="color: red; text-align: center; margin-top: 1.5%;">You never calculate permeability here</span>
+                                
+                            </li>
+                            <li>
+                                <b><u>Transition Zone</u></b>
+                                <p>Now the reservoir begins to feel the production.</p>
+                                <p>pressure disturbance starts moving outward</p>
+                                <p>the flow pattern still developing</p>
+                                <p>the derivative still unstable here</p>
+                                <span style="color: red; text-align: center; ">Still not safe for reservoir calculation</span>
+                            </li>
+                            <li>
+                                <b><u>Radial Flow</u></b>
+                                <span>this is the key regimes</span>
+                                <ul>
+                                    <span>Here:</span>
+                                    <li>Pressure moves outward uniformaly in a circular pattern</li>
+                                    <li>Flow is purely radial towards the well</li>
+                                    <li>Behaviour becomes stable</li>
+                                    <span>On Semi-Log Plot:</span>
+                                    <li>Straight line</li>
+                                    <span>On Derivative plot</span>
+                                    <li>Horizontal flat line</li>
+                                    <span>This is where we Calculate:</span>
+                                    <li>Permeability</li>
+                                    <li>Skin</li>
+                                    <li>Reservoir pressure</li>
+                                    <span style="color: red; text-align: center; ">If Radial Flow does not appear - analysis is incomplete</span>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <b><u>Boundary Effect</u></b>
+                                <p>After enough time, pressure wave reaches reservoir boundaries</p>
+                                <ul>
+                                    <span>Example:</span>
+                                    <li>Faults</li>
+                                    <li>Sealing boundaries</li>
+                                    <li>Aquifer Support</li>
+                                    <li>Closed Reservoir</li>
+                                    <span>when this happens:</span>
+                                    <li>pressure behaviour changes again</li>
+                                    <li>Derivative rises or falls depending on boundary type</li>
+                                </ul>
+                            </li>
                             
                             
                         </ol>
@@ -577,6 +682,20 @@
         event.currentTarget.classList.add('active');
     }
 </script>
+<!--------------------Assessment--------------------------->
+        <script>
+            function checkAnswer(answer) {
+                const result = document.getElementById("result");
+                if (answer === true){
+                    result.innerHTML = "Correct Answer✅";
+                    result.className = "correct"
+                }
+                else {
+                    result.innerHTML = "wrong Answer❌";
+                    result.className = "wrong";
+                }
+            }
+        </script>
     
 </body>
 </html>

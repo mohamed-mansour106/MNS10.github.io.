@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="../../../../../../../../../img/logo/favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
+  
+  <script>
+  // Initialize EmailJS
+  emailjs.init('3dIrI65CBrIKVDXi6'); // Replace with your EmailJS user ID
+</script>
+  
+  
+
+  <title>Transfer Pumps Exam</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f0f4f8;
+      padding: 20px;
+      margin: 0;
+      color: #333;
+    }
+
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .form-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .form-container input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .question:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .question p {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #34495e;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      font-size: 16px;
+      color: #555;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-left: 10px;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 30px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: #27ae60;
+      display: none; /* Initially hidden */
+    }
+
+    #result.celebration {
+      color: #d35400;
+      font-size: 28px;
+      animation: pulse 1s infinite;
+    }
+
+    .certificate {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      border: 2px solid #3498db;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .certificate h2 {
+      font-size: 28px;
+      color: #2c3e50;
+    }
+
+    .certificate p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    /* Pulse animation for the result */
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Celebration background animation */
+    @keyframes glow {
+      0%, 100% {
+        background-color: #f0f4f8;
+      }
+      50% {
+        background-color: #ffeb3b;
+      }
+    }
+
+    body.celebration {
+      animation: glow 1s infinite;
+      overflow: hidden;
+    }
+
+    /* Confetti animation */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #ff4081;
+      animation: fall 3s linear infinite;
+      z-index: 1000;
+    }
+
+    .confetti:nth-child(odd) {
+      background-color: #3f51b5;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Popup Certificate Styles */
+    .popup-certificate {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .popup-content h2 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    .popup-content p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .popup-content button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .popup-content button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Fade-in animation for the popup */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+
+   /*******************real certificate************************************/
+   .certificate-container {
+            width: 90%; /* Adjust width for responsiveness */
+            max-width: 800px; /* Limit the maximum width */
+            background-color: white;
+            padding: 15px; /* Reduced padding to decrease height */
+            border: 10px solid #2c3e50; /* Outer border */
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            margin: 10px; /* Reduced margin for spacing */
+        }
+
+        .certificate-container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 5px solid #0097e6; /* Inner decorative border */
+            border-radius: 25px;
+            z-index: -1;
+        }
+
+        .certificate-header {
+            font-family: 'Pinyon Script', cursive !important;
+            font-family: 'Great Vibes', cursive;
+
+            font-size: 1.8rem; /* Slightly smaller font size */
+            margin-bottom: 15px; /* Reduced margin */
+            color: #2c3e50;
+        }
+
+        .certificate-title {
+            font-size: 1.4rem; /* Slightly smaller font size */
+            font-weight: bold;
+            margin: 15px 0; /* Reduced margin */
+        }
+
+        .certificate-subtitle {
+            font-size: 1rem; /* Slightly smaller font size */
+            font-style: italic;
+            margin: 8px 0; /* Reduced margin */
+        }
+
+        .certificate-content {
+            margin: 15px 0; /* Reduced margin */
+        }
+
+        .certificate-content strong {
+            font-size: 1rem; /* Slightly smaller font size */
+        }
+
+        .certificate-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px; /* Reduced margin */
+            font-size: 0.8rem; /* Slightly smaller font size */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .certificate-footer div {
+            text-align: center;
+            flex: 1; /* Equal space for each footer section */
+            margin: 5px; /* Reduced spacing between footer sections */
+        }
+
+        .certificate-footer .signature {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .certificate-footer .date {
+            margin-top: 10px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 0px 0; /* Reduced margin */
+        }
+
+        @media (max-width: 768px) {
+            .certificate-header {
+                font-size: 1.6rem; /* Smaller font size for smaller screens */
+            }
+
+            .certificate-title {
+                font-size: 1.2rem;
+            }
+
+            .certificate-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .certificate-content strong {
+                font-size: 0.9rem;
+            }
+
+            .certificate-footer {
+                font-size: 0.7rem;
+            }
+        }
+   /*******************************************************/
+
+  .certificate-container {
+    font-family: 'Pinyon Script', cursive !important;
+    font-size: 16px;
+      line-height: 1.5; /* Ensure proper line spacing */
+      letter-spacing: 0.5px; /* Adjust letter spacing */
+      color: #2c3e50; /* Text color */
+  }
+
+  .certificate-header {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2c3e50;
+  }
+
+  .certificate-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 10px ;
+      text-transform: uppercase;
+  }
+
+  .certificate-subtitle {
+      font-size: 1.2rem;
+      font-style: italic;
+      margin: 5px 0;
+  }
+
+  .certificate-content strong {
+      font-size: 1.2rem;
+      font-weight: bold;
+  }
+
+  .certificate-footer {
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 5px;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <div class="logo container" style="text-align: center; width: 100%;   ">
+      <img src="../../../../../../../../../img/logo/MMM.png" style="border-radius: 90%; width: 100%;" alt="">
+    </div>
+
+    <h1>SWT8 - Transfer Pumps Exam</h1>
+
+
+  <div class="form-container">
+    <input type="text" id="userName" placeholder="  write your name here" required>
+  </div>
+
+  <div class="question">
+    <p>1. Which of the following is not a typical advantage of positive displacement pumps over centrifugal pumps?</p>
+    <label><input type="radio" name="q1" value="0">A. Higher volumetric efficiency</label>
+    <label><input type="radio" name="q1" value="0">B. Better handling of viscous fluids</label>
+    <label><input type="radio" name="q1" value="0">C. Capability to self-prime</label>
+    <label><input type="radio" name="q1" value="1">D. Inherent pressure generation within the pump</label>
+  </div>
+<!------------------------------->
+  <div class="question">
+    <p>2. In what situation would a diaphragm pump be least suitable?</p>
+    <label><input type="radio" name="q2" value="0"> A. When seal-less operation is required</label>
+    <label><input type="radio" name="q2" value="1"> B. For high flow rate and high pressure applications</label>
+    <label><input type="radio" name="q2" value="0"> C. When handling aggressive chemicals </label>
+    <label><input type="radio" name="q2" value="0"> D. In systems with moderate fluid viscosity </label>
+  </div>
+
+  <div class="question">
+    <p>3. Which pump type provides the lowest shear and is thus best for handling sensitive fluids?</p>
+    <label><input type="radio" name="q3" value="0">A. Radial centrifugal pump</label>
+    <label><input type="radio" name="q3" value="0">B. Reciprocating pump</label>
+    <label><input type="radio" name="q3" value="1">C. Progressive cavity (screw) pump</label>
+    <label><input type="radio" name="q3" value="0">D. External gear pump</label>
+  </div>
+
+  <div class="question">
+    <p>4. What characteristic of centrifugal pumps makes them more suitable for space-constrained industrial environments?</p>
+    <label><input type="radio" name="q4" value="0">A. Adjustable flow rate</label>
+    <label><input type="radio" name="q4" value="0">B. High-pressure capability</label>
+    <label><input type="radio" name="q4" value="1">C. Variety in size and compact design</label>
+    <label><input type="radio" name="q4" value="0">D. Ability to handle high-viscosity fluids</label>
+  </div>
+
+  <div class="question">
+    <p>5. Which of the following issues is most commonly associated with positive displacement pumps due to their operating mechanism?</p>
+    <label><input type="radio" name="q5" value="0"> A. Vapor lock</label>
+    <label><input type="radio" name="q5" value="0"> B. Cavitation</label>
+    <label><input type="radio" name="q5" value="1"> C. Pulsations leading to vibration or water hammer</label>
+    <label><input type="radio" name="q5" value="0"> D. Air entrainment</label>
+  </div>
+
+  <div class="question">
+    <p>6. Why is driver sizing less critical for positive displacement pumps compared to centrifugal pumps?</p>
+    <label><input type="radio" name="q6" value="0"> A. They are more efficient</label>
+    <label><input type="radio" name="q6" value="0">B. Flow rate is pressure-dependent</label>
+    <label><input type="radio" name="q6" value="0"> C. They operate at lower speeds</label>
+    <label><input type="radio" name="q6" value="1"> D. They deliver a fixed volume regardless of system pressure</label>
+  </div>
+
+  <div class="question">
+    <p>7. Which pump type would be best for metering applications requiring precise volume control?</p>
+    <label><input type="radio" name="q7" value="0"> A. Radial centrifugal pump</label>
+    <label><input type="radio" name="q7" value="0"> B. Screw pump</label>
+    <label><input type="radio" name="q7" value="0"> C. Diaphragm pump</label>
+    <label><input type="radio" name="q7" value="1"> D. Positive displacement pump</label>
+  </div>
+
+  <div class="question">
+    <p>8. A system requires handling low-viscosity, H2S-rich fluid with potential impurities. Which pump is most suitable?</p>
+    <label><input type="radio" name="q8" value="0"> A. Mono screw pump</label>
+    <label><input type="radio" name="q8" value="1"> B. Sundyne centrifugal pump</label>
+    <label><input type="radio" name="q8" value="0"> C. Viking rotary pump</label>
+    <label><input type="radio" name="q8" value="0"> D. Internal gear pump</label>
+  </div>
+
+  <div class="question">
+    <p>9. What is the main operational difference between screw pumps and gear pumps?</p>
+    <label><input type="radio" name="q9" value="0"> A. Screw pumps are non-positive displacement</label>
+    <label><input type="radio" name="q9" value="0"> B. Gear pumps use impellers; screw pumps use diaphragms</label>
+    <label><input type="radio" name="q9" value="0"> C. Screw pumps use axial flow; gear pumps use trapped fluid between teeth</label>
+    <label><input type="radio" name="q9" value="1"> D. Screw pumps require external check valves; gear pumps do not</label>
+  </div>
+<!----------------------------------------->
+  <div class="question">
+    <p>10. Which statement correctly describes a centrifugal pump’s pressure development?</p>
+    <label><input type="radio" name="q10" value="0"> A. Pressure is created by piston displacement</label>
+    <label><input type="radio" name="q10" value="0"> B. Pressure is created by fluid slippage across gears</label>
+    <label><input type="radio" name="q10" value="1"> C. Pressure is generated by fluid velocity converted via a diffuser</label>
+    <label><input type="radio" name="q10" value="0"> D. Pressure is generated by compressed air cycling chambers</label>
+  </div>
+
+  <button onclick="calculateScore()">Submit your paper</button>
+
+  <div id="result"></div>
+
+  <div class="certificate" id="certificate">
+    <h2>Certificate/h2>
+    <p>Excellent <span id="certificateName"></span>!</p>
+    <p>    You did a Good Job !</p>
+  </div>
+
+  <div class="popup-certificate" id="popupCertificate">
+    <div class="popup-content" style="animation: fadeIn 0.6s ease-in-out;">
+      <h2>🎉 شهادة تقدير 🎉</h2>
+      <!--real certificate---------------------------->
+      <div class="certificate-container" style="
+                                                background-image: url('https://i.imgur.com/jt40X37_d.png?maxwidth=520&shape=thumb&fidelity=high');
+                                                background-size: cover;
+                                                background-position: center;
+                                                background-repeat: no-repeat;" >
+        <br><br>
+        <div class="certificate-header" style="font-size: 70%; margin-top: 2%; translate: 0 0 ;">
+            Online Freelancing University Certificate of Completion
+        </div>
+        <div class="certificate-title" id="popupCertificateName" style="font-family: 'Cairo', sans-serif; translate: 0 0 ;" > >
+          <p style="font-family: 'Cairo', sans-serif;"> ENG.<span id="popupCertificateName"></span></p>
+        </div>
+        <div class="certificate-subtitle" style="font-family: 'Pinyon Script', cursive !important; margin: -3% 0; translate: 0 -50% ;">
+            has earned
+        </div>
+        <div class="certificate-content" style="font-family: 'Cairo', sans-serif; translate: 0 -70% ;">
+            <strong>OFU003: 1.0 Credit Hours</strong>
+        </div>
+        <div class="certificate-subtitle" style="font-family: 'Pinyon Script', cursive !important; margin: -3% 0; translate: 0 -70% ;">
+            while completing the training course entitled
+        </div>
+        <div class="certificate-content" style="font-family: 'Cairo', sans-serif; margin: 3% 0; translate: 0 -70% ;" >
+            <strong>Transfer Pumps (SWT8)</strong>
+        </div>
+        <div class="certificate-footer" style="margin: 3% 0; translate: 0 -30% ;">
+            <div>
+                Your. <br> <span id="" class="serial"></span>
+            </div>
+            <div>
+                Date Completed: <br><span id="currentDate"></span>
+            </div>
+        </div>
+        
+        
+    </div>
+      <!--real certificate---------------------------->
+      <div class="buttons" style="display: flex;">
+      <button onclick="closePopup()" style="float: right;">إغلاق</button>
+      <!-- Button to generate PDF -->
+  <input type="button" id="create_pdf" value="Generate PDF" style="float: left; background-color: blueviolet; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px; margin-left: 10px;">
+      </div>
+</div>
+    </div>
+  </div>
+
+
+  <!-----------------------------------------failed exam------------------->
+  <div class="popup-certificate" id="popupfailedCertificate">
+    <div class="popup-content" style="margin-top: 20px;
+                                      background-color: #ffe6e6;
+                                      border: 2px solid #e74c3c;
+                                      padding: 20px;
+                                      border-radius: 10px;
+                                      text-align: center;
+                                      color: #c0392b;
+                                      animation: fadeIn 0.6s ease-in-out;
+                                      background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20230527/pngtree-an-animation-of-a-young-boy-looking-disappointed-image_2655732.jpg');
+                                      background-size: cover;
+                                      background-position: center;
+                                      background-repeat: no-repeat;">
+      <br>
+      <br>
+      <h2 style="color: white; background-color: #0000006f;">😞 Don't give up!</h2>
+      <br>
+      <p style="color: white; background-color: #0000006f; margin: 0 10% ;">You didn't pass this time, but you're capable of much better. Study a bit more and try again — you got this! 💪</p>
+      <br>
+      <br>
+      <br>
+      <a href="Transfer-pump.html" style="text-decoration: none;"><button >Study Again Harder this time</button></a>
+    </div>
+  </div>
+
+  <script>
+    function createConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDelay = Math.random() * 2 + "s";
+        document.body.appendChild(confetti);
+
+        // Remove confetti after animation ends
+        setTimeout(() => {
+          confetti.remove();
+        }, 3000);
+      }
+    }
+
+    function calculateScore() {
+      const userName = document.getElementById("userName").value.trim();
+      if (!userName) {
+        alert("Please enter your name before submitting.");
+        return;
+      }
+
+      let allQuestionsAnswered = true;
+      for (let i = 1; i <= 10; i++) { // Adjust based on the number of questions
+        const answer = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!answer) {
+          allQuestionsAnswered = false;
+          break;
+        }
+      }
+
+      if (!allQuestionsAnswered) {
+        alert("Please answer all the questions before submitting.");
+        return;
+      }
+
+      let totalScore = 0;
+      for (let i = 1; i <= 10; i++) { // Adjust based on the number of questions
+        const answer = document.querySelector(`input[name="q${i}"]:checked`);
+        totalScore += parseInt(answer.value);
+      }
+
+      let resultText = "";
+
+      if (totalScore >= 7) { // Adjust based on the total score
+        resultText = `🎉 Great Bro! Keep Going💪 ${totalScore}/10 🎉`;
+        document.body.classList.add("celebration");
+        createConfetti(); // Trigger confetti
+
+        // Show popup certificate
+        const popupCertificate = document.getElementById("popupCertificate");
+        const popupCertificateName = document.getElementById("popupCertificateName");
+        popupCertificateName.innerText = userName;
+        popupCertificate.style.display = "flex"; // Show the popup
+
+        // Generate a random serial number for the certificate
+        const serialNumber = Math.floor(Math.random() * 1000000) + 1; // Random number between 1 and 1,000,000
+        document.querySelector('.serial').innerText = `Sr. No. ${serialNumber}`;
+      } else {
+        resultText = `Oops You failed! You should study harder 💪💪💪 ${totalScore}/10`;
+        document.body.classList.remove("celebration");
+
+        // Show popup failed certificate
+        const popupCertificate = document.getElementById("popupfailedCertificate");
+        popupCertificate.style.display = "flex"; // Show the popup
+      }
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerText = resultText;
+      resultDiv.style.display = "block"; // Ensure the result is visible
+
+      // Send email with the result
+      sendEmail(userName, totalScore);
+    }
+
+    // Function to send email using EmailJS
+    function sendEmail(userName, totalScore) {
+      const templateParams = {
+        name: userName,
+        result: `${totalScore}/10`,
+      };
+
+      emailjs.send('service_lyvrgdp', 'template_sagbuj2', templateParams) // Replace with your EmailJS service ID and template ID
+        .then(function(response) {
+          console.log('Email sent successfully!', response.status, response.text);
+        }, function(error) {
+          console.error('Failed to send email:', error);
+        });
+    }
+  </script>
+
+
+<!-----------date on the certificate----------------->
+<script>
+  // Get today's date
+  const today = new Date();
+
+  // Format the date as DD/MM/YYYY (you can change this format)
+  const formattedDate = today.toLocaleDateString('en-GB'); // for Arabic-style dd/mm/yyyy
+
+  // Put the date inside the span
+  document.getElementById("currentDate").textContent = formattedDate;
+</script>
+<!----------------------------------------------------->
+
+
+<!-----------start create bdf------------------------>
+<script>
+  (function () {
+      var form = document.querySelector('.certificate-container'); // Select the certificate container
+
+      // Event listener for the "Generate PDF" button
+      document.getElementById('create_pdf').addEventListener('click', function () {
+          console.log("Generate PDF button clicked"); // Debugging log
+          if (!form) {
+              console.error("Certificate container not found in the DOM.");
+              return;
+          }
+          window.scrollTo(0, 0); // Scroll to the top of the page
+          createPDF(); // Call the function to create the PDF
+      });
+
+      // Function to create the PDF
+      async function createPDF() {
+          try {
+              const canvas = await getCanvas(); // Wait for the canvas to be created
+              const img = canvas.toDataURL("image/png"); // Convert the canvas to an image
+              const { jsPDF } = window.jspdf; // Access the jsPDF object
+
+              // Set the PDF dimensions
+              const pdfWidth = canvas.width * 0.75; // Convert pixels to points (1px = 0.75pt)
+              const pdfHeight = canvas.height * 0.75;
+
+              // Calculate 90% of the PDF dimensions
+              const scaledWidth = pdfWidth * 0.9;
+              const scaledHeight = pdfHeight * 0.9;
+
+              // Calculate margins to center the certificate
+              const marginX = (pdfWidth - scaledWidth) / 2;
+              const marginY = (pdfHeight - scaledHeight) / 2;
+
+              const doc = new jsPDF({
+                  orientation: 'landscape', // Set the orientation to landscape
+                  unit: 'pt', // Use points for dimensions
+                  format: [pdfWidth, pdfHeight] // Set the format dynamically based on the canvas size
+              });
+
+              // Add the image to the PDF with 90% scaling and centered
+              doc.addImage(img, 'JPEG', marginX, marginY, scaledWidth, scaledHeight);
+              doc.save('Mycertificate.pdf'); // Save the PDF with the specified name
+          } catch (error) {
+              console.error("Error generating PDF:", error); // Log any errors
+          }
+      }
+
+      // Function to create a canvas object from the certificate
+      function getCanvas() {
+          return html2canvas(form, {
+              scale: 7, // Increase the scale for higher resolution
+              useCORS: true, // Enable cross-origin resource sharing for external images
+              allowTaint: false, // Prevent tainted canvas issues
+              backgroundColor: null, // Ensure the background is transparent or matches the design
+              imageTimeout: 2000, // Timeout for loading images
+              removeContainer: true // Remove the container after rendering
+          });
+      }
+  }());
+</script>
+<!-----------end create bdf------------------------>
+
+<!--------------------------emailjs------------------------->
+<script type="module">
+  import { init, send } from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+  init('3dIrI65CBrIKVDXi6');  // Replace with your EmailJS user ID
+  // Function to send email using EmailJS
+</script>
+<!--------------------------emailjs------------------------->
+
+
+<br><br><br>
+  <footer style="text-align: center; margin-top: 50px; font-size: 14px; color: #777;">
+    &copy; 2023 جميع الحقوق محفوظة.
+  </footer> 
+</body>
+</html>

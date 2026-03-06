@@ -1,0 +1,387 @@
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f0f4f8;
+      padding: 20px;
+      margin: 0;
+      color: #333;
+    }
+
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .form-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .form-container input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .question:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .question p {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #34495e;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      font-size: 16px;
+      color: #555;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-left: 10px;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 30px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: #27ae60;
+      display: none; /* Initially hidden */
+    }
+
+    #result.celebration {
+      color: #d35400;
+      font-size: 28px;
+      animation: pulse 1s infinite;
+    }
+
+    .certificate {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      border: 2px solid #3498db;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .certificate h2 {
+      font-size: 28px;
+      color: #2c3e50;
+    }
+
+    .certificate p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    /* Pulse animation for the result */
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Celebration background animation */
+    @keyframes glow {
+      0%, 100% {
+        background-color: #f0f4f8;
+      }
+      50% {
+        background-color: #ffeb3b;
+      }
+    }
+
+    body.celebration {
+      animation: glow 1s infinite;
+      overflow: hidden;
+    }
+
+    /* Confetti animation */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #ff4081;
+      animation: fall 3s linear infinite;
+      z-index: 1000;
+    }
+
+    .confetti:nth-child(odd) {
+      background-color: #3f51b5;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Popup Certificate Styles */
+    .popup-certificate {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .popup-content h2 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    .popup-content p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .popup-content button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .popup-content button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Fade-in animation for the popup */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+
+   /*******************real certificate************************************/
+   .certificate-container {
+            width: 90%; /* Adjust width for responsiveness */
+            max-width: 800px; /* Limit the maximum width */
+            background-color: white;
+            padding: 15px; /* Reduced padding to decrease height */
+            border: 10px solid #2c3e50; /* Outer border */
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            margin: 10px; /* Reduced margin for spacing */
+        }
+
+        .certificate-container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 5px solid #0097e6; /* Inner decorative border */
+            border-radius: 25px;
+            z-index: -1;
+        }
+
+        .certificate-header {
+            font-family: 'Pinyon Script', cursive !important;
+            font-family: 'Great Vibes', cursive;
+
+            font-size: 1.8rem; /* Slightly smaller font size */
+            margin-bottom: 15px; /* Reduced margin */
+            color: #2c3e50;
+        }
+
+        .certificate-title {
+            font-size: 1.4rem; /* Slightly smaller font size */
+            font-weight: bold;
+            margin: 15px 0; /* Reduced margin */
+        }
+
+        .certificate-subtitle {
+            font-size: 1rem; /* Slightly smaller font size */
+            font-style: italic;
+            margin: 8px 0; /* Reduced margin */
+        }
+
+        .certificate-content {
+            margin: 15px 0; /* Reduced margin */
+        }
+
+        .certificate-content strong {
+            font-size: 1rem; /* Slightly smaller font size */
+        }
+
+        .certificate-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px; /* Reduced margin */
+            font-size: 0.8rem; /* Slightly smaller font size */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .certificate-footer div {
+            text-align: center;
+            flex: 1; /* Equal space for each footer section */
+            margin: 5px; /* Reduced spacing between footer sections */
+        }
+
+        .certificate-footer .signature {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .certificate-footer .date {
+            margin-top: 10px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 0px 0; /* Reduced margin */
+        }
+
+        @media (max-width: 768px) {
+            .certificate-header {
+                font-size: 1.6rem; /* Smaller font size for smaller screens */
+            }
+
+            .certificate-title {
+                font-size: 1.2rem;
+            }
+
+            .certificate-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .certificate-content strong {
+                font-size: 0.9rem;
+            }
+
+            .certificate-footer {
+                font-size: 0.7rem;
+            }
+        }
+   /*******************************************************/
+
+  .certificate-container {
+    font-family: 'Pinyon Script', cursive !important;
+    font-size: 16px;
+      line-height: 1.5; /* Ensure proper line spacing */
+      letter-spacing: 0.5px; /* Adjust letter spacing */
+      color: #2c3e50; /* Text color */
+  }
+
+  .certificate-header {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2c3e50;
+  }
+
+  .certificate-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 10px ;
+      text-transform: uppercase;
+  }
+
+  .certificate-subtitle {
+      font-size: 1.2rem;
+      font-style: italic;
+      margin: 5px 0;
+  }
+
+  .certificate-content strong {
+      font-size: 1.2rem;
+      font-weight: bold;
+  }
+
+  .certificate-footer {
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 5px;
+  }

@@ -1,4 +1,4 @@
 User-agent: *
-allow:
+Allow:
 
 Sitemap: https://mohamed-mansour106.github.io/MNS10.github.io/sitemap.xml

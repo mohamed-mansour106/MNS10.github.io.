@@ -79,9 +79,9 @@ let authChecked = false;
 let isQuizFinished = false;
 
 const EMAILJS_CONFIG = {
-  publicKey: "D5-GNzCWsBvShkW_R",
-  serviceId: "service_wagvww2",
-  templateId: "template_1g0kvzx"
+  publicKey: "di944TOUgjjctowQk",
+  serviceId: "service_txzx4kc",
+  templateId: "template_rctd0z8"
 };
 
 /* ===== Elements ===== */

@@ -76,6 +76,13 @@ let darkMode = false;
 let finalScorePercent = 0;
 let signedInUser = null;
 let authChecked = false;
+let isQuizFinished = false;
+
+const EMAILJS_CONFIG = {
+  publicKey: "D5-GNzCWsBvShkW_R",
+  serviceId: "service_wagvww2",
+  templateId: "template_1g0kvzx"
+};
 
 /* ===== Elements ===== */
 const questionText = document.getElementById("questionText");
@@ -207,6 +214,9 @@ function startTimer() {
 
 /* ===== Result ===== */
 function finishQuiz() {
+  if (isQuizFinished) return;
+  isQuizFinished = true;
+
   playSound(finishSound);
   quizSection.classList.add("hidden");
   resultSection.classList.remove("hidden");
@@ -232,6 +242,13 @@ function finishQuiz() {
   scoreRing.style.strokeDashoffset = circumference - (finalScorePercent / 100) * circumference;
 
   renderAnalysis();
+  sendQuizResultEmail({
+    userName: getSignedInUserName(),
+    userEmail: (signedInUser?.email || "").trim(),
+    scorePercent: finalScorePercent,
+    scoreRaw: `${correct}/${questions.length}`,
+    courseName: document.querySelector(".title")?.textContent || "Skill Exam"
+  });
 }
 
 function renderAnalysis() {
@@ -268,6 +285,7 @@ function applySound() {
 
 /* ===== Initialization ===== */
 function initQuiz(savedState = null) {
+  isQuizFinished = false;
   state.shuffled = shuffleArray(questions);
 
   if (savedState) {
@@ -341,6 +359,34 @@ function startAfterAuth() {
 
   const best = localStorage.getItem("highScore") || 0;
   highScore.textContent = `${best}%`;
+}
+
+function sendQuizResultEmail({ userName, userEmail, scorePercent, scoreRaw, courseName }) {
+  if (!window.emailjs || !emailjs.init || !emailjs.send) {
+    console.warn("EmailJS is not loaded. Skipping result email.");
+    return;
+  }
+
+  try {
+    emailjs.init(EMAILJS_CONFIG.publicKey);
+  } catch (err) {
+    console.error("EmailJS init failed:", err);
+    return;
+  }
+
+  const templateParams = {
+    name: userName,
+    result: `${scoreRaw} (${scorePercent}%)`
+  };
+
+  emailjs
+    .send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, templateParams)
+    .then(() => {
+      console.log("Quiz result email sent.");
+    })
+    .catch((error) => {
+      console.error("Failed to send quiz result email:", error);
+    });
 }
 
 function loadScriptOnce(src) {

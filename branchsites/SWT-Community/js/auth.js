@@ -20,6 +20,13 @@ if (!firebase.apps.length) {
 
 const auth = firebase.auth();
 const db = firebase.firestore();
+const redirectAfterLogin = new URLSearchParams(window.location.search).get("redirect");
+
+function getPostLoginUrl() {
+  if (!redirectAfterLogin) return "index.html";
+  if (!redirectAfterLogin.startsWith("/")) return "index.html";
+  return `${window.location.origin}${redirectAfterLogin}`;
+}
 
 /*********************************
  * Auth Persistence
@@ -89,7 +96,31 @@ async function registerWithEmail(name, email, password) {
  *********************************/
 async function signInWithGoogle() {
   const provider = new firebase.auth.GoogleAuthProvider();
-  await auth.signInWithRedirect(provider);
+  try {
+    const result = await auth.signInWithPopup(provider);
+    return result.user;
+  } catch (err) {
+    // Fallback for popup blockers or unsupported popup environments.
+    const code = err?.code || "";
+    if (code === "auth/popup-blocked" || code === "auth/cancelled-popup-request" || code === "auth/popup-closed-by-user") {
+      await auth.signInWithRedirect(provider);
+      return null;
+    }
+    throw err;
+  }
+}
+
+async function ensureUserDoc(user) {
+  if (!user) return;
+  const doc = await db.collection("users").doc(user.uid).get();
+  if (!doc.exists) {
+    await db.collection("users").doc(user.uid).set({
+      uid: user.uid,
+      name: user.displayName || (user.email ? user.email.split("@")[0] : "User"),
+      email: user.email || "",
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
 }
 
 /*********************************
@@ -97,19 +128,8 @@ async function signInWithGoogle() {
  *********************************/
 auth.getRedirectResult().then(async (result) => {
   if (!result || !result.user) return;
-  const user = result.user;
-
-  const doc = await db.collection("users").doc(user.uid).get();
-  if (!doc.exists) {
-    await db.collection("users").doc(user.uid).set({
-      uid: user.uid,
-      name: user.displayName,
-      email: user.email,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-  }
-
-  window.location.href = "index.html";
+  await ensureUserDoc(result.user);
+  window.location.href = getPostLoginUrl();
 }).catch((err) => {
   console.error(err);
   alert(err.message);
@@ -146,7 +166,7 @@ if (loginForm) {
 
     try {
       await loginWithEmail(email, password);
-      window.location.href = "index.html";
+      window.location.href = getPostLoginUrl();
     } catch (err) {
       alert(err.message);
     }
@@ -160,7 +180,26 @@ const googleBtn = document.getElementById("googleSignInBtn");
 if (googleBtn) {
   googleBtn.addEventListener("click", async () => {
     try {
-      await signInWithGoogle(); // Redirect
+      const user = await signInWithGoogle();
+      if (user) {
+        await ensureUserDoc(user);
+        window.location.href = getPostLoginUrl();
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  });
+}
+
+const googleSignUpBtn = document.getElementById("googleSignUpBtn");
+if (googleSignUpBtn) {
+  googleSignUpBtn.addEventListener("click", async () => {
+    try {
+      const user = await signInWithGoogle();
+      if (user) {
+        await ensureUserDoc(user);
+        window.location.href = getPostLoginUrl();
+      }
     } catch (err) {
       alert(err.message);
     }

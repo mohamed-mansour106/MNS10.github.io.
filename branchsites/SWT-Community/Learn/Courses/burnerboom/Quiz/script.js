@@ -1,64 +1,64 @@
 /* ===== Quiz Data ===== */
 const questions = [
   {
-    question: "What does HTML stand for?",
-    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyperlink Marking Language", "Home Tool Markup Language"],
-    correctIndex: 0,
-    explanation: "HTML stands for Hyper Text Markup Language."
-  },
-  {
-    question: "Which CSS property controls text size?",
-    options: ["font-style", "text-size", "font-size", "font-weight"],
-    correctIndex: 2,
-    explanation: "The correct property for text size is font-size."
-  },
-  {
-    question: "Which method is used to select an element by ID in JavaScript?",
-    options: ["getElementByClass", "querySelectorAll", "getElementById", "getElementsByName"],
-    correctIndex: 2,
-    explanation: "getElementById selects a single element by its ID."
-  },
-  {
-    question: "What does CSS stand for?",
-    options: ["Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Creative Style System"],
+    question: "What is the primary Environmental reason for using burners during well testing?",
+    options: ["To heat the rig for worker comfort", "To dispose of oil at the surface to prevent storage and pollution problems", "To provide light light for night time", "To increase the pressure of the reservoir"],
     correctIndex: 1,
-    explanation: "CSS means Cascading Style Sheets."
+    explanation: "Think about what happens to the oil produced during a test if there isn’t enough storage space on the rig."
   },
   {
-    question: "Which tag is used to include JavaScript in HTML?",
-    options: ["<js>", "<javascript>", "<script>", "<code>"],
+    question: "A Green Dragon burner type is typically rated for what flow capacity?",
+    options: [" 4,000 BOPD ", "9,000 BOPD", "15,000 BOPD", "7,000 BOPD"],
+    correctIndex: 3,
+    explanation: "The Spitfire handles the lowest capacity, while the Evergreen handles the highest. The Green Dragon sits in the middle."
+  },
+  {
+    question: "Why are burners mounted on long booms (60–85 feet) rather than directly on the rig? ",
+    options: ["To allow for easier cleaning.", "To ensure the oil stays liquid.", "To reduce heat radiation and keep the fire at a safe distance from the rig. ", "Because the burners are too heavy for the rig deck."],
     correctIndex: 2,
-    explanation: "The <script> tag is used to embed JavaScript."
+    explanation: "Fire produces intense heat; the further away it is, the safer the rig crew and structure are."
   },
   {
-    question: "Which array method adds an item to the end?",
-    options: ["push()", "pop()", "shift()", "unshift()"],
-    correctIndex: 0,
-    explanation: "push() adds an item to the end of the array."
-  },
-  {
-    question: "What is the correct HTML5 doctype?",
-    options: ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<!DOCTYPE HTML PUBLIC>", "<!DOCTYPE XHTML>"],
+    question: "Which of the following is NOT a required system for a burner to function? ",
+    options: ["Propane for pilot ignition. ", "Rig air (from general rig compressors). ", "Dedicated air compressors. ", " Water for heat radiation control. "],
     correctIndex: 1,
-    explanation: "<!DOCTYPE html> is the standard HTML5 doctype."
+    explanation: "The summary notes explicitly warn that you should never use a certain type of air for these systems."
   },
   {
-    question: "Which CSS layout is best for a 2D grid?",
-    options: ["Flexbox", "Float", "Grid", "Position"],
+    question: "What is the purpose of the Water Curtain on a boom?",
+    options: [" To wash the boom after use. ", " To extinguish the pilot light. ", " To control heat radiation and enhance combustion efficiency. ", "To provide drinking water to the personnel on the boom."],
     correctIndex: 2,
-    explanation: "CSS Grid is designed for 2D layouts."
+    explanation: "Combustion at high rates creates massive thermal energy; the water acts as a shield. "
   },
   {
-    question: "What does JSON stand for?",
-    options: ["Java Script Object Notation", "Java Source Object Notation", "Java Standard Output Network", "Java Script Output Name"],
+    question: "According to safety guidelines, what is the maximum number of personnel allowed on the boom during operations?",
+    options: ["One person ", " Two people ", " Four people ", "No one is allowed on the boom."],
+    correctIndex: 1,
+    explanation: "While safety is paramount, a very small, specific number of people are permitted for essential tasks. ."
+  },
+  {
+    question: " Which boom structure is considered heavy-duty and features two gas flare lines?",
+    options: ["U-shaped", "V-shaped ", "I-beam shaped", " L-shaped "],
+    correctIndex: 1,
+    explanation: "Look at the visual diagrams of the boom cross-sections in your notes; one is for single lines, the other is for dual."
+  },
+  {
+    question: "Which system ignition for the burner flare?",
+    options: ["Water pump", "Separator pressure", "Propane pilot system", "Choke manifold"],
+    correctIndex: 2,
+    explanation: "A small controlled flame is needed to ignite the oil."
+  },
+  {
+    question: "What is the function of atomizers in burner systems?",
+    options: ["Increase oil into fine droplets for better combusion", "cool the burner system", "Increase reservoir productivity", "Java Script Output Name"],
     correctIndex: 0,
     explanation: "JSON stands for JavaScript Object Notation."
   },
   {
-    question: "Which event runs when a button is clicked?",
-    options: ["mouseover", "onchange", "onclick", "onload"],
-    correctIndex: 2,
-    explanation: "The onclick event runs when a button is clicked."
+    question: "What is the function of check valve in burner systems?",
+    options: ["Increase oil flow", "Prevent backflow between air and oil lines", "Increase burner pressure", "Control reservoir pressure"],
+    correctIndex: 1,
+    explanation: "They are mainly used for safety."
   }
 ];
 

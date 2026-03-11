@@ -1,64 +1,114 @@
 /* ===== Quiz Data ===== */
 const questions = [
   {
-    question: "What does HTML stand for?",
-    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyperlink Marking Language", "Home Tool Markup Language"],
-    correctIndex: 0,
-    explanation: "HTML stands for Hyper Text Markup Language."
-  },
-  {
-    question: "Which CSS property controls text size?",
-    options: ["font-style", "text-size", "font-size", "font-weight"],
-    correctIndex: 2,
-    explanation: "The correct property for text size is font-size."
-  },
-  {
-    question: "Which method is used to select an element by ID in JavaScript?",
-    options: ["getElementByClass", "querySelectorAll", "getElementById", "getElementsByName"],
-    correctIndex: 2,
-    explanation: "getElementById selects a single element by its ID."
-  },
-  {
-    question: "What does CSS stand for?",
-    options: ["Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Creative Style System"],
+    question: "What is the primary function of the Emergency Shutdown (ESD) system?",
+    options: [
+      "To increase the flow rate during high demand",
+      "To quickly close the well in emergencies like fire or pipe breaks",
+      "To separate oil and gas more efficiently",
+      "To provide electricity to the rig floor"
+    ],
     correctIndex: 1,
-    explanation: "CSS means Cascading Style Sheets."
+    explanation: "The ESD system is a safety barrier designed to isolate the well immediately during critical events to protect personnel and equipment."
   },
   {
-    question: "Which tag is used to include JavaScript in HTML?",
-    options: ["<js>", "<javascript>", "<script>", "<code>"],
+    question: "Which of the following is NOT a component of the ESD control skid?",
+    options: [
+      "Hydraulic pump and oil tank",
+      "Air reservoir",
+      "Three hose reels",
+      "Three-phase separator vessel"
+    ],
+    correctIndex: 3,
+    explanation: "The ESD skid contains the control components like pumps, tanks, and reels; the separator is a separate piece of process equipment."
+  },
+  {
+    question: "The ESD system supports fail-safe hydraulic actuators with pressure requirements not exceeding:",
+    options: [
+      "1440 psi",
+      "3000 psi",
+      "6000 psi",
+      "15000 psi"
+    ],
     correctIndex: 2,
-    explanation: "The <script> tag is used to embed JavaScript."
+    explanation: "The system is designed to handle single-action fail-safe hydraulic actuators up to a maximum of 6000 psi."
   },
   {
-    question: "Which array method adds an item to the end?",
-    options: ["push()", "pop()", "shift()", "unshift()"],
-    correctIndex: 0,
-    explanation: "push() adds an item to the end of the array."
-  },
-  {
-    question: "What is the correct HTML5 doctype?",
-    options: ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<!DOCTYPE HTML PUBLIC>", "<!DOCTYPE XHTML>"],
+    question: "What specifically triggers the high-pressure pilot in an ESD system?",
+    options: [
+      "A decrease in ambient temperature",
+      "Flowline pressure rising above a preset threshold",
+      "A signal from the burner head",
+      "Opening the choke manifold fixed bean"
+    ],
     correctIndex: 1,
-    explanation: "<!DOCTYPE html> is the standard HTML5 doctype."
+    explanation: "The high-pressure pilot monitors the flowline; if pressure spikes (e.g., due to a plugged choke), it triggers a shutdown."
   },
   {
-    question: "Which CSS layout is best for a 2D grid?",
-    options: ["Flexbox", "Float", "Grid", "Position"],
-    correctIndex: 2,
-    explanation: "CSS Grid is designed for 2D layouts."
+    question: "When a pilot or ESD station is triggered, what is the first physical action that occurs in the control logic?",
+    options: [
+      "The hydraulic pump starts running",
+      "Air pressure is vented from the system",
+      "The separator pressure increases",
+      "The hydraulic oil tank is drained"
+    ],
+    correctIndex: 1,
+    explanation: "The system uses a 'fail-safe' air loop; venting the air pressure causes the interface valve to release hydraulic pressure and close the well."
   },
   {
-    question: "What does JSON stand for?",
-    options: ["Java Script Object Notation", "Java Source Object Notation", "Java Standard Output Network", "Java Script Output Name"],
+    question: "What is the typical operating air pressure for high/low pilots and ESD push-button stations?",
+    options: [
+      "30 psi",
+      "150 psi",
+      "600 psi",
+      "1440 psi"
+    ],
     correctIndex: 0,
-    explanation: "JSON stands for JavaScript Object Notation."
+    explanation: "While the air vessel stores higher pressure, the pilot loop and remote stations typically operate at 30 psi."
   },
   {
-    question: "Which event runs when a button is clicked?",
-    options: ["mouseover", "onchange", "onclick", "onload"],
+    question: "What is the role of the interface valve in the ESD panel?",
+    options: [
+      "To mix oil and gas before they reach the burner",
+      "To control the release of hydraulic pressure from the actuator",
+      "To measure the temperature of the air reservoir",
+      "To act as a primary check valve for the flowline"
+    ],
+    correctIndex: 1,
+    explanation: "The interface valve is the link between the air control signal and the hydraulic power, releasing hydraulic pressure to close the valve when triggered."
+  },
+  {
+    question: "Where is the Surface Safety Valve (SSV) usually located?",
+    options: [
+      "Downstream of the oil manifold",
+      "Inside the hydraulic oil tank",
+      "Upstream of the choke manifold",
+      "At the very end of the flare boom"
+    ],
     correctIndex: 2,
-    explanation: "The onclick event runs when a button is clicked."
+    explanation: "The SSV is positioned upstream of the choke manifold to provide primary isolation of the well during an emergency shutdown."
+  },
+  {
+    question: "What is the purpose of the air vessel (tank) located on the ESD panel?",
+    options: [
+      "To provide breathing air for the crew",
+      "To store 150 psi air pressure for system operation",
+      "To cool down the hydraulic oil",
+      "To collect gas samples from the well"
+    ],
+    correctIndex: 1,
+    explanation: "The air vessel stores the compressed air (typically at 150 psi) required to maintain the control loop pressure."
+  },
+  {
+    question: "Which component is used to quickly dump the air pressure to speed up the shutdown process?",
+    options: [
+      "Bypass valve",
+      "Check valve",
+      "Quick exhaust valve",
+      "Hydraulic pump"
+    ],
+    correctIndex: 2,
+    explanation: "The quick exhaust valve allows air to vent rapidly from the lines, ensuring the shutdown happens as fast as possible."
   }
 ];
 

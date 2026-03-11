@@ -1,64 +1,124 @@
 /* ===== Quiz Data ===== */
 const questions = [
   {
-    question: "What does HTML stand for?",
-    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyperlink Marking Language", "Home Tool Markup Language"],
-    correctIndex: 0,
-    explanation: "HTML stands for Hyper Text Markup Language."
-  },
-  {
-    question: "Which CSS property controls text size?",
-    options: ["font-style", "text-size", "font-size", "font-weight"],
+    question: "To prevent condensation in the fuel tank, what level should be maintained at the end of the day?",
+    options: ["50%", "75%", "90%", "100%"],
     correctIndex: 2,
-    explanation: "The correct property for text size is font-size."
+    explanation: "Maintaining a 90% fuel level minimizes the air space where moisture can condense into liquid water."
   },
   {
-    question: "Which method is used to select an element by ID in JavaScript?",
-    options: ["getElementByClass", "querySelectorAll", "getElementById", "getElementsByName"],
-    correctIndex: 2,
-    explanation: "getElementById selects a single element by its ID."
-  },
-  {
-    question: "What does CSS stand for?",
-    options: ["Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Creative Style System"],
+    question: "What safety device is mandatory for all air rubber hose connections to prevent injury?",
+    options: ["Padlocks", "Whip checks / Safety clips", "Zip ties", "Check valves"],
     correctIndex: 1,
-    explanation: "CSS means Cascading Style Sheets."
+    explanation: "Whip checks prevent the hose from lashing out violently if a coupling fails under pressure."
   },
   {
-    question: "Which tag is used to include JavaScript in HTML?",
-    options: ["<js>", "<javascript>", "<script>", "<code>"],
+    question: "On an Ingersoll Rand unit, which key position is used specifically for the grid heater?",
+    options: ["Position 0", "Position 1", "Position 2", "Position 3"],
     correctIndex: 2,
-    explanation: "The <script> tag is used to embed JavaScript."
+    explanation: "Position 2 activates the grid heater for cold starts; Position 3 is for cranking the engine."
   },
   {
-    question: "Which array method adds an item to the end?",
-    options: ["push()", "pop()", "shift()", "unshift()"],
-    correctIndex: 0,
-    explanation: "push() adds an item to the end of the array."
-  },
-  {
-    question: "What is the correct HTML5 doctype?",
-    options: ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<!DOCTYPE HTML PUBLIC>", "<!DOCTYPE XHTML>"],
+    question: "What is the required specific gravity (density) for the engine cooling system?",
+    options: ["1.00 (62.4 PCF)", "1.07 (66.8 PCF)", "1.25 (78.0 PCF)", "0.90 (56.1 PCF)"],
     correctIndex: 1,
-    explanation: "<!DOCTYPE html> is the standard HTML5 doctype."
+    explanation: "The manual specifies a specific gravity of 1.07 to ensure proper thermal regulation and corrosion protection."
   },
   {
-    question: "Which CSS layout is best for a 2D grid?",
-    options: ["Flexbox", "Float", "Grid", "Position"],
+    question: "How long should the engine warm up before pressing the service air switch to load?",
+    options: ["1 minute", "2 minutes", "5 minutes", "10 minutes"],
     correctIndex: 2,
-    explanation: "CSS Grid is designed for 2D layouts."
+    explanation: "A 5-minute warm-up ensures oil circulation and stable temperatures before the unit is placed under load."
   },
   {
-    question: "What does JSON stand for?",
-    options: ["Java Script Object Notation", "Java Source Object Notation", "Java Standard Output Network", "Java Script Output Name"],
+    question: "At what temperature threshold is the Atlas Copco unit ready to be loaded via the F1 button?",
+    options: ["25°C (77°F)", "40°C (104°F)", "60°C (140°F)", "80°C (176°F)"],
+    correctIndex: 1,
+    explanation: "The control logic requires the coolant to reach 40°C (104°F) before allowing the compressor to load."
+  },
+  {
+    question: "How long should the engine idle for cooling during a normal shutdown procedure?",
+    options: ["1 minute", "2-3 minutes", "5-10 minutes", "15 minutes"],
+    correctIndex: 2,
+    explanation: "A 5-10 minute idle period allows the turbocharger and engine components to cool down gradually."
+  },
+  {
+    question: "What must be manually operated if an Atlas Copco unit runs out of fuel?",
+    options: ["The hand pump", "The service valve", "The battery switch", "The E-stop button"],
     correctIndex: 0,
-    explanation: "JSON stands for JavaScript Object Notation."
+    explanation: "The hand pump must be used to prime the fuel system and remove air until the system is under pressure."
   },
   {
-    question: "Which event runs when a button is clicked?",
-    options: ["mouseover", "onchange", "onclick", "onload"],
+    question: "What is the immediate result of pressing the red mushroom (Emergency Stop) button?",
+    options: ["The engine idles", "The service valve closes", "All power (hardware/software) is terminated", "The battery disconnects"],
     correctIndex: 2,
-    explanation: "The onclick event runs when a button is clicked."
+    explanation: "The E-stop kills all power immediately to prevent injury or further mechanical damage."
+  },
+  {
+    question: "To reset after an Emergency Stop, what must be done after unlocking the physical button?",
+    options: ["Turn key to Position 3", "Press the Start button", "Press F1 to reset the software lock", "Refuel the engine"],
+    correctIndex: 2,
+    explanation: "Once the physical button is unlocked, the operator must press F1 on the panel to clear the software lock."
+  },
+  {
+    question: "How many automatic cranking attempts will the Atlas Copco make before a 'START FAILURE' message?",
+    options: ["1 attempt", "3 attempts", "5 attempts", "10 attempts"],
+    correctIndex: 2,
+    explanation: "The system is programmed to attempt starting 5 times before timing out and requiring a manual reset."
+  },
+  {
+    question: "The regulating valve should be set to how many bar higher than the required working pressure?",
+    options: ["0.5 bar", "1 bar", "2 bar (29 psi)", "5 bar"],
+    correctIndex: 2,
+    explanation: "A 2 bar buffer ensures the system can maintain the required pressure consistently under load."
+  },
+  {
+    question: "Where should the compressor oil level be visually checked before operation?",
+    options: ["Engine dipstick", "Radiator cap", "Sight glass on the separator tank", "Air discharge valve"],
+    correctIndex: 2,
+    explanation: "The compressor oil (different from engine oil) is monitored via the sight glass on the separator tank."
+  },
+  {
+    question: "Why is it forbidden to operate the compressor with the enclosure doors open?",
+    options: ["To prevent theft", "To keep it clean", "To prevent overheating and high noise exposure", "To save fuel"],
+    correctIndex: 2,
+    explanation: "Closed doors are critical for directing cooling airflow and protecting operators from high noise levels."
+  },
+  {
+    question: "What is the first step in the Pre-Operational Checks & Safety sequence?",
+    options: ["Turn key to Position 1", "Perform a 'walk-around' inspection", "Check the battery", "Press the F1 button"],
+    correctIndex: 1,
+    explanation: "A walk-around inspection identifies leaks, loose fittings, or safety hazards before the unit is energized."
+  },
+  {
+    question: "Which message confirms the system is energized and ready after the initial power-on self-test?",
+    options: ["UNCONTROLLED STOP", "READY TO START", "LOADING", "STOPPING"],
+    correctIndex: 1,
+    explanation: "'READY TO START' indicates the digital logic is clear and the engine can be cranked."
+  },
+  {
+    question: "On an Ingersoll Rand unit, what should you do as soon as the engine starts?",
+    options: ["Hold key in Position 3", "Release the key switch", "Turn key to Position 0", "Press the F1 button"],
+    correctIndex: 1,
+    explanation: "The key should be released so it returns to Position 1 to avoid damaging the starter motor."
+  },
+  {
+    question: "What is the required status of the battery isolation switch for operation?",
+    options: ["OFF", "ON", "Locked", "Removed"],
+    correctIndex: 1,
+    explanation: "The isolation switch must be turned to 'ON' to provide battery power to the control panel and starter."
+  },
+  {
+    question: "What is the primary safety rule regarding the engine when refueling?",
+    options: ["Keep it at full speed", "Keep it at idle", "It must be switched OFF", "Keep the doors open"],
+    correctIndex: 2,
+    explanation: "The engine must be completely OFF to prevent ignition of fuel vapors from heat or sparks."
+  },
+  {
+    question: "If the Atlas Copco does not reach warm-up temperature within 5 minutes, what state does it enter?",
+    options: ["Automatic loading", "Emergency stop", "Idle / NO LOADED status", "System restart"],
+    correctIndex: 2,
+    explanation: "The unit will default to an idle/no-load state to protect the engine if it fails to reach operating temperature."
   }
 ];
 

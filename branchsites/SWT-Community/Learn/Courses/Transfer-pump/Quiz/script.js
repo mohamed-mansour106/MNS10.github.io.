@@ -1,64 +1,114 @@
 /* ===== Quiz Data ===== */
 const questions = [
   {
-    question: "What does HTML stand for?",
-    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyperlink Marking Language", "Home Tool Markup Language"],
-    correctIndex: 0,
-    explanation: "HTML stands for Hyper Text Markup Language."
-  },
-  {
-    question: "Which CSS property controls text size?",
-    options: ["font-style", "text-size", "font-size", "font-weight"],
-    correctIndex: 2,
-    explanation: "The correct property for text size is font-size."
-  },
-  {
-    question: "Which method is used to select an element by ID in JavaScript?",
-    options: ["getElementByClass", "querySelectorAll", "getElementById", "getElementsByName"],
-    correctIndex: 2,
-    explanation: "getElementById selects a single element by its ID."
-  },
-  {
-    question: "What does CSS stand for?",
-    options: ["Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Creative Style System"],
+    question: "What is the primary function of a transfer pump in a well testing setup?",
+    options: [
+      "To separate gas from oil inside the surge tank",
+      "To move fluid from the storage/gauge tank to the oil manifold",
+      "To inject chemicals into the high-pressure flowline",
+      "To increase the pressure of the gas for the flare"
+    ],
     correctIndex: 1,
-    explanation: "CSS means Cascading Style Sheets."
+    explanation: "Transfer pumps are used to move the processed oil from the tanks to the next stage, usually the oil manifold for disposal or transport."
   },
   {
-    question: "Which tag is used to include JavaScript in HTML?",
-    options: ["<js>", "<javascript>", "<script>", "<code>"],
-    correctIndex: 2,
-    explanation: "The <script> tag is used to embed JavaScript."
-  },
-  {
-    question: "Which array method adds an item to the end?",
-    options: ["push()", "pop()", "shift()", "unshift()"],
-    correctIndex: 0,
-    explanation: "push() adds an item to the end of the array."
-  },
-  {
-    question: "What is the correct HTML5 doctype?",
-    options: ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<!DOCTYPE HTML PUBLIC>", "<!DOCTYPE XHTML>"],
+    question: "Which of the following is a key characteristic of a Positive Displacement (PD) pump?",
+    options: [
+      "It uses high-speed impellers to create velocity",
+      "It moves a fixed volume of liquid for every revolution or stroke",
+      "It is only suitable for very low viscosity fluids like water",
+      "It has a very simple design with almost no moving parts"
+    ],
     correctIndex: 1,
-    explanation: "<!DOCTYPE html> is the standard HTML5 doctype."
+    explanation: "Positive displacement pumps trap a specific volume of fluid and move it through the system, making them very accurate for metering."
   },
   {
-    question: "Which CSS layout is best for a 2D grid?",
-    options: ["Flexbox", "Float", "Grid", "Position"],
+    question: "Why is 'dry running' considered catastrophic for positive displacement pumps?",
+    options: [
+      "Because the pump will start rotating in the opposite direction",
+      "Due to close clearances or interference between parts like the rotor and stator",
+      "Because it causes the oil to become too viscous",
+      "Because it creates a vacuum that collapses the tank"
+    ],
+    correctIndex: 1,
+    explanation: "Because PD pumps often have very tight tolerances (close clearances), running them without fluid for lubrication/cooling can cause immediate mechanical failure."
+  },
+  {
+    question: "What is the main advantage of a Centrifugal pump over a Positive Displacement pump?",
+    options: [
+      "It is much better at handling high-viscosity fluids",
+      "It has a more complex design for higher accuracy",
+      "It is simpler, has fewer moving parts, and is better for high flow rates",
+      "It does not require a motor or engine to operate"
+    ],
     correctIndex: 2,
-    explanation: "CSS Grid is designed for 2D layouts."
+    explanation: "Centrifugal pumps are favored for their simplicity and ability to move large volumes of low-viscosity fluid with minimal maintenance."
   },
   {
-    question: "What does JSON stand for?",
-    options: ["Java Script Object Notation", "Java Source Object Notation", "Java Standard Output Network", "Java Script Output Name"],
-    correctIndex: 0,
-    explanation: "JSON stands for JavaScript Object Notation."
-  },
-  {
-    question: "Which event runs when a button is clicked?",
-    options: ["mouseover", "onchange", "onclick", "onload"],
+    question: "How does a Diaphragm pump move fluid?",
+    options: [
+      "Using two meshed gears to trap fluid in teeth cavities",
+      "Using a spinning impeller to create centrifugal force",
+      "Using a reciprocating rubber or Teflon membrane and check valves",
+      "Using a high-speed screw thread to push fluid forward"
+    ],
     correctIndex: 2,
-    explanation: "The onclick event runs when a button is clicked."
+    explanation: "A diaphragm (or membrane) pump uses the back-and-forth motion of a flexible diaphragm combined with non-return valves to move liquid."
+  },
+  {
+    question: "Which pump type is specifically noted for being H2S-proof and capable of handling oil impurities?",
+    options: [
+      "Viking pump",
+      "Sundyne pump",
+      "Standard Gear pump",
+      "Radial flow pump"
+    ],
+    correctIndex: 1,
+    explanation: "The Sundyne pump is a centrifugal type designed to handle H2S environments and fluids containing impurities."
+  },
+  {
+    question: "In a Screw pump, why is the volumetric efficiency higher with viscous fluids?",
+    options: [
+      "Because the motor runs faster when the fluid is thick",
+      "Because viscosity reduces the 'slippage' of fluid back to the suction side",
+      "Because viscous fluids create less friction in the screw threads",
+      "Because the screw expands when it touches thick oil"
+    ],
+    correctIndex: 1,
+    explanation: "High-viscosity fluids do not leak through the close clearances as easily, reducing 'slip' and maintaining high efficiency."
+  },
+  {
+    question: "What is a major disadvantage of Diaphragm pumps mentioned in the text?",
+    options: [
+      "They are too expensive for well testing",
+      "They produce high pulsations in the flow",
+      "They require high-pressure steam to operate",
+      "They cannot handle corrosive fluids"
+    ],
+    correctIndex: 1,
+    explanation: "Due to their reciprocating nature, diaphragm pumps create significant pulsations, which can lead to vibration in the piping."
+  },
+  {
+    question: "How does a Gear pump move fluid to the discharge side?",
+    options: [
+      "By spinning the fluid so fast that it gains pressure",
+      "By trapping fluid between the teeth of rotating gears",
+      "By using a piston to push the fluid through a nozzle",
+      "By heating the fluid until it expands toward the outlet"
+    ],
+    correctIndex: 1,
+    explanation: "In gear pumps, fluid is trapped in the cavities between the gear teeth and the pump casing, then carried to the discharge side."
+  },
+  {
+    question: "Which of the following is a mandatory safety component for Positive Displacement pumps?",
+    options: [
+      "A cooling fan",
+      "A pressure relief valve",
+      "A sight glass",
+      "A sand filter"
+    ],
+    correctIndex: 1,
+    explanation: "Because PD pumps will continue to push fluid regardless of downstream blockages, a pressure relief valve is essential to prevent pipe or pump bursts."
   }
 ];
 

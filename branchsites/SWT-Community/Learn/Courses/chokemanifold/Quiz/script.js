@@ -1,65 +1,118 @@
 /* ===== Quiz Data ===== */
 const questions = [
+ [
   {
-    question: "What does HTML stand for?",
-    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyperlink Marking Language", "Home Tool Markup Language"],
-    correctIndex: 0,
-    explanation: "HTML stands for Hyper Text Markup Language."
-  },
-  {
-    question: "Which CSS property controls text size?",
-    options: ["font-style", "text-size", "font-size", "font-weight"],
-    correctIndex: 2,
-    explanation: "The correct property for text size is font-size."
-  },
-  {
-    question: "Which method is used to select an element by ID in JavaScript?",
-    options: ["getElementByClass", "querySelectorAll", "getElementById", "getElementsByName"],
-    correctIndex: 2,
-    explanation: "getElementById selects a single element by its ID."
-  },
-  {
-    question: "What does CSS stand for?",
-    options: ["Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Creative Style System"],
+    question: "What is the primary function of a choke manifold in well testing?",
+    options: [
+      "To separate oil, gas, and water into different streams",
+      "To control flow rate and pressure to ensure stable conditions before processing",
+      "To measure the total depth of the well during drilling",
+      "To pump chemicals into the wellhead to prevent corrosion"
+    ],
     correctIndex: 1,
-    explanation: "CSS means Cascading Style Sheets."
+    explanation: "The choke manifold is used to regulate the pressure and flow of fluids from the wellhead to ensure stability before they reach surface equipment."
   },
   {
-    question: "Which tag is used to include JavaScript in HTML?",
-    options: ["<js>", "<javascript>", "<script>", "<code>"],
+    question: "Where is the choke manifold typically located in a well testing setup?",
+    options: [
+      "Upstream of the flow head",
+      "Inside the reservoir",
+      "Downstream of the flow head",
+      "At the end of the flare line"
+    ],
     correctIndex: 2,
-    explanation: "The <script> tag is used to embed JavaScript."
+    explanation: "In the flow path, the choke manifold is positioned immediately downstream of the flow head."
   },
   {
-    question: "Which array method adds an item to the end?",
-    options: ["push()", "pop()", "shift()", "unshift()"],
-    correctIndex: 0,
-    explanation: "push() adds an item to the end of the array."
+    question: "What does 'critical flow' imply in the context of a choke manifold?",
+    options: [
+      "The well is underperforming and requires maintenance",
+      "Fluid flow has completely stopped due to a blockage",
+      "Upstream pressure and flow are no longer affected by downstream pressure changes",
+      "The pressure has exceeded the manifold's maximum rating"
+    ],
+    correctIndex: 2,
+    explanation: "Critical flow occurs when downstream pressure variations do not impact the upstream pressure or flow rate, which is vital for stable testing."
   },
   {
-    question: "What is the correct HTML5 doctype?",
-    options: ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<!DOCTYPE HTML PUBLIC>", "<!DOCTYPE XHTML>"],
+    question: "Which component is specifically used for inserting calibrated choke beans?",
+    options: [
+      "Adjustable choke",
+      "Fixed choke box",
+      "Thermowell",
+      "Gate valve"
+    ],
     correctIndex: 1,
-    explanation: "<!DOCTYPE html> is the standard HTML5 doctype."
+    explanation: "The fixed choke box is the part of the manifold designed to hold interchangeable, calibrated choke beans."
   },
   {
-    question: "Which CSS layout is best for a 2D grid?",
-    options: ["Flexbox", "Float", "Grid", "Position"],
-    correctIndex: 2,
-    explanation: "CSS Grid is designed for 2D layouts."
-  },
-  {
-    question: "What does JSON stand for?",
-    options: ["Java Script Object Notation", "Java Source Object Notation", "Java Standard Output Network", "Java Script Output Name"],
+    question: "What is the main benefit of having an adjustable choke alongside a fixed one?",
+    options: [
+      "It provides on-the-fly flow control and flexibility",
+      "It is cheaper to maintain than a fixed choke",
+      "It filters out sand and debris automatically",
+      "It increases the temperature of the fluid"
+    ],
     correctIndex: 0,
-    explanation: "JSON stands for JavaScript Object Notation."
+    explanation: "Adjustable chokes allow for immediate changes to flow and pressure, while fixed chokes offer more stable, long-term control."
   },
   {
-    question: "Which event runs when a button is clicked?",
-    options: ["mouseover", "onchange", "onclick", "onload"],
+    question: "What is the first step in the process of diverting flow from an adjustable choke to a fixed choke?",
+    options: [
+      "Bleed off all pressure immediately",
+      "Open the upstream valve on the fixed side",
+      "Stabilize the flow and prepare the fixed choke",
+      "Close the flow head master valve"
+    ],
     correctIndex: 2,
-    explanation: "The onclick event runs when a button is clicked."
+    explanation: "Before switching, you must ensure the flow is stable and the fixed choke side is ready for service."
+  },
+  {
+    question: "Which of the following is a safety feature provided by the choke manifold?",
+    options: [
+      "Prevents water/gas coning and sand production by limiting flow",
+      "Automatically shuts in the well if oxygen is detected",
+      "Increases the pressure to prevent the well from dying",
+      "Separates toxic gases from the oil stream"
+    ],
+    correctIndex: 0,
+    explanation: "By controlling drawdown and pressure, the manifold helps prevent reservoir issues like coning and sand influx."
+  },
+  {
+    question: "What are the common pressure ratings for choke manifolds mentioned in the summary?",
+    options: [
+      "1000, 2000, and 3000 psi",
+      "5000, 10000, and 15000 psi",
+      "2500, 7500, and 12500 psi",
+      "20000, 25000, and 30000 psi"
+    ],
+    correctIndex: 1,
+    explanation: "Standard choke manifolds used in well testing are typically rated for 5K, 10K, or 15K psi."
+  },
+  {
+    question: "What is the purpose of the thermowell in the manifold?",
+    options: [
+      "To house a pressure gauge",
+      "To inject chemicals into the flow",
+      "To measure fluid temperature",
+      "To act as a secondary safety relief"
+    ],
+    correctIndex: 2,
+    explanation: "The thermowell is a specialized port used to measure the temperature of the fluid as it passes through the manifold."
+  },
+  {
+    question: "Why is the downstream valve opened first when equalizing pressure in the manifold?",
+    options: [
+      "To ensure the flow goes to the separator faster",
+      "To avoid sudden pressure surges and ensure a smoother balance",
+      "To check if the fixed bean is the correct size",
+      "To prevent the fluid from freezing the valves"
+    ],
+    correctIndex: 1,
+    explanation: "Opening the downstream valve first is a safety measure to balance pressure gradually across the system."
   }
+]
+
 ];
 
 /* ===== State ===== */

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="../../../../../../../../../img/logo/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Great+Vibes&family=Cairo:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Questions' Bank</title>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">W</div>
+          <div>
+            <div class="title">Professional Level</div>
+            <div class="subtitle">Questions' Bank</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="toggleMode" class="btn ghost">Dark Mode</button>
+          <button id="toggleSound" class="btn ghost">Sound: On</button>
+        </div>
+      </header>
+
+      <main class="card">
+        <section class="meta">
+          <div class="meta-left">
+            <div class="progress-wrap">
+              <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+              </div>
+              <div class="progress-text">
+                <span id="currentIndex">1</span>/<span id="totalQuestions">80</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="meta-right">
+            <div class="timer">
+              <div class="timer-label">Time Left</div>
+              <div id="timerValue" class="timer-value">30:00</div>
+            </div>
+            <div class="circle-wrap">
+              <svg class="progress-circle" viewBox="0 0 120 120">
+                <circle class="bg" cx="60" cy="60" r="52" />
+                <circle id="circleProgress" class="fg" cx="60" cy="60" r="52" />
+              </svg>
+              <div id="circleText" class="circle-text">0%</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="quizSection" class="quiz">
+          <div class="question-box">
+            <div id="questionText" class="question-text">Question text appears here...</div>
+            <div id="optionsList" class="options"></div>
+          </div>
+
+          <div class="nav">
+            <button id="prevBtn" class="btn ghost">Previous</button>
+            <button id="nextBtn" class="btn primary">Next</button>
+          </div>
+        </section>
+
+        <section id="resultSection" class="result hidden">
+          <div class="score-area">
+            <div class="score-circle">
+              <svg class="score-ring" viewBox="0 0 160 160">
+                <circle class="bg" cx="80" cy="80" r="68" />
+                <circle id="scoreRing" class="fg" cx="80" cy="80" r="68" />
+              </svg>
+              <div id="scoreValue" class="score-value">0%</div>
+            </div>
+            <div class="score-info">
+              <div class="score-title">Your Result</div>
+              <div class="score-desc">
+                High Score: <span id="highScore">0%</span>
+              </div>
+              <label class="field">
+                <span>Full Name (from signed-in account)</span>
+                <input id="certName" type="text" placeholder="Signed-in user" autocomplete="name" readonly />
+              </label>
+              <button id="showCertBtn" class="btn primary">View Certificate</button>
+              <button id="restartBtn" class="btn primary">Start Over</button>
+            </div>
+          </div>
+
+          <div class="analysis">
+            <h3>Detailed Analysis</h3>
+            <div id="analysisList" class="analysis-list"></div>
+          </div>
+        </section>
+
+        <section id="certificateSection" class="certificate hidden">
+          <div id="certificateCard" class="certificate-container">
+            <div class="certificate-header">
+              Well Testing Academy Certificate of Completion
+            </div>
+            <div class="certificate-title">
+              ENG. <span id="certRecipient" class="certificate-name">Student</span>
+            </div>
+            <div class="certificate-subtitle">has earned</div>
+            <div class="certificate-content">
+              <strong>OFU005: 1.0 Credit Hours</strong>
+            </div>
+            <div class="certificate-subtitle">while completing the training course entitled</div>
+            <div class="certificate-content">
+              <strong id="certCourse">Burner Boom (BBM5)</strong>
+            </div>
+            <div class="certificate-footer">
+              <div>
+                Score<br />
+                <span id="certScore">0%</span>
+              </div>
+              <div>
+                Certificate ID<br />
+                <span id="certId">--</span>
+              </div>
+              <div>
+                Date Completed<br />
+                <span id="certDate">--</span>
+              </div>
+            </div>
+          </div>
+          <div class="cert-buttons">
+            <button id="downloadCertBtn" class="btn primary">Download PDF</button>
+            <button id="backToResultsBtn" class="btn ghost">Back to Results</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="resumeModal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Resume Quiz?</h3>
+        <p>We found saved progress. Would you like to continue?</p>
+        <div class="modal-actions">
+          <button id="continueBtn" class="btn primary">Continue</button>
+          <button id="startOverBtn" class="btn ghost">Start Over</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="failedModal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Don't give up!</h3>
+        <p>You scored less than 50%. Study a bit more and try again.</p>
+        <div class="modal-actions">
+          <button id="failedCloseBtn" class="btn primary">OK</button>
+          <a class="btn ghost" href="Transfer-pump.html">Study Again</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="../../../../js/auth.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

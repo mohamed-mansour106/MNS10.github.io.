@@ -1,65 +1,116 @@
 /* ===== Quiz Data ===== */
-const questions = [
+const questions = [    
   {
-    question: "What does HTML stand for?",
-    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyperlink Marking Language", "Home Tool Markup Language"],
-    correctIndex: 0,
-    explanation: "HTML stands for Hyper Text Markup Language."
-  },
-  {
-    question: "Which CSS property controls text size?",
-    options: ["font-style", "text-size", "font-size", "font-weight"],
-    correctIndex: 2,
-    explanation: "The correct property for text size is font-size."
-  },
-  {
-    question: "Which method is used to select an element by ID in JavaScript?",
-    options: ["getElementByClass", "querySelectorAll", "getElementById", "getElementsByName"],
-    correctIndex: 2,
-    explanation: "getElementById selects a single element by its ID."
-  },
-  {
-    question: "What does CSS stand for?",
-    options: ["Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Creative Style System"],
+    question: "What is the primary purpose of an oil and gas manifold in surface well testing?",
+    options: [
+      "To increase the pressure of the fluid before it enters the separator",
+      "To divert flow to different destinations like burners or tanks without stopping the well",
+      "To separate the oil from the gas using gravity",
+      "To measure the chemical concentration of H2S in the stream"
+    ],
     correctIndex: 1,
-    explanation: "CSS means Cascading Style Sheets."
+    explanation: "Manifolds act as routing hubs that allow operators to change the destination of the flow without interrupting the continuous operation of the well."
   },
   {
-    question: "Which tag is used to include JavaScript in HTML?",
-    options: ["<js>", "<javascript>", "<script>", "<code>"],
+    question: "Why are two burners (port and starboard) used in offshore operations?",
+    options: [
+      "To allow for maintenance on one while the other is in use",
+      "To burn oil and gas separately at the same time",
+      "To allow continuous testing regardless of which way the wind is blowing",
+      "To double the disposal capacity for high-flow wells"
+    ],
     correctIndex: 2,
-    explanation: "The <script> tag is used to embed JavaScript."
+    explanation: "Having burners on both sides of the rig ensures that flames and heat are always blown away from the platform by the wind."
   },
   {
-    question: "Which array method adds an item to the end?",
-    options: ["push()", "pop()", "shift()", "unshift()"],
-    correctIndex: 0,
-    explanation: "push() adds an item to the end of the array."
+    question: "Which destination is common for oil passing through the oil manifold?",
+    options: [
+      "The air compressor inlet",
+      "The chemical injection pump",
+      "Storage tanks or burners",
+      "The wellhead flow head"
+    ],
+    correctIndex: 2,
+    explanation: "Oil is typically routed through the manifold to either storage tanks for measurement or burners for disposal."
   },
   {
-    question: "What is the correct HTML5 doctype?",
-    options: ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<!DOCTYPE HTML PUBLIC>", "<!DOCTYPE XHTML>"],
+    question: "What is the standard working pressure rating for the manifolds mentioned in this course?",
+    options: [
+      "500 PSI",
+      "1440 PSI",
+      "5000 PSI",
+      "10000 PSI"
+    ],
     correctIndex: 1,
-    explanation: "<!DOCTYPE html> is the standard HTML5 doctype."
+    explanation: "The skid-mounted oil and gas manifolds described in the training have a working pressure rating of 1440 PSI."
   },
   {
-    question: "Which CSS layout is best for a 2D grid?",
-    options: ["Flexbox", "Float", "Grid", "Position"],
+    question: "How many ball valves are typically found on the oil manifold described?",
+    options: [
+      "Two 3-inch valves",
+      "Four gate valves",
+      "Five 2-inch valves",
+      "Ten needle valves"
+    ],
     correctIndex: 2,
-    explanation: "CSS Grid is designed for 2D layouts."
+    explanation: "The oil manifold consists of five 2-inch ball valves to manage its various routing paths."
   },
   {
-    question: "What does JSON stand for?",
-    options: ["Java Script Object Notation", "Java Source Object Notation", "Java Standard Output Network", "Java Script Output Name"],
-    correctIndex: 0,
-    explanation: "JSON stands for JavaScript Object Notation."
+    question: "What is the structure of the gas manifold compared to the oil manifold?",
+    options: [
+      "It has five 2-inch valves and is trailer mounted",
+      "It has two 3-inch ball valves and is skid mounted",
+      "It uses only gate valves for higher pressure",
+      "It is integrated directly into the separator vessel"
+    ],
+    correctIndex: 1,
+    explanation: "The gas manifold uses larger (3-inch) but fewer (2) valves and is skid mounted with a 1440 PSI rating."
   },
   {
-    question: "Which event runs when a button is clicked?",
-    options: ["mouseover", "onchange", "onclick", "onload"],
+    question: "What is the 'golden rule' for safety when switching flow between valves?",
+    options: [
+      "Close the active valve completely before opening the new one",
+      "Open the new valve before closing the old one",
+      "Close both valves and wait 5 minutes for pressure to settle",
+      "Use a cheater bar to ensure the valves are turned as fast as possible"
+    ],
+    correctIndex: 1,
+    explanation: "Always opening a new valve before closing the old one ensures the fluid always has an exit path, preventing dangerous pressure buildup."
+  },
+  {
+    question: "Why should you avoid using 'cheater bars' or extra tools to operate the valves?",
+    options: [
+      "They make the valve turn too slowly for the test",
+      "They can damage the valve stem or cause mechanical failure",
+      "They are too heavy for one person to carry safely",
+      "They interfere with the pressure gauge readings"
+    ],
+    correctIndex: 1,
+    explanation: "Using tools other than the provided handles can apply excessive torque, leading to broken valve components and leaks."
+  },
+  {
+    question: "What should be clearly labeled on every manifold valve?",
+    options: [
+      "The date the valve was manufactured",
+      "The correct flow path (e.g., 'Separator to Starboard Burner')",
+      "The name of the operator who last used it",
+      "The price of the valve for insurance purposes"
+    ],
+    correctIndex: 1,
+    explanation: "Clear labeling of flow paths is a critical safety practice to prevent routing fluids to the wrong or unsafe destination."
+  },
+  {
+    question: "Where does the gas manifold receive its flow from?",
+    options: [
+      "Directly from the wellhead",
+      "From the oil manifold exit",
+      "From the gas outlet of the separator",
+      "From the storage tank vent lines"
+    ],
     correctIndex: 2,
-    explanation: "The onclick event runs when a button is clicked."
+    explanation: "The gas manifold is positioned to take gas that has already been separated from the liquids inside the separator."
   }
+
 ];
 
 /* ===== State ===== */

@@ -1,64 +1,114 @@
 /* ===== Quiz Data ===== */
 const questions = [
   {
-    question: "What does HTML stand for?",
-    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyperlink Marking Language", "Home Tool Markup Language"],
-    correctIndex: 0,
-    explanation: "HTML stands for Hyper Text Markup Language."
-  },
-  {
-    question: "Which CSS property controls text size?",
-    options: ["font-style", "text-size", "font-size", "font-weight"],
-    correctIndex: 2,
-    explanation: "The correct property for text size is font-size."
-  },
-  {
-    question: "Which method is used to select an element by ID in JavaScript?",
-    options: ["getElementByClass", "querySelectorAll", "getElementById", "getElementsByName"],
-    correctIndex: 2,
-    explanation: "getElementById selects a single element by its ID."
-  },
-  {
-    question: "What does CSS stand for?",
-    options: ["Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Creative Style System"],
+    question: "What is the main function of an atmospheric gauge tank?",
+    options: [
+      "To separate gas from oil at extremely high pressures",
+      "To measure low oil flow rates or calibrate metering devices",
+      "To heat the oil before it reaches the burners",
+      "To provide high-pressure air to the ESD system"
+    ],
     correctIndex: 1,
-    explanation: "CSS means Cascading Style Sheets."
+    explanation: "Gauge tanks are non-pressurized vessels used to measure flow when it is too low to drive oil to the burners or when meter calibration is required."
   },
   {
-    question: "Which tag is used to include JavaScript in HTML?",
-    options: ["<js>", "<javascript>", "<script>", "<code>"],
-    correctIndex: 2,
-    explanation: "The <script> tag is used to embed JavaScript."
-  },
-  {
-    question: "Which array method adds an item to the end?",
-    options: ["push()", "pop()", "shift()", "unshift()"],
-    correctIndex: 0,
-    explanation: "push() adds an item to the end of the array."
-  },
-  {
-    question: "What is the correct HTML5 doctype?",
-    options: ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<!DOCTYPE HTML PUBLIC>", "<!DOCTYPE XHTML>"],
+    question: "Why is the use of gauge tanks strictly prohibited when H₂S is present?",
+    options: [
+      "Because H₂S causes the oil to expand too much",
+      "Because gauge tanks vent gas directly to the atmosphere, posing a toxic hazard",
+      "Because H₂S makes the oil too thick to be measured manually",
+      "Because the flame arrestors do not work with H₂S gas"
+    ],
     correctIndex: 1,
-    explanation: "<!DOCTYPE html> is the standard HTML5 doctype."
+    explanation: "Atmospheric tanks vent gas to the air. If H₂S is present, it would create a lethal environment for the crew around the tank."
   },
   {
-    question: "Which CSS layout is best for a 2D grid?",
-    options: ["Flexbox", "Float", "Grid", "Position"],
+    question: "How does a flame arrestor prevent explosions on a gauge tank?",
+    options: [
+      "By chemically neutralizing the gas in the tank",
+      "By closing a mechanical shutter when it detects a spark",
+      "By absorbing heat and lowering gas temperature below the autoignition point",
+      "By injecting nitrogen into the vent line automatically"
+    ],
     correctIndex: 2,
-    explanation: "CSS Grid is designed for 2D layouts."
+    explanation: "Flame arrestors use a thermal mass to absorb heat from a flame, cooling the gas-air mixture so the flame cannot pass through the vent into the tank."
   },
   {
-    question: "What does JSON stand for?",
-    options: ["Java Script Object Notation", "Java Source Object Notation", "Java Standard Output Network", "Java Script Output Name"],
+    question: "What is a primary operational difference between a surge tank and a gauge tank?",
+    options: [
+      "Surge tanks are pressurized and suitable for H₂S service",
+      "Gauge tanks have dual compartments while surge tanks do not",
+      "Surge tanks cannot be used for second-stage separation",
+      "Gauge tanks are made of plastic while surge tanks are steel"
+    ],
     correctIndex: 0,
-    explanation: "JSON stands for JavaScript Object Notation."
+    explanation: "Unlike atmospheric gauge tanks, surge tanks are pressurized vessels that safely contain gas, making them safe for H₂S service."
   },
   {
-    question: "Which event runs when a button is clicked?",
-    options: ["mouseover", "onchange", "onclick", "onload"],
-    correctIndex: 2,
-    explanation: "The onclick event runs when a button is clicked."
+    question: "Which component is found on a vertical surge tank to prevent gas from entering the liquid outlet?",
+    options: [
+      "Flame arrestor",
+      "Vortex breaker",
+      "Stiffening rings",
+      "Grounding strap"
+    ],
+    correctIndex: 1,
+    explanation: "The vortex breaker is installed at the outlet to prevent the formation of a whirlpool that could pull gas into the liquid line."
+  },
+  {
+    question: "What is the purpose of the 'dual compartments' found in many surge tanks?",
+    options: [
+      "To separate oil from water inside the tank",
+      "To allow for continuous measurement and flow while emptying one side",
+      "To store oil in one side and gas in the other",
+      "To provide extra weight so the tank does not move"
+    ],
+    correctIndex: 1,
+    explanation: "Dual compartments allow one side to be filled while the other is being emptied, ensuring the well test can continue without interruption."
+  },
+  {
+    question: "To calculate a meter factor using a tank, you compare the oil meter reading to:",
+    options: [
+      "The pressure drop across the choke",
+      "The actual volume measured in the tank using levels and coefficients",
+      "The weight of the tank when it is full",
+      "The flow rate recorded by the gas orifice meter"
+    ],
+    correctIndex: 1,
+    explanation: "The 'true' volume is determined by the tank level change multiplied by its volume coefficient; this is then compared to the meter's reading."
+  },
+  {
+    question: "What safety feature is required to prevent static electricity buildup on a gauge tank?",
+    options: [
+      "Pressure relief valve",
+      "Grounding strap",
+      "Pilot-operated valve",
+      "Magnetic level system"
+    ],
+    correctIndex: 1,
+    explanation: "A grounding strap ensures that any static charge generated by fluid movement is safely discharged to the earth, preventing sparks."
+  },
+  {
+    question: "What must be done before a technician enters a tank for repairs?",
+    options: [
+      "Fill the tank with water to cool it down",
+      "Steam clean and degas the tank to ensure it is safe to breathe",
+      "Turn off the ESD system to prevent accidental closure",
+      "Increase the back pressure to check for leaks"
+    ],
+    correctIndex: 1,
+    explanation: "Entering a confined space requires the tank to be completely emptied, steam cleaned of oil residue, and degassed to prevent asphyxiation or explosion."
+  },
+  {
+    question: "When would a surge tank act as a 'second-stage separator'?",
+    options: [
+      "Only when the primary separator fails",
+      "When the pressure is lowered to allow more gas to break out of the oil",
+      "When measuring water flow instead of oil flow",
+      "When the well is first opened and flow is unstable"
+    ],
+    correctIndex: 1,
+    explanation: "By operating at a lower pressure than the primary separator, the surge tank allows additional dissolved gas to separate from the oil."
   }
 ];
 

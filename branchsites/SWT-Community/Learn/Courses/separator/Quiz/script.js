@@ -1,64 +1,114 @@
 /* ===== Quiz Data ===== */
 const questions = [
   {
-    question: "What does HTML stand for?",
-    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyperlink Marking Language", "Home Tool Markup Language"],
-    correctIndex: 0,
-    explanation: "HTML stands for Hyper Text Markup Language."
-  },
-  {
-    question: "Which CSS property controls text size?",
-    options: ["font-style", "text-size", "font-size", "font-weight"],
-    correctIndex: 2,
-    explanation: "The correct property for text size is font-size."
-  },
-  {
-    question: "Which method is used to select an element by ID in JavaScript?",
-    options: ["getElementByClass", "querySelectorAll", "getElementById", "getElementsByName"],
-    correctIndex: 2,
-    explanation: "getElementById selects a single element by its ID."
-  },
-  {
-    question: "What does CSS stand for?",
-    options: ["Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Creative Style System"],
+    question: "What is the primary difference between a flow head and a Christmas tree?",
+    options: [
+      "The flow head is for permanent production, while the Christmas tree is temporary",
+      "The flow head is a temporary device used during testing before completion",
+      "The Christmas tree is used only for drilling, not production",
+      "There is no difference; they are the exact same equipment"
+    ],
     correctIndex: 1,
-    explanation: "CSS means Cascading Style Sheets."
+    explanation: "A flow head is temporary surface equipment used during the well testing phase, whereas a Christmas tree is the permanent installation for the production life of the well."
   },
   {
-    question: "Which tag is used to include JavaScript in HTML?",
-    options: ["<js>", "<javascript>", "<script>", "<code>"],
+    question: "Which valve is used to isolate the surface equipment from the downhole string?",
+    options: [
+      "Swab valve",
+      "Kill line valve",
+      "Master valve",
+      "Flow line valve"
+    ],
     correctIndex: 2,
-    explanation: "The <script> tag is used to embed JavaScript."
+    explanation: "The master valve is the primary isolation valve that separates the surface equipment from the subsurface test string."
   },
   {
-    question: "Which array method adds an item to the end?",
-    options: ["push()", "pop()", "shift()", "unshift()"],
-    correctIndex: 0,
-    explanation: "push() adds an item to the end of the array."
+    question: "What is the main function of the Swab valve?",
+    options: [
+      "To allow the entry of high-pressure kill mud",
+      "To divert oil to the burners",
+      "To facilitate the insertion and retrieval of wireline or slickline tools",
+      "To rotate the test string under high pressure"
+    ],
+    correctIndex: 2,
+    explanation: "The swab valve is located at the top of the flow head block and is opened to allow tools to pass into the wellbore."
   },
   {
-    question: "What is the correct HTML5 doctype?",
-    options: ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<!DOCTYPE HTML PUBLIC>", "<!DOCTYPE XHTML>"],
+    question: "Which valve on the flow head is typically connected to the Emergency Shutdown (ESD) system?",
+    options: [
+      "Master valve",
+      "Swab valve",
+      "Flow line (outlet wing) valve",
+      "Kill line (inlet wing) valve"
+    ],
+    correctIndex: 2,
+    explanation: "The flow line valve is usually equipped with a hydraulic actuator linked to the ESD system to shut in the well automatically in case of an emergency."
+  },
+  {
+    question: "What is the primary use of the Kill line (inlet wing) valve?",
+    options: [
+      "To bleed off gas to the atmosphere",
+      "To pump stimulation fluids or heavy mud into the well",
+      "To measure the temperature of the flowing fluid",
+      "To support the weight of the elevators"
+    ],
     correctIndex: 1,
-    explanation: "<!DOCTYPE html> is the standard HTML5 doctype."
+    explanation: "The kill line allows for 'killing' the well (controlling pressure) or pumping treatment fluids like acid into the wellbore."
   },
   {
-    question: "Which CSS layout is best for a 2D grid?",
-    options: ["Flexbox", "Float", "Grid", "Position"],
+    question: "What does the swivel component allow the operator to do?",
+    options: [
+      "Rotate the entire flow head block continuously while drilling",
+      "Rotate the subsurface test string independently of the flow/kill lines",
+      "Increase the pressure rating of the manifold",
+      "Filter out sand before it reaches the master valve"
+    ],
+    correctIndex: 1,
+    explanation: "The swivel allows the test string to rotate without tangling or disconnecting the surface lines, which is especially important on floating rigs."
+  },
+  {
+    question: "Regarding the swivel, which of the following is a critical operational constraint?",
+    options: [
+      "It must be rotated at high speeds at all times",
+      "It should NOT be rotated under pressure",
+      "It only works with water-based fluids",
+      "It must be removed before using the master valve"
+    ],
+    correctIndex: 1,
+    explanation: "The swivel is designed for low-speed positioning and should not be rotated when the system is under pressure to prevent seal damage."
+  },
+  {
+    question: "What is the purpose of using 'subs' above and below the flow head valves?",
+    options: [
+      "To increase the flow rate of the oil",
+      "To act as a primary seal against high-pressure gas",
+      "To protect threads and make handling with rig elevators easier",
+      "To measure the salinity of the produced water"
+    ],
     correctIndex: 2,
-    explanation: "CSS Grid is designed for 2D layouts."
+    explanation: "Handling subs protect the flow head's internal threads and provide a safe area for the rig's elevators to latch onto."
   },
   {
-    question: "What does JSON stand for?",
-    options: ["Java Script Object Notation", "Java Source Object Notation", "Java Standard Output Network", "Java Script Output Name"],
-    correctIndex: 0,
-    explanation: "JSON stands for JavaScript Object Notation."
-  },
-  {
-    question: "Which event runs when a button is clicked?",
-    options: ["mouseover", "onchange", "onclick", "onload"],
+    question: "In a flow head, the two 'wing' valves serve which two distinct purposes?",
+    options: [
+      "One for oil and one for gas",
+      "One for high pressure and one for low pressure",
+      "One for fluid exit (outlet) and one for fluid entry (inlet)",
+      "One for manual operation and one for remote operation"
+    ],
     correctIndex: 2,
-    explanation: "The onclick event runs when a button is clicked."
+    explanation: "The flow line wing is the outlet for production, while the kill line wing is the inlet for pumping fluids into the well."
+  },
+  {
+    question: "Why is the master valve considered a 'fail-safe' or critical component?",
+    options: [
+      "It is the only valve that can be replaced while the well is flowing",
+      "It provides the ultimate surface barrier between the reservoir and the environment",
+      "It automatically cleans the oil as it passes through",
+      "It is the only valve that does not require maintenance"
+    ],
+    correctIndex: 1,
+    explanation: "As the lowest valve on the flow head, the master valve is the primary surface barrier used to isolate the entire well's pressure."
   }
 ];
 

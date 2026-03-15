@@ -2,68 +2,93 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Well Testing Simulator - Pro Lighting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Well Testing Simulator - Universal Edition</title>
     <style>
-        body { margin: 0; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #000; }
-        #ui { position: absolute; top: 10px; right: 10px; pointer-events: none; z-index: 100; }
-        .panel { 
-            background: rgba(20, 20, 20, 0.9); 
-            color: #00ffcc; padding: 15px; border: 1px solid #333; 
-            border-radius: 12px; pointer-events: auto; margin-bottom: 10px; min-width: 240px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        :root { --accent: #00ffcc; --bg: rgba(20, 20, 20, 0.9); }
+        body { margin: 0; overflow: hidden; font-family: 'Segoe UI', sans-serif; background: #000; touch-action: none; }
+        
+        /* واجهة المستخدم متجاوبة */
+        #ui { 
+            position: absolute; top: 10px; right: 10px; left: 10px; 
+            display: flex; flex-direction: column; align-items: flex-end;
+            pointer-events: none; z-index: 100; 
         }
-        .gauge-circle { width: 65px; height: 65px; border: 3px solid #444; border-radius: 50%; position: relative; margin: 5px auto; background: #050505; }
-        .gauge-needle { width: 2px; height: 32px; background: #ff3300; position: absolute; bottom: 50%; left: 50%; transform-origin: bottom; transition: transform 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
-        button { width: 100%; padding: 10px; cursor: pointer; background: #c00; color: white; border: none; border-radius: 6px; font-weight: bold; margin-top: 8px; transition: 0.3s; }
-        button:hover { background: #e00; }
-        button.cam-btn { background: #007bff; }
-        .move-controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
-        .btn-ctrl { background: #222; color: #fff; border: 1px solid #444; padding: 12px; border-radius: 8px; cursor: pointer; text-align: center; user-select: none; font-size: 18px; }
-        .btn-ctrl:active { background: #00ffcc; color: #000; }
-        #hint { position: absolute; bottom: 15px; left: 15px; color: #aaa; font-size: 13px; background: rgba(0,0,0,0.7); padding: 8px 15px; border-radius: 20px; border: 1px solid #444; }
-        h4 { margin: 0 0 10px 0; color: #fff; border-bottom: 2px solid #00ffcc; padding-bottom: 5px; text-align: center; font-size: 14px; }
+        
+        .panel { 
+            background: var(--bg); color: var(--accent); padding: 12px; 
+            border: 1px solid #333; border-radius: 12px; pointer-events: auto; 
+            margin-bottom: 8px; width: 100%; max-width: 260px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+        }
+
+        /* تحسين أزرار التحكم للموبايل */
+        .move-controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 5px; }
+        .btn-ctrl { 
+            background: #222; color: #fff; border: 1px solid #444; 
+            height: 50px; display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; cursor: pointer; user-select: none; font-size: 20px;
+            touch-action: none; 
+        }
+        .btn-ctrl:active { background: var(--accent); color: #000; }
+
+        .gauge-circle { width: 50px; height: 50px; border: 2px solid #444; border-radius: 50%; position: relative; margin: 0 auto 5px; background: #050505; }
+        .gauge-needle { width: 2px; height: 25px; background: #ff3300; position: absolute; bottom: 50%; left: 50%; transform-origin: bottom; transition: transform 0.4s; }
+        
+        button { width: 100%; padding: 10px; cursor: pointer; background: #c00; color: white; border: none; border-radius: 6px; font-weight: bold; }
+        .cam-btn { background: #007bff; margin-bottom: 5px; }
+
+        h4 { margin: 0 0 8px 0; color: #fff; border-bottom: 2px solid var(--accent); padding-bottom: 4px; text-align: center; font-size: 14px; }
+        #hint { position: absolute; bottom: 10px; left: 10px; color: #aaa; font-size: 11px; background: rgba(0,0,0,0.7); padding: 5px 10px; border-radius: 15px; pointer-events: none; }
+
+        /* تعديلات للشاشات الصغيرة جداً */
+        @media (max-width: 480px) {
+            .panel { max-width: 180px; padding: 8px; }
+            .btn-ctrl { height: 40px; font-size: 18px; }
+            .gauge-circle { width: 40px; height: 40px; }
+            .gauge-needle { height: 20px; }
+        }
     </style>
 </head>
 <body>
 
     <div id="ui">
         <div class="panel">
-            <h4>إعدادات الكاميرا</h4>
+            <h4>الكاميرا</h4>
             <button class="cam-btn" onclick="toggleCamera()">تبديل المنظور (C)</button>
         </div>
 
         <div class="panel">
-            <h4>تحكم الحركة (الأسهم)</h4>
+            <h4>التحكم</h4>
             <div class="move-controls">
                 <div></div>
-                <div class="btn-ctrl" onmousedown="moveState.f=true" onmouseup="moveState.f=false">↑</div>
+                <div class="btn-ctrl" id="btn-f">↑</div>
                 <div></div>
-                <div class="btn-ctrl" onmousedown="moveState.l=true" onmouseup="moveState.l=false">←</div>
-                <div class="btn-ctrl" onmousedown="moveState.b=true" onmouseup="moveState.b=false">↓</div>
-                <div class="btn-ctrl" onmousedown="moveState.r=true" onmouseup="moveState.r=false">→</div>
+                <div class="btn-ctrl" id="btn-l">←</div>
+                <div class="btn-ctrl" id="btn-b">↓</div>
+                <div class="btn-ctrl" id="btn-r">→</div>
             </div>
         </div>
 
         <div class="panel">
-            <h4>البيانات التشغيلية</h4>
             <div style="display: flex; justify-content: space-around; text-align: center;">
                 <div>
                     <div class="gauge-circle"><div id="n-oil" class="gauge-needle"></div></div>
-                    <div id="v-oil" style="font-weight:bold;">0</div><small>BPD</small>
+                    <div id="v-oil" style="font-size:12px;">0</div><small style="font-size:9px;">BPD</small>
                 </div>
                 <div>
                     <div class="gauge-circle"><div id="n-press" class="gauge-needle"></div></div>
-                    <div id="v-press" style="font-weight:bold;">120</div><small>PSI</small>
+                    <div id="v-press" style="font-size:12px;">120</div><small style="font-size:9px;">PSI</small>
                 </div>
             </div>
         </div>
 
         <div class="panel" id="controls-ui">
-            <p style="text-align:center; color:#888; font-size: 12px;">انقر على المعدة لتشغيلها</p>
+            <p style="text-align:center; color:#888; font-size: 11px;">المس المعدة للتشغيل</p>
         </div>
     </div>
 
-    <div id="hint">تحكم: الأسهم / WASD | اختيار المعدة: الماوس</div>
+    <div id="hint">لمس: كاميرا | أزرار: حركة | نقر: معدات</div>
 
     <script src="three.min.js"></script>
     <script src="GLTFLoader.js"></script>
@@ -75,34 +100,7 @@
         const sim = { choke: 0, press: 120, isOpen: false };
         let tankLevel = 0;
         const moveState = { f: false, b: false, l: false, r: false };
-        const moveSpeed = 0.3;
-        const rotateSpeed = 0.05;
         let fireParticles = [];
-
-        function toggleCamera() {
-            isWorkerView = !isWorkerView;
-            controls.enabled = !isWorkerView;
-            if (!isWorkerView) {
-                camera.position.set(60, 40, 40);
-                controls.target.set(0, 0, 0);
-            }
-        }
-
-        function handleSelection(name) {
-            const ui = document.getElementById('controls-ui');
-            if (name === "ChokeManifold") {
-                ui.innerHTML = `<h4>Choke Manifold</h4><button onclick="toggleWell()">${sim.isOpen ? 'إغلاق البئر' : 'فتح البئر'}</button>
-                <input type="range" min="0" max="64" value="${sim.choke}" style="width:100%; margin-top:10px;" oninput="sim.choke=parseInt(this.value)">`;
-            } else if (name === "Separator") {
-                ui.innerHTML = `<h4>Separator</h4><p>الضغط: ${Math.floor(sim.press)} PSI</p>`;
-            } else if (name === "SurgeTank") {
-                ui.innerHTML = `<h4>Surge Tank</h4><p>المستوى: ${tankLevel.toFixed(1)}%</p><button onclick="tankLevel=0">تفريغ الخزان</button>`;
-            } else {
-                ui.innerHTML = `<h4>${name}</h4><p>معدة جاهزة للعمل</p>`;
-            }
-        }
-
-        function toggleWell() { sim.isOpen = !sim.isOpen; if(!sim.isOpen) sim.choke=0; handleSelection("ChokeManifold"); }
 
         function init() {
             scene = new THREE.Scene();
@@ -114,22 +112,17 @@
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.shadowMap.enabled = true;
+            renderer.setPixelRatio(window.devicePixelRatio); // دعم شاشات الريتنا والموبايل العالي
             document.body.appendChild(renderer.domElement);
 
             controls = new THREE.OrbitControls(camera, renderer.domElement);
-            
-            // --- إعدادات الإضاءة المتقدمة ---
-            const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2); 
-            scene.add(hemiLight);
+            controls.enableDamping = true;
 
-            const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
-            dirLight.position.set(50, 100, 50);
-            dirLight.castShadow = true;
-            scene.add(dirLight);
-
-            const blueLight = new THREE.PointLight(0x0066ff, 1, 100);
-            blueLight.position.set(-20, 10, -10);
-            scene.add(blueLight);
+            // إضاءة
+            scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.2));
+            const sun = new THREE.DirectionalLight(0xffffff, 1.5);
+            sun.position.set(50, 100, 50);
+            scene.add(sun);
 
             scene.add(new THREE.GridHelper(200, 40, 0x222222, 0x111111));
 
@@ -139,10 +132,10 @@
             loader.load('worker.glb', (gltf) => {
                 worker = gltf.scene;
                 worker.scale.set(3, 3, 3);
-                worker.traverse(n => { if(n.isMesh) n.castShadow = true; });
                 scene.add(worker);
             });
 
+            // تحميل المعدات (نفس الوظيفة السابقة)
             function loadModel(path, pos, scale, name, rot=0) {
                 loader.load(path, (gltf) => {
                     const m = gltf.scene;
@@ -155,28 +148,63 @@
                 });
             }
 
-            // توزيع المعدات
             loadModel('wellhead.glb', {x: -25, y: 6.5, z: 0.5}, 7, "Wellhead");
             loadModel('chokemanifold.glb', {x: -10, y: 2, z: 0}, 5, "ChokeManifold", 45);
             loadModel('separator.glb', {x: 10, y: 4, z: -5}, 8, "Separator", 270);
             loadModel('surgetank.glb', {x: 12, y: 8, z: 18}, 8, "SurgeTank");
             loadModel('burnerboom.glb', {x: 35, y: 5, z: 0}, 10, "BurnerBoom", 270);
 
-            // إضافة الأنابيب يدوياً (Manual Pipelines)
-            placePipe({x: -20, y: 1.5, z: 0}, {r: 0.3, h: 10}, {x: 0, y: 0, z: 90}); // Well -> Choke
-            placePipe({x: 0, y: 1.5, z: 0}, {r: 0.3, h: 14}, {x: 0, y: 0, z: 90}); // Choke -> Sep
-            placePipe({x: 10, y: 1.5, z: 9}, {r: 0.3, h: 18}, {x: 90, y: 0, z: -15});   // Sep -> Tank
-            placePipe({x: 20, y: 1.5, z: 0}, {r: 0.3, h: 15}, {x: 0, y: 0, z: 90}); // Sep -> Burner
+            // الأنابيب
+            placePipe({x: -20, y: 1.5, z: 0}, {r: 0.3, h: 10}, {x: 0, y: 0, z: 90});
+            placePipe({x: 0, y: 1.5, z: 0}, {r: 0.3, h: 14}, {x: 0, y: 0, z: 90});
+            placePipe({x: 20, y: 1.5, z: 0}, {r: 0.3, h: 15}, {x: 0, y: 0, z: 90});
 
-            // الشعلة
-            for(let i=0; i<35; i++) {
-                const p = new THREE.Mesh(new THREE.SphereGeometry(0.35), new THREE.MeshBasicMaterial({color: 0xff3300, transparent: true}));
-                p.visible = false;
-                scene.add(p);
-                fireParticles.push(p);
-            }
+            setupInputHandlers();
+            animate();
+        }
 
-            // تحكم لوحة المفاتيح
+        function placePipe(pos, size, rot) {
+            const pipe = new THREE.Mesh(new THREE.CylinderGeometry(size.r, size.r, size.h, 16), new THREE.MeshStandardMaterial({ color: 0x333333 }));
+            pipe.position.set(pos.x, pos.y, pos.z);
+            pipe.rotation.set(rot.x*(Math.PI/180), rot.y*(Math.PI/180), rot.z*(Math.PI/180));
+            scene.add(pipe);
+        }
+
+        function setupInputHandlers() {
+            // نظام اللمس للأزرار
+            const bind = (id, key) => {
+                const el = document.getElementById(id);
+                const start = (e) => { e.preventDefault(); moveState[key] = true; };
+                const end = (e) => { e.preventDefault(); moveState[key] = false; };
+                el.addEventListener('touchstart', start, {passive: false});
+                el.addEventListener('touchend', end);
+                el.addEventListener('mousedown', start);
+                el.addEventListener('mouseup', end);
+                el.addEventListener('mouseleave', end);
+            };
+
+            bind('btn-f', 'f'); bind('btn-b', 'b'); bind('btn-l', 'l'); bind('btn-r', 'r');
+
+            // اختيار المعدات (ماوس ولمس)
+            const onSelect = (e) => {
+                if (e.target.closest('.panel')) return;
+                const x = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+                const y = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+                const ray = new THREE.Raycaster();
+                const mouse = new THREE.Vector2((x/window.innerWidth)*2-1, -(y/window.innerHeight)*2+1);
+                ray.setFromCamera(mouse, camera);
+                const hits = ray.intersectObjects(scene.children, true);
+                if(hits.length > 0) {
+                    let obj = hits[0].object;
+                    while(obj.parent && !["Wellhead", "Separator", "ChokeManifold", "SurgeTank", "BurnerBoom"].includes(obj.name)) obj = obj.parent;
+                    if(obj.name) handleSelection(obj.name);
+                }
+            };
+
+            window.addEventListener('mousedown', onSelect);
+            window.addEventListener('touchstart', onSelect, {passive: true});
+
+            // الكيبورد
             window.addEventListener('keydown', (e) => {
                 const k = e.key.toLowerCase();
                 if (k === 'w' || k === 'arrowup') moveState.f = true;
@@ -192,35 +220,26 @@
                 if (k === 'a' || k === 'arrowleft') moveState.l = false;
                 if (k === 'd' || k === 'arrowright') moveState.r = false;
             });
-
-            window.addEventListener('mousedown', (e) => {
-                if (e.target.closest('.panel')) return;
-                const ray = new THREE.Raycaster();
-                const mouse = new THREE.Vector2((e.clientX/window.innerWidth)*2-1, -(e.clientY/window.innerHeight)*2+1);
-                ray.setFromCamera(mouse, camera);
-                const hits = ray.intersectObjects(scene.children, true);
-                if(hits.length > 0) {
-                    let obj = hits[0].object;
-                    while(obj.parent && !["Wellhead", "Separator", "ChokeManifold", "SurgeTank", "BurnerBoom"].includes(obj.name)) obj = obj.parent;
-                    if(obj.name) handleSelection(obj.name);
-                }
-            });
-
-            animate();
         }
 
-        function placePipe(pos, size, rot) {
-            const pipe = new THREE.Mesh(new THREE.CylinderGeometry(size.r, size.r, size.h, 16), new THREE.MeshStandardMaterial({ color: 0x333333, metalness: 0.8, roughness: 0.2 }));
-            pipe.position.set(pos.x, pos.y, pos.z);
-            pipe.rotation.set(rot.x*(Math.PI/180), rot.y*(Math.PI/180), rot.z*(Math.PI/180));
-            scene.add(pipe);
+        function handleSelection(name) {
+            const ui = document.getElementById('controls-ui');
+            if (name === "ChokeManifold") {
+                ui.innerHTML = `<h4>Choke Manifold</h4><button onclick="toggleWell()">${sim.isOpen ? 'إغلاق البئر' : 'فتح البئر'}</button>
+                <input type="range" min="0" max="64" value="${sim.choke}" style="width:100%; margin-top:10px;" oninput="sim.choke=parseInt(this.value)">`;
+            } else if (name === "Separator") {
+                ui.innerHTML = `<h4>Separator</h4><p>الضغط: ${Math.floor(sim.press)} PSI</p>`;
+            } else if (name === "SurgeTank") {
+                ui.innerHTML = `<h4>Surge Tank</h4><p>المستوى: ${tankLevel.toFixed(1)}%</p><button onclick="tankLevel=0">تفريغ</button>`;
+            } else { ui.innerHTML = `<h4>${name}</h4><p>معدة جاهزة</p>`; }
         }
 
-        function resetFire(p) {
-            p.position.set(43, 6, 0);
-            p.scale.set(1, 1, 1);
-            p.material.opacity = 1;
-            p.userData.v = new THREE.Vector3(0.12 + Math.random()*0.1, 0.15 + Math.random()*0.25, (Math.random()-0.5)*0.15);
+        function toggleWell() { sim.isOpen = !sim.isOpen; if(!sim.isOpen) sim.choke=0; handleSelection("ChokeManifold"); }
+
+        function toggleCamera() {
+            isWorkerView = !isWorkerView;
+            controls.enabled = !isWorkerView;
+            if (!isWorkerView) camera.position.set(60, 40, 40);
         }
 
         function animate() {
@@ -228,38 +247,19 @@
             if(controls && !isWorkerView) controls.update();
 
             if (worker) {
-                if (moveState.f) worker.translateZ(moveSpeed);
-                if (moveState.b) worker.translateZ(-moveSpeed);
-                if (moveState.l) worker.rotation.y += rotateSpeed;
-                if (moveState.r) worker.rotation.y -= rotateSpeed;
+                if (moveState.f) worker.translateZ(0.3);
+                if (moveState.b) worker.translateZ(-0.3);
+                if (moveState.l) worker.rotation.y += 0.05;
+                if (moveState.r) worker.rotation.y -= 0.05;
 
                 if (isWorkerView) {
                     const offset = new THREE.Vector3(0, 7, -14).applyQuaternion(worker.quaternion);
                     camera.position.copy(worker.position).add(offset);
-                    const look = new THREE.Vector3(0, 5, 12).applyQuaternion(worker.quaternion);
-                    camera.lookAt(worker.position.clone().add(look));
+                    camera.lookAt(worker.position.clone().add(new THREE.Vector3(0, 5, 12).applyQuaternion(worker.quaternion)));
                 }
             }
 
-            // تحديث الشعلة والإنتاج
-            fireParticles.forEach(p => {
-                if (sim.isOpen && sim.choke > 0) {
-                    p.visible = true;
-                    if(!p.userData.v) resetFire(p);
-                    p.position.add(p.userData.v);
-                    p.material.opacity -= 0.015;
-                    p.scale.multiplyScalar(0.96);
-                    if (p.material.opacity <= 0) resetFire(p);
-                } else { p.visible = false; }
-            });
-
-            if (sim.isOpen && sim.choke > 0) {
-                if (sim.press < 800) sim.press += 0.08;
-                tankLevel += (sim.choke / 64) * 0.02;
-            } else if (sim.press > 0) {
-                sim.press -= 0.02;
-            }
-
+            // تحديث المقاييس
             let oil = sim.isOpen ? sim.choke * 18.5 : 0;
             document.getElementById('n-oil').style.transform = `rotate(${(oil/1200)*180-90}deg)`;
             document.getElementById('v-oil').innerText = Math.floor(oil);

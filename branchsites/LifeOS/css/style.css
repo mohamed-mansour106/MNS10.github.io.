@@ -545,3 +545,135 @@ button:hover {
         grid-template-columns: 1fr !important;
     }
 }
+
+nav {
+    /* تحديد طول القائمة */
+    height: 100vh; 
+    
+    /* تفعيل التمرير العمودي */
+    overflow-y: auto; 
+    overflow-x: hidden;
+    
+    /* لضمان بقاء العناصر الداخلية منظمة */
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    
+    /* تحسين شكل الـ Scrollbar في المتصفحات (Chrome, Edge, Safari) */
+}
+
+/* تخصيص شكل شريط التمرير */
+nav::-webkit-scrollbar {
+    width: 5px; /* عرض الشريط */
+}
+
+nav::-webkit-scrollbar-track {
+    background: transparent; /* خلفية المسار */
+}
+
+nav::-webkit-scrollbar-thumb {
+    background: #334155; /* لون المقبض */
+    border-radius: 10px; /* جعل الحواف دائرية */
+}
+
+nav::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8; /* يتغير اللون عند تمرير الماوس */
+}
+
+/* للمتصفحات الأخرى مثل Firefox */
+nav {
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+}
+
+#ideas-grid div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border-color: #fbbf24 !important;
+}
+
+#ideas-grid .sticky-note-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+#ideas-grid .sticky-note-card:hover {
+    transform: translateY(-8px) rotate(1deg); /* Slight lift and rotation */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4); /* Stronger shadow on hover */
+    cursor: grab;
+}
+
+#ideas-grid .sticky-note-card:active {
+    cursor: grabbing;
+    transform: translateY(-4px) rotate(0deg);
+}
+
+.sticky-note {
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* تنعيم الحركة */
+    user-select: none; /* يمنع تحديد النص تماماً أثناء السحب */
+}
+
+.sticky-note:active {
+    transition: none; /* نلغي التنعيم أثناء السحب الفعلي عشان ما يبقاش فيه تأخير (Lag) */
+}
+
+#mindmap-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows you to click the nodes through the canvas */
+    z-index: 5; /* Sit behind the nodes but above the background */
+}
+
+#mindmap-board {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* Sit above the canvas */
+}
+
+
+/**************************************************/
+/* تخصيص السكرول بار العام للمتصفح أو لأي عنصر */
+::-webkit-scrollbar {
+    width: 8px;  /* عرض السكرول الرأسي */
+    height: 8px; /* ارتفاع السكرول الأفقي */
+}
+
+/* الخلفية (المسار) */
+::-webkit-scrollbar-track {
+    background: #0b0f1a; 
+    border-radius: 10px;
+}
+
+/* المقبض (الجزء الذي يتحرك) */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6366f1, #4f46e5); /* تدرج لوني إنديغو */
+    border-radius: 10px;
+    border: 2px solid #0b0f1a; /* يعطي إيحاء بوجود مسافة حول المقبض */
+}
+
+/* تأثير عند تمرير الماوس فوق السكرول */
+::-webkit-scrollbar-thumb:hover {
+    background: #818cf8; 
+}
+
+/* تحسين شكل السكرول داخل قسم الـ MindMap تحديداً */
+#mindmap {
+    scrollbar-width: thin; /* لمتصفح فايرفوكس */
+    scrollbar-color: #6366f1 #0b0f1a; /* لمتصفح فايرفوكس */
+}
+
+#mindmap-container {
+    scroll-behavior: smooth;
+    /* لمنع ظهور السكرول بار تماماً إذا كنت تعتمد على السحب بالماوس (Panning) */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+#mindmap-container::-webkit-scrollbar {
+    display: none; /* إخفاء السكرول في منطقة العمل لزيادة التركيز */
+}
+

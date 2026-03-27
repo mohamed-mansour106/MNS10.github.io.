@@ -45,6 +45,7 @@
                 <a href="#" class="nav-link" data-tab="financial"><i class="fa-solid fa-code"></i> financial</a>
                 <a href="#" class="nav-link" data-tab="habits"><i class="fa-solid fa-chart-pie"></i> Habits & Health Care</a>
                 <a href="#" class="nav-link" data-tab="vault"><i class="fa-solid fa-file-shield"></i> Document Vault</a>
+                <a href="#" class="nav-link" data-tab="file-manager"><i class="fa-solid fa-file-shield"></i> File Manager</a>
 
             <div class="menu-group">🏀 GROWTH & Career</div>
                 <a href="#" class="nav-link" data-tab="focus"><i class="fa-solid fa-bullseye"></i> Focus Mode</a>
@@ -552,6 +553,27 @@
 
 
 
+        <!---------------------------File Manager---------------------------->
+
+
+        <section id="file-manager" class="tab-content" style="padding: 20px; background: #0b0f1a; min-height: 90vh; border-radius: 15px; color: white;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h1 style="color: #6366f1; margin: 0;">📁 Digital File Manager</h1>
+                <div id="breadcrumb" style="color: #94a3b8; font-size: 14px;">Home</div>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button onclick="FileManager.promptCreateFolder()" style="padding: 8px 15px; background: #6366f1; border: none; border-radius: 6px; color: white; cursor: pointer;">+ New Folder </button>
+                <button onclick="FileManager.promptCreateFile()" style="padding: 8px 15px; background: #10b981; border: none; border-radius: 6px; color: white; cursor: pointer;">+  New File </button>
+                <button id="back-btn" onclick="FileManager.goBack()" style="padding: 8px 15px; background: #334155; border: none; border-radius: 6px; color: white; cursor: pointer; display: none;">⬅ Back</button>
+            </div>
+
+            <div id="file-display" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
+                </div>
+        </section>
+
+
+
         <!---------------------------MindMap---------------------------->
 
 
@@ -985,6 +1007,7 @@
     <script src="js/project.js"></script>
     <script src="js/study.js"></script>
     <script src="js/journal.js"></script> 
+    <script src="js/filemanager.js"></script> 
     <script src="js/main.js"></script>
 
 

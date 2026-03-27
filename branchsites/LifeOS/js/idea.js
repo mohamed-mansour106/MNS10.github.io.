@@ -34,6 +34,7 @@ const Ideas = {
             return `
             <div class="sticky-note" 
                  onmousedown="window.startDragging(event, ${index})"
+                 ontouchstart="window.startDragging(event, ${index})"
                  style="position: absolute; left: ${posX}px; top: ${posY}px; width: 220px; background: #1e293b; 
                         padding: 15px; border-radius: 8px; border-top: 10px solid ${randomColor}; 
                         cursor: grab; box-shadow: 5px 5px 15px rgba(0,0,0,0.3); z-index: ${zIndex}; transform: rotate(${rotation}deg); transition: transform 0.2s ease;">
@@ -53,6 +54,9 @@ const Ideas = {
         }).join('');
     }
 };
+
+
+
 
 // --- GLOBAL ATTACHMENTS FOR HTML ONCLICK ---
 
@@ -94,11 +98,15 @@ let offset = { x: 0, y: 0 };
 window.startDragging = function(e, index) {
     if (e.target.tagName === 'BUTTON') return;
 
+    // منع المتصفح من عمل Scroll أثناء السحب (مهم جداً للموبايل)
+    if (e.type === 'touchstart') {
+        // e.preventDefault(); // اختيارياً لو مش عايز الصفحة تتحرك خالص
+    }
+
     currentDraggingIndex = index;
     const notes = Ideas.getIdeas();
     const noteElement = e.currentTarget;
     
-    // رفع الـ Z-index فوراً للعنصر اللي بنحركه
     notes.forEach(n => n.zIndex = 10);
     notes[index].zIndex = 1000;
     noteElement.style.zIndex = 1000;
@@ -106,44 +114,57 @@ window.startDragging = function(e, index) {
     const rect = noteElement.getBoundingClientRect();
     const board = document.getElementById('ideas-board').getBoundingClientRect();
     
-    offset.x = e.clientX - rect.left;
-    offset.y = e.clientY - rect.top;
+    // تحديد نقطة البداية سواء كانت لمس أو ماوس
+    const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+    offset.x = clientX - rect.left;
+    offset.y = clientY - rect.top;
     
     noteElement.style.cursor = 'grabbing';
-    noteElement.style.cursor = 'grabbing';
 
-    // دالة التحريك (تغير الـ Style فقط بدون مسح الـ HTML)
     function move(e) {
         if (currentDraggingIndex === null) return;
         
-        let newX = e.clientX - board.left - offset.x;
-        let newY = e.clientY - board.top - offset.y;
+        // الحصول على الإحداثيات الجديدة
+        const moveX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+        const moveY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+
+        let newX = moveX - board.left - offset.x;
+        let newY = moveY - board.top - offset.y;
 
         noteElement.style.left = newX + 'px';
         noteElement.style.top = newY + 'px';
         
-        // تحديث البيانات في المصفوفة (بدون حفظ في localStorage الآن لضمان السرعة)
         notes[currentDraggingIndex].x = newX;
         notes[currentDraggingIndex].y = newY;
     }
 
-    
-    // دالة التوقف (هنا نحفظ في الذاكرة مرة واحدة فقط)
     function stop() {
+        // إزالة مستمعات الماوس
         document.removeEventListener('mousemove', move);
         document.removeEventListener('mouseup', stop);
+        // إزالة مستمعات اللمس
+        document.removeEventListener('touchmove', move);
+        document.removeEventListener('touchend', stop);
         
         if (currentDraggingIndex !== null) {
-            // حفظ البيانات في localStorage "بدون" إعادة رسم الـ HTML بالكامل
             Ideas.saveIdeas(notes, false); 
             currentDraggingIndex = null;
             noteElement.style.cursor = 'grab';
         }
     }
 
-    document.addEventListener('mousemove', move);
-    document.addEventListener('mouseup', stop);
+    // إضافة المستمعات بناءً على نوع الحدث الأصلي
+    if (e.type === 'touchstart') {
+        document.addEventListener('touchmove', move, { passive: false });
+        document.addEventListener('touchend', stop);
+    } else {
+        document.addEventListener('mousemove', move);
+        document.addEventListener('mouseup', stop);
+    }
 };
+
 
 // Start
 document.addEventListener('DOMContentLoaded', () => Ideas.init());

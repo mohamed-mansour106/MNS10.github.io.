@@ -129,6 +129,7 @@ const MindMap = {
             return `
             <div class="mindmap-node" 
                  onmousedown="window.startDraggingMindMap(event, '${node.id}')"
+                 ontouchstart="window.startDraggingMindMap(event, '${node.id}')"
                  style="position: absolute; left: ${node.x}px; top: ${node.y}px; width: 200px; 
                         background: #1e293b; padding: 15px; border-radius: 12px; 
                         border: 1px solid #334155; cursor: grab; box-shadow: 0 10px 15px rgba(0,0,0,0.2); z-index: 20;">
@@ -155,6 +156,9 @@ const MindMap = {
         this.drawLinks();
     }
 };
+
+
+
 
 // --- الدوال المصلحة باستخدام الـ ID ---
 
@@ -203,9 +207,13 @@ window.addChildNode = function(parentId) {
 };
 
 
-
 window.startDraggingMindMap = function(e, nodeId) {
+    // منع التفاعل إذا كان الضغط على input أو أزرار
     if (e.target.tagName === 'INPUT' || e.target.innerText === '+' || e.target.innerText === '🗑️') return;
+
+    // التعامل مع اللمس (Touch) أو الماوس (Mouse)
+    const isTouch = e.type === 'touchstart';
+    const event = isTouch ? e.touches[0] : e;
 
     const nodeElement = e.currentTarget;
     const nodeData = MindMap.nodes.find(n => n.id === nodeId);
@@ -213,13 +221,18 @@ window.startDraggingMindMap = function(e, nodeId) {
     const rect = nodeElement.getBoundingClientRect();
     
     const offset = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
     };
 
+    // منع السكرول الافتراضي للمتصفح أثناء السحب على الموبايل
+    if(isTouch) e.preventDefault();
+
     function move(e) {
-        let x = e.clientX - board.left - offset.x;
-        let y = e.clientY - board.top - offset.y;
+        const moveEvent = e.type === 'touchmove' ? e.touches[0] : e;
+        
+        let x = moveEvent.clientX - board.left - offset.x;
+        let y = moveEvent.clientY - board.top - offset.y;
         
         nodeElement.style.left = x + 'px';
         nodeElement.style.top = y + 'px';
@@ -230,14 +243,28 @@ window.startDraggingMindMap = function(e, nodeId) {
     }
 
     function stop() {
+        // إزالة الأحداث بناءً على نوع الحركة
         document.removeEventListener('mousemove', move);
         document.removeEventListener('mouseup', stop);
+        document.removeEventListener('touchmove', move);
+        document.removeEventListener('touchend', stop);
+        
         localStorage.setItem('mindmapNodes', JSON.stringify(MindMap.nodes));
     }
 
-    document.addEventListener('mousemove', move);
-    document.addEventListener('mouseup', stop);
+    if (isTouch) {
+        document.addEventListener('touchmove', move, { passive: false });
+        document.addEventListener('touchend', stop);
+    } else {
+        document.addEventListener('mousemove', move);
+        document.addEventListener('mouseup', stop);
+    }
 };
+
+
+/******************************* */
+
+/*********************************** */
 
 window.updateNodeText = (id, val) => {
     const node = MindMap.nodes.find(n => n.id === id);

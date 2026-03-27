@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Life OS Pro | Workspace</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="assets/logo/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -47,7 +48,7 @@
 
             <div class="menu-group">🏀 GROWTH & Career</div>
                 <a href="#" class="nav-link" data-tab="focus"><i class="fa-solid fa-bullseye"></i> Focus Mode</a>
-                <a href="#" class="nav-link" data-tab="study"><i class="fa-solid fa-bullseye"></i> Studying Courses</a>
+                <a href="#" class="nav-link" data-tab="study-tab"><i class="fa-solid fa-bullseye"></i> Studying Course</a>
 
 
             <!------------------------------------------>
@@ -665,6 +666,87 @@
         </div>
 
 
+        <!-------------------------Studying Course------------------------------>
+        <section id="study-tab" class="tab-content" style="margin-top: 40px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h1>📚 Academic Studies</h1>
+                <button onclick="openStudyModal()" style="padding: 8px 16px; font-size: 14px; cursor:pointer; background: #22c55e; color: white; border: none; border-radius: 6px; font-weight: bold;">+ Add Study</button>
+            </div>
+            
+            <div id="study-grid" class="stats-grid"></div>
+
+            <div id="lessons-area" style="margin-top: 30px; display: none; background: #1e293b; padding: 20px; border-radius: 12px; border: 1px solid #334155;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 style="color: #22c55e; font-size: 20px; margin: 0;">📖 Lessons: <span id="selected-study-name" style="color: white;"></span></h2>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="quick-lesson-input" placeholder="Lesson Name..." style="padding: 6px 12px; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 6px; font-size: 13px;">
+                        <button onclick="addQuickLesson()" style="background: #22c55e; border: none; padding: 5px 15px; border-radius: 6px; cursor: pointer; color: white; font-weight: bold;">+</button>
+                    </div>
+                </div>
+                <div id="lessons-display-list" style="display: grid; grid-template-columns: 1fr; gap: 10px;"></div>
+            </div>
+        </section>
+
+        <div id="book-section" class="book-container" style="display: none;">
+            <div id="active-book" class="book">
+                <div class="page book-cover" onclick="toggleBook()" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-left: 10px solid #22c55e; cursor: pointer;">
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="background: rgba(34, 197, 94, 0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                            <i class="fa-solid fa-book-bookmark" style="font-size: 40px; color: #22c55e;"></i>
+                        </div>
+                        <h2 id="book-title" style="color: white; font-size: 20px; margin-bottom: 10px;">Study Title</h2>
+                        <p style="margin-top: 50px; font-size: 11px; color: #22c55e; font-weight: bold; cursor: pointer;">
+                            CLICK TO OPEN ➔
+                        </p>
+                        <p style="font-size: 11px; color: #94a3b8;">Well Testing Academy</p>
+                        <p style="margin-top: 50px; font-size: 11px; color: #22c55e; font-weight: bold;">OPEN NOTES ➔</p>
+                    </div>
+                </div>
+                
+
+
+                <div class="page content-page" id="main-page">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;">
+                        <div style="display: flex; gap: 5px;">
+                            <button onclick="applyFormat('hiliteColor', '#fef08a')" style="background:#fef08a; border:1px solid #ddd; width:25px; height:25px; cursor:pointer; border-radius:4px;"></button>
+                            <button onclick="applyFormat('bold')" style="background:white; border:1px solid #ddd; width:25px; height:25px; cursor:pointer; font-weight:bold; border-radius:4px;"><span style="color: #0b0f1a;">B</span></button>
+                        </div>
+                        <div style="text-align: center;">
+                            <span id="page-number" style="font-size: 12px; font-weight: bold; color: #64748b; background: #f1f5f9; padding: 2px 8px; border-radius: 10px;">Page 1</span>
+                        </div>
+                        <button onclick="saveCurrentPage()" id="save-btn" style="background:#22c55e; color:white; border:none; padding:5px 12px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:11px;">Save</button>
+                    </div>
+
+                    <div id="note-text" class="note-editor-paper" contenteditable="true" oninput="autoSave()" placeholder="Write your notes here..."></div>
+
+                    <div class="book-controls" style="padding-top:10px; border-top:1px solid #edf2f7; display: flex; justify-content: space-between;">
+                        <button onclick="changePage(-1)" id="prev-btn" style="background:none; border:none; color:#64748b; cursor:pointer; font-weight:bold; font-size: 12px;">
+                            <i class="fa-solid fa-chevron-left"></i> Previous
+                        </button>
+                        <button onclick="closeBook()" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size: 11px;">Close</button>
+                        <button onclick="changePage(1)" id="next-btn" style="background:none; border:none; color:#38bdf8; cursor:pointer; font-weight:bold; font-size: 12px;">
+                            Next <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="studyModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
+            <div style="background:#1e293b; padding:25px; border-radius:12px; width:90%; max-width:400px; border:1px solid #334155;">
+                <h2 style="color:white; margin-bottom:15px;">📚 Add New Study</h2>
+                <input type="text" id="s-title" placeholder="Study Name (e.g. Separator Operation)" style="width:100%; padding:10px; margin-bottom:10px; background:#0f172a; border:1px solid #334155; color:white; border-radius:6px;">
+                <input type="text" id="s-instructor" placeholder="Instructor / Academy" style="width:100%; padding:10px; margin-bottom:10px; background:#0f172a; border:1px solid #334155; color:white; border-radius:6px;">
+                <div style="display:flex; gap:10px;">
+                    <button onclick="saveNewStudy()" style="flex:1; background:#22c55e; color:white; border:none; padding:10px; border-radius:6px; font-weight:bold; cursor:pointer;">Save</button>
+                    <button onclick="closeStudyModal()" style="flex:1; background:transparent; border:1px solid #334155; color:white; padding:10px; border-radius:6px; cursor:pointer;">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+
         <!-------------------------journal------------------------------>
 
         <section id="journal" class="tab-content">
@@ -901,6 +983,7 @@
     <script src="js/mindmap.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/project.js"></script>
+    <script src="js/study.js"></script>
     <script src="js/journal.js"></script> 
     <script src="js/main.js"></script>
 

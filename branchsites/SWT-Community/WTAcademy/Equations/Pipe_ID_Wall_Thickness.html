@@ -134,6 +134,54 @@
             <div class="conv-field"><label>Wall Thickness (ins)</label><input type="text" id="sch80-wall" readonly></div>
             <div class="conv-field"><label>Inside Diameter (ins)</label><input type="text" id="sch80-id" readonly style="color: #e67e22; font-weight: bold;"></div>
         </div>
+
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 20px; margin-top: 10px;">
+            <div style="font-size: 1.1rem; color: #fff; text-align: center; margin-bottom: 15px;">
+                <div style="margin-bottom: 10px;">
+                    $$ID = OD - (2 \times t_{wall})$$
+                </div>
+                <div style="font-size: 0.85em; color: #aaa;">
+                    Where $ID$ is determined by the Schedule (Sch) thickness.
+                </div>
+            </div>
+
+            <details style="color: #aaa; font-size: 0.85em; cursor: pointer; border-top: 1px solid #333; padding-top: 10px;">
+                <summary style="color: #3498db; font-weight: bold;">Show Pipe Geometry Definitions</summary>
+                <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
+                    <tr style="border-bottom: 1px solid #222;">
+                        <th style="padding: 5px;">Symbol</th>
+                        <th style="padding: 5px;">Definition</th>
+                        <th style="padding: 5px;">Standard Unit</th>
+                    </tr>
+                    <tr>
+                        <td>$NPS$</td>
+                        <td>Nominal Pipe Size</td>
+                        <td>Inches</td>
+                    </tr>
+                    <tr>
+                        <td>$OD$</td>
+                        <td>Outside Diameter</td>
+                        <td>Inches</td>
+                    </tr>
+                    <tr>
+                        <td>$ID$</td>
+                        <td>Inside Diameter </td>
+                        <td>Inches</td>
+                    </tr>
+                    <tr>
+                        <td>$t_{wall}$</td>
+                        <td>Wall Thickness</td>
+                        <td>Inches</td>
+                    </tr>
+                    <tr>
+                        <td>$Sch$</td>
+                        <td>Schedule</td>
+                        <td>Standard Number</td>
+                    </tr>
+                </table>
+            </details>
+        </div>
+
     </div>
 </section>
 

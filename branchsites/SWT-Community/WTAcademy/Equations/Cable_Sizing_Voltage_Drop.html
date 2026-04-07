@@ -140,6 +140,54 @@
             <h4 style="color: #fff;">System Health</h4>
             <div id="res-vdrop-msg" style="font-size: 1em; font-weight: bold; margin-top: 10px;">Waiting...</div>
         </div>
+
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #9b59b6; padding: 20px; margin-top: 10px;">
+            <div style="font-size: 1rem; color: #fff; text-align: center; margin-bottom: 15px;">
+                <div style="margin-bottom: 10px;">
+                    $$V_{drop} = \frac{K \times L \times I \times R}{1000}$$
+                </div>
+                <div>
+                    $$\%V_{drop} = \left( \frac{V_{drop}}{V_{sys}} \right) \times 100$$
+                </div>
+            </div>
+
+            <details style="color: #aaa; font-size: 0.85em; cursor: pointer; border-top: 1px solid #333; padding-top: 10px;">
+                <summary style="color: #9b59b6; font-weight: bold;">Show Engineering Definitions</summary>
+                <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
+                    <tr style="border-bottom: 1px solid #222;">
+                        <th style="padding: 5px;">Symbol</th>
+                        <th style="padding: 5px;">Definition</th>
+                        <th style="padding: 5px;">Unit</th>
+                    </tr>
+                    <tr>
+                        <td>$V_{drop}$</td>
+                        <td>Voltage Drop</td>
+                        <td>Volts (V)</td>
+                    </tr>
+                    <tr>
+                        <td>$K$</td>
+                        <td>Phase Factor ($1.732$ for 3-Ph, $2$ for 1-Ph)</td>
+                        <td>Constant</td>
+                    </tr>
+                    <tr>
+                        <td>$L$</td>
+                        <td>Cable Length</td>
+                        <td>Meters (m)</td>
+                    </tr>
+                    <tr>
+                        <td>$I$</td>
+                        <td>Load Current</td>
+                        <td>Amps (A)</td>
+                    </tr>
+                    <tr>
+                        <td>$R$</td>
+                        <td>Resistance per km</td>
+                        <td>$\Omega/km$</td>
+                    </tr>
+                </table>
+            </details>
+        </div>
+
     </div>
 </section>
 

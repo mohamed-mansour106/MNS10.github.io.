@@ -139,6 +139,31 @@
             </tbody>
         </table>
     </div>
+
+    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 20px; margin-top: 10px;">
+        <div style="font-size: 0.8rem; color: #fff; text-align: center; margin-bottom: 20px;">
+            <p style="color: #aaa; font-size: 0.9em; margin-bottom: 10px;">Injection Rate Calculation (cc/min):</p>
+            $$Rate_{(cc/min)} = \frac{Q_{(bpd)} \times Dosage_{(ppm)} \times 42 \times 3785.41}{1,000,000 \times 1440}$$
+            <div style="margin-top: 10px; font-size: 0.8em; color: #2ecc71;">
+                Simplified: $$Rate \approx Q_{(bpd)} \times Dosage_{(ppm)} \times 0.0001104$$
+            </div>
+        </div>
+
+        <details style="color: #aaa; font-size: 0.85em; cursor: pointer; border-top: 1px solid #333; padding-top: 10px;">
+            <summary style="color: #3498db; font-weight: bold;">Chemical Functions Guide</summary>
+            <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 1px solid #222;">
+                    <th style="padding: 5px;">Chemical</th>
+                    <th style="padding: 5px;">Purpose</th>
+                    <th style="padding: 5px;">Injection Point</th>
+                </tr>
+                <tr><td><b>Antifoam</b></td><td>Reduces foam formation inside the separator to improve phase separation efficiency and prevent "carry-over."</td><td>Upstream Manifold</td></tr>
+                <tr><td><b>Demulsifier</b></td><td>Breaks the oil-water emulsion to allow rapid and clean separation of water from crude oil.</td><td>Upstream Manifold / Heater</td></tr>
+                <tr><td><b>Scale Inhibitor</b></td><td>Prevents the precipitation and buildup of mineral deposits (scales) inside flowlines and surface equipment.</td><td>Upstream Manifold</td></tr>
+            </table>
+        </details>
+    </div>
+
 </section>
 
 

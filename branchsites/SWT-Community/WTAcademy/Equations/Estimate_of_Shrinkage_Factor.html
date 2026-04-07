@@ -89,7 +89,7 @@
 
 
 
-      <!------------Recommended Flange Bolt Torque------------------->
+      <!------------Estimate of Shrinkage Factor------------------->
             <section class="section" style="background: #101b2e; border: 1px solid #f1c40f; margin-top: 30px; border-radius: 12px; padding: 20px;">
                 <h2 class="section-title" style="color: #f1c40f; border-left: 4px solid #f1c40f; padding-left: 15px;">Estimate of Shrinkage Factor</h2>
                 
@@ -141,6 +141,56 @@
 
             </section>
 
+
+
+            <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+            <section class="section" style="background: #101b2e; border: 1px solid #f1c40f; margin-top: 30px; border-radius: 12px; padding: 20px; font-family: sans-serif;">
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                    
+                    
+
+                    <div style="background: #0d1624; padding: 20px; border-radius: 10px; border: 1px solid #1a2a44; color: #fff;">
+                        <h4 style="color: #f1c40f; margin-top: 0;">Shrinkage Model ($1/B_o$)</h4>
+                        <div id="shrinkage-formula" style="margin: 20px 0; min-height: 100px;">
+                            $$B_o = 0.9759 + 12 \times 10^{-5} \cdot (F_{vol})^{1.2}$$
+                            $$\text{Shrinkage} = \frac{1}{B_o}$$
+                        </div>
+                        <p style="font-size: 0.8em; color: #a0aec0; line-height: 1.4;">
+                            This empirical model adjusts observed gas gravity for temperature before calculating the liquid volume correction factor ($F_{vol}$).
+                        </p>
+                    </div>
+
+
+                    <div class="equations-container" style="background: #101b2e; color: #fff; padding: 20px; border-radius: 12px; border: 1px solid #f1c40f; margin-top: 20px; font-family: sans-serif; font-size: 11px;">
+                        <h3 style="color: #f1c40f; margin-top: 0;">Shrinkage Calculation Steps</h3>
+
+                        <div style="margin: 15px 0;">
+                            $$yg_{adj} = \gamma_{g,obs} + [0.00069 - (0.0003725 \cdot \gamma_{g,obs})] \cdot (T_{obs} - 60)$$
+                        </div>
+
+                        <div style="margin: 15px 0;">
+                            $$F1 = \left( \frac{1.797}{yg_{adj}} - 1.838 \right) \cdot P_{sep}$$
+                        </div>
+
+                        <div style="margin: 15px 0;">
+                            $$F2 = API_{obs} \cdot (0.02 - 3.57 \times 10^{-6} \cdot F1) + 0.25$$
+                        </div>
+
+                        <div style="margin: 15px 0;">
+                            $$F_{vol} = F1 \cdot \sqrt{\frac{F2}{yg_{adj}}} + 1.25 \cdot T_{sep}$$
+                        </div>
+                    </div>
+
+                </div>
+
+                
+            </section>
+
+
+
+            
 
 
 
@@ -315,6 +365,23 @@ ids.forEach(id => {
     document.getElementById(id).addEventListener('input', calculateShrinkage);
 });
 window.onload = calculateShrinkage;
+
+//***********************************
+function updateMathDisplay(p, t, g, api, result) {
+    const mathContainer = document.getElementById('math-output');
+    if (!mathContainer) return;
+
+    // Update the inner LaTeX string
+    mathContainer.innerHTML = `
+        $$B_o \\approx 0.9759 + 12 \\times 10^{-5} \\cdot (${result.toFixed(4)})^{1.2}$$
+        $$\\text{Shrinkage Factor} = \\frac{1}{B_o} = ${result.toFixed(4)}$$
+    `;
+
+    // Trigger MathJax re-render
+    if (window.MathJax) {
+        MathJax.typesetPromise([mathContainer]);
+    }
+}
 
 
 

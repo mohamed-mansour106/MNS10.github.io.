@@ -150,6 +150,54 @@
             <h4 id="status-title" style="color: #fff;">Status</h4>
             <div id="meter-status-text" style="font-size: 1.1em; color: #95a5a6; font-weight: bold; margin-top: 10px;">Waiting...</div>
         </div>
+
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f39c12; padding: 20px; margin-top: 10px;">
+            <div style="font-size: 1rem; color: #fff; text-align: center; margin-bottom: 15px;">
+                <div style="margin-bottom: 10px;">
+                    $$Q_{BPD} = Q_{GPM} \times 34.2857$$
+                </div>
+                <div style="font-size: 0.9em; color: #aaa;">
+                    Check: $Q_{min} \le Q_{current} \le Q_{max}$
+                </div>
+            </div>
+
+            <details style="color: #aaa; font-size: 0.85em; cursor: pointer; border-top: 1px solid #333; padding-top: 10px;">
+                <summary style="color: #f39c12; font-weight: bold;">Show Meter Calibration Definitions</summary>
+                <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
+                    <tr style="border-bottom: 1px solid #222;">
+                        <th style="padding: 5px;">Symbol</th>
+                        <th style="padding: 5px;">Definition</th>
+                        <th style="padding: 5px;">Unit</th>
+                    </tr>
+                    <tr>
+                        <td>$Q_{GPM}$</td>
+                        <td>Flow rate in Gallons Per Minute</td>
+                        <td>GPM</td>
+                    </tr>
+                    <tr>
+                        <td>$Q_{BPD}$</td>
+                        <td>Flow rate in Barrels Per Day</td>
+                        <td>BPD</td>
+                    </tr>
+                    <tr>
+                        <td>$34.2857$</td>
+                        <td>Conversion factor ($1440 \text{ min} / 42 \text{ gal}$)</td>
+                        <td>BPD/GPM</td>
+                    </tr>
+                    <tr>
+                        <td>$Q_{min}$</td>
+                        <td>Minimum flow for linear accuracy</td>
+                        <td>BPD/GPM</td>
+                    </tr>
+                    <tr>
+                        <td>$Q_{max}$</td>
+                        <td>Maximum safe continuous flow rate</td>
+                        <td>BPD/GPM</td>
+                    </tr>
+                </table>
+            </details>
+        </div>
+
     </div>
 </section>
 

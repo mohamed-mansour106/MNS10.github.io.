@@ -122,6 +122,30 @@
                     </div>
                 </section>
 
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+                <section class="section" style="background: #152238; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px; padding: 20px; font-family: sans-serif;">
+                    <h2 style="color: #3498db; margin-top: 0;">Hydrostatic Pressure Model</h2>
+                    
+                    <div id="hydro-formula-container" style="background: #0d1624; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed #3498db;">
+                        <div id="hydro-formula" style="color: #fff;">
+                            $$P_{hyd} = TVD \times (SG \times 0.4333)$$
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: #a0aec0; font-size: 0.9em;">
+                        <div>
+                            <strong>$P_{hyd}$</strong>: Hydrostatic Pressure ($psi$)<br>
+                            <strong>$TVD$</strong>: True Vertical Depth ($ft$)
+                        </div>
+                        <div>
+                            <strong>$SG$</strong>: Specific Gravity (relative to water)<br>
+                            <strong>$0.4333$</strong>: Pressure gradient of water ($psi/ft$)
+                        </div>
+                    </div>
+                </section>
+
+
 
 
 
@@ -220,6 +244,19 @@ function calculateHydrostatic() {
     const gradient = sg * 0.4333;
     const phyd = gradient * tvd;
     
+    // 3. Dynamic LaTeX Update
+    const formulaElement = document.getElementById('hydro-formula');
+    
+    // We show the step-by-step: TVD * Gradient
+    formulaElement.innerHTML = `
+        $$P_{hyd} = ${tvd}\\text{ ft} \\times (${sg} \\times 0.4333) = ${phyd.toFixed(2)}\\text{ psi}$$
+    `;
+
+    // 4. Trigger MathJax Re-render
+    if (window.MathJax) {
+        MathJax.typesetPromise([formulaElement]);
+    }
+
     document.getElementById('h-grad').value = gradient.toFixed(4);
     document.getElementById('h-result-psi').value = phyd.toFixed(2);
 }
@@ -243,6 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
 
     </script>
 

@@ -89,7 +89,7 @@
 
 
 
-      <!------------Choke Nipple Gas Rate Calculation------------------->
+      <!------------General Well Testing Calculations------------------->
 
 
                
@@ -127,6 +127,11 @@
                 <label style="color: #f1c40f;">Result Velocity (ft/sec)</label>
                 <input type="text" id="res-gen-v" readonly class="res-input">
             </div>
+            <div style="margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+                <p style="font-size: 0.9em; color: #aaa;">Gas Velocity ($V$):</p>
+                $$V = \frac{2122 \times B_g \times Q_{mscf}}{d^2}$$
+                <small style="color: #3498db;">Where $B_g = 0.02833 \frac{Z \cdot T}{P}$</small>
+            </div>
         </div>
     </div>
 <!---------------------------------------->
@@ -159,6 +164,10 @@
                 <label style="color: #f1c40f;">Result Gas Q (mscf/d) </label>
                 <input type="text" id="res-q-1mscf" readonly class="res-input">
             </div>
+            <div style="margin-bottom: 10px;">
+                <small style="color: #aaa;">Method 1 (Velocity-Based):</small><br>
+                $$Q = \frac{V \times d^2}{2122 \times B_g}$$
+            </div>
         </div>
     </div>
 <!---------------------------------->
@@ -180,8 +189,15 @@
                 <label style="color: #f1c40f;">Result Gas Q (mscf/d) </label>
                 <input type="text" id="res-q-2mscf" readonly class="res-input">
             </div>
+            <div>
+                <small style="color: #aaa;">Method 2 (Choke/Pressure-Based):</small><br>
+                $$Q = P_{psia} \times \left(\frac{d_{64}}{64}\right)^2 \times 24$$
+            </div>
         </div>
     </div>
+
+    
+
 <!---------------------------------->
     <div class="tool-card" style="background: #0d1624; border-bottom: 1px solid #34495e; padding: 15px; margin-bottom: 20px;">
         <h4 style="color: #2ecc71;">Twin Choke Factor</h4>
@@ -203,6 +219,10 @@
             <div class="conv-field">
                 <label style="color: #f1c40f;">Actual Orifice (ins)</label>
                 <input type="text" id="res-twin-ins" readonly class="res-input">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <p style="font-size: 0.9em; color: #aaa;">Equivalent Twin Choke Size:</p>
+                $$D_{eq} = \sqrt{d_1^2 + d_2^2}$$
             </div>
         </div>
     </div>
@@ -240,6 +260,9 @@
             <div class="conv-field">
                 <label style="color: #f1c40f;">Gas Flow Q (mmsfd)</label>
                 <input type="text" id="res-GQ" readonly class="res-input">
+            </div>
+            <div style="text-align: center; margin-bottom: 20px; color: #fff;">
+                $$Q_{oil} = \frac{P \times D^{1.89}}{435 \times (GOR/1000)^{0.546}}$$
             </div>
         </div>
     </div>
@@ -291,6 +314,10 @@
                 <label>Result S.G.</label>
                 <input type="text" id="res-conv-sg" readonly class="res-input">
             </div>
+            <div style="margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+                <p style="font-size: 0.9em; color: #aaa;">API Gravity Conversion:</p>
+                $$API = \frac{141.5}{SG @ 60^\circ F} - 131.5$$
+            </div>
         </div>
     </div>
 
@@ -315,13 +342,79 @@
                 <label style="color: #00d4ff;">Calculated Shrinkage</label>
                 <input type="text" id="res-tab-shrink" readonly style="text-align: center; background: #1a2a44; color: #00d4ff; font-size: 1.8rem; font-weight: bold; width: 100%; border: 2px solid #00d4ff; padding: 10px; border-radius: 8px;">
             </div>
+            <div style="text-align: center; margin-bottom: 20px; color: #fff;">
+                $$Bo = 0.9759 + 0.00012 \times F^{1.2}$$
+                <small style="color: #aaa;">Shrinkage = $1 / Bo$</small>
+            </div>
         </div>
+
+        
+
     </div>
+
+
+    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 20px; margin-top: 10px;">
+        <div style="font-size: 1rem; color: #fff; text-align: center; margin-bottom: 20px;">
+            <h4 style="color: #2ecc71; margin-bottom: 15px;">Well Testing Core Formulas</h4>
+            
+            <div style="margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+                <p style="font-size: 0.9em; color: #aaa;">Gas Velocity ($V$):</p>
+                $$V = \frac{2122 \times B_g \times Q_{mscf}}{d^2}$$
+                <small style="color: #3498db;">Where $B_g = 0.02833 \frac{Z \cdot T}{P}$</small>
+            </div>
+            <div>
+                <small style="color: #aaa;">Method 2 (Choke/Pressure-Based):</small><br>
+                $$Q = P_{psia} \times \left(\frac{d_{64}}{64}\right)^2 \times 24$$
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <small style="color: #aaa;">Method 1 (Velocity-Based):</small><br>
+                $$Q = \frac{V \times d^2}{2122 \times B_g}$$
+            </div>
+
+            <div style="margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+                <p style="font-size: 0.9em; color: #aaa;">API Gravity Conversion:</p>
+                $$API = \frac{141.5}{SG @ 60^\circ F} - 131.5$$
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <p style="font-size: 0.9em; color: #aaa;">Equivalent Twin Choke Size:</p>
+                $$D_{eq} = \sqrt{d_1^2 + d_2^2}$$
+            </div>
+
+            <div style="text-align: center; margin-bottom: 20px; color: #fff; font-size: 11px;">
+                <p style="color: #aaa; font-size: 0.9em; margin-bottom: 10px;">Temperature Correction Formula:</p>
+                $$SG_{60} = SG_{obs} + [0.00069 - (0.000372 \times SG_{obs})] \times (T_{obs} - 60)$$
+                <div style="margin-top: 15px;">
+                    $$API_{60} = \frac{141.5}{SG_{60}} - 131.5$$
+                </div>
+            </div>
+        </div>
+
+        <details style="color: #aaa; font-size: 0.85em; cursor: pointer; border-top: 1px solid #333; padding-top: 10px;">
+            <summary style="color: #3498db; font-weight: bold;">Show Parameters & Symbols</summary>
+            <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 1px solid #222;">
+                    <th style="padding: 5px;">Symbol</th>
+                    <th style="padding: 5px;">Definition</th>
+                    <th style="padding: 5px;">Typical Unit</th>
+                </tr>
+                <tr><td>$Z$</td><td>Gas Compressibility Factor</td><td>Dimensionless</td></tr>
+                <tr><td>$B_g$</td><td>Gas Formation Volume Factor</td><td>ft³/scf</td></tr>
+                <tr><td>$GOR$</td><td>Gas-Oil Ratio</td><td>scf/bbl</td></tr>
+                <tr><td>$64ths$</td><td>Choke size unit (1/64 of an inch)</td><td>Size</td></tr>
+                <tr><td>$BSW$</td><td>Basic Sediment and Water</td><td>%</td></tr>
+                <tr><td>$Shrinkage$</td><td>Volume reduction due to gas release</td><td>Factor (< 1.0)</td></tr>
+            </table>
+        </details>
+    </div>
+
 </section>
 
 <style>
     .res-input { text-align: center; background: #1a2a44; color: #fff; font-weight: bold; border: 1px solid #34495e; width: 100%; border-radius: 4px; padding: 8px; }
 </style>
+
 
 
 

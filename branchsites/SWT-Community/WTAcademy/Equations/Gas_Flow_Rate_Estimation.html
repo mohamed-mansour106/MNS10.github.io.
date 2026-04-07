@@ -123,6 +123,35 @@
                     </div>
                 </section>
 
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+                <div class="equation-container" style="background: #101b2e; color: #fff; padding: 20px; border-radius: 12px; border: 1px solid #9b59b6; margin-top: 20px;">
+                    <h3 style="color: #9b59b6; margin-top: 0;">Scientific Calculation Model</h3>
+                    
+                    <p>The <strong>Estimated Gas Flow Rate ($Q$)</strong> is calculated using the following critical flow model:</p>
+                    
+                    <div style="font-size: 1.2em; margin: 20px 0;">
+                        $$Q = \frac{C \cdot P_{up}}{\sqrt{T \cdot G}}$$
+                    </div>
+
+                    <p>Where the <strong>Choke Coefficient ($C$)</strong> is derived empirically:</p>
+
+                    <div style="font-size: 1.2em; margin: 20px 0;">
+                        $$C = \left( \frac{D}{64} \right)^{2.0871} \times 26.616 \times 18$$
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid #34495e; margin: 20px 0;">
+
+                    <ul style="list-style: none; padding-left: 0; font-size: 0.9em; color: #a0aec0;">
+                        <li><strong>$Q$</strong> = Flow Rate (Mscfd)</li>
+                        <li><strong>$D$</strong> = Choke Size (1/64")</li>
+                        <li><strong>$P_{up}$</strong> = Upstream Pressure (psig)</li>
+                        <li><strong>$T$</strong> = Absolute Temperature ($^\circ F + 459.67$)</li>
+                        <li><strong>$G$</strong> = Gas Gravity (Air = 1.0)</li>
+                    </ul>
+                </div>
+
+
 
 
 

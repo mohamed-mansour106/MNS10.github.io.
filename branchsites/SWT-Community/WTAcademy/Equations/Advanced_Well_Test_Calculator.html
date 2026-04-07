@@ -155,7 +155,7 @@ h2 {
 
 
 
-      <!------------Choke Nipple Gas Rate Calculation------------------->
+      <!------------Advanced Well Test Calculator------------------->
 
 
                
@@ -202,14 +202,12 @@ h2 {
 <section class="section" style="background: #1a2639; border: 1px solid #444; border-radius: 12px; padding: 25px; margin-top: 30px; color: #ecf0f1;">
     <h2 style="color: #3498db; border-bottom: 2px solid #3498db; display: inline-block; margin-bottom: 20px;">Field Guide: Flow Rate Calculations</h2>
     
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-        
-        <div>
+    <div>
             <h3 style="color: #2ecc71; font-size: 1.1em;">1. Corrected Oil Rate ($Q_o$)</h3>
             <p style="font-size: 0.9em; line-height: 1.6; color: #bdc3c7;">
                 The calculator determines the net clean oil at standard conditions ($60^\circ F$) using the following logic:
             </p>
-            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin: 10px 0; font-size: 0.9em;">
+            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin: 10px 0; font-size: 0.7em;">
                 $$V_{net} = (Meter_{curr} - Meter_{prev}) \times MF \times Sh \times (1 - BSW)$$
                 $$Q_o = V_{net} \times \left( \frac{1440}{Interval} \right) \times C_{tl}$$
             </div>
@@ -220,7 +218,7 @@ h2 {
             </ul>
         </div>
 
-        <div>
+    <div>
             <h3 style="color: #f1c40f; font-size: 1.1em;">2. Gas Flowrate ($Q_g$)</h3>
             <p style="font-size: 0.9em; line-height: 1.6; color: #bdc3c7;">
                 Based on the AGA-3 Orifice standard, calculating the volume through the meter run:
@@ -235,7 +233,6 @@ h2 {
                 <li><strong>Gravity ($F_g$):</strong> Adjusts for the density of the gas relative to air.</li>
             </ul>
         </div>
-    </div>
 
     <div style="margin-top: 25px; border-top: 1px solid #333; padding-top: 20px;">
         <h3 style="color: #3498db; font-size: 1.1em;">Workflow Instructions</h3>

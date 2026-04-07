@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Vessel Wall Thickness (ASME)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Pressure Vessel Wall Thickness (ASME)------------------->
+
+
+    <section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px; padding: 25px;">
+    <h2 class="section-title" style="color: #3498db; border-left: 4px solid #3498db; padding-left: 15px;">Pressure Vessel Wall Thickness (ASME)</h2>
+    
+    <div style="background: rgba(52, 152, 219, 0.1); border: 1px dashed #3498db; padding: 15px; border-radius: 8px; margin-bottom: 25px; color: #fff; font-size: 0.9em;">
+        <strong style="color: #3498db;">How to Use:</strong>
+        <ul style="margin-top: 10px; padding-left: 20px;">
+            <li>This tool calculates the Minimum Allowable Wall thickness for pressure vessels per ASME specifications.</li>
+            <li>Modify values in the <span style="color: #3498db; font-weight: bold;">P</span> (Pressure) and <span style="color: #3498db; font-weight: bold;">R/D</span> (Radius/Diameter) columns only.</li>
+            <li>Calculations are valid for vessels fabricated from SA 285 Grade C or ASTM 516 Grade 70 plate.</li>
+            <li>Constants used: Allowable Stress (S) = 17,500 PSI, Joint Efficiency (E) = 1, Corrosion Allowance (C.A.) = 0.125 in.</li>
+        </ul>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 25px;">
+        
+        <div class="calc-container">
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #9b59b6; border-bottom: 1px solid #34495e; padding-bottom: 5px;">SHELL: Minimum Thickness</h3>
+                <div style="font-size: 1.1em; color: #aaa; margin: 15px 0;">
+                    $$t = \frac{PR}{SE - 0.6P} + C.A.$$
+                </div>
+                <table style="width: 100%; border-collapse: collapse; text-align: center; background: #0d1624;">
+                    <thead style="background: #1a2a44; color: #fff;">
+                        <tr>
+                            <th style="padding: 10px; border: 1px solid #34495e;">P (PSI)</th>
+                            <th style="padding: 10px; border: 1px solid #34495e;">R (in)</th>
+                            <th style="padding: 10px; border: 1px solid #34495e;">t (in)</th>
+                            <th style="padding: 10px; border: 1px solid #34495e; color: #2ecc71;">t (mm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 5px; border: 1px solid #34495e;"><input type="number" id="shell-p" value="1440" oninput="calcVessel()" style="width: 80px; background: #01094e; border: 1px solid #e74c3c; text-align: center; font-weight: bold;"></td>
+                            <td style="padding: 5px; border: 1px solid #34495e;"><input type="number" id="shell-r" value="24" oninput="calcVessel()" style="width: 80px; background: #01094e; border: 1px solid #e74c3c; text-align: center; font-weight: bold;"></td>
+                            <td id="shell-t-in" style="padding: 10px; border: 1px solid #34495e; color: #3498db; font-weight: bold;">2.202422</td>
+                            <td id="shell-t-mm" style="padding: 10px; border: 1px solid #34495e; color: #2ecc71; font-weight: bold;">55.9415</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3 style="color: #9b59b6; border-bottom: 1px solid #34495e; padding-bottom: 5px;">2:1 ELLIPTICAL HEAD</h3>
+                <div style="font-size: 1.1em; color: #aaa; margin: 15px 0;">
+                    $$t = \frac{PD}{2SE - 0.2P} + C.A.$$
+                </div>
+                <table style="width: 100%; border-collapse: collapse; text-align: center; background: #0d1624;">
+                    <thead style="background: #1a2a44; color: #fff;">
+                        <tr>
+                            <th style="padding: 10px; border: 1px solid #34495e;">P (PSI)</th>
+                            <th style="padding: 10px; border: 1px solid #34495e;">D (in)</th>
+                            <th style="padding: 10px; border: 1px solid #34495e;">t (in)</th>
+                            <th style="padding: 10px; border: 1px solid #34495e; color: #2ecc71;">t (mm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 5px; border: 1px solid #34495e;"><input type="number" id="head-p" value="1440" oninput="calcVessel()" style="width: 80px; background: #01094e; border: 1px solid #e74c3c; text-align: center; font-weight: bold;"></td>
+                            <td style="padding: 5px; border: 1px solid #34495e;"><input type="number" id="head-d" value="48" oninput="calcVessel()" style="width: 80px; background: #01094e; border: 1px solid #e74c3c; text-align: center; font-weight: bold;"></td>
+                            <td id="head-t-in" style="padding: 10px; border: 1px solid #34495e; color: #3498db; font-weight: bold;">2.116242</td>
+                            <td id="head-t-mm" style="padding: 10px; border: 1px solid #34495e; color: #2ecc71; font-weight: bold;">53.7526</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
+    </div>
+</section>
+
+<script>
+function calcVessel() {
+    // Technical Constants
+    const S = 17500;   // Allowable Stress (PSI)
+    const E = 1;       // Joint Efficiency
+    const CA = 0.125;  // Corrosion Allowance (in)
+
+    // Shell Wall Thickness Calculation
+    const P_shell = parseFloat(document.getElementById('shell-p').value) || 0;
+    const R_shell = parseFloat(document.getElementById('shell-r').value) || 0;
+    const t_shell_in = (P_shell * R_shell) / (S * E - 0.6 * P_shell) + CA;
+    
+    document.getElementById('shell-t-in').innerText = t_shell_in.toFixed(6);
+    document.getElementById('shell-t-mm').innerText = (t_shell_in * 25.4).toFixed(4);
+
+    // Elliptical Head Wall Thickness Calculation
+    const P_head = parseFloat(document.getElementById('head-p').value) || 0;
+    const D_head = parseFloat(document.getElementById('head-d').value) || 0;
+    const t_head_in = (P_head * D_head) / (2 * S * E - 0.2 * P_head) + CA;
+
+    document.getElementById('head-t-in').innerText = t_head_in.toFixed(6);
+    document.getElementById('head-t-mm').innerText = (t_head_in * 25.4).toFixed(4);
+}
+
+
+
+const pBody = document.getElementById('prefix-body');
+prefixes.forEach(item => {
+    pBody.innerHTML += `<tr>
+        <td style="padding: 5px; border: 1px solid #34495e;">${item.f}</td>
+        <td style="padding: 5px; border: 1px solid #34495e; color: #f39c12;">${item.p}</td>
+        <td style="padding: 5px; border: 1px solid #34495e; text-align:center;">${item.s}</td>
+    </tr>`;
+});
+
+window.onload = calcVessel;
+</script>
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+
+// --- 2. Solution GOR Logic ---
+function calculateGOR() {
+    const P = (parseFloat(document.getElementById('gor-p').value) || 0) + 14.7; // Psia
+    const T = parseFloat(document.getElementById('gor-t').value) || 0;
+    const G = parseFloat(document.getElementById('gor-g').value) || 1;
+    const API = parseFloat(document.getElementById('gor-api').value) || 1;
+
+    // A. Standing Correlation
+    const yg = 0.00091 * T - 0.0125 * API;
+    const rsStanding = G * Math.pow((P / (18 * Math.pow(10, yg))), 1.204);
+    document.getElementById('res-standing').value = Math.round(rsStanding);
+
+    // B. Vasquez & Beggs
+    let c1, c2, c3;
+    if (API <= 30) {
+        c1 = 0.0362; c2 = 1.0937; c3 = 25.724;
+    } else {
+        c1 = 0.0178; c2 = 1.1870; c3 = 23.931;
+    }
+    const rsVB = c1 * G * Math.pow(P, c2) * Math.exp((c3 * API) / (T + 460));
+    document.getElementById('res-vb').value = Math.round(rsVB);
+}
+
+// Listeners
+['gor-p', 'gor-t', 'gor-g', 'gor-api'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateGOR);
+});
+
+
+    </script>
+
+
+</body>
+</html>

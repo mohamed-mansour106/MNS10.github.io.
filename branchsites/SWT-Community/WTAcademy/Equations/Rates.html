@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rates Conversion</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Rates------------------->
+
+
+                <section class="section" style="background: #101b2e; margin-top: 20px;">
+                    <h2 class="section-title">Rates Units Converter</h2>
+                    <p style="color: var(--muted); margin-bottom: 20px;">Convert flow rates between Imperial and Metric units.</p>
+                    
+                    <div class="converter-grid">
+                        <div class="conv-field"><label>bbl/day</label><input type="number" id="r-bblday" placeholder="0"></div>
+                        <div class="conv-field"><label>bbl/min</label><input type="number" id="r-bblmin" placeholder="0"></div>
+                        <div class="conv-field"><label>gall/min (US)</label><input type="number" id="r-gpm" placeholder="0"></div>
+                        <div class="conv-field"><label>m³/day</label><input type="number" id="r-m3day" placeholder="0"></div>
+                        <div class="conv-field"><label>m³/min</label><input type="number" id="r-m3min" placeholder="0"></div>
+                        <div class="conv-field"><label>ltr/min</label><input type="number" id="r-lpm" placeholder="0"></div>
+                    </div>
+                </section>
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+     // --- RATES CONVERSION LOGIC ---
+const rateFactors = {
+    'bblday': 1,
+    'bblmin': 1440,             // 1 bbl/min = 1440 bbl/day
+    'gpm': 34.2857,            // 1 gpm = ~34.28 bbl/day
+    'm3day': 6.2898,           // 1 m3/day = ~6.29 bbl/day
+    'm3min': 9057.3,           // 1 m3/min = ~9057 bbl/day
+    'lpm': 9.0573              // 1 l/min = ~9.06 bbl/day
+};
+
+function convertRates(unit, value) {
+    if (value === "" || isNaN(value)) {
+        Object.keys(rateFactors).forEach(key => {
+            const el = document.getElementById(`r-${key}`);
+            if(el) el.value = "";
+        });
+        return;
+    }
+
+    const val = parseFloat(value);
+    // Convert input to Base (bbl/day)
+    const baseBblDay = val * rateFactors[unit];
+    
+    // Update all other fields
+    Object.keys(rateFactors).forEach(key => {
+        if (key !== unit) {
+            const element = document.getElementById(`r-${key}`);
+            if (element) {
+                const result = baseBblDay / rateFactors[key];
+                // Use 4 decimal places, or exponential for very small values
+                element.value = (result < 0.001 && result > 0) ? result.toExponential(4) : result.toFixed(4);
+            }
+        }
+    });
+}
+
+// --- INITIALIZATION ---
+// Add this inside your existing document.addEventListener('DOMContentLoaded', () => { ... })
+document.addEventListener('DOMContentLoaded', () => {
+    // Existing initialization for Pressure/Length...
+
+    // Rates Inputs Initialization
+    Object.keys(rateFactors).forEach(key => {
+        const input = document.getElementById(`r-${key}`);
+        if(input) {
+            input.addEventListener('input', (e) => convertRates(key, e.target.value));
+        }
+    });
+});
+
+
+    </script>
+    <!----------------------------->
+
+
+</body>
+</html>

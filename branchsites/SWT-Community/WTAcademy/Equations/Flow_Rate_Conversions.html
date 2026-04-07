@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow Rate Conversions</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Choke Nipple Gas Rate Calculation------------------->
+
+
+               
+
+        <section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px;">
+            <h2 class="section-title" style="color: #3498db; border-left: 4px solid #3498db; padding-left: 15px;">Flow Rate Conversions</h2>
+            <p style="color: var(--muted); margin-bottom: 20px;">Convert between common field units for liquid and gas flow rates.</p>
+
+            <div style="background: #0d1624; padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center; border: 1px dashed #3498db;">
+                <label style="color: #fff; display: block; margin-bottom: 10px;">Enter Value to Convert:</label>
+                <input type="number" id="flow-input-val" value="1" style="background: #1a2a44; color: #3498db; font-size: 1.5em; font-weight: bold; border: 2px solid #3498db; border-radius: 4px; padding: 10px; width: 200px; text-align: center;">
+                <select id="flow-input-unit" style="background: #1a2a44; color: #fff; padding: 12px; border: 1px solid #3498db; border-radius: 4px; margin-left: 10px;">
+                    <option value="lps">LTRS / SEC</option>
+                    <option value="gpm">GAL / MIN</option>
+                    <option value="fps">FT³ / SEC</option>
+                    <option value="fpm">FT³ / MIN</option>
+                    <option value="bph">BBL / HOUR</option>
+                    <option value="bpd">BBL / DAY</option>
+                </select>
+            </div>
+
+            <div class="converter-grid">
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 15px;">
+                    <h4 style="color: #aaa;">LTRS / SEC</h4>
+                    <input type="text" id="res-lps" readonly style="background: #1a2a44; color: #fff; font-weight: bold; width: 100%; border: none; padding: 8px; font-size: 1.1em;">
+                </div>
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 15px;">
+                    <h4 style="color: #aaa;">GAL / MIN</h4>
+                    <input type="text" id="res-gpm" readonly style="background: #1a2a44; color: #fff; font-weight: bold; width: 100%; border: none; padding: 8px; font-size: 1.1em;">
+                </div>
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 15px;">
+                    <h4 style="color: #aaa;">FT³ / SEC</h4>
+                    <input type="text" id="res-fps" readonly style="background: #1a2a44; color: #fff; font-weight: bold; width: 100%; border: none; padding: 8px; font-size: 1.1em;">
+                </div>
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 15px;">
+                    <h4 style="color: #aaa;">FT³ / MIN</h4>
+                    <input type="text" id="res-fpm" readonly style="background: #1a2a44; color: #fff; font-weight: bold; width: 100%; border: none; padding: 8px; font-size: 1.1em;">
+                </div>
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 15px;">
+                    <h4 style="color: #aaa;">BBL / HOUR</h4>
+                    <input type="text" id="res-bph" readonly style="background: #1a2a44; color: #fff; font-weight: bold; width: 100%; border: none; padding: 8px; font-size: 1.1em;">
+                </div>
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 15px;">
+                    <h4 style="color: #aaa;">BBL / DAY</h4>
+                    <input type="text" id="res-bpd" readonly style="background: #1a2a44; color: #fff; font-weight: bold; width: 100%; border: none; padding: 8px; font-size: 1.1em;">
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.05); border-radius: 8px;">
+                <p style="color: #3498db; font-size: 0.85em; margin-bottom: 5px;">Fundamental Conversion Factors:</p>
+                <div style="font-size: 0.85em; color: #aaa;">
+                    $$1 \text{ ft}^3 = 7.4805 \text{ gal} = 28.317 \text{ L}$$
+                    $$1 \text{ bbl} = 42 \text{ gal} = 5.6146 \text{ ft}^3$$
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+
+// --- 3. Flow Rate Conversion Logic ---
+function convertFlow() {
+    const val = parseFloat(document.getElementById('flow-input-val').value) || 0;
+    const unit = document.getElementById('flow-input-unit').value;
+
+    // Convert input to a base unit (Liters per Second)
+    let lps;
+    switch (unit) {
+        case 'lps': lps = val; break;
+        case 'gpm': lps = val * 0.06309; break;
+        case 'fps': lps = val * 28.317; break;
+        case 'fpm': lps = val * 0.47195; break;
+        case 'bph': lps = val * 0.04415; break;
+        case 'bpd': lps = val * 0.00184; break;
+        default: lps = 0;
+    }
+
+    // Calculate all units based on the LPS base
+    const results = {
+        'res-lps': lps,
+        'res-gpm': lps * 15.8503,
+        'res-fps': lps * 0.03531,
+        'res-fpm': lps * 2.11888,
+        'res-bph': lps * 22.658,
+        'res-bpd': lps * 543.792
+    };
+
+    // Update the UI
+    for (const [id, value] of Object.entries(results)) {
+        // Use 4 decimal places for small numbers, round for large ones
+        document.getElementById(id).value = value < 1 ? value.toFixed(4) : value.toLocaleString(undefined, {maximumFractionDigits: 2});
+    }
+}
+
+// Add Listeners
+document.getElementById('flow-input-val').addEventListener('input', convertFlow);
+document.getElementById('flow-input-unit').addEventListener('change', convertFlow);
+
+// Run once on load
+convertFlow();
+
+
+    </script>
+
+
+</body>
+</html>

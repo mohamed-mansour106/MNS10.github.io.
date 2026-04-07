@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desander Velocity Estimation</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Desander Velocity & Pressure------------------->
+           <section class="section" style="background: #101b2e; border: 1px solid #00d4ff; margin-top: 30px; border-radius: 12px; padding: 20px;">
+                <h2 class="section-title" style="color: #00d4ff; border-left: 4px solid #00d4ff; padding-left: 15px;">Desander Velocity & Pressure</h2>
+                
+                <div class="converter-grid" style="margin-bottom: 20px;">
+                    <div class="conv-field">
+                        <label>WHP (psia)</label>
+                        <input type="number" id="v-whp" value="3000">
+                    </div>
+                    <div class="conv-field">
+                        <label>Gas Rate (MMscf/day)</label>
+                        <input type="number" id="v-gas-rate" value="50.35" step="0.01">
+                    </div>
+                </div>
+
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #00d4ff; padding: 20px;">
+                    <h4 style="color: #00d4ff; text-align: center;">Velocity & Conversion Formulas</h4>
+                    <div style="font-size: 0.9em; color: #aaa; margin: 15px 0; text-align: center;">
+                        <div style="margin-bottom: 10px;">
+                            $$V_{flow} = \frac{32000 \times q_g}{16 \times P_{whp}}$$
+                        </div>
+                        <div>
+                            $$P_{kPa} = P_{psia} \times 6.89476$$
+                        </div>
+                    </div>
+                    
+                    <div class="converter-grid">
+                        <div class="conv-field">
+                            <label style="color: #fff;">Flow Velocity (ft/sec)</label>
+                            <input type="text" id="res-flow-v" readonly style="text-align: center; background: #1a2a44; color: #00d4ff; font-size: 1.2rem; font-weight: bold; width: 100%; border: 2px solid #00d4ff; padding: 10px; border-radius: 8px;">
+                        </div>
+                        <div class="conv-field">
+                            <label style="color: #fff;">Desander Velocity (ft/sec)</label>
+                            <input type="text" id="res-desander-v" readonly style="text-align: center; background: #1a2a44; color: #ff4d4d; font-size: 1.2rem; font-weight: bold; width: 100%; border: 2px solid #ff4d4d; padding: 10px; border-radius: 8px;">
+                        </div>
+                        <div class="conv-field" style="grid-column: span 2;">
+                            <label style="color: #fff;">WHP in kPa</label>
+                            <input type="text" id="res-kpa" readonly style="text-align: center; background: #1a2a44; color: #f1c40f; font-size: 1.2rem; font-weight: bold; width: 100%; border: 2px solid #f1c40f; padding: 10px; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="velocity_chart" style="width: 100%; height: 300px; margin-top: 20px; border-radius: 8px; overflow: hidden;"></div>
+
+            </section>
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+function calculateDesanderMetrics() {
+    // 1. Get Inputs
+    const whpPsia = parseFloat(document.getElementById('v-whp').value) || 0;
+    const gasRate = parseFloat(document.getElementById('v-gas-rate').value) || 0;
+
+    if (whpPsia <= 0) {
+        document.getElementById('res-flow-v').value = "0.000";
+        document.getElementById('res-desander-v').value = "0.000";
+        document.getElementById('res-kpa').value = "0";
+        return;
+    }
+
+    // 2. Flow Velocity Calculation: (32000 * GasRate) / (16 * WHP)
+    const flowVelocity = (32000 * gasRate) / (16 * whpPsia);
+
+    // 3. Desander Velocity (Based on Excel Screenshot: 100.70 / 33.567 ≈ 3)
+    const desanderVelocity = flowVelocity * 3;
+
+    // 4. Pressure Conversion: Psia to kPa
+    const pressureKpa = whpPsia * 6.89476;
+
+    // 5. Update UI
+    document.getElementById('res-flow-v').value = flowVelocity.toFixed(3);
+    document.getElementById('res-desander-v').value = desanderVelocity.toFixed(2);
+    document.getElementById('res-kpa').value = Math.round(pressureKpa);
+}
+
+// Attach Event Listeners
+['v-whp', 'v-gas-rate'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateDesanderMetrics);
+});
+
+// Initial Run
+calculateDesanderMetrics();
+
+
+
+
+    </script>
+
+
+</body>
+</html>

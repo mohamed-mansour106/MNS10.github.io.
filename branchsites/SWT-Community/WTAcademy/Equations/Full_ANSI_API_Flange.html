@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full ANSI & API Flange Database</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Full ANSI & API Flange Database------------------->
+
+
+               
+
+ <section class="section" style="background: #101b2e; border: 1px solid #f1c40f; margin-top: 30px; border-radius: 12px; padding: 20px;">
+    <h2 class="section-title" style="color: #f1c40f; border-left: 4px solid #f1c40f; padding-left: 15px;">Full ANSI & API Flange Database</h2>
+    
+    <div class="converter-grid" style="margin-bottom: 20px;">
+        <div class="conv-field">
+            <label>Service Rating</label>
+            <select id="flange-rating" onchange="updateFlangeSizes()" style="background: #0d1624; color: white; padding: 8px; border-radius: 4px;">
+                <option value="150">ANSI 150# (275 psi)</option>
+                <option value="300">ANSI 300# (720 psi)</option>
+                <option value="600">ANSI 600# (1440 psi)</option>
+                <option value="API_5K">API 5000 (5K)</option>
+                <option value="API_10K">API 10000 (10K)</option>
+            </select>
+        </div>
+        <div class="conv-field">
+            <label>Nominal Pipe Size (NPS)</label>
+            <select id="flange-size" onchange="calculateFlange()" style="background: #0d1624; color: white; padding: 8px; border-radius: 4px;">
+                </select>
+        </div>
+    </div>
+
+    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 20px;">
+        <div class="converter-grid">
+            <div class="conv-field">
+                <label style="color: #aaa;">Number of Studs</label>
+                <input type="text" id="res-bolt-num" readonly class="res-field">
+            </div>
+            <div class="conv-field">
+                <label style="color: #aaa;">Stud Diameter (in)</label>
+                <input type="text" id="res-bolt-dia" readonly class="res-field">
+            </div>
+            <div class="conv-field">
+                <label style="color: #aaa;">Stud Length (RTJ)</label>
+                <input type="text" id="res-bolt-len" readonly class="res-field" style="color: #f1c40f;">
+            </div>
+            <div class="conv-field">
+                <label style="color: #aaa;">Ring Gasket</label>
+                <input type="text" id="res-ring-size" readonly class="res-field" style="color: #2ecc71;">
+            </div>
+            <div class="conv-field">
+                <label style="color: #aaa;">Spanner Size (mm)</label>
+                <input type="text" id="res-spanner" readonly class="res-field" style="color: #3498db;">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+
+
+//**************************************
+const flangeDB = {
+    "150": {
+        sizes: ["1", "2", "3", "4", "6", "8", "10", "12", "14", "16", "18", "20", "24"],
+        data: {
+            "1":  { num: 4, dia: '1/2"', len: "3 1/4", ring: "R-15", span: "21" },
+            "2":  { num: 4, dia: '5/8"', len: "3 1/4", ring: "R-22", span: "27" },
+            "3":  { num: 4, dia: '5/8"', len: "3 3/4", ring: "R-29", span: "27" },
+            "4":  { num: 4, dia: '5/8"', len: "3 3/4", ring: "R-36", span: "27" },
+            "6":  { num: 8, dia: '3/4"', len: "4 1/2", ring: "R-43", span: "32" },
+            "8":  { num: 8, dia: '3/4"', len: "4 1/2", ring: "R-48", span: "32" },
+            "10": { num: 12, dia: '7/8"', len: "5 1/4", ring: "R-52", span: "36" },
+            "12": { num: 12, dia: '7/8"', len: "5 1/4", ring: "R-56", span: "36" },
+            "14": { num: 12, dia: '1"', len: "5 3/4", ring: "R-59", span: "41" },
+            "16": { num: 16, dia: '1"', len: "6", ring: "R-64", span: "41" },
+            "18": { num: 16, dia: '1 1/8"', len: "6 1/2", ring: "R-68", span: "46" },
+            "20": { num: 20, dia: '1 1/8"', len: "6 3/4", ring: "R-72", span: "46" },
+            "24": { num: 20, dia: '1 1/4"', len: "7 1/2", ring: "R-76", span: "50" }
+        }
+    },
+    "300": {
+        sizes: ["1", "2", "3", "4", "6", "8", "10", "12", "14", "16", "18", "20", "24"],
+        data: {
+            "1":  { num: 4, dia: '5/8"', len: "3 3/4", ring: "R-16", span: "27" },
+            "2":  { num: 8, dia: '5/8"', len: "4 1/4", ring: "R-23", span: "27" },
+            "3":  { num: 8, dia: '3/4"', len: "5", ring: "R-31", span: "32" },
+            "4":  { num: 8, dia: '3/4"', len: "5 1/4", ring: "R-37", span: "32" },
+            "6":  { num: 12, dia: '3/4"', len: "5 3/4", ring: "R-45", span: "32" },
+            "8":  { num: 12, dia: '7/8"', len: "6 1/4", ring: "R-49", span: "36" },
+            "10": { num: 16, dia: '1"', len: "7", ring: "R-53", span: "41" },
+            "12": { num: 16, dia: '1 1/8"', len: "7 1/2", ring: "R-57", span: "46" },
+            "14": { num: 20, dia: '1 1/8"', len: "7 3/4", ring: "R-61", span: "46" },
+            "16": { num: 20, dia: '1 1/4"', len: "8 1/4", ring: "R-65", span: "50" },
+            "18": { num: 24, dia: '1 1/4"', len: "8 1/2", ring: "R-69", span: "50" },
+            "20": { num: 24, dia: '1 1/4"', len: "9", ring: "R-73", span: "50" },
+            "24": { num: 24, dia: '1 1/2"', len: "10 1/4", ring: "R-77", span: "60" }
+        }
+    },
+    "600": {
+        sizes: ["1", "2", "3", "4", "6", "8", "10", "12", "14", "16", "18", "20", "24"],
+        data: {
+            "1":  { num: 4, dia: '5/8"', len: "3 3/4", ring: "R-16", span: "27" },
+            "2":  { num: 8, dia: '5/8"', len: "4 1/2", ring: "R-23", span: "27" },
+            "3":  { num: 8, dia: '3/4"', len: "5 1/4", ring: "R-31", span: "32" },
+            "4":  { num: 8, dia: '7/8"', len: "6", ring: "R-37", span: "36" },
+            "6":  { num: 12, dia: '1"', len: "7", ring: "R-45", span: "41" },
+            "8":  { num: 12, dia: '1 1/8"', len: "8", ring: "R-49", span: "46" },
+            "10": { num: 16, dia: '1 1/4"', len: "8 3/4", ring: "R-53", span: "50" },
+            "12": { num: 20, dia: '1 1/4"', len: "9", ring: "R-57", span: "50" },
+            "14": { num: 20, dia: '1 3/8"', len: "9 1/2", ring: "R-61", span: "55" },
+            "16": { num: 20, dia: '1 1/2"', len: "10 1/4", ring: "R-65", span: "60" },
+            "18": { num: 20, dia: '1 5/8"', len: "11", ring: "R-69", span: "65" },
+            "20": { num: 24, dia: '1 5/8"', len: "11 3/4", ring: "R-73", span: "65" },
+            "24": { num: 24, dia: '1 7/8"', len: "13 1/2", ring: "R-77", span: "75" }
+        }
+    },
+    "API_5K": {
+        sizes: ["2 1/16", "3 1/8", "4 1/16", "5 1/8", "7 1/16"],
+        data: {
+            "2 1/16": { num: 8, dia: "0.875", len: "6.5", ring: "BX-152", span: "37" },
+            "3 1/8":  { num: 8, dia: "1.125", len: "7.75", ring: "BX-154", span: "46" },
+            "4 1/16": { num: 8, dia: "1.125", len: "8.25", ring: "BX-155", span: "46" },
+            "5 1/8":  { num: 8, dia: "1.5", len: "10.5", ring: "BX-169", span: "60" },
+            "7 1/16": { num: 12, dia: "1.375", len: "11.25", ring: "BX-156", span: "55" }
+        }
+    },
+    "API_10K": {
+        sizes: ["2 1/16", "3 1/16", "4 1/16", "5 1/8", "7 1/16"],
+        data: {
+            "2 1/16": { num: 8, dia: "0.75", len: "5.5", ring: "BX-152", span: "32" },
+            "3 1/16": { num: 8, dia: "1.0", len: "7.0", ring: "BX-154", span: "41" },
+            "4 1/16": { num: 8, dia: "1.125", len: "8.25", ring: "BX-155", span: "46" },
+            "5 1/8":  { num: 12, dia: "1.125", len: "9.0", ring: "BX-169", span: "46" },
+            "7 1/16": { num: 12, dia: "1.5", len: "11.5", ring: "BX-156", span: "60" }
+        }
+    }
+};
+
+
+//********************************
+
+
+function updateFlangeSizes() {
+    const rating = document.getElementById('flange-rating').value;
+    const sizeSelect = document.getElementById('flange-size');
+    sizeSelect.innerHTML = ""; 
+
+    flangeDB[rating].sizes.forEach(sz => {
+        let opt = document.createElement('option');
+        opt.value = sz;
+        opt.innerHTML = sz + '"';
+        sizeSelect.appendChild(opt);
+    });
+    calculateFlange();
+}
+
+function calculateFlange() {
+    const rating = document.getElementById('flange-rating').value;
+    const size = document.getElementById('flange-size').value;
+    const result = flangeDB[rating].data[size];
+
+    if (result) {
+        document.getElementById('res-bolt-num').value = result.num;
+        document.getElementById('res-bolt-dia').value = result.dia;
+        document.getElementById('res-bolt-len').value = result.len + " in";
+        document.getElementById('res-ring-size').value = result.ring;
+        document.getElementById('res-spanner').value = result.span + " mm";
+    } else {
+        // Clear fields if data for that specific size isn't in our snapshot
+        ["res-bolt-num", "res-bolt-dia", "res-bolt-len", "res-ring-size", "res-spanner"].forEach(id => {
+            document.getElementById(id).value = "N/A";
+        });
+    }
+}
+
+// Initialize on load
+window.onload = function() {
+    updateFlangeSizes(); 
+    // If you have other initializers (like Bubble Point), call them here too
+};
+
+
+
+
+    </script>
+
+
+</body>
+</html>

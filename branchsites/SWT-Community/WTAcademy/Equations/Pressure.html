@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Conversion</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+        <!---------------Pressure---------------->
+      <section class="section" style="background: #101b2e;">
+        <h2 class="section-title">Pressure Units Converter</h2>
+        <p style="color: var(--muted); margin-bottom: 20px;">Type in any field to convert all units simultaneously.</p>
+        
+        <div class="converter-grid">
+            <div class="conv-field"><label>Psig</label><input type="number" id="c-psig" placeholder="0"></div>
+            <div class="conv-field"><label>Bar</label><input type="number" id="c-bar" placeholder="0"></div>
+            <div class="conv-field"><label>Kpa</label><input type="number" id="c-kpa" placeholder="0"></div>
+            <div class="conv-field"><label>atms</label><input type="number" id="c-atms" placeholder="0"></div>
+            <div class="conv-field"><label>inH2O</label><input type="number" id="c-inh2o" placeholder="0"></div>
+            <div class="conv-field"><label>ftH2O</label><input type="number" id="c-fth2o" placeholder="0"></div>
+            <div class="conv-field"><label>inHg</label><input type="number" id="c-inhg" placeholder="0"></div>
+            <div class="conv-field"><label>mmHg</label><input type="number" id="c-mmhg" placeholder="0"></div>
+            <div class="conv-field"><label>Kgs/cm²</label><input type="number" id="c-kgcm2" placeholder="0"></div>
+        </div>
+    </section>
+      <!------------------------------->
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+    
+    <script>
+      const unitMap = {
+        pressure: {
+          units: { psi: 1, kPa: 6.89476, bar: 0.0689476, MPa: 0.00689476 },
+        },
+        permeability: {
+          units: { md: 1, "m²": 9.869233e-16, "μm²": 0.0009869233 },
+        },
+        viscosity: {
+          units: { cp: 1, "Pa·s": 0.001, "mPa·s": 1 },
+        },
+        length: {
+          units: { ft: 1, m: 0.3048, in: 12 },
+        },
+        volume: {
+          units: { bbl: 1, "m³": 0.158987, L: 158.987 },
+        },
+      };
+
+      const convTabs = document.querySelectorAll("#converter-tabs .pill");
+      const convValue = document.getElementById("conv-value");
+      const convFrom = document.getElementById("conv-from");
+      const convTo = document.getElementById("conv-to");
+      const convResult = document.getElementById("conv-result");
+      const convUnit = document.getElementById("conv-unit");
+
+      let currentType = "pressure";
+
+      function populateUnits(type) {
+        const units = Object.keys(unitMap[type].units);
+        convFrom.innerHTML = units.map((u) => `<option>${u}</option>`).join("");
+        convTo.innerHTML = units.map((u) => `<option>${u}</option>`).join("");
+        convFrom.value = units[0];
+        convTo.value = units[1] || units[0];
+        updateConversion();
+      }
+
+      function updateConversion() {
+        const value = parseFloat(convValue.value) || 0;
+        const from = convFrom.value;
+        const to = convTo.value;
+        const factorFrom = unitMap[currentType].units[from];
+        const factorTo = unitMap[currentType].units[to];
+        const base = value * factorFrom;
+        const result = base / factorTo;
+        convResult.textContent = result.toFixed(4);
+        convUnit.textContent = to;
+      }
+
+      convTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          convTabs.forEach((btn) => btn.classList.remove("active"));
+          tab.classList.add("active");
+          currentType = tab.dataset.type;
+          populateUnits(currentType);
+        });
+      });
+
+      [convValue, convFrom, convTo].forEach((el) => el.addEventListener("input", updateConversion));
+      populateUnits(currentType);
+
+      const p1hr = document.getElementById("p1hr");
+      const pwf = document.getElementById("pwf");
+      const slope = document.getElementById("slope");
+      const kterm = document.getElementById("kterm");
+      const skinResult = document.getElementById("skin-result");
+      const skinLabel = document.getElementById("skin-label");
+
+      function updateSkin() {
+        const s = (parseFloat(p1hr.value) - parseFloat(pwf.value)) / (parseFloat(slope.value) || 1) - Math.log10(parseFloat(kterm.value) || 1);
+        const sVal = isFinite(s) ? s : 0;
+        skinResult.textContent = sVal.toFixed(2);
+        if (sVal < 0) skinLabel.textContent = "Stimulated";
+        else if (sVal < 5) skinLabel.textContent = "Slight damage";
+        else skinLabel.textContent = "Severe damage";
+      }
+
+      [p1hr, pwf, slope, kterm].forEach((el) => el.addEventListener("input", updateSkin));
+      updateSkin();
+
+      const tp = document.getElementById("tp");
+      const dt = document.getElementById("dt");
+      const hornerResult = document.getElementById("horner-result");
+      const hornerLog = document.getElementById("horner-log");
+
+      function updateHorner() {
+        const tpVal = parseFloat(tp.value) || 0;
+        const dtVal = parseFloat(dt.value) || 1;
+        const ratio = (tpVal + dtVal) / dtVal;
+        hornerResult.textContent = ratio.toFixed(3);
+        hornerLog.textContent = `log10 = ${Math.log10(ratio).toFixed(4)}`;
+      }
+
+      [tp, dt].forEach((el) => el.addEventListener("input", updateHorner));
+      updateHorner();
+
+      const eqInputs = document.querySelectorAll(".eq-input");
+      function updateEquations() {
+        const radial = {
+          q: parseFloat(document.querySelector('[data-eq="radial"][data-key="q"]').value) || 0,
+          mu: parseFloat(document.querySelector('[data-eq="radial"][data-key="mu"]').value) || 0,
+          k: parseFloat(document.querySelector('[data-eq="radial"][data-key="k"]').value) || 0,
+          h: parseFloat(document.querySelector('[data-eq="radial"][data-key="h"]').value) || 1,
+        };
+        const radialResult = ((162.6 * radial.q * radial.mu) / (radial.k * radial.h || 1)).toFixed(2);
+        document.getElementById("radial-result").textContent = isFinite(radialResult) ? radialResult : "0.00";
+
+        const hornerEq = {
+          tp: parseFloat(document.querySelector('[data-eq="horner"][data-key="tp"]').value) || 0,
+          dt: parseFloat(document.querySelector('[data-eq="horner"][data-key="dt"]').value) || 1,
+        };
+        document.getElementById("horner-eq-result").textContent = ((hornerEq.tp + hornerEq.dt) / hornerEq.dt).toFixed(2);
+
+        const perm = {
+          q: parseFloat(document.querySelector('[data-eq="perm"][data-key="q"]').value) || 0,
+          mu: parseFloat(document.querySelector('[data-eq="perm"][data-key="mu"]').value) || 0,
+          m: parseFloat(document.querySelector('[data-eq="perm"][data-key="m"]').value) || 1,
+          h: parseFloat(document.querySelector('[data-eq="perm"][data-key="h"]').value) || 1,
+        };
+        const permResult = (162.6 * perm.q * perm.mu) / (perm.m * perm.h || 1);
+        document.getElementById("perm-result").textContent = permResult.toFixed(2);
+      }
+
+      eqInputs.forEach((input) => input.addEventListener("input", updateEquations));
+      updateEquations();
+
+      document.querySelectorAll(".accordion-header").forEach((header) => {
+        header.addEventListener("click", () => {
+          const acc = header.closest(".accordion");
+          acc.classList.toggle("open");
+        });
+      });
+
+      const librarySearch = document.getElementById("library-search");
+      const libraryFilters = document.querySelectorAll("#library-filters .pill");
+      const libraryCards = document.querySelectorAll(".library-card");
+      let currentFilter = "all";
+
+      function filterLibrary() {
+        const query = librarySearch.value.toLowerCase();
+        libraryCards.forEach((card) => {
+          const matchesFilter = currentFilter === "all" || card.dataset.type === currentFilter;
+          const text = `${card.dataset.title} ${card.dataset.author}`.toLowerCase();
+          const matchesSearch = text.includes(query);
+          card.style.display = matchesFilter && matchesSearch ? "grid" : "none";
+        });
+      }
+
+      libraryFilters.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          libraryFilters.forEach((btn) => btn.classList.remove("active"));
+          pill.classList.add("active");
+          currentFilter = pill.dataset.filter;
+          filterLibrary();
+        });
+      });
+
+      librarySearch.addEventListener("input", filterLibrary);
+      filterLibrary();
+    </script>
+
+
+
+    <!------------Pressure first Section----------------->
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        // --- CONVERSION LOGIC (The "Engine") ---
+        const factors = {
+            psig: 1,
+            bar: 0.0689476,
+            kpa: 6.89476,
+            atms: 0.068046,
+            inh2o: 27.7076,
+            fth2o: 2.30896,
+            inhg: 2.03602,
+            mmhg: 51.7149,
+            kgcm2: 0.070307
+        };
+
+        function convertPressure(unit, value) {
+            if (value === "" || isNaN(value)) return;
+            const val = parseFloat(value);
+            // Convert input to Base (Psig)
+            const base = val / factors[unit];
+            
+            // Update all other fields
+            Object.keys(factors).forEach(key => {
+                if (key !== unit) {
+                    const element = document.getElementById(`c-${key}`);
+                    const result = base * factors[key];
+                    element.value = result < 0.01 ? result.toExponential(4) : result.toFixed(4);
+                }
+            });
+        }
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pressure Inputs
+            Object.keys(factors).forEach(key => {
+                const input = document.getElementById(`c-${key}`);
+                input.addEventListener('input', (e) => convertPressure(key, e.target.value));
+            });
+
+            // Accordion Toggle
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+            });
+
+            // Google Gauges
+            google.charts.load('current', {'packages':['gauge']});
+            google.charts.setOnLoadCallback(drawGauges);
+        });
+
+        function drawGauges() {
+            const data = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['Pressure', 0],
+                ['Efficiency', 85]
+            ]);
+            const options = { width: 400, height: 120, minorTicks: 5 };
+            const chart = new google.visualization.Gauge(document.getElementById('gauge_div'));
+            chart.draw(data, options);
+
+            // Link Gauge to first Pressure input
+            document.getElementById('c-psig').addEventListener('input', (e) => {
+                let v = parseFloat(e.target.value) || 0;
+                data.setValue(0, 1, Math.min(v, 100)); 
+                chart.draw(data, options);
+            });
+        }
+    </script>
+    <!----------------------------->
+
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Rates by Choke Coefficient</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Gas Rates by Choke Coefficient------------------->
+
+
+               
+
+  <section class="tool-card" style="background: #1a2a44; border: 1px solid #3498db; padding: 20px; border-radius: 12px;">
+    <h3 style="color: #f1c40f; margin-top: 0;">Gas Rates by Choke Coefficient</h3>
+    
+    <div style="background: #0d1624; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 20px;">
+        <p style="color: #aaa; font-size: 0.8em; margin-bottom: 10px;">Governing Equation:</p>
+        <div style="font-size: 1.2em; color: #fff;">
+            $$mscf/d = \frac{C \cdot A \cdot P_1 \cdot C_d}{\sqrt{T \cdot \gamma_g \cdot Z}}$$
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: #fff;">
+        <div class="input-group">
+            <label style="display: block; font-size: 0.8em; color: #3498db;">Choke Size (64ths)</label>
+            <input type="number" id="choke-size" value="72" style="width: 100%; background: #0d1624; border: 1px solid #3498db; color: #fff; padding: 8px;">
+        </div>
+        <div class="input-group">
+            <label style="display: block; font-size: 0.8em; color: #3498db;">Upstream Temp (°F)</label>
+            <input type="number" id="gas-temp" value="166.3" style="width: 100%; background: #0d1624; border: 1px solid #3498db; color: #fff; padding: 8px;">
+        </div>
+        <div class="input-group">
+            <label style="display: block; font-size: 0.8em; color: #3498db;">Upstream Pressure (psig)</label>
+            <input type="number" id="up-press" value="3180" style="width: 100%; background: #0d1624; border: 1px solid #3498db; color: #fff; padding: 8px;">
+        </div>
+        <div class="input-group">
+            <label style="display: block; font-size: 0.8em; color: #3498db;">Gas S.G (γg)</label>
+            <input type="number" id="gas-sg" value="0.8" step="0.01" style="width: 100%; background: #0d1624; border: 1px solid #3498db; color: #fff; padding: 8px;">
+        </div>
+    </div>
+
+    <div style="margin-top: 25px; padding: 15px; border-top: 2px solid #f1c40f; background: rgba(241, 196, 15, 0.05);">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span style="color: #aaa;">Rate (mscf/d):</span>
+            <span id="res-mscfd" style="color: #f1c40f; font-weight: bold; font-size: 1.2em;">0.00</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <span style="color: #aaa;">Rate (mmscf/d):</span>
+            <span id="res-mmscfd" style="color: #3498db; font-weight: bold;">0.000</span>
+        </div>
+    </div>
+    
+    <button onclick="calculateGasRate()" style="width: 100%; margin-top: 20px; background: #3498db; border: none; color: white; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold;">Calculate Flow Rate</button>
+
+
+    <div style="margin-top: 25px;">
+        <h4 style="color: #3498db; font-size: 0.9em; margin-bottom: 10px; border-bottom: 1px solid #2c3e50; padding-bottom: 5px;">Common Choke Reference</h4>
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; font-size: 0.75em; text-align: center; color: #aaa; border-collapse: collapse;">
+                <thead style="background: #0d1624; color: #f1c40f;">
+                    <tr>
+                        <th style="padding: 5px; border: 1px solid #2c3e50;">Size (64ths)</th>
+                        <th style="padding: 5px; border: 1px solid #2c3e50;">Inch (dec)</th>
+                        <th style="padding: 5px; border: 1px solid #2c3e50;">Area (sq in)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #2c3e50;">16</td><td style="border: 1px solid #2c3e50;">0.250"</td><td style="border: 1px solid #2c3e50;">0.0491</td></tr>
+                    <tr><td style="border: 1px solid #2c3e50;">32</td><td style="border: 1px solid #2c3e50;">0.500"</td><td style="border: 1px solid #2c3e50;">0.1963</td></tr>
+                    <tr><td style="border: 1px solid #2c3e50;">48</td><td style="border: 1px solid #2c3e50;">0.750"</td><td style="border: 1px solid #2c3e50;">0.4418</td></tr>
+                    <tr style="color: #fff; background: rgba(52, 152, 219, 0.1);"><td style="border: 1px solid #2c3e50;">64</td><td style="border: 1px solid #2c3e50;">1.000"</td><td style="border: 1px solid #2c3e50;">0.7854</td></tr>
+                    <tr><td style="border: 1px solid #2c3e50;">72</td><td style="border: 1px solid #2c3e50;">1.125"</td><td style="border: 1px solid #2c3e50;">0.9940</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+function calculateGasRate() {
+    // 1. Inputs
+    const choke64 = parseFloat(document.getElementById('choke-size').value); // e.g., 72
+    const tempF = parseFloat(document.getElementById('gas-temp').value);
+    const pressPsig = parseFloat(document.getElementById('up-press').value);
+    const sg = parseFloat(document.getElementById('gas-sg').value);
+
+    // 2. Constants from your image
+    const C = 605.4;
+    const Cd = 0.83;
+    const Z = 0.9;
+
+    // 3. Conversions
+    // Convert Choke 64ths to Area (sq inches)
+    // Area = pi * (Diameter/2)^2 where Diameter = choke/64
+    const diameter = choke64 / 64;
+    const area = Math.PI * Math.pow((diameter / 2), 2);
+    
+    // Convert F to Rankine
+    const tempR = tempF + 460;
+
+    // 4. Equation Implementation
+    // Numerator: (C) * (A) * (P1) * (Cd)
+    const numerator = C * area * (pressPsig + 14.7) * Cd;
+    
+    // Denominator: sqrt(T * Yg * Z)
+    const denominator = Math.sqrt(tempR * sg * Z);
+
+    const mscfd = numerator / denominator;
+    const mmscfd = mscfd / 1000;
+
+    // 5. Output with formatting
+    document.getElementById('res-mscfd').innerText = mscfd.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('res-mmscfd').innerText = mmscfd.toFixed(3);
+}
+
+
+
+    </script>
+
+
+</body>
+</html>

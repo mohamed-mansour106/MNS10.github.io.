@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. API & K-Factor Correction</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Choke Nipple Gas Rate Calculation------------------->
+
+
+               
+
+              
+
+<style>
+    .converter-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 768px) { .converter-grid { grid-template-columns: 1fr 1fr; } }
+    .conv-field { margin-bottom: 12px; display: flex; flex-direction: column; }
+    .conv-field label { font-size: 0.85rem; color: #8892b0; margin-bottom: 5px; }
+    .conv-field input { background: #1a2a41; border: 1px solid #333; border-radius: 6px; padding: 10px; color: #fff; width: 100%; box-sizing: border-box; }
+    .res-field { background: #0d1624 !important; border-color: #2ecc71 !important; font-weight: bold; }
+</style>
+
+            <section class="section" style="background: #101b2e; border: 1px solid #2ecc71; border-radius: 12px; padding: 20px; margin-bottom: 30px;">
+                <h2 style="color: #2ecc71; border-left: 4px solid #2ecc71; padding-left: 15px; margin-bottom: 20px;">1. API & K-Factor Correction</h2>
+                <div class="converter-grid">
+                    <div>
+                        <div class="conv-field"><label>D7: Observed API</label><input type="number" id="d7" step="0.1" placeholder="e.g. 50"></div>
+                        <div class="conv-field"><label>D8: Hydrometer Temp (°F)</label><input type="number" id="d8" step="0.1" placeholder="e.g. 78"></div>
+                        <div class="conv-field"><label>D9: Oil Line Temp (°F)</label><input type="number" id="d9" step="0.1" placeholder="e.g. 90"></div>
+                    </div>
+                    <div>
+                        <div class="conv-field"><label>D12: Oil API @ 60°F</label><input type="text" id="d12" readonly class="res-field"></div>
+                        <div class="conv-field"><label>D14: K-Factor (VCF)</label><input type="text" id="d14" readonly class="res-field"></div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+ 
+<script>
+    function runMasterCalculation() {
+        const getVal = (id) => {
+            const el = document.getElementById(id);
+            return (el && el.value !== "") ? parseFloat(el.value) : null;
+        };
+
+        // Inputs
+        const D7 = getVal('d7'), D8 = getVal('d8'), D9 = getVal('d9');
+        const F2 = getVal('f2'), F8 = getVal('f8'), F10 = getVal('f10'), F14 = getVal('f14');
+        const L2_pipe = getVal('l2'), L4_plate = getVal('l4'), L6_pres = getVal('l6'), L8_diff = getVal('l8');
+
+        let L2_api = ""; 
+        let F3_k = "";
+
+        // 1. API @ 60°F
+        if (D7 !== null && D8 !== null) {
+            let B2 = 141360.198 / (131.5 + D7);
+            let C2 = 1 - 0.00001278 * (D8 - 60) - 0.0000000062 * Math.pow(D8 - 60, 2);
+            let D2 = B2 * C2;
+            let E2 = 341.0957 / Math.pow(D2, 2);
+            let F2_c = E2 * (D8 - 60);
+            let G2 = 0.8 * F2_c;
+            let H2 = F2_c * G2;
+            let I2 = -1 * (F2_c + H2);
+            let J2 = Math.exp(I2);
+            let K2 = D2 / J2;
+            L2_api = (141360.198 / K2) - 131.5;
+        }
+
+        // 2. K-FACTOR
+        if (D9 !== null && L2_api !== "") {
+            let B3 = L2_api / 1000;
+            let C3 = D9 / 1000;
+            let D3 = 1.019803 + 0.16333 * B3 + 1.88499 * Math.pow(B3, 2) - 0.3341 * C3 + 0.06800001 * Math.pow(C3, 2);
+            let E3 = D3 - 2.65899 * B3 * C3 - 30.39381 * Math.pow(B3, 2) * C3 - 1.05185 * B3 * Math.pow(C3, 2);
+            F3_k = E3 - 17.25759 * Math.pow(B3, 2) * Math.pow(C3, 2);
+        }
+
+        // 3. OIL RATE
+        let F20_rate = "";
+        if (F2 && F8 !== null && F10 !== null && F3_k !== "") {
+            let netVolume = (F8 - F10) * F3_k * (1 - ((F14 || 0) / 100));
+            F20_rate = netVolume * (1440 / F2);
+        }
+
+        // 4. GAS RATE (Simplified AGA3)
+        let L20_rate = "";
+        if (L2_pipe && L4_plate && L6_pres !== null && L8_diff !== null) {
+            let staticAbs = L6_pres + 14.73;
+            let C_prime = 338.17 * Math.pow(L4_plate, 2); 
+            L20_rate = (C_prime * Math.sqrt(staticAbs * L8_diff)) / 1000;
+        }
+
+        // Update UI
+        document.getElementById('d12').value = (L2_api !== "") ? L2_api.toFixed(2) : "";
+        document.getElementById('d14').value = (F3_k !== "") ? F3_k.toFixed(5) : "";
+        document.getElementById('f20').value = (F20_rate !== "") ? F20_rate.toFixed(2) : "";
+        document.getElementById('l20').value = (L20_rate !== "") ? L20_rate.toFixed(2) : "";
+    }
+
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', runMasterCalculation);
+    });
+    runMasterCalculation();
+</script>
+
+
+
+
+
+
+</body>
+</html>
+
+<!------
+I want to make calulcation for routine converts an observed API and Hydrometer reading to OIL API gravity @ 60 F 
+And works out a k factor value for a given oil line temperature 
+
+The inputs:-
+- D7 (OBSERVED API) = 
+- D8 (HYDROMETER TEMPERATURE) = 
+- D9 (OIL LINE TEMPERATURE (deg f)) = 
+
+- L2 = 141360.198/K2-131.5
+
+- K2 = D2/J2
+
+- D2 =   B2*C2
+
+- C2 = 1-0.00001278*(D8-60)-0.0000000062*(D8-60)^2
+
+- B2 =  141360.198/(131.5+D7)
+
+- J2 = EXP(I2)
+
+- I2 = -1*(F2+H2)
+
+- F2 = E2*(D8-60)
+
+- H2 = F2*G2
+
+- G2 = 0.8*F2
+
+- E2 = 341.0957/D2^2
+
+- F3 = E3-17.25759*B3^2 * C3^2
+
+- E3 = D3-2.65899*B3*C3-30.39381*B3^2 *C3-1.05185*B3*C3^2
+
+- C3 = D9/1000
+
+- D3 = 1.019803+0.16333*B3+1.88499*B3^2 -0.3341*C3+0.06800001*C3^2
+
+- B3 = L2/1000
+
+
+
+
+
+The outputs:-
+- D12 (OIL API GRAVITY @ 60°f) = IF(OR( D7="",D8="" ),"",L2)
+
+- D14 (K FACTOR) = IF(OR( D9="",D12="" ),"",F3)
+
+
+
+------>

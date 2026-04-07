@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Well Testing Symbols Library</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        #symbolTableBody tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        #symbolTableBody tr:hover {
+            background: rgba(52, 152, 219, 0.15);
+            transition: background 0.2s ease;
+        }
+
+        #symbolSearch:focus {
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+            border-color: #f1c40f !important;
+        }
+
+        /* Custom Scrollbar for the table */
+        div::-webkit-scrollbar {
+            width: 8px;
+        }
+        div::-webkit-scrollbar-track {
+            background: #0d1624;
+        }
+        div::-webkit-scrollbar-thumb {
+            background: #3498db;
+            border-radius: 4px;
+        }
+
+        #symbolTable tbody tr:hover {
+            background: rgba(52, 152, 219, 0.1);
+            transition: 0.3s;
+        }
+
+        #symbolTable td {
+            vertical-align: middle;
+        }
+
+        /* For mobile responsiveness */
+        @media (max-width: 600px) {
+            #symbolSearch {
+                width: 100%;
+            }
+        }
+        /******************************/
+        .symbol-card {
+            background: #1a2a44;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .symbol-card:hover {
+            transform: translateY(-5px);
+            border-color: #f1c40f;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .symbol-tag {
+            font-size: 1.5em;
+            color: #f1c40f;
+            font-weight: bold;
+        }
+
+        .unit-tag {
+            font-size: 0.75em;
+            color: #3498db;
+            background: rgba(52, 152, 219, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .card-title {
+            color: #fff;
+            font-size: 1em;
+            margin: 0 0 15px 0;
+        }
+
+        .card-eqn {
+            background: #0d1624;
+            padding: 10px;
+            border-radius: 6px;
+            color: #ccc;
+            font-size: 0.85em;
+            text-align: center;
+        }
+
+        .symbol-card {
+            background: #1a2a44;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: 0.3s;
+        }
+        .symbol-card:hover {
+            border-color: #f1c40f;
+            transform: scale(1.02);
+        }
+        .symbol-tag { font-size: 1.4em; color: #f1c40f; font-weight: bold; }
+        .unit-tag { font-size: 0.7em; color: #3498db; background: rgba(52, 152, 219, 0.1); padding: 3px 7px; border-radius: 4px; }
+        .card-title { color: #fff; font-size: 0.95em; margin: 10px 0; min-height: 40px; }
+        .card-eqn { background: #0d1624; padding: 10px; border-radius: 5px; color: #aaa; font-size: 0.8em; text-align: center; font-family: monospace; }
+
+
+        /***********************************/
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #101b2e;
+            border: 1px solid #3498db;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2c3e50;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .close-modal-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        .info-btn {
+            margin-top: 15px;
+            background: transparent;
+            border: 1px solid #3498db;
+            color: #3498db;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: 0.3s;
+        }
+
+        .info-btn:hover {
+            background: #3498db;
+            color: #fff;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!-----------Well Testing Symbols Library------------------->
+
+<section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px; padding: 20px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px;">
+        <h2 style="color: #fff; margin: 0; border-left: 4px solid #f1c40f; padding-left: 15px;">Well Testing Symbols Library</h2>
+        <input type="text" id="symbolSearch" placeholder="Search (e.g. 'pwf', 'compressibility', 'skin')..." 
+               style="padding: 12px 20px; border-radius: 25px; border: 2px solid #3498db; background: #0d1624; color: #fff; width: 300px; outline: none;">
+    </div>
+
+    <div id="symbolGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+        
+        <div class="symbol-card" data-name="gas formation volume factor bg">
+            <div class="card-header"><span class="symbol-tag">$$\beta_g$$</span><span class="unit-tag">Dimensionless</span></div>
+            <h4 class="card-title">Formation Volume Factor (Gas)</h4>
+            <div class="card-eqn">$$\beta_g = 0.0282 \frac{zT}{P}$$</div>
+            <button class="info-btn" onclick="openInfo('bg')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="oil formation volume factor bo">
+            <div class="card-header"><span class="symbol-tag">$$\beta_o$$</span><span class="unit-tag">rb/stb</span></div>
+            <h4 class="card-title">Formation Volume Factor (Oil)</h4>
+            <div class="card-eqn">$$\beta_o = \frac{V_{res}}{V_{stock}}$$</div>
+           <button class="info-btn" onclick="openInfo('bo')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="gas compressibility cg">
+            <div class="card-header"><span class="symbol-tag">$$C_g$$</span><span class="unit-tag">psi⁻¹</span></div>
+            <h4 class="card-title">Compressibility (Gas)</h4>
+            <div class="card-eqn">$$C_g = \frac{1}{P} - \frac{1}{z}(\frac{dz}{dP})$$</div>
+           <button class="info-btn" onclick="openInfo('cg')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="oil compressibility co">
+            <div class="card-header"><span class="symbol-tag">$$C_o$$</span><span class="unit-tag">psi⁻¹</span></div>
+            <h4 class="card-title">Compressibility (Oil)</h4>
+            <div class="card-eqn">Undersaturated: Constant</div>
+           <button class="info-btn" onclick="openInfo('co')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="water compressibility cw">
+            <div class="card-header"><span class="symbol-tag">$$C_w$$</span><span class="unit-tag">psi⁻¹</span></div>
+            <h4 class="card-title">Compressibility (Water)</h4>
+            <div class="card-eqn">$$C_w \approx 3.0 \times 10^{-6}$$</div>
+           <button class="info-btn" onclick="openInfo('cw')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="formation rock compressibility cf">
+            <div class="card-header"><span class="symbol-tag">$$C_f$$</span><span class="unit-tag">psi⁻¹</span></div>
+            <h4 class="card-title">Compressibility (Formation)</h4>
+            <div class="card-eqn">$$C_f = \frac{1}{\phi}(\frac{d\phi}{dP})$$</div>
+           <button class="info-btn" onclick="openInfo('cf')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="total compressibility ct">
+            <div class="card-header"><span class="symbol-tag">$$C_t$$</span><span class="unit-tag">psi⁻¹</span></div>
+            <h4 class="card-title">Compressibility (Total)</h4>
+            <div class="card-eqn">$$C_t = c_o S_o + c_w S_w + c_g S_g + c_f$$</div>
+           <button class="info-btn" onclick="openInfo('ct')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="net pay thickness h">
+            <div class="card-header"><span class="symbol-tag">$$h$$</span><span class="unit-tag">feet</span></div>
+            <h4 class="card-title">Formation Thickness (Net Pay)</h4>
+            <div class="card-eqn">Vertical interval of pay</div>
+           <button class="info-btn" onclick="openInfo('h')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="productivity index j pi">
+            <div class="card-header"><span class="symbol-tag">$$J$$</span><span class="unit-tag">bpd/psi</span></div>
+            <h4 class="card-title">Productivity Index (PI)</h4>
+            <div class="card-eqn">$$J = \frac{q}{P_i - P_{wf}}$$</div>
+           <button class="info-btn" onclick="openInfo('j')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="permeability k">
+            <div class="card-header"><span class="symbol-tag">$$k$$</span><span class="unit-tag">mD</span></div>
+            <h4 class="card-title">Formation Permeability</h4>
+            <div class="card-eqn">$$k = \frac{162.6 q B \mu}{m h}$$</div>
+           <button class="info-btn" onclick="openInfo('k')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="bottomhole flowing pressure pwf">
+            <div class="card-header"><span class="symbol-tag">$$P_{wf}$$</span><span class="unit-tag">psia</span></div>
+            <h4 class="card-title">BH Flowing Pressure</h4>
+            <div class="card-eqn">Measured at Sandface</div>
+           <button class="info-btn" onclick="openInfo('pwf')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="bottomhole shut-in pressure pws">
+            <div class="card-header"><span class="symbol-tag">$$P_{ws}$$</span><span class="unit-tag">psia</span></div>
+            <h4 class="card-title">BH Shut-in Pressure</h4>
+            <div class="card-eqn">Pressure during buildup</div>
+           <button class="info-btn" onclick="openInfo('pws')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="pressure 1 hour p1hr">
+            <div class="card-header"><span class="symbol-tag">$$P_{1hr}$$</span><span class="unit-tag">psia</span></div>
+            <h4 class="card-title">Pressure @ 1hr Shut-in</h4>
+            <div class="card-eqn">From straight line plot</div>
+           <button class="info-btn" onclick="openInfo('p1hr')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="skin factor s">
+            <div class="card-header"><span class="symbol-tag">$$S$$</span><span class="unit-tag">Dimensionless</span></div>
+            <h4 class="card-title">Skin Factor</h4>
+            <div class="card-eqn">Calculation of damage/stim</div>
+           <button class="info-btn" onclick="openInfo('s')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="pressure drop skin dpskin">
+            <div class="card-header"><span class="symbol-tag">$$\Delta P_{skin}$$</span><span class="unit-tag">psia</span></div>
+            <h4 class="card-title">Pressure Drop (Skin)</h4>
+            <div class="card-eqn">$$\Delta P_s = 0.869 \cdot m \cdot S$$</div>
+           <button class="info-btn" onclick="openInfo('dpskin')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="gas deviation factor z">
+            <div class="card-header"><span class="symbol-tag">$$z$$</span><span class="unit-tag">Dimensionless</span></div>
+            <h4 class="card-title">Gas Deviation Factor</h4>
+            <div class="card-eqn">Real Gas Law correction</div>
+           <button class="info-btn" onclick="openInfo('z')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="porosity phi">
+            <div class="card-header"><span class="symbol-tag">$$\phi$$</span><span class="unit-tag">% or fraction</span></div>
+            <h4 class="card-title">Porosity</h4>
+            <div class="card-eqn">$$\phi = V_{pore} / V_{bulk}$$</div>
+           <button class="info-btn" onclick="openInfo('phi')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-name="oil viscosity muo">
+            <div class="card-header"><span class="symbol-tag">$$\mu_o$$</span><span class="unit-tag">cp</span></div>
+            <h4 class="card-title">Viscosity (Oil)</h4>
+            <div class="card-eqn">Resistance to flow</div>
+           <button class="info-btn" onclick="openInfo('muo')">Field Insight</button>
+        </div>
+        <div class="symbol-card" data-cat="pressure" data-name="gradient slope build-up plot m">
+            <div class="card-header">
+                <span class="symbol-tag">$$m$$</span>
+                <span class="unit-tag">psi / log cycle</span>
+            </div>
+            <h4 class="card-title">Gradient (Slope) of Build-up Plot</h4>
+            <div class="card-eqn">$$m = \frac{P_{1hr} - P_{ws}}{\log(\Delta t)}$$</div>
+           <button class="info-btn" onclick="openInfo('m')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-cat="pressure" data-name="initial reservoir pressure pi">
+            <div class="card-header">
+                <span class="symbol-tag">$$P_i$$</span>
+                <span class="unit-tag">psia</span>
+            </div>
+            <h4 class="card-title">Initial Reservoir Pressure</h4>
+            <div class="card-eqn">Static reservoir pressure</div>
+           <button class="info-btn" onclick="openInfo('pi')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-cat="pressure" data-name="extrapolated pressure pstar x=1">
+            <div class="card-header">
+                <span class="symbol-tag">$$P^*$$</span>
+                <span class="unit-tag">psia</span>
+            </div>
+            <h4 class="card-title">Extrapolated Pressure (X=1)</h4>
+            <div class="card-eqn">Pressure at infinite shut-in</div>
+           <button class="info-btn" onclick="openInfo('pstar')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-cat="fluid" data-name="gas production rate surface qg">
+            <div class="card-header">
+                <span class="symbol-tag">$$Q_g$$</span>
+                <span class="unit-tag">Mscfd</span>
+            </div>
+            <h4 class="card-title">Production Rate (Gas)</h4>
+            <div class="card-eqn">$$Q_g = \frac{V_{gas}}{t}$$</div>
+           <button class="info-btn" onclick="openInfo('qg')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-cat="fluid" data-name="oil production rate surface qo">
+            <div class="card-header">
+                <span class="symbol-tag">$$Q_o$$</span>
+                <span class="unit-tag">stobpd</span>
+            </div>
+            <h4 class="card-title">Production Rate (Oil)</h4>
+            <div class="card-eqn">$$Q_o = \frac{\text{Bbls}}{t} \times \text{Factor}$$</div>
+           <button class="info-btn" onclick="openInfo('qo')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-cat="time" data-name="wellbore radius rw open hole">
+            <div class="card-header">
+                <span class="symbol-tag">$$r_w$$</span>
+                <span class="unit-tag">ins or feet</span>
+            </div>
+            <h4 class="card-title">Wellbore Radius (Open Hole)</h4>
+            <div class="card-eqn">Actual hole radius (not casing)</div>
+           <button class="info-btn" onclick="openInfo('rw')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-cat="time" data-name="flowing time t">
+            <div class="card-header">
+                <span class="symbol-tag">$$t$$</span>
+                <span class="unit-tag">hours</span>
+            </div>
+            <h4 class="card-title">Flowing Time</h4>
+            <div class="card-eqn">Total duration of flow</div>
+           <button class="info-btn" onclick="openInfo('t')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-cat="time" data-name="shut-in time delta dt">
+            <div class="card-header">
+                <span class="symbol-tag">$$\delta t$$</span>
+                <span class="unit-tag">hours</span>
+            </div>
+            <h4 class="card-title">Shut-in Time</h4>
+            <div class="card-eqn">Time since well was closed</div>
+           <button class="info-btn" onclick="openInfo('dt')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-cat="fluid" data-name="gas viscosity mug">
+            <div class="card-header">
+                <span class="symbol-tag">$$\mu_g$$</span>
+                <span class="unit-tag">cp (centipoise)</span>
+            </div>
+            <h4 class="card-title">Viscosity (Gas)</h4>
+            <div class="card-eqn">Low resistance fluid friction</div>
+           <button class="info-btn" onclick="openInfo('mug')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-cat="pressure" data-name="total pressure drop drawdown dp">
+            <div class="card-header">
+                <span class="symbol-tag">$$\Delta P$$</span>
+                <span class="unit-tag">psia</span>
+            </div>
+            <h4 class="card-title">Total Pressure Drop (Drawdown)</h4>
+            <div class="card-eqn">$$\Delta P = P_i - P_{wf}$$</div>
+            <button class="info-btn" onclick="openInfo('dp_total')">Field Insight</button>
+        </div>
+
+        <div class="symbol-card" data-cat="time" data-name="horner time ratio pta analysis">
+            <div class="card-header">
+                <span class="symbol-tag">$$HR$$</span>
+                <span class="unit-tag">Dimensionless</span>
+            </div>
+            <h4 class="card-title">Horner Time Ratio</h4>
+            <div class="card-eqn">$$\frac{t + \Delta t}{\Delta t}$$</div>
+            <button class="info-btn" onclick="openInfo('horner_time')">Field Insight</button>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+
+      </section>
+    </main>
+
+
+
+
+    <div id="infoModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle" style="color: #f1c40f; margin: 0;"></h2>
+            <button onclick="closeModal()" class="close-modal-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p id="modalDescription" style="line-height: 1.6; color: #ccc;"></p>
+            <div id="modalFieldTip" style="background: rgba(52, 152, 219, 0.1); border-left: 4px solid #3498db; padding: 15px; margin-top: 20px;">
+                <strong style="color: #3498db;">Field Specialist Tip:</strong>
+                <p id="fieldTipText" style="margin: 5px 0 0 0; font-style: italic;"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+
+document.getElementById('symbolSearch').addEventListener('input', function() {
+    const term = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.symbol-card');
+    cards.forEach(card => {
+        const name = card.getAttribute('data-name');
+        card.style.display = name.includes(term) ? "flex" : "none";
+    });
+});
+
+function filterCategory(category) {
+    // UI Update
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    if(event) event.target.classList.add('active');
+
+    const cards = document.querySelectorAll('.symbol-card');
+    const term = document.getElementById('symbolSearch').value.toLowerCase();
+
+    cards.forEach(card => {
+        const cardCat = card.getAttribute('data-cat');
+        const cardName = card.getAttribute('data-name');
+        
+        // Logical AND: Must match category AND search term
+        const matchesCat = (category === 'all' || cardCat === category);
+        const matchesSearch = cardName.includes(term);
+
+        card.style.display = (matchesCat && matchesSearch) ? "flex" : "none";
+    });
+}
+
+// Update search to call filterCategory
+document.getElementById('symbolSearch').addEventListener('input', () => {
+    const activeCat = document.querySelector('.filter-btn.active').getAttribute('onclick').match(/'([^']+)'/)[1];
+    filterCategory(activeCat);
+});
+
+//**********************************
+
+const symbolDatabase = {
+    "bg": {
+        title: "Gas Formation Volume Factor (βg)",
+        desc: "Relates the volume of gas at reservoir conditions to its volume at standard surface conditions (14.7 psia, 60°F).",
+        tip: "As pressure drops during production, βg increases significantly because gas expands. Always double-check your Z-factor accuracy!"
+    },
+    "bo": {
+        title: "Oil Formation Volume Factor (βo)",
+        desc: "The ratio of the volume of oil (plus dissolved gas) at reservoir temperature and pressure to the volume of oil at standard conditions.",
+        tip: "βo is always greater than 1.0 because of dissolved gas. If your calculation shows less than 1.0, you likely have a unit conversion error."
+    },
+    "cg": {
+        title: "Gas Compressibility (Cg)",
+        desc: "The relative change in gas volume per unit change in pressure. Gas is highly compressible compared to liquids.",
+        tip: "Cg is roughly equal to 1/P. In high-pressure reservoirs, gas acts more like a liquid, and compressibility drops."
+    },
+    "co": {
+        title: "Oil Compressibility (Co)",
+        desc: "The change in oil volume as pressure changes. Significant only above the bubble-point pressure.",
+        tip: "Below the bubble point, gas comes out of solution and 'Total Compressibility' (Ct) becomes the dominant factor, not Co."
+    },
+    "cw": {
+        title: "Water Compressibility (Cw)",
+        desc: "The change in water volume with pressure. Usually treated as a constant in most well test models.",
+        tip: "Standard field value is 3.0 x 10⁻⁶ psi⁻¹. Don't ignore it in high-water-cut wells; it affects your storage calculations."
+    },
+    "cf": {
+        title: "Formation/Rock Compressibility (Cf)",
+        desc: "The change in pore volume as the fluid pressure within the pores changes.",
+        tip: "In 'Unconsolidated' sands, Cf can be very high and may provide a significant drive mechanism for production."
+    },
+    "ct": {
+        title: "Total Compressibility (Ct)",
+        desc: "The weighted sum of the compressibilities of all fluids (oil, water, gas) and the rock matrix.",
+        tip: "This is the most important 'C' in your Diffusivity Equation. If you have even 1% free gas, Ct will skyrocket!"
+    },
+    "h": {
+        title: "Net Pay Thickness (h)",
+        desc: "The vertical thickness of the reservoir that contributes to flow into the wellbore.",
+        tip: "Don't use 'Gross Thickness' from the log. Use the 'Net' value where permeability is actually present, or your 'k' calculation will be wrong."
+    },
+    "j": {
+        title: "Productivity Index (PI/J)",
+        desc: "A measure of the well's ability to produce, defined as the flow rate per psi of drawdown.",
+        tip: "A declining PI over time usually indicates scale build-up or increasing skin damage near the wellbore."
+    },
+    "k": {
+        title: "Permeability (k)",
+        desc: "The measure of a rock's ability to transmit fluids through its pore spaces.",
+        tip: "Well tests measure 'Effective Permeability.' This may differ from 'Absolute Permeability' measured in a lab on a dry core plug."
+    },
+    "m": {
+        title: "Slope of Build-up Plot (m)",
+        desc: "The gradient of the semi-log straight line on a Horner or MDH plot.",
+        tip: "Ensure you are in 'Radial Flow.' If the slope is calculated during 'Wellbore Storage,' your results will be completely invalid."
+    },
+    "pi": {
+        title: "Initial Reservoir Pressure (Pi)",
+        desc: "The pressure of the reservoir before any production has occurred.",
+        tip: "This is your 'Baseline.' In new fields, compare Pi to the hydrostatic gradient to check for overpressure zones."
+    },
+    "pstar": {
+        title: "Extrapolated Pressure (P*)",
+        desc: "The pressure reached by extrapolating the Horner straight line to infinite shut-in time (Horner Time = 1).",
+        tip: "In an infinite reservoir, P* = Pi. In a finite/depleted reservoir, P* will be higher than the actual average pressure."
+    },
+    "pwf": {
+        title: "Bottomhole Flowing Pressure (Pwf)",
+        desc: "Pressure at the sandface during flow.",
+        tip: "If Pwf drops below the Bubble Point (Pb), gas will break out in the reservoir, potentially causing 'Gas Locking' in pumps."
+    },
+    "pws": {
+        title: "Bottomhole Shut-in Pressure (Pws)",
+        desc: "Pressure measured after the well is closed at the surface or subsurface.",
+        tip: "The speed at which Pws rises tells you about the reservoir's permeability. Fast rise = High k; Slow rise = Low k."
+    },
+    "qo": {
+        title: "Oil Production Rate (Qo)",
+        desc: "The stabilized flow rate of oil measured at the surface stock tank.",
+        tip: "Always report Qo alongside the GOR (Gas-Oil Ratio). A sudden spike in GOR means you've dropped below the bubble point."
+    },
+    "rw": {
+        title: "Wellbore Radius (rw)",
+        desc: "The radius of the drilled hole at the reservoir depth.",
+        tip: "Use the 'Caliper Log' radius, not the 'Bit Size.' Hole enlargement (washouts) can significantly change your Skin calculation."
+    },
+    "s": {
+        title: "Skin Factor (S)",
+        desc: "A value representing flow restriction near the wellbore.",
+        tip: "A Skin of 0 is ideal. S > +5 is 'Damaged' (needs workover). S < -2 is 'Stimulated' (Acid/Frac successful)."
+    },
+    "t": {
+        title: "Flowing Time (t)",
+        desc: "Total time the well was flowing prior to a shut-in period.",
+        tip: "For complex flow histories, use 'Equivalent Time' (Cumulative Production / Final Rate) to simplify the Horner analysis."
+    },
+    "phi": {
+        title: "Porosity (φ)",
+        desc: "The percentage of void space in the rock available to hold fluids.",
+        tip: "Total Porosity vs. Effective Porosity: Only Effective Porosity (connected pores) contributes to the well test results."
+    },
+    "p1hr": {
+        title: "Pressure 1hr after shut-in (P1hr)",
+        desc: "A specific pressure point on the Horner straight line, found by extrapolating the line to a shut-in time of 1 hour ($ \Delta t = 1 $).",
+        tip: "P1hr is not necessarily the actual pressure you measure at 1 hour; it is a value taken from the straight-line part of your plot to calculate Skin."
+    },
+    "qg": {
+        title: "Production Rate at Surface - Gas (Qg)",
+        desc: "The gas flow rate measured at standard surface conditions, usually expressed in thousands of standard cubic feet per day.",
+        tip: "Always check your Orifice Meter plate size! An incorrect plate constant is the #1 cause of wrong gas rate reports in the field."
+    },
+    "dt": {
+        title: "Shut-in Time (δt)",
+        desc: "The elapsed time since the well was closed for the pressure buildup test.",
+        tip: "The first few minutes of δt are often dominated by 'Wellbore Storage' (fluid compressing in the tubing). Use high-frequency gauges for better data here."
+    },
+    "z": {
+        title: "Gas Deviation Factor (z)",
+        desc: "Also known as the compressibility factor. It corrects the Ideal Gas Law to account for real gas behavior at high pressures.",
+        tip: "Z-factor is 'dimensionless' but changes with every pressure step. If you ignore Z, your gas volume calculations will be off by 20% or more!"
+    },
+    "mug": {
+        title: "Viscosity - Gas (μg)",
+        desc: "The internal friction or resistance to flow of the gas phase within the reservoir.",
+        tip: "Gas viscosity increases with pressure (the opposite of oil). In high-pressure deep wells, gas is much 'thicker' and harder to move."
+    },
+    "muo": {
+        title: "Viscosity - Oil (μo)",
+        desc: "The internal friction of the oil. It determines how easily oil can flow through the pore spaces toward the wellbore.",
+        tip: "Viscosity is highly temperature-dependent. A small drop in reservoir temperature can make the oil significantly 'heavier' and slower to flow."
+    },
+    "dpskin": {
+        title: "Pressure Drop due to Skin (ΔPskin)",
+        desc: "The additional pressure drop (in psi) caused by wellbore damage. It is the difference between the actual flowing pressure and what the pressure would be in a perfect, undamaged well.",
+        tip: "If ΔPskin is more than 20% of your total drawdown (Pi - Pwf), the well is a prime candidate for stimulation (Acidizing/Fracking)."
+    },
+    "dp_total": {
+        title: "Total Pressure Drop (ΔP)",
+        desc: "The total difference between initial reservoir pressure and the bottomhole flowing pressure ($P_i - P_{wf}$).",
+        tip: "This represents the 'Drive' of the well. Monitor this over months; a rapid increase in ΔP for the same flow rate usually means the reservoir is depleting or the well is plugging up."
+    },
+    "horner_time": {
+        title: "Horner Time Ratio",
+        desc: "The dimensionless time ratio used for buildup analysis: $(t + \Delta t) / \Delta t$.",
+        tip: "On your plot, Horner Time decreases from left to right. Beginners often plot it backward! Always check your X-axis orientation."
+    },
+};
+
+
+
+
+function openInfo(symbolKey) {
+    const data = symbolDatabase[symbolKey];
+    if (!data) return;
+
+    document.getElementById('modalTitle').innerText = data.title;
+    document.getElementById('modalDescription').innerText = data.desc;
+    document.getElementById('fieldTipText').innerText = data.tip;
+    document.getElementById('infoModal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('infoModal').style.display = 'none';
+}
+
+
+    </script>
+
+
+</body>
+</html>

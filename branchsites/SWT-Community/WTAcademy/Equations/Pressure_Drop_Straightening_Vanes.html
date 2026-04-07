@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Drop: Straightening Vanes</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Pressure Drop: Straightening Vanes------------------>
+
+
+               
+
+              
+<section class="section" style="background: #101b2e; border: 1px solid #e74c3c; margin-top: 30px; border-radius: 12px;">
+    <h2 class="section-title" style="color: #e74c3c; border-left: 4px solid #e74c3c; padding-left: 15px;">Pressure Drop: Straightening Vanes</h2>
+    <p style="color: var(--muted); margin-bottom: 20px;">Calculate pressure losses across different pipe sizes and flow types.</p>
+
+    <div class="converter-grid" style="margin-bottom: 20px;">
+        <div class="conv-field">
+            <label>Nominal Pipe Size</label>
+            <select id="vane-size" onchange="updateVaneCv()" style="background: #1a2a44; color: #fff; border: 1px solid #e74c3c; padding: 10px; width: 100%;">
+                <option value="128">2"</option>
+                <option value="304">3"</option>
+                <option value="558">4"</option>
+                <option value="1325">6"</option>
+                <option value="2450">8"</option>
+                <option value="3940">10"</option>
+                <option value="5850">12"</option>
+            </select>
+        </div>
+        <div class="conv-field">
+            <label>CV Value</label>
+            <input type="number" id="vane-cv" readonly style="background: #0d1624; border: 1px solid #444;">
+        </div>
+        <div class="conv-field">
+            <label>Line Pressure (psi)</label>
+            <input type="number" id="vane-p" value="180" oninput="calcVaneDrop()">
+        </div>
+        <div class="conv-field">
+            <label>Line Temp (°F)</label>
+            <input type="number" id="vane-t" value="200" oninput="calcVaneDrop()">
+        </div>
+    </div>
+
+    <div class="converter-grid">
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 15px;">
+            <h4 style="color: #3498db;">GAS</h4>
+            <div class="conv-field"><label>Flow (SCFH)</label><input type="number" id="vane-g-q" value="300000" oninput="calcVaneDrop()"></div>
+            <div class="conv-field"><label>S.G (Gas)</label><input type="number" id="vane-g-sg" value="0.500" step="0.001" oninput="calcVaneDrop()"></div>
+            <hr style="border: 0.5px solid #1a2a44; margin: 10px 0;">
+            <label style="font-size: 0.8em; color: #aaa;">PRESSURE DROP (psi)</label>
+            <input type="text" id="res-vane-g" readonly style="background: #1a2a44; color: #3498db; font-weight: bold; width: 100%; border: none; padding: 8px;">
+        </div>
+
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #2ecc71; padding: 15px;">
+            <h4 style="color: #2ecc71;">LIQUID</h4>
+            <div class="conv-field"><label>Flow (GPM)</label><input type="number" id="vane-l-q" value="3000" oninput="calcVaneDrop()"></div>
+            <div class="conv-field"><label>S.G (Liq)</label><input type="number" id="vane-l-sg" value="0.56" step="0.01" oninput="calcVaneDrop()"></div>
+            <hr style="border: 0.5px solid #1a2a44; margin: 10px 0;">
+            <label style="font-size: 0.8em; color: #aaa;">PRESSURE DROP (psi)</label>
+            <input type="text" id="res-vane-l" readonly style="background: #1a2a44; color: #2ecc71; font-weight: bold; width: 100%; border: none; padding: 8px;">
+        </div>
+
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 15px;">
+            <h4 style="color: #f1c40f;">STEAM</h4>
+            <div class="conv-field"><label>Flow (PPH)</label><input type="number" id="vane-s-q" value="21548" oninput="calcVaneDrop()"></div>
+            <hr style="border: 0.5px solid #1a2a44; margin: 10px 0; margin-top: 60px;">
+            <label style="font-size: 0.8em; color: #aaa;">PRESSURE DROP (psi)</label>
+            <input type="text" id="res-vane-s" readonly style="background: #1a2a44; color: #f1c40f; font-weight: bold; width: 100%; border: none; padding: 8px;">
+        </div>
+    </div>
+        <div id="api-corr-formula" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+        $$CF = 0.00069 - 0.0003725 \cdot SG_{obs}$$
+        $$SG_{60} = SG_{obs} + CF \cdot (T_{obs} - 60)$$
+    </div>
+
+    <div id="vdrop-formula" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+        $$V_{drop} = \frac{k \cdot L \cdot I \cdot R}{1000}$$
+        <small>where $k=2$ (1-ph) or $1.732$ (3-ph)</small>
+    </div>
+
+    <div id="rect-vol-formula" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+        $$V (bbl) = \frac{L \cdot W \cdot h}{9702}$$
+        $$Load (lb/ft^2) = \frac{W_{total}}{Area}$$
+    </div>
+
+    <div id="vane-gas-formula" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+        $$\Delta P = \left[ \frac{Q}{1360 \cdot C_v} \right]^2 \cdot \frac{SG \cdot T_{abs}}{0.75 \cdot P}$$
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+
+// --- 9. Straightening Vane Logic ---
+
+function updateVaneCv() {
+    const cv = document.getElementById('vane-size').value;
+    document.getElementById('vane-cv').value = cv;
+    calcVaneDrop();
+}
+
+function calcVaneDrop() {
+    const cv = parseFloat(document.getElementById('vane-cv').value) || 1;
+    const p = parseFloat(document.getElementById('vane-p').value) || 1;
+    const t = parseFloat(document.getElementById('vane-t').value) || 0;
+    
+    // Gas Calculation
+    const qg = parseFloat(document.getElementById('vane-g-q').value) || 0;
+    const sgg = parseFloat(document.getElementById('vane-g-sg').value) || 0.1;
+    // Formula: ((Q / (1360 * Cv))^2) * (SG * (T + 460)) / (0.75 * P)
+    //const dropGas = Math.pow((qg / (1360 * cv), 2) * (sgg * (t + 460)) / (0.75 * p));
+    //const dropGas = Math.pow(( 2 * sgg * ( t + 460 ) / ( 0.75 * p ) ) * ( qg / ( 1360 * cv ) ) , 2 );
+    //document.getElementById('res-vane-g').value = dropGas.toFixed(2);
+// Excel: =((2 * F7 * (I7 + 460) / (0.75 * H7)) * (C7 / (1360 * B7))^2)
+
+    const tempPressTerm = (2 * sgg * (t + 460)) / (0.75 * p);
+    const flowTerm = Math.pow(qg / (1360 * cv), 2); // Only square the flow part
+
+    const dropGas = tempPressTerm * flowTerm;
+
+    document.getElementById('res-vane-g').value = dropGas.toFixed(4);
+
+    // Liquid Calculation (Simplified proportional to SG and Flow^2)
+    const ql = parseFloat(document.getElementById('vane-l-q').value) || 0;
+    const sgl = parseFloat(document.getElementById('vane-l-sg').value) || 1;
+    // Standard Liquid ΔP = (Q/Cv)² * SG
+    const dropLiq = Math.pow(ql / cv, 2) * sgl;
+    document.getElementById('res-vane-l').value = dropLiq.toFixed(2);
+
+    // Steam Calculation (Using the ratio from your Excel sheet)
+    const qs = parseFloat(document.getElementById('vane-s-q').value) || 0;
+    const  firstPow = Math.pow( ( qs / cv ) ,2);
+    const dropSteam = firstPow * (0.302 / p); // Relative to gas drop as per Excel row J/L relationship
+    
+    //const dropSteam = ((2 * sgg * ( t + 460 ) / ( 0.75 * p ) ) * ( qg / ( 1360 * cv ) ) ^ 2); // Relative to gas drop as per Excel row J/L relationship
+    //const dropSteam = dropGas * (qs / qg); // Relative to gas drop as per Excel row J/L relationship
+    document.getElementById('res-vane-s').value = dropSteam.toFixed(2);
+}
+
+// Initial Run
+updateVaneCv();
+
+
+    </script>
+
+
+
+</body>
+</html>

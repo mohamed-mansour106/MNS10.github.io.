@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mud Pump Performance</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <STYle>
+        .res-field {
+            background: #1a2a44; 
+            color: #fff; 
+            font-weight: bold; 
+            width: 100%; 
+            border: none; 
+            padding: 10px; 
+            text-align: center;
+            border-radius: 4px;
+        }
+
+    </STYle>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Mud Pump Performance------------------->
+
+
+                    
+
+            <section class="section" style="background: #101b2e; border: 1px solid #9b59b6; margin-top: 30px; border-radius: 12px; padding: 20px;">
+                <h2 class="section-title" style="color: #9b59b6; border-left: 4px solid #9b59b6; padding-left: 15px;">Mud Pump Performance</h2>
+                
+                <div class="converter-grid" style="margin-bottom: 20px;">
+                    <div class="conv-field"><label>Liner Diameter (in)</label><input type="number" id="pump-dia" value="6.25"></div>
+                    <div class="conv-field"><label>Stroke Length (in)</label><input type="number" id="pump-len" value="12"></div>
+                    <div class="conv-field"><label>Efficiency (%)</label><input type="number" id="pump-eff" value="96"></div>
+                    <div class="conv-field"><label>Strokes/min (SPM)</label><input type="number" id="pump-spm" value="54"></div>
+                </div>
+
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #9b59b6; padding: 20px;">
+                    <div style="text-align: center; margin-bottom: 15px; font-size: 0.9rem; color: #aaa;">
+                        $$Pump \ Output \ (bbl/stk) = 0.000243 \times D^2 \times L \times Eff$$
+                    </div>
+                    
+                    <div class="converter-grid">
+                        <div class="conv-field">
+                            <label style="color: #fff; font-size: 0.8em;">Pump Output (bbl/stk)</label>
+                            <input type="text" id="res-pump-out" readonly class="res-field">
+                        </div>
+                        <div class="conv-field">
+                            <label style="color: #fff; font-size: 0.8em;">G.P.STK (gal/stk)</label>
+                            <input type="text" id="res-gp-stk" readonly class="res-field" style="color: #2ecc71;">
+                        </div>
+                        
+                        <div class="conv-field">
+                            <label style="color: #fff; font-size: 0.8em;">Strokes per/bbl</label>
+                            <input type="text" id="res-stk-bbl" readonly class="res-field">
+                        </div>
+                        <div class="conv-field">
+                            <label style="color: #fff; font-size: 0.8em;">BPM (bbl/min)</label>
+                            <input type="text" id="res-bpm" readonly class="res-field" style="color: #e74c3c;">
+                        </div>
+
+                        <div class="conv-field" style="grid-column: span 2;">
+                            <label style="color: #fff; font-size: 0.8em;">Total Flow Rate (GPM)</label>
+                            <input type="text" id="res-pump-gpm" readonly class="res-field" style="font-size: 1.4rem; color: #9b59b6; border: 1px solid #9b59b6;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+        /**
+ * Mud Pump Output Calculation Logic
+ * Constants and Formulas based on field specifications
+ */
+/**
+ * Mud Pump Output Calculation Logic
+ * Calculated based on Halliburton/Field standards
+ */
+function calculateMudPump() {
+    // 1. Get Input Values
+    const dia = parseFloat(document.getElementById('pump-dia').value) || 0;    // Liner Diameter (inches)
+    const len = parseFloat(document.getElementById('pump-len').value) || 0;    // Stroke Length (inches)
+    const eff = (parseFloat(document.getElementById('pump-eff').value) || 0) / 100; // Efficiency % to decimal
+    const spm = parseFloat(document.getElementById('pump-spm').value) || 0;    // Strokes Per Minute
+
+    if (dia > 0 && len > 0) {
+        // 2. Pump Output (bbl/stk) 
+        // Formula: 0.000243 * D^2 * L * Efficiency
+        const bblStk = 0.000243 * Math.pow(dia, 2) * len * eff;
+        
+        // 3. G.P.STK (Gallons Per Stroke)
+        // Formula: bbl/stk * 42
+        const gpStk = bblStk * 42;
+        
+        // 4. Strokes per/bbl
+        // Formula: 1 / bbl/stk
+        const stkBbl = bblStk > 0 ? (1 / bblStk) : 0;
+        
+        // 5. BPM (Barrels Per Minute)
+        // Formula: bbl/stk * SPM
+        const bpm = bblStk * spm;
+        
+        // 6. GPM (Gallons Per Minute)
+        // Formula: gp/stk * SPM
+        const gpm = gpStk * spm;
+
+        // 7. Update UI Fields
+        document.getElementById('res-pump-out').value = bblStk.toFixed(5);
+        document.getElementById('res-gp-stk').value = gpStk.toFixed(4);
+        document.getElementById('res-stk-bbl').value = stkBbl.toFixed(4);
+        document.getElementById('res-bpm').value = bpm.toFixed(4);
+        document.getElementById('res-pump-gpm').value = gpm.toFixed(2);
+    }
+}
+
+// Attach Event Listeners for real-time calculation
+const pumpInputIds = ['pump-dia', 'pump-len', 'pump-eff', 'pump-spm'];
+pumpInputIds.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+        element.addEventListener('input', calculateMudPump);
+    }
+});
+
+// Initial trigger to show default values
+calculateMudPump();
+
+
+
+
+    </script>
+
+
+</body>
+</html>

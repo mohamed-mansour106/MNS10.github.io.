@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choke Flow Rate Estimation</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Choke Nipple Gas Rate Calculation------------------->
+
+
+               
+
+                    
+        <section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px;">
+            <h2 class="section-title" style="color: #3498db; border-left: 4px solid #3498db; padding-left: 15px;">Choke Flow Rate Estimation</h2>
+            
+            <div class="converter-grid" style="margin-bottom: 20px;">
+                <div class="conv-field">
+                    <label>Wellhead Pressure (psia) [C5]</label>
+                    <input type="number" id="choke-p" value="1100">
+                </div>
+                <div class="conv-field">
+                    <label>Manifold Choke (1/64") [C7/C18]</label>
+                    <input type="number" id="choke-c" value="48">
+                </div>
+                <div class="conv-field">
+                    <label>Gas/Oil Ratio (scf/bbl) [C8/C17]</label>
+                    <input type="number" id="choke-gor" value="787">
+                </div>
+                <div class="conv-field">
+                    <label>Wellhead Temp (°F) [C6]</label>
+                    <input type="number" id="choke-t" value="152">
+                </div>
+                <div class="conv-field">
+                    <label>Oil Correlation</label>
+                    <select id="oil-corr" style="background: #1a2a44; color: #fff; border: 1px solid #3498db; padding: 8px; border-radius: 4px; width: 100%;">
+                        <option value="gilbert">Gilbert (Standard)</option>
+                        <option value="ros">Ros</option>
+                        <option value="achong">Achong</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="converter-grid">
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #2ecc71; padding: 15px;">
+                    <h4 style="color: #2ecc71;">Gas Rate (Empirical)</h4>
+                    <div id="gas-formula-display" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                        $$Q_g = \frac{(C/64)^{2.0871} \cdot 479.088 \cdot P}{\sqrt{0.6 \cdot (T + 460)}}$$
+                    </div>
+
+                    <label style="color: #fff; font-size: 0.8em;">Gas Rate (Mscf/d)</label>
+                    <input type="text" id="res-gasrate" readonly style="background: #1a2a44; color: #2ecc71; font-weight: bold; width: 100%; border: none; padding: 8px;">
+                </div>
+
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 15px;">
+                    <h4 style="color: #f1c40f;">Oil Rate (<span id="corr-name">Gilbert</span>)</h4>
+                    <div id="oil-formula-display" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                        $$Q_o = \frac{P \cdot C^{1.89}}{435 \cdot (R/1000)^{0.546}}$$
+                    </div>
+                    <label style="color: #fff; font-size: 0.8em;">Oil Rate (bbl/d)</label>
+                    <input type="text" id="res-oilrate" readonly style="background: #1a2a44; color: #f1c40f; font-weight: bold; width: 100%; border: none; padding: 8px;">
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+        
+        function calculateChokeFlow() {
+            const P = parseFloat(document.getElementById('choke-p').value) || 0;
+            const T = parseFloat(document.getElementById('choke-t').value) || 0;
+            const C = parseFloat(document.getElementById('choke-c').value) || 0;
+            const GOR = parseFloat(document.getElementById('choke-gor').value) || 1;
+            const correlation = document.getElementById('oil-corr').value;
+
+            const C16 = 0.6 * (T + 460);
+            const C17 = Math.pow(C16, 0.5);
+            const C18 = C / 64;
+
+            // --- 1. Gas Rate (Fixed to match your Excel logic) ---
+            // Your Excel divides by C17 (Oil Rate). 
+            // If you want it to match the screenshot exactly:
+            const gasRate = (Math.pow(C18, 2.0871) * 479.088 * P) / C17;
+
+            
+            // --- 2. Oil Rate Logic ---
+            let oilRate = 0;
+            let formulaText = "";
+            let corrLabel = "";
+
+            if (correlation === "gilbert") {
+                oilRate = (P * Math.pow(C, 1.89)) / (435 * Math.pow((GOR / 1000), 0.546));
+                formulaText = "$$Q_o = \\frac{P \\cdot C^{1.89}}{435 \\cdot (GOR/1000)^{0.546}}$$";
+                corrLabel = "Gilbert";
+            } else if (correlation === "ros") {
+                oilRate = (P * Math.pow(C, 2.0)) / (174.0 * Math.pow((GOR / 1000), 0.5));
+                formulaText = "$$Q_o = \\frac{P \\cdot C^{2.0}}{174.0 \\cdot (GOR/1000)^{0.5}}$$";
+                corrLabel = "Ros";
+            } else if (correlation === "achong") {
+                oilRate = (P * Math.pow(C, 1.88)) / (382.2 * Math.pow((GOR / 1000), 0.65));
+                formulaText = "$$Q_o = \\frac{P \\cdot C^{1.88}}{382.2 \\cdot (GOR/1000)^{0.65}}$$";
+                corrLabel = "Achong";
+            }
+
+            // Update UI with Rounding
+            document.getElementById('res-gasrate').value = Math.round(gasRate).toLocaleString();
+            document.getElementById('res-oilrate').value = Math.round(oilRate).toLocaleString();
+            document.getElementById('corr-name').innerText = corrLabel;
+            
+            // Refresh MathJax
+            const formulaDisplay = document.getElementById('oil-formula-display');
+            formulaDisplay.innerHTML = formulaText;
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                MathJax.typesetPromise([formulaDisplay]).catch((err) => console.log(err));
+            }
+        }
+
+
+        // Add 'choke-t' to this list
+        ['choke-p', 'choke-c', 'choke-gor', 'oil-corr', 'choke-t'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calculateChokeFlow);
+        });
+
+
+        // Run calculation on initial load
+        window.addEventListener('DOMContentLoaded', calculateChokeFlow);
+
+
+
+    </script>
+
+
+</body>
+</html>

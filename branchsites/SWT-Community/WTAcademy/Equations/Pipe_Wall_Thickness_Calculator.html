@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipe Wall Thickness Calculator</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Pipe Wall Thickness Calculator------------------->
+
+
+               
+
+              
+
+<section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px; padding: 20px;">
+    <h2 class="section-title" style="color: #fff; border-left: 4px solid #3498db; padding-left: 15px;">Pipe Wall Thickness Calculator</h2>
+    
+    <div class="converter-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
+        <div class="conv-field">
+            <label>Outside Diameter (D) inch</label>
+            <input type="number" id="pipe-od" value="3.50" step="0.01">
+        </div>
+        <div class="conv-field">
+            <label>Pressure (P) PSI</label>
+            <input type="number" id="pipe-press" value="10000">
+        </div>
+        <div class="conv-field">
+            <label>Allowable Stress (S)</label>
+            <input type="number" id="pipe-stress" value="20000">
+        </div>
+        <div class="conv-field">
+            <label>Temp Coeff. (Y)</label>
+            <input type="number" id="pipe-y" value="0.4000" step="0.1">
+        </div>
+        <div class="conv-field">
+            <label>Weld Quality (E)</label>
+            <input type="number" id="pipe-e" value="1.0000" step="0.1">
+        </div>
+        <div class="conv-field">
+            <label>Corrosion Allow. (C.A.)</label>
+            <input type="number" id="pipe-ca" value="0.0625" step="0.0001">
+        </div>
+    </div>
+
+    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 20px;">
+        <div style="font-size: 1.1em; color: #aaa; margin-bottom: 20px; text-align: center;">
+            $$t_m = \frac{P \cdot D}{2(S \cdot E + P \cdot Y)} + C.A.$$
+        </div>
+        
+        <div class="converter-grid">
+            <div class="conv-field">
+                <label style="color: #3498db;">Min. Wall (inch)</label>
+                <input type="text" id="res-wall-inch" readonly style="text-align: center; background: #1a2a44; color: #00d4ff; font-size: 1.5rem; font-weight: bold; border: 1px solid #3498db;">
+            </div>
+            <div class="conv-field">
+                <label style="color: #3498db;">Min. Wall (mm)</label>
+                <input type="text" id="res-wall-mm" readonly style="text-align: center; background: #1a2a44; color: #00d4ff; font-size: 1.5rem; font-weight: bold; border: 1px solid #3498db;">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+
+function calculatePipeWall() {
+    const D = parseFloat(document.getElementById('pipe-od').value) || 0;
+    const P = parseFloat(document.getElementById('pipe-press').value) || 0;
+    const S = parseFloat(document.getElementById('pipe-stress').value) || 0;
+    const Y = parseFloat(document.getElementById('pipe-y').value) || 0;
+    const E = parseFloat(document.getElementById('pipe-e').value) || 0;
+    const CA = parseFloat(document.getElementById('pipe-ca').value) || 0;
+
+    if (D <= 0 || (S * E + P * Y) <= 0) return;
+
+    // 1. Pressure Design Thickness (t)
+    const t = (P * D) / (2 * (S * E + P * Y));
+
+    // 2. Minimum Wall Thickness (tm) = t + Corrosion Allowance
+    //const tm_inch = t + CA;
+    const tm_inch = ( P * D ) / ( 2 * ( S * E ) + ( P * Y )) + CA;
+    const tm_mm = tm_inch * 25.4;
+
+    // Display Results
+    document.getElementById('res-wall-inch').value = tm_inch.toFixed(3);
+    document.getElementById('res-wall-mm').value = tm_mm.toFixed(3);
+}
+
+// Add Event Listeners
+['pipe-od', 'pipe-press', 'pipe-stress', 'pipe-y', 'pipe-e', 'pipe-ca'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculatePipeWall);
+});
+
+// Run on load
+calculatePipeWall();
+
+
+
+    </script>
+
+
+</body>
+</html>

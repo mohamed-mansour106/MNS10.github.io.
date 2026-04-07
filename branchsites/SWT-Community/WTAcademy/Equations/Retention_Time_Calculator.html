@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retention Time Calculator</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Retention Time Calculator------------------->
+
+
+               
+
+              
+<section class="section" style="background: #101b2e; border: 1px solid #9b59b6; margin-top: 30px; border-radius: 12px; padding: 20px;">
+    <h2 class="section-title" style="color: #9b59b6; border-left: 4px solid #9b59b6; padding-left: 15px;">Retention Time Calculator</h2>
+    <p style="color: #aaa; margin-bottom: 20px;">Estimated retention time in separator based on volume and flow.</p>
+
+    <div class="converter-grid">
+        <div class="conv-field">
+            <label>Separator Capacity (bbls)</label>
+            <input type="number" id="ret-cap" value="18" oninput="calcRetention()">
+        </div>
+        <div class="conv-field">
+            <label>Fluid Level (%)</label>
+            <input type="number" id="ret-level" value="40" oninput="calcRetention()">
+        </div>
+        <div class="conv-field">
+            <label>Flowrate (bpd)</label>
+            <input type="number" id="ret-flow" value="2000" oninput="calcRetention()">
+        </div>
+        <div class="conv-field">
+            <label style="color: #9b59b6;">Retention Time (mm:ss)</label>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input type="text" id="res-retention" readonly 
+                    style="background: #1a2a44; color: #9b59b6; font-weight: bold; border: none; font-size: 1.5em; width: 100px; text-align: center;">
+                
+                <span id="retention-status" 
+                    style="padding: 5px 12px; border-radius: 4px; font-size: 0.8em; font-weight: bold; text-transform: uppercase;">
+                    ---
+                </span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ function calcRetention() {
+    const capacity = parseFloat(document.getElementById('ret-cap').value) || 0;
+    const levelPercent = parseFloat(document.getElementById('ret-level').value) || 0;
+    const flowrateBpd = parseFloat(document.getElementById('ret-flow').value) || 0;
+
+    const statusBadge = document.getElementById('retention-status');
+
+    if (flowrateBpd <= 0) {
+        document.getElementById('res-retention').value = "00:00";
+        statusBadge.style.display = "none";
+        return;
+    }
+
+    // 1. Calculate total minutes
+    const actualVolume = capacity * (levelPercent / 100);
+    const totalMinutes = (actualVolume / flowrateBpd) * 1440;
+
+    // 2. Format mm:ss
+    const mins = Math.floor(totalMinutes);
+    const secs = Math.round((totalMinutes - mins) * 60);
+    const formattedSecs = secs < 10 ? '0' + secs : (secs === 60 ? '00' : secs);
+    const finalMins = secs === 60 ? mins + 1 : mins;
+    
+    document.getElementById('res-retention').value = `${finalMins}:${formattedSecs}`;
+
+    // 3. Status Logic
+    statusBadge.style.display = "inline-block";
+    
+    if (totalMinutes < 1) {
+        statusBadge.innerText = "CRITICAL";
+        statusBadge.style.background = "#e74c3c"; // Red
+        statusBadge.style.color = "#fff";
+    } else if (totalMinutes < 2) {
+        statusBadge.innerText = "LOW";
+        statusBadge.style.background = "#e67e22"; // Orange
+        statusBadge.style.color = "#fff";
+    } else if (totalMinutes < 4) {
+        statusBadge.innerText = "GOOD";
+        statusBadge.style.background = "#f1c40f"; // Yellow
+        statusBadge.style.color = "#000";
+    } else {
+        statusBadge.innerText = "OPTIMAL";
+        statusBadge.style.background = "#2ecc71"; // Green
+        statusBadge.style.color = "#fff";
+    }
+}
+
+
+// Initialize on page load
+window.addEventListener('DOMContentLoaded', calcRetention);
+
+
+
+    </script>
+
+
+</body>
+</html>

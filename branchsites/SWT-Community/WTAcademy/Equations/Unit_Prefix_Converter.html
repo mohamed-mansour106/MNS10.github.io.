@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Prefix Converter</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        .calculator-container {
+            background: #252323;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .calculator-container h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        #numInput, #unitPrefix {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .result-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #e67e22; /* لون برتقالي ليتناسب مع هويتك البصرية */
+            border-radius: 4px;
+        }
+
+        .result-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        #finalResult {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            word-break: break-all;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------(Unit Prefix Converter)------------------>
+
+
+               
+
+<section class="section" style="background: #101b2e; border: 1px solid #e67e22; margin-top: 30px; border-radius: 12px;">
+    <h2 class="section-title" style="color: #e67e22; border-left: 4px solid #e67e22; padding-left: 15px;">(Unit Prefix Converter)</h2>
+    <p style="color: var(--muted); margin-bottom: 20px;">(Unit Prefix Converter).</p>             
+
+    
+    <input type="number" id="numInput" placeholder="Write the Number here " oninput="convert()">
+    
+    <select id="unitPrefix" onchange="convert()">
+            <option value="1e18">exa (E) [10¹⁸]</option>
+            <option value="1e15">peta (P) [10¹⁵]</option>
+            <option value="1e12">tera (T) [10¹²]</option>
+            <option value="1e9">giga (G) [10⁹]</option>
+            <option value="1e6">mega (M) [10⁶]</option>
+            <option value="1e3">kilo (k) [10³]</option>
+            <option value="1e2">hecto (h) [10²]</option>
+            <option value="1e1">deca (da) [10¹]</option>
+            <option value="1" selected> the Main Unit (Base)</option>
+            <option value="1e-1">deci (d) [10⁻¹]</option>
+            <option value="1e-2">centi (c) [10⁻²]</option>
+            <option value="1e-3">milli (m) [10⁻³]</option>
+            <option value="1e-6">micro (μ) [10⁻⁶]</option>
+            <option value="1e-9">nano (n) [10⁻⁹]</option>
+            <option value="1e-12">pico (p) [10⁻¹²]</option>
+            <option value="1e-15">femto (f) [10⁻¹⁵]</option>
+        </select>
+
+    <div class="result-box">
+        <span class="result-label">The Final Result  :</span>
+        <strong id="finalResult">0</strong>
+    </div>
+</section>
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+   
+<script>
+    function convert() {
+        const val = document.getElementById('numInput').value;
+        const factor = document.getElementById('unitPrefix').value;
+        const display = document.getElementById('finalResult');
+
+        if (val === "" || isNaN(val)) {
+            display.innerText = "0";
+            return;
+        }
+
+        const result = parseFloat(val) * parseFloat(factor);
+
+        // إذا كان الرقم كبيراً جداً أو صغيراً جداً، نعرضه بصيغة علمية
+        if (Math.abs(result) >= 1000000 || (Math.abs(result) < 0.001 && result !== 0)) {
+            display.innerText = result.toExponential(4);
+        } else {
+            display.innerText = result.toLocaleString();
+        }
+    }
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+

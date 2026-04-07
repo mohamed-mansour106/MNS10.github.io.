@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottoms Up Time Estimation</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Bottoms Up Time Estimation------------------->
+
+
+                        
+            <section class="section" style="background: #101b2e; border: 1px solid #f39c12; margin-top: 30px; border-radius: 12px; padding: 20px;">
+                <h2 class="section-title" style="color: #f39c12; border-left: 4px solid #f39c12; padding-left: 15px;">Bottoms Up Time Estimation</h2>
+                
+                <div class="converter-grid" style="margin-bottom: 20px;">
+                    <div class="conv-field">
+                        <label>Flowrate (bpd)</label>
+                        <input type="number" id="bu-flow-bpd" value="2000">
+                    </div>
+                    <div class="conv-field">
+                        <label>Flowrate (bpm)</label>
+                        <input type="number" id="bu-flow-bpm" value="1.4" step="0.1">
+                    </div>
+                    <div class="conv-field">
+                        <label>Tubing Volume (bbls)</label>
+                        <input type="number" id="bu-vol" value="500">
+                    </div>
+                </div>
+
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f39c12; padding: 20px;">
+                    <h4 style="color: #f39c12;">Lag Time Calculation</h4>
+                    <div style="font-size: 0.9em; color: #aaa; margin: 15px 0; text-align: center;">
+                        $$\text{Time (mins)} = \frac{\text{Tubing Volume (bbls)}}{\text{Flowrate (bpm)}}$$
+                    </div>
+                    
+                    <div class="converter-grid">
+                        <div class="conv-field">
+                            <label style="color: #fff;">Bottoms Up (mins)</label>
+                            <input type="text" id="res-bu-mins" readonly style="text-align: center; background: #1a2a44; color: #fff; font-size: 1.5rem; border: 1px solid #555; padding: 10px; border-radius: 8px;">
+                        </div>
+                        <div class="conv-field">
+                            <label style="color: #fff;">Bottoms Up (hh:mm)</label>
+                            <input type="text" id="res-bu-hhmm" readonly style="text-align: center; background: #1a2a44; color: #f39c12; font-size: 1.5rem; font-weight: bold; width: 100%; border: 2px solid #f39c12; padding: 15px; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ function calculateBottomsUp(sourceId) {
+    const bpdInput = document.getElementById('bu-flow-bpd');
+    const bpmInput = document.getElementById('bu-flow-bpm');
+    const volInput = document.getElementById('bu-vol');
+
+    let bpd = parseFloat(bpdInput.value) || 0;
+    let bpm = parseFloat(bpmInput.value) || 0;
+    let vol = parseFloat(volInput.value) || 0;
+
+    // Sync flow rates
+    if (sourceId === 'bu-flow-bpd') {
+        bpm = bpd / 1440;
+        bpmInput.value = bpm.toFixed(2);
+    } else if (sourceId === 'bu-flow-bpm') {
+        bpd = bpm * 1440;
+        bpdInput.value = bpd.toFixed(0);
+    }
+
+    if (bpm <= 0 || vol <= 0) {
+        document.getElementById('res-bu-mins').value = "0";
+        document.getElementById('res-bu-hhmm').value = "00 : 00";
+        return;
+    }
+
+    // 1. Calculate total minutes (Tubing Volume / BPM)
+    const totalMins = vol / bpm;
+
+    // 2. Format to HH:MM (This replaces your VLOOKUP/CONCATENATE logic)
+    // Instead of a table, we use Math.floor for hours and % for remaining minutes
+    const hours = Math.floor(totalMins / 60);
+    const mins = Math.round(totalMins % 60);
+
+    // Format with leading zeros (e.g., 05 : 09)
+    const formattedTime = `${hours.toString().padStart(2, '0')} : ${mins.toString().padStart(2, '0')}`;
+
+    // 3. Update UI
+    document.getElementById('res-bu-mins').value = Math.round(totalMins);
+    document.getElementById('res-bu-hhmm').value = formattedTime;
+}
+
+// Event Listeners
+document.getElementById('bu-flow-bpd').addEventListener('input', () => calculateBottomsUp('bu-flow-bpd'));
+document.getElementById('bu-flow-bpm').addEventListener('input', () => calculateBottomsUp('bu-flow-bpm'));
+document.getElementById('bu-vol').addEventListener('input', () => calculateBottomsUp());
+
+// Initial call
+calculateBottomsUp('bu-flow-bpd');
+
+
+    </script>
+
+
+</body>
+</html>

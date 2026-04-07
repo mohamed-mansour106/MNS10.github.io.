@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choke Nipple Gas Rate Calculation</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Choke Nipple Gas Rate Calculation------------------->
+
+
+               
+
+                <section class="section" style="background: #101b2e; border: 1px solid #27ae60; margin-top: 30px; border-radius: 12px;">
+                    <h2 class="section-title" style="color: #27ae60; border-left: 4px solid #27ae60; padding-left: 15px;">
+                        Choke Nipple Gas Rate Calculation
+                    </h2>
+                    <p style="color: var(--muted); margin-bottom: 20px;">Critical flow calculation for gas wells based on choke size and upstream conditions.</p>
+                            <span style="color: var(--muted); ">Requirements for accurate results are:-</span>
+                        <ol style="margin-left: 10%;">
+                            <li style="color: var(--muted); ">Critical Flow</li>
+                            <li style="color: var(--muted); ">Dry gas</li>
+                            <li style="color: var(--muted); ">Positive choke bean (6" long)</li>
+                            <li style="color: var(--muted); ">Ideal Gas</li>
+                        </ol>
+
+                    <div class="converter-grid" style="margin-bottom: 20px;">
+                        <div class="conv-field"><label>WHP (Psig)</label><input type="number" id="g-whp" placeholder="2500"></div>
+                        <div class="conv-field"><label>Choke Size (64ths)</label><input type="number" id="g-choke" placeholder="9"></div>
+                        <div class="conv-field"><label>Gas Gravity (Air=1)</label><input type="number" id="g-gravity" placeholder="0.768" step="0.001"></div>
+                        <div class="conv-field"><label>WHT (°F)</label><input type="number" id="g-wht" placeholder="88"></div>
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; padding: 25px; border-radius: 8px; border-top: 4px solid #27ae60; text-align: center;">
+                        <h4 style="color: #27ae60; margin-bottom: 15px;">Gas Rate Equation</h4>
+                        
+                        <div id="gas-formula-display" style="font-size: 1.1em; color: #eee; margin: 20px 0;">
+                            $$Q_{mscfd} = \frac{Coefficient \times P_{abs}}{\sqrt{G \times T_{abs}}}$$
+                        </div>
+
+                        <div style="max-width: 300px; margin: 0 auto;">
+                            <label style="color: #fff; font-size: 0.9em; display: block; margin-bottom: 5px;">GAS RATE (MSCF/D)</label>
+                            <input type="text" id="g-rate-result" readonly 
+                                style="background: #1a2a44; color: #27ae60; border: 1px solid #27ae60; text-align: center; font-weight: bold; font-size: 1.5em; width: 100%; border-radius: 8px; padding: 10px;">
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ // مصفوفة الـ Coefficients من الصورة التي أرفقتها (أمثلة لبعض المقاسات)
+const chokeCoefficients = {
+    "3": 0.918, "4": 1.638, "5": 2.610, "6": 3.690, "7": 5.166, "8": 6.250, 
+    "9": 7.992, "10": 9.954, "11": 12.132, "12": 14.440, "16": 26.510, 
+    "24": 61.210, "32": 112.720, "48": 260.990, "64": 479.088
+};
+
+function calculateGasFlow() {
+    const whp = parseFloat(document.getElementById('g-whp').value) || 0;
+    const choke = document.getElementById('g-choke').value;
+    const gravity = parseFloat(document.getElementById('g-gravity').value) || 0.7;
+    const wht = parseFloat(document.getElementById('g-wht').value) || 60;
+
+    if (whp <= 0 || !chokeCoefficients[choke]) {
+        document.getElementById('g-rate-result').value = "---";
+        return;
+    }
+
+    const C = chokeCoefficients[choke];
+    const P_abs = whp + 14.7; // Atmos pressure
+    const T_abs = wht + 460;   // Rankine
+
+    // المعادلة من الصورة: Q = (C * P_abs) / sqrt(G * T_abs)
+    const gasRate = (C * P_abs) / Math.sqrt(gravity * T_abs);
+    
+    // عرض النتيجة
+    document.getElementById('g-rate-result').value = gasRate.toLocaleString(undefined, {maximumFractionDigits: 2});
+
+    // تحديث المعادلة الحية باستخدام MathJax
+    const formulaDiv = document.getElementById('gas-formula-display');
+    formulaDiv.innerHTML = `$$Q_{mscfd} = \\frac{ ${C} \\times ${P_abs} }{\\sqrt{ ${gravity} \\times ${T_abs} }} = ${gasRate.toFixed(2)}$$`;
+    
+    // أمر لإعادة معالجة المعادلات الرياضية لتظهر بشكل صحيح
+    MathJax.typesetPromise();
+}
+
+// إضافة المستمعات (Listeners)
+document.addEventListener('DOMContentLoaded', () => {
+    const gasInputs = ['g-whp', 'g-choke', 'g-gravity', 'g-wht'];
+    gasInputs.forEach(id => {
+        document.getElementById(id).addEventListener('input', calculateGasFlow);
+    });
+});
+
+
+    </script>
+
+
+</body>
+</html>

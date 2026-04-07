@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cable Sizing & Voltage Drop</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Cable Sizing & Voltage Drop------------------->
+
+
+               
+
+      <section class="section" style="background: #101b2e; border: 1px solid #9b59b6; margin-top: 30px; border-radius: 12px;">
+    <h2 class="section-title" style="color: #9b59b6; border-left: 4px solid #9b59b6; padding-left: 15px;">Cable Sizing & Voltage Drop</h2>
+    
+    <div class="converter-grid" style="margin-bottom: 20px;">
+        <div class="conv-field">
+            <label>Required Load (Amps)</label>
+            <input type="number" id="elec-amps-req" oninput="calculateCableAndDrop()" placeholder="50" style="border: 1px solid #9b59b6;">
+        </div>
+        <div class="conv-field">
+            <label>Cable Length (Meters)</label>
+            <input type="number" id="elec-length" oninput="calculateCableAndDrop()" placeholder="100" style="border: 1px solid #9b59b6;">
+        </div>
+        <div class="conv-field">
+            <label>System Voltage (V)</label>
+            <select id="elec-volt-sys" onchange="calculateCableAndDrop()" style="background: #1a2a44; color: #fff; border: 1px solid #9b59b6; padding: 10px; width: 100%;">
+                <option value="220">220V (1-Phase)</option>
+                <option value="440" selected>440V (3-Phase)</option>
+            </select>
+        </div>
+        <div class="conv-field">
+            <label>N° of Conductors</label>
+            <select id="elec-conductors" onchange="calculateCableAndDrop()" style="background: #1a2a44; color: #fff; border: 1px solid #9b59b6; padding: 10px; width: 100%;">
+                <option value="2">2 Conductors</option>
+                <option value="3" selected>3 Conductors</option>
+                <option value="4">4 Conductors</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="converter-grid">
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #9b59b6; padding: 15px; text-align: center;">
+            <h4 style="color: #9b59b6;">Min. Cable Area</h4>
+            <div id="res-cable-size" style="font-size: 2em; color: #fff; font-weight: bold;">--</div>
+            <span style="color: #aaa;">$\text{mm}^2$</span>
+        </div>
+
+        <div class="tool-card" id="vdrop-card" style="background: #0d1624; border-top: 4px solid #95a5a6; padding: 15px;">
+            <h4 style="color: #fff;">Voltage Drop</h4>
+            <div id="res-vdrop-val" style="font-size: 1.5em; color: #fff; font-weight: bold;">-- V</div>
+            <div id="res-vdrop-pct" style="font-size: 0.9em; color: #aaa;">--% Loss</div>
+        </div>
+
+        <div class="tool-card" id="vdrop-status" style="background: #0d1624; border-top: 4px solid #95a5a6; padding: 15px;">
+            <h4 style="color: #fff;">System Health</h4>
+            <div id="res-vdrop-msg" style="font-size: 1em; font-weight: bold; margin-top: 10px;">Waiting...</div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+// --- 6. Cable & Voltage Drop Logic ---
+const cableSpecs = [
+    { size: 2,  res: 9.41,  amp2: 20,  amp3: 17,   amp4: 15 },
+    { size: 3,  res: 6.27,  amp2: 27,  amp3: 22.5, amp4: 21 },
+    { size: 5,  res: 3.76,  amp2: 35,  amp3: 31,   amp4: 28 },
+    { size: 10, res: 1.88,  amp2: 53,  amp3: 47,   amp4: 44 },
+    { size: 16, res: 1.15,  amp2: 66,  amp3: 60,   amp4: 55 },
+    { size: 25, res: 0.727, amp2: 88,  amp3: 81,   amp4: 70 },
+    { size: 40, res: 0.454, amp2: 110, amp3: 103,  amp4: 88 },
+    { size: 50, res: 0.387, amp2: 130, amp3: 123,  amp4: 105 },
+    { size: 75, res: 0.258, amp2: 167, amp3: 154,  amp4: 132 },
+    { size: 95, res: 0.193, amp2: 192, amp3: 184,  amp4: 155 }
+];
+
+function calculateCableAndDrop() {
+    const amps = parseFloat(document.getElementById('elec-amps-req').value) || 0;
+    const length = parseFloat(document.getElementById('elec-length').value) || 0;
+    const sysVolt = parseFloat(document.getElementById('elec-volt-sys').value);
+    const conductors = document.getElementById('elec-conductors').value;
+    
+    // 1. Find size based on Ampacity first
+    const ampKey = "amp" + conductors;
+    const match = cableSpecs.find(c => c[ampKey] >= amps);
+    
+    if (!match || amps === 0) {
+        document.getElementById('res-cable-size').innerText = match ? match.size : "--";
+        document.getElementById('res-vdrop-val').innerText = "-- V";
+        document.getElementById('res-vdrop-pct').innerText = "--% Loss";
+        return;
+    }
+
+    // 2. Calculate Voltage Drop (2LIR / 1000)
+    // For 3-phase, we use 1.732 instead of 2 for L-L drop, but 2 is safer for general field rules.
+    const factor = (sysVolt > 300) ? 1.732 : 2; 
+    const vDrop = (factor * length * amps * match.res) / 1000;
+    const vDropPct = (vDrop / sysVolt) * 100;
+
+    // 3. Update UI
+    document.getElementById('res-cable-size').innerText = match.size;
+    document.getElementById('res-vdrop-val').innerText = vDrop.toFixed(2) + " V";
+    document.getElementById('res-vdrop-pct').innerText = vDropPct.toFixed(1) + "% Loss";
+
+    const statusMsg = document.getElementById('res-vdrop-msg');
+    const statusCard = document.getElementById('vdrop-status');
+
+    if (vDropPct <= 3) {
+        statusMsg.innerText = "EXCELLENT (<3%)";
+        statusMsg.style.color = "#2ecc71";
+        statusCard.style.borderTopColor = "#2ecc71";
+    } else if (vDropPct <= 5) {
+        statusMsg.innerText = "ACCEPTABLE (3-5%)";
+        statusMsg.style.color = "#f1c40f";
+        statusCard.style.borderTopColor = "#f1c40f";
+    } else {
+        statusMsg.innerText = "CRITICAL (>5%)";
+        statusMsg.style.color = "#e74c3c";
+        statusCard.style.borderTopColor = "#e74c3c";
+    }
+}
+
+
+    </script>
+
+
+</body>
+</html>

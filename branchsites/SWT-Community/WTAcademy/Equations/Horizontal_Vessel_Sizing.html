@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontal Vessel Sizing</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Horizontal Vessel Sizing------------>
+
+
+               
+
+   
+
+<section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px; padding: 20px;">
+    <h2 class="section-title" style="color: #3498db; border-left: 4px solid #3498db; padding-left: 15px;">Horizontal Vessel Sizing</h2>
+    <p style="color: #aaa; margin-bottom: 20px;">Determine required vessel dimensions for a target retention time.</p>
+
+    <div class="converter-grid">
+        <div class="conv-field">
+            <label>Target Retention (min)</label>
+            <input type="number" id="size-target-min" value="3" oninput="sizeVessel()">
+        </div>
+        <div class="conv-field">
+            <label>Design Flowrate (bpd)</label>
+            <input type="number" id="size-flow" value="5000" oninput="sizeVessel()">
+        </div>
+        <div class="conv-field">
+            <label>Vessel Diameter (inches)</label>
+            <input type="number" id="size-diameter" value="36" oninput="sizeVessel()">
+        </div>
+        <div class="conv-field">
+            <label>Operating Level (%)</label>
+            <input type="number" id="size-level" value="50" oninput="sizeVessel()">
+        </div>
+    </div>
+
+    <div class="tool-card" style="background: #1a2a44; margin-top: 20px; border-left: 4px solid #2ecc71;">
+        <h4 style="color: #2ecc71; margin-top: 0;">Required Seam-to-Seam Length</h4>
+        <div style="display: flex; align-items: baseline; gap: 10px;">
+            <span id="res-vessel-length" style="font-size: 2em; font-weight: bold; color: #fff;">0.0</span>
+            <span style="color: #aaa;">feet</span>
+        </div>
+        <p style="font-size: 0.85em; color: #888; margin-top: 10px;">
+            *Calculated based on cylindrical volume (excluding heads).
+        </p>
+    </div>
+
+        <div class="converter-grid" style="margin-top: 20px; border-top: 1px solid #1a2a44; padding-top: 20px;">
+        <div class="conv-field">
+            <label>Gas Flow (MMSCFD)</label>
+            <input type="number" id="size-gas-flow" value="10" oninput="sizeVessel()">
+        </div>
+        <div class="conv-field">
+            <label>Operating Pressure (psig)</label>
+            <input type="number" id="size-press" value="1000" oninput="sizeVessel()">
+        </div>
+        <div class="conv-field">
+            <label>Gas S.G.</label>
+            <input type="number" id="size-gas-sg" value="0.65" step="0.01" oninput="sizeVessel()">
+        </div>
+    </div>
+
+    <div class="tool-card" id="gas-velocity-card" style="background: #1a2a44; margin-top: 20px; border-left: 4px solid #3498db;">
+        <h4 style="color: #3498db; margin-top: 0;">Gas Capacity Check</h4>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <span id="res-gas-vel" style="font-size: 1.5em; font-weight: bold; color: #fff;">0.0</span>
+                <span style="color: #aaa;">ft/sec</span>
+            </div>
+            <span id="gas-status-badge" style="padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8em;">---</span>
+        </div>
+        <p id="gas-warning-text" style="font-size: 0.8em; color: #aaa; margin-top: 10px;"></p>
+    </div>
+
+</section>
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ function calcRetention() {
+    const capacity = parseFloat(document.getElementById('ret-cap').value) || 0;
+    const levelPercent = parseFloat(document.getElementById('ret-level').value) || 0;
+    const flowrateBpd = parseFloat(document.getElementById('ret-flow').value) || 0;
+
+    const statusBadge = document.getElementById('retention-status');
+
+    if (flowrateBpd <= 0) {
+        document.getElementById('res-retention').value = "00:00";
+        statusBadge.style.display = "none";
+        return;
+    }
+
+    // 1. Calculate total minutes
+    const actualVolume = capacity * (levelPercent / 100);
+    const totalMinutes = (actualVolume / flowrateBpd) * 1440;
+
+    // 2. Format mm:ss
+    const mins = Math.floor(totalMinutes);
+    const secs = Math.round((totalMinutes - mins) * 60);
+    const formattedSecs = secs < 10 ? '0' + secs : (secs === 60 ? '00' : secs);
+    const finalMins = secs === 60 ? mins + 1 : mins;
+    
+    document.getElementById('res-retention').value = `${finalMins}:${formattedSecs}`;
+
+    // 3. Status Logic
+    statusBadge.style.display = "inline-block";
+    
+    if (totalMinutes < 1) {
+        statusBadge.innerText = "CRITICAL";
+        statusBadge.style.background = "#e74c3c"; // Red
+        statusBadge.style.color = "#fff";
+    } else if (totalMinutes < 2) {
+        statusBadge.innerText = "LOW";
+        statusBadge.style.background = "#e67e22"; // Orange
+        statusBadge.style.color = "#fff";
+    } else if (totalMinutes < 4) {
+        statusBadge.innerText = "GOOD";
+        statusBadge.style.background = "#f1c40f"; // Yellow
+        statusBadge.style.color = "#000";
+    } else {
+        statusBadge.innerText = "OPTIMAL";
+        statusBadge.style.background = "#2ecc71"; // Green
+        statusBadge.style.color = "#fff";
+    }
+}
+
+
+// Initialize on page load
+window.addEventListener('DOMContentLoaded', calcRetention);
+
+function sizeVessel() {
+    // 1. Get Inputs
+    const targetMin = parseFloat(document.getElementById('size-target-min').value) || 0;
+    const flowBpd = parseFloat(document.getElementById('size-flow').value) || 0;
+    const diameterInch = parseFloat(document.getElementById('size-diameter').value) || 0;
+    const levelPercent = parseFloat(document.getElementById('size-level').value) || 0;
+
+    if (targetMin <= 0 || flowBpd <= 0 || diameterInch <= 0 || levelPercent <= 0) {
+        document.getElementById('res-vessel-length').innerText = "0.0";
+        return;
+    }
+
+    // 2. Calculate Required Liquid Volume (bbls)
+    // Formula: Volume = (Flowrate / 1440) * RetentionTime
+    const reqVolBbls = (flowBpd / 1440) * targetMin;
+
+    // 3. Convert Volume to Cubic Feet
+    const reqVolCuFt = reqVolBbls * 5.61458;
+
+    // 4. Calculate Cross-Sectional Area of Liquid (Sq Ft)
+    const radiusFt = (diameterInch / 2) / 12;
+    const totalArea = Math.PI * Math.pow(radiusFt, 2);
+    
+    // Simplified Area based on Level % (linear approximation for field use)
+    // Note: For high precision, a circular segment formula is used, 
+    // but for well test sizing, linear % of area is common practice.
+    const liquidArea = totalArea * (levelPercent / 100);
+
+    // 5. Calculate Length (ft)
+    // Length = Volume / Area
+    const reqLength = reqVolCuFt / liquidArea;
+
+    document.getElementById('res-vessel-length').innerText = reqLength.toFixed(1);
+}
+
+function sizeVessel1() {
+    // ... (Keep your previous Liquid Sizing code here) ...
+
+    const gasMMSCFD = parseFloat(document.getElementById('size-gas-flow').value) || 0;
+    const pressPsig = parseFloat(document.getElementById('size-press').value) || 0;
+    const gasSG = parseFloat(document.getElementById('size-gas-sg').value) || 0.65;
+    const diameterInch = parseFloat(document.getElementById('size-diameter').value) || 1;
+
+    // 1. Calculate Gas Density (rho_g) at Pressure
+    // Simple ideal gas law approximation for field use:
+    const pressAbs = pressPsig + 14.7;
+    const rho_g = (2.7 * gasSG * pressAbs) / (520); // 520R = 60F
+
+    // 2. Calculate Allowable Velocity (v_max)
+    // Souders-Brown: v = K * sqrt((rho_liquid - rho_gas) / rho_gas)
+    const rho_l = 52; // Approx density of oil in lb/ft3
+    const K = 0.35;   // Conservative K-factor for horizontal separators
+    const v_max = K * Math.sqrt((rho_l - rho_g) / rho_g);
+
+    // 3. Calculate Actual Velocity (v_act)
+    // Area of gas space (Upper 50% of vessel)
+    const radiusFt = (diameterInch / 2) / 12;
+    const gasAreaFt2 = (Math.PI * Math.pow(radiusFt, 2)) * 0.5;
+
+    // Actual Gas flow in ft3/sec (ACFS)
+    const q_acfs = (gasMMSCFD * 1000000 / 86400) * (14.7 / pressAbs) * (520 / 520); 
+    const v_act = q_acfs / gasAreaFt2;
+
+    // 4. Update UI
+    document.getElementById('res-gas-vel').innerText = v_act.toFixed(2);
+    const badge = document.getElementById('gas-status-badge');
+    const warning = document.getElementById('gas-warning-text');
+
+    if (v_act > v_max) {
+        badge.innerText = "OVERLOAD";
+        badge.style.background = "#e74c3c";
+        warning.innerText = `Warning: High risk of carry-over. Max allowed: ${v_max.toFixed(2)} ft/s`;
+    } else {
+        badge.innerText = "SAFE";
+        badge.style.background = "#2ecc71";
+        warning.innerText = `Gas velocity is within limits. Limit: ${v_max.toFixed(2)} ft/s`;
+    }
+}
+
+// Initialize
+window.addEventListener('DOMContentLoaded', sizeVessel);
+window.addEventListener('DOMContentLoaded', sizeVessel1);
+
+
+    </script>
+
+
+</body>
+</html>

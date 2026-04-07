@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chloride Determination (Argentometric)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Chloride Determination (Argentometric)---------------->
+
+
+               
+
+    <section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px;">
+    <h2 class="section-title" style="color: #3498db; border-left: 4px solid #3498db; padding-left: 15px;">Chloride Determination (Argentometric)</h2>
+    
+    <div class="converter-grid" style="margin-bottom: 20px;">
+        <div class="conv-field">
+            <label>Silver Nitrate Used (ml) [A]</label>
+            <input type="number" id="tit-a" placeholder="29.3">
+        </div>
+        <div class="conv-field">
+            <label>Titration for Blank (ml) [B]</label>
+            <input type="number" id="tit-b" placeholder="0">
+        </div>
+        <div class="conv-field">
+            <label>AgNO₃ Strength (N) [N]</label>
+            <input type="number" id="tit-n" placeholder="0.1">
+        </div>
+        <div class="conv-field">
+            <label>Sample Volume (ml) [D]</label>
+            <input type="number" id="tit-d" placeholder="1">
+        </div>
+    </div>
+
+    <div class="converter-grid">
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #2ecc71; padding: 15px;">
+            <h4 style="color: #2ecc71;">Chloride Concentration</h4>
+            <div id="cl-formula" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                $$mg/L \text{ Cl}^- = \frac{(A-B) \times N \times 35450}{D}$$
+            </div>
+            <input type="text" id="res-cl-ppm" readonly style="background: #1a2a44; color: #2ecc71; font-weight: bold; width: 100%; border: none; padding: 8px; text-align: center;">
+            <span style="font-size: 0.8em; color: #666;">ppm Chlorides</span>
+        </div>
+
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 15px;">
+            <h4 style="color: #f1c40f;">Sodium Chloride (NaCl)</h4>
+            <div id="nacl-formula" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                $$NaCl = Cl^- \times 1.65$$
+            </div>
+            <input type="text" id="res-nacl-ppm" readonly style="background: #1a2a44; color: #f1c40f; font-weight: bold; width: 100%; border: none; padding: 8px; text-align: center;">
+            <span style="font-size: 0.8em; color: #666;">mg NaCl / L</span>
+        </div>
+        
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #9b59b6; padding: 15px;">
+            <h4 style="color: #9b59b6;">Estimated TDS</h4>
+            <div id="tds-formula" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                $$TDS \approx NaCl \times 1.15$$
+            </div>
+            <input type="text" id="res-tds" readonly style="background: #1a2a44; color: #9b59b6; font-weight: bold; width: 100%; border: none; padding: 8px; text-align: center;">
+            <span style="font-size: 0.8em; color: #666;">mg/L (Estimated)</span>
+        </div>
+
+        <!-----
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #e74c3c; padding: 15px;">
+            <h4 style="color: #e74c3c;">Scale Tendency (LSI)</h4>
+            <div id="lsi-formula" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                $$LSI = pH - pH_s$$
+            </div>
+            <input type="text" id="res-lsi" readonly style="background: #1a2a44; color: #e74c3c; font-weight: bold; width: 100%; border: none; padding: 8px; text-align: center;">
+            <span id="lsi-status" style="font-size: 0.8em; color: #666;">Waiting for data...</span>
+        </div>
+
+        -->
+
+
+    </div>
+
+    
+
+
+    <div style="margin-top: 25px; padding: 20px; background: #0d1624; border-radius: 8px; color: #ccc; font-size: 0.9em;">
+        <h3 style="color: #fff; margin-bottom: 10px;">How to use this tool:</h3>
+        <ol style="padding-left: 20px; line-height: 1.6;">
+            <li><strong>Measure (A):</strong> Titrate your water sample with Silver Nitrate ($AgNO_3$) until the color changes to reddish-brown. Record the ml used.</li>
+            <li><strong>Blank (B):</strong> If using non-distilled water, titrate a blank sample and subtract this value. For distilled water, use <strong>0</strong>.</li>
+            <li><strong>Strength (N):</strong> Check the bottle label for normality (usually 0.1 N or 0.0282 N).</li>
+            <li><strong>Sample (D):</strong> Standard field determination typically uses <strong>1 ml</strong> of sample.</li>
+        </ol>
+        <p style="margin-top: 10px; color: #3498db;"><strong>Note:</strong> 35,450 is the milliequivalent weight of Chlorine $\times$ 1,000 to convert to mg/L.</p>
+    </div>
+
+    <div id="salinity-label-box" style="margin-top: 20px; padding: 20px; border-radius: 8px; text-align: center; background: #1a2a44; border: 2px solid #3498db;">
+        <h3 style="color: #fff; margin-bottom: 5px;">Formation Water Analysis</h3>
+        <div id="water-type-text" style="font-size: 1.4em; font-weight: bold; color: #3498db;">-- Pending Calculation --</div>
+        <div style="margin-top: 10px; display: flex; justify-content: space-around; font-size: 0.9em;">
+            <div>
+                <span style="color: #aaa;">Est. Gradient:</span> 
+                <span id="grad-val" style="color: #2ecc71; font-weight: bold;">--</span> <span style="color: #666;">psi/ft</span>
+            </div>
+            <div>
+                <span style="color: #aaa;">Eq. Mud Weight:</span> 
+                <span id="emw-val" style="color: #e67e22; font-weight: bold;">--</span> <span style="color: #666;">ppg</span>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px; padding: 20px;">
+    <h2 class="section-title" style="color: #fff; font-size: 1.2em; margin-bottom: 20px; text-align: center; background: #000080; padding: 10px; border-radius: 4px;">TYPICAL SALINITY VALUES REFERENCE</h2>
+    
+    <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; color: #fff; font-size: 0.85em; text-align: center;">
+            <thead>
+                <tr style="background: #f1c40f; color: #000;">
+                    <th style="padding: 10px; border: 1px solid #444;">Formation Water Type</th>
+                    <th style="padding: 10px; border: 1px solid #444;">Salinity Chloride (mg/L)</th>
+                    <th style="padding: 10px; border: 1px solid #444;">ppm NaCl</th>
+                    <th style="padding: 10px; border: 1px solid #444;">Pressure Gradient (psi/ft)</th>
+                    <th style="padding: 10px; border: 1px solid #444;">Eq. Mud Weight (ppg)</th>
+                </tr>
+            </thead>
+            <tbody id="salinity-table-body">
+                <tr style="background: #0d1624;"><td>Fresh Water</td><td>0</td><td>0</td><td>0.433</td><td>8.34</td></tr>
+                <tr style="background: #1a2a44;"><td>Brackish Water</td><td>6,098</td><td>10,062</td><td>0.435</td><td>8.38</td></tr>
+                <tr style="background: #0d1624;"><td>Seawater</td><td>19,000 - 25,000</td><td>41,120</td><td>0.444</td><td>8.55</td></tr>
+                <tr style="background: #1a2a44;"><td>Saltwater</td><td>37,912</td><td>62,555</td><td>0.451</td><td>8.68</td></tr>
+                <tr style="background: #0d1624; border-top: 2px solid #f1c40f;"><td colspan="5" style="color: #f1c40f; font-weight: bold; padding: 5px;">Typical Offshore Gradients</td></tr>
+                <tr style="background: #1a2a44;"><td>Offshore</td><td>108,375</td><td>178,819</td><td>0.484</td><td>9.32</td></tr>
+                <tr style="background: #0d1624;"><td>Offshore</td><td>155,440</td><td>256,476</td><td>0.504</td><td>9.70</td></tr>
+                <tr style="background: #1a2a44;"><td>Heavy Saltwater</td><td>191,600</td><td>316,140</td><td>0.519</td><td>9.99</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+function calculateChlorides() {
+    const A = parseFloat(document.getElementById('tit-a').value) || 0;
+    const B = parseFloat(document.getElementById('tit-b').value) || 0;
+    const N = parseFloat(document.getElementById('tit-n').value) || 0;
+    const D = parseFloat(document.getElementById('tit-d').value) || 1;
+
+    if (D > 0) {
+        const clPpm = ((A - B) * N * 35450) / D;
+        const naclPpm = clPpm * 1.65;
+        // TDS Estimation: NaCl * 1.15 (Average oilfield factor)
+        const tdsPpm = naclPpm * 1.15;
+        document.getElementById('res-cl-ppm').value = Math.round(clPpm).toLocaleString();
+        document.getElementById('res-nacl-ppm').value = Math.round(naclPpm).toLocaleString();
+        document.getElementById('res-tds').value = Math.round(tdsPpm).toLocaleString();
+
+        // --- Classification Logic ---
+        let type = "Saltwater";
+        let grad = 0.465;
+        let emw = 8.95;
+        let color = "#e74c3c"; // Default Red for high salinity
+
+        if (clPpm < 6000) {
+            type = "Fresh Water";
+            grad = 0.433;
+            emw = 8.34;
+            color = "#3498db"; // Blue
+        } else if (clPpm < 15000) {
+            type = "Brackish Water";
+            grad = 0.438;
+            emw = 8.43;
+            color = "#2ecc71"; // Green
+        } else if (clPpm < 35000) {
+            type = "Seawater";
+            grad = 0.448;
+            emw = 8.63;
+            color = "#f1c40f"; // Yellow
+        } else if (clPpm < 100000) {
+            type = "Saltwater";
+            grad = 0.464;
+            emw = 8.93;
+            color = "#e67e22"; // Orange
+        } else {
+            type = "High Density Brine";
+            grad = 0.511;
+            emw = 9.84;
+            color = "#e74c3c"; // Red
+        }
+
+        // Update the UI
+        const typeEl = document.getElementById('water-type-text');
+        typeEl.innerText = type;
+        typeEl.style.color = color;
+        document.getElementById('salinity-label-box').style.borderColor = color;
+        document.getElementById('grad-val').innerText = grad.toFixed(3);
+        document.getElementById('emw-val').innerText = emw.toFixed(2);
+    }
+}
+
+
+/*********************************************************/
+function highlightSalinityRow(clPpm) {
+    const rows = document.querySelectorAll('#salinity-table-body tr');
+    
+    // Reset all rows
+    rows.forEach(row => {
+        row.style.outline = "none";
+        row.style.boxShadow = "none";
+    });
+
+    // Find the closest match
+    if (clPpm <= 0) return;
+
+    let targetRow;
+    if (clPpm < 6000) targetRow = rows[0];
+    else if (clPpm < 15000) targetRow = rows[1];
+    else if (clPpm < 30000) targetRow = rows[2];
+    else if (clPpm < 60000) targetRow = rows[3];
+    else if (clPpm < 130000) targetRow = rows[5];
+    else targetRow = rows[7];
+
+    if (targetRow) {
+        targetRow.style.outline = "2px solid #f1c40f";
+        targetRow.style.boxShadow = "inset 0 0 10px rgba(241, 196, 15, 0.5)";
+    }
+}
+
+
+
+// Listeners
+['tit-a', 'tit-b', 'tit-n', 'tit-d'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateChlorides);
+});
+
+
+//*******************************************
+
+
+
+    </script>
+
+
+</body>
+</html>

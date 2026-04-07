@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrinkage Factor estimation (@ 60°F)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Shrinkage Factor estimation (@ 60°F)------------------->
+
+
+               
+
+       <section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px; padding: 20px;">
+            <h2 class="section-title" style="color: #3498db; border-left: 4px solid #3498db; padding-left: 15px;">Shrinkage Factor estimation (@ 60°F)</h2>
+            <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Calculated via Katz Chart Linear Interpolation [Source: Halliburton].</p>
+
+            <div class="converter-grid" style="margin-bottom: 20px;">
+                <div class="conv-field">
+                    <label>Separator Pressure (Psig)</label>
+                    <input type="number" id="shrink-p" value="700" step="10">
+                </div>
+                <div class="conv-field">
+                    <label>Oil Gravity (°API)</label>
+                    <input type="number" id="shrink-api" value="45" step="1">
+                </div>
+            </div>
+
+            <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 25px; text-align: center;">
+                <label style="color: #fff; font-size: 0.9em; display: block; margin-bottom: 10px;">Estimated Shrinkage Factor</label>
+                <input type="text" id="res-shrinkage" readonly style="background: #1a2a44; color: #3498db; font-weight: bold; width: 100%; border: 2px solid #3498db; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.8rem;">
+                <div style="margin-top: 10px; font-size: 0.75rem; color: #666;">Note: Interpolated based on Katz Chart Table.</div>
+            </div>
+
+            
+        </section>
+
+        <section class="section" style="background: #101b2e; border: 1px solid #f39c12; margin-top: 30px; border-radius: 12px; padding: 20px;">
+            <h2 class="section-title" style="color: #f39c12; border-left: 4px solid #f39c12; padding-left: 15px;">Net Production Summary</h2>
+            
+            <div class="converter-grid" style="margin-bottom: 20px;">
+                <div class="conv-field">
+                    <label>Measured Liquid (BBL/D)</label>
+                    <input type="number" id="gross-bpd" value="1000">
+                </div>
+                <div class="conv-field">
+                    <label>BS&W (%)</label>
+                    <input type="number" id="bsw-pct" value="1.0" step="0.1">
+                </div>
+            </div>
+
+            <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f39c12; padding: 20px;">
+                <div style="text-align: center; margin-bottom: 15px; font-size: 0.9rem; color: #aaa;">
+                    $$Q_{net} = Q_{gross} \times (1 - BS\&W) \times Shrk$$
+                </div>
+                <div class="converter-grid">
+                    <div class="conv-field">
+                        <label style="color: #fff; font-size: 0.8em;">Net Oil Rate (STB/D)</label>
+                        <input type="text" id="res-net-oil" readonly class="res-field" style="color: #f39c12; font-size: 1.5rem;">
+                    </div>
+                    <div class="conv-field">
+                        <label style="color: #fff; font-size: 0.8em;">Water Rate (BBL/D)</label>
+                        <input type="text" id="res-water-rate" readonly class="res-field" style="color: #3498db;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+const katzData = {
+    pressures: [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1350],
+    apiColumns: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+    table: [
+        [0.999, 0.998, 0.997, 0.997, 0.996, 0.996, 0.996, 0.995, 0.994, 0.993, 0.992], // 20
+        [0.998, 0.997, 0.995, 0.994, 0.993, 0.992, 0.991, 0.989, 0.988, 0.985, 0.984], // 40
+        [0.997, 0.996, 0.993, 0.991, 0.99, 0.988, 0.986, 0.983, 0.982, 0.978, 0.976], // 60
+        [0.995, 0.994, 0.991, 0.989, 0.987, 0.984, 0.981, 0.977, 0.973, 0.97, 0.96],   // 80
+        [0.994, 0.992, 0.989, 0.986, 0.984, 0.98, 0.976, 0.972, 0.968, 0.963, 0.958], // 100
+        [0.994, 0.99, 0.988, 0.983, 0.981, 0.976, 0.971, 0.967, 0.962, 0.957, 0.952], // 120
+        [0.993, 0.988, 0.986, 0.981, 0.978, 0.973, 0.967, 0.962, 0.957, 0.951, 0.946], // 140
+        [0.992, 0.987, 0.984, 0.979, 0.975, 0.97, 0.963, 0.956, 0.952, 0.946, 0.94],  // 160
+        [0.991, 0.986, 0.982, 0.977, 0.972, 0.967, 0.959, 0.952, 0.947, 0.941, 0.935], // 180
+        [0.99, 0.985, 0.98, 0.974, 0.969, 0.964, 0.955, 0.948, 0.942, 0.936, 0.93],   // 200
+        [0.986, 0.978, 0.97, 0.962, 0.955, 0.946, 0.938, 0.93, 0.912, 0.915, 0.906],  // 300
+        [0.982, 0.971, 0.962, 0.952, 0.944, 0.933, 0.923, 0.913, 0.904, 0.895, 0.866], // 400
+        [0.978, 0.967, 0.956, 0.945, 0.934, 0.923, 0.912, 0.901, 0.89, 0.88, 0.87],   // 500
+        [0.974, 0.962, 0.95, 0.938, 0.926, 0.915, 0.902, 0.889, 0.876, 0.864, 0.852], // 600
+        [0.97, 0.958, 0.945, 0.932, 0.919, 0.904, 0.889, 0.878, 0.865, 0.861, 0.837], // 700
+        [0.967, 0.954, 0.939, 0.924, 0.912, 0.901, 0.885, 0.869, 0.855, 0.839, 0.823], // 800
+        [0.963, 0.95, 0.935, 0.92, 0.906, 0.892, 0.877, 0.86, 0.843, 0.825, 0.807],   // 900
+        [0.96, 0.945, 0.929, 0.912, 0.898, 0.883, 0.866, 0.848, 0.83, 0.81, 0.791],   // 1000
+        [0.957, 0.94, 0.923, 0.906, 0.892, 0.877, 0.858, 0.837, 0.817, 0.796, 0.775], // 1100
+        [0.954, 0.936, 0.918, 0.901, 0.883, 0.864, 0.846, 0.826, 0.804, 0.781, 0.758], // 1200
+        [0.951, 0.932, 0.912, 0.893, 0.872, 0.852, 0.83, 0.806, 0.782, 0.756, 0.73]    // 1350
+    ]
+};
+
+function calculateShrinkage() {
+    const pInput = parseFloat(document.getElementById('shrink-p').value);
+    const apiInput = parseFloat(document.getElementById('shrink-api').value);
+    const resField = document.getElementById('res-shrinkage');
+
+    if (isNaN(pInput) || isNaN(apiInput)) return;
+
+    // Helper: Find indices for interpolation
+    function getRange(val, arr) {
+        let i = 0;
+        while (i < arr.length - 2 && val > arr[i + 1]) i++;
+        return [i, i + 1];
+    }
+
+    const [p1, p2] = getRange(pInput, katzData.pressures);
+    const [a1, a2] = getRange(apiInput, katzData.apiColumns);
+
+    const pFrac = (pInput - katzData.pressures[p1]) / (katzData.pressures[p2] - katzData.pressures[p1]);
+    const aFrac = (apiInput - katzData.apiColumns[a1]) / (katzData.apiColumns[a2] - katzData.apiColumns[a1]);
+
+    // Bilinear Interpolation
+    const v1 = katzData.table[p1][a1] * (1 - aFrac) + katzData.table[p1][a2] * aFrac;
+    const v2 = katzData.table[p2][a1] * (1 - aFrac) + katzData.table[p2][a2] * aFrac;
+    const result = v1 * (1 - pFrac) + v2 * pFrac;
+
+    resField.value = result.toFixed(3);
+}
+
+// Add listeners
+document.getElementById('shrink-p').addEventListener('input', calculateShrinkage);
+document.getElementById('shrink-api').addEventListener('input', calculateShrinkage);
+
+// Initial call
+calculateShrinkage();
+
+
+
+/*******************************************/
+/**
+ * Net Oil Rate Logic
+ * Links Shrinkage Factor and BS&W to Gross Liquid
+ */
+function calculateNetOil() {
+    // 1. Get Inputs
+    const grossBpd = parseFloat(document.getElementById('gross-bpd').value) || 0;
+    const bsw = (parseFloat(document.getElementById('bsw-pct').value) || 0) / 100;
+    
+    // 2. Get the current Shrinkage Factor from your Katz Chart tool
+    const shrinkageFactor = parseFloat(document.getElementById('res-shrinkage').value) || 1.0;
+
+    // 3. Perform Calculations
+    // Water Rate = Gross * BS&W
+    const waterRate = grossBpd * bsw;
+    
+    // Net Oil (Stock Tank Barrels) = (Gross - Water) * Shrinkage
+    const netOil = (grossBpd - waterRate) * shrinkageFactor;
+
+    // 4. Update UI
+    document.getElementById('res-net-oil').value = netOil.toFixed(2) + " STB/D";
+    document.getElementById('res-water-rate').value = waterRate.toFixed(2) + " BPD";
+}
+
+// Add listeners to new fields
+document.getElementById('gross-bpd').addEventListener('input', calculateNetOil);
+document.getElementById('bsw-pct').addEventListener('input', calculateNetOil);
+
+// Link to existing shrinkage inputs so net oil updates when pressure/API changes
+document.getElementById('shrink-p').addEventListener('input', calculateNetOil);
+document.getElementById('shrink-api').addEventListener('input', calculateNetOil);
+
+// Initial call
+calculateNetOil();
+
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synflex Swaged Couplings</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --accent-blue: #007bff;
+            --text-main: #e0e0e0;
+            --text-dim: #b0b0b0;
+            --border: #333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .calc-container {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--accent-blue);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            background: #2a2a2a;
+            border: 1px solid var(--border);
+            color: white;
+            border-radius: 6px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        select:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .results-panel {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--border);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+        }
+
+        .result-label {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        .result-value {
+            color: #fff;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .highlight {
+            color: #ffcc00;
+        }
+    </style>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Choke Nipple Gas Rate Calculation------------------->
+
+
+               
+
+             <div class="section" style="background: #101b2e; border: 1px solid #e74c3c; margin-top: 30px; border-radius: 12px; padding: 20px;">
+                <h2 class="section-title" style="color: #e74c3c; border-left: 4px solid #e74c3c; padding-left: 15px;">Synflex Swaged Couplings</h2>
+                
+                
+                    
+                    <div class="input-group">
+                        <label>Series Type</label>
+                        <select id="series" onchange="calculate()">
+                            <option value="3903">Standard (3903)</option>
+                            <option value="390H">High Pressure (390H)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Hose I.D. (Inches)</label>
+                        <select id="hoseID" onchange="calculate()">
+                            <option value="3/16">3/16"</option>
+                            <option value="1/4">1/4"</option>
+                        </select>
+                    </div>
+
+                    <div class="results-panel">
+                        <div class="result-item">
+                            <span class="result-label">Pipe/Dash Size:</span>
+                            <span class="result-value">-4</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Thread:</span>
+                            <span class="result-value">7/16 - 20</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Coupling Part N°:</span>
+                            <span class="result-value highlight" id="partNum">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Die Part N°:</span>
+                            <span class="result-value highlight" id="dieNum">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Pusher Part N°:</span>
+                            <span class="result-value highlight" id="pusherNum">-</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+const data = {
+        "3903": {
+            "3/16": { coupling: "3903 - 03544", die: "4540 - 303", pusher: "4599 - FP011" },
+            "1/4":  { coupling: "3903 - 04544", die: "4540 - 304", pusher: "4599 - FP012" }
+        },
+        "390H": {
+            "3/16": { coupling: "390H - 03544", die: "4540 - H03", pusher: "4599 - FP011" },
+            "1/4":  { coupling: "390H - 04544", die: "4540 - H04", pusher: "4599 - FP012" }
+        }
+    };
+
+    function calculate() {
+        const series = document.getElementById('series').value;
+        const hoseID = document.getElementById('hoseID').value;
+        
+        const result = data[series][hoseID];
+        
+        document.getElementById('partNum').innerText = result.coupling;
+        document.getElementById('dieNum').innerText = result.die;
+        document.getElementById('pusherNum').innerText = result.pusher;
+    }
+
+    // Run on load
+    calculate();
+
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Gravity Correction (to 60°F)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------API Gravity Correction (to 60°F)------------------>
+
+
+               
+
+              
+<section class="tool-card" style="background: #1a2a44; border: 1px solid #e67e22; padding: 20px; border-radius: 12px; margin-top: 30px;">
+    <h3 style="color: #e67e22; margin-top: 0;">API Gravity Correction (to 60°F)</h3>
+    <p style="color: #ccc; font-size: 0.85em; margin-bottom: 20px;">Standardize oil density measurements using Hydrometer readings.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; color: #fff;">
+        <div class="input-group">
+            <label style="display: block; font-size: 0.8em; color: #e67e22;">Observed API Gravity</label>
+            <input type="number" id="api-obs" value="39.9" step="0.1" style="width: 100%; background: #0d1624; border: 1px solid #e67e22; color: #fff; padding: 8px;">
+        </div>
+        <div class="input-group">
+            <label style="display: block; font-size: 0.8em; color: #e67e22;">Observed Temp (°F)</label>
+            <input type="number" id="temp-obs" value="72" style="width: 100%; background: #0d1624; border: 1px solid #e67e22; color: #fff; padding: 8px;">
+        </div>
+    </div>
+
+    <div style="margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div style="padding: 15px; background: rgba(230, 126, 34, 0.1); border-radius: 8px; text-align: center;">
+            <span style="color: #aaa; font-size: 0.8em;">API @ 60°F</span>
+            <div id="res-api60" style="color: #e67e22; font-size: 1.8em; font-weight: bold;">39.1</div>
+        </div>
+        <div style="padding: 15px; background: rgba(230, 126, 34, 0.1); border-radius: 8px; text-align: center;">
+            <span style="color: #aaa; font-size: 0.8em;">SG @ 60°F</span>
+            <div id="res-sg60" style="color: #fff; font-size: 1.8em; font-weight: bold;">0.8295</div>
+        </div>
+    </div>
+
+    <div style="margin-top: 15px; padding: 10px; background: #0d1624; border-radius: 6px; display: flex; justify-content: space-between;">
+        <span style="color: #aaa; font-size: 0.85em;">Density (kg/m³):</span>
+        <span id="res-rhom60" style="color: #e74c3c; font-weight: bold;">829.5</span>
+    </div>
+
+    <button onclick="calculateAPICorrection()" style="width: 100%; margin-top: 20px; background: #e67e22; border: none; color: white; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold;">Correct to 60°F</button>
+</section>
+
+<section class="tool-card" style="background: #111d2e; border-top: 4px solid #e67e22; padding: 30px; margin-top: 20px; border-radius: 12px;">
+    <h2 style="color: #fff; border-bottom: 1px solid #2c3e50; padding-bottom: 10px;">Documentation: API Correction</h2>
+    
+    <h3 style="color: #f1c40f;">Scientific Equations</h3>
+    <p style="color: #ccc; font-size: 0.95em;">Standardized by <strong>ASTM D1250/1980</strong>.</p>
+    <ul style="color: #ccc; line-height: 1.6;">
+        <li><strong>Specific Gravity:</strong> $$SG = \frac{141.5}{131.5 + API}$$</li>
+        <li><strong>Density (kg/m³):</strong> $$Density = SG \times 1000$$</li>
+    </ul>
+
+    <h3 style="color: #2ecc71; margin-top: 20px;">How to Use</h3>
+    <ol style="color: #ccc; line-height: 1.6;">
+        <li>Take your oil sample and use a <strong>Hydrometer</strong> to measure the observed API gravity.</li>
+        <li>Record the <strong>Temperature</strong> of the oil at the exact moment of the API reading.</li>
+        <li>Enter both values into the calculator to determine the <strong>Standard API</strong> at 60°F.</li>
+        <li>Use the <strong>SG @ 60°F</strong> result for further reservoir engineering calculations.</li>
+    </ol>
+
+    <div style="margin-top: 25px; background: #0d1624; padding: 15px; border-radius: 8px; border: 1px solid #2c3e50;">
+        <h4 style="color: #e67e22; font-size: 0.9em; margin-bottom: 10px; text-align: center;">Typical API Correction Table (Base 40 API)</h4>
+        <table style="width: 100%; font-size: 0.8em; text-align: center; color: #ccc; border-collapse: collapse;">
+            <thead>
+                <tr style="background: rgba(230, 126, 34, 0.2); color: #fff;">
+                    <th style="padding: 8px; border: 1px solid #2c3e50;">Observed Temp (°F)</th>
+                    <th style="padding: 8px; border: 1px solid #2c3e50;">Observed API</th>
+                    <th style="padding: 8px; border: 1px solid #2c3e50;">Corrected API @ 60°F</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding: 5px; border: 1px solid #2c3e50;">70°F</td><td style="padding: 5px; border: 1px solid #2c3e50;">40.8</td><td style="padding: 5px; border: 1px solid #2c3e50;">40.0</td></tr>
+                <tr><td style="padding: 5px; border: 1px solid #2c3e50;">80°F</td><td style="padding: 5px; border: 1px solid #2c3e50;">41.6</td><td style="padding: 5px; border: 1px solid #2c3e50;">40.0</td></tr>
+                <tr style="background: rgba(255,255,255,0.05); color: #fff;"><td style="padding: 5px; border: 1px solid #2c3e50;">90°F</td><td style="padding: 5px; border: 1px solid #2c3e50;">42.4</td><td style="padding: 5px; border: 1px solid #2c3e50;">40.0</td></tr>
+                <tr><td style="padding: 5px; border: 1px solid #2c3e50;">100°F</td><td style="padding: 5px; border: 1px solid #2c3e50;">43.2</td><td style="padding: 5px; border: 1px solid #2c3e50;">40.0</td></tr>
+            </tbody>
+        </table>
+        <p style="font-size: 0.7em; color: #666; margin-top: 10px; text-align: center;">*Rule of Thumb: API increases by ~0.08 for every 1°F increase in temperature.*</p>
+    </div>
+
+</section>
+
+<section class="tool-card" style="background: #111d2e; border-top: 4px solid #e67e22; padding: 30px; margin-top: 40px; border-radius: 12px;">
+    <h2 style="color: #fff; border-bottom: 1px solid #2c3e50; padding-bottom: 10px;">Scientific Documentation</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px;">
+            <h3 style="color: #f1c40f; font-size: 1.1em;">The Math</h3>
+            <p style="color: #ccc; font-size: 0.9em;">Converting Observed API to Standard SG:</p>
+            <div style="font-size: 1.2em; color: #fff; margin: 15px 0;">
+                $$SG = \frac{141.5}{131.5 + API_{obs}}$$
+            </div>
+            <p style="color: #ccc; font-size: 0.9em;">Correction to 60°F using Volume Correction Factor (VCF):</p>
+            <div style="font-size: 1.2em; color: #fff; margin: 15px 0;">
+                $$API_{60} = \left( \frac{141.5}{SG_{obs} / VCF} \right) - 131.5$$
+            </div>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px;">
+            <h3 style="color: #2ecc71; font-size: 1.1em;">Instructor Field Guide</h3>
+            <ul style="color: #ccc; font-size: 0.9em; line-height: 1.6; padding-left: 20px;">
+                <li><strong>Observation:</strong> Record the API from the hydrometer and the temperature from the thermometer immediately.</li>
+                <li><strong>Standardization:</strong> Use this tool to find the $60^\circ F$ equivalent for commercial reporting.</li>
+                <li><strong>Validation:</strong> If the corrected API is significantly different from previous samples, check the hydrometer for wax buildup.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+function calculateAPICorrection() {
+    const apiObs = parseFloat(document.getElementById('api-obs').value);
+    const tempObs = parseFloat(document.getElementById('temp-obs').value);
+
+    // 1. Convert Observed API to SG
+    const sgObs = 141.5 / (131.5 + apiObs);
+    
+    // 2. Simplified VCF (K-fact) Calculation for training purposes
+    // Based on expansion coefficient for crude oil (approx 0.0004 per degree F)
+    const deltaT = tempObs - 60;
+    const vcf = Math.exp(-0.000413 * deltaT * (1 + 0.8 * 0.000413 * deltaT));
+    
+    // 3. Correct SG to 60F
+    const sg60 = sgObs / vcf;
+    
+    // 4. Convert back to API @ 60F
+    const api60 = (141.5 / sg60) - 131.5;
+    
+    // 5. Density in kg/m3
+    const rhom60 = sg60 * 1000;
+
+    // Output results
+    document.getElementById('res-api60').innerText = api60.toFixed(1);
+    document.getElementById('res-sg60').innerText = sg60.toFixed(4);
+    document.getElementById('res-rhom60').innerText = rhom60.toFixed(1);
+}
+
+
+    </script>
+
+
+</body>
+</html>

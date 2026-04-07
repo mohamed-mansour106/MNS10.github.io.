@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Drop & Velocity Analysis</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Pressure Drop & Velocity Analysis------------------->
+
+
+               
+
+          <section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px;">
+    <h2 class="section-title" style="color: #3498db; border-left: 4px solid #3498db; padding-left: 15px;">Pressure Drop & Velocity Analysis</h2>
+    <p style="color: var(--muted); margin-bottom: 20px;">Based on Bernoulli's Principle. Safe limit: 80 ft/sec.</p>
+
+    <div class="converter-grid" style="margin-bottom: 20px;">
+        <div class="conv-field"><label>Flow Rate (mmscf)</label><input type="number" id="v-q" placeholder="63"></div>
+        <div class="conv-field"><label>Pipe Diameter (in)</label><input type="number" id="v-dia" placeholder="4"></div>
+        <div class="conv-field"><label>Upstream P (psia)</label><input type="number" id="v-p1" placeholder="4500"></div>
+        <div class="conv-field"><label>Downstream P (psia)</label><input type="number" id="v-p2" placeholder="900"></div>
+    </div>
+
+    <div class="converter-grid">
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 15px;">
+            <h4 style="color: #3498db;">Inlet Velocity ($V_1$)</h4>
+            <div id="v1-formula" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                $$V_1 = \frac{32,000 \times Q}{D^2 \times P_1}$$
+            </div>
+            <input type="text" id="res-v1" readonly style="background: #1a2a44; color: #3498db; font-weight: bold; width: 100%; border: none; padding: 8px; text-align: center;">
+            <span style="font-size: 0.7em; color: #666;">ft/sec</span>
+        </div>
+
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #9b59b6; padding: 15px;">
+            <h4 style="color: #9b59b6;">Outlet Velocity ($V_2$)</h4>
+            <div id="v2-formula" style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                $$V_2 = \sqrt{2 \times (P_1 - P_2)}$$
+            </div>
+            <input type="text" id="res-v2" readonly style="background: #1a2a44; color: #9b59b6; font-weight: bold; width: 100%; border: none; padding: 8px; text-align: center;">
+            <span style="font-size: 0.7em; color: #666;">ft/sec</span>
+        </div>
+    </div>
+
+    <div id="velocity-status" style="margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; background: #1a2a44; color: #fff;">
+        Resultant Velocity: <span id="res-total">0.00</span> ft/sec
+        <p id="vel-warning" style="font-size: 0.8em; margin-top: 5px; color: #2ecc71;">Velocity within safe limits.</p>
+    </div>
+
+        
+
+    <div id="velocity_chart_div" style="width: 100%; height: 350px; margin-top: 30px; border-radius: 8px; overflow: hidden; background: #1a2a44; border: 1px solid #333;"></div>
+
+</section>
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+
+function calculateVelocity() {
+    const Q = parseFloat(document.getElementById('v-q').value) || 0;
+    const D = parseFloat(document.getElementById('v-dia').value) || 0;
+    const P1 = parseFloat(document.getElementById('v-p1').value) || 0;
+    const P2 = parseFloat(document.getElementById('v-p2').value) || 0;
+
+    if (P1 > 0 && D > 0) {
+        // V1 calculation: (32000 * Q) / (D^2 * P1)
+        const v1 = (32000 * Q) / (Math.pow(D, 2) * P1);
+        
+        // V2 calculation: SQRT(2 * (P1 - P2))
+        const pDiff = P1 - P2;
+        const v2 = pDiff > 0 ? Math.sqrt(2 * pDiff) : 0;
+
+        // Display results
+        document.getElementById('res-v1').value = v1.toFixed(2);
+        document.getElementById('res-v2').value = v2.toFixed(2);
+
+        // Resultant velocity logic (V2 - V1 according to your sheet example)
+        const totalVel = Math.abs(v2 - v1);
+        const totalEl = document.getElementById('res-total');
+        const warnEl = document.getElementById('vel-warning');
+        
+        totalEl.innerText = totalVel.toFixed(2);
+
+        // Safety Threshold check
+        if (totalVel > 80) {
+            totalEl.style.color = "#e74c3c";
+            warnEl.innerText = "WARNING: Velocity exceeds 80 ft/sec! High expansion risk.";
+            warnEl.style.color = "#e74c3c";
+        } else {
+            totalEl.style.color = "#2ecc71";
+            warnEl.innerText = "Velocity within safe limits.";
+            warnEl.style.color = "#2ecc71";
+        }
+    }
+}
+
+
+
+
+// Listeners
+['v-q', 'v-dia', 'v-p1', 'v-p2'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateVelocity);
+});
+
+
+
+/******************************************************/
+// Ensure Google Charts is loaded before drawing
+google.charts.load('current', { packages: ['corechart'] });
+
+// 1. Static Velocity Calculations
+function calculateVelocity() {
+    const Q = parseFloat(document.getElementById('v-q').value) || 0;
+    const D = parseFloat(document.getElementById('v-dia').value) || 0;
+    const P1 = parseFloat(document.getElementById('v-p1').value) || 0;
+    const P2 = parseFloat(document.getElementById('v-p2').value) || 0;
+
+    let v1 = 0;
+    let v2 = 0;
+    let totalVel = 0;
+
+    if (P1 > 0 && D > 0) {
+        // V1 calculation: (32000 * Q) / (D^2 * P1)
+        v1 = (32000 * Q) / (Math.pow(D, 2) * P1);
+        
+        // V2 calculation: SQRT(2 * (P1 - P2))
+        const pDiff = P1 - P2;
+        v2 = pDiff > 0 ? Math.sqrt(2 * pDiff) : 0;
+
+        // Resultant velocity (V2 - V1, matching sheet logic)
+        totalVel = Math.abs(v2 - v1);
+
+        // Display results in read-only fields
+        document.getElementById('res-v1').value = v1.toFixed(2);
+        document.getElementById('res-v2').value = v2.toFixed(2);
+
+        // Resultant status logic
+        const totalEl = document.getElementById('res-total');
+        const warnEl = document.getElementById('vel-warning');
+        totalEl.innerText = totalVel.toFixed(2);
+
+        // Safety Threshold check (80 ft/sec)
+        if (totalVel > 80) {
+            totalEl.style.color = "#e74c3c"; // Red
+            warnEl.innerText = "WARNING: Velocity exceeds 80 ft/sec! High expansion risk.";
+            warnEl.style.color = "#e74c3c";
+        } else {
+            totalEl.style.color = "#2ecc71"; // Green
+            warnEl.innerText = "Velocity within safe limits.";
+            warnEl.style.color = "#2ecc71";
+        }
+
+        // Draw the chart based on current P1
+        drawVelocityChart(P1);
+    }
+}
+
+// 2. Dynamic Chart Generation
+function drawVelocityChart(P1) {
+    if (!google.visualization) return; // Wait for library load
+
+    const dataTable = new google.visualization.DataTable();
+    dataTable.addColumn('number', 'P2 (Downstream)');
+    dataTable.addColumn('number', 'V2 Velocity');
+    dataTable.addColumn({ type: 'string', role: 'tooltip' });
+    dataTable.addColumn({ type: 'number', role: 'interval' }); // Red Threshold line
+
+    // Generate data points for P2 from P1 down to zero
+    let chartRows = [];
+    const points = 50; // Number of steps
+    const pStep = P1 / points;
+
+    for (let i = 0; i <= points; i++) {
+        const p2Current = P1 - (i * pStep);
+        const pDiff = P1 - p2Current;
+        
+        // Bernoulli V2 velocity formula: V = sqrt(2 * dP)
+        const v2Current = Math.sqrt(2 * pDiff);
+
+        const tooltipText = `P2: ${p2Current.toFixed(1)} psia \nV2: ${v2Current.toFixed(2)} ft/sec`;
+
+        chartRows.push([p2Current, v2Current, tooltipText, 80]); // 80 is the constant safety limit
+    }
+
+    dataTable.addRows(chartRows);
+
+    const options = {
+        title: 'Velocity (V2) vs Downstream Pressure (P2)',
+        backgroundColor: '#1a2a44', // Dark Blue background matching theme
+        titleTextStyle: { color: '#e67e22', fontSize: 16, bold: true },
+        hAxis: {
+            title: 'Downstream Pressure (psia)',
+            direction: -1, // High to low P2 (simulates a flowing choke)
+            titleTextStyle: { color: '#bbb',
+
+        }}}}
+
+    </script>
+
+
+</body>
+</html>

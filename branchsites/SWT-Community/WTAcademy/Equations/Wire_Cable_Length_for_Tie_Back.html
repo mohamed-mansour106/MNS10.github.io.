@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wire Cable Length for Tie Back</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Wire Cable Length for Tie Back------------------->
+
+
+                        
+
+
+            <section class="section" style="background: #101b2e; border: 1px solid #f1c40f; margin-top: 30px; border-radius: 12px; padding: 20px;">
+                <h2 class="section-title" style="color: #f1c40f; border-left: 4px solid #f1c40f; padding-left: 15px;">Wire Cable Length (Tie Back)</h2>
+                
+                <div style="width: 100%; height: 150px; position: relative; margin-bottom: 20px; border-bottom: 2px solid #333;">
+                    <div style="position: absolute; left: 20px; bottom: 0; width: 4px; height: 100px; background: #fff;"></div> <div style="position: absolute; left: 20px; bottom: 0; width: 120px; height: 4px; background: #aaa; transform: rotate(-15deg); transform-origin: left;"></div> <div style="position: absolute; left: 24px; top: 30px; width: 115px; height: 2px; border-top: 2px dashed #f1c40f; transform: rotate(35deg); transform-origin: left;"></div> <span style="position: absolute; left: 5px; bottom: 50px; color: #fff; font-size: 0.8rem;">a</span>
+                    <span style="position: absolute; left: 70px; bottom: 25px; color: #aaa; font-size: 0.8rem;">b</span>
+                    <span style="position: absolute; left: 80px; top: 40px; color: #f1c40f; font-size: 0.8rem;">c?</span>
+                </div>
+
+                <div class="converter-grid" style="margin-bottom: 20px;">
+                    <div class="conv-field">
+                        <label>King Post Height (a) [ft]</label>
+                        <input type="number" id="cable-a" value="20">
+                    </div>
+                    <div class="conv-field">
+                        <label>Boom Tie Point (b) [ft]</label>
+                        <input type="number" id="cable-b" value="60">
+                    </div>
+                    <div class="conv-field">
+                        <label>Angle from Post (C) [deg]</label>
+                        <input type="number" id="cable-angle" value="90">
+                    </div>
+                </div>
+
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 20px;">
+                    <h4 style="color: #f1c40f; text-align: center;">Law of Cosines</h4>
+                    <div style="font-size: 1.1em; color: #aaa; margin: 15px 0; text-align: center;">
+                        $$c = \sqrt{a^2 + b^2 - 2ab \cos(C)}$$
+                    </div>
+                    
+                    <div class="conv-field">
+                        <label style="color: #fff; text-align: center; display: block;">Length of Wire Cable Required (ft)</label>
+                        <input type="text" id="res-cable-len" readonly style="text-align: center; background: #1a2a44; color: #f1c40f; font-size: 1.5rem; font-weight: bold; width: 100%; border: 2px solid #f1c40f; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+
+
+// --- 4. Cable Length (Law of Cosines) Logic ---
+function calculateCableLength() {
+    // 1. Get Inputs
+    const a = parseFloat(document.getElementById('cable-a').value) || 0;
+    const b = parseFloat(document.getElementById('cable-b').value) || 0;
+    const angleDeg = parseFloat(document.getElementById('cable-angle').value) || 0;
+
+    if (a <= 0 || b <= 0) return;
+
+    // 2. Convert Angle to Radians
+    const angleRad = angleDeg * (Math.PI / 180);
+
+    // 3. Law of Cosines: c^2 = a^2 + b^2 - 2ab * cos(C)
+    const cSquared = (a * a) + (b * b) - (2 * a * b * Math.cos(angleRad));
+    const c = Math.sqrt(cSquared);
+
+    // 4. Update UI
+    document.getElementById('res-cable-len').value = c.toFixed(2);
+}
+
+// Attach Event Listeners
+['cable-a', 'cable-b', 'cable-angle'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateCableLength);
+});
+
+// Run on load
+calculateCableLength();
+
+
+
+    </script>
+
+
+</body>
+</html>

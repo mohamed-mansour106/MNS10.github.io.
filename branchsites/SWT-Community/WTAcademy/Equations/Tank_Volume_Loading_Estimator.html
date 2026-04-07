@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tank Volume & Loading Estimator</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Tank Volume & Loading Estimator------------------->
+
+
+               
+<section class="section" style="background: #101b2e; border: 1px solid #9b59b6; margin-top: 30px; border-radius: 12px;">
+    <h2 class="section-title" style="color: #9b59b6; border-left: 4px solid #9b59b6; padding-left: 15px;">Tank Volume & Loading Estimator</h2>
+    
+    <div class="converter-grid" style="align-items: start;">
+        
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 15px;">
+            <h3 style="color: #3498db; text-align: center; background: rgba(52, 152, 219, 0.2); padding: 5px;">RECTANGULAR TANK</h3>
+            
+            <div class="conv-field"><label>Height of tank (ins)</label><input type="number" id="rect-h" oninput="calcRectFull()"></div>
+            <div class="conv-field"><label>Length of tank (ins)</label><input type="number" id="rect-l" oninput="calcRectFull()"></div>
+            <div class="conv-field"><label>Width of tank (ins)</label><input type="number" id="rect-w" oninput="calcRectFull()"></div>
+            
+            <div class="conv-field"><label style="color: #3498db;">Est. Total Volume (bbls)</label><input type="text" id="rect-tot-bbl" readonly style="color: #e74c3c; font-weight: bold;"></div>
+            <div class="conv-field"><label style="color: #3498db;">Est. Total Volume (galls)</label><input type="text" id="rect-tot-gal" readonly style="color: #e74c3c; font-weight: bold;"></div>
+            
+            <hr style="border: 0.5px solid #1a2a44; margin: 10px 0;">
+            
+            <div class="conv-field"><label>Height of fluid level (ins)</label><input type="number" id="rect-f-lvl" oninput="calcRectFull()"></div>
+            <div class="conv-field"><label style="color: #3498db;">Est. Tank Volume (bbls)</label><input type="text" id="rect-f-bbl" readonly style="color: #e74c3c; font-weight: bold;"></div>
+            <div class="conv-field"><label style="color: #3498db;">Est. Total Volume (galls)</label><input type="text" id="rect-f-gal" readonly style="color: #e74c3c; font-weight: bold;"></div>
+            
+            <div class="conv-field"><label>Weight of fluid in tank (ppg)</label><input type="number" id="rect-ppg" oninput="calcRectFull()"></div>
+            <div class="conv-field"><label>Tare weight of tank (tons)</label><input type="number" id="rect-tare" oninput="calcRectFull()"></div>
+            
+            <div class="conv-field"><label style="color: #3498db;">Max fluid weight (tons)</label><input type="text" id="rect-w-tons" readonly style="color: #e74c3c; font-weight: bold;"></div>
+            <div class="conv-field"><label style="color: #3498db;">Weight tank + fluid (tons)</label><input type="text" id="rect-w-total" readonly style="color: #e74c3c; font-weight: bold;"></div>
+            <div class="conv-field"><label style="color: #3498db;">Max deck loading (lb/ft)</label><input type="text" id="rect-deck" readonly style="color: #e74c3c; font-weight: bold;"></div>
+        </div>
+
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #2ecc71; padding: 15px;">
+            <h3 style="color: #2ecc71; text-align: center; background: rgba(46, 204, 113, 0.2); padding: 5px;">HORIZONTAL CYLINDRICAL TANK</h3>
+            
+            <div class="conv-field"><label>Diameter of vessel (ins)</label><input type="number" id="cyl-d" oninput="calcCylFull()"></div>
+            <div class="conv-field"><label>Length of vessel (ft)</label><input type="number" id="cyl-l" oninput="calcCylFull()"></div>
+            
+            <div class="conv-field"><label style="color: #3498db;">Est. Total Volume (bbls)</label><input type="text" id="cyl-tot-bbl" readonly style="color: #e74c3c; font-weight: bold;"></div>
+            <div class="conv-field"><label style="color: #3498db;">Est. Total Volume (galls)</label><input type="text" id="cyl-tot-gal" readonly style="color: #e74c3c; font-weight: bold;"></div>
+            
+            <hr style="border: 0.5px solid #1a2a44; margin: 10px 0;">
+            
+            <div class="conv-field"><label>Height of fluid level (ins)</label><input type="number" id="cyl-f-lvl" oninput="calcCylFull()"></div>
+            <div class="conv-field"><label style="color: #3498db;">Est. Tank Volume (bbls)</label><input type="text" id="cyl-f-bbl" readonly style="color: #e74c3c; font-weight: bold;"></div>
+            <div class="conv-field"><label style="color: #3498db;">Est. Total Volume (galls)</label><input type="text" id="cyl-f-gal" readonly style="color: #e74c3c; font-weight: bold;"></div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+const IN3_TO_BBL = 9702;
+const BBL_TO_GAL = 42;
+
+function calcRectFull() {
+    const h = parseFloat(document.getElementById('rect-h').value) || 0;
+    const l = parseFloat(document.getElementById('rect-l').value) || 0;
+    const w = parseFloat(document.getElementById('rect-w').value) || 0;
+    const fl = parseFloat(document.getElementById('rect-f-lvl').value) || 0;
+    const ppg = parseFloat(document.getElementById('rect-ppg').value) || 0;
+    const tare = parseFloat(document.getElementById('rect-tare').value) || 0;
+
+    // Total Tank
+    const totBbl = (h * l * w) / IN3_TO_BBL;
+    document.getElementById('rect-tot-bbl').value = totBbl.toFixed(2);
+    document.getElementById('rect-tot-gal').value = (totBbl * BBL_TO_GAL).toFixed(1);
+
+    // Current Fluid
+    const fldBbl = (fl * l * w) / IN3_TO_BBL;
+    document.getElementById('rect-f-bbl').value = fldBbl.toFixed(2);
+    document.getElementById('rect-f-gal').value = (fldBbl * BBL_TO_GAL).toFixed(2);
+
+    // Weights
+
+    /********************************************/
+    function fldWeightTons() {
+        // 1. Get the values from your input fields
+        const E22 = parseFloat(document.getElementById('rect-ppg').value); // Example: Weight
+        const E24 = parseFloat(document.getElementById('rect-tare').value); // Example: Length
+        const E14 = parseFloat(document.getElementById('rect-tot-gal').value); // Example: Factor
+
+        let result = "";
+
+        // 2. The IF(OR(...)) logic
+        // Checks if E22 or E24 are NaN (Not a Number) or empty
+        if (!E22 || !E24) {
+            result = ""; 
+        } else {
+            // 3. The Calculation: E22 * E14 / 2240
+            result = (E22 * E14) / 2240;
+        }
+
+        // 4. Output the result to your UI
+        document.getElementById('rect-w-tons').value = result.toFixed(2);
+
+    }
+fldWeightTons();
+
+
+    function totalWeightTons() {
+        // 1. Get the values from your input fields
+        const E22 = parseFloat(document.getElementById('rect-ppg').value); // Example: Weight
+        const E24 = parseFloat(document.getElementById('rect-tare').value); // Example: Length
+        const E14 = parseFloat(document.getElementById('rect-tot-gal').value); // Example: Factor
+        const E26 = parseFloat(document.getElementById('rect-w-tons').value);
+        let result1 = "";
+
+        // 2. The IF(OR(...)) logic
+        // Checks if E22 or E24 are NaN (Not a Number) or empty
+        if (!E22 || !E24) {
+            result1 = ""; 
+        } else {
+            // 3. The Calculation: E22 * E14 / 2240
+            result1 = (E26 + E24);
+        }
+
+        // 4. Output the result to your UI
+        document.getElementById('rect-w-total').value = result1.toFixed(2);
+
+    }
+totalWeightTons();
+
+    /********************************************/
+    function deckLoading() {
+        // Mapping Excel cells to JS variables
+        const E28 = parseFloat(document.getElementById('rect-w-total').value); // e.g., Tonnage
+        const E8  = parseFloat(document.getElementById('rect-l').value);  // e.g., Length/Width
+        const E10 = parseFloat(document.getElementById('rect-w').value); // e.g., Width/Length
+
+        let result2 = "";
+
+        // Excel: IF(E28="", "", ...)
+        // In JS, we check if E28 is a number and not empty
+        if (!isNaN(E28) && E28 !== 0) {
+            
+            // Excel Formula: E28 * 2240 / ((E8 * E10) / 144)
+            // We use parentheses to ensure the math follows the same order
+            result2 = (E28 * 2240) / ((E8 * E10) / 144);
+            
+        } else {
+            result2 = ""; 
+        }
+
+        // Output to your UI
+        document.getElementById('rect-deck').value = result2 !== "" ? result2.toFixed(2) : "";
+    }
+deckLoading();
+
+    //const fldWeightTons = (fldBbl * BBL_TO_GAL * ppg) / 2000;
+    //const totalWeightTons = fldWeightTons + tare;
+    //const deckLoading = (totalWeightTons * 2000) / ((l * w) / 144);
+
+    //document.getElementById('rect-w-tons').value = fldWeightTons.toFixed(2);
+    //document.getElementById('rect-w-total').value = totalWeightTons.toFixed(2);
+    //document.getElementById('rect-deck').value = Math.round(deckLoading);
+}
+/*******************************************************/// Keep this at the top of your script tag, outside the functions
+
+
+/**
+ * Calculates the Volume Factor (0 to 1) for a horizontal cylinder.
+ */
+function getHorizontalTankFactor(h, d) {
+    if (h <= 0) return 0;
+    if (h >= d) return 1;
+
+    const r = d / 2;
+    const term1 = Math.acos((r - h) / r);
+    const term2 = (r - h) * Math.sqrt(2 * r * h - Math.pow(h, 2));
+    const area = (Math.pow(r, 2) * term1) - term2;
+    const totalArea = Math.PI * Math.pow(r, 2);
+
+    return area / totalArea;
+}
+
+/**
+ * Main calculation function
+ */
+function calcCylFull() {
+    // 1. Get Inputs
+    const J8 = parseFloat(document.getElementById('cyl-d').value) || 0;     // Diameter (ins)
+    const J10 = parseFloat(document.getElementById('cyl-l').value) || 0;    // Length (ft)
+    const J16 = parseFloat(document.getElementById('cyl-f-lvl').value) || 0; // Fluid Level (ins)
+
+    if (J8 <= 0 || J10 <= 0) return; // Exit if no dimensions
+
+    // 2. Calculate Total Capacity (P6 logic)
+    // Formula: (PI * r^2 * L) converted to Barrels
+    const radiusFeet = J8 / 24; 
+    const P6 = (Math.PI * Math.pow(radiusFeet, 2) * J10) / 5.61459;
+
+    // 3. Calculate Fluid Volume using the Factor
+    const R12 = getHorizontalTankFactor(J16, J8);
+    
+    // P12: Round to 1 decimal place like your Excel Round(R12*P6, 1)
+    const P12 = Math.round((R12 * P6) * 10) / 10;
+
+    // 4. Logic for Outputs (J18 and J20)
+    const J18 = (J16 === 0) ? 0 : P12;
+    const J20 = J18 * BBL_TO_GAL;
+
+    // 5. Update the UI
+    // Total Tank Volume
+    document.getElementById('cyl-tot-bbl').value = P6.toFixed(2);
+    document.getElementById('cyl-tot-gal').value = (P6 * BBL_TO_GAL).toFixed(2);
+
+    // Current Fluid Volume
+    document.getElementById('cyl-f-bbl').value = J18.toFixed(1);
+    document.getElementById('cyl-f-gal').value = J20.toFixed(1);
+}
+
+
+
+
+    </script>
+
+
+</body>
+</html>

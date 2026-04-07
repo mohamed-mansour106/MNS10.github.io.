@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Meter Factor Calibration</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Advanced Meter Factor Calibration------------------->
+
+<section class="section" style="background: #101b2e; border: 1px solid #1abc9c; margin-top: 30px; border-radius: 12px; padding: 20px;">
+    <h2 class="section-title" style="color: #1abc9c; border-left: 4px solid #1abc9c; padding-left: 15px;">Advanced Meter Factor Calibration</h2>
+    
+    <div class="converter-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 25px;">
+        <div class="conv-field"><label>API @ 60°F</label><input type="number" id="mfc-api" value="52.4"></div>
+        <div class="conv-field"><label>Tank Temp (°F)</label><input type="number" id="mfc-ttemp" value="64"></div>
+        <div class="conv-field"><label>Initial Tank (cm)</label><input type="number" id="mfc-itank" value="0"></div>
+        <div class="conv-field"><label>Final Tank (cm)</label><input type="number" id="mfc-ftank" value="35"></div>
+        <div class="conv-field"><label>Tank Factor (bbl/cm)</label><input type="number" id="mfc-tfactor" value="0.4348"></div>
+        <div class="conv-field"><label>Meter Temp (°F)</label><input type="number" id="mfc-mtemp" value="96"></div>
+        <div class="conv-field"><label>Initial Meter (bbl)</label><input type="number" id="mfc-imeter" value="350"></div>
+        <div class="conv-field"><label>Final Meter (bbl)</label><input type="number" id="mfc-fmeter" value="370"></div>
+        <div class="conv-field"><label>Pre-test Mf</label><input type="number" id="mfc-premf" value="0.990"></div>
+    </div>
+
+    <div class="converter-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #1abc9c;">
+            <h4 style="color: #1abc9c;">Tank Analysis</h4>
+            <p style="font-size: 0.75em; color: #888;">$$K_{tank} = 1 - [(0.066 \cdot API + 2.75) \cdot (T_{tank} - 60) \cdot 10^{-4}]$$</p>
+            <div class="res-item">Tank Increase: <span id="out-ti">0.00</span> bbl</div>
+            <div class="res-item">K Factor (Tank): <span id="out-tkf">0.0000</span></div>
+            <div class="res-item" style="font-weight: bold; color: #1abc9c;">Volume Increase: <span id="out-tvi">0.00</span> bbl</div>
+        </div>
+
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db;">
+            <h4 style="color: #3498db;">Meter Analysis</h4>
+            <p style="font-size: 0.75em; color: #888;">$$K_{meter} = 1 - [(0.066 \cdot TF + 2.75) \cdot (T_{meter} - 60) \cdot 10^{-4}]$$</p>
+            <div class="res-item">Meter Increase: <span id="out-mi">0.00</span> bbl</div>
+            <div class="res-item">K Factor (Meter): <span id="out-mkf">0.0000</span></div>
+            <div class="res-item" style="font-weight: bold; color: #3498db;">Volume Increase: <span id="out-mvi">0.00</span> bbl</div>
+        </div>
+    </div>
+
+    <div class="converter-grid" style="margin-top: 20px;">
+        <div class="tool-card" style="background: #1a2a44; border-top: 4px solid #e67e22; text-align: center;">
+            <label style="color: #e67e22; display: block; margin-bottom: 5px;">CORRECTION FACTOR (Cf)</label>
+            <div id="out-cf" style="font-size: 1.8em; font-weight: bold;">0.000</div>
+        </div>
+        <div class="tool-card" style="background: #1a2a44; border-top: 4px solid #2ecc71; text-align: center;">
+            <label style="color: #2ecc71; display: block; margin-bottom: 5px;">METER FACTOR (Mf)</label>
+            <div id="out-mf" style="font-size: 1.8em; font-weight: bold;">0.000</div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .res-item { color: #fff; margin: 10px 0; border-bottom: 1px solid #1a2a44; padding-bottom: 5px; }
+    .res-item span { float: right; color: #eee; }
+</style>
+
+
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+function calculateMeterFactorCalibration() {
+    // Collect Inputs
+    const api = parseFloat(document.getElementById('mfc-api').value) || 0;
+    const tTemp = parseFloat(document.getElementById('mfc-ttemp').value) || 0;
+    const iTank = parseFloat(document.getElementById('mfc-itank').value) || 0;
+    const fTank = parseFloat(document.getElementById('mfc-ftank').value) || 0;
+    const tFactor = parseFloat(document.getElementById('mfc-tfactor').value) || 0;
+    const mTemp = parseFloat(document.getElementById('mfc-mtemp').value) || 0;
+    const iMeter = parseFloat(document.getElementById('mfc-imeter').value) || 0;
+    const fMeter = parseFloat(document.getElementById('mfc-fmeter').value) || 0;
+    const preMf = parseFloat(document.getElementById('mfc-premf').value) || 1;
+
+    // 1. Tank Increase (bbls)
+    const tankIncrease = (fTank - iTank) * tFactor;
+
+    // 2. K Factor (Tank)
+    const kFactorTank = 1 - ((0.066 * api) + 2.75) * (tTemp - 60) * Math.pow(10, -4);
+
+    // 3. Tank Volume Increase
+    const tankVolIncrease = tankIncrease * kFactorTank;
+
+    // 4. Meter Increase (bbls)
+    const meterIncrease = fMeter - iMeter;
+
+    // 5. K Factor (Meter) - Using Tank Factor as the API equivalent per your formula
+    const kFactorMeter = 1 - ((0.066 * tFactor) + 2.75) * (mTemp - 60) * Math.pow(10, -4);
+
+    // 6. Meter Volume Increase
+    const meterVolIncrease = meterIncrease * kFactorMeter;
+
+    // 7. Correction Factor (Cf)
+    const cf = meterVolIncrease !== 0 ? (tankVolIncrease / meterVolIncrease) : 0;
+
+    // 8. Wf (Cf / Pre-test Mf)
+    const wf = preMf !== 0 ? (cf / preMf) : 0;
+
+    // 9. Final Mf (Cf / Wf)
+    const finalMf = wf !== 0 ? (cf / wf) : 0;
+
+    // Update UI
+    document.getElementById('out-ti').innerText = tankIncrease.toFixed(2);
+    document.getElementById('out-tkf').innerText = kFactorTank.toFixed(4);
+    document.getElementById('out-tvi').innerText = tankVolIncrease.toFixed(2);
+    
+    document.getElementById('out-mi').innerText = meterIncrease.toFixed(2);
+    document.getElementById('out-mkf').innerText = kFactorMeter.toFixed(4);
+    document.getElementById('out-mvi').innerText = meterVolIncrease.toFixed(2);
+    
+    document.getElementById('out-cf').innerText = cf.toFixed(3);
+    document.getElementById('out-mf').innerText = finalMf.toFixed(3);
+}
+
+// Add event listeners to all inputs
+const inputIds = [
+    'mfc-api', 'mfc-ttemp', 'mfc-itank', 'mfc-ftank', 
+    'mfc-tfactor', 'mfc-mtemp', 'mfc-imeter', 'mfc-fmeter', 'mfc-premf'
+];
+inputIds.forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateMeterFactorCalibration);
+});
+
+// Initial run
+window.addEventListener('DOMContentLoaded', calculateMeterFactorCalibration);
+
+
+
+    </script>
+
+
+
+
+
+
+<!----------------------
+the inputs should be for the following :
+- API @ 60 F
+- TANK TEMPERATURE F
+- INITIAL TANK (reading cm )
+- FINAL TANK  (reading cm )
+- METER SIZE
+- TANK FACTOR
+- METER TEMPERATURE F
+- INITIAL METER (reading bbls )
+- FINAL METER  (reading bbls )
+-  * Pre-test Mf
+
+
+
+the calculations and outputs should be for the following :
+-  TANK INCREASE ( bbls ) = (FINAL TANK  (reading cm ) - INITIAL TANK (reading cm )) * TANK FACTOR
+
+- K FACTOR =1-((0.066 * (API @ 60 F) )+2.75)* ( (TANK TEMPERATURE F) -60)*10^-4
+
+
+- TANK VOLUME INCREASE = (TANK INCREASE ( bbls ))* K FACTOR
+
+
+- METER INCREASE (bbls) = (FINAL METER  (reading bbls )) - (INITIAL METER (reading bbls ))
+
+
+- K FACTOR = =1-((0.066* (TANK FACTOR) ) + 2.75 ) * ( (METER TEMPERATURE F) -60)*10^-4
+
+
+- METER VOLUME INCREASE = (METER INCREASE (bbls)) * (K FACTOR)
+
+
+- CORRECTION FACTOR (Cf) = (TANK VOLUME INCREASE) / (METER VOLUME INCREASE) 
+
+
+- Wf ( Cf / Pre-test Mf ) = SUM( (CORRECTION FACTOR (Cf)) /(Pre-test Mf) )
+
+
+
+- Mf ( Cf / Wf ) = SUM( (CORRECTION FACTOR (Cf)) / (Wf ( Cf / Pre-test Mf )) )
+
+
+
+
+
+
+
+
+
+
+-->
+
+
+
+
+
+
+</body>
+</html>

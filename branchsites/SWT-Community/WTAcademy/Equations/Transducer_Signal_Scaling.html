@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transducer Signal Scaling</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Transducer Signal Scaling------------------->
+
+
+               
+<section class="section" style="background: #101b2e; border: 1px solid #9b59b6; margin-top: 30px; border-radius: 12px; padding: 20px;">
+    <h2 class="section-title" style="color: #9b59b6; border-left: 4px solid #9b59b6; padding-left: 15px;">Transducer Signal Scaling</h2>
+    
+    <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; color: #fff; margin-top: 15px; font-size: 0.9em;">
+            <thead>
+                <tr style="background: #1a2a44; text-align: left;">
+                    <th style="padding: 10px; border: 1px solid #34495e;">Signal</th>
+                    <th style="padding: 10px; border: 1px solid #34495e;">Transducer Range</th>
+                    <th style="padding: 10px; border: 1px solid #34495e;">Raw Volt</th>
+                    <th style="padding: 10px; border: 1px solid #34495e;">Zero Val</th>
+                    <th style="padding: 10px; border: 1px solid #34495e;">Max Val</th>
+                    <th style="padding: 10px; border: 1px solid #34495e;">Calculated Reading</th>
+                </tr>
+            </thead>
+            <tbody id="transducer-body">
+                </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+   <script>
+// Complete Sensor List from your Excel
+const channels = [
+    { name: 'whp', range: 10000, volt: 14, zero: 1.0, max: 5.0 },
+    { name: 'wht', range: 400, volt: 0, zero: 1.0, max: 5.0 },
+    { name: 'csg', range: 5000, volt: 22, zero: 1.0, max: 5.0 },
+    { name: 'dsp', range: 5000, volt: 0, zero: 1.0, max: 5.0 },
+    { name: 'dst', range: 400, volt: 0, zero: 1.0, max: 5.0 },
+    { name: 'static', range: 2000, volt: 0, zero: 1.0, max: 5.0 },
+    { name: 'diff', range: 400, volt: 0, zero: 1.0, max: 5.0 },
+    { name: 'oiltemp', range: 400, volt: 0, zero: 1.0, max: 5.0 },
+    { name: 'gastemp', range: 400, volt: 0, zero: 1.0, max: 5.0 }
+];
+
+function renderTransducerTable() {
+    const body = document.getElementById('transducer-body');
+    body.innerHTML = channels.map((ch, index) => `
+        <tr style="border-bottom: 1px solid #2c3e50;">
+            <td style="padding: 8px; color: #f1c40f; font-weight: bold;">${ch.name.toUpperCase()}</td>
+            <td><input type="number" value="${ch.range}" oninput="updateVal(${index}, 'range', this.value)" style="width: 70px; background: transparent; color: #fff; border: none; padding: 5px;"></td>
+            <td><input type="number" value="${ch.volt}" oninput="updateVal(${index}, 'volt', this.value)" style="width: 70px; background: transparent; color: #3498db; border: none; padding: 5px;"></td>
+            <td><input type="number" value="${ch.zero}" oninput="updateVal(${index}, 'zero', this.value)" style="width: 70px; background: transparent; color: #fff; border: none; padding: 5px;"></td>
+            <td><input type="number" value="${ch.max}" oninput="updateVal(${index}, 'max', this.value)" style="width: 70px; background: transparent; color: #fff; border: none; padding: 5px;"></td>
+            <td style="padding: 8px; font-weight: bold; color: #2ecc71;" id="res-val-${index}">0.0</td>
+        </tr>
+    `).join('');
+    calculateAll();
+}
+
+function updateVal(index, field, value) {
+    channels[index][field] = parseFloat(value) || 0;
+    calculateAll();
+}
+
+function calculateAll() {
+    channels.forEach((ch, index) => {
+        const span = ch.max - ch.zero;
+        // Formula: ((Volt - Zero) * Range) / Span
+        let result = 0;
+        if (span !== 0) {
+            result = ((ch.volt - ch.zero) * ch.range) / span;
+        }
+        
+        const display = document.getElementById(`res-val-${index}`);
+        display.innerText = result.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1});
+    });
+}
+
+window.addEventListener('DOMContentLoaded', renderTransducerTable);
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimated Flow Returns (Tank Readings)</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Estimated Flow Returns (Tank Readings)------------------->
+
+
+           <section class="section" style="background: #101b2e; border: 1px solid #3498db; margin-top: 30px; border-radius: 12px; padding: 20px;">
+                <h2 class="section-title" style="color: #3498db; border-left: 4px solid #3498db; padding-left: 15px;">Estimated Flow Returns (Tank Readings)</h2>
+                
+                <div class="converter-grid" style="margin-bottom: 20px;">
+                    <div class="conv-field">
+                        <label>Initial Reading (bbls)</label>
+                        <input type="number" id="tank-initial-vol" value="0">
+                    </div>
+                    <div class="conv-field">
+                        <label>Final Height (cm)</label>
+                        <input type="number" id="tank-final-cm" value="3.4" step="0.1">
+                    </div>
+                    <div class="conv-field">
+                        <label>Start Time</label>
+                        <input type="time" id="tank-start-time" value="10:00">
+                    </div>
+                    <div class="conv-field">
+                        <label>End Time</label>
+                        <input type="time" id="tank-end-time" value="11:00">
+                    </div>
+                </div>
+
+                <div style="background: rgba(52, 152, 219, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed #3498db;">
+                    <label style="color: #3498db; font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">Tank Calibration Constant</label>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                        <span style="color: #aaa; font-size: 0.9rem;">1 cm = </span>
+                        <input type="number" id="tank-factor" value="0.4348" step="0.0001" style="width: 120px; background: #1a2a44; color: #fff; border: 1px solid #3498db; padding: 5px 10px; border-radius: 4px;">
+                        <span style="color: #aaa; font-size: 0.9rem;">bbls</span>
+                    </div>
+                </div>
+
+                <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 20px;">
+                    <div class="converter-grid">
+                        <div class="conv-field">
+                            <label style="color: #fff;">Tank Rate (bpd)</label>
+                            <input type="text" id="res-tank-bpd" readonly style="text-align: center; background: #1a2a44; color: #3498db; font-size: 1.5rem; font-weight: bold; border: 2px solid #3498db; padding: 10px; border-radius: 8px;">
+                        </div>
+                        <div class="conv-field">
+                            <label style="color: #fff;">Tank Rate (bph)</label>
+                            <input type="text" id="res-tank-bph" readonly style="text-align: center; background: #1a2a44; color: #f1c40f; font-size: 1.5rem; font-weight: bold; border: 2px solid #f1c40f; padding: 10px; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+function calculateTankFlow() {
+    // 1. Inputs & Dynamic Constant
+    const initialBbls = parseFloat(document.getElementById('tank-initial-vol').value) || 0;
+    const finalCm = parseFloat(document.getElementById('tank-final-cm').value) || 0;
+    const tankConstant = parseFloat(document.getElementById('tank-factor').value) || 0.4348;
+    
+    // 2. Volume Calculation
+    const finalBbls = (finalCm - initialBbls) * tankConstant;
+    const deltaVolume = finalBbls - initialBbls;
+
+    // 3. Time Difference Logic
+    const startTime = document.getElementById('tank-start-time').value;
+    const endTime = document.getElementById('tank-end-time').value;
+
+    if (!startTime || !endTime) return;
+
+    const start = new Date(`2026-01-01T${startTime}:00`);
+    let end = new Date(`2026-01-01T${endTime}:00`);
+
+    if (end < start) end.setDate(end.getDate() + 1); // Handle midnight crossover
+
+    const diffMinutes = (end - start) / (1000 * 60);
+
+    if (diffMinutes <= 0) {
+        document.getElementById('res-tank-bpd').value = "0.00";
+        document.getElementById('res-tank-bph').value = "0.00";
+        return;
+    }
+
+    // 4. Rate Calculations
+    const rateBpd = (deltaVolume / diffMinutes) * 1440;
+    const rateBph = rateBpd / 24;
+
+    // 5. Update UI
+    document.getElementById('res-tank-bpd').value = rateBpd.toFixed(2);
+    document.getElementById('res-tank-bph').value = rateBph.toFixed(2);
+}
+
+// Add 'tank-factor' to the listener list
+['tank-initial-vol', 'tank-final-cm', 'tank-start-time', 'tank-end-time', 'tank-factor'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateTankFlow);
+});
+
+// Run initial calculation
+calculateTankFlow();
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Meter Operating Ranges</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      <!------------Liquid Meter Operating Ranges------------------->
+
+
+               
+
+ <section class="section" style="background: #101b2e; border: 1px solid #f39c12; margin-top: 30px; border-radius: 12px;">
+    <h2 class="section-title" style="color: #f39c12; border-left: 4px solid #f39c12; padding-left: 15px;">Liquid Meter Operating Ranges</h2>
+    <p style="color: var(--muted); margin-bottom: 20px;">Select a meter model and input your current flow to check operating safety.</p>
+
+    <div class="converter-grid" style="margin-bottom: 20px;">
+        <div class="conv-field">
+            <label>Meter Type / Model</label>
+            <select id="meter-select" onchange="updateMeterInfo()" style="background: #1a2a44; color: #fff; border: 1px solid #f39c12; padding: 10px; width: 100%; border-radius: 4px;">
+                <optgroup label="Floco">
+                    <option value="floco-1">Floco F2500 - 1"</option>
+                    <option value="floco-2">Floco F2500 - 2"</option>
+                    <option value="floco-3">Floco F2500 - 3"</option>
+                    <option value="floco-382">Floco F382 - 2"</option>
+                    <option value="floco-383">Floco F383 - 3"</option>
+                </optgroup>
+                <optgroup label="Rotron">
+                    <option value="rotron-20">Rotron xxxx-20 (2")</option>
+                    <option value="rotron-30">Rotron xxxx-30 (3")</option>
+                    <option value="rotron-40">Rotron xxxx-40 (4")</option>
+                </optgroup>
+                <optgroup label="Halliburton">
+                    <option value="hal-15">Halliburton 1.5"</option>
+                    <option value="hal-20">Halliburton 2"</option>
+                    <option value="hal-30">Halliburton 3"</option>
+                    <option value="hal-40">Halliburton 4"</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="conv-field">
+            <label id="flow-input-label">Current Flow (BPD)</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="number" id="current-flow-check" oninput="updateMeterInfo()" placeholder="0.0" style="border: 1px solid #f39c12; flex-grow: 1;">
+                <div style="display: flex; flex-direction: column; font-size: 0.7em; color: #aaa;">
+                    <label><input type="radio" name="unit-toggle" value="BPD" checked onchange="toggleUnits()"> BPD</label>
+                    <label><input type="radio" name="unit-toggle" value="GPM" onchange="toggleUnits()"> GPM</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="converter-grid">
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #27ae60; padding: 15px;">
+            <h4 style="color: #27ae60;">Min/Max GPM</h4>
+            <div id="meter-range-gpm" style="font-size: 1.2em; color: #fff; font-weight: bold; margin-top: 10px;">-- / --</div>
+        </div>
+
+        <div class="tool-card" style="background: #0d1624; border-top: 4px solid #2980b9; padding: 15px;">
+            <h4 style="color: #2980b9;">Min/Max BPD</h4>
+            <div id="meter-range-bpd" style="font-size: 1.2em; color: #fff; font-weight: bold; margin-top: 10px;">-- / --</div>
+        </div>
+
+        <div class="tool-card" id="meter-status-card" style="background: #0d1624; border-top: 4px solid #95a5a6; padding: 15px;">
+            <h4 id="status-title" style="color: #fff;">Status</h4>
+            <div id="meter-status-text" style="font-size: 1.1em; color: #95a5a6; font-weight: bold; margin-top: 10px;">Waiting...</div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+// --- 5. Meter Range Logic ---
+const meterData = {
+    'floco-1':   { minGpm: 6,   maxGpm: 60,   minBpd: 206,   maxBpd: 2057 },
+    'floco-2':   { minGpm: 6,   maxGpm: 60,   minBpd: 206,   maxBpd: 2057 },
+    'floco-3':   { minGpm: 9,   maxGpm: 90,   minBpd: 308,   maxBpd: 3086 },
+    'floco-382': { minGpm: 30,  maxGpm: 250,  minBpd: 1029,  maxBpd: 8571 },
+    'floco-383': { minGpm: 30,  maxGpm: 250,  minBpd: 1029,  maxBpd: 8571 },
+    'rotron-20': { minGpm: 25,  maxGpm: 250,  minBpd: 857,   maxBpd: 8571 },
+    'rotron-30': { minGpm: 60,  maxGpm: 650,  minBpd: 2057,  maxBpd: 22286 },
+    'rotron-40': { minGpm: 200, maxGpm: 1200, minBpd: 6857,  maxBpd: 41113 },
+    'hal-15':    { minGpm: 15,  maxGpm: 180,  minBpd: 500,   maxBpd: 6100 },
+    'hal-20':    { minGpm: 40,  maxGpm: 400,  minBpd: 1300,  maxBpd: 13000 },
+    'hal-30':    { minGpm: 60,  maxGpm: 600,  minBpd: 2100,  maxBpd: 21000 },
+    'hal-40':    { minGpm: 100, maxGpm: 1200, minBpd: 3400,  maxBpd: 41000 }
+};
+
+function toggleUnits() {
+    const unit = document.querySelector('input[name="unit-toggle"]:checked').value;
+    document.getElementById('flow-input-label').innerText = `Current Flow (${unit})`;
+    updateMeterInfo();
+}
+
+function updateMeterInfo() {
+    const meterKey = document.getElementById('meter-select').value;
+    const inputVal = parseFloat(document.getElementById('current-flow-check').value) || 0;
+    const unit = document.querySelector('input[name="unit-toggle"]:checked').value;
+    const data = meterData[meterKey];
+
+    // Convert input to BPD for internal comparison logic
+    let flowInBpd = (unit === "GPM") ? inputVal * 34.2857 : inputVal;
+
+    // Update Range Displays
+    document.getElementById('meter-range-gpm').innerText = `${data.minGpm} - ${data.maxGpm}`;
+    document.getElementById('meter-range-bpd').innerText = `${data.minBpd} - ${data.maxBpd}`;
+
+    const statusCard = document.getElementById('meter-status-card');
+    const statusText = document.getElementById('meter-status-text');
+
+    if (inputVal === 0) {
+        statusText.innerText = "Enter Flow Rate";
+        statusText.style.color = "#95a5a6";
+        statusCard.style.borderTopColor = "#95a5a6";
+    } else if (flowInBpd < data.minBpd) {
+        statusText.innerText = "⚠️ UNDER-RANGED";
+        statusText.style.color = "#f39c12";
+        statusCard.style.borderTopColor = "#f39c12";
+    } else if (flowInBpd > data.maxBpd) {
+        statusText.innerText = "🚨 OVER-RANGED";
+        statusText.style.color = "#e74c3c";
+        statusCard.style.borderTopColor = "#e74c3c";
+    } else {
+        statusText.innerText = "✅ OPTIMAL RANGE";
+        statusText.style.color = "#2ecc71";
+        statusCard.style.borderTopColor = "#2ecc71";
+    }
+}
+
+
+// Listeners
+document.getElementById('meter-select').addEventListener('change', updateMeterInfo);
+document.getElementById('current-flow-check').addEventListener('input', updateMeterInfo);
+
+// Initialize
+updateMeterInfo();
+
+toggleUnits();
+
+    </script>
+
+
+</body>
+</html>

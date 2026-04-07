@@ -89,7 +89,7 @@
 
 
 
-      <!------------Hydrostatic Pressure Calculator------------------->
+      <!------------Oil Flow Rate Estimation (Fixed Choke)------------------->
 
 
                
@@ -124,6 +124,8 @@
                         </div>
                     </div>
                 </section>
+
+                
 
 
 
@@ -234,6 +236,19 @@ function calculateOilFlow() {
     const rosRate = ((p + 14.73) * Math.pow(c, 2)) / (17.4 * Math.pow(g, 0.5));
     document.getElementById('o-rate-ros').value = Math.round(rosRate);
 
+    // 3. Dynamic LaTeX Update
+    const gilbertElement = document.getElementById('gilbert-formula');
+    const rosElement = document.getElementById('ros-formula');
+
+    gilbertElement.innerHTML = `$$Q_o = \\frac{ ${p} \\times ${c}^{1.89} }{ 435 \\times (\\frac{ ${g} }{1000})^{0.546} }$$`;
+    rosElement.innerHTML = `$$Q_o = \\frac{ (${p} + 14.73) \\times ${c}^{2} }{ 17.4 \\times ${g}^{0.5} }$$`;
+
+    // 4. Trigger MathJax Re-render
+    if (window.MathJax) {
+        MathJax.typesetPromise([gilbertElement, rosElement]);
+    }
+
+
     // Update Live UI Equations
     document.getElementById('gilbert-formula').innerHTML = 
         `$$Q_o = \frac{ ${p} \times ${c}^{1.89} }{ 435 \times (\frac{ ${g} }{1000})^{0.546} } = ${Math.round(gilbertRate)} \text{ bpd}$$`;
@@ -242,8 +257,8 @@ function calculateOilFlow() {
         `$$Q_o = \frac{ (${p} + 14.73) \times ${c}^{2} }{ 17.4 \times ${g}^{0.5} } = ${Math.round(rosRate)} \text{ bpd}$$`;
 }
 
-// --- INITIALIZATION ---
-document.addEventListener('DOMContentLoaded', () => {
+    // --- INITIALIZATION ---
+    document.addEventListener('DOMContentLoaded', () => {
     // ... existing listeners ...
 
     const oilInputs = ['o-press', 'o-choke', 'o-gor'];
@@ -253,6 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+    
 
     </script>
 

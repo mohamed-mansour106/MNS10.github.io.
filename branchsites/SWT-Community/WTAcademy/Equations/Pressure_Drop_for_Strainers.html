@@ -195,6 +195,57 @@
             </tbody>
         </table>
     </div>
+
+    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 20px; margin-top: 10px;">
+        <div style="font-size: 1rem; color: #fff; text-align: center; margin-bottom: 15px;">
+            <div style="margin-bottom: 10px;">
+                $$V = \frac{Q_{GPM} \times 0.4085}{ID_{line}^2}$$
+            </div>
+            <div style="margin-bottom: 10px;">
+                $$\Delta P_{body} = \frac{V^2 \times SG}{148.1} \times K_{tot}$$
+            </div>
+            <div>
+                $$\Delta P_{total} = \Delta P_{basket} + \Delta P_{body}$$
+            </div>
+        </div>
+
+        <details style="color: #aaa; font-size: 0.85em; cursor: pointer; border-top: 1px solid #333; padding-top: 10px;">
+            <summary style="color: #3498db; font-weight: bold;">Show Fluid Dynamics Logic</summary>
+            <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 1px solid #222;">
+                    <th style="padding: 5px;">Symbol</th>
+                    <th style="padding: 5px;">Definition</th>
+                    <th style="padding: 5px;">Unit</th>
+                </tr>
+                <tr>
+                    <td>$V$</td>
+                    <td>Fluid Velocity</td>
+                    <td>ft/sec</td>
+                </tr>
+                <tr>
+                    <td>$K_{tot}$</td>
+                    <td>Resistance Coefficient (Expansion + Contraction)</td>
+                    <td>Constant</td>
+                </tr>
+                <tr>
+                    <td>$J$ Factor</td>
+                    <td>Mesh Correction Factor</td>
+                    <td>Dimensionless</td>
+                </tr>
+                <tr>
+                    <td>$SG$</td>
+                    <td>Specific Gravity</td>
+                    <td>Water = 1.0</td>
+                </tr>
+                <tr>
+                    <td>$148.1$</td>
+                    <td>Conversion constant for velocity head to PSI</td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </details>
+    </div>
+
 </section>
 
 <script>

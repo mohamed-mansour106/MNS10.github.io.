@@ -184,7 +184,7 @@
 
 
 
-      <!------------Choke Nipple Gas Rate Calculation------------------->
+      <!------------Synflex Swaged Couplings------------------->
 
 
                
@@ -232,6 +232,44 @@
                             <span class="result-value highlight" id="pusherNum">-</span>
                         </div>
                     </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #e74c3c; padding: 20px; margin-top: 10px;">
+                        <div style="font-size: 1rem; color: #fff; text-align: center; margin-bottom: 15px;">
+                            <div style="margin-bottom: 10px;">
+                                <span style="color: #e74c3c; font-weight: bold;">Selection Logic:</span>
+                            </div>
+                            <div style="font-size: 0.9em; color: #aaa;">
+                                $$Part_{Selection} = f(\text{Series Type}, \text{Hose I.D.})$$
+                            </div>
+                        </div>
+
+                        <details style="color: #aaa; font-size: 0.85em; cursor: pointer; border-top: 1px solid #333; padding-top: 10px;">
+                            <summary style="color: #e74c3c; font-weight: bold;">Show Component Definitions (تعريف المكونات)</summary>
+                            <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
+                                <tr style="border-bottom: 1px solid #222;">
+                                    <th style="padding: 5px;">Component</th>
+                                    <th style="padding: 5px;">Role / Definition</th>
+                                </tr>
+                                <tr>
+                                    <td style="color: #fff; font-weight: bold;">Coupling Part N°</td>
+                                    <td>The specific metal fitting to be swaged onto the hose.</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #fff; font-weight: bold;">Die Part N°</td>
+                                    <td>The specialized tool (mold) used to compress the coupling.</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #fff; font-weight: bold;">Pusher Part N°</td>
+                                    <td>The tool used to force the coupling through the die.</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #fff; font-weight: bold;">Hose I.D.</td>
+                                    <td>Inner Diameter of the hose, determining the flow capacity.</td>
+                                </tr>
+                            </table>
+                        </details>
+                    </div>
+
                 </div>
 
 

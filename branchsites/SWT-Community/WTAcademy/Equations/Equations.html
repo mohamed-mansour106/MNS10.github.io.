@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Well Testing Equations And Engineering Tools</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../Academy.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <main class="container main-content" style="width: 95%;">
+      <header class="hero1-card">
+        <h1 style="margin:0 0 20px 0">Engineering Live Dashboard</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+      <section class="section library">
+        <h2 class="section-title">Digital Equations Library</h2>
+        <p class="section-subtitle">Curated collection of well testing engineering resources.</p>
+        <div class="search">
+          🔍
+          <input id="library-search" placeholder="Search by title or author..." />
+        </div>
+        <div class="pill-row" id="library-filters">
+          <button class="pill active" data-filter="all">All</button>
+          <button class="pill" data-filter="conversion">conversion</button>
+          <button class="pill" data-filter="Calculations">Calculations</button>
+          <button class="pill" data-filter="Estimation">Estimation</button>
+          <button class="pill" data-filter="Correction">Correction</button>
+        </div>
+
+        <div id="library-list">
+          <a href="Pressure.html">
+            <div class="library-card" data-type="conversion" data-title="Pressire psi bar Kpa atms inH2O ftH2O inHg mmHg Kgs/cm²" data-author="R.C. Earlougher Jr.">
+              <span>Conversions</span>
+              <h4>Pressure Conversions</h4>
+              <p>PSIG , BAR , KPA, ATM, INH<SUB>2</SUB>O</p>
+              <p>Convert between Pressure Units.</p>
+            </div>
+          </a>
+          
+          <a href="Volume.html">
+            <div class="library-card" data-type="conversion" data-title="Volume litres Gallons Barrels ins^3 ft^3 cm^3 m^3" data-author="Roland H. Horne">
+              <span>Conversion</span>
+              <h4>Volume Conversions</h4>
+              <p>Litres, US Gallons, Barrels</p>
+              <p>Convert between Volume Units.</p>
+            </div>
+          </a>
+          
+          <a href="Temperature.html">
+            <div class="library-card" data-type="conversion" data-title="Temperature Fahrenheit (°F), Celsius (°C), Kelvin (K), Rankine (°R)" data-author="Roland H. Horne">
+              <span>Conversion</span>
+              <h4>Temperature Conversions</h4>
+              <p>Fahrenheit (°F), Celsius (°C), Kelvin (K), Rankine (°R)</p>
+              <p>Convert between Temperature Units.</p>
+            </div>
+          </a>
+          
+          <a href="Length.html">
+            <div class="library-card" data-type="conversion" data-title="Length Inches (in), Feet (ft), Yards (yd), Miles (mi), Millimeters (mm), Centimeters (cm), Meters (m), Kilometers (km)" data-author="Roland H. Horne">
+              <span>Conversion</span>
+              <h4>Length Conversions</h4>
+              <p>Inches (in), Feet (ft), Yards (yd), Miles (mi), Millimeters (mm), Centimeters (cm), Meters (m), Kilometers (km)</p>
+              <p>Convert between Length Units.</p>
+            </div>
+          </a>
+          
+          <a href="Rates.html">
+            <div class="library-card" data-type="conversion" data-title="Rates bbl/day, bbl/min, gall/min (US), m³/day, m³/min, ltr/min" data-author="Roland H. Horne">
+              <span>Conversion</span>
+              <h4>Rates Conversions</h4>
+              <p>bbl/day, bbl/min, gall/min (US), m³/day, m³/min, ltr/min</p>
+              <p>Convert between Rates Units.</p>
+            </div>
+          </a>
+          
+          <a href="Density.html">
+            <div class="library-card" data-type="conversion" data-title="Density °API, S.G. , ppg (lb/gal) , lb/ft³ , g/cc (kg/L) , psi/ft (Grad) , bar/m" data-author="Roland H. Horne">
+              <span>Conversion</span>
+              <h4>Density Conversions</h4>
+              <p>°API, S.G. , ppg (lb/gal) , lb/ft³ , g/cc (kg/L) , psi/ft (Grad) , bar/m</p>
+              <p>Convert between Density Units.</p>
+            </div>
+          </a>
+
+          <a href="Hydrostatic_Pressure_Calculator.html">          
+            <div class="library-card" data-type="Calculations" data-title="Hydrostatic Pressure Calculator Phyd Gradient Depth Calculate bottom-hole pressure based on fluid density and depth." data-author="Various">
+              <span>Calculations</span>
+              <h4>Hydrostatic Pressure Calculator</h4>
+              <p>P<sub>hyd</sub> = Gradient X Depth</p>
+              <p>Calculate bottom-hole pressure based on fluid density and depth.</p>
+            </div>
+          </a>
+
+          <a href="Gas_Flow_Rate_Estimation.html">          
+            <div class="library-card" data-type="Estimation" data-title="Gas Flow Rate Estimation Critical Flow" data-author="Various">
+              <span>Estimation</span>
+              <h4>Gas Flow Rate Estimation</h4>
+              <p>Gas Flow Rate Equation</p>
+              <p>Estimation through a fixed choke when Critical Flow exists (Downstream P &lt; 0.5 × Upstream P)..</p>
+            </div>
+          </a>
+
+          <a href="Oil_Flow_Rate_Estimation.html">          
+            <div class="library-card" data-type="Estimation" data-title="Oil Flow Rate Estimation using Gilbert and Ros multi-phase flow equations." data-author="Various">
+              <span>Estimation</span>
+              <h4>Oil Flow Rate Estimation</h4>
+              <p>Gilbert and Ros multi-phase flow equations</p>
+              <p>Estimation using Gilbert and Ros multi-phase flow equations.</p>
+            </div>
+          </a>
+
+          <a href="Choke_Nipple_Gas_Rate_Calculation.html">          
+            <div class="library-card" data-type="Calculations" data-title="Choke Nipple Gas Rate Calculation" data-author="Various">
+              <span>Calculations</span>
+              <h4>Choke Nipple Gas Rate Calculation</h4>
+              <p id="gas-formula-display" >$$Q_{mscfd} = \frac{Coefficient \times P_{abs}}{\sqrt{G \times T_{abs}}}$$</p>
+              <p>Critical flow calculation for gas wells based on choke size and upstream conditions.</p>
+            </div>
+          </a>
+
+          <a href="GOR2.html">          
+            <div class="library-card" data-type="Calculations" data-title="Choke Nipple Gas Rate Calculation" data-author="Various">
+              <span>Calculations</span>
+              <h4>Solution GOR2 Estimation ($R_s$)</h4>
+              <p id="gas-formula-display" >Standing and Vasquez & Beggs correlations</p>
+              <p>Estimating gas solubility using Standing and Vasquez & Beggs correlations.</p>
+            </div>
+          </a>
+
+          <a href="Estimate_of_Shrinkage_Factor.html">          
+            <div class="library-card" data-type="Estimation" data-title="Estimate of Shrinkage Factor" data-author="Various">
+              <span>Estimation</span>
+              <h4>Estimate of Shrinkage Factor</h4>
+              <p id="gas-formula-display" >Vazquez-Beggs Correlation</p>
+              <p>Estimate of Shrinkage Factor.</p>
+            </div>
+          </a>
+
+          <a href="Desander_Velocity_Estimation.html">          
+            <div class="library-card" data-type="Estimation" data-title="Velocity Desander Velocity & Pressure Conversion Formulas" data-author="Various">
+              <span>Estimation</span>
+              <h4>Desander Velocity & Pressure</h4>
+              <p id="gas-formula-display" >Velocity & Conversion Formulas</p>
+              <p>Velocity & Conversion Formulas.</p>
+            </div>
+          </a>
+
+          <a href="Flange_Bolt_Torque.html">          
+            <div class="library-card" data-type="Calculations" data-title="Recommended Flange Bolt Torque" data-author="Various">
+              <span>Calculations</span>
+              <h4>Recommended Flange Bolt Torque</h4>
+              <p id="gas-formula-display" >Torque Equation</p>
+              <p>Calculate required torque based on stud diameter, pitch, and desired bolt stress.</p>
+            </div>
+          </a>
+
+          <a href="Flow_Meter_Performance.html">          
+            <div class="library-card" data-type="Estimation" data-title="Flow Meter Performance" data-author="Various">
+              <span>Estimation</span>
+              <h4>Flow Meter Performance</h4>
+              <p id="gas-formula-display" >Flow Meter Performance</p>
+              <p>Flow Meter Performance.</p>
+            </div>
+          </a>
+
+          <a href="Wire_Cable_Length_for_Tie_Back.html">          
+            <div class="library-card" data-type="Calculations" data-title="Wire Cable Length for Tie Back" data-author="Various">
+              <span>Calculations</span>
+              <h4>Wire Cable Length (Tie Back)</h4>
+              <p id="gas-formula-display" >Law of Cosines</p>
+              <p>Wire Cable Length (Tie Back).</p>
+            </div>
+          </a>
+
+          <a href="Mud_Pump_Performance.html">          
+            <div class="library-card" data-type="Calculations" data-title="Mud Pump Performance" data-author="Various">
+              <span>Calculations</span>
+              <h4>Mud Pump Performance</h4>
+              <p id="gas-formula-display" >Mud Pump Performance</p>
+              <p>Mud Pump Performance.</p>
+            </div>
+          </a>
+
+          <a href="Shrinkage_Factor_estimation.html">          
+            <div class="library-card" data-type="Estimation" data-title="Shrinkage Factor estimation (@ 60°F) Calculated via Katz Chart Linear Interpolation [Source: Halliburton]" data-author="Various">
+              <span>Estimation</span>
+              <h4>Shrinkage Factor estimation (@ 60°F)</h4>
+              <p id="gas-formula-display" >Shrinkage Factor estimation</p>
+              <p>Calculated via Katz Chart Linear Interpolation [Source: Halliburton].</p>
+            </div>
+          </a>
+
+          <a href="Shrinkage_Factor_estimation.html">          
+            <div class="library-card" data-type="Calculations" data-title="Refractometer Analysis" data-author="Various">
+              <span>Calculations</span>
+              <h4>Refractometer Analysis</h4>
+              <p id="gas-formula-display" >Refractometer Analysis</p>
+              <p>Refractometer Analysis.</p>
+            </div>
+          </a>
+
+          <a href="Bubble_Point_for_Oil.html">          
+            <div class="library-card" data-type="Calculations" data-title="Bubble Point for Oil" data-author="Various">
+              <span>Calculations</span>
+              <h4>Bubble Point for Oil</h4>
+              <p id="gas-formula-display" >Bubble Point for Oil</p>
+              <p>Bubble Point for Oil.</p>
+            </div>
+          </a>
+
+          <a href="Gas_Estimate_for_Aramco_Khuff_Wells.html">          
+            <div class="library-card" data-type="Estimation" data-title="Gas Estimate for Aramco Khuff Wells" data-author="Various">
+              <span>Estimation</span>
+              <h4>Gas Estimate for Aramco Khuff Wells</h4>
+              <p id="gas-formula-display" >Gas Estimate for Aramco Khuff Wells</p>
+              <p>Empirical Flow Equation.</p>
+            </div>
+          </a>
+
+          <a href="Estimated_Tank_Flow_Returns.html">          
+            <div class="library-card" data-type="Estimation" data-title="Estimated Flow Returns (Tank Readings)" data-author="Various">
+              <span>Estimation</span>
+              <h4>Estimated Flow Returns (Tank Readings)</h4>
+              <p id="gas-formula-display" >Estimated Flow Returns (Tank Readings)</p>
+              <p>Estimated Flow Returns (Tank Readings)</p>
+            </div>
+          </a>
+
+          <a href="Bottoms_Up_Time_Estimation.html">          
+            <div class="library-card" data-type="Estimation" data-title="Bottoms Up Time Estimation" data-author="Various">
+              <span>Estimation</span>
+              <h4>Bottoms Up Time Estimation</h4>
+              <p id="gas-formula-display" >Lag Time Calculation</p>
+              <p>Bottoms Up Time Estimation</p>
+            </div>
+          </a>
+
+          <a href="Synflex_Swaged_Couplings.html">          
+            <div class="library-card" data-type="Estimation" data-title="Synflex Swaged Couplings" data-author="Various">
+              <span>Estimation</span>
+              <h4>Synflex Swaged Couplings</h4>
+              <p id="gas-formula-display" >Synflex Swaged Couplings</p>
+              <p>Synflex Swaged Couplings</p>
+            </div>
+          </a>
+
+          <a href="Choke_Flow_Rate_Estimation.html">          
+            <div class="library-card" data-type="Estimation" data-title="Choke Flow Rate Estimation Oil Rate (Gilbert) Gas Rate (Empirical)" data-author="Various">
+              <span>Estimation</span>
+              <h4>Choke Flow Rate Estimation</h4>
+              <p id="gas-formula-display" >$$1 \text{ ft}^3 = 7.4805 \text{ gal} = 28.317 \text{ L}$$ $$1 \text{ bbl} = 42 \text{ gal} = 5.6146 \text{ ft}^3$$</p>
+              <p>Choke Flow Rate Estimation</p>
+            </div>
+          </a>
+
+          <a href="Tank_Volume_Loading_Estimator.html">          
+            <div class="library-card" data-type="Estimation" data-title="Tank Volume & Loading Estimator" data-author="Various">
+              <span>Estimation</span>
+              <h4>Tank Volume & Loading Estimator</h4>
+              <p id="gas-formula-display" >Tank Volume & Loading Estimator</p>
+              <p>Tank Volume & Loading Estimator</p>
+            </div>
+          </a>
+
+          <a href="Flow_Rate_Conversions.html">          
+            <div class="library-card" data-type="Conversion" data-title="Flow Rate Conversions Convert between common field units for liquid and gas flow rates" data-author="Various">
+              <span>Conversion</span>
+              <h4>Flow Rate Conversions</h4>
+              <p id="gas-formula-display" >Gas Rate (Empirical) & Oil Rate (Gilbert)</p>
+              <p>Convert between common field units for liquid and gas flow rates.</p>
+            </div>
+          </a>
+
+          <a href="Choke_Size_Conversion.html">          
+            <div class="library-card" data-type="Conversion" data-title="Choke Size Conversion Convert among Choke Size (1/64) & Decimal Equivalent (ins) & Metric Equivalent (mm)" data-author="Various">
+              <span>Conversion</span>
+              <h4>Choke Size Conversion</h4>
+              <p id="gas-formula-display" >* Logic: $1 \text{ inch} = 64/64$ and $1 \text{ inch} = 25.4 \text{ mm}$</p>
+              <p>Convert among Choke Size (1/64") & Decimal Equivalent (ins) & Metric Equivalent (mm)</p>
+            </div>
+          </a>
+
+          <a href="Cable_Sizing_Voltage_Drop.html">          
+            <div class="library-card" data-type="Conversion Correction" data-title="Cable Sizing & Voltage Drop" data-author="Various">
+              <span>Conversion</span>
+              <h4>Cable Sizing & Voltage Drop</h4>
+              <p id="gas-formula-display" >Cable Sizing & Voltage Drop</p>
+              <p>Cable Sizing & Voltage Drop</p>
+            </div>
+          </a>
+
+          <a href="Oil_Gravity_Temperature_Correction.html">          
+            <div class="library-card" data-type="Correction" data-title="Oil Gravity Temperature Correction" data-author="Various">
+              <span>Correction</span>
+              <h4>Oil Gravity Temperature Correction</h4>
+              <p id="gas-formula-display" >S.G @ 60°F & API @ 60°F</p>
+              <p>Convert observed Specific Gravity and API to standard conditions (60°F).</p>
+            </div>
+          </a>
+
+          <a href="Pipe_ID_Wall_Thickness.html">          
+            <div class="library-card" data-type="Correction" data-title="Pipe ID & Wall Thickness Reference data for Nominal Pipe Size (NPS) and Schedule" data-author="Various">
+              <span>Correction</span>
+              <h4>Pipe ID & Wall Thickness</h4>
+              <p id="gas-formula-display" >Reference data for Nominal Pipe Size (NPS) and Schedule</p>
+              <p>Pipe ID & Wall Thickness.</p>
+            </div>
+          </a>
+
+          <a href="Liquid_Meter_Operating_Ranges.html">          
+            <div class="library-card" data-type="Correction" data-title="Liquid Meter Operating Ranges" data-author="Various">
+              <span>Correction</span>
+              <h4>Liquid Meter Operating Ranges</h4>
+              <p id="gas-formula-display" >Liquid Meter Operating Ranges</p>
+              <p>Liquid Meter Operating Ranges.</p>
+            </div>
+          </a>
+
+          <a href="Full_ANSI_API_Flange.html">          
+            <div class="library-card" data-type="Correction" data-title="Full ANSI & API Flange Database" data-author="Various">
+              <span>Correction</span>
+              <h4>Full ANSI & API Flange Database</h4>
+              <p id="gas-formula-display" >Full ANSI & API Flange Database</p>
+              <p>Full ANSI & API Flange Database.</p>
+            </div>
+          </a>
+
+          <a href="3_Phase_Electrical_Calculations.html">          
+            <div class="library-card" data-type="Calculations" data-title="3 Phase Electrical Calculations" data-author="Various">
+              <span>Calculations</span>
+              <h4>3 Phase Electrical Calculations</h4>
+              <p id="gas-formula-display" >3 Phase Electrical Calculations</p>
+              <p>3 Phase Electrical Calculations.</p>
+            </div>
+          </a>
+
+          <a href="Pressure_Drop_for_Strainers.html">          
+            <div class="library-card" data-type="Calculations" data-title="Pressure Drop for Strainers" data-author="Various">
+              <span>Calculations</span>
+              <h4>Pressure Drop for Strainers</h4>
+              <p id="gas-formula-display" >Pressure Drop for Strainers</p>
+              <p>Pressure Drop for Strainers.</p>
+            </div>
+          </a>
+
+          <a href="Dry_Gas_Flow_thru_Positive_Choke.html">          
+            <div class="library-card" data-type="Calculations" data-title="Dry Gas Flow thru Positive Choke" data-author="Various">
+              <span>Calculations</span>
+              <h4>Dry Gas Flow thru Positive Choke</h4>
+              <p id="gas-formula-display" >$$Q_{sc} = \frac{C \cdot A \cdot P_{up}}{\sqrt{G \cdot T}}$$</p>
+              <p>Dry Gas Flow thru Positive Choke.</p>
+            </div>
+          </a>
+
+          <a href="General_Well_Testing_Calculations.html">          
+            <div class="library-card" data-type="Calculations" data-title="General Well Testing Calculations Gas Velocity & Volume (1 & 2) & Twin Choke Factor & OIL VOLUME & CORRECTED S.G. @ 60°F & S.G. & API Conversions & Shrinkage Factor" data-author="Various">
+              <span>Calculations</span>
+              <h4>General Well Testing Calculations</h4>
+              <p id="gas-formula-display" >Gas Velocity & Volume (1 & 2) & Twin Choke Factor & OIL VOLUME & CORRECTED S.G. @ 60°F & S.G. & API Conversions & Shrinkage Factor</p>
+              <p>General Well Testing Calculations.</p>
+            </div>
+          </a>
+
+          <a href="Pipe_Wall_Thickness_Calculator.html">          
+            <div class="library-card" data-type="Calculations" data-title="Pipe Wall Thickness Calculator" data-author="Various">
+              <span>Calculations</span>
+              <h4>Pipe Wall Thickness Calculator</h4>
+              <p id="gas-formula-display" >$$t_m = \frac{P \cdot D}{2(S \cdot E + P \cdot Y)} + C.A.$$</p>
+              <p>Pipe Wall Thickness Calculator.</p>
+            </div>
+          </a>
+
+          <a href="Advanced_Well_Test_Calculator.html">          
+            <div class="library-card" data-type="Calculations" data-title="Advanced Well Test Calculator Oil Rate (bpd) & Gas Rate (mscfd) & GOR (scf/bbl) & OGR (bbl/mmscf)" data-author="Various">
+              <span>Calculations</span>
+              <h4>Advanced Well Test Calculator</h4>
+              <p id="gas-formula-display" >Oil Rate (bpd) & Gas Rate (mscfd) & GOR (scf/bbl) & OGR (bbl/mmscf)</p>
+              <p>Advanced Well Test Calculator.</p>
+            </div>
+          </a>
+
+          <a href="Transducer_Signal_Scaling.html">          
+            <div class="library-card" data-type="Calculations" data-title="Transducer Signal Scaling" data-author="Various">
+              <span>Calculations</span>
+              <h4>Transducer Signal Scaling</h4>
+              <p id="gas-formula-display" >Transducer Signal Scaling</p>
+              <p>Transducer Signal Scaling.</p>
+            </div>
+          </a>
+
+          <a href="Unit_Prefix_Converter.html">          
+            <div class="library-card" data-type="conversion" data-title="Unit Prefix Converter" data-author="Various">
+              <span>conversion</span>
+              <h4>Unit Prefix Converter</h4>
+              <p id="gas-formula-display" >(Unit Prefix Converter)</p>
+              <p>(Unit Prefix Converter).</p>
+            </div>
+          </a>
+
+          <a href="Pressure_Drop_Straightening_Vanes.html">          
+            <div class="library-card" data-type="Calculations" data-title="Pressure Drop Straightening Vanes Calculate pressure losses across different pipe sizes and flow types." data-author="Various">
+              <span>Calculations</span>
+              <h4>Pressure Drop Straightening Vanes</h4>
+              <p id="gas-formula-display" >Calculate pressure losses across different pipe sizes and flow types.</p>
+              <p>Pressure Drop: Straightening Vanes</p>
+            </div>
+          </a>
+
+          <a href="Advanced_Meter_Factor_Calibration.html">          
+            <div class="library-card" data-type="Correction" data-title="Advanced Meter Factor Calibration Tank Analysis Meter Analysis CORRECTION FACTOR " data-author="Various">
+              <span>Correction</span>
+              <h4>Advanced Meter Factor Calibration</h4>
+              <p id="gas-formula-display" >$$K_{tank} = 1 - [(0.066 \cdot API + 2.75) \cdot (T_{tank} - 60) \cdot 10^{-4}]$$ & $$K_{meter} = 1 - [(0.066 \cdot TF + 2.75) \cdot (T_{meter} - 60) \cdot 10^{-4}]$$.</p>
+              <p>Advanced Meter Factor Calibration</p>
+            </div>
+          </a>
+
+          <a href="Well_Test_Chemicals_Dosage.html">          
+            <div class="library-card" data-type="Estimation" data-title="Well Test Chemicals Dosage Calculate injection rates based on production flowrate and required dosage " data-author="Various">
+              <span>Estimation</span>
+              <h4>Well Test Chemicals Dosage</h4>
+              <p id="gas-formula-display" >Calculate injection rates based on production flowrate and required dosage.</p>
+              <p>Well Test Chemicals Dosage</p>
+            </div>
+          </a>
+
+          <a href="Retention_Time_Calculator.html">          
+            <div class="library-card" data-type="Estimation Calculations" data-title="Retention Time Calculator Estimated retention time in separator based on volume and flow " data-author="Various">
+              <span>Calculations</span>
+              <h4>Retention Time Calculator</h4>
+              <p id="gas-formula-display" >Estimated retention time in separator based on volume and flow.</p>
+              <p>Retention Time Calculator</p>
+            </div>
+          </a>
+
+          <a href="Horizontal_Vessel_Sizing.html">          
+            <div class="library-card" data-type="Estimation Calculations" data-title="Horizontal Vessel Sizing Gas Capacity Check" data-author="Various">
+              <span>Calculations</span>
+              <h4>Horizontal Vessel Sizing & Gas Capacity Check</h4>
+              <p id="gas-formula-display" >Determine required vessel dimensions for a target retention time.</p>
+              <p>Horizontal Vessel Sizing & Gas Capacity Check</p>
+            </div>
+          </a>
+
+          <a href="Halliburton_Turbine_Meter_Calibration.html">          
+            <div class="library-card" data-type=" Correction" data-title=" Halliburton Turbine Meter Calibration Calculate pulses per barrel and display values for MCII Analyzers" data-author="Various">
+              <span>Correction</span>
+              <h4>Halliburton Turbine Meter Calibration</h4>
+              <p id="gas-formula-display" >Calculate pulses per barrel and display values for MCII Analyzers.</p>
+              <p>Halliburton Turbine Meter Calibration</p>
+            </div>
+          </a>
+
+          <a href="Quick_Gas_Rate_Estimation.html">          
+            <div class="library-card" data-type="Estimation" data-title="Quick Gas Rate Estimation Estimation of dry gas rate through a choke using pressure and temperature." data-author="Various">
+              <span>Estimation</span>
+              <h4>Quick Gas Rate Estimation</h4>
+              <p id="gas-formula-display" >$$q_g = \frac{(C \cdot P_{wh} + P_{atm})}{\sqrt{\gamma_g \cdot (T_{wh} + T_{abs})}} \cdot 10^{-3}$$.</p>
+              <p>Estimation of dry gas rate through a choke using pressure and temperature.</p>
+            </div>
+          </a>
+
+          <a href="Pressure_Drop_Velocity_Analysis.html">          
+            <div class="library-card" data-type="Estimation" data-title="Pressure Drop & Velocity Analysis Based on Bernoulli's Principle. Safe limit: 80 ft/sec inlet Outlet Velocity." data-author="Various">
+              <span>Estimation</span>
+              <h4>Quick Gas Rate Estimation</h4>
+              <p id="gas-formula-display" >Inlet Velocity ($V_1$) {$$V_1 = \frac{32,000 \times Q}{D^2 \times P_1}$$} & .Outlet Velocity ($V_2$) {$$V_2 = \sqrt{2 \times (P_1 - P_2)}$$}</p>
+              <p>Based on Bernoulli's Principle. Safe limit: 80 ft/sec.</p>
+            </div>
+          </a>
+
+          <a href="Chloride_Determination_(Argentometric).html">          
+            <div class="library-card" data-type="Calculations" data-title="Chloride Determination (Argentometric)." data-author="Various">
+              <span>Calculations</span>
+              <h4>Chloride Determination (Argentometric)</h4>
+              <p id="gas-formula-display" >Chloride Concentration & Sodium Chloride (NaCl) & Estimated TDS</p>
+              <p>TYPICAL SALINITY VALUES REFERENCE.</p>
+            </div>
+          </a>
+
+          <a href="Effective_Area_of_Twin_Chokes.html">          
+            <div class="library-card" data-type="Calculations" data-title="Effective Area of Twin Chokes." data-author="Various">
+              <span>Calculations</span>
+              <h4>Effective Area of Twin Chokes</h4>
+              <p id="gas-formula-display" >Effective Area of Twin Chokes</p>
+              <p>Effective Area of Twin Chokes.</p>
+            </div>
+          </a>
+
+          <a href="Choke_Calibration_(Erosion Check).html">          
+            <div class="library-card" data-type="Correction" data-title="Choke Calibration (Erosion Check)." data-author="Various">
+              <span>Correction</span>
+              <h4>Choke Calibration (Erosion Check)</h4>
+              <p id="gas-formula-display" >Choke Calibration (Erosion Check)</p>
+              <p>Choke Calibration (Erosion Check)</p>
+            </div>
+          </a>
+
+          <a href="Symbols.html">          
+            <div class="library-card" data-type="Estimation conversion Correction Calculations" data-title="Chloride Determination (Argentometric)." data-author="Various">
+              <span>Symbols</span>
+              <h4>Symbols</h4>
+              <p id="gas-formula-display" >All Symbols with units and equations</p>
+              <p>Well Testing Symbols Library.</p>
+            </div>
+          </a>
+
+          <a href="Gas_Rates_by_Choke_Coefficient.html">          
+            <div class="library-card" data-type="Estimation" data-title="Gas Rates by Choke Coefficient." data-author="Various">
+              <span>Estimation</span>
+              <h4>Gas Rates by Choke Coefficient</h4>
+              <p id="gas-formula-display" >$$mscf/d = \frac{C \cdot A \cdot P_1 \cdot C_d}{\sqrt{T \cdot \gamma_g \cdot Z}}$$</p>
+              <p>Gas Rates by Choke Coefficient.</p>
+            </div>
+          </a>
+
+          <a href="Downhole_Pressure_Calculators.html">          
+            <div class="library-card" data-type="Calculations" data-title="Downhole Pressure Calculators Gas Downhole Pressure Fluid Hydrostatic Fluid Density Converter." data-author="Various">
+              <span>Calculations</span>
+              <h4>Downhole Pressure Calculators</h4>
+              <p id="gas-formula-display" >Gas Rate (Choke) & Gas BHP (Static)</p>
+              <p>Gas Downhole Pressure & Fluid Hydrostatic (ppg) & (pcf) Fluid Density Converter.</p>
+            </div>
+          </a>
+
+          <a href="API_Gravity_Correction.html">          
+            <div class="library-card" data-type="Correction" data-title="API Gravity Correction (to 60°F)." data-author="Various">
+              <span>Correction</span>
+              <h4>API Gravity Correction (to 60°F)</h4>
+              <p id="gas-formula-display" >Standardized by ASTM D1250/1980</p>
+              <p>Typical API Correction.</p>
+            </div>
+          </a>
+
+          <a href="Pressure_Vessel_Wall_Thickness_(ASME).html">          
+            <div class="library-card" data-type="Estimation" data-title="Pressure Vessel Wall Thickness (ASME) SHELL: Minimum Thickness 2:1 ELLIPTICAL HEAD." data-author="Various">
+              <span>Estimation</span>
+              <h4>Pressure Vessel Wall Thickness (ASME)</h4>
+              <p id="gas-formula-display" >$$t = \frac{PR}{SE - 0.6P} + C.A.$$ & $$t = \frac{PD}{2SE - 0.2P} + C.A.$$</p>
+              <p>SHELL: Minimum Thickness & 2:1 ELLIPTICAL HEAD.</p>
+            </div>
+          </a>
+
+          <a href="Gas_Gradient_Static_BHP.html">          
+            <div class="library-card" data-type="Calculations" data-title="Gas Gradient & Static BHP calculate the Static Bottom Hole Pressure (Pws) and the initial Gas Gradient." data-author="Various">
+              <span>Calculations</span>
+              <h4>Gas Gradient & Static BHP</h4>
+              <p id="gas-formula-display" ></p>
+              <p>calculate the Static Bottom Hole Pressure (Pws) and the initial Gas Gradient.</p>
+            </div>
+          </a>
+
+          <a href="API_K-Factor_Correction.html">          
+            <div class="library-card" data-type="Correction" data-title="API & K-Factor Correction" data-author="Various">
+              <span>Correction</span>
+              <h4>API & K-Factor Correction</h4>
+              <p id="gas-formula-display" >API & K-Factor Correction</p>
+              <p>API & K-Factor Correction</p>
+            </div>
+          </a>
+
+      </section>
+
+
+
+      <section class="section tools" style="display: none;">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+        <div class="tool-card" id="converter">
+          <div class="tool-head">⇄ Unit Converter</div>
+          <div class="pill-row" id="converter-tabs">
+            <button class="pill active" data-type="pressure">Pressure</button>
+            <button class="pill" data-type="permeability">Permeability</button>
+            <button class="pill" data-type="viscosity">Viscosity</button>
+            <button class="pill" data-type="length">Length</button>
+            <button class="pill" data-type="volume">Volume</button>
+          </div>
+          <div class="field">
+            <label>Value</label>
+            <input type="number" id="conv-value" value="1000" />
+          </div>
+          <div class="field">
+            <label>From</label>
+            <select id="conv-from"></select>
+          </div>
+          <div class="field">
+            <label>To</label>
+            <select id="conv-to"></select>
+          </div>
+          <div class="result-card">
+            <div>Result</div>
+            <strong id="conv-result">6894.7600</strong>
+            <small id="conv-unit">kPa</small>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-head">⦿ Skin Factor Estimator</div>
+          <div class="two-col">
+            <div class="field">
+              <label>P1hr (psi)</label>
+              <input type="number" id="p1hr" value="3800" />
+            </div>
+            <div class="field">
+              <label>Pwf (psi)</label>
+              <input type="number" id="pwf" value="3500" />
+            </div>
+            <div class="field">
+              <label>Slope m (psi/cycle)</label>
+              <input type="number" id="slope" value="52" />
+            </div>
+            <div class="field">
+              <label>k/(φμct rw²)</label>
+              <input type="number" id="kterm" value="1000000" />
+            </div>
+          </div>
+          <div class="result-card">
+            <div>Skin Factor (S)</div>
+            <strong id="skin-result">3.45</strong>
+            <small id="skin-label">Slight damage</small>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-head">⏱ Horner Time Calculator</div>
+          <div class="two-col">
+            <div class="field">
+              <label>Production Time tp (hr)</label>
+              <input type="number" id="tp" value="100" />
+            </div>
+            <div class="field">
+              <label>Shut-in Time Δt (hr)</label>
+              <input type="number" id="dt" value="10" />
+            </div>
+          </div>
+          <div class="result-card">
+            <div>Horner Time Ratio</div>
+            <strong id="horner-result">11.000</strong>
+            <small id="horner-log">log10 = 1.0414</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="section equations" style="display: none;">
+        <h2 class="section-title">Equations Hub</h2>
+        <p class="section-subtitle">All essential well testing equations with interactive calculators.</p>
+
+        <div class="accordion open">
+          <div class="accordion-header">
+            <div class="accordion-title">Radial Flow Equation (Drawdown)</div>
+            <div>▾</div>
+          </div>
+          <div class="accordion-body">
+            <p>p(r) = pᵢ − (162.6 q B μ / (k h)) [ log₁₀ (k t / (φ μ cₜ r²)) + s ]</p>
+            <div class="two-col">
+              <div class="field">
+                <label>Flow Rate q (STB/d)</label>
+                <input type="number" class="eq-input" data-eq="radial" data-key="q" value="500" />
+              </div>
+              <div class="field">
+                <label>μ (cp)</label>
+                <input type="number" class="eq-input" data-eq="radial" data-key="mu" value="0.8" />
+              </div>
+              <div class="field">
+                <label>k (md)</label>
+                <input type="number" class="eq-input" data-eq="radial" data-key="k" value="50" />
+              </div>
+              <div class="field">
+                <label>h (ft)</label>
+                <input type="number" class="eq-input" data-eq="radial" data-key="h" value="30" />
+              </div>
+            </div>
+            <div class="result-card">
+              <div>Slope (m)</div>
+              <strong id="radial-result">52.03</strong>
+              <small>psi/cycle</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header">
+            <div class="accordion-title">Horner Time Ratio</div>
+            <div>▾</div>
+          </div>
+          <div class="accordion-body">
+            <p>Horner Time = (tₚ + Δt) / Δt</p>
+            <div class="two-col">
+              <div class="field">
+                <label>Production Time (hr)</label>
+                <input type="number" class="eq-input" data-eq="horner" data-key="tp" value="100" />
+              </div>
+              <div class="field">
+                <label>Shut-in Time (hr)</label>
+                <input type="number" class="eq-input" data-eq="horner" data-key="dt" value="10" />
+              </div>
+            </div>
+            <div class="result-card">
+              <div>Horner Time</div>
+              <strong id="horner-eq-result">11.00</strong>
+              <small>dimensionless</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header">
+            <div class="accordion-title">Permeability from Semi-Log Slope</div>
+            <div>▾</div>
+          </div>
+          <div class="accordion-body">
+            <p>k = (162.6 q B μ) / (m h)</p>
+            <div class="two-col">
+              <div class="field">
+                <label>Flow Rate q (STB/d)</label>
+                <input type="number" class="eq-input" data-eq="perm" data-key="q" value="500" />
+              </div>
+              <div class="field">
+                <label>μ (cp)</label>
+                <input type="number" class="eq-input" data-eq="perm" data-key="mu" value="0.8" />
+              </div>
+              <div class="field">
+                <label>Slope m (psi/cycle)</label>
+                <input type="number" class="eq-input" data-eq="perm" data-key="m" value="52" />
+              </div>
+              <div class="field">
+                <label>h (ft)</label>
+                <input type="number" class="eq-input" data-eq="perm" data-key="h" value="30" />
+              </div>
+            </div>
+            <div class="result-card">
+              <div>Permeability (k)</div>
+              <strong id="perm-result">50.03</strong>
+              <small>md</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      
+
+    </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+    
+    <script>
+      const unitMap = {
+        pressure: {
+          units: { psi: 1, kPa: 6.89476, bar: 0.0689476, MPa: 0.00689476 },
+        },
+        permeability: {
+          units: { md: 1, "m²": 9.869233e-16, "μm²": 0.0009869233 },
+        },
+        viscosity: {
+          units: { cp: 1, "Pa·s": 0.001, "mPa·s": 1 },
+        },
+        length: {
+          units: { ft: 1, m: 0.3048, in: 12 },
+        },
+        volume: {
+          units: { bbl: 1, "m³": 0.158987, L: 158.987 },
+        },
+      };
+
+      const convTabs = document.querySelectorAll("#converter-tabs .pill");
+      const convValue = document.getElementById("conv-value");
+      const convFrom = document.getElementById("conv-from");
+      const convTo = document.getElementById("conv-to");
+      const convResult = document.getElementById("conv-result");
+      const convUnit = document.getElementById("conv-unit");
+
+      let currentType = "pressure";
+
+      function populateUnits(type) {
+        const units = Object.keys(unitMap[type].units);
+        convFrom.innerHTML = units.map((u) => `<option>${u}</option>`).join("");
+        convTo.innerHTML = units.map((u) => `<option>${u}</option>`).join("");
+        convFrom.value = units[0];
+        convTo.value = units[1] || units[0];
+        updateConversion();
+      }
+
+      function updateConversion() {
+        const value = parseFloat(convValue.value) || 0;
+        const from = convFrom.value;
+        const to = convTo.value;
+        const factorFrom = unitMap[currentType].units[from];
+        const factorTo = unitMap[currentType].units[to];
+        const base = value * factorFrom;
+        const result = base / factorTo;
+        convResult.textContent = result.toFixed(4);
+        convUnit.textContent = to;
+      }
+
+      convTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          convTabs.forEach((btn) => btn.classList.remove("active"));
+          tab.classList.add("active");
+          currentType = tab.dataset.type;
+          populateUnits(currentType);
+        });
+      });
+
+      [convValue, convFrom, convTo].forEach((el) => el.addEventListener("input", updateConversion));
+      populateUnits(currentType);
+
+      const p1hr = document.getElementById("p1hr");
+      const pwf = document.getElementById("pwf");
+      const slope = document.getElementById("slope");
+      const kterm = document.getElementById("kterm");
+      const skinResult = document.getElementById("skin-result");
+      const skinLabel = document.getElementById("skin-label");
+
+      function updateSkin() {
+        const s = (parseFloat(p1hr.value) - parseFloat(pwf.value)) / (parseFloat(slope.value) || 1) - Math.log10(parseFloat(kterm.value) || 1);
+        const sVal = isFinite(s) ? s : 0;
+        skinResult.textContent = sVal.toFixed(2);
+        if (sVal < 0) skinLabel.textContent = "Stimulated";
+        else if (sVal < 5) skinLabel.textContent = "Slight damage";
+        else skinLabel.textContent = "Severe damage";
+      }
+
+      [p1hr, pwf, slope, kterm].forEach((el) => el.addEventListener("input", updateSkin));
+      updateSkin();
+
+      const tp = document.getElementById("tp");
+      const dt = document.getElementById("dt");
+      const hornerResult = document.getElementById("horner-result");
+      const hornerLog = document.getElementById("horner-log");
+
+      function updateHorner() {
+        const tpVal = parseFloat(tp.value) || 0;
+        const dtVal = parseFloat(dt.value) || 1;
+        const ratio = (tpVal + dtVal) / dtVal;
+        hornerResult.textContent = ratio.toFixed(3);
+        hornerLog.textContent = `log10 = ${Math.log10(ratio).toFixed(4)}`;
+      }
+
+      [tp, dt].forEach((el) => el.addEventListener("input", updateHorner));
+      updateHorner();
+
+      const eqInputs = document.querySelectorAll(".eq-input");
+      function updateEquations() {
+        const radial = {
+          q: parseFloat(document.querySelector('[data-eq="radial"][data-key="q"]').value) || 0,
+          mu: parseFloat(document.querySelector('[data-eq="radial"][data-key="mu"]').value) || 0,
+          k: parseFloat(document.querySelector('[data-eq="radial"][data-key="k"]').value) || 0,
+          h: parseFloat(document.querySelector('[data-eq="radial"][data-key="h"]').value) || 1,
+        };
+        const radialResult = ((162.6 * radial.q * radial.mu) / (radial.k * radial.h || 1)).toFixed(2);
+        document.getElementById("radial-result").textContent = isFinite(radialResult) ? radialResult : "0.00";
+
+        const hornerEq = {
+          tp: parseFloat(document.querySelector('[data-eq="horner"][data-key="tp"]').value) || 0,
+          dt: parseFloat(document.querySelector('[data-eq="horner"][data-key="dt"]').value) || 1,
+        };
+        document.getElementById("horner-eq-result").textContent = ((hornerEq.tp + hornerEq.dt) / hornerEq.dt).toFixed(2);
+
+        const perm = {
+          q: parseFloat(document.querySelector('[data-eq="perm"][data-key="q"]').value) || 0,
+          mu: parseFloat(document.querySelector('[data-eq="perm"][data-key="mu"]').value) || 0,
+          m: parseFloat(document.querySelector('[data-eq="perm"][data-key="m"]').value) || 1,
+          h: parseFloat(document.querySelector('[data-eq="perm"][data-key="h"]').value) || 1,
+        };
+        const permResult = (162.6 * perm.q * perm.mu) / (perm.m * perm.h || 1);
+        document.getElementById("perm-result").textContent = permResult.toFixed(2);
+      }
+
+      eqInputs.forEach((input) => input.addEventListener("input", updateEquations));
+      updateEquations();
+
+      document.querySelectorAll(".accordion-header").forEach((header) => {
+        header.addEventListener("click", () => {
+          const acc = header.closest(".accordion");
+          acc.classList.toggle("open");
+        });
+      });
+
+      const librarySearch = document.getElementById("library-search");
+      const libraryFilters = document.querySelectorAll("#library-filters .pill");
+      const libraryCards = document.querySelectorAll(".library-card");
+      let currentFilter = "all";
+
+      function filterLibrary() {
+        const query = librarySearch.value.toLowerCase();
+        libraryCards.forEach((card) => {
+          const matchesFilter = currentFilter === "all" || card.dataset.type === currentFilter;
+          const text = `${card.dataset.title} ${card.dataset.author}`.toLowerCase();
+          const matchesSearch = text.includes(query);
+          card.style.display = matchesFilter && matchesSearch ? "grid" : "none";
+        });
+      }
+
+      libraryFilters.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          libraryFilters.forEach((btn) => btn.classList.remove("active"));
+          pill.classList.add("active");
+          currentFilter = pill.dataset.filter;
+          filterLibrary();
+        });
+      });
+
+      librarySearch.addEventListener("input", filterLibrary);
+      filterLibrary();
+    </script>
+
+
+</body>
+</html>

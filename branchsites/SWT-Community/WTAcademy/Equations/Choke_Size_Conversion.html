@@ -114,6 +114,50 @@
                     <input type="number" id="conv-mm" value="9.53" step="0.01">
                 </div>
             </div>
+
+            <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 20px; margin-top: 10px;">
+                <div style="font-size: 1rem; color: #fff; text-align: center; margin-bottom: 15px;">
+                    <div style="margin-bottom: 10px;">
+                        $$ID_{inch} = \frac{\text{Choke Size}}{64}$$
+                    </div>
+                    <div>
+                        $$ID_{mm} = ID_{inch} \times 25.4$$
+                    </div>
+                </div>
+
+                <details style="color: #aaa; font-size: 0.85em; cursor: pointer; border-top: 1px solid #333; padding-top: 10px;">
+                    <summary style="color: #f1c40f; font-weight: bold;">Show Symbols Definition (تعريف الرموز)</summary>
+                    <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
+                        <tr style="border-bottom: 1px solid #222;">
+                            <th style="padding: 5px;">Symbol</th>
+                            <th style="padding: 5px;">Definition</th>
+                            <th style="padding: 5px;">Standard Unit</th>
+                        </tr>
+                        <tr>
+                            <td>$\text{Choke Size}$</td>
+                            <td>Orifice diameter in 64ths of an inch</td>
+                            <td>$1/64"$</td>
+                        </tr>
+                        <tr>
+                            <td>$ID_{inch}$</td>
+                            <td>Inner Diameter in decimal inches</td>
+                            <td>$inches$</td>
+                        </tr>
+                        <tr>
+                            <td>$ID_{mm}$</td>
+                            <td>Inner Diameter in metric units</td>
+                            <td>$mm$</td>
+                        </tr>
+                        <tr>
+                            <td>$25.4$</td>
+                            <td>Standard conversion factor (Inch to MM)</td>
+                            <td>$mm/inch$</td>
+                        </tr>
+                    </table>
+                </details>
+            </div>
+
+
             
             <p style="font-size: 0.8em; color: #888; margin-top: 10px; padding-left: 10px;">
                 * Logic: $1 \text{ inch} = 64/64$ and $1 \text{ inch} = 25.4 \text{ mm}$

@@ -28,7 +28,7 @@
         <nav>
             <div class="menu-group">🟢 GENERAL</div>
                 <a href="#" class="nav-link active" data-tab="dashboard"><i class="fa-solid fa-house"></i> Dashboard</a>
-                <a href="#" class="nav-link" data-tab="personality"><i class="fa-solid fa-chart-pie"></i> personality & Mindset</a>
+                <a href="#" class="nav-link" data-tab="personality"><i class="fa-solid fa-chart-pie"></i> personal Profile</a>
                 <a href="#" class="nav-link" data-tab="analysis"><i class="fa-solid fa-chart-pie"></i> OS Analytics & Statistics</a>
                 <a href="#" class="nav-link" data-tab="reports"><i class="fa-solid fa-chart-pie"></i> Auto-Report</a>
                 <a href="#" class="nav-link" data-tab="journal"><i class="fa-solid fa-book"></i> Journal</a>
@@ -49,6 +49,7 @@
 
             <div class="menu-group">🏀 GROWTH & Career</div>
                 <a href="#" class="nav-link" data-tab="focus"><i class="fa-solid fa-bullseye"></i> Focus Mode</a>
+                <a href="#" class="nav-link" data-tab="ai-tools"><i class="fa-solid fa-robot"></i> AI Directory</a>
                 <a href="#" class="nav-link" data-tab="study-tab"><i class="fa-solid fa-bullseye"></i> Studying Course</a>
 
 
@@ -198,12 +199,58 @@
 
             
 
+            
+            <div id="vault-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
+                <div style="background: var(--sidebar-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--border); width: 400px;">
+                    <h2 style="color: white; margin-bottom: 20px;">Add New Document</h2>
+                    <form id="vault-form">
+                        <input type="hidden" id="doc-id">
+                        <input type="text" id="doc-name" placeholder="Document Name" required style="width:100%; margin-bottom:15px; padding:10px; background:#1e293b; border:1px solid var(--border); color:white;">
+                        <input type="date" id="doc-date" required style="width:100%; margin-bottom:15px; padding:10px; background:#1e293b; border:1px solid var(--border); color:white;">
+                        <select id="doc-cat" style="width:100%; margin-bottom:15px; padding:10px; background:#1e293b; border:1px solid var(--border); color:white;">
+                            <option value="Personal">Personal</option>
+                            <option value="Work">Work</option>
+                            <option value="Health">Health</option>
+                            <option value="Finance">Finance</option>
+                        </select>
+                        <textarea id="doc-notes" placeholder="Notes (Optional)..." 
+                            style="width:100%; margin-bottom:15px; padding:10px; background:#1e293b; border:1px solid var(--border); color:white; border-radius:5px; height: 80px; resize: none;"></textarea>
+
+                        
+
+                        <input type="file" id="doc-file" style="width:100%; margin-bottom:20px; color:var(--text-dim);">
+                        
+                        <div style="display:flex; gap:10px;">
+                            <button type="submit" style="flex:1; background:var(--accent); color:white; border:none; padding:10px; border-radius:5px; cursor:pointer;">Save</button>
+                            <button type="button" onclick="Vault.closeModal()" style="flex:1; background:transparent; border:1px solid var(--border); color:white; padding:10px; border-radius:5px; cursor:pointer;">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            
 
         </section>
 
 
         <!-----------------------------------habits and health care------------------------>
-
+        <style>
+            body { font-family: Arial; background:#0f172a; color:#fff; margin:0; padding:20px; }
+            .stat-card { background:#1e293b; padding:20px; border-radius:10px; margin-bottom:20px; }
+            .stat-card h3 { margin-top:0; }
+            #habit-list div { margin-bottom:10px; }
+            #habits-header { margin-bottom:15px; font-weight:bold; }
+            .calendar-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); justify-content:center; align-items:center; }
+            .calendar-content { background:#1e293b; padding:20px; border-radius:10px; width:80%; max-width:600px; position:relative; text-align:center; }
+            .calendar-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:10px; margin-top:20px; }
+            .day { background:#334155; color:#fff; padding:15px; border-radius:8px; text-align:center; }
+            .day.completed { background:#10b981; }
+            .close-button { position:absolute; top:10px; right:15px; background:#ef4444; color:#fff; border:none; padding:10px; cursor:pointer; border-radius:5px; }
+            .day .date { font-weight:bold; margin-bottom:5px; }
+            button { cursor:pointer; }
+        </style>
+        
         <section id="habits" class="tab-content">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div class="stat-card">
@@ -214,24 +261,182 @@
                             <input type="checkbox" onclick="Habits.toggle('gym')">
                         </div>
                     </div>
-                    <button onclick="Habits.add()" style="width: 100%; margin-top: 10px;">+ Add New Habit</button>
+                    <!--<button onclick="Habits.add()" style="width: 100%; margin-top: 10px;">+ Add New Habit</button>-->
+                    <button onclick="document.getElementById('add-habit-modal').style.display='flex'" style="width: 100%; margin-top: 10px;">+ Add New Habit</button>
                 </div>
 
+                                
                 <div class="stat-card">
+
+                    <style>
+                        body { background: #0f172a; color: #fff; font-family: Arial, sans-serif; padding: 20px; }
+                        .stat-card { background: #1e293b; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+                        button { cursor: pointer; border: none; border-radius: 8px; padding: 10px; }
+                        input { border-radius: 8px; border:none; outline:none; padding:8px; width:100%; margin-top:5px;}
+                        .progress-container { background:#0f172a; border-radius:8px; height:15px; overflow:hidden; margin-top:5px; }
+                        .progress-bar { height:100%; width:0%; text-align:center; color:white; line-height:15px; transition: width 0.6s ease, background 0.6s ease;}
+                        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index:3000; justify-content:center; align-items:center; opacity:0; transition:opacity 0.3s; }
+                        .modal.show { display:flex; opacity:1; }
+                        .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+                        small { display:block; margin-top:2px; color:#94a3b8; }
+                        .feedback { color:#10b981; font-size:14px; margin-top:5px; opacity:0; transition:opacity 0.5s;}
+                        .feedback.show { opacity:1; }
+                    </style>
+
                     <h3>Health & Vitals</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
-                        <div style="background: #0f172a; padding: 10px; border-radius: 8px; text-align: center;">
-                            <small style="color: var(--text-dim);">Weight</small>
-                            <p id="health-weight">-- kg</p>
-                        </div>
-                        <div style="background: #0f172a; padding: 10px; border-radius: 8px; text-align: center;">
-                            <small style="color: var(--text-dim);">Water Intake</small>
-                            <p id="health-water">0/8 Glasses</p>
+
+                    <!-- Weight -->
+                    <label>Weight (kg</span>)</label>
+                    <div class="progress-container"><div id="weight-bar" class="progress-bar"></div></div>
+                    <small id="weight-text">0/90</small>
+                    <small id="weight-last">Last updated: --</small>
+                    <br>
+                    <!-- Water -->
+                    <label>Water Intake (Glasses</span>)</label>
+                    <div class="progress-container"><div id="water-bar" class="progress-bar"></div></div>
+                    <small id="water-text">0/8</small>
+                    <small id="water-last">Last updated: --</small>
+                    <br>
+                    <!-- Sleep -->
+                    <label>Sleep (Hours</span>)</label>
+                    <div class="progress-container"><div id="sleep-bar" class="progress-bar"></div></div>
+                    <small id="sleep-text">0/8</small>
+                    <small id="sleep-last">Last updated: --</small>
+
+                    <button onclick="Health.openModal()" style="width:100%; margin-top:15px; background:#10b981;">Update Health Data</button>
+                    <div id="health-feedback" class="feedback">✅ Data Saved!</div>
+                </div>
+
+                <!-- Health Modal -->
+                <div id="health-modal" class="modal">
+                    <div style="background:#1e293b; padding:25px; border-radius:15px; width:350px; max-width:90%;">
+                        <h2>Update Health</h2>
+                        <label>Weight:</label>
+                        <input type="number" id="input-weight" min="1" max="500">
+                        <label>Water Intake:</label>
+                        <input type="number" id="input-water" min="0" max="20">
+                        <label>Sleep:</label>
+                        <input type="number" id="input-sleep" min="0" max="12">
+                        <label>Units:</label>
+                        <select id="unit-select">
+                        <option value="metric">kg/Glasses/Hours</option>
+                        <option value="imperial">lb/ml/Minutes</option>
+                        </select>
+                        <div style="display:flex; gap:10px; margin-top:20px;">
+                        <button onclick="Health.save()" style="background:#10b981; flex:1;">Save</button>
+                        <button onclick="Health.closeModal()" style="background:#ef4444; flex:1;">Cancel</button>
                         </div>
                     </div>
-                    <button onclick="Health.updateModal()" style="width: 100%; margin-top: 15px; background: #10b981;">Update Health Data</button>
+                </div>
+
+                            
+            <div class="stat-card">
+                <h3>AI Calories & Weight Tracker</h3>
+
+                <label>Age:</label>
+                <input type="number" id="bmi-age" min="1" max="120">
+
+                <label>Height (cm):</label>
+                <input type="number" id="bmi-height" min="50" max="250">
+
+                <label>Weight (kg):</label>
+                <input type="number" id="bmi-weight" min="20" max="300">
+
+                <label>Gender:</label>
+                <select id="bmi-gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <button onclick="BMITracker.calculate()" style="width:100%; margin-top:10px; background:#3b82f6;">Calculate BMI</button>
+
+                <div id="bmi-result" style="margin-top:10px; text-align:center;">
+                    <p>BMI: --</p>
+                    <p>Status: --</p>
+                    <p>Estimated Calories: -- kcal/day</p>
+                    <div class="progress-container">
+                    <div id="bmi-bar" class="progress-bar"></div>
+                    </div>
                 </div>
             </div>
+
+
+            <div class="stat-card">
+                <h3>Food Calories Tracker</h3>
+
+                <label>Food Type:</label>
+                <input type="text" id="food-name" placeholder="e.g. Rice, Chicken, Apple">
+
+                <label>Quantity (grams):</label>
+                <input type="number" id="food-qty" placeholder="e.g. 100">
+
+                <button onclick="Calories.calculate()" style="width:100%; margin-top:10px; background:#f97316;">
+                    Calculate Calories
+                </button>
+
+                <div id="food-result" style="margin-top:10px;">
+                    <p>Calories: -- kcal</p>
+                    <p>Total Today: 0 kcal</p>
+                </div>
+
+                <h4 style="margin-top:10px;">Today's Food</h4>
+                <div id="food-list"></div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Calories Progress</h3><label>Daily Goal (kcal):</label> <input type="number" id="calorie-goal" placeholder="e.g. 2000"> <button onclick="Calories.setGoal()" style="margin-top:5px; background:#3b82f6; width:100%;">Set Goal</button>
+
+                <div class="progress-container" style="margin-top:10px;">
+                    <div id="calorie-bar" class="progress-bar"></div>
+                </div>
+                <small id="calorie-progress-text">0 / 0 kcal</small>  <h4 style="margin-top:10px;">Weekly Calories Chart</h4>
+                <div class="chart-grid" id="calorie-chart"></div>
+            </div>
+
+                    <!-- Add Habit Modal -->
+                    <div id="add-habit-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:3000; justify-content:center; align-items:center;">
+                        <div style="background: #1e293b; padding: 25px; border-radius: 15px; width: 350px;">
+                            <h2 style="margin-bottom: 20px;">Add New Habit</h2>
+                            <input type="text" id="new-habit-name" placeholder="Habit Name" style="width:100%; padding:10px; margin-bottom:20px; border-radius:8px; border:none; outline:none;">
+                            <div style="display:flex; gap:10px;">
+                                <button onclick="Habits.addFromModal()" style="flex:1; background:#10b981; color:white; padding:10px; border:none; border-radius:8px;">Save</button>
+                                <button onclick="document.getElementById('add-habit-modal').style.display='none'" style="flex:1; background:#ef4444; color:white; padding:10px; border:none; border-radius:8px;">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Habit Modal -->
+                    <div id="edit-habit-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:3000; justify-content:center; align-items:center;">
+                        <div style="background: #1e293b; padding: 25px; border-radius: 15px; width: 350px;">
+                            <h2 style="margin-bottom: 20px;">Edit Habit</h2>
+                            <input type="text" id="edit-habit-name" placeholder="Habit Name" style="width:100%; padding:10px; margin-bottom:20px; border-radius:8px; border:none; outline:none;">
+                            <div style="display:flex; gap:10px;">
+                                <button onclick="Habits.saveEdit()" style="flex:1; background:#10b981; color:white; padding:10px; border:none; border-radius:8px;">Save</button>
+                                <button onclick="document.getElementById('edit-habit-modal').style.display='none'" style="flex:1; background:#ef4444; color:white; padding:10px; border:none; border-radius:8px;">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Habit Calendar Modal -->
+                <div id="habit-calendar-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:3000; justify-content:center; align-items:center;">
+                    <div style="background: #1e293b; padding: 25px; border-radius: 15px; width: 400px; max-height: 90vh; overflow-y: auto;">
+                        <h2 style="margin-bottom: 10px;">Habit Calendar</h2>
+
+                        <!-- Progress Bar -->
+                        <div id="habit-progress" style="margin-bottom: 15px;">
+                            <div style="background:#0f172a; border-radius:12px; overflow:hidden; height:20px;">
+                                <div id="progress-bar" style="width:0%; height:100%; background:#10b981; text-align:right; padding-right:5px; color:white; font-weight:bold; line-height:20px; transition: width 1s ease-in-out;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Calendar Grid -->
+                        <div id="calendar-grid" style="display:grid; grid-template-columns: repeat(7, 1fr); gap:5px;"></div>
+                        <button onclick="document.getElementById('habit-calendar-modal').style.display='none'" style="margin-top:20px; width:100%; background:#ef4444;">Close</button>
+                    </div>
+                </div>
+
+
+
         </section>
 
         <!---------------------------Personality & Mindset--------------------------------->
@@ -292,6 +497,52 @@
                     <div id="experience-list" style="display: flex; flex-direction: column; gap: 15px;">
                         </div>
                 </div>
+
+                        
+            <div id="personality-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1100; justify-content:center; align-items:center; backdrop-filter: blur(4px);">
+                <div style="background: var(--sidebar-bg); padding: 30px; border-radius: 16px; border: 1px solid var(--border); width: 420px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
+                    
+                    <h2 id="personality-modal-title" style="color: white; margin-bottom: 20px; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-user-gear" style="color: var(--accent);"></i> Add New Trait
+                    </h2>
+
+                    <form id="personality-form" onsubmit="event.preventDefault(); Personality.save();">
+                        <input type="hidden" id="trait-id">
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="color: var(--text-dim); font-size: 12px; margin-bottom: 5px; display: block;">Trait Name</label>
+                            <input type="text" id="trait-name" placeholder="e.g. Leadership, Fast Learning" required 
+                                style="width:100%; padding:12px; background:#1e293b; border:1px solid var(--border); border-radius: 8px; color:white; outline: none;">
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="color: var(--text-dim); font-size: 12px; margin-bottom: 5px; display: block; display: flex; justify-content: space-between;">
+                                Proficiency Level <span id="level-value">80%</span>
+                            </label>
+                            <input type="range" id="trait-level" min="0" max="100" value="80" 
+                                style="width: 100%; accent-color: var(--accent); cursor: pointer;"
+                                oninput="document.getElementById('level-value').innerText = this.value + '%'">
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="color: var(--text-dim); font-size: 12px; margin-bottom: 5px; display: block;">Notes (Optional)</label>
+                            <textarea id="trait-notes" placeholder="Describe how you apply this trait..." 
+                                style="width:100%; height: 80px; padding:12px; background:#1e293b; border:1px solid var(--border); border-radius: 8px; color:white; outline: none; resize: none;"></textarea>
+                        </div>
+
+                        <div style="display:flex; gap:12px;">
+                            <button type="submit" style="flex:2; background:var(--accent); color:white; border:none; padding:12px; border-radius:8px; cursor:pointer; font-weight: bold; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                                <i class="fa-solid fa-check"></i> Save Trait
+                            </button>
+                            <button type="button" onclick="Personality.closeModal()" style="flex:1; background:transparent; border:1px solid var(--border); color:white; padding:12px; border-radius:8px; cursor:pointer;">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
                
         </section>
 
@@ -409,6 +660,9 @@
                 </div>
             </div>
 
+            <!--------------------->
+            
+
             <div class="table-container" style="background: #1e293b; border-radius: 8px; border: 1px solid #334155; overflow-x: auto;">
                 <table id="excel-table" style="width: 100%; border-collapse: collapse; font-size: 13px;">
                     <thead>
@@ -509,7 +763,14 @@
                     <p id="savings-tip" style="font-size: 10px; color: var(--text-dim); margin-left: 10px;"></p>
                 </div>
             </div>
+
+            
+
         </div>
+
+
+        
+
 
 
         </section>
@@ -551,6 +812,72 @@
         </div>
 
 
+
+
+        <!---------------------------AI tools ---------------------------->
+
+        
+
+        <section id="ai-tools" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <h1>🤖 AI Resources Directory</h1>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="AITools.openAddModal()" class="btn-primary" style="padding: 8px 15px;">+ Add Tool</button>
+                </div>  
+                <div class="search-bar" style="width: 300px; position: relative;">
+                    <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 10px; top: 10px; color: var(--text-dim);"></i>
+                    <input type="text" id="ai-search" placeholder="Search tools..." onkeyup="AITools.filter(this.value)" 
+                        style="width: 100%; padding: 8px 10px 8px 35px; background: #0f172a; border: 1px solid #334155; border-radius: 6px; color: white;">
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                
+            </div>
+
+
+            <div id="folders-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
+                </div>
+
+            <div id="tools-display-area" class="card" style="display: none; background: #1e293b; border: 1px solid var(--accent);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 id="current-folder-name" style="color: var(--accent);"><i class="fa-solid fa-folder-open"></i> Tools</h3>
+                    <button onclick="document.getElementById('tools-display-area').style.display='none'" style="background: none; border: none; color: var(--text-dim); cursor: pointer;"><i class="fa-solid fa-xmark"></i> Close</button>
+                </div>
+                <div id="tools-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
+                    </div>
+            </div>
+        </section>
+
+        <div id="ai-modal" class="modal-overlay">
+            <div class="modal-card">
+                <h2>Add New AI Tool</h2>
+                <form id="ai-tool-form">
+                    <label>Tool Name</label>
+                    <input type="text" id="ai-name" placeholder="e.g. Perplexity" required>
+                    
+                    <label>Category (Folder)</label>
+                    <input type="text" id="ai-folder" list="folder-list" placeholder="Select or type new folder" required>
+                    <datalist id="folder-list">
+                        <option value="Coding & Dev">
+                        <option value="Large Language Models">
+                        <option value="Image & Design">
+                        <option value="Engineering Tools">
+                    </datalist>
+
+                    <label>Description</label>
+                    <input type="text" id="ai-desc" placeholder="What does it do?">
+                    
+                    <label>URL (Link)</label>
+                    <input type="url" id="ai-link" placeholder="https://..." required>
+                    
+                    <div class="modal-btns">
+                        <button type="button" class="btn-secondary" onclick="AITools.closeModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Tool</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
 
         <!---------------------------File Manager---------------------------->
@@ -772,32 +1099,62 @@
         <!-------------------------journal------------------------------>
 
         <section id="journal" class="tab-content">
-            <div class="grid-layout" style="display: grid; grid-template-columns: 1fr 300px; gap: 20px;">
+            <div class="grid-layout" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px;">
                 
                 <div class="card">
-                    <h1>✍️ Daily Reflection</h1>
-                    <label>Today's Mood</label>
-                    <select id="journal-mood" style="margin-bottom: 15px; background: #0f172a; color: white; border: 1px solid #334155;">
-                        <option>Focused 🧠</option>
-                        <option>Deep/Reflective 🌊</option>
-                        <option>Productive 🔥</option>
-                        <option>Exhausted 🔋</option>
-                    </select>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h1>✍️ Daily Log & Reflection</h1>
+                        <span id="entry-date" style="color: var(--accent); font-weight: bold;"></span>
+                    </div>
 
-                    <label>Thoughts & Reviews</label>
-                    <textarea id="journal-text" placeholder="Write about your day or a movie you watched..." 
-                        style="width: 100%; height: 300px; background: #0f172a; color: white; border: 1px solid #334155; border-radius: 8px; padding: 15px; margin-top: 10px; font-family: inherit; resize: none;"></textarea>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <label>How's the energy today?</label>
+                            <select id="journal-mood" style="width: 100%; margin-top: 5px;">
+                                <option value="🔥 Productive">🔥 High Energy / Productive</option>
+                                <option value="🧠 Focused">🧠 Deep Work / Coding</option>
+                                <option value="🌊 Reflective">🌊 Calm / Reflective</option>
+                                <option value="🔋 Exhausted">🔋 Field Work / Tired</option>
+                                <option value="🛠️ Problem-Solving">🛠️ Technical Challenges</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Entry Tag</label>
+                            <input type="text" id="journal-tag" placeholder="e.g. Well Testing, HTML, Personal" style="width: 100%; margin-top: 5px;">
+                        </div>
+                    </div>
+
+                    <div id="daily-prompt-container" style="background: rgba(59, 130, 246, 0.1); border: 1px dashed var(--accent); padding: 10px; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-lightbulb" style="color: #f59e0b;"></i>
+                        <div style="flex-grow: 1;">
+                            <small style="color: var(--text-dim); display: block; font-size: 10px; text-transform: uppercase;">Today's Question:</small>
+                            <span id="daily-prompt-text" style="font-size: 13px; font-style: italic; color: white;">Today Motivational Question is loading..</span>
+                        </div>
+                        <button onclick="Journal.generateNewPrompt()" style="background: none; border: none; color: var(--accent); cursor: pointer;"><i class="fa-solid fa-rotate"></i></button>
+                    </div>
+
+
+                    <textarea id="journal-text" placeholder="What did you learn today? What challenges did you face on-site or in the code?" 
+                        style="width: 100%; height: 350px; background: #0f172a; color: white; border: 1px solid #334155; border-radius: 8px; padding: 15px; font-family: inherit; resize: none; line-height: 1.6;"></textarea>
                     
-                    <button onclick="Journal.saveEntry()" style="margin-top: 15px; width: 100%;">Save to Archive</button>
+                    <button onclick="Journal.saveEntry()" style="margin-top: 15px; width: 100%; padding: 12px;" class="btn-primary">
+                        <i class="fa-solid fa-floppy-disk"></i> Save to Timeline
+                    </button>
                 </div>
 
-                <div class="card">
-                    <h3>Recent Entries</h3>
-                    <div id="journal-archive" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+                <div class="card" style="display: flex; flex-direction: column;">
+                    <h3>📂 Timeline Archive</h3>
+                    <div style="margin: 15px 0; position: relative;">
+                        <input type="text" id="journal-search" placeholder="Search memories or tags..." 
+                            onkeyup="Journal.search(this.value)" style="width: 100%; padding: 8px 30px; background: #0f172a; border: 1px solid #334155; border-radius: 6px; color: white;">
+                        <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 10px; top: 12px; font-size: 12px; color: var(--text-dim);"></i>
+                    </div>
+                    <div id="journal-archive" style="flex-grow: 1; overflow-y: auto; max-height: 500px;">
                         </div>
                 </div>
             </div>
         </section>
+
 
         <!---------------------OS Analytics & Statistics---------------------------------->
 
@@ -894,101 +1251,6 @@
     </main>
 
 
-
-    <!------------------------Start-Vault Model-------------------------------->
-    <div id="vault-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
-    <div style="background: var(--sidebar-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--border); width: 400px;">
-        <h2 style="color: white; margin-bottom: 20px;">Add New Document</h2>
-        <form id="vault-form">
-            <input type="hidden" id="doc-id">
-            <input type="text" id="doc-name" placeholder="Document Name" required style="width:100%; margin-bottom:15px; padding:10px; background:#1e293b; border:1px solid var(--border); color:white;">
-            <input type="date" id="doc-date" required style="width:100%; margin-bottom:15px; padding:10px; background:#1e293b; border:1px solid var(--border); color:white;">
-            <select id="doc-cat" style="width:100%; margin-bottom:15px; padding:10px; background:#1e293b; border:1px solid var(--border); color:white;">
-                <option value="Personal">Personal</option>
-                <option value="Work">Work</option>
-                <option value="Health">Health</option>
-                <option value="Finance">Finance</option>
-            </select>
-            <textarea id="doc-notes" placeholder="Notes (Optional)..." 
-                style="width:100%; margin-bottom:15px; padding:10px; background:#1e293b; border:1px solid var(--border); color:white; border-radius:5px; height: 80px; resize: none;"></textarea>
-
-            
-
-            <input type="file" id="doc-file" style="width:100%; margin-bottom:20px; color:var(--text-dim);">
-            
-            <div style="display:flex; gap:10px;">
-                <button type="submit" style="flex:1; background:var(--accent); color:white; border:none; padding:10px; border-radius:5px; cursor:pointer;">Save</button>
-                <button type="button" onclick="Vault.closeModal()" style="flex:1; background:transparent; border:1px solid var(--border); color:white; padding:10px; border-radius:5px; cursor:pointer;">Cancel</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-
-    <!------------------------End-Vault Model-------------------------------->
-    <!------------------------Start Habit Modal-------------------------------->
-    <div id="health-modal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:3000; justify-content:center; align-items:center;">
-        <div style="background: #1e293b; padding: 25px; border-radius: 15px; width: 350px;">
-            <h2 style="margin-bottom: 20px;">Update Health</h2>
-            <label>Weight (kg):</label>
-            <input type="number" id="input-weight" style="width:100%; margin: 10px 0; padding: 8px;">
-            <label>Water (Glasses):</label>
-            <input type="number" id="input-water" style="width:100%; margin: 10px 0; padding: 8px;">
-            <div style="display:flex; gap:10px; margin-top:20px;">
-                <button onclick="Health.save()" style="background:#10b981; flex:1;">Save</button>
-                <button onclick="document.getElementById('health-modal').style.display='none'" style="background:#ef4444; flex:1;">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <!------------------------End Habit Modal-------------------------------->
-    <!------------------------Start Personality Modal-------------------------------->
-    <div id="personality-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1100; justify-content:center; align-items:center; backdrop-filter: blur(4px);">
-        <div style="background: var(--sidebar-bg); padding: 30px; border-radius: 16px; border: 1px solid var(--border); width: 420px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
-            
-            <h2 id="personality-modal-title" style="color: white; margin-bottom: 20px; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
-                <i class="fa-solid fa-user-gear" style="color: var(--accent);"></i> Add New Trait
-            </h2>
-
-            <form id="personality-form" onsubmit="event.preventDefault(); Personality.save();">
-                <input type="hidden" id="trait-id">
-
-                <div style="margin-bottom: 15px;">
-                    <label style="color: var(--text-dim); font-size: 12px; margin-bottom: 5px; display: block;">Trait Name</label>
-                    <input type="text" id="trait-name" placeholder="e.g. Leadership, Fast Learning" required 
-                        style="width:100%; padding:12px; background:#1e293b; border:1px solid var(--border); border-radius: 8px; color:white; outline: none;">
-                </div>
-
-                <div style="margin-bottom: 15px;">
-                    <label style="color: var(--text-dim); font-size: 12px; margin-bottom: 5px; display: block; display: flex; justify-content: space-between;">
-                        Proficiency Level <span id="level-value">80%</span>
-                    </label>
-                    <input type="range" id="trait-level" min="0" max="100" value="80" 
-                        style="width: 100%; accent-color: var(--accent); cursor: pointer;"
-                        oninput="document.getElementById('level-value').innerText = this.value + '%'">
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <label style="color: var(--text-dim); font-size: 12px; margin-bottom: 5px; display: block;">Notes (Optional)</label>
-                    <textarea id="trait-notes" placeholder="Describe how you apply this trait..." 
-                        style="width:100%; height: 80px; padding:12px; background:#1e293b; border:1px solid var(--border); border-radius: 8px; color:white; outline: none; resize: none;"></textarea>
-                </div>
-
-                <div style="display:flex; gap:12px;">
-                    <button type="submit" style="flex:2; background:var(--accent); color:white; border:none; padding:12px; border-radius:8px; cursor:pointer; font-weight: bold; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                        <i class="fa-solid fa-check"></i> Save Trait
-                    </button>
-                    <button type="button" onclick="Personality.closeModal()" style="flex:1; background:transparent; border:1px solid var(--border); color:white; padding:12px; border-radius:8px; cursor:pointer;">
-                        Cancel
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!------------------------End Personality Modal-------------------------------->
-
-
     <script src="js/storage.js"></script>
     <script src="js/finance.js"></script>
     <script src="js/reports.js"></script>
@@ -1006,8 +1268,9 @@
     <script src="js/dashboard.js"></script>
     <script src="js/project.js"></script>
     <script src="js/study.js"></script>
-    <script src="js/journal.js"></script> 
+    <script src="js/journals.js"></script> 
     <script src="js/filemanager.js"></script> 
+    <script src="js/ai-tools.js"></script> 
     <script src="js/main.js"></script>
 
 

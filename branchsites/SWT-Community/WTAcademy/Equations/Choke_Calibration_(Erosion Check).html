@@ -134,6 +134,28 @@
 
         <button onclick="calibrateChoke()" style="width: 100%; margin-top: 15px; background: #f1c40f; border: none; color: #101b2e; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold;">Check for Erosion</button>
     </section>
+
+    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 20px; margin-top: 10px;">
+        <div style="font-size: 1.1rem; color: #fff; text-align: center; margin-bottom: 20px;">
+            <p style="color: #aaa; font-size: 0.9em; margin-bottom: 10px;">Effective Diameter Calculation:</p>
+            $$D_{eff} = 128 \times \sqrt{\frac{Q_{mscf/d} \times \sqrt{T_R \times \gamma_g \times Z}}{\pi \times C \times P_{psia} \times C_d}}$$
+        </div>
+
+        <details style="color: #aaa; font-size: 0.85em; cursor: pointer; border-top: 1px solid #333; padding-top: 10px;">
+            <summary style="color: #f1c40f; font-weight: bold;">Erosion & Washout Guide</summary>
+            <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 1px solid #222;">
+                    <th style="padding: 5px;">Variance</th>
+                    <th style="padding: 5px;">Status</th>
+                    <th style="padding: 5px;">Action Required</th>
+                </tr>
+                <tr style="color: #2ecc71;"><td>< 1.5/64"</td><td><b>Intact</b></td><td>Normal operations.</td></tr>
+                <tr style="color: #f39c12;"><td>1.5 - 3.0</td><td><b>Worn</b></td><td>Monitor closely for sand production.</td></tr>
+                <tr style="color: #e74c3c;"><td>> 3.0/64"</td><td><b>Washed Out</b></td><td>Switch to standby choke and inspect bean.</td></tr>
+            </table>
+        </details>
+    </div>
+
 </section>
 
 

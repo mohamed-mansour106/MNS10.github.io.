@@ -109,17 +109,27 @@
                 <h2 style="color: #2ecc71; border-left: 4px solid #2ecc71; padding-left: 15px; margin-bottom: 20px;">1. API & K-Factor Correction</h2>
                 <div class="converter-grid">
                     <div>
-                        <div class="conv-field"><label>D7: Observed API</label><input type="number" id="d7" step="0.1" placeholder="e.g. 50"></div>
-                        <div class="conv-field"><label>D8: Hydrometer Temp (°F)</label><input type="number" id="d8" step="0.1" placeholder="e.g. 78"></div>
-                        <div class="conv-field"><label>D9: Oil Line Temp (°F)</label><input type="number" id="d9" step="0.1" placeholder="e.g. 90"></div>
+                        <div class="conv-field"><label>Observed API</label><input type="number" id="d7" step="0.1" placeholder="e.g. 50"></div>
+                        <div class="conv-field"><label>Hydrometer Temp (°F)</label><input type="number" id="d8" step="0.1" placeholder="e.g. 78"></div>
+                        <div class="conv-field"><label>Oil Line Temp (°F)</label><input type="number" id="d9" step="0.1" placeholder="e.g. 90"></div>
                     </div>
                     <div>
-                        <div class="conv-field"><label>D12: Oil API @ 60°F</label><input type="text" id="d12" readonly class="res-field"></div>
-                        <div class="conv-field"><label>D14: K-Factor (VCF)</label><input type="text" id="d14" readonly class="res-field"></div>
+                        <div class="conv-field"><label>Oil API @ 60°F</label><input type="text" id="d12" readonly class="res-field"></div>
+                        <div class="conv-field"><label>K-Factor (VCF)</label><input type="text" id="d14" readonly class="res-field"></div>
                     </div>
                 </div>
-            </section>
 
+                <div style="padding: 15px; font-size: 0.85em;">
+                    <p><strong>Step 1: Correcting API to 60°F</strong></p>
+                    <p>$$ \rho_{obs} = \frac{141.5}{API_{obs} + 131.5} \times 999.012 $$</p>
+                    <p>The corrected density ($\rho_{60}$) is solved using the temperature expansion coefficient ($\alpha$):</p>
+                    <p>$$ VCF = e^{ [-\alpha \Delta T (1 + 0.8 \alpha \Delta T)] } $$</p>
+                    
+                    <p><strong>Step 2: K-Factor (VCF) for Line Temp</strong></p>
+                    <p>Adjusts the volume from meter/tank temperature to standard conditions:</p>
+                    <p>$$ K = \frac{Volume_{60}}{Volume_{line}} $$</p>
+                </div>
+            </section>
 
 
 
@@ -285,6 +295,18 @@
 
 
 
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$']]
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es/tex-mml-chtml.js">
+</script>
 
 
 

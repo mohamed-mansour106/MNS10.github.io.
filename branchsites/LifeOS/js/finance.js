@@ -1,12 +1,12 @@
 const Finance = {
     // 1. قاعدة البيانات (LocalStorage)
     db: JSON.parse(localStorage.getItem('os_finance_v3')) || { years: {} },
-    
+    //***************************** */
     // 2. التصنيفات والنسب (نفس صورتك في الإكسيل)
     categories: [
         { name: "Rent/Housing/Car", percent: 30 },
         { name: "Project/Gold", percent: 20 },
-        { name: "Food & Drinks ", percent: 20 },
+        { name: "Food & Drinks", percent: 20 },
         { name: "Dad & Mom & Son", percent: 10 },
         { name: "Emergency", percent: 10 },
         { name: "Miscellaneous", percent: 10 }
@@ -39,10 +39,20 @@ const Finance = {
         filterCat.innerHTML = `<option value="All">All Categories</option>` + catOptions;
     },
 
+    
+
+    //****************************** */
     updateSalary: function(val) {
         const year = document.getElementById('fin-year').value;
-        if (!this.db.years[year]) this.db.years[year] = { salary: 0, months: {} };
-        this.db.years[year].salary = parseFloat(val) || 0;
+        const month = document.getElementById('fin-month').value;
+
+        if (!this.db.years[year]) this.db.years[year] = { months: {} };
+        if (!this.db.years[year].months[month]) {
+            this.db.years[year].months[month] = { transactions: [], salary: 0 };
+        }
+
+        this.db.years[year].months[month].salary = parseFloat(val) || 0;
+
         this.save();
         this.render();
     },
@@ -54,13 +64,21 @@ const Finance = {
         const amount = parseFloat(document.getElementById('exp-amount').value);
         const category = document.getElementById('exp-category').value;
 
-        if(!name || !amount) return alert("Please enter name and amount");
+        if (!name.trim()) return alert("Enter valid name");
+        if (isNaN(amount) || amount <= 0) return alert("Invalid amount");
 
         // التأكد من وجود الهيكل المالي لهذه السنة وهذا الشهر
-        if (!this.db.years[year]) this.db.years[year] = { salary: 10000, months: {} };
-        if (!this.db.years[year].months[month]) this.db.years[year].months[month] = { transactions: [] };
+        if (!this.db.years[year]) this.db.years[year] = { months: {} };
+
+        if (!this.db.years[year].months[month]) {
+            this.db.years[year].months[month] = { 
+                transactions: [],
+                salary: 0
+            };
+        }
         
         this.db.years[year].months[month].transactions.push({ 
+            id: Date.now(),
             name, 
             amount, 
             category, 
@@ -73,14 +91,16 @@ const Finance = {
         this.render();
     },
 
-    deleteTransaction: function(index) {
+    deleteTransaction: function(id) {
         const year = document.getElementById('fin-year').value;
         const month = document.getElementById('fin-month').value;
-        if (confirm("Delete this transaction?")) {
-            this.db.years[year].months[month].transactions.splice(index, 1);
-            this.save();
-            this.render();
-        }
+
+        const txs = this.db.years[year].months[month].transactions;
+
+        this.db.years[year].months[month].transactions = txs.filter(t => t.id !== id);
+
+        this.save();
+        this.render();
     },
 
         render: function() {
@@ -88,12 +108,19 @@ const Finance = {
         const month = document.getElementById('fin-month').value;
         
         // 1. التأكد من وجود البيانات وتحميل الراتب
-        if (!this.db.years[year]) this.db.years[year] = { salary: 10000, months: {} };
-        if (!this.db.years[year].months[month]) this.db.years[year].months[month] = { transactions: [] };
+        if (!this.db.years[year]) this.db.years[year] = { months: {} };
+        if (!this.db.years[year].months[month]) {
+            this.db.years[year].months[month] = { 
+                transactions: [],
+                salary: 0
+            };
+        }
 
         const data = this.db.years[year];
-        const monthData = data.months[month];
-        document.getElementById('monthly-salary').value = data.salary;
+        const monthData = this.db.years[year].months[month];
+
+        document.getElementById('monthly-salary').value = monthData.salary || 0;
+        
 
         // 2. حساب المصاريف لكل فئة للشهر الحالي (لجدول الإكسيل)
         const stats = {};
@@ -107,13 +134,15 @@ const Finance = {
         tbody.innerHTML = '';
         let monthTotalSpent = 0;
 
+        let html = '';
+
         this.categories.forEach(cat => {
-            const budget = data.salary * (cat.percent / 100);
+            const budget = monthData.salary * (cat.percent / 100);
             const spent = stats[cat.name];
             const remain = budget - spent;
             monthTotalSpent += spent;
 
-            tbody.innerHTML += `
+            html += `
                 <tr>
                     <td style="padding: 10px; border: 1px solid #334155;">${cat.name}</td>
                     <td style="padding: 10px; border: 1px solid #334155; text-align:center;">${cat.percent}%</td>
@@ -129,24 +158,31 @@ const Finance = {
             `;
         });
 
+        tbody.innerHTML = html;
+
         // 4. تحديث فوتر الجدول (Totals الشهرية)
-        document.getElementById('total-budget').innerText = data.salary.toLocaleString();
+        document.getElementById('total-budget').innerText = monthData.salary.toLocaleString();
+        const monthRemain = monthData.salary - monthTotalSpent;
         document.getElementById('total-spent').innerText = monthTotalSpent.toLocaleString();
-        const monthRemain = data.salary - monthTotalSpent;
         document.getElementById('total-remaining').innerText = monthRemain.toLocaleString();
         document.getElementById('total-remaining').style.color = monthRemain < 0 ? '#ef4444' : '#10b981';
 
         // 5. حساب إجمالي السنة والرصيد البنكي (Yearly Logic)
-        let yearlyTotalSpent = 0;
-        let monthsTracked = 0;
         
-        for (let m in data.months) {
-            const mSpent = data.months[m].transactions.reduce((sum, t) => sum + t.amount, 0);
-            yearlyTotalSpent += mSpent;
-            if (mSpent > 0) monthsTracked++;
-        }
+        
+        let yearlyTotalSpent = 0;
+        let totalIncomeSoFar = 0;
 
-        const totalIncomeSoFar = data.salary * (monthsTracked || 1); 
+        for (let m in data.months) {
+            const month = data.months[m];
+
+            const mSpent = (month.transactions || []).reduce((sum, t) => {
+                return sum + (t.amount || 0);
+            }, 0);
+
+            yearlyTotalSpent += mSpent;
+            totalIncomeSoFar += month.salary || 0;
+        }
         const currentBalance = totalIncomeSoFar - yearlyTotalSpent;
         const savingsPercent = totalIncomeSoFar > 0 ? ((totalIncomeSoFar - yearlyTotalSpent) / totalIncomeSoFar * 100).toFixed(1) : 0;
 
@@ -164,7 +200,7 @@ const Finance = {
 
         // 7. استدعاء سجل العمليات والرسوم البيانية
         this.renderTransactionsLog();
-        this.updateCharts(data.salary, stats, year);
+        this.updateCharts(monthData.salary, stats, year);
     },
 
 
@@ -175,7 +211,7 @@ const Finance = {
         const filter = document.getElementById('filter-category').value;
         const logBody = document.getElementById('transactions-log-body');
         
-        const transactions = this.db.years[year].months[month].transactions;
+        const transactions = this.db.years[year].months[month].transactions || [];
         logBody.innerHTML = '';
 
         const filtered = filter === "All" ? transactions : transactions.filter(t => t.category === filter);
@@ -189,7 +225,7 @@ const Finance = {
                     <td style="padding: 8px;"><span style="color:var(--accent); font-size:11px;">${t.category}</span></td>
                     <td style="padding: 8px; color: #ef4444;">-${t.amount.toLocaleString()}</td>
                     <td style="padding: 8px;">
-                        <button onclick="Finance.deleteTransaction(${transactions.indexOf(t)})" style="background:none; border:none; color:#ef4444; cursor:pointer;">
+                        <button onclick="Finance.deleteTransaction(${t.id})" style="background:none; border:none; color:#ef4444; cursor:pointer;">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </td>
@@ -240,8 +276,10 @@ const Finance = {
             
             const yearlyData = Array(12).fill(0).map((_, i) => {
                 const mData = this.db.years[year]?.months[i];
-                return mData ? mData.transactions.reduce((sum, t) => sum + t.amount, 0) : 0;
+                return mData ? (mData.transactions || []).reduce((sum, t) => sum + (t.amount || 0), 0) : 0;
             });
+
+            document.getElementById('exp-category').selectedIndex = 0;
 
             window.yChart = new Chart(yCtx, {
                 type: 'line',

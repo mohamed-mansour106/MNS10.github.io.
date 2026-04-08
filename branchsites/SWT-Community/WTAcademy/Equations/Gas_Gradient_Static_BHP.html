@@ -9,6 +9,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+ 
 </head>
 <body>
 
@@ -97,16 +98,14 @@
         This tool provides two methods to calculate the <strong>Static Bottom Hole Pressure (Pws)</strong> and the initial <strong>Gas Gradient</strong>.
     </p>
     
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
-        <div style="background: rgba(46, 204, 113, 0.1); padding: 15px; border-radius: 8px;">
+    <div style="background: rgba(46, 204, 113, 0.1); padding: 15px; border-radius: 8px; margin-top: 15px;">
             <strong style="color: #2ecc71;">1. Exponential Method (Precise)</strong>
             <p style="font-size: 0.85em; margin-top: 5px;">Uses the full barometric formula: $$P_{ws} = P_{wh} \cdot e^{\frac{0.01875 \cdot \gamma_g \cdot D}{Z_{avg} \cdot T_{avg}}}$$ Requires SG, Temp, and Z-factor for higher accuracy.</p>
         </div>
-        <div style="background: rgba(241, 196, 15, 0.1); padding: 15px; border-radius: 8px;">
+    <div style="background: rgba(241, 196, 15, 0.1); padding: 15px; border-radius: 8px; margin-top: 15px;">
             <strong style="color: #f1c40f;">2. Simplified Method (Rule of Thumb)</strong>
             <p style="font-size: 0.85em; margin-top: 5px;">A field approximation: $$P_{ws} = P_{wh} + 0.25 \left(\frac{P_{wh}}{100}\right) \left(\frac{D}{100}\right)$$ Useful for quick estimates when gas properties are unknown.</p>
         </div>
-    </div>
 
     <ul style="margin-top: 15px; font-size: 0.85em; color: #95a5a6; list-style-type: none; padding-left: 0;">
         <li>✅ <strong>Step 1:</strong> Enter Gas Gravity (SG) and Wellhead Pressure (psia).</li>
@@ -148,26 +147,27 @@
 </section>
 
 
-<div class="formula-reference" style="background: rgba(52, 152, 219, 0.05); border: 1px dashed #3498db; padding: 15px; border-radius: 8px; margin-bottom: 20px; color: #ecf0f1;">
-    <h4 style="color: #3498db; margin-bottom: 10px; font-size: 0.9em; text-transform: uppercase;">Scientific Basis</h4>
+
+
+<section class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 20px; color: #fff;">
+    <h3 style="color: #f1c40f; margin-top: 0;">Scientific Basis (Static BHP)</h3>
     
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-around;">
-        <div style="text-align: center;">
-            <p style="font-size: 0.8em; color: #aaa;">Gas Gradient ($G$)</p>
-            $G = \frac{0.01875 \cdot \gamma_g \cdot P_{wh}}{Z_{avg} \cdot T_{avg}}$
-        </div>
-
-        <div style="text-align: center;">
-            <p style="font-size: 0.8em; color: #aaa;">Static BHP (Exponential)</p>
-            $P_{ws} = P_{wh} \cdot e^{\left(\frac{0.01875 \cdot \gamma_g \cdot D}{Z_{avg} \cdot T_{avg}}\right)}$
-        </div>
-
-        <div style="text-align: center;">
-            <p style="font-size: 0.8em; color: #aaa;">Static BHP (Simplified)</p>
-            $P_{ws} = P_{wh} + 0.25 \left(\frac{P_{wh}}{100}\right) \left(\frac{D}{100}\right)$
-        </div>
+    <div style="margin-bottom: 20px;">
+        <h4 style="color: #3498db; font-size: 0.9em;">1. Gas Gradient ($G$)</h4>
+        <p>$$G = \frac{0.01875 \cdot \gamma_g \cdot P_{wh}}{Z_{avg} \cdot T_{avg}}$$</p>
     </div>
-</div>
+
+    <div style="margin-bottom: 20px;">
+        <h4 style="color: #3498db; font-size: 0.9em;">2. Static BHP (Exponential)</h4>
+        <p>$$P_{ws} = P_{wh} \cdot e^{\left(\frac{0.01875 \cdot \gamma_g \cdot D}{Z_{avg} \cdot T_{avg}}\right)}$$</p>
+    </div>
+
+    <div>
+        <h4 style="color: #3498db; font-size: 0.9em;">3. Static BHP (Simplified)</h4>
+        <p>$$P_{ws} = P_{wh} + 0.25 \left(\frac{P_{wh}}{100}\right) \left(\frac{D}{100}\right)$$</p>
+    </div>
+</section>
+
 
 
 
@@ -249,6 +249,17 @@
 
 
 
+   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es/tex-mml-chtml.js"></script>
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    }
+  };
+</script>
 
 
 

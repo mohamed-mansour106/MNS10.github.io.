@@ -157,6 +157,32 @@
         <p id="gas-warning-text" style="font-size: 0.8em; color: #aaa; margin-top: 10px;"></p>
     </div>
 
+
+    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #3498db; padding: 20px; margin-top: 10px;">
+        <div style="font-size: 1.1rem; color: #fff; text-align: center; margin-bottom: 20px;">
+            <p style="color: #aaa; font-size: 0.9em; margin-bottom: 10px;">Liquid Retention Length:</p>
+            $$L = \frac{Q_{(bpd)} \times t_{(min)}}{1440 \times A_{liquid}}$$
+            
+            <p style="color: #aaa; font-size: 0.9em; margin: 15px 0 10px;">Gas Capacity (Souders-Brown):</p>
+            $$V_{max} = K \sqrt{\frac{\rho_L - \rho_g}{\rho_g}}$$
+        </div>
+
+        <details style="color: #aaa; font-size: 0.85em; cursor: pointer; border-top: 1px solid #333; padding-top: 10px;">
+            <summary style="color: #3498db; font-weight: bold;">Vessel Design Concepts</summary>
+            <p style="margin-top: 10px;">
+                The design relies on balancing two primary physical forces:
+            </p>
+            <ul style="padding-left: 20px;">
+                <li><b style="color: #2ecc71;">Liquid Residence:</b>Providing sufficient vessel length for the liquid to remain calm, allowing gas bubbles to break free and escape to the surface.</li>
+                <li><b style="color: #3498db;">Gas Velocity:</b>Ensuring the gas speed in the upper section of the vessel is not high enough to "entrain" or carry oil droplets downstream (preventing carry-over).</li>
+            </ul>
+            <p style="font-size: 0.9em; border-left: 2px solid #e74c3c; padding-left: 10px; margin-top: 10px;">
+                <b style="color: #e74c3c;">Note:</b>The K-factor used (0.35) is the industry standard value for horizontal separators equipped with a Mist Extractor.
+            </p>
+        </details>
+    </div>
+
+
 </section>
 
 

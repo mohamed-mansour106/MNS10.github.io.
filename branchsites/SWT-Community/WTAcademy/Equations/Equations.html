@@ -148,7 +148,7 @@
             <div class="library-card" data-type="Calculations" data-title="Hydrostatic Pressure Calculator Phyd Gradient Depth Calculate bottom-hole pressure based on fluid density and depth." data-author="Various">
               <span>Calculations</span>
               <h4>Hydrostatic Pressure Calculator</h4>
-              <p>P<sub>hyd</sub> = Gradient X Depth</p>
+              <p id="gas-formula-display" >$$P_{hyd} = TVD \times (SG \times 0.4333)$$</p>
               <p>Calculate bottom-hole pressure based on fluid density and depth.</p>
             </div>
           </a>
@@ -157,8 +157,8 @@
             <div class="library-card" data-type="Estimation" data-title="Gas Flow Rate Estimation Critical Flow" data-author="Various">
               <span>Estimation</span>
               <h4>Gas Flow Rate Estimation</h4>
-              <p>Gas Flow Rate Equation</p>
-              <p>Estimation through a fixed choke when Critical Flow exists (Downstream P &lt; 0.5 × Upstream P)..</p>
+              <p>$$Q = \frac{C \cdot P_{up}}{\sqrt{T \cdot G}}$$</p>
+              <p id="gas-formula-display">Estimation through a fixed choke when Critical Flow exists (Downstream P &lt; 0.5 × Upstream P)..</p>
             </div>
           </a>
 
@@ -166,7 +166,7 @@
             <div class="library-card" data-type="Estimation" data-title="Oil Flow Rate Estimation using Gilbert and Ros multi-phase flow equations." data-author="Various">
               <span>Estimation</span>
               <h4>Oil Flow Rate Estimation</h4>
-              <p>Gilbert and Ros multi-phase flow equations</p>
+              <p id="gas-formula-display">$$Q_o = \frac{(P + 14.73) \times C^2}{17.4 \times G^{0.5}}$$ $$Q_o = \frac{P \times C^{1.89}}{435 \times (\frac{G}{1000})^{0.546}}$$</p>
               <p>Estimation using Gilbert and Ros multi-phase flow equations.</p>
             </div>
           </a>
@@ -184,7 +184,7 @@
             <div class="library-card" data-type="Calculations" data-title="Choke Nipple Gas Rate Calculation" data-author="Various">
               <span>Calculations</span>
               <h4>Solution GOR2 Estimation ($R_s$)</h4>
-              <p id="gas-formula-display" >Standing and Vasquez & Beggs correlations</p>
+              <p id="gas-formula-display" >$$R_s = \gamma_g \left[ \frac{P}{18 \cdot 10^{yg}} \right]^{1.204}$$      $$R_s = C_1 \gamma_g P^{C_2} \exp\left[ \frac{C_3 API}{T_{abs}} \right]$$    </p>
               <p>Estimating gas solubility using Standing and Vasquez & Beggs correlations.</p>
             </div>
           </a>
@@ -193,7 +193,8 @@
             <div class="library-card" data-type="Estimation" data-title="Estimate of Shrinkage Factor" data-author="Various">
               <span>Estimation</span>
               <h4>Estimate of Shrinkage Factor</h4>
-              <p id="gas-formula-display" >Vazquez-Beggs Correlation</p>
+              <p id="gas-formula-display" >$$B_o = 0.9759 + 12 \times 10^{-5} \cdot (F_{vol})^{1.2}$$
+                            $$\text{Shrinkage} = \frac{1}{B_o}$$</p>
               <p>Estimate of Shrinkage Factor.</p>
             </div>
           </a>
@@ -202,7 +203,7 @@
             <div class="library-card" data-type="Estimation" data-title="Velocity Desander Velocity & Pressure Conversion Formulas" data-author="Various">
               <span>Estimation</span>
               <h4>Desander Velocity & Pressure</h4>
-              <p id="gas-formula-display" >Velocity & Conversion Formulas</p>
+              <p id="gas-formula-display" >$$V_{flow} = \frac{32000 \times q_g}{16 \times P_{whp}}$$       $$P_{kPa} = P_{psia} \times 6.89476$$</p>
               <p>Velocity & Conversion Formulas.</p>
             </div>
           </a>
@@ -211,7 +212,8 @@
             <div class="library-card" data-type="Calculations" data-title="Recommended Flange Bolt Torque" data-author="Various">
               <span>Calculations</span>
               <h4>Recommended Flange Bolt Torque</h4>
-              <p id="gas-formula-display" >Torque Equation</p>
+              <p id="gas-formula-display" >$$A_s = \frac{\pi}{4} [D - (0.9743 \times P)]^2$$
+                                $$T = \frac{F \cdot E \left( P + \pi f E S \right)}{2 \left( \pi E - P f S \right)} + F f \left( \frac{H + D + K}{4} \right)$$</p>
               <p>Calculate required torque based on stud diameter, pitch, and desired bolt stress.</p>
             </div>
           </a>
@@ -220,7 +222,7 @@
             <div class="library-card" data-type="Estimation" data-title="Flow Meter Performance" data-author="Various">
               <span>Estimation</span>
               <h4>Flow Meter Performance</h4>
-              <p id="gas-formula-display" >Flow Meter Performance</p>
+              <p id="gas-formula-display" >$$Freq (Hz) = \frac{GPM \times Factor}{60}$$</p>
               <p>Flow Meter Performance.</p>
             </div>
           </a>
@@ -229,7 +231,7 @@
             <div class="library-card" data-type="Calculations" data-title="Wire Cable Length for Tie Back" data-author="Various">
               <span>Calculations</span>
               <h4>Wire Cable Length (Tie Back)</h4>
-              <p id="gas-formula-display" >Law of Cosines</p>
+              <p id="gas-formula-display" >$$c = \sqrt{a^2 + b^2 - 2ab \cos(C)}$$</p>
               <p>Wire Cable Length (Tie Back).</p>
             </div>
           </a>
@@ -238,7 +240,7 @@
             <div class="library-card" data-type="Calculations" data-title="Mud Pump Performance" data-author="Various">
               <span>Calculations</span>
               <h4>Mud Pump Performance</h4>
-              <p id="gas-formula-display" >Mud Pump Performance</p>
+              <p id="gas-formula-display" >$$Pump \ Output \ (bbl/stk) = 0.000243 \times D^2 \times L \times Eff$$</p>
               <p>Mud Pump Performance.</p>
             </div>
           </a>
@@ -247,16 +249,16 @@
             <div class="library-card" data-type="Estimation" data-title="Shrinkage Factor estimation (@ 60°F) Calculated via Katz Chart Linear Interpolation [Source: Halliburton]" data-author="Various">
               <span>Estimation</span>
               <h4>Shrinkage Factor estimation (@ 60°F)</h4>
-              <p id="gas-formula-display" >Shrinkage Factor estimation</p>
+              <p id="gas-formula-display" >$$Q_{net} = Q_{gross} \times (1 - BS\&W) \times Shrk$$</p>
               <p>Calculated via Katz Chart Linear Interpolation [Source: Halliburton].</p>
             </div>
           </a>
 
-          <a href="Shrinkage_Factor_estimation.html">          
+          <a href="Refractometer_Analysis.html">          
             <div class="library-card" data-type="Calculations" data-title="Refractometer Analysis" data-author="Various">
               <span>Calculations</span>
               <h4>Refractometer Analysis</h4>
-              <p id="gas-formula-display" >Refractometer Analysis</p>
+              <p id="gas-formula-display" >$$[NaCl]_{mg/L} = \text{Reading}\% \times 10,000$$     $$Cl^-_{ppm} = \frac{[NaCl]_{mg/L}}{1.84}$$ </p>
               <p>Refractometer Analysis.</p>
             </div>
           </a>
@@ -265,8 +267,8 @@
             <div class="library-card" data-type="Calculations" data-title="Bubble Point for Oil" data-author="Various">
               <span>Calculations</span>
               <h4>Bubble Point for Oil</h4>
-              <p id="gas-formula-display" >Bubble Point for Oil</p>
-              <p>Bubble Point for Oil.</p>
+              <p id="gas-formula-display" >$$P_b = [ \frac{R_s}{C_1 \cdot \gamma_{gc} \cdot e^{ (\frac{C_3 \cdot API}{T_{res} + 460}) }} ]^{1/C_2}$$</p>
+              <p>Vasquez-Beggs Correlation.</p>
             </div>
           </a>
 
@@ -274,7 +276,7 @@
             <div class="library-card" data-type="Estimation" data-title="Gas Estimate for Aramco Khuff Wells" data-author="Various">
               <span>Estimation</span>
               <h4>Gas Estimate for Aramco Khuff Wells</h4>
-              <p id="gas-formula-display" >Gas Estimate for Aramco Khuff Wells</p>
+              <p id="gas-formula-display" >$$Q = \frac{\left(\frac{D}{64}\right)^{2.0871} \cdot 26.616 \cdot 18 \cdot (P + 14.73)}{\sqrt{SG \cdot (T + 460)}} \cdot \frac{WF}{1000}$$</p>
               <p>Empirical Flow Equation.</p>
             </div>
           </a>
@@ -283,7 +285,7 @@
             <div class="library-card" data-type="Estimation" data-title="Estimated Flow Returns (Tank Readings)" data-author="Various">
               <span>Estimation</span>
               <h4>Estimated Flow Returns (Tank Readings)</h4>
-              <p id="gas-formula-display" >Estimated Flow Returns (Tank Readings)</p>
+              <p id="gas-formula-display" >$$Rate_{(bpd)} = \frac{\Delta V}{\Delta t_{min}} \times 1440$$</p>
               <p>Estimated Flow Returns (Tank Readings)</p>
             </div>
           </a>
@@ -292,8 +294,8 @@
             <div class="library-card" data-type="Estimation" data-title="Bottoms Up Time Estimation" data-author="Various">
               <span>Estimation</span>
               <h4>Bottoms Up Time Estimation</h4>
-              <p id="gas-formula-display" >Lag Time Calculation</p>
-              <p>Bottoms Up Time Estimation</p>
+              <p id="gas-formula-display" >$$T_{min} = \frac{V_{tubing}}{q_{bpm}}$$ </p>
+              <p>Lag Time Calculation</p>
             </div>
           </a>
 
@@ -301,7 +303,7 @@
             <div class="library-card" data-type="Estimation" data-title="Synflex Swaged Couplings" data-author="Various">
               <span>Estimation</span>
               <h4>Synflex Swaged Couplings</h4>
-              <p id="gas-formula-display" >Synflex Swaged Couplings</p>
+              <p id="gas-formula-display" >$$Part_{Selection} = f(\text{Series Type}, \text{Hose I.D.})$$</p>
               <p>Synflex Swaged Couplings</p>
             </div>
           </a>
@@ -310,7 +312,7 @@
             <div class="library-card" data-type="Estimation" data-title="Choke Flow Rate Estimation Oil Rate (Gilbert) Gas Rate (Empirical)" data-author="Various">
               <span>Estimation</span>
               <h4>Choke Flow Rate Estimation</h4>
-              <p id="gas-formula-display" >$$1 \text{ ft}^3 = 7.4805 \text{ gal} = 28.317 \text{ L}$$ $$1 \text{ bbl} = 42 \text{ gal} = 5.6146 \text{ ft}^3$$</p>
+              <p id="gas-formula-display" >$$Q_g = \frac{(C/64)^{2.0871} \cdot 479.088 \cdot P}{\sqrt{0.6 \cdot (T + 460)}}$$     $$Q_o = \frac{P \cdot C^{1.89}}{435 \cdot (R/1000)^{0.546}}$$ </p>
               <p>Choke Flow Rate Estimation</p>
             </div>
           </a>
@@ -319,7 +321,7 @@
             <div class="library-card" data-type="Estimation" data-title="Tank Volume & Loading Estimator" data-author="Various">
               <span>Estimation</span>
               <h4>Tank Volume & Loading Estimator</h4>
-              <p id="gas-formula-display" >Tank Volume & Loading Estimator</p>
+              <p id="gas-formula-display" >$$Load_{lb/ft^2} = \frac{W_{total} \times 2240}{(L \times W) / 144}$$   $$V_{total} = \frac{\pi \times r^2 \times L}{5.61458}$$</p>
               <p>Tank Volume & Loading Estimator</p>
             </div>
           </a>
@@ -328,7 +330,10 @@
             <div class="library-card" data-type="Conversion" data-title="Flow Rate Conversions Convert between common field units for liquid and gas flow rates" data-author="Various">
               <span>Conversion</span>
               <h4>Flow Rate Conversions</h4>
-              <p id="gas-formula-display" >Gas Rate (Empirical) & Oil Rate (Gilbert)</p>
+              <p id="gas-formula-display" >
+                $$1 \text{ ft}^3 = 7.4805 \text{ gal} = 28.317 \text{ L}$$
+                $$1 \text{ bbl} = 42 \text{ gal} = 5.6146 \text{ ft}^3$$
+              </p>
               <p>Convert between common field units for liquid and gas flow rates.</p>
             </div>
           </a>
@@ -337,7 +342,7 @@
             <div class="library-card" data-type="Conversion" data-title="Choke Size Conversion Convert among Choke Size (1/64) & Decimal Equivalent (ins) & Metric Equivalent (mm)" data-author="Various">
               <span>Conversion</span>
               <h4>Choke Size Conversion</h4>
-              <p id="gas-formula-display" >* Logic: $1 \text{ inch} = 64/64$ and $1 \text{ inch} = 25.4 \text{ mm}$</p>
+              <p id="gas-formula-display" >$$ID_{inch} = \frac{\text{Choke Size}}{64}$$    $$ID_{mm} = ID_{inch} \times 25.4$$</p>
               <p>Convert among Choke Size (1/64") & Decimal Equivalent (ins) & Metric Equivalent (mm)</p>
             </div>
           </a>
@@ -346,7 +351,7 @@
             <div class="library-card" data-type="Conversion Correction" data-title="Cable Sizing & Voltage Drop" data-author="Various">
               <span>Conversion</span>
               <h4>Cable Sizing & Voltage Drop</h4>
-              <p id="gas-formula-display" >Cable Sizing & Voltage Drop</p>
+              <p id="gas-formula-display" >$$\%V_{drop} = \left( \frac{V_{drop}}{V_{sys}} \right) \times 100$$</p>
               <p>Cable Sizing & Voltage Drop</p>
             </div>
           </a>
@@ -355,7 +360,7 @@
             <div class="library-card" data-type="Correction" data-title="Oil Gravity Temperature Correction" data-author="Various">
               <span>Correction</span>
               <h4>Oil Gravity Temperature Correction</h4>
-              <p id="gas-formula-display" >S.G @ 60°F & API @ 60°F</p>
+              <p id="gas-formula-display" >$$SG_{60} = SG_{obs} + \Delta SG_t$$     $$API_{60} = \frac{141.5}{SG_{60}} - 131.5$$</p>
               <p>Convert observed Specific Gravity and API to standard conditions (60°F).</p>
             </div>
           </a>
@@ -364,8 +369,8 @@
             <div class="library-card" data-type="Correction" data-title="Pipe ID & Wall Thickness Reference data for Nominal Pipe Size (NPS) and Schedule" data-author="Various">
               <span>Correction</span>
               <h4>Pipe ID & Wall Thickness</h4>
-              <p id="gas-formula-display" >Reference data for Nominal Pipe Size (NPS) and Schedule</p>
-              <p>Pipe ID & Wall Thickness.</p>
+              <p id="gas-formula-display" >$$ID = OD - (2 \times t_{wall})$$ </p>
+              <p>Reference data for Nominal Pipe Size (NPS) and Schedule.</p>
             </div>
           </a>
 
@@ -373,7 +378,7 @@
             <div class="library-card" data-type="Correction" data-title="Liquid Meter Operating Ranges" data-author="Various">
               <span>Correction</span>
               <h4>Liquid Meter Operating Ranges</h4>
-              <p id="gas-formula-display" >Liquid Meter Operating Ranges</p>
+              <p id="gas-formula-display" >$$Q_{BPD} = Q_{GPM} \times 34.2857$$</p>
               <p>Liquid Meter Operating Ranges.</p>
             </div>
           </a>
@@ -382,8 +387,8 @@
             <div class="library-card" data-type="Correction" data-title="Full ANSI & API Flange Database" data-author="Various">
               <span>Correction</span>
               <h4>Full ANSI & API Flange Database</h4>
-              <p id="gas-formula-display" >Full ANSI & API Flange Database</p>
-              <p>Full ANSI & API Flange Database.</p>
+              <p id="gas-formula-display" ></p>
+              <p>Components are selected based on <b>Rating</b> and <b>NPS</b> to ensure pressure integrity</p>
             </div>
           </a>
 
@@ -391,7 +396,7 @@
             <div class="library-card" data-type="Calculations" data-title="3 Phase Electrical Calculations" data-author="Various">
               <span>Calculations</span>
               <h4>3 Phase Electrical Calculations</h4>
-              <p id="gas-formula-display" >3 Phase Electrical Calculations</p>
+              <p id="gas-formula-display" >$$I_{FLC} = \frac{P_{kW} \times 1000}{\sqrt{3} \times V \times PF}$$   $$I_{startup} \approx I_{FLC} \times 7$$</p>
               <p>3 Phase Electrical Calculations.</p>
             </div>
           </a>
@@ -400,7 +405,11 @@
             <div class="library-card" data-type="Calculations" data-title="Pressure Drop for Strainers" data-author="Various">
               <span>Calculations</span>
               <h4>Pressure Drop for Strainers</h4>
-              <p id="gas-formula-display" >Pressure Drop for Strainers</p>
+              <p id="gas-formula-display" >
+                $$V = \frac{Q_{GPM} \times 0.4085}{ID_{line}^2}$$
+                $$\Delta P_{body} = \frac{V^2 \times SG}{148.1} \times K_{tot}$$
+                $$\Delta P_{total} = \Delta P_{basket} + \Delta P_{body}$$
+              </p>
               <p>Pressure Drop for Strainers.</p>
             </div>
           </a>
@@ -436,7 +445,10 @@
             <div class="library-card" data-type="Calculations" data-title="Advanced Well Test Calculator Oil Rate (bpd) & Gas Rate (mscfd) & GOR (scf/bbl) & OGR (bbl/mmscf)" data-author="Various">
               <span>Calculations</span>
               <h4>Advanced Well Test Calculator</h4>
-              <p id="gas-formula-display" >Oil Rate (bpd) & Gas Rate (mscfd) & GOR (scf/bbl) & OGR (bbl/mmscf)</p>
+              <p id="gas-formula-display" >
+                $$Q_o = V_{net} \times \left( \frac{1440}{Interval} \right) \times C_{tl}$$
+                $$Q_g = C' \sqrt{P_f \times h_w}$$
+              </p>
               <p>Advanced Well Test Calculator.</p>
             </div>
           </a>
@@ -445,7 +457,7 @@
             <div class="library-card" data-type="Calculations" data-title="Transducer Signal Scaling" data-author="Various">
               <span>Calculations</span>
               <h4>Transducer Signal Scaling</h4>
-              <p id="gas-formula-display" >Transducer Signal Scaling</p>
+              <p id="gas-formula-display" >$$Reading = \frac{(V_{raw} - V_{zero}) \times Range}{V_{max} - V_{zero}}$$</p>
               <p>Transducer Signal Scaling.</p>
             </div>
           </a>
@@ -472,7 +484,9 @@
             <div class="library-card" data-type="Correction" data-title="Advanced Meter Factor Calibration Tank Analysis Meter Analysis CORRECTION FACTOR " data-author="Various">
               <span>Correction</span>
               <h4>Advanced Meter Factor Calibration</h4>
-              <p id="gas-formula-display" >$$K_{tank} = 1 - [(0.066 \cdot API + 2.75) \cdot (T_{tank} - 60) \cdot 10^{-4}]$$ & $$K_{meter} = 1 - [(0.066 \cdot TF + 2.75) \cdot (T_{meter} - 60) \cdot 10^{-4}]$$.</p>
+              <p id="gas-formula-display" >
+                $$K_{tank} = 1 - [(0.066 \cdot API + 2.75) \cdot (T_{tank} - 60) \cdot 10^{-4}]$$ 
+                $$K_{meter} = 1 - [(0.066 \cdot TF + 2.75) \cdot (T_{meter} - 60) \cdot 10^{-4}]$$</p>
               <p>Advanced Meter Factor Calibration</p>
             </div>
           </a>
@@ -481,8 +495,8 @@
             <div class="library-card" data-type="Estimation" data-title="Well Test Chemicals Dosage Calculate injection rates based on production flowrate and required dosage " data-author="Various">
               <span>Estimation</span>
               <h4>Well Test Chemicals Dosage</h4>
-              <p id="gas-formula-display" >Calculate injection rates based on production flowrate and required dosage.</p>
-              <p>Well Test Chemicals Dosage</p>
+              <p id="gas-formula-display" >$$Rate_{(cc/min)} = \frac{Q_{(bpd)} \times Dosage_{(ppm)} \times 42 \times 3785.41}{1,000,000 \times 1440}$$</p>
+              <p>  Calculate injection rates based on production flowrate and required dosage.</p>
             </div>
           </a>
 
@@ -490,8 +504,8 @@
             <div class="library-card" data-type="Estimation Calculations" data-title="Retention Time Calculator Estimated retention time in separator based on volume and flow " data-author="Various">
               <span>Calculations</span>
               <h4>Retention Time Calculator</h4>
-              <p id="gas-formula-display" >Estimated retention time in separator based on volume and flow.</p>
-              <p>Retention Time Calculator</p>
+              <p id="gas-formula-display" >$$t_{(min)} = \frac{V_{bbls} \times L_{\%}}{Q_{(bpd)}} \times 1440$$  </p>
+              <p>Estimated retention time in separator based on volume and flow.</p>
             </div>
           </a>
 
@@ -499,8 +513,11 @@
             <div class="library-card" data-type="Estimation Calculations" data-title="Horizontal Vessel Sizing Gas Capacity Check" data-author="Various">
               <span>Calculations</span>
               <h4>Horizontal Vessel Sizing & Gas Capacity Check</h4>
-              <p id="gas-formula-display" >Determine required vessel dimensions for a target retention time.</p>
-              <p>Horizontal Vessel Sizing & Gas Capacity Check</p>
+              <p id="gas-formula-display" >
+                $$L = \frac{Q_{(bpd)} \times t_{(min)}}{1440 \times A_{liquid}}$$
+                $$V_{max} = K \sqrt{\frac{\rho_L - \rho_g}{\rho_g}}$$
+              </p>
+              <p> Determine required vessel dimensions for a target retention time.</p>
             </div>
           </a>
 
@@ -508,8 +525,12 @@
             <div class="library-card" data-type=" Correction" data-title=" Halliburton Turbine Meter Calibration Calculate pulses per barrel and display values for MCII Analyzers" data-author="Various">
               <span>Correction</span>
               <h4>Halliburton Turbine Meter Calibration</h4>
-              <p id="gas-formula-display" >Calculate pulses per barrel and display values for MCII Analyzers.</p>
-              <p>Halliburton Turbine Meter Calibration</p>
+              <p id="gas-formula-display" >
+                $$K_{bbl} = K_{gal} \times 42$$
+                $$Disp_{top} = \frac{K_{bbl}}{100}$$
+                $$Factor = \frac{86,400}{K_{bbl}}$$
+              </p>
+              <p>Calculate pulses per barrel and display values for MCII Analyzers.</p>
             </div>
           </a>
 
@@ -517,7 +538,7 @@
             <div class="library-card" data-type="Estimation" data-title="Quick Gas Rate Estimation Estimation of dry gas rate through a choke using pressure and temperature." data-author="Various">
               <span>Estimation</span>
               <h4>Quick Gas Rate Estimation</h4>
-              <p id="gas-formula-display" >$$q_g = \frac{(C \cdot P_{wh} + P_{atm})}{\sqrt{\gamma_g \cdot (T_{wh} + T_{abs})}} \cdot 10^{-3}$$.</p>
+              <p id="gas-formula-display" >$$q_g = \frac{(C \cdot P_{wh} + P_{atm})}{\sqrt{\gamma_g \cdot (T_{wh} + T_{abs})}} \cdot 10^{-3}$$</p>
               <p>Estimation of dry gas rate through a choke using pressure and temperature.</p>
             </div>
           </a>
@@ -525,8 +546,11 @@
           <a href="Pressure_Drop_Velocity_Analysis.html">          
             <div class="library-card" data-type="Estimation" data-title="Pressure Drop & Velocity Analysis Based on Bernoulli's Principle. Safe limit: 80 ft/sec inlet Outlet Velocity." data-author="Various">
               <span>Estimation</span>
-              <h4>Quick Gas Rate Estimation</h4>
-              <p id="gas-formula-display" >Inlet Velocity ($V_1$) {$$V_1 = \frac{32,000 \times Q}{D^2 \times P_1}$$} & .Outlet Velocity ($V_2$) {$$V_2 = \sqrt{2 \times (P_1 - P_2)}$$}</p>
+              <h4>Pressure Drop & Velocity Analysis</h4>
+              <p id="gas-formula-display" >
+                $$V_1 = \frac{32,000 \times Q}{D^2 \times P_1}$$
+                $$V_2 = \sqrt{2 \times (P_1 - P_2)}$$
+              </p>
               <p>Based on Bernoulli's Principle. Safe limit: 80 ft/sec.</p>
             </div>
           </a>
@@ -535,8 +559,12 @@
             <div class="library-card" data-type="Calculations" data-title="Chloride Determination (Argentometric)." data-author="Various">
               <span>Calculations</span>
               <h4>Chloride Determination (Argentometric)</h4>
-              <p id="gas-formula-display" >Chloride Concentration & Sodium Chloride (NaCl) & Estimated TDS</p>
-              <p>TYPICAL SALINITY VALUES REFERENCE.</p>
+              <p id="gas-formula-display" >
+                $$mg/L \text{ Cl}^- = \frac{(A-B) \times N \times 35450}{D}$$
+                $$NaCl = Cl^- \times 1.65$$
+                $$TDS \approx NaCl \times 1.15$$
+              </p>
+              <p>Chloride Concentration & Sodium Chloride (NaCl) & Estimated TDS</p>
             </div>
           </a>
 
@@ -544,7 +572,7 @@
             <div class="library-card" data-type="Calculations" data-title="Effective Area of Twin Chokes." data-author="Various">
               <span>Calculations</span>
               <h4>Effective Area of Twin Chokes</h4>
-              <p id="gas-formula-display" >Effective Area of Twin Chokes</p>
+              <p id="gas-formula-display" >$$Combined = \sqrt{D_1^2 + D_2^2}$$</p>
               <p>Effective Area of Twin Chokes.</p>
             </div>
           </a>
@@ -553,7 +581,7 @@
             <div class="library-card" data-type="Correction" data-title="Choke Calibration (Erosion Check)." data-author="Various">
               <span>Correction</span>
               <h4>Choke Calibration (Erosion Check)</h4>
-              <p id="gas-formula-display" >Choke Calibration (Erosion Check)</p>
+              <p id="gas-formula-display" >$$D_{eff} = 128 \times \sqrt{\frac{Q_{mscf/d} \times \sqrt{T_R \times \gamma_g \times Z}}{\pi \times C \times P_{psia} \times C_d}}$$</p>
               <p>Choke Calibration (Erosion Check)</p>
             </div>
           </a>
@@ -580,7 +608,10 @@
             <div class="library-card" data-type="Calculations" data-title="Downhole Pressure Calculators Gas Downhole Pressure Fluid Hydrostatic Fluid Density Converter." data-author="Various">
               <span>Calculations</span>
               <h4>Downhole Pressure Calculators</h4>
-              <p id="gas-formula-display" >Gas Rate (Choke) & Gas BHP (Static)</p>
+              <p id="gas-formula-display" >
+                $$q_g = \frac{C \cdot A \cdot P_1 \cdot C_d}{\sqrt{T \cdot \gamma_g \cdot Z}}$$
+                $$P_{ws} = P_{wh} \cdot e^{\left( \frac{0.01875 \cdot \gamma_g \cdot H}{Z \cdot T} \right)}$$
+              </p>
               <p>Gas Downhole Pressure & Fluid Hydrostatic (ppg) & (pcf) Fluid Density Converter.</p>
             </div>
           </a>
@@ -589,8 +620,8 @@
             <div class="library-card" data-type="Correction" data-title="API Gravity Correction (to 60°F)." data-author="Various">
               <span>Correction</span>
               <h4>API Gravity Correction (to 60°F)</h4>
-              <p id="gas-formula-display" >Standardized by ASTM D1250/1980</p>
-              <p>Typical API Correction.</p>
+              <p id="gas-formula-display" >$$API_{60} = \left( \frac{141.5}{SG_{obs} / VCF} \right) - 131.5$$</p>
+              <p> Standardized by ASTM D1250/1980</p>
             </div>
           </a>
 
@@ -598,7 +629,10 @@
             <div class="library-card" data-type="Estimation" data-title="Pressure Vessel Wall Thickness (ASME) SHELL: Minimum Thickness 2:1 ELLIPTICAL HEAD." data-author="Various">
               <span>Estimation</span>
               <h4>Pressure Vessel Wall Thickness (ASME)</h4>
-              <p id="gas-formula-display" >$$t = \frac{PR}{SE - 0.6P} + C.A.$$ & $$t = \frac{PD}{2SE - 0.2P} + C.A.$$</p>
+              <p id="gas-formula-display" >
+                $$t = \frac{PR}{SE - 0.6P} + C.A.$$ 
+                $$t = \frac{PD}{2SE - 0.2P} + C.A.$$
+              </p>
               <p>SHELL: Minimum Thickness & 2:1 ELLIPTICAL HEAD.</p>
             </div>
           </a>
@@ -607,7 +641,10 @@
             <div class="library-card" data-type="Calculations" data-title="Gas Gradient & Static BHP calculate the Static Bottom Hole Pressure (Pws) and the initial Gas Gradient." data-author="Various">
               <span>Calculations</span>
               <h4>Gas Gradient & Static BHP</h4>
-              <p id="gas-formula-display" ></p>
+              <p id="gas-formula-display" >
+                $$G = \frac{0.01875 \cdot \gamma_g \cdot P_{wh}}{Z_{avg} \cdot T_{avg}}$$
+                $$P_{ws} = P_{wh} + 0.25 \left(\frac{P_{wh}}{100}\right) \left(\frac{D}{100}\right)$$
+              </p>
               <p>calculate the Static Bottom Hole Pressure (Pws) and the initial Gas Gradient.</p>
             </div>
           </a>
@@ -616,7 +653,11 @@
             <div class="library-card" data-type="Correction" data-title="API & K-Factor Correction" data-author="Various">
               <span>Correction</span>
               <h4>API & K-Factor Correction</h4>
-              <p id="gas-formula-display" >API & K-Factor Correction</p>
+              <p id="gas-formula-display" >
+                $$ \rho_{obs} = \frac{141.5}{API_{obs} + 131.5} \times 999.012 $$
+                $$ VCF = e^{ [-\alpha \Delta T (1 + 0.8 \alpha \Delta T)] } $$
+                $$ K = \frac{Volume_{60}}{Volume_{line}} $$
+              </p>
               <p>API & K-Factor Correction</p>
             </div>
           </a>

@@ -30,7 +30,7 @@ body {
 
 /* Mobile Toggle Button */
 .mobile-toggle {
-    display: none;
+    
     position: fixed;
     top: 10px;
     left: 10px;

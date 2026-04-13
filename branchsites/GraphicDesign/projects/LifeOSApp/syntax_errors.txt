@@ -1,0 +1,17 @@
+node : C:\Users\midom\Downloads\done\LifeOS - Copy\js\try.js:1
+At line:1 char:114
++ ... s\*.js | ForEach-Object { try { node --check $_.FullName 2>&1 | Out-S ...
++                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\midom\...opy\js\try.js:1 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+openAddModal() {
+               ^
+
+SyntaxError: Unexpected token '{'
+    at wrapSafe (node:internal/modules/cjs/loader:1735:18)
+    at checkSyntax (node:internal/main/check_syntax:76:3)
+
+Node.js v24.13.1
+

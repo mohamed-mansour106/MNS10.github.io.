@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life OS - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0b0f1a;
+            --sidebar-bg: #121826;
+            --card-bg: rgba(22, 29, 45, 0.7);
+            --accent-cyan: #22d3ee;
+            --accent-purple: #a855f7;
+            --accent-orange: #f59e0b;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR --- */
+        nav {
+            width: 240px;
+            background: var(--sidebar-bg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .logo i { color: var(--accent-cyan); font-size: 1.5rem; }
+
+        .nav-links { list-style: none; flex-grow: 1; }
+
+        .nav-links li {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            color: var(--text-dim);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-links li:hover, .nav-links li.active {
+            background: rgba(34, 211, 238, 0.1);
+            color: var(--accent-cyan);
+        }
+
+        .quote-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            border-top: 2px solid var(--accent-cyan);
+        }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            flex-grow: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+        }
+
+        header h1 { font-size: 2rem; margin-bottom: 5px; }
+        header p { color: var(--text-dim); margin-bottom: 30px; }
+
+        /* XP Bar */
+        .xp-container {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .xp-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
+        .xp-bar {
+            height: 12px;
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .xp-fill {
+            height: 100%;
+            width: 45%;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-purple));
+            border-radius: 10px;
+        }
+
+        /* Grid Layouts */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            text-align: left;
+        }
+
+        .stat-card i { font-size: 1.2rem; margin-bottom: 15px; display: block; }
+        .stat-card h2 { font-size: 1.5rem; margin-bottom: 5px; }
+        .stat-card p { color: var(--text-dim); font-size: 0.85rem; }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        /* Sections */
+        .section-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 25px;
+        }
+
+        .overview-flex {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .progress-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent-cyan) 360deg, #1e293b 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inner-circle {
+            width: 100px;
+            height: 100px;
+            background: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .inner-circle strong { font-size: 1.2rem; }
+
+        /* Routine List */
+        .routine-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.03);
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            gap: 15px;
+        }
+
+        .routine-item i.check { color: var(--accent-cyan); }
+        .routine-item .name { flex-grow: 1; }
+        .streak { color: var(--accent-orange); font-size: 0.9rem; }
+
+        /* Quick Actions */
+        .quick-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .action-btn:hover { background: rgba(255,255,255,0.05); transform: translateY(-3px); }
+        .action-btn i { font-size: 1.2rem; color: var(--accent-cyan); }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><i class="fa-solid fa-wand-magic-sparkles"></i> Life OS</div>
+        <ul class="nav-links">
+            <li class="active"><i class="fa-solid fa-table-columns"></i> Dashboard</li>
+            <li><i class="fa-solid fa-bullseye"></i> Goals</li>
+            <li><i class="fa-solid fa-check-double"></i> Daily Tasks</li>
+            <li><i class="fa-solid fa-clock"></i> Time Tracking</li>
+            <li><i class="fa-solid fa-chart-line"></i> Analytics</li>
+            <li><i class="fa-solid fa-brain"></i> Mind Map</li>
+            <li><i class="fa-solid fa-user-ninja"></i> Character</li>
+            <li><i class="fa-solid fa-robot"></i> AI Coach</li>
+        </ul>
+        <div class="quote-box">
+            <p>Keep pushing forward</p>
+            <em style="color: var(--accent-cyan);">"Discipline is the bridge between goals and accomplishment"</em>
+        </div>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Welcome back! 👋</h1>
+            <p>Let's make today count. You're on a <strong>0-day streak!</strong></p>
+        </header>
+
+        <div class="xp-container">
+            <div class="xp-header">
+                <span><i class="fa-solid fa-circle-1"></i> Level 1</span>
+                <span style="color: var(--text-dim);">475 / 1000 XP to next level</span>
+                <strong>475 XP Total</strong>
+            </div>
+            <div class="xp-bar">
+                <div class="xp-fill"></div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <i class="fa-solid fa-arrow-trend-up" style="color: var(--accent-cyan);"></i>
+                <h2>100%</h2>
+                <p>Today's Progress</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-square-check" style="color: #3b82f6;"></i>
+                <h2>0/0</h2>
+                <p>Tasks Today</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-clock" style="color: var(--accent-purple);"></i>
+                <h2>0.0h</h2>
+                <p>Weekly Work</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-bullseye" style="color: var(--accent-orange);"></i>
+                <h2>3</h2>
+                <p>Active Goals</p>
+            </div>
+        </div>
+
+        <div class="main-layout">
+            <div class="left-col">
+                <div class="section-card">
+                    <h3>Today's Overview</h3>
+                    <div class="overview-flex" style="margin-top: 20px;">
+                        <div class="progress-circle">
+                            <div class="inner-circle">
+                                <strong>100%</strong>
+                                <span>Complete</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p style="margin-bottom: 10px;">You're crushing it! Keep the momentum going! 🔥</p>
+                            <div style="display: flex; gap: 10px;">
+                                <span style="color:#3b82f6; background: rgba(59,130,246,0.1); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem;">0 Work</span>
+                                <span style="color:#a855f7; background: rgba(168,85,247,0.1); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem;">0 Study</span>
+                                <span style="color:#10b981; background: rgba(16,185,129,0.1); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem;">0 Health</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div style="display: flex; justify-content: space-between;">
+                        <h3>Today's Tasks</h3>
+                        <a href="#" style="color: var(--accent-cyan); text-decoration: none; font-size: 0.8rem;">View all →</a>
+                    </div>
+                    <p style="text-align: center; color: var(--text-dim); margin-top: 40px;">No tasks for today. Add some to get started!</p>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <div class="section-card" style="padding: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <h3>Daily Routines</h3>
+                        <span style="color: var(--accent-cyan); font-weight: bold;">100%</span>
+                    </div>
+                    <div class="routine-list">
+                        <div class="routine-item">
+                            <i class="fa-solid fa-circle-check check"></i>
+                            <i class="fa-solid fa-briefcase"></i>
+                            <span class="name">Work</span>
+                            <span class="streak">🔥 2</span>
+                        </div>
+                        <div class="routine-item">
+                            <i class="fa-solid fa-circle-check check"></i>
+                            <i class="fa-solid fa-book"></i>
+                            <span class="name">Study</span>
+                            <span class="streak">🔥 1</span>
+                        </div>
+                        <div class="routine-item">
+                            <i class="fa-solid fa-circle-check check"></i>
+                            <i class="fa-solid fa-dumbbell"></i>
+                            <span class="name">Gym</span>
+                            <span class="streak">🔥 1</span>
+                        </div>
+                        <div class="routine-item">
+                            <i class="fa-solid fa-circle-check check"></i>
+                            <i class="fa-solid fa-hands-praying"></i>
+                            <span class="name">Prayer</span>
+                            <span class="streak">🔥 2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 15px;">Quick Actions</h3>
+                <div class="quick-grid">
+                    <div class="action-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add Task</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Log Time</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <span>New Goal</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="fa-solid fa-comment"></i>
+                        <span>AI Coach</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simple Interaction logic
+        document.querySelectorAll('.nav-links li').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelector('.nav-links li.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+
+        // Routine Checkbox Toggle logic
+        document.querySelectorAll('.routine-item i.check').forEach(icon => {
+            icon.addEventListener('click', function() {
+                this.classList.toggle('fa-circle-check');
+                this.classList.toggle('fa-circle');
+                this.style.color = this.classList.contains('fa-circle-check') ? 'var(--accent-cyan)' : 'var(--text-dim)';
+            });
+        });
+    </script>
+</body>
+</html>

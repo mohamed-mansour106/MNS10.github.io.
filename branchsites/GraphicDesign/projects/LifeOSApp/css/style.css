@@ -30,12 +30,12 @@ body {
 
 /* Mobile Toggle Button */
 .mobile-toggle {
-    
     position: fixed;
     top: 10px;
     left: 10px;
-    z-index: 1001;
-    background: var(--accent);
+    z-index: 99999; /* 👈 الحل هنا */
+
+    background: var(--accent) !important;
     color: white;
     border: none;
     padding: 12px;
@@ -44,6 +44,10 @@ body {
     font-size: 16px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
+.mobile-toggle {
+    background: red !important;
+}
+
 
 .sidebar-overlay {
     display: none;
@@ -223,9 +227,7 @@ button:hover {
 
 /* --- RESPONSIVENESS --- */
 @media (max-width: 768px) {
-    .mobile-toggle {
-        display: block;
-    }
+    
     .sidebar {
         position: fixed;
         top: 0;
@@ -806,18 +808,6 @@ button:hover {
 
 /*******************************************************************************/
 /* --- RESPONSIVE LAYOUT --- */
-
-/* زر الموبايل - مخفي في الشاشات الكبيرة */
-.mobile-toggle {
-    display: none;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 2000;
-    background: var(--accent);
-    padding: 10px 15px;
-    border-radius: 8px;
-}
 
 /* Tablet Responsiveness */
 @media (max-width: 1024px) and (min-width: 769px) {

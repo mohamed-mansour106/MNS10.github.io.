@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v1.0.2";
+const CACHE_VERSION = "v1.0.7";
 const STATIC_CACHE = `lifeos-static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `lifeos-runtime-${CACHE_VERSION}`;
 

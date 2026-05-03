@@ -492,6 +492,363 @@ const questions =  [
     options: ["Centrifugal", "Positive Displacement", "Jet pump", "Air blower"],
     correctIndex: 1,
     explanation: "PD pumps move fluid gently, which is better for sensitive emulsions."
+  },
+  {
+    question: "What is the primary function of a choke manifold?",
+    options: ["Separating oil and gas", "Controlling flow and reducing pressure", "Measuring liquid density", "Storing produced fluids"],
+    correctIndex: 1,
+    explanation: "The choke manifold is used to regulate the flow rate and drop the pressure from the wellhead before it enters process equipment."
+  },
+  {
+    question: "Which type of choke allows for precise, manual flow adjustments?",
+    options: ["Fixed choke", "Positive choke", "Adjustable choke", "Orifice plate"],
+    correctIndex: 2,
+    explanation: "Adjustable chokes use a needle and seat mechanism to allow real-time changes to the flow area."
+  },
+  {
+    question: "In a 'Critical Flow' condition, the flow rate depends only on:",
+    options: ["Downstream pressure", "Upstream pressure", "Fluid temperature", "Pipe diameter"],
+    correctIndex: 1,
+    explanation: "Once critical flow (sonic velocity) is reached, downstream pressure fluctuations do not affect the upstream flow rate."
+  },
+  {
+    question: "A 'Choke Bean' is used in which component?",
+    options: ["Adjustable choke", "Fixed choke box", "Separator inlet", "SSV"],
+    correctIndex: 1,
+    explanation: "Choke beans are calibrated inserts used in fixed chokes to maintain a constant flow rate."
+  },
+  {
+    question: "What is the standard unit for choke size in the oilfield?",
+    options: ["Millimeters", "1/64ths of an inch", "Centimeters", "Decimals of a foot"],
+    correctIndex: 1,
+    explanation: "Choke sizes are almost universally measured in 64ths of an inch (e.g., a 32 choke is 32/64 or 1/2 inch)."
+  },
+
+  // --- MODULE 2: ESD SYSTEM ---
+  {
+    question: "What is the main purpose of the Emergency Shutdown (ESD) system?",
+    options: ["To increase production", "To provide a fail-safe way to close the well", "To monitor sand production", "To restart the separator"],
+    correctIndex: 1,
+    explanation: "The ESD system is a safety barrier designed to isolate the well quickly in case of an emergency."
+  },
+  {
+    question: "The Surface Safety Valve (SSV) is typically closed by:",
+    options: ["Air pressure", "Manual handwheel", "Hydraulic spring return", "Electric motor"],
+    correctIndex: 2,
+    explanation: "SSVs are 'fail-safe' closed; hydraulic pressure opens them, and a heavy internal spring closes them when pressure is vented."
+  },
+  {
+    question: "A Hi-Pilot on an ESD system triggers when:",
+    options: ["Pressure drops below 50 psi", "The air loop is disconnected", "Pressure exceeds a pre-set limit", "The separator level is low"],
+    correctIndex: 2,
+    explanation: "The Hi-Pilot monitors for overpressure to prevent equipment damage downstream."
+  },
+  {
+    question: "Which component is known as the 'brain' of the ESD system?",
+    options: ["The SSV", "The ESD Control Panel", "The Choke Manifold", "The Air Compressor"],
+    correctIndex: 1,
+    explanation: "The control panel manages the logic, air loops, and hydraulic output to the valves."
+  },
+  {
+    question: "What is the typical air loop pressure in a standard ESD system?",
+    options: ["10 psi", "30 psi", "150 psi", "1000 psi"],
+    correctIndex: 1,
+    explanation: "A 30 psi air loop is the standard signal pressure for most pneumatic ESD stations."
+  },
+
+  // --- MODULE 3: TEST SEPARATOR ---
+  {
+    question: "What are the three phases separated in a standard test separator?",
+    options: ["Oil, Gas, Sand", "Gas, Oil, Water", "Water, Sand, Condensate", "Oil, Gas, Chemicals"],
+    correctIndex: 1,
+    explanation: "Standard separators use gravity and internal baffles to split the stream into gas, oil, and water."
+  },
+  {
+    question: "The 'Inlet Deflector' in a separator is used for:",
+    options: ["Measuring gas", "Initial momentum change and separation", "Breaking foam", "Preventing vortexing"],
+    correctIndex: 1,
+    explanation: "The deflector causes a sudden change in direction and speed, helping liquids drop out of the gas stream immediately."
+  },
+  {
+    question: "What does the Mist Extractor (Demister Pad) do?",
+    options: ["Separates oil from water", "Captures small liquid droplets from the gas", "Measures water cut", "Filters sand"],
+    correctIndex: 1,
+    explanation: "Located at the gas outlet, it prevents liquid carry-over by coalescing fine mist into larger drops."
+  },
+  {
+    question: "Which device is used to measure gas flow rate on a separator?",
+    options: ["Vortex meter", "Daniel Orifice Meter", "Positive Displacement meter", "Magnetic meter"],
+    correctIndex: 1,
+    explanation: "Orifice meters are the industry standard for measuring gas by creating a pressure differential across a plate."
+  },
+  {
+    question: "What is 'Liquid Carry-over'?",
+    options: ["Oil entering the water line", "Gas entering the oil line", "Liquid entering the gas line", "Water entering the oil line"],
+    correctIndex: 2,
+    explanation: "Carry-over occurs when the separator is overloaded or the demister fails, sending liquid out with the gas."
+  },
+
+  // --- MODULE 4: HEAT EXCHANGERS (STEAM) ---
+  {
+    question: "Why is a heat exchanger used in well testing?",
+    options: ["To cool the oil for storage", "To prevent hydrate formation and ease separation", "To increase gas pressure", "To filter sand"],
+    correctIndex: 1,
+    explanation: "Heating the well stream prevents hydrates (ice-like plugs) and reduces oil viscosity for better separation."
+  },
+  {
+    question: "In a shell-and-tube exchanger, where does the well fluid usually flow?",
+    options: ["In the shell", "In the tubes", "In the steam trap", "Outside the skid"],
+    correctIndex: 1,
+    explanation: "High-pressure well fluids are typically routed through the tubes for safety and pressure containment."
+  },
+  {
+    question: "A 'Steam Trap' is used to:",
+    options: ["Store steam", "Increase steam pressure", "Remove condensate (water) from steam lines", "Inject chemicals"],
+    correctIndex: 2,
+    explanation: "The steam trap ensures that only dry steam stays in the exchanger while draining away water."
+  },
+  {
+    question: "Hydrates are most likely to form at:",
+    options: ["High temperature and high pressure", "Low temperature and high pressure", "High temperature and low pressure", "Low temperature and low pressure"],
+    correctIndex: 1,
+    explanation: "Cold temperatures and high pressures are the 'danger zone' for hydrate formation."
+  },
+
+  // --- MODULE 5: SURGE & GAUGE TANKS ---
+  {
+    question: "A Gauge Tank is considered what type of vessel?",
+    options: ["High pressure", "Atmospheric", "Vacuum", "Cryogenic"],
+    correctIndex: 1,
+    explanation: "Gauge tanks vent to the atmosphere and are not designed to hold pressure."
+  },
+  {
+    question: "Why are Surge Tanks preferred over Gauge Tanks for H2S service?",
+    options: ["They are larger", "They are pressurized and prevent gas venting", "They are cheaper", "They have wheels"],
+    correctIndex: 1,
+    explanation: "Surge tanks can maintain a back-pressure, keeping toxic H2S gas contained and routed to the flare."
+  },
+  {
+    question: "The 'Shrinkage Factor' accounts for:",
+    options: ["Oil lost to leaks", "Oil volume reduction when gas is released", "Tank metal contraction", "Meter errors"],
+    correctIndex: 1,
+    explanation: "Shrinkage is the volume loss that occurs when oil moves from separator pressure to atmospheric pressure."
+  },
+  {
+    question: "What is the purpose of a Flame Arrestor on a tank vent?",
+    options: ["To keep the tank warm", "To prevent a flame from traveling back into the tank", "To measure gas flow", "To filter smoke"],
+    correctIndex: 1,
+    explanation: "It acts as a safety barrier that allows gas to vent but stops fire from entering the vessel."
+  },
+
+  // --- MODULE 6: TRANSFER PUMPS ---
+  {
+    question: "Which pump type is best for handling high-viscosity oil?",
+    options: ["Centrifugal", "Positive Displacement (e.g., Screw Pump)", "Jet pump", "Fan pump"],
+    correctIndex: 1,
+    explanation: "PD pumps move a fixed volume per stroke/revolution, making them much better for thick fluids."
+  },
+  {
+    question: "What happens if you close a valve downstream of a running PD pump?",
+    options: ["The pump speeds up", "The pressure rises until something bursts or the PRV opens", "The fluid circulates inside the pump", "Nothing happens"],
+    correctIndex: 1,
+    explanation: "PD pumps will continue to push fluid regardless of pressure, requiring a Pressure Relief Valve (PRV) for safety."
+  },
+  {
+    question: "A Centrifugal pump uses what to move fluid?",
+    options: ["A piston", "An impeller", "A screw", "A diaphragm"],
+    correctIndex: 1,
+    explanation: "The spinning impeller uses centrifugal force to add kinetic energy to the fluid."
+  },
+
+  // --- MODULE 7: WELLHEAD & FLOWHEAD ---
+  {
+    question: "The 'Swab Valve' on a flowhead is used for:",
+    options: ["Diverting flow to the flare", "Allowing vertical entry for wireline tools", "Killing the well", "Measuring pressure"],
+    correctIndex: 1,
+    explanation: "The swab valve is the top-most valve that provides a straight path down into the wellbore."
+  },
+  {
+    question: "Which valve is the primary safety barrier on the flowhead?",
+    options: ["Wing valve", "Master valve", "Kill valve", "Swab valve"],
+    correctIndex: 1,
+    explanation: "The master valve is the main isolation valve for the entire well stream."
+  },
+  {
+    question: "What is the function of the Flowhead Swivel?",
+    options: ["To measure flow", "To allow the test string to rotate without moving the surface lines", "To separate oil", "To inject chemicals"],
+    correctIndex: 1,
+    explanation: "The swivel allows the pipe below it to turn while the surface hoses stay stationary."
+  },
+
+  // --- MODULE 8: DATA ACQUISITION & SAMPLING ---
+  {
+    question: "What does 'BS&W' stand for?",
+    options: ["Basic System and Water", "Basic Sediment and Water", "Bottom Sand and Waste", "Brine, Salt, and Water"],
+    correctIndex: 1,
+    explanation: "BS&W is the measurement of impurities (sediment and water) found in the produced oil."
+  },
+  {
+    question: "A 'Dead Weight Tester' is used to:",
+    options: ["Calibrate pressure gauges", "Measure the weight of the pipe", "Calculate oil density", "Test the crane"],
+    correctIndex: 0,
+    explanation: "It is a high-precision instrument used to verify the accuracy of pressure gauges."
+  },
+  {
+    question: "Which instrument measures the density of gas?",
+    options: ["Hydrometer", "Densitometer", "Centrifuge", "Viscometer"],
+    correctIndex: 1,
+    explanation: "Densitometers provide real-time measurements of fluid or gas density."
+  },
+  {
+    question: "Why are 'Bottom-Hole Samples' taken?",
+    options: ["To check for sand", "To get reservoir fluid at original pressure and temperature", "To clean the well", "To measure the depth"],
+    correctIndex: 1,
+    explanation: "Reservoir fluid changes when it reaches the surface; bottom-hole samples represent the fluid in its native state."
+  },
+
+  // --- MODULE 9: PIPING & CONNECTIONS ---
+  {
+    question: "What does 'Fig 1502' refer to?",
+    options: ["A valve model", "A common hammer union type rated for 15,000 psi", "The weight of a pipe", "A separator size"],
+    correctIndex: 1,
+    explanation: "Fig 1502 is the most common high-pressure hammer union used in well testing."
+  },
+  {
+    question: "Why should you never mix hammer union components from different figures?",
+    options: ["They won't fit at all", "They might fit but will fail under pressure", "It's bad luck", "They are different colors"],
+    correctIndex: 1,
+    explanation: "Some figures look similar but have different pressure ratings and slight thread differences, leading to fatal accidents."
+  },
+
+  // --- MODULE 10: SAND MANAGEMENT ---
+  {
+    question: "Where is a Sand Filter typically located?",
+    options: ["Downstream of the separator", "Upstream of the choke manifold", "At the flare", "Inside the tank"],
+    correctIndex: 1,
+    explanation: "Sand filters are placed upstream of the choke to protect it and the downstream equipment from erosion."
+  },
+  {
+    question: "What is the danger of sand production?",
+    options: ["It makes the oil dirty", "It causes rapid erosion of valves and pipes", "It increases gas flow", "It cools the well"],
+    correctIndex: 1,
+    explanation: "High-velocity sand acts like a sandblaster, potentially cutting through steel pipes in minutes."
+  },
+  // --- MODULE: CHOKE MANIFOLD ---
+  {
+    question: "What is the primary purpose of a 'Buffer Tank' or 'Header' in some manifold designs?",
+    options: ["To separate gas", "To stabilize flow before it enters the separator", "To store oil for 24 hours", "To heat the fluid"],
+    correctIndex: 1,
+    explanation: "It helps dampen pressure pulses and provides a more uniform flow into downstream equipment."
+  },
+  {
+    question: "Which component is most susceptible to 'washout' (erosion) during high-rate sand production?",
+    options: ["Upstream gate valve", "The choke needle or bean", "The thermowell", "The skid frame"],
+    correctIndex: 1,
+    explanation: "High velocity and turbulence at the choke point make the needle and bean prime targets for sand erosion."
+  },
+
+  // --- MODULE: SEPARATOR ---
+  {
+    question: "What is the function of a 'Vortex Breaker' at the liquid outlet?",
+    options: ["To increase flow speed", "To prevent gas from being pulled into the liquid stream", "To filter out sand", "To measure oil density"],
+    correctIndex: 1,
+    explanation: "It prevents a whirlpool effect that would allow gas to escape through the oil or water lines."
+  },
+  {
+    question: "What does the 'Retention Time' in a separator refer to?",
+    options: ["The time it takes to rig up", "How long fluid stays in the vessel to allow separation", "The time between two flow tests", "The duration of a flare"],
+    correctIndex: 1,
+    explanation: "Gravity separation requires time; retention time is the average period liquid remains in the vessel."
+  },
+
+  // --- MODULE: WELL TOWER (FLOWHEAD) & X-MAS TREE ---
+  {
+    question: "What is the main difference between a Flowhead and a standard Christmas Tree?",
+    options: ["Colors", "Flowheads are for temporary testing; X-Mas trees are for permanent production", "Price only", "Weight"],
+    correctIndex: 1,
+    explanation: "The Flowhead is a specialized tool for well testing, often including a swivel and handling subs for the test string."
+  },
+  {
+    question: "Which valve on the Flowhead is usually the first to be closed in a non-emergency shutdown?",
+    options: ["Master Valve", "Swab Valve", "Wing Valve (Flow line)", "Kill Valve"],
+    correctIndex: 2,
+    explanation: "The wing valve is typically used for routine flow control, keeping the master valve as a pristine secondary barrier."
+  },
+
+  // --- MODULE: ESD & PANELS ---
+  {
+    question: "What is the function of the 'Fusible Plugs' in an ESD system?",
+    options: ["To protect against high pressure", "To trigger a shutdown in case of fire", "To measure temperature", "To connect hoses"],
+    correctIndex: 1,
+    explanation: "Fusible plugs melt at specific temperatures (e.g., 212°F), venting the air loop and closing the SSV in a fire."
+  },
+  {
+    question: "In an ESD panel, what does the 'Manual Override' or 'Bypass' allow?",
+    options: ["Increasing flow rate", "Keeping the well open during maintenance/testing of the air loop", "Skipping the separator", "Resetting the timer"],
+    correctIndex: 1,
+    explanation: "Bypassing allows operators to work on the control loop without accidentally tripping the well."
+  },
+
+  // --- MODULE: PUMPS (TRIPLEX & CENTRIFUGAL) ---
+  {
+    question: "What is the defining characteristic of a Triplex Pump?",
+    options: ["It has three impellers", "It has three plungers or pistons", "It can only pump water", "It is always electric"],
+    correctIndex: 1,
+    explanation: "Triplex pumps use three plungers to provide a relatively smooth high-pressure discharge."
+  },
+  {
+    question: "Why must a Centrifugal pump be 'primed' before starting?",
+    options: ["To heat the motor", "To remove air and ensure the impeller is submerged in fluid", "To check for leaks", "To calibrate the flow meter"],
+    correctIndex: 1,
+    explanation: "Centrifugal pumps cannot move air effectively; the casing must be full of liquid to create the necessary centrifugal force."
+  },
+
+  // --- MODULE: FLOW TEST & UNLOADING ---
+  {
+    question: "What is the primary goal of a 'Cleanup' flow?",
+    options: ["To paint the equipment", "To remove completion fluids, solids, and debris from the wellbore", "To test the flare boom", "To fill the tanks"],
+    correctIndex: 1,
+    explanation: "Cleanup ensures that the fluids being measured during the actual test are representative of the reservoir."
+  },
+  {
+    question: "A 'Kick-off' operation is performed to:",
+    options: ["End the test", "Start the flow in a well that cannot flow naturally due to hydrostatic head", "Kill the well", "Change the choke"],
+    correctIndex: 1,
+    explanation: "If the fluid column is too heavy, techniques like Nitrogen lifting are used to 'kick-off' the flow."
+  },
+
+  // --- MODULE: COFLEXIP & PIPING ---
+  {
+    question: "What is a 'Coflexip' hose primarily used for?",
+    options: ["Measuring oil", "High-pressure, flexible connection between the flowhead and fixed piping", "Storing gas", "Filtering sand"],
+    correctIndex: 1,
+    explanation: "Coflexip hoses are steel-reinforced flexible lines designed for high-pressure well fluids."
+  },
+  {
+    question: "Which hammer union 'Figure' is typically blue and rated for 6,000 psi?",
+    options: ["Fig 1502", "Fig 602", "Fig 1002", "Fig 200"],
+    correctIndex: 1,
+    explanation: "Fig 602 is standard for medium-pressure (6,000 psi) water or oil service."
+  },
+  {
+    question: "A 'Target Elbow' is used in piping to:",
+    options: ["Make the pipe look better", "Provide a lead-filled 'buffer' to resist erosion at turns", "Increase pressure", "Reduce weight"],
+    correctIndex: 1,
+    explanation: "Target elbows have a blind tee filled with lead or fluid to absorb the impact of abrasive particles like sand."
+  },
+
+  // --- MODULE: TANKS & MEASUREMENT ---
+  {
+    question: "What is 'Tank Strapping'?",
+    options: ["Tying the tank to the rig", "The process of calibrating a tank to create a volume table", "Cleaning the tank", "Measuring the tank's weight"],
+    correctIndex: 1,
+    explanation: "Strapping involves taking physical measurements of the tank to calculate exactly how much volume corresponds to each inch of height."
+  },
+  {
+    question: "Why is a 'U-tube' or 'Liquid Seal' used in atmospheric tank vents?",
+    options: ["To increase pressure", "To prevent air from entering and to manage small gas vapors", "To store chemicals", "To trap sand"],
+    correctIndex: 1,
+    explanation: "It acts as a low-pressure barrier to keep the tank environment controlled."
   }
 ];
 
@@ -594,12 +951,14 @@ function updateTimerDisplay() {
 }
 
 function updateProgress() {
-  const progress = ((state.currentIndex + 1) / questions.length) * 100;
+  const total = state.shuffled.length; 
+  const progress = ((state.currentIndex + 1) / total) * 100;
+  
   progressFill.style.width = `${progress}%`;
   currentIndexEl.textContent = state.currentIndex + 1;
-  totalQuestionsEl.textContent = questions.length;
+  totalQuestionsEl.textContent = total; // هيظهر 10
 
-  // Update animated circle
+  // تحديث الدائرة
   const circumference = 2 * Math.PI * 52;
   circleProgress.style.strokeDasharray = circumference;
   circleProgress.style.strokeDashoffset = circumference - (progress / 100) * circumference;
@@ -660,11 +1019,14 @@ function finishQuiz() {
   localStorage.removeItem("quizState");
 
   let correct = 0;
+  const total = state.shuffled.length; // اللي هو 10
+
   state.shuffled.forEach((q, i) => {
     if (state.answers[i] === q.correctIndex) correct++;
   });
 
-  finalScorePercent = Math.round((correct / questions.length) * 100);
+  finalScorePercent = Math.round((correct / total) * 100);
+  
   scoreValue.textContent = `${finalScorePercent}%`;
 
   // High score
@@ -722,15 +1084,20 @@ function applySound() {
 /* ===== Initialization ===== */
 function initQuiz(savedState = null) {
   isQuizFinished = false;
-  state.shuffled = shuffleArray(questions);
 
   if (savedState) {
     state = savedState;
   } else {
+    // 1. شقلب كل الأسئلة الـ 200
+    const allShuffled = shuffleArray(questions); 
+    
+    // 2. خد أول 10 أسئلة فقط للمحاولة دي
+    const selectedTen = allShuffled.slice(0, 10);
+
     state.currentIndex = 0;
-    state.answers = Array(questions.length).fill(null);
-    state.timeLeft = 300;
-    state.shuffled = shuffleArray(questions);
+    state.answers = Array(selectedTen.length).fill(null);
+    state.shuffled = selectedTen; // هنا خزننا الـ 10 بس في الـ state
+    state.timeLeft = 600; // ممكن تقلل الوقت لـ 10 دقائق مثلاً (600 ثانية)
   }
 
   quizSection.classList.remove("hidden");

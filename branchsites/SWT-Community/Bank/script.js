@@ -858,8 +858,8 @@ console.log("Total Questions: " + questions.length);
 /* ===== State ===== */
 let state = {
   currentIndex: 0,
-  answers: Array(questions.length).fill(null),
-  timeLeft: 2400, // 30 minutes
+  answers: [],
+  timeLeft: 600, // 10 minutes
   shuffled: []
 };
 
@@ -933,22 +933,32 @@ function shuffleArray(arr) {
 }
 
 function saveProgress() {
-  localStorage.setItem("quizState", JSON.stringify(state));
+  const toSave = { ...state, questionsVersion: questions.length };
+  localStorage.setItem("quizState", JSON.stringify(toSave));
   localStorage.setItem("darkMode", darkMode ? "1" : "0");
   localStorage.setItem("soundEnabled", soundEnabled ? "1" : "0");
 }
 
 function loadProgress() {
-  const saved = localStorage.getItem("quizState");
-  if (saved) return JSON.parse(saved);
-  return null;
+  const saved = JSON.parse(localStorage.getItem("quizState"));
+  if (!saved) return null;
+
+  if (saved.questionsVersion !== questions.length) {
+    localStorage.removeItem("quizState");
+    return null;
+  }
+
+  return saved;
 }
 
+/* ===== Timer ===== */
 function updateTimerDisplay() {
   const minutes = String(Math.floor(state.timeLeft / 60)).padStart(2, "0");
   const seconds = String(state.timeLeft % 60).padStart(2, "0");
   timerValue.textContent = `${minutes}:${seconds}`;
 }
+
+
 
 function updateProgress() {
   const total = state.shuffled.length; 
@@ -987,7 +997,7 @@ function renderQuestion() {
   });
 
   prevBtn.disabled = state.currentIndex === 0;
-  nextBtn.textContent = state.currentIndex === questions.length - 1 ? "Finish" : "Next";
+  nextBtn.textContent = state.currentIndex === state.shuffled.length - 1 ? "Finish" : "Next";
 
   updateProgress();
   saveProgress();
@@ -1044,7 +1054,7 @@ function finishQuiz() {
     userName: getSignedInUserName(),
     userEmail: (signedInUser?.email || "").trim(),
     scorePercent: finalScorePercent,
-    scoreRaw: `${correct}/${questions.length}`,
+    scoreRaw: `${correct}/${state.shuffled.length}`,
     courseName: document.querySelector(".title")?.textContent || "Skill Exam"
   });
 }
@@ -1225,7 +1235,7 @@ prevBtn.addEventListener("click", () => {
 });
 
 nextBtn.addEventListener("click", () => {
-  if (state.currentIndex < questions.length - 1) {
+  if (state.currentIndex < state.shuffled.length - 1) {
     state.currentIndex++;
     playSound(clickSound);
     renderQuestion();

@@ -859,7 +859,7 @@ console.log("Total Questions: " + questions.length);
 let state = {
   currentIndex: 0,
   answers: [],
-  timeLeft: 600, // 10 minutes
+  timeLeft: 600, // 30 minutes
   shuffled: []
 };
 
@@ -867,8 +867,6 @@ let timerInterval = null;
 let soundEnabled = true;
 let darkMode = false;
 let finalScorePercent = 0;
-let signedInUser = null;
-let authChecked = false;
 let isQuizFinished = false;
 
 const EMAILJS_CONFIG = {
@@ -1140,28 +1138,12 @@ function showCertificate() {
 }
 
 function getSignedInUserName() {
-  const displayName = (signedInUser?.displayName || "").trim();
-  if (displayName) return displayName;
-
   const typedName = (certNameInput.value || "").trim();
-  if (typedName) return typedName;
-
-  const email = (signedInUser?.email || "").trim();
-  if (email.includes("@")) return email.split("@")[0];
-
-  return "Student";
-}
-
-function buildLoginRedirectUrl() {
-  const loginUrl = new URL("../../../../login.html", window.location.href);
-  const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
-  loginUrl.searchParams.set("redirect", currentPath);
-  return loginUrl.toString();
+  return typedName || "Student";
 }
 
 function startAfterAuth() {
-  if (authChecked) return;
-  authChecked = true;
+  certNameInput.value = "";
 
   const saved = loadProgress();
   if (saved) {
@@ -1324,19 +1306,5 @@ window.addEventListener("load", () => {
   applyTheme();
   applySound();
 
-  if (!window.firebase || !firebase.auth) {
-    alert("Authentication is not available. Please check Firebase setup.");
-    return;
-  }
-
-  firebase.auth().onAuthStateChanged((user) => {
-    if (!user) {
-      window.location.href = buildLoginRedirectUrl();
-      return;
-    }
-
-    signedInUser = user;
-    certNameInput.value = getSignedInUserName();
-    startAfterAuth();
-  });
+  startAfterAuth();
 });

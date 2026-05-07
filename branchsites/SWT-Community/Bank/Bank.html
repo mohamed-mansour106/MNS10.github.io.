@@ -48,7 +48,7 @@
           <div class="meta-right">
             <div class="timer">
               <div class="timer-label">Time Left</div>
-              <div id="timerValue" class="timer-value">10:00</div>
+              <div id="timerValue" class="timer-value">30:00</div>
             </div>
             <div class="circle-wrap">
               <svg class="progress-circle" viewBox="0 0 120 120">
@@ -88,7 +88,7 @@
               </div>
               <label class="field">
                 <span>Full Name (from signed-in account)</span>
-                <input id="certName" type="text" placeholder="Signed-in user" autocomplete="name" readonly />
+                <input id="certName" type="text" placeholder="Enter your name for certificate" autocomplete="name" />
               </label>
               <button id="showCertBtn" class="btn primary">View Certificate</button>
               <button id="restartBtn" class="btn primary">Start Over</button>
@@ -162,11 +162,7 @@
       </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="../../../../js/auth.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

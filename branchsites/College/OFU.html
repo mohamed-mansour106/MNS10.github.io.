@@ -2,6 +2,8 @@
 <html lang="ar" dir="ltr">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../SWT-Community/css/style.css">
+    <link rel="stylesheet" href="../SWT-Community/WTAcademy/AcademyStyle.css">
     <link rel="stylesheet" href="OFU1.css">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,295 +13,209 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
 </head>
-  <body style="background-image: url('img/back.png');">
+  <body >
     <!-- Header -->
 
-    <div class="main">
-            <div class="logo" >
-                <img src="../../photos/logo/MMM.png" width=100%>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">OilField University</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../SWT-Community/ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="#" class="nav-link" >Contact Us</a>
+                <a href="#" class="nav-link" >Shop</a>
+                <a href="../SWT-Community/profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../SWT-Community/login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
             </div>
-            <div class="mmm106">
-                <p> <b>MMM106</b></p>
-                <p style="font-size: 13px;color: black" padding-left:15px; ><i> <u> Educational Website</u></i> </p>
-            </div>
-            <div class="logo" style="width: 100%; ">
-            <h2 style="text-align: center;"><span>O</span>il<span>F</span>ield <span>U</span>niversity</h2>
-          </div>
-            
         </div>
+    </nav>
+
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../SWT-Community/WTAcademy/Academy.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../SWT-Community/ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../SWT-Community/profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../SWT-Community/login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
 
     
 
-    <!-- Hero Section -->
-    <section class="hero" >
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <span class="badge">Free Courses </span>
-            <h2> Unlock Your Potential in the Oil & Gas Industry with OilField University </h2>
-            <p class="hero-description">
-              Explore our comprehensive courses and E-books covering all aspects of the oil and gas Industry. 
-              whether you're a begginer or professional, we provide the knowledge and skills you need to succeed; Tools, operations and Equipments.
-            </p>
-            <div class="hero-stats" >
-              <div class="stat">
-                <span class="stat-number">50+</span>
-                <span class="stat-label">Videos' Courses </span>
-              </div>
-              <div class="stat">
-                <span class="stat-number">15+</span>
-                <span class="stat-label">Hourly Content </span>
-              </div>
-              <div class="stat">
-                <span class="stat-number">03+</span>
-                <span class="stat-label">Student</span>
-              </div>
-            </div>
-            <div class="hero-actions" >
-              <a href="../SWT-Community/News/News.html" class="btn-primary btn-large" >
-                Explore News Feed 
-              </a>
-              <a href="../SWT-Community/index.html" class="btn-outline btn-large" >
-                Ask Or Answer Your Colleague 
-              </a>
-            </div>
-          </div>
-          <div class="hero-image">
-            <div class="code-window">
-              <div class="window-header">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-              </div>
+    <section class="hero1">
+        <div class="hero1-card">
+          <div class="badge">Master Well Testing Engineering</div>
+          <h1>OilField University</h1>
+          <p>The complete learning ecosystem for pressure transient analysis. Master well testing from fundamentals to professional field applications.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary">
+              <a href="#" style="width: 100%;">Start Learning</a>
               
-                <iframe width="100%"  src="https://www.youtube.com/embed/8q4mUwLrOTY" title="OilFielf University" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"  allowfullscreen></iframe>
-            </div>
+            </button>
+            <button class="btn btn-secondary">
+              <a href="OFU/petro/SWT/swt1.html" style="width: 100%;">Old Site</a>
+            </button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- What You'll Learn -->
-    <section class="section what-learn" id="exploreFields">
-      <div class="container">
-        <h2 class="section-title" style="color: white;"> Oil & Gas Fields </h2>
-        <div class="features-grid">
+    <!-- Main Content -->
+    <main class="container main-content" style="width: 95%;">
+        
 
-          <a href="OFU/petro/SWT/swt1.html" >
-            <div class="feature-card">
-              <div class="feature-icon" >
-                <img src="img/welltest.jpeg" >
-              </div>
-              <h3 style="color: azure;"> Surface Well Testing </h3>
-              <p> Gain practical knowledge of surface well testing equipment, flow measurement, pressure analysis, and production evaluation in oil & gas operations. </p>
-            </div>
-          </a>
+      <section class="section">
+        <h2 class="section-title">Everything You Need</h2>
+        <p class="section-subtitle">A complete platform designed by engineers, for engineers.</p>
+        <div class="grid-2">
+            <a href="../SWT-Community/index.html">
+                <div class="feature-card">
+                    <div>🧑‍🤝‍🧑</div>
+                    <h4>Well Testing Community</h4>
+                    <p>Ask & Answer your Colleague .</p>
+                </div>
+            </a>
 
-          <a href="OFU/petro/stimulation/stimulation.html" >
-            <div class="feature-card">
-              <div class="feature-icon">
-                <img src="img/stimulation.jpeg" > 
-              </div>
-              <h3 style="color: azure;"> Stimulation </h3>
-              <p>Understand well stimulation techniques such as acidizing and hydraulic fracturing to enhance reservoir productivity and improve hydrocarbon flow.</p>
-            </div>
-          </a>
+            <a href="../SWT-Community/Learn/learn.html">
+                <div class="feature-card">
+                    <div>🎓</div>
+                    <h4>Structured Courses</h4>
+                    <p>From fundamentals to professional well testing techniques.</p>
+                </div>
+            </a>
 
-          <a href="OFU/petro/slickline/slickline.html" >
-            <div class="feature-card">
-              <div class="feature-icon">
-                <img src="img/sĺickline.jpeg" >
-              </div>
-              <h3 style="color: azure;">SlickLine </h3>
-              <p>Learn the fundamentals of Slickline operations, including wireline tools, well intervention techniques, and surface-to-downhole operations used in oil & gas wells. </p>
-            </div>
-          </a>
+            <a href="../SWT-Community/WTAcademy/Equations/Equations.html">
+                <div class="feature-card">
+                    <div>∑</div>
+                    <h4>Equations Hub</h4>
+                    <p>Interactive calculators for drawdown, buildup, Horner, and more.</p>
+                </div>
+            </a>
 
-          <a href="OFU/petro/coilTubing/coilTubing.html" >
-            <div class="feature-card">
-              <div class="feature-icon">
-                <img src="img/coiltube.jpeg" >
-              </div>
-              <h3 style="color: azure;"> CoilTubing </h3>
-              <p>Explore coiled tubing operations, applications, equipment, and real-world interventions used for well maintenance and optimization.</p>
-            </div>
-          </a>
+            <a href="OFU/petro/SWT/swt1.html">
+                <div class="feature-card">
+                    <div>🧰</div>
+                    <h4>Well Testing Old Site</h4>
+                    <p>Pressure derivative, unit conversion, skin factor estimators.</p>
+                </div>
+            </a>
 
-          <a href="" >
-            <div class="feature-card">
-              <div class="feature-icon">
-                <img src="img/drilling.jpeg" >
-              </div>
-              <h3 style="color: azure;">Drilling </h3>
-              <p>Learn drilling engineering concepts, drilling equipment, well design, and operational procedures used in onshore and offshore drilling projects.</p>
-            </div>
-          </a>
+            <a href="../SWT-Community/WTAcademy/Library.html">
+                <div class="feature-card">
+                    <div>📚</div>
+                    <h4>Digital Library</h4>
+                    <p>Books, manuals, lecture notes, and technical PDFs.</p>
+                </div>
+            </a>
 
-          <a href="" >
-            <div class="feature-card">
-              <div class="feature-icon">
-                <img src="img/drilling.jpeg" >
-              </div>
-              <h3 style="color: azure;">Our Library </h3>
-              <p>Access a comprehensive digital library containing oil & gas courses, technical references, manuals, and educational resources for all career levels.</p>
-            </div>
-          </a>
+            <a href="OFU/petro/SWT/numbers/Data-acquisition/fieldnotes_lite_offline/fieldnotes_lite_offline/index.html">
+                <div class="feature-card">
+                    <div>👨‍💻</div>
+                    <h4>Data Acquisition Software</h4>
+                    <p>Quick-reference engineering notes organized by topic.</p>
+                </div>
+            </a>
 
-          <a href="../SWT-Community/index.html" >
-            <div class="feature-card">
-              <div class="feature-icon">
-                <img src="img/drilling.jpeg" >
-              </div>
-              <h3 style="color: azure;">Discuss With Us</h3>
-              <p>Join our professional community to ask questions, share knowledge, and discuss real oil & gas field challenges with colleagues and experts.</p>
-            </div>
-          </a>
+            <a href="">
+                <div class="feature-card">
+                    <div>📰</div>
+                    <h4>Our Blog</h4>
+                    <p>Check our news and Blog</p>
+                </div>
+            </a>
+
+            <a href="../LifeOS/index.html">
+                <div class="feature-card">
+                    <div>🧠</div>
+                    <h4>Life OS</h4>
+                    <p>Life Operating System</p>
+                </div>
+            </a>
+
+            <a href="../SWT-Community/simulator/index.html">
+                <div class="feature-card">
+                    <div>🏝️</div>
+                    <h4>Well testing Simulation</h4>
+                    <p>Practice</p>
+                </div>
+            </a>
+
+            <a href="../SWT-Community/News/News.html">
+                <div class="feature-card">
+                    <div>💭</div>
+                    <h4>Share posts</h4>
+                    <p>Shere your Expert or a situation happens with you.</p>
+                </div>
+            </a>
+
+            <a href="../SWT-Community/Learn/learn.html">
+                <div class="feature-card">
+                    <div>🏅</div>
+                    <h4>Certifications</h4>
+                    <p>Earn certificates upon completing each learning track.</p>
+                </div>
+            </a>
+
+            <a href="">
+                <div class="feature-card">
+                    <div>🗣️</div>
+                    <h4>Talk English</h4>
+                    <p>Easily Communicate and speak.</p>
+                </div>
+            </a>
+
+            <a href="../SWT-Community/WTAcademy/Dictionary.html">
+                <div class="feature-card">
+                    <div>📖</div>
+                    <h4>Well Testing Dictionary</h4>
+                    <p>Surf all Equipment, operation, jobs & tools.</p>
+                </div>
+            </a>
+
+            <a href="../SWT-Community/Bank/Bank.html">
+                <div class="feature-card">
+                    <div>💹</div>
+                    <h4>Well Testing Questions' Bank</h4>
+                    <p>Test Your Knowledge in Well Testing.</p>
+                </div>
+            </a>
 
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- Curriculum -->
-     <!----
-    <section class="section curriculum">
-      <div class="container">
-        <h2 class="section-title">محتوى الدورة</h2>
-        <div class="curriculum-list">
-          <div class="curriculum-item">
-            <div class="curriculum-header">
-              <div class="curriculum-title">
-                <span class="curriculum-number">01</span>
-                <h3>مقدمة في البرمجة</h3>
-              </div>
-              <button class="curriculum-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-            </div>
-            <div class="curriculum-content">
-              <ul class="lesson-list">
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">ما هي البرمجة؟</span>
-                  <span class="lesson-duration">12:30</span>
-                </li>
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">لماذا نتعلم البرمجة؟</span>
-                  <span class="lesson-duration">10:15</span>
-                </li>
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">كيف تعمل البرامج؟</span>
-                  <span class="lesson-duration">15:45</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="curriculum-item">
-            <div class="curriculum-header">
-              <div class="curriculum-title">
-                <span class="curriculum-number">02</span>
-                <h3>أساسيات البرمجة</h3>
-              </div>
-              <button class="curriculum-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-            </div>
-            <div class="curriculum-content">
-              <ul class="lesson-list">
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">المتغيرات وأنواع البيانات</span>
-                  <span class="lesson-duration">18:20</span>
-                </li>
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">العمليات الحسابية</span>
-                  <span class="lesson-duration">14:10</span>
-                </li>
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">الجمل الشرطية</span>
-                  <span class="lesson-duration">20:30</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="curriculum-item">
-            <div class="curriculum-header">
-              <div class="curriculum-title">
-                <span class="curriculum-number">03</span>
-                <h3>الحلقات والدوال</h3>
-              </div>
-              <button class="curriculum-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-            </div>
-            <div class="curriculum-content">
-              <ul class="lesson-list">
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">حلقة For</span>
-                  <span class="lesson-duration">16:45</span>
-                </li>
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">حلقة While</span>
-                  <span class="lesson-duration">15:20</span>
-                </li>
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">إنشاء الدوال</span>
-                  <span class="lesson-duration">22:15</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="curriculum-item">
-            <div class="curriculum-header">
-              <div class="curriculum-title">
-                <span class="curriculum-number">04</span>
-                <h3>المشاريع التطبيقية</h3>
-              </div>
-              <button class="curriculum-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-            </div>
-            <div class="curriculum-content">
-              <ul class="lesson-list">
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">مشروع: آلة حاسبة</span>
-                  <span class="lesson-duration">25:30</span>
-                </li>
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">مشروع: لعبة التخمين</span>
-                  <span class="lesson-duration">30:15</span>
-                </li>
-                <li class="lesson-item">
-                  <span class="lesson-icon">▶️</span>
-                  <span class="lesson-name">مشروع: قائمة المهام</span>
-                  <span class="lesson-duration">35:45</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  -->
+    
 
     <!-- CTA Section -->
     <section class="cta-section">
@@ -344,7 +260,74 @@
       </div>
     </footer>
 
-    <!-- Chat Widget -->
+    <!-- JS codes -->
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../SWT-Community/js/auth.js"></script>
+    <script src="../SWT-Community/js/firestore.js"></script>
+    <script src="../SWT-Community/js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+<script src="../SWT-Community/WTAcademy/main.js"></script>
     
 
   </body>

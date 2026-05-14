@@ -41,14 +41,19 @@ const GoalSystem = {
     // 3. Save Goal
     saveGoal() {
         const title = document.getElementById('goal-title').value;
+        const type = document.getElementById('goal-type').value;
         const cat = document.getElementById('goal-cat').value;
         const desc = document.getElementById('goal-desc').value;
         const date = document.getElementById('goal-date').value;
 
         this.db.unshift({
             id: Date.now(),
-            title, cat, desc,
+            title,
+            type,
+            cat,
+            desc,
             date: new Date(date).toLocaleDateString('en-GB'),
+            rawDate: date,
             progress: 0 
         });
 
@@ -71,6 +76,36 @@ const GoalSystem = {
         }
     },
 
+    getDeadlineDate(goal) {
+        if (goal.rawDate) {
+            return new Date(goal.rawDate);
+        }
+        if (goal.date) {
+            const parts = goal.date.split('/');
+            if (parts.length === 3) {
+                return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+            }
+        }
+        return null;
+    },
+
+    getDaysRemaining(goal) {
+        const deadline = this.getDeadlineDate(goal);
+        if (!deadline || isNaN(deadline.getTime())) return null;
+        const now = new Date();
+        const diff = Math.ceil((deadline.setHours(23, 59, 59, 999) - now) / 86400000);
+        return diff;
+    },
+
+    formatDueText(goal) {
+        const days = this.getDaysRemaining(goal);
+        if (days === null) return 'Deadline date not set';
+        if (days < 0) return 'Expired';
+        if (days === 0) return 'Due today';
+        if (days === 1) return 'Due tomorrow';
+        return `Due in ${days} days`;
+    },
+
     deleteGoal(id) {
         if (confirm("Delete this goal?")) {
             this.db = this.db.filter(g => g.id !== id);
@@ -86,10 +121,15 @@ const GoalSystem = {
     // 5. Render to UI
     render() {
         const grid = document.getElementById('goals-grid');
-        grid.innerHTML = this.db.map(g => `
+        const normalize = this.db.map(g => ({ ...g, type: g.type || 'Monthly' }));
+        const yearly = normalize.filter(g => g.type === 'Yearly');
+        const monthly = normalize.filter(g => g.type === 'Monthly');
+        const weekly = normalize.filter(g => g.type === 'Weekly');
+
+        const renderCards = (items) => items.map(g => `
             <div class="goal-card" onclick="GoalSystem.openEditModal(${g.id})" style="cursor: pointer;">
                 <div class="goal-card-header">
-                    <span class="goal-tag">${g.cat}</span>
+                    <span class="goal-tag">${g.type || 'Goal'}</span>
                     <button onclick="event.stopPropagation(); GoalSystem.deleteGoal(${g.id})" 
                         style="background:none; border:none; color:#ef4444; cursor:pointer;">
                         <i class="fa-solid fa-trash">🗑️</i>
@@ -102,6 +142,7 @@ const GoalSystem = {
                 <div class="goal-meta">
                     <i class="fa-solid fa-calendar-days">📅</i> ${g.date}
                 </div>
+                <div class="goal-countdown">${this.formatDueText(g)}</div>
 
                 <div class="goal-progress-container">
                     <div class="progress-text-row">
@@ -114,6 +155,21 @@ const GoalSystem = {
                 </div>
             </div>
         `).join('');
+
+        const renderSection = (title, items) => `
+            <div class="goal-board-column">
+                <h2 style="margin-bottom: 14px; color: #e2e8f0;">${title}</h2>
+                ${items.length > 0 ? renderCards(items) : `<p style="color: #94a3b8; font-size: 13px;">No ${title.toLowerCase()} yet.</p>`}
+            </div>
+        `;
+
+        grid.innerHTML = `
+            <div class="goal-board-grid">
+                ${renderSection('Yearly Goals', yearly)}
+                ${renderSection('Monthly Goals', monthly)}
+                ${renderSection('Weekly Goals', weekly)}
+            </div>
+        `;
     },
 
     saveToStorage() {

@@ -96,6 +96,9 @@
             <a href="#" class="nav-link" data-tab="vault">
                 <i class="fa-solid fa-file-shield"></i> Document Vault
             </a>
+            <a href="#" class="nav-link" data-tab="vault-module">
+                <i class="fa-solid fa-file-shield"></i> Password tracker
+            </a>
             <a href="#" class="nav-link" data-tab="file-manager">
                 <i class="fa-solid fa-folder-open"></i> File Manager
             </a>
@@ -396,6 +399,18 @@
                             <i class="fa-solid fa-circle-exclamation"></i>
                             <span id="ai-priority-text"></span>
                         </div>
+
+                        <!-- AI Coach chat prompt -->
+                        <div class="ai-coach-input" style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.08); padding-top:18px;">
+                            <label for="ai-coach-prompt" style="display:block; font-size:12px; color:var(--text-muted); margin-bottom:8px;">Daily log / question for AI Coach</label>
+                            <textarea id="ai-coach-prompt" placeholder="Tell the coach what you did today, what you're thinking, or ask for advice..." style="width:100%; min-height:96px; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:14px; color:white; padding:14px; resize:vertical; font-size:13px;"></textarea>
+                            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                                <button class="btn-primary" onclick="AiCoach.submitPrompt()" style="padding:10px 16px; font-size:13px;">Ask AI Coach</button>
+                                <button class="btn-secondary" onclick="AiCoach.clearPrompt()" style="padding:10px 16px; font-size:13px; background:transparent; border:1px solid var(--border); color:white;">Clear</button>
+                            </div>
+                            <div id="ai-coach-response" style="display:none; margin-top:16px; border:1px solid var(--border); border-radius:14px; padding:14px; background:rgba(255,255,255,0.03); min-height:80px; color:#e2e8f0; font-size:13px; line-height:1.6;"></div>
+                            <div id="ai-coach-status" style="margin-top:10px; font-size:12px; color:var(--text-dim);"></div>
+                        </div>
                     </div>
 
                 </div><!-- /right-col -->
@@ -433,6 +448,12 @@
                     <form id="goal-form">
                         <label>Goal Title</label>
                         <input type="text" id="goal-title" placeholder="e.g. Learn React Native" required>
+                        <label>Goal Type</label>
+                        <select id="goal-type" required style="width:100%; padding:12px; margin-bottom:12px; background:#0f172a; border:1px solid var(--border); border-radius:10px; color:white;">
+                            <option value="Yearly">Yearly Goal</option>
+                            <option value="Monthly">Monthly Goal</option>
+                            <option value="Weekly">Weekly Goal</option>
+                        </select>
                         <label>Category</label>
                         <input type="text" id="goal-cat" placeholder="e.g. Skill / Career" required>
                         <label>Description</label>
@@ -1191,6 +1212,31 @@
                 <div class="stat-card">
                     <h3><i class="fa-solid fa-chart-pie" style="color:var(--accent);"></i> Skill Summary</h3>
                     <div id="personality-list" style="margin-top:15px;"></div>
+                </div>
+
+                <!-- Psychological Wellbeing -->
+                <div class="stat-card" style="grid-column: span 2;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                        <h3><i class="fa-solid fa-brain" style="color:var(--accent);"></i> Psychological Wellbeing</h3>
+                    </div>
+                    <p style="color:var(--text-dim); margin-bottom:18px; line-height:1.6;">
+                        A dedicated mental health panel for your emotional wellbeing, resilience, and calm focus. Use these professional suggestions to strengthen your mental clarity and self-care routine.
+                    </p>
+                    <div style="display:grid; grid-template-columns: repeat(3, minmax(120px, 1fr)); gap:12px; margin-bottom:18px;">
+                        <div style="background:rgba(255,255,255,0.05); padding:16px; border-radius:12px; border:1px solid var(--border);">
+                            <span style="font-size:12px; color:var(--text-dim);">Stress Level</span>
+                            <strong id="mh-stress" style="display:block; margin-top:10px; font-size:20px;">Moderate</strong>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.05); padding:16px; border-radius:12px; border:1px solid var(--border);">
+                            <span style="font-size:12px; color:var(--text-dim);">Emotional Energy</span>
+                            <strong id="mh-energy" style="display:block; margin-top:10px; font-size:20px;">Stable</strong>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.05); padding:16px; border-radius:12px; border:1px solid var(--border);">
+                            <span style="font-size:12px; color:var(--text-dim);">Resilience</span>
+                            <strong id="mh-resilience" style="display:block; margin-top:10px; font-size:20px;">Strong</strong>
+                        </div>
+                    </div>
+                    <div id="mental-health-suggestions" style="display:grid; gap:12px;"></div>
                 </div>
 
                 <!-- Certifications -->
@@ -2005,6 +2051,80 @@
 
             </div>
         </section>
+
+
+        <!-- ─────────────────────────────────────────────── -->
+        <!-- Password vault tracker with same Vault.js       -->
+        <!-- ─────────────────────────────────────────────── -->
+
+        <!-- Credentials Vault Section -->
+        <section id="vault-module" class="tab-content vault-panel">
+        <div class="vault-header">
+            <div class="header-title">
+            <span class="icon">🗄️</span>
+            <h2>Credentials Vault</h2>
+            </div>
+            
+            <div class="security-lock" id="lock-container">
+            <input type="password" id="vault-master-key" placeholder="Enter Master Key" autocomplete="on">
+            <button id="btn-unlock-vault" class="btn-unlock">
+                <span class="lock-icon">🔒</span> Unlock
+            </button>
+            </div>
+        </div>
+
+        <div id="vault-secure-area" class="secure-area hidden">
+            <!-- Add New Account Form -->
+            <form id="cred-form" class="vault-form">
+            <h3 class="section-title">Add New Credential</h3>
+            <div class="form-grid">
+                <div class="input-group">
+                <label>Platform Name</label>
+                <input type="text" id="cred-site" placeholder="e.g., GitHub" required>
+                </div>
+                <div class="input-group">
+                <label>Website URL</label>
+                <input type="url" id="cred-url" placeholder="https://...">
+                </div>
+                <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="cred-user" placeholder="johndoe">
+                </div>
+                <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="cred-email" placeholder="john@example.com">
+                </div>
+                
+                <div class="input-group span-2">
+                <label>Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="cred-pass" placeholder="••••••••••••" required>
+                    <div class="pass-actions">
+                    <button type="button" id="btn-toggle-pass" class="btn-icon" title="Toggle Visibility">👁️</button>
+                    <button type="button" id="btn-generate-pass" class="btn-icon" title="Generate Strong Password">🎲</button>
+                    </div>
+                </div>
+                </div>
+                
+                <button type="submit" id="btn-save-account" class="btn-submit span-2">Secure & Save</button>
+            </div>
+            </form>
+
+            <!-- Search and Filter -->
+            <div class="vault-toolbar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="cred-search" placeholder="Search saved credentials...">
+            </div>
+            </div>
+            
+            <!-- Saved Accounts Grid -->
+            <div id="cred-accounts-grid" class="accounts-grid">
+            <!-- Cards dynamically injected here -->
+            </div>
+        </div>
+        </section>
+
 
 
         <!-- ─────────────────────────────────────────────── -->

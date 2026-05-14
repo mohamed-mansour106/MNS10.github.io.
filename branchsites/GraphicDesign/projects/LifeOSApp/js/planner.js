@@ -189,7 +189,63 @@ const Planner = {
     tasks: JSON.parse(localStorage.getItem('userTasks')) || [],
 
     init() {
+        this.syncWithCalendar(); // ⬅️ ضيف السطر ده هنا
         this.renderTasks();
+    },
+
+    // الميثود الجديدة للمزامنة
+    syncWithCalendar() {
+        this.tasks = JSON.parse(localStorage.getItem('userTasks')) || [];
+        const calendarEvents = JSON.parse(localStorage.getItem('os_calendar_events')) || [];
+        const todayStr = this.getLocalDateString(new Date()); // بيجيب تاريخ النهاردة (YYYY-MM-DD)
+
+        // فلترة أحداث النهاردة فقط
+        const todayEvents = calendarEvents.filter(event => {
+            if (!event.start) return false;
+            const eventDate = event.start.split('T')[0];
+            return eventDate === todayStr;
+        });
+
+        let newTasksAdded = false;
+
+        todayEvents.forEach(event => {
+            // التأكد إن المهمة مضافتش قبل كدة عشان ميتكررش نفس الحدث كل ما تفتح الصفحة
+            const exists = this.tasks.some(t => t.calendarId === event.id);
+
+            if (!exists) {
+                // استخراج التاج من عنوان الحدث لو موجود (مثلاً ⛽ Field Op)
+                let category = 'Calendar';
+                if (event.title.includes(':')) {
+                    category = event.title.split(':')[0].trim();
+                }
+
+                const newTask = {
+                    id: 'task-cal-' + event.id,
+                    calendarId: event.id, // مرجع للـ ID الأصلي في الكالندر
+                    title: event.title,
+                    status: 'todo',
+                    tag: category,
+                    priority: 'Medium',
+                    archived: false,
+                    completedAt: null
+                };
+
+                this.tasks.push(newTask);
+                newTasksAdded = true;
+            }
+        });
+
+        if (newTasksAdded) {
+            localStorage.setItem('userTasks', JSON.stringify(this.tasks));
+            this.renderTasks();
+        }
+    },
+
+    getLocalDateString(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
     },
 
     // 2. إضافة مهمة جديدة
@@ -368,15 +424,90 @@ const Planner = {
 
     // ميزة الأرشفة: تخفي المهام المنتهية من البورد لكن تتركها في الـ LocalStorage
     archiveDone() {
-        if (confirm("Move completed tasks to history?")) {
+        if (confirm("Move completed tasks to history and sync with projects?")) {
+            // 1. جلب المهمات التي ستتم أرشفتها الآن (التي حالتها done وليست مؤرشفة بعد)
+            const tasksToArchive = this.tasks.filter(task => task.status === 'done' && !task.archived);
+
+            // 2. تحديث حالة هذه المهمات في المشاريع الهندسية
+            tasksToArchive.forEach(task => {
+                this.syncTaskCompletionToProject(task.title);
+            });
+
+            // 3. تنفيذ عملية الأرشفة المعتادة في الـ Planner
             this.tasks = this.tasks.map(task => {
                 if (task.status === 'done') {
                     return { ...task, archived: true };
                 }
                 return task;
             });
+
             this.saveAndRender();
-            alert("Tasks moved to Archive. Your board is fresh now!");
+            alert("Tasks archived and project progress updated!");
+        }
+    },
+
+    // دالة وسيطة للبحث عن المهمة في المشاريع وتحديثها
+    syncTaskCompletionToProject(fullTitle) {
+        // Expected Format: "Category: Project Name | Main Task: Subtask"
+        if (!fullTitle.includes('|') || !fullTitle.includes(':')) return;
+
+        try {
+            const parts = fullTitle.split('|');
+            let projectName = parts[0].trim();
+
+            // FIX: If the project name part contains a colon (the Category Tag), 
+            // we take only the part after the colon.
+            if (projectName.includes(':')) {
+                projectName = projectName.split(':')[1].trim();
+            }
+
+            const rest = parts[1].trim();
+            const [mainTaskName, subtaskName] = rest.split(':').map(s => s.trim());
+
+            const projects = Projects.getProjects();
+            
+            // Now this will correctly match "Well Testing Academy"
+            const project = projects.find(p => p.title === projectName);
+            
+            if (!project) {
+                console.log("Project not found:", projectName);
+                return;
+            }
+
+            const mainTask = project.tasks.find(t => t.text === mainTaskName);
+            if (!mainTask) return;
+
+            const subtask = mainTask.subtasks.find(s => s.text === subtaskName);
+            if (subtask) {
+                subtask.done = true;
+                Projects.save(projects); // This saves and updates your charts
+                
+                // UI Refresh if you're currently looking at the project
+                if (Projects.currentProjectId === project.id) {
+                    renderMainTasksUI();
+                    if (Projects.currentTaskId === mainTask.id) {
+                        renderSubtasksUI();
+                    }
+                }
+            }
+        } catch (err) {
+            console.error("Sync Error:", err);
+        }
+    },
+
+    // NEW FUNCTION TO CLEAR ARCHIVE
+    clearHistory() {
+        if (confirm("Are you sure you want to permanently delete all archived tasks? This cannot be undone.")) {
+            // Keep only tasks that are NOT archived
+            this.tasks = this.tasks.filter(t => !t.archived);
+            
+            // Save changes to localStorage
+            this.saveAndRender();
+            
+            // Refresh the history view or close the modal
+            this.showHistory();
+            
+            alert("History cleared!");
         }
     },
 
@@ -430,6 +561,7 @@ function drop(ev) {
 
 // تشغيل النظام عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => Planner.init());
+document.addEventListener('calendar:event-saved', () => Planner.syncWithCalendar());
 document.addEventListener("DOMContentLoaded", () => {
     PlannerXP.render();
 });

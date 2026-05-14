@@ -146,14 +146,37 @@ function renderMainTasksUI() {
         const percent = total === 0 ? 0 : Math.round((doneCount / total) * 100);
 
         return `
-        <div onclick="selectTaskUI(${task.id})" style="background:#1e293b; padding:15px; border-radius:10px; border:1px solid #334155; cursor:pointer; transition:0.2s;">
-            <div style="color:white; font-weight:bold; margin-bottom:10px;">${task.text}</div>
+        <div onclick="selectTaskUI(${task.id})" style="background:#1e293b; padding:15px; border-radius:10px; border:1px solid #334155; cursor:pointer; transition:0.2s; position:relative;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+                <div style="color:white; font-weight:bold; flex:1; padding-right:10px;">${task.text}</div>
+                <i class="fa-solid fa-trash" 
+                   onclick="event.stopPropagation(); deleteMainTaskUI(${task.id})" 
+                   style="color:#ef4444; font-size:12px; cursor:pointer;" 
+                   title="Delete Task">🗑️</i>
+            </div>
             <div style="background:#0f172a; height:4px; border-radius:10px;">
                 <div style="width:${percent}%; background:#38bdf8; height:100%;"></div>
             </div>
             <div style="font-size:10px; color:#94a3b8; margin-top:5px; text-align:right;">${percent}%</div>
         </div>`;
     }).join('');
+}
+
+
+// Add this helper function for the UI-specific delete
+function deleteMainTaskUI(taskId) {
+    if(!confirm("Delete this task and all subtasks related to it?")) return;
+    const projects = Projects.getProjects();
+    const project = projects.find(p => p.id === Projects.currentProjectId);
+    project.tasks = project.tasks.filter(t => t.id !== taskId);
+    
+    if(Projects.currentTaskId === taskId) {
+        Projects.currentTaskId = null;
+        document.getElementById('subtasks-selection-area').style.display = 'none';
+    }
+    
+    Projects.save(projects);
+    renderMainTasksUI();
 }
 
 // 3. تعديل وظيفة النقر على المهمة لتحديث صندوق المهام الفرعية
@@ -181,15 +204,43 @@ function renderSubtasksUI() {
     }
 
     list.innerHTML = task.subtasks.map((sub, index) => `
-        <div style="display:flex; align-items:center; gap:12px; padding:10px; border-bottom:1px solid #1e293b;">
-            <input type="checkbox" ${sub.done ? 'checked' : ''} 
-                onchange="toggleSubtaskStatusUI(${index})" 
-                style="width:18px; height:18px; accent-color:#22c55e; cursor:pointer;">
-            <span style="color:${sub.done ? '#475569' : 'white'}; font-size:14px; ${sub.done ? 'text-decoration:line-through' : ''}">
-                ${sub.text}
-            </span>
+        <div style="display:flex; align-items:center; gap:12px; padding:10px; border-bottom:1px solid #1e293b; justify-content:space-between;">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <input type="checkbox" ${sub.done ? 'checked' : ''} 
+                    onchange="toggleSubtaskStatusUI(${index})" 
+                    style="width:18px; height:18px; accent-color:#22c55e; cursor:pointer;">
+                <span style="color:${sub.done ? '#475569' : 'white'}; font-size:14px; ${sub.done ? 'text-decoration:line-through' : ''}">
+                    ${sub.text}
+                </span>
+            </div>
+            <div style="display:flex; gap:15px; align-items:center;">
+                <i class="fa-solid fa-calendar-plus" 
+                   onclick="openCalendarForSubtask(${index})" 
+                   style="color:#38bdf8; cursor:pointer; font-size:14px;" 
+                   title="Schedule this subtask">📅</i>
+                
+                <i class="fa-solid fa-trash-can" 
+                   onclick="deleteSubtaskUI(${index})" 
+                   style="color:#ef4444; cursor:pointer; font-size:14px;" 
+                   title="Delete Subtask">🗑️</i>
+            </div>
         </div>
     `).join('');
+}
+
+
+// Add this helper function for the subtask delete
+function deleteSubtaskUI(index) {
+    if(!confirm("Delete this subtask?")) return;
+    const projects = Projects.getProjects();
+    const project = projects.find(p => p.id === Projects.currentProjectId);
+    const task = project.tasks.find(t => t.id === Projects.currentTaskId);
+    
+    task.subtasks.splice(index, 1);
+    
+    Projects.save(projects);
+    renderSubtasksUI();
+    renderMainTasksUI(); // Update percentage bar above
 }
 
 // 5. وظيفة تحديث الحالة من الصندوق الجديد
@@ -197,6 +248,7 @@ function toggleSubtaskStatusUI(index) {
     const projects = Projects.getProjects();
     const project = projects.find(p => p.id === Projects.currentProjectId);
     const task = project.tasks.find(t => t.id === Projects.currentTaskId);
+    
     
     task.subtasks[index].done = !task.subtasks[index].done;
     
@@ -577,6 +629,75 @@ function convertIdeaToProject(index) {
 }
 
 
+function openCalendarForSubtask(subIndex) {
+    const project = Projects.getProjects().find(p => p.id === Projects.currentProjectId);
+    const task = project.tasks.find(t => t.id === Projects.currentTaskId);
+    const subtask = task.subtasks[subIndex];
+
+    // 1. تحضير العنوان المدمج (Labeling)
+    const combinedTitle = `${project.title} | ${task.text}: ${subtask.text}`;
+    
+    // 2. محاولة مطابقة تصنيف المشروع مع ألوان التقويم (Categorization)
+    const categoryInput = document.getElementById('event-category-input');
+    // إذا كان الـ Tag بتاع المشروع موجود في الاختيارات، اختاره
+    for (let option of categoryInput.options) {
+        if (option.text.includes(project.tag)) {
+            categoryInput.value = option.value;
+            break;
+        }
+    };
+
+    // --- NEW: Create a metadata object to link back ---
+    const metadata = {
+        projectId: project.id,
+        mainTaskId: task.id,
+        subtaskIndex: subIndex
+    };
+
+    document.getElementById('event-title-input').value = combinedTitle;
+    
+    // Store this metadata in a global temp variable or a hidden input 
+    // so when you save the calendar event, it gets saved too.
+    window.tempSubtaskLink = metadata; 
+
+    showTab('schedule-section'); 
+    document.getElementById('event-modal').style.display = 'flex';
+
+    // 3. ملء بيانات المودال
+    document.getElementById('event-title-input').value = combinedTitle;
+    
+    // 4. ضبط وقت افتراضي (مثلاً الوقت الحالي)
+    const now = new Date();
+    const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
+    document.getElementById('event-start-time').value = currentTime;
+
+    // 5. الانتقال لتبويب التقويم (Schedule Section)
+    // افترضنا إن عندك دالة لتبديل الـ Tabs
+    showTab('schedule-section'); 
+
+    // 6. فتح المودال
+    document.getElementById('event-modal').style.display = 'flex';
+    
+    // ملاحظة: بنسيب tempSelectionInfo فاضي هنا عشان اليوزر يحدد اليوم يدوي أو نستخدم تاريخ اليوم
+    const todayDate = new Date();
+    const today = [
+        todayDate.getFullYear(),
+        String(todayDate.getMonth() + 1).padStart(2, '0'),
+        String(todayDate.getDate()).padStart(2, '0')
+    ].join('-');
+    document.getElementById('event-date-input').value = today;
+    tempSelectionInfo = { startStr: today + "T" + currentTime, allDay: false };
+};
+
+// دالة مساعدة للانتقال بين الـ Tabs
+function showTab(tabId) {
+    // Remove active class from all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    
+    // Add active class to target tab
+    // CSS handles display via .tab-content { display: none; } and .tab-content.active { display: block; }
+    document.getElementById(tabId).classList.add('active');
+};
 
 //******************Project XP********************************* */
 

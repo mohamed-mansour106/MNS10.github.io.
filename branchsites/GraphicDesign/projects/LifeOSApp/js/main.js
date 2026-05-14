@@ -38,7 +38,7 @@ function toggleSidebar() {
     const overlay = document.getElementById('sidebar-overlay');
     
     sidebar.classList.toggle('open');
-    overlay.classList.toggle('active');
+    overlay.classList.toggle('open');
 }
 
 

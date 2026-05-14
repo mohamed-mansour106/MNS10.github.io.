@@ -415,281 +415,474 @@ button:hover {
 .btn-secondary { background: #334155; flex: 1; }
 .btn-primary { background: var(--accent); flex: 1; }
 
-/* --- HABITS & HEALTH --- */
-#habits .stat-card h3 { margin-top: 0; }
-#habits #habit-list > div { margin-bottom: 10px; }
-#habits #habits-header { margin-bottom: 15px; font-weight: bold; }
+/* ============================================================
+   Habits & Health — habits.css
+   Fully responsive: Desktop → Tablet → Mobile → Small Mobile
+   ============================================================ */
 
-#habits .calendar-grid {
+
+/* ── Section header ───────────────────────────────────────── */
+#habits h1 { margin-bottom: 24px; }
+
+
+/* ── Main 2-column grid ───────────────────────────────────── */
+.habits-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    margin-top: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: start;
 }
 
-#habits .day {
-    background: #334155;
-    color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-}
 
-#habits .day.completed { background: #10b981; }
-#habits .day .date { font-weight: bold; margin-bottom: 5px; }
-
-
-#habits .progress-container {
-    background: #0f172a;
-    border-radius: 8px;
-    height: 15px;
-    overflow: hidden;
-    margin-top: 5px;
-}
-
-#habits .progress-bar {
-    height: 100%;
-    width: 0%;
-    text-align: center;
-    color: white;
-    line-height: 15px;
-    transition: width 0.6s ease, background 0.6s ease;
-}
-
-#habits .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 3000;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-#habits .modal.show { display: flex; opacity: 1; }
-#habits .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-#habits small { display: block; margin-top: 2px; color: #94a3b8; }
-
-#habits .feedback {
-    color: #10b981;
-    font-size: 14px;
-    margin-top: 5px;
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
-#habits .feedback.show { opacity: 1; }
-
-
-/* Enhanced Health Section Styles */
-#habits .stat-card label {
-    display: block;
-    font-size: 12px;
-    color: var(--text-dim);
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-#habits .progress-container {
-    background: #0f172a;
-    border-radius: 8px;
-    height: 15px;
-    overflow: hidden;
-    margin-bottom: 5px;
-}
-
-#habits .progress-bar {
-    height: 100%;
-    width: 0%;
-    text-align: center;
-    color: white;
-    line-height: 15px;
-    transition: width 0.6s ease, background 0.6s ease;
-}
-
-#habits small {
-    display: block;
-    font-size: 11px;
-    color: #64748b;
-    margin-bottom: 10px;
-}
-
-#habits .stat-card button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
-    transition: background 0.3s;
-}
-
-#habits .stat-card button:hover {
-    opacity: 0.9;
-}
-
-#habits .modal h2 {
-    margin-bottom: 20px;
-    color: white;
-}
-
-#habits .modal label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--text-dim);
-    font-size: 14px;
-}
-
-#habits .modal input, #habits .modal select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    background: #1e293b;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: white;
-    outline: none;
-}
-
-#habits .modal input:focus, #habits .modal select:focus {
-    border-color: var(--accent);
-}
-
-#habits .modal .modal-buttons {
+/* ── Shared card shell ────────────────────────────────────── */
+.habits-card {
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px;
+    border-radius: 14px;
 }
 
-#habits .modal button {
-    flex: 1;
-    padding: 10px;
-    border: none;
+.habits-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+
+/* ── Card 1 — Habits header row ──────────────────────────── */
+.habits-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.habits-xp-badge {
+    font-size: 12px;
+    color: var(--accent-cyan);
+    background: rgba(56, 189, 248, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    white-space: nowrap;
+}
+
+/* Individual habit rows rendered by JS */
+.habit-list { display: flex; flex-direction: column; gap: 0; }
+
+#habit-list > div {
+    margin-bottom: 10px;
     border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
+    transition: box-shadow 0.2s;
 }
 
-#habits .habits-modal-card {
-    background: #1e293b;
-    padding: 25px;
-    border-radius: 15px;
-    width: 350px;
-    max-width: 90%;
+#habit-list > div:hover { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
+
+
+/* ── Card 2 — Vitals ─────────────────────────────────────── */
+.vital-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 4px;
 }
 
-#habits .habits-modal-card--wide {
-    width: 400px;
-    max-height: 90vh;
-    overflow-y: auto;
+.vital-item__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-dim);
+    flex-wrap: wrap;
+    gap: 4px;
 }
 
-#habits .modal-title { margin-bottom: 20px; }
-#habits .modal-title--tight { margin-bottom: 10px; }
+.vital-item__label span { font-weight: 600; color: var(--text-main); }
+.vital-item__label small { font-size: 11px; }
 
-#habits .input-full {
+.vital-item__date {
+    font-size: 10px;
+    color: var(--text-muted) !important;
+    display: block;
+}
+
+
+/* ── Progress bars ───────────────────────────────────────── */
+#habits .progress-container {
+    background: var(--surface);
+    border-radius: 8px;
+    height: 12px;
+    overflow: hidden;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
 }
 
-#habits .modal-actions { display: flex; gap: 10px; }
-
-#habits .modal-btn {
-    flex: 1;
-    padding: 10px;
-    border: none;
+#habits .progress-bar {
+    height: 100%;
+    width: 0%;
     border-radius: 8px;
+    font-size: 9px;
+    text-align: right;
+    padding-right: 4px;
     color: white;
-    cursor: pointer;
+    line-height: 12px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.6s ease;
 }
 
-#habits .modal-btn--save { background: #10b981; }
-#habits .modal-btn--cancel { background: #ef4444; }
-#habits .modal-btn--close {
-    background: #ef4444;
-    margin-top: 20px;
-    width: 100%;
-}
+/* Habits calendar progress bar */
+.habit-progress { margin-bottom: 14px; }
 
-#habits .habit-progress { margin-bottom: 15px; }
-
-#habits .habit-progress-track {
-    background: #0f172a;
+.habit-progress-track {
+    background: var(--surface);
     border-radius: 12px;
     overflow: hidden;
     height: 20px;
 }
 
-#habits .habit-progress-bar {
+.habit-progress-bar {
     width: 0%;
     height: 100%;
-    background: #10b981;
+    background: var(--success);
     text-align: right;
-    padding-right: 5px;
+    padding-right: 6px;
     color: white;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 11px;
     line-height: 20px;
     transition: width 1s ease-in-out;
+    border-radius: 12px;
 }
 
-/* Input fields in habits section */
-#habits input, #habits select {
-    padding: 8px 12px;
+
+/* ── Card 3 — BMI ────────────────────────────────────────── */
+.habits-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.habits-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.habits-field label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.habits-field input,
+.habits-field select {
+    width: 100%;
+    padding: 9px 11px;
     border: 1px solid var(--border);
-    border-radius: 6px;
-    background: var(--sidebar-bg);
-    color: white;
-    font-size: 14px;
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text-main);
+    font-size: 13px;
     outline: none;
     transition: border-color 0.2s;
-    width: 100%;
-    
 }
 
-#habits input:focus, #habits select:focus {
-    border-color: var(--accent);
+.habits-field input:focus,
+.habits-field select:focus { border-color: var(--accent); }
+
+.habits-field input::placeholder { color: var(--text-muted); }
+
+/* BMI result block */
+.bmi-result {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 1px solid var(--border);
 }
 
-#habits input::placeholder {
+.bmi-result__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
     color: var(--text-dim);
 }
 
-.report-paper {
-    background: linear-gradient(145deg, #1e293b, #0f172a);
-    padding: 40px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    max-width: 800px;
-    margin: 0 auto;
+.bmi-result__row strong { color: var(--text-main); }
+
+
+/* ── Card 4 — Calories ───────────────────────────────────── */
+.calorie-result {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    border: 1px solid var(--border);
 }
 
-.report-header {
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 20px;
-    margin-bottom: 30px;
+.calorie-result__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 12px;
+    color: var(--text-dim);
+    min-width: 100px;
 }
 
-#urgent-docs-list {
-    list-style: none;
-    padding: 0;
+.calorie-result__item strong {
+    font-size: 18px;
+    color: var(--text-main);
 }
 
-#urgent-docs-list li {
-    padding: 5px 0;
+/* Food log items */
+.food-log { display: flex; flex-direction: column; gap: 5px; }
+
+/* Goal row */
+.habits-goal-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
+
+.habits-goal-row input {
+    flex: 1;
+    padding: 9px 11px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text-main);
+    font-size: 13px;
+    outline: none;
+}
+
+.habits-goal-row input:focus { border-color: var(--accent); }
+
+/* Weekly calorie chart */
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    height: 55px;
+    align-items: end;
+}
+
+.chart-day {
+    border-radius: 4px 4px 0 0;
+    min-height: 8px;
+    background: var(--accent);
+    transition: height 0.5s ease;
+}
+
+
+/* ── Divider ─────────────────────────────────────────────── */
+.habits-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 4px 0;
+}
+
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.habits-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.15s;
+    color: white;
+    width: 100%;
+}
+
+.habits-btn:hover  { filter: brightness(1.1); }
+.habits-btn:active { transform: scale(0.97); }
+
+.habits-btn--primary { background: var(--accent); }
+.habits-btn--success { background: var(--success); }
+.habits-btn--danger  { background: var(--danger); }
+.habits-btn--accent  { background: var(--accent); }
+.habits-btn--orange  { background: #f97316; }
+
+#habits .feedback {
+    color: var(--success);
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    text-align: center;
+}
+
+#habits .feedback.show { opacity: 1; }
+
+
+/* ── Modals ──────────────────────────────────────────────── */
+.habits-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(6px);
+    padding: 16px;                   /* prevents card touching edges on mobile */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.habits-modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.habits-modal__card {
+    background: var(--card-bg);
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 380px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Wider variant for calendar */
+.habits-modal__card--wide { max-width: 440px; }
+
+.habits-modal__title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.habits-modal__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.habits-modal__actions .habits-btn { flex: 1; }
+
+/* Calendar grid inside modal */
+.habits-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 8px;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Tablet (≤ 1024px) ───────────────────────────────────── */
+@media (max-width: 1024px) {
+
+    .habits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    /* BMI form: stack to single column */
+    .habits-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .habits-form-grid [style*="grid-column: span 2"] {
+        grid-column: span 1 !important;
+    }
+}
+
+
+/* ── Mobile (≤ 768px) ────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* All cards stack to single column */
+    .habits-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .habits-card { padding: 18px; }
+
+    /* Vitals label: stack text vertically */
+    .vital-item__label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    /* Calorie result: stack items */
+    .calorie-result {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* Calendar grid: smaller cells */
+    .habits-calendar-grid { gap: 3px; }
+
+    /* Modal card takes full width */
+    .habits-modal__card,
+    .habits-modal__card--wide {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    /* BMI form: 1 column */
+    .habits-form-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ── Small Mobile (≤ 480px) ─────────────────────────────── */
+@media (max-width: 480px) {
+
+    #habits h1 { font-size: 20px; }
+
+    .habits-card { padding: 14px; gap: 10px; }
+    .habits-card h3 { font-size: 14px; }
+
+    .habits-btn { font-size: 12px; padding: 9px 12px; }
+
+    /* Goal row: stack vertically */
+    .habits-goal-row { flex-direction: column; }
+    .habits-goal-row input,
+    .habits-goal-row .habits-btn { width: 100%; }
+
+    /* Calorie result: smaller text */
+    .calorie-result__item strong { font-size: 16px; }
+
+    /* Calendar: tighter cells */
+    .habits-calendar-grid {
+        gap: 2px;
+        font-size: 10px;
+    }
+
+    /* XP badge: wrap naturally */
+    .habits-card__header { flex-direction: column; align-items: flex-start; }
+
+    /* Modal actions: stack buttons */
+    .habits-modal__actions { flex-direction: column; }
+}
+
 
 
 /*********************financial****************************/
@@ -916,6 +1109,327 @@ nav {
     width: 100%;
     height: 100%;
     z-index: 10; /* Sit above the canvas */
+}
+/************************/
+/* ============================================================
+   dashboard-widgets.css
+   Weekly Performance + AI Coaching styles
+   Add this to your style.css or link as a separate file
+   ============================================================ */
+
+
+/* ── Header ─────────────────────────────────────────────── */
+.dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dash-header__sub { color: var(--text-dim); font-size: 13px; margin-top: 4px; }
+
+.dash-header__meta {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 1px;
+}
+
+
+/* ── Top stat cards (with icon) ─────────────────────────── */
+.dash-top-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.dash-stat {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.dash-stat__icon {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.dash-stat h3 {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.dash-stat span { font-size: 18px; font-weight: 700; display: block; }
+
+
+/* ── Alerts ──────────────────────────────────────────────── */
+.dash-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.dash-alert i { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+
+.dash-alert__sub { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
+
+.dash-alert--danger  { background: rgba(239,68,68,0.10); border-color: #ef4444; color: #fca5a5; }
+.dash-alert--danger i { color: #ef4444; }
+
+.dash-alert--warning { background: rgba(245,158,11,0.10); border-color: #f59e0b; color: #fcd34d; }
+.dash-alert--warning i { color: #f59e0b; }
+
+
+/* ── Task rows ───────────────────────────────────────────── */
+.dash-task-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.dash-task-row:last-child { border-bottom: none; }
+
+.dash-task-tag {
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   WEEKLY PERFORMANCE WIDGET
+   ════════════════════════════════════════════════════════════ */
+
+.perf-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.perf-item { display: flex; flex-direction: column; gap: 6px; }
+
+.perf-item__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.perf-item__label {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 500;
+}
+
+.perf-item__val {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* Shared progress track */
+.perf-bar-track {
+    width: 100%;
+    height: 8px;
+    background: var(--surface);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.perf-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Overall score row */
+.os-score-row {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.os-score-row__label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-dim);
+}
+
+.os-score-row__label i { color: var(--accent-cyan); }
+
+.os-score-row__label strong {
+    margin-left: auto;
+    font-size: 20px;
+    color: var(--text-main);
+}
+
+.os-score-fill {
+    background: linear-gradient(90deg, var(--accent), var(--accent-cyan)) !important;
+    height: 14px;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+.os-score-row__grade {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   AI COACHING WIDGET
+   ════════════════════════════════════════════════════════════ */
+
+.ai-coach-card {
+    margin-top: 20px;
+    background: linear-gradient(145deg, var(--card-bg), var(--surface));
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.ai-coach-card__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.ai-coach-card__icon {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.ai-coach-card__refresh {
+    margin-left: auto;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.ai-coach-card__refresh:hover {
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    background: transparent;
+}
+
+/* OS Score badge */
+.ai-coach-score {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.ai-coach-score__num {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.5s;
+}
+
+.ai-coach-score__label {
+    font-size: 13px;
+    color: var(--text-dim);
+}
+
+/* Feed */
+.ai-coaching-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.ai-msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border-left: 3px solid;
+    font-size: 12.5px;
+    line-height: 1.5;
+    animation: fadeIn 0.3s ease;
+}
+
+.ai-msg__icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.ai-msg__text { color: var(--text-dim); }
+
+/* Priority action bar */
+.ai-priority-action {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 4px;
+    animation: pulse-border 2.5s infinite;
+}
+
+.ai-priority-action i { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+    .dash-top-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .dash-header    { flex-direction: column; align-items: flex-start; }
+    .dash-top-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .ai-coach-score__num { font-size: 32px; }
+}
+
+@media (max-width: 480px) {
+    .dash-top-stats { grid-template-columns: 1fr; }
+    .dash-stat      { padding: 14px; }
+    .ai-coach-score__num { font-size: 28px; }
+    .dash-header__meta  { font-size: 16px; }
 }
 
 
@@ -1832,4 +2346,151 @@ textarea:focus {
         transform: translateX(0);
         opacity: 1;
     }
+}
+
+
+/***************Schedule calendar section************************/
+
+/* Calendar Container */
+#calendar {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: #1e293b; /* Dark dashboard background */
+    color: #e2e8f0; /* Light text */
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* Overriding FullCalendar's default borders and buttons */
+.fc-theme-standard td, .fc-theme-standard th {
+    border-color: #334155 !important; /* Subtle dark borders */
+}
+
+.fc .fc-button-primary {
+    background-color: var(--accent); /* Use your existing accent color */
+    border: none;
+}
+
+.fc .fc-button-primary:hover {
+    opacity: 0.8;
+}
+
+.fc-timegrid-slot {
+    height: 40px !important; /* Makes the time slots taller and easier to click */
+}
+
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #1e293b;
+    padding: 24px;
+    border-radius: 12px;
+    width: 350px;
+    border: 1px solid #334155;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #f8fafc;
+}
+
+#event-title-input {
+    width: 100%;
+    padding: 12px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    color: white;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+#event-title-input:focus {
+    border-color: var(--accent);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+#event-category-input {
+    width: 100%;
+    padding: 12px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+    outline: none;
+    appearance: none; /* Removes default browser arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+}
+
+#event-category-input:focus {
+    border-color: var(--accent);
+}
+
+.time-input {
+    width: 100%;
+    padding: 10px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    color: white;
+    margin-top: 5px;
+    outline: none;
+}
+
+.time-input:focus {
+    border-color: var(--accent);
+}
+
+/***************Job tracker section************************/
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 400px;
+    padding: 25px;
+    background: #0f172a; /* Deep dark theme */
+    border: 1px solid #334155;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    animation: modalSlide 0.3s ease-out;
+}
+
+@keyframes modalSlide {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }

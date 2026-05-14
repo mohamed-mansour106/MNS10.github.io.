@@ -89,6 +89,40 @@ const Personality = {
 
     },
 
+    getMentalWellness() {
+        return JSON.parse(localStorage.getItem('mentalWellnessData')) || {
+            stress: 'Moderate',
+            energy: 'Stable',
+            resilience: 'Strong',
+            suggestions: [
+                'Schedule a 10-minute mindfulness break each day to reduce stress and improve clarity.',
+                'Write one gratitude note every evening to strengthen your emotional resilience.',
+                'Set healthy boundaries in work and personal interactions to preserve energy.',
+                'Practice deep breathing or grounding exercises when you feel overwhelmed.',
+                'Reflect weekly on what gave you energy and what drained it, then adjust your routine.'
+            ]
+        };
+    },
+
+    renderMentalHealth() {
+        const wellness = this.getMentalWellness();
+        const stressEl = document.getElementById('mh-stress');
+        const energyEl = document.getElementById('mh-energy');
+        const resilienceEl = document.getElementById('mh-resilience');
+        const suggestionContainer = document.getElementById('mental-health-suggestions');
+
+        if (stressEl) stressEl.innerText = wellness.stress;
+        if (energyEl) energyEl.innerText = wellness.energy;
+        if (resilienceEl) resilienceEl.innerText = wellness.resilience;
+        if (!suggestionContainer) return;
+
+        suggestionContainer.innerHTML = wellness.suggestions.map(item => `
+            <div style="background: rgba(255,255,255,0.03); padding: 14px 16px; border-radius: 12px; border: 1px solid var(--border);">
+                <p style="margin:0; color:#e2e8f0; font-size:13px; line-height:1.6;">${item}</p>
+            </div>
+        `).join('');
+    },
+
     // 3. Modals Management
     openModal(isEdit = false) {
         const modal = document.getElementById('personality-modal');
@@ -155,6 +189,7 @@ const Personality = {
 document.addEventListener('DOMContentLoaded', () => {
     // Initial Render of Traits
     Personality.render();
+    Personality.renderMentalHealth();
 
     // Initial Load of Profile
     const savedProfile = localStorage.getItem('userProfileInfo');

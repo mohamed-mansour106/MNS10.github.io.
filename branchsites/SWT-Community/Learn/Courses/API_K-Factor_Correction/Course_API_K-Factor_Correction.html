@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Gravity & K-Factor Correction Course</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="coursestyle.css">
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body>
+    <canvas id="bg"></canvas>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">×</button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- HERO -->
+  <section class="hero py-20 px-6 text-center">
+    <div class="max-w-5xl mx-auto">
+      <div class="inline-block px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 mb-6">
+        Well Testing Engineering Training Academy
+      </div>
+
+      <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+        API Gravity & K-Factor Correction Course
+      </h1>
+
+      <p class="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+        Learn how to correct observed API gravity to standard conditions at 60°F,
+        calculate Volume Correction Factor (VCF/K-Factor), and understand the engineering logic used in real oilfield operations.
+      </p>
+
+      <div class="mt-10 flex justify-center gap-4 flex-wrap">
+        <button onclick="scrollToCourse()" class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-xl font-bold text-lg">
+          Start Learning
+        </button>
+
+        <button onclick="scrollToAssessment()" class="border border-blue-400 hover:bg-blue-500/10 px-8 py-4 rounded-xl font-bold text-lg">
+          Final Assessment
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROGRESS -->
+  <section class="sticky top-20 z-50 bg-slate-950 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 py-4">
+      <div class="flex justify-between items-center mb-2">
+        <span class="font-bold">Course Progress</span>
+        <span id="progressText">0%</span>
+      </div>
+      <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+        <div id="progressBar" class="progress-bar bg-blue-500 h-3 w-0"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="answerAuthWarning" class="hidden max-w-6xl mx-auto px-6 py-4 mb-8 rounded-3xl border border-yellow-500 bg-yellow-950/80 text-yellow-200 text-center">
+    Please log in to access interactive answer features and course progress tracking.
+  </div>
+
+  <div id="answerForm" class="hidden max-w-6xl mx-auto px-6 py-4 mb-8 rounded-3xl border border-slate-700 bg-slate-950/80 text-slate-200">
+    <p class="text-lg font-semibold">Welcome back! Your interactive answer panel is enabled.</p>
+  </div>
+
+  <!-- COURSE CONTENT -->
+  <main id="course" class="max-w-6xl mx-auto px-6 py-12 space-y-10">
+
+    <!-- LESSON 1 -->
+    <section id="lesson1" class="glass lesson-card rounded-3xl p-8">
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <h2 class="text-3xl font-bold text-blue-400">1. Understanding API Gravity</h2>
+        <button onclick="markComplete(1, this)" class="bg-green-600 hover:bg-green-700 px-5 py-2 rounded-xl">
+          Mark Complete
+        </button>
+      </div>
+
+      <!-- Video Placeholder -->
+      <div class="mt-6">
+        <video id="video1" controls class="w-full rounded-2xl bg-slate-900" style="max-height: 400px;">
+          <source src="video/1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <p class="mt-6 text-slate-300 leading-relaxed text-lg">
+        API Gravity is a measurement that describes how heavy or light crude oil is compared to water.
+        Higher API means lighter oil, while lower API means heavier crude.
+      </p>
+
+      <div class="formula rounded-2xl p-6 mt-8 overflow-auto">
+        <p class="text-xl">
+          \[
+          API = \frac{141.5}{SG} - 131.5
+          \]
+        </p>
+      </div>
+
+
+      <!----------API Simulator----------------->
+      <div class="grid md:grid-cols-2 gap-8 mt-10">
+
+        <div class="card">
+
+            
+
+            <label>Specific Gravity (SG)</label>
+            <input type="range" min="0.6" max="1.2" value="0.85" step="0.01" id="sgSlider">
+
+            <div class="valueBox">
+                SG Value:
+                <span id="sgValue">0.85</span>
+            </div>
+
+            <div class="apiResult">
+                API Gravity:
+                <span id="apiValue">35.0</span>°
+            </div>
+
+            <div id="classification" class="classification light">
+                Light Crude Oil
+            </div>
+
+            <div class="barContainer">
+                <div class="bar" id="bar"></div>
+            </div>
+
+            <div class="info">
+                <strong>Engineering Meaning:</strong><br><br>
+
+                Lower Specific Gravity means lower density compared to water,
+                which increases API Gravity and indicates lighter hydrocarbons
+                with better refinery recovery and flow behavior.
+            </div>
+
+            
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="card">
+
+            <h2>Equation Breakdown</h2>
+
+            <div class="steps">
+
+                <p>
+                    Step 1:
+                    Divide
+                    <span class="equationPart">141.5</span>
+                    by the Specific Gravity.
+                </p>
+
+                <p id="step1"></p>
+
+                <br>
+
+                <p>
+                    Step 2:
+                    Subtract
+                    <span class="equationPart">131.5</span>
+                    from the result.
+                </p>
+
+                <p id="step2"></p>
+
+                <br>
+
+                <p>
+                    Final API Gravity:
+                </p>
+
+                <h2 id="finalAPI">35.0° API</h2>
+
+            </div>
+
+            <div class="oilTank">
+                <div class="oilFill" id="oilFill"></div>
+            </div>
+
+            <div class="tankLabel" id="tankLabel">
+                Light Oil Density
+            </div>
+</div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mt-8">
+                <div class="bg-slate-900 rounded-2xl p-6">
+                <h3 class="font-bold text-xl mb-4 text-green-400">Light Oil</h3>
+                <ul class="space-y-2 text-slate-300">
+                    <li>• High API gravity</li>
+                    <li>• Lower density</li>
+                    <li>• Easier flow behavior</li>
+                    <li>• Better refinery value</li>
+                </ul>
+                </div>
+
+                <div class="bg-slate-900 rounded-2xl p-6">
+                <h3 class="font-bold text-xl mb-4 text-orange-400">Heavy Oil</h3>
+                <ul class="space-y-2 text-slate-300">
+                    <li>• Low API gravity</li>
+                    <li>• Higher density</li>
+                    <li>• Difficult transportation</li>
+                    <li>• Requires heating</li>
+                </ul>
+                </div>
+        </div>
+
+
+        
+      <!-- QUIZ -->
+      <div class="mt-10 bg-slate-950 rounded-2xl p-6 border border-slate-700">
+        <h3 class="text-2xl font-bold mb-5">Quick Assessment</h3>
+
+        <div class="space-y-3">
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+            Heavy oil has higher API gravity
+          </button>
+
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+            Higher API means lighter oil
+          </button>
+
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+            API is unrelated to density
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- LESSON 2 -->
+    <section id="lesson2" class="glass lesson-card rounded-3xl p-8 hidden">
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <h2 class="text-3xl font-bold text-blue-400">2. Temperature Expansion</h2>
+        <button onclick="markComplete(2, this)" class="bg-green-600 hover:bg-green-700 px-5 py-2 rounded-xl">
+          Mark Complete
+        </button>
+      </div>
+
+      <!-- Video Placeholder -->
+      <div class="mt-6">
+        <video id="video2" controls class="w-full rounded-2xl bg-slate-900" style="max-height: 400px;">
+          <source src="video/2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <p class="mt-6 text-lg leading-relaxed text-slate-300">
+        Oil expands when temperature increases. This causes changes in volume and density.
+        To standardize measurements worldwide, the petroleum industry uses 60°F as the reference condition.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8 mt-8">
+        <div class="bg-slate-900 rounded-2xl p-6">
+          <h3 class="text-2xl font-bold mb-4 text-red-400">Hot Oil</h3>
+          <p class="text-slate-300 leading-relaxed">
+            • Expands in volume<br>
+            • Appears lighter<br>
+            • Density decreases<br>
+            • API reading increases
+          </p>
+        </div>
+
+        <div class="bg-slate-900 rounded-2xl p-6">
+          <h3 class="text-2xl font-bold mb-4 text-cyan-400">Cold Oil</h3>
+          <p class="text-slate-300 leading-relaxed">
+            • Contracts in volume<br>
+            • Appears heavier<br>
+            • Density increases<br>
+            • API reading decreases
+          </p>
+        </div>
+      </div>
+
+      <div class="formula rounded-2xl p-6 mt-8 overflow-auto">
+        <p class="text-xl">
+          \[
+          VCF = e^{-\alpha \Delta T (1+0.8\alpha \Delta T)}
+          \]
+        </p>
+      </div>
+
+      <!----------------------->
+        <!-- ========================================= -->
+        <!-- EXTRA EXPLANATION SECTION -->
+        <!-- ========================================= -->
+
+        <div class="mt-10 bg-slate-950 rounded-2xl p-8 border border-slate-700">
+
+        <h3 class="text-3xl font-bold text-yellow-400 mb-6">
+            Why Temperature Changes Oil Volume
+        </h3>
+
+        <p class="text-slate-300 leading-relaxed text-lg">
+            Crude oil molecules move faster when temperature increases.
+            As molecular motion increases, the distance between molecules becomes larger,
+            causing the oil to expand in volume.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 mt-8">
+
+            <!-- STEP 1 -->
+            <div class="bg-slate-900 p-6 rounded-2xl">
+            <h4 class="text-xl font-bold text-cyan-400 mb-4">
+                1. Heat Added
+            </h4>
+
+            <p class="text-slate-300 leading-relaxed">
+                Thermal energy enters the fluid and increases molecular activity.
+            </p>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="bg-slate-900 p-6 rounded-2xl">
+            <h4 class="text-xl font-bold text-orange-400 mb-4">
+                2. Molecular Expansion
+            </h4>
+
+            <p class="text-slate-300 leading-relaxed">
+                Molecules spread farther apart which increases the total occupied volume.
+            </p>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="bg-slate-900 p-6 rounded-2xl">
+            <h4 class="text-xl font-bold text-green-400 mb-4">
+                3. Density Reduction
+            </h4>
+
+            <p class="text-slate-300 leading-relaxed">
+                Since the same mass occupies a larger volume, density decreases.
+            </p>
+            </div>
+
+        </div>
+
+        </div>
+
+        <!-- ========================================= -->
+        <!-- REAL FIELD EXAMPLE -->
+        <!-- ========================================= -->
+
+        <div class="mt-10 bg-slate-950 rounded-2xl p-8 border border-slate-700">
+
+        <h3 class="text-3xl font-bold text-blue-400 mb-6">
+            Real Oilfield Example
+        </h3>
+
+        <div class="space-y-5 text-slate-300 text-lg leading-relaxed">
+
+            <p>
+            Imagine a tank contains exactly:
+            </p>
+
+            <div class="bg-slate-900 p-5 rounded-xl">
+            • 1000 barrels of crude oil at 60°F
+            </div>
+
+            <p>
+            During daytime operations, temperature rises to:
+            </p>
+
+            <div class="bg-slate-900 p-5 rounded-xl">
+            • 120°F
+            </div>
+
+            <p>
+            The oil expands due to heat and the observed tank volume may become:
+            </p>
+
+            <div class="bg-slate-900 p-5 rounded-xl">
+            • 1018 barrels
+            </div>
+
+            <p class="text-yellow-300 font-semibold">
+            But physically no extra oil was added.
+            The increase happened only because of thermal expansion.
+            </p>
+
+            <p>
+            This is why API and VCF correction are critical in:
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-4 mt-4">
+
+            <div class="bg-slate-900 p-4 rounded-xl">
+                • Custody Transfer
+            </div>
+
+            <div class="bg-slate-900 p-4 rounded-xl">
+                • Tank Calibration
+            </div>
+
+            <div class="bg-slate-900 p-4 rounded-xl">
+                • Fiscal Metering
+            </div>
+
+            </div>
+
+        </div>
+
+        </div>
+
+        <!-- ========================================= -->
+        <!-- ADVANCED EXPLANATION -->
+        <!-- ========================================= -->
+
+        <div class="mt-10 bg-slate-950 rounded-2xl p-8 border border-slate-700">
+
+        <h3 class="text-3xl font-bold text-purple-400 mb-6">
+            Understanding the VCF Equation
+        </h3>
+
+        <div class="formula rounded-2xl p-6 overflow-auto">
+            <p class="text-xl">
+            \[
+            VCF = e^{-\alpha \Delta T (1+0.8\alpha \Delta T)}
+            \]
+            </p>
+        </div>
+
+        <div class="space-y-6 mt-8 text-slate-300 leading-relaxed text-lg">
+
+            <div class="bg-slate-900 p-5 rounded-xl">
+            <span class="text-cyan-400 font-bold">VCF</span>
+            = Volume Correction Factor
+            </div>
+
+            <div class="bg-slate-900 p-5 rounded-xl">
+            <span class="text-yellow-400 font-bold">α (Alpha)</span>
+            = Thermal expansion coefficient of crude oil
+            </div>
+
+            <div class="bg-slate-900 p-5 rounded-xl">
+            <span class="text-green-400 font-bold">ΔT</span>
+            = Temperature difference from standard condition (60°F)
+            </div>
+
+            <div class="bg-slate-900 p-5 rounded-xl">
+            <span class="text-red-400 font-bold">e</span>
+            = Exponential mathematical constant
+            </div>
+
+        </div>
+
+        </div>
+
+        <!-- ========================================= -->
+        <!-- PRACTICE SECTION -->
+        <!-- ========================================= -->
+
+        <div class="mt-10 bg-slate-950 rounded-2xl p-8 border border-slate-700">
+
+        <h3 class="text-3xl font-bold text-green-400 mb-8">
+            Practice Exercises
+        </h3>
+
+        <!-- PRACTICE 1 -->
+        <div class="bg-slate-900 p-6 rounded-2xl mb-8">
+
+            <h4 class="text-2xl font-bold text-cyan-400 mb-4">
+            Exercise 1
+            </h4>
+
+            <p class="text-slate-300 leading-relaxed">
+            A crude oil sample was measured at high temperature.
+            What happens to the observed volume?
+            </p>
+
+            <div class="space-y-3 mt-5">
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700"
+                onclick="checkAnswer(this,true)">
+                Volume increases due to thermal expansion
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700"
+                onclick="checkAnswer(this,false)">
+                Volume decreases immediately
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700"
+                onclick="checkAnswer(this,false)">
+                Temperature has no effect
+            </button>
+
+            </div>
+
+        </div>
+
+        <!-- PRACTICE 2 -->
+        <div class="bg-slate-900 p-6 rounded-2xl mb-8">
+
+            <h4 class="text-2xl font-bold text-yellow-400 mb-4">
+            Exercise 2
+            </h4>
+
+            <p class="text-slate-300 leading-relaxed">
+            Why do petroleum companies use 60°F as reference temperature?
+            </p>
+
+            <div class="space-y-3 mt-5">
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700"
+                onclick="checkAnswer(this,true)">
+                To standardize global oil measurements
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700"
+                onclick="checkAnswer(this,false)">
+                Because all oil is stored at 60°F
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700"
+                onclick="checkAnswer(this,false)">
+                To reduce tank pressure only
+            </button>
+
+            </div>
+
+        </div>
+
+        <!-- PRACTICE 3 -->
+        <div class="bg-slate-900 p-6 rounded-2xl">
+
+            <h4 class="text-2xl font-bold text-red-400 mb-4">
+            Exercise 3
+            </h4>
+
+            <p class="text-slate-300 leading-relaxed">
+            If temperature increases, what happens to oil density?
+            </p>
+
+            <div class="space-y-3 mt-5">
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700"
+                onclick="checkAnswer(this,false)">
+                Density increases
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700"
+                onclick="checkAnswer(this,true)">
+                Density decreases
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700"
+                onclick="checkAnswer(this,false)">
+                Density becomes constant
+            </button>
+
+            </div>
+
+        </div>
+
+        </div>
+
+      <!-- QUIZ -->
+      <div class="mt-10 bg-slate-950 rounded-2xl p-6 border border-slate-700">
+        <h3 class="text-2xl font-bold mb-5">Knowledge Check</h3>
+
+        <div class="space-y-3">
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+            Oil expands as temperature increases
+          </button>
+
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+            Temperature has no effect on oil measurements
+          </button>
+
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+            API correction is optional in custody transfer
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- LESSON 3 -->
+    <section id="lesson3" class="glass lesson-card rounded-3xl p-8 hidden">
+      <!-- HEADER -->
+    <div class="flex justify-between items-center flex-wrap gap-4 border-b border-slate-700 pb-6">
+      <h2 class="text-3xl font-bold text-blue-400">3. Measuring in the Field</h2>
+      <button onclick="markComplete(3, this)" class="bg-green-600 hover:bg-green-500 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors duration-200">
+        Mark Complete
+      </button>
+    </div>
+
+    <!-- VIDEO PLACEHOLDER -->
+    <div class="mt-8">
+      <video id="video3" controls class="w-full rounded-2xl bg-black border border-slate-700 shadow-lg" style="max-height: 400px;">
+        <source src="video/3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <p class="mt-8 text-lg leading-relaxed text-slate-300">
+      Field API readings must be captured with the observed sample temperature, instrument correction, sample condition, and reading time. Accurate field notes make the <strong>60°F correction</strong> reliable.
+    </p>
+
+    <!-- KEY CONCEPTS GRID -->
+    <div class="grid md:grid-cols-3 gap-6 mt-8">
+      <div class="bg-slate-900/80 rounded-2xl p-6 border border-slate-800 shadow-md">
+        <h3 class="font-bold text-xl mb-3 text-green-400 flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+          Sample
+        </h3>
+        <p class="text-slate-400 leading-relaxed text-sm">Confirm the sample is representative, stable, and free from unusual gas breakout before reading.</p>
+      </div>
+
+      <div class="bg-slate-900/80 rounded-2xl p-6 border border-slate-800 shadow-md">
+        <h3 class="font-bold text-xl mb-3 text-cyan-400 flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          Instrument
+        </h3>
+        <p class="text-slate-400 leading-relaxed text-sm">Record the hydrometer range, thermometer reading, and any instrument correction required by the procedure.</p>
+      </div>
+
+      <div class="bg-slate-900/80 rounded-2xl p-6 border border-slate-800 shadow-md">
+        <h3 class="font-bold text-xl mb-3 text-orange-400 flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+          Report
+        </h3>
+        <p class="text-slate-400 leading-relaxed text-sm">Log observed API, observed temperature, corrected API, and comments about sample quality.</p>
+      </div>
+    </div>
+
+    <!-- EXPANDED EXPLANATIONS & FORMULAS -->
+    <div class="mt-12">
+      <h3 class="text-2xl font-bold mb-6 text-white">The Math Behind the Measurement</h3>
+      <p class="text-slate-300 mb-6">
+        To accurately measure API gravity, we must account for two physical changes when temperatures deviate from 60°F: the thermal expansion of the oil, and the thermal expansion of the glass hydrometer itself.
+      </p>
+
+      <div class="space-y-6">
+        <div class="formula rounded-2xl p-6 shadow-inner">
+          <h4 class="text-blue-300 font-semibold mb-2">1. Converting Observed API to Density</h4>
+          <p class="text-sm text-slate-400 mb-4">Converts the dimensionless Observed API ($D7$) into an uncorrected mass-per-volume density value ($B2$).</p>
+          <div class="text-xl overflow-auto text-center py-2 text-white">
+            $$ B2 = \frac{141360.198}{131.5 + D7} $$
+          </div>
+        </div>
+
+        <div class="formula rounded-2xl p-6 shadow-inner">
+          <h4 class="text-blue-300 font-semibold mb-2">2. Hydrometer Thermal Correction (HYC)</h4>
+          <p class="text-sm text-slate-400 mb-4">Accounts for the thermal expansion of the soda-lime glass instrument based on observed temperature ($D8$).</p>
+          <div class="text-xl overflow-auto text-center py-2 text-white">
+            $$ C2 = 1 - 0.00001278(D8-60) - 0.0000000062(D8-60)^2 $$
+          </div>
+        </div>
+
+        <div class="formula rounded-2xl p-6 shadow-inner">
+          <h4 class="text-blue-300 font-semibold mb-2">3. Correcting back to Standard API</h4>
+          <p class="text-sm text-slate-400 mb-4">Once volume correction factors yield the true base density ($K2$), it is converted back into standard °API.</p>
+          <div class="text-xl overflow-auto text-center py-2 text-white">
+            $$ API_{60} = \frac{141360.198}{K2} - 131.5 $$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div class="mt-12 bg-slate-900/50 rounded-3xl p-8 border border-slate-700 shadow-xl">
+      <h3 class="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+        <svg class="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+        Interactive API Calculator
+      </h3>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <label class="block mb-2 text-sm font-semibold text-slate-300 uppercase tracking-wider">Observed API</label>
+          <input id="apiObs" type="number" step="0.1" placeholder="e.g. 35.0" class="w-full p-4 rounded-xl bg-slate-950 border border-slate-600 text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all">
+        </div>
+
+        <div>
+          <label class="block mb-2 text-sm font-semibold text-slate-300 uppercase tracking-wider">Hydrometer Temp (°F)</label>
+          <input id="tempObs" type="number" step="0.1" placeholder="e.g. 85.0" class="w-full p-4 rounded-xl bg-slate-950 border border-slate-600 text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all">
+        </div>
+      </div>
+
+      <button onclick="calculateAPI()" class="mt-8 bg-blue-600 hover:bg-blue-500 w-full md:w-auto px-10 py-4 rounded-xl font-bold text-white transition-colors duration-200 shadow-lg shadow-blue-900/20">
+        Calculate API @ 60°F
+      </button>
+
+      <div class="mt-8 bg-slate-950 p-6 rounded-2xl border border-slate-800 text-center">
+        <div class="text-sm text-slate-400 uppercase tracking-wider mb-2">Corrected Result</div>
+        <div class="text-4xl font-bold text-green-400" id="apiResult">-- °API</div>
+      </div>
+    </div>
+
+    <!-- FIELD PRACTICE SCENARIOS -->
+    <div class="mt-16 border-t border-slate-700 pt-12">
+      <h3 class="text-2xl font-bold mb-8 text-white">Field Practice Scenarios</h3>
+      
+      <div class="space-y-4">
+        <!-- Scenario 1 -->
+        <details class="group bg-slate-900 border border-slate-700 rounded-2xl transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="cursor-pointer p-6 font-semibold text-lg text-blue-300 flex justify-between items-center">
+            Scenario 1: The Cold Morning Catch
+            <span class="text-2xl transition-transform duration-300 group-open:rotate-45">+</span>
+          </summary>
+          <div class="p-6 pt-0 text-slate-300 border-t border-slate-800 mt-2">
+            <p class="mb-4"><strong>The Situation:</strong> You pull a sample from the tank at 6:00 AM. The ambient temperature is freezing, and the sample temperature reads <strong>42°F</strong>. Your hydrometer reads an Observed API of <strong>38.5</strong>.</p>
+            <p class="mb-4 text-white font-medium">Question: Will the corrected API at 60°F be higher or lower than your observed reading?</p>
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <strong class="text-green-400">Answer: Higher.</strong> Because the oil is cold, it has contracted and become denser. Denser oil yields a lower API number. When mathematically warmed back up to 60°F, it will expand, becoming less dense, which results in a higher API gravity.
+            </div>
+          </div>
+        </details>
+
+        <!-- Scenario 2 -->
+        <details class="group bg-slate-900 border border-slate-700 rounded-2xl transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="cursor-pointer p-6 font-semibold text-lg text-blue-300 flex justify-between items-center">
+            Scenario 2: High Noon Summer Heat
+            <span class="text-2xl transition-transform duration-300 group-open:rotate-45">+</span>
+          </summary>
+          <div class="p-6 pt-0 text-slate-300 border-t border-slate-800 mt-2">
+            <p class="mb-4"><strong>The Situation:</strong> You are measuring a fresh sample off the separator in the middle of a Texas summer. The hydrometer temperature reading is <strong>98°F</strong>, and the Observed API is <strong>44.2</strong>.</p>
+            <p class="mb-4 text-white font-medium">Question: Why is it critical to apply the glass correction factor ($C2$) in this scenario?</p>
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <strong class="text-green-400">Answer:</strong> At 98°F, the heat of the oil causes the glass hydrometer to physically expand. Because the instrument has a larger volume than it was calibrated for at 60°F, it will be more buoyant. Failing to account for this will result in an artificially high API reading.
+            </div>
+          </div>
+        </details>
+
+        <!-- Scenario 3 -->
+        <details class="group bg-slate-900 border border-slate-700 rounded-2xl transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="cursor-pointer p-6 font-semibold text-lg text-blue-300 flex justify-between items-center">
+            Scenario 3: Check Your Math
+            <span class="text-2xl transition-transform duration-300 group-open:rotate-45">+</span>
+          </summary>
+          <div class="p-6 pt-0 text-slate-300 border-t border-slate-800 mt-2">
+            <p class="mb-4"><strong>The Situation:</strong> Using your field calculator, input an Observed API of <strong>35.0</strong> at an observed temperature of <strong>85°F</strong>.</p>
+            <p class="mb-4 text-white font-medium">Goal: Use the interactive calculator above to find the corrected API at 60°F.</p>
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <strong class="text-green-400">Answer:</strong> Applying the corrections, the crude oil at standard conditions (60°F) should read approximately <strong>33.3 °API</strong>.
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+    </section>
+
+    <!-- LESSON 4 -->
+    <section id="lesson4" class="glass lesson-card rounded-3xl p-8 hidden">
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <h2 class="text-3xl font-bold text-blue-400">4. Correcting to 60F</h2>
+        <button onclick="markComplete(4, this)" class="bg-green-600 hover:bg-green-700 px-5 py-2 rounded-xl">
+          Mark Complete
+        </button>
+      </div>
+
+      <div class="mt-6">
+        <video id="video4" controls class="w-full rounded-2xl bg-slate-900" style="max-height: 400px;">
+          <source src="video/4.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <p class="mt-6 text-lg leading-relaxed text-slate-300">
+        Correcting to 60F converts a field observation into a standard reference value.
+        This lets operations, laboratory reports, allocation, and custody transfer compare
+        the same fluid without temperature bias.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6 mt-8">
+        <div class="formula rounded-2xl p-6 overflow-auto">
+          <p class="text-xl">\[ SG_{60} = \frac{141.5}{API_{60}+131.5} \]</p>
+        </div>
+
+        <div class="formula rounded-2xl p-6 overflow-auto">
+          <p class="text-xl">\[ API_{60} = \frac{141.5}{SG_{60}} - 131.5 \]</p>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-slate-950 rounded-2xl p-6 border border-slate-700">
+        <h3 class="text-2xl font-bold mb-5">Correction Check</h3>
+        <div class="space-y-3">
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+            Correcting to 60F removes temperature bias from the field reading
+          </button>
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+            Correcting to 60F changes the actual oil quality in the tank
+          </button>
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+            Correcting to 60F is only needed when the oil is exactly 60F
+          </button>
+        </div>
+      </div>
+
+      <!--------->
+      <!-- ADD THIS TO YOUR LESSON 4 SECTION -->
+      <div class="mt-12 space-y-8">
+        <h3 class="text-2xl font-bold text-white">Advanced Practice Scenarios</h3>
+
+        <!-- Scenario A: The Inverse Rule -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+          <h4 class="text-blue-300 font-bold mb-3">Practice 1: The Inverse Relationship</h4>
+          <p class="text-slate-300 mb-4">You have two samples at 60°F. Sample A has an API of 42. Sample B has an API of 32. Which sample has a higher Specific Gravity (is heavier)?</p>
+          <details class="group">
+            <summary class="cursor-pointer text-cyan-400 font-semibold uppercase text-sm tracking-widest list-none">View Answer</summary>
+            <div class="mt-4 p-4 bg-slate-950 rounded-xl border border-blue-900/30 text-slate-300">
+              <p><strong class="text-green-400">Answer: Sample B (32 API).</strong></p>
+              <p class="mt-2 text-sm">Reasoning: The API scale is inverse. As the API number goes <strong>down</strong>, the density and specific gravity go <strong>up</strong>. Sample B is heavier/denser than Sample A.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- Scenario B: Calculation Check -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+          <h4 class="text-blue-300 font-bold mb-3">Practice 2: Calculation Check</h4>
+          <p class="text-slate-300 mb-4">If a laboratory report lists a crude oil's Specific Gravity as <strong>0.8251</strong> at 60°F, what is the API Gravity?</p>
+          <div class="flex gap-4 mb-4">
+              <input id="practiceCalc" type="number" placeholder="Enter API" class="bg-slate-950 border border-slate-700 p-2 rounded-lg w-32 text-white">
+              <button onclick="checkPracticeCalc()" class="bg-blue-600 px-4 py-2 rounded-lg font-bold">Check</button>
+          </div>
+          <p id="practiceResult" class="text-sm font-bold"></p>
+        </div>
+      </div>
+
+      <script>
+      function checkPracticeCalc() {
+          const val = document.getElementById('practiceCalc').value;
+          const result = document.getElementById('practiceResult');
+          // Formula: (141.5 / 0.8251) - 131.5 = 39.99
+          if(Math.round(val) == 40) {
+              result.innerText = "Correct! The API is 40.0.";
+              result.className = "text-green-400 mt-2";
+          } else {
+              result.innerText = "Try again. Hint: Use (141.5 / 0.8251) - 131.5";
+              result.className = "text-red-400 mt-2";
+          }
+      }
+      </script>
+
+
+    </section>
+
+
+    <!-- LESSON 5 -->
+    <section id="lesson5" class="glass lesson-card rounded-3xl p-8 hidden">
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <h2 class="text-3xl font-bold text-blue-400">5. Calculating K-Factor</h2>
+        <button onclick="markComplete(5, this)" class="bg-green-600 hover:bg-green-700 px-5 py-2 rounded-xl">
+          Mark Complete
+        </button>
+      </div>
+
+      <!-- Video Placeholder -->
+      <div class="mt-6">
+        <video id="video5" controls class="w-full rounded-2xl bg-slate-900" style="max-height: 400px;">
+          <source src="video/5.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <p class="mt-6 text-lg leading-relaxed text-slate-300">
+        K-Factor or Volume Correction Factor converts oil volume from operating temperature back to standard conditions.
+      </p>
+
+      <div class="space-y-6 mt-8">
+
+        <div class="formula rounded-2xl p-6 overflow-auto">
+          <p class="text-xl">\[ B3 = \frac{API_{60}}{1000} \]</p>
+        </div>
+
+        <div class="formula rounded-2xl p-6 overflow-auto">
+          <p class="text-xl">\[ C3 = \frac{T_{line}}{1000} \]</p>
+        </div>
+
+        <div class="formula rounded-2xl p-6 overflow-auto">
+          <p class="text-xl">\[ F3 = E3 - 17.25759B3^2C3^2 \]</p>
+        </div>
+      </div>
+
+      <!-- CALCULATOR -->
+      <div class="mt-10 bg-slate-950 rounded-3xl p-8 border border-slate-700">
+        <h3 class="text-2xl font-bold mb-6">Interactive K-Factor Calculator</h3>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block mb-2">API @ 60°F</label>
+            <input id="api60" type="number" class="w-full p-4 rounded-xl bg-slate-900 border border-slate-700">
+          </div>
+
+          <div>
+            <label class="block mb-2">Oil Line Temperature (°F)</label>
+            <input id="lineTemp" type="number" class="w-full p-4 rounded-xl bg-slate-900 border border-slate-700">
+          </div>
+        </div>
+
+        <button onclick="calculateKFactor()" class="mt-6 bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-xl font-bold">
+          Calculate K-Factor
+        </button>
+
+        <div class="mt-6 text-2xl font-bold text-green-400">
+          K-Factor: <span id="kfactorResult">--</span>
+        </div>
+      </div>
+
+      <!-- QUIZ -->
+      <div class="mt-10 bg-slate-950 rounded-2xl p-6 border border-slate-700">
+        <h3 class="text-2xl font-bold mb-5">Assessment</h3>
+
+        <div class="space-y-3">
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+            K-Factor corrects oil volume to standard conditions
+          </button>
+
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+            K-Factor increases measurement errors intentionally
+          </button>
+
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+            K-Factor is unrelated to temperature
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- LESSON 6 -->
+    <section id="lesson6" class="glass lesson-card rounded-3xl p-8 hidden">
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <h2 class="text-3xl font-bold text-blue-400">6. Real Field Applications</h2>
+        <button onclick="markComplete(6, this)" class="bg-green-600 hover:bg-green-700 px-5 py-2 rounded-xl">
+          Mark Complete
+        </button>
+      </div>
+
+      <div class="mt-6">
+        <video id="video6" controls class="w-full rounded-2xl bg-slate-900" style="max-height: 400px;">
+          <source src="video/6.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <p class="mt-6 text-lg leading-relaxed text-slate-300">
+        In well testing, corrected API and K-Factor are used to report stable oil rates,
+        compare test periods, reconcile tank volumes, and support allocation or sales measurements.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-8">
+        <div class="bg-slate-900 rounded-2xl p-6">
+          <h3 class="font-bold text-xl mb-4 text-green-400">Well Test Reports</h3>
+          <p class="text-slate-300 leading-relaxed">Corrected data gives engineers a consistent oil property for rate and reserve discussions.</p>
+        </div>
+        <div class="bg-slate-900 rounded-2xl p-6">
+          <h3 class="font-bold text-xl mb-4 text-cyan-400">Tank Gauging</h3>
+          <p class="text-slate-300 leading-relaxed">Observed volumes are converted to standard barrels so hot and cold tank readings can be compared.</p>
+        </div>
+        <div class="bg-slate-900 rounded-2xl p-6">
+          <h3 class="font-bold text-xl mb-4 text-orange-400">Custody Transfer</h3>
+          <p class="text-slate-300 leading-relaxed">A traceable correction workflow reduces disputes and supports auditable measurement records.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-slate-950 rounded-2xl p-6 border border-slate-700">
+        <h3 class="text-2xl font-bold mb-5">Application Check</h3>
+        <div class="space-y-3">
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+            Corrected values help compare field measurements taken at different temperatures
+          </button>
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+            K-Factor is only useful in classroom examples
+          </button>
+          <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+            Field applications ignore sample quality and traceability
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FINAL EXAM -->
+    <section id="assessment" class="glass rounded-3xl p-10 hidden">
+      <h2 class="text-4xl font-bold text-center text-blue-400 mb-10">
+        Final Assessment Exam
+      </h2>
+
+      <div class="space-y-10">
+
+        <div>
+          <h3 class="text-2xl font-bold mb-5">1. Why is oil corrected to 60°F?</h3>
+
+          <div class="space-y-3">
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+              To standardize oil measurements
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+              To reduce oil production
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-5">2. What happens when oil temperature increases?</h3>
+
+          <div class="space-y-3">
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+              Oil expands and density decreases
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+              Oil becomes denser
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-5">3. What does K-Factor represent?</h3>
+
+          <div class="space-y-3">
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+              Volume correction due to temperature
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+              Separator pressure correction
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-5">4. What should be recorded with an observed API reading?</h3>
+
+          <div class="space-y-3">
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+              The observed sample temperature and field reading conditions
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+              Only the tank name
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-5">5. Why is API corrected before calculating K-Factor?</h3>
+
+          <div class="space-y-3">
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+              K-Factor depends on corrected oil properties and line temperature
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+              K-Factor does not use temperature or API
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-5">6. Where are corrected API and K-Factor used in the field?</h3>
+
+          <div class="space-y-3">
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,true)">
+              Well test reporting, tank gauging, allocation, and custody transfer
+            </button>
+
+            <button class="quiz-option w-full text-left p-4 rounded-xl border border-slate-700" onclick="checkAnswer(this,false)">
+              Only for naming crude oil samples
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <button onclick="submitFinalExam()" class="bg-green-600 hover:bg-green-700 px-10 py-5 rounded-2xl text-xl font-bold">
+          Submit Final Exam
+        </button>
+      </div>
+
+      <div id="examResult" class="hidden mt-10 rounded-3xl p-8 border text-center"></div>
+
+      <div id="certificate" class="hidden mt-12 bg-gradient-to-r from-blue-900 to-slate-900 rounded-3xl p-10 border border-blue-500 text-center">
+        <h3 class="text-5xl font-bold text-yellow-400 mb-6">Certificate of Completion</h3>
+
+        <p class="text-2xl text-slate-300 leading-relaxed">
+          This certifies successful completion of the
+        </p>
+
+        <h4 class="text-4xl font-bold text-white mt-6">
+          API Gravity & K-Factor Correction Course
+        </h4>
+
+        <p class="mt-8 text-slate-400 text-lg">
+          Well Testing Engineering Program
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+
+  
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+    <script src="coursescript.js"></script>
+
+    <script>
+        firebase.auth().onAuthStateChanged((user) => {
+            const loginLink = document.getElementById("loginNavLink");
+            const logoutBtn = document.getElementById("logoutNavBtn");
+            const profileLink = document.getElementById("profileNavLink");
+
+            const answerForm = document.getElementById("answerForm");
+            const answerWarning = document.getElementById("answerAuthWarning");
+
+            if (user) {
+                // ✅ Logged in
+                if (loginLink) loginLink.style.display = "none";
+                if (logoutBtn) logoutBtn.style.display = "inline-block";
+                if (profileLink) profileLink.style.display = "inline-block";
+
+                if (answerForm) answerForm.style.display = "block";
+                if (answerWarning) answerWarning.style.display = "none";
+
+                console.log("Logged in as:", user.email);
+            } else {
+                // ❌ Not logged in
+                if (loginLink) loginLink.style.display = "inline-block";
+                if (logoutBtn) logoutBtn.style.display = "none";
+                if (profileLink) profileLink.style.display = "none";
+
+                if (answerForm) answerForm.style.display = "none";
+                if (answerWarning) answerWarning.style.display = "block";
+            }
+        });
+    </script>
+
+    <script>
+        const logoutNavBtn = document.getElementById("logoutNavBtn");
+        if (logoutNavBtn) {
+            logoutNavBtn.addEventListener("click", async () => {
+                await firebase.auth().signOut();
+                window.location.href = "login.html";
+            });
+        }
+
+        /*********************************
+         * TOGGLE BUTTON MOBILE MENU OVERLAY
+         *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+
+        if (openBtn && overlay) {
+            openBtn.addEventListener("click", function () {
+                overlay.classList.add("active");
+            });
+        }
+
+        if (closeBtn && overlay) {
+            closeBtn.addEventListener("click", function () {
+                overlay.classList.remove("active");
+            });
+        }
+    </script>
+
+    <script>
+        function openTab(event, tabId) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+
+            // Show the selected tab and add active class to the button
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
+    
+</body>
+</html>

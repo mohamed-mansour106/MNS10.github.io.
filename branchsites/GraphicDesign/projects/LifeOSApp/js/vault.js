@@ -2,6 +2,7 @@ const Vault = {
     db: null,
     dbName: "VaultDB",
     storeName: "documents",
+    storageKey: "userDocs",
     currentPreviewUrl: null,
 
     async init() {
@@ -40,6 +41,21 @@ const Vault = {
             const request = store.getAll();
             request.onsuccess = () => resolve(request.result);
         });
+    },
+
+    syncDocsCache(docs) {
+        const metadata = docs.map(doc => ({
+            id: doc.id,
+            name: doc.name,
+            expiryDate: doc.expiryDate,
+            category: doc.category,
+            notes: doc.notes || '',
+            type: doc.type || '',
+            hasFile: Boolean(doc.file),
+            updatedAt: doc.updatedAt || null
+        }));
+
+        Storage.save(this.storageKey, metadata);
     },
 
     async handleFormSubmit() {
@@ -86,6 +102,7 @@ const Vault = {
 
         let docs = docsToDisplay || await this.getAllDocs();
         docs.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0));
+        this.syncDocsCache(docs);
 
         if (docs.length === 0) {
             container.innerHTML = `<p style="color: var(--text-dim); grid-column: 1/-1; text-align:center;">No documents found.</p>`;

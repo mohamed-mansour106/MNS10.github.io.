@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const calendarEl = document.getElementById('calendar');
     if (!calendarEl) return;
+    let tempSelectionInfo = null;
+    const supportsNotifications = typeof window !== 'undefined' && 'Notification' in window;
+    const isMobileView = () => window.innerWidth <= 768;
 
     // 1. Load existing events from localStorage, or start with an empty array
     // Using a specific key name to match your OS structure
@@ -16,11 +19,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'timeGridWeek',
+        initialView: isMobileView() ? 'dayGridMonth' : 'timeGridWeek',
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: isMobileView() ? 'dayGridMonth,timeGridDay' : 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         slotMinTime: '05:00:00', // Starts the view at 5 AM
         selectable: true, 
@@ -69,10 +72,25 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
     window.lifeOsCalendar = calendar;
 
+    function syncCalendarViewForScreen() {
+        const nextView = isMobileView() ? 'dayGridMonth' : 'timeGridWeek';
+        const currentView = calendar.view?.type;
+
+        calendar.setOption('headerToolbar', {
+            left: 'prev,next today',
+            center: 'title',
+            right: isMobileView() ? 'dayGridMonth,timeGridDay' : 'dayGridMonth,timeGridWeek,timeGridDay'
+        });
+
+        if (currentView !== nextView && (currentView === 'timeGridWeek' || currentView === 'dayGridMonth')) {
+            calendar.changeView(nextView);
+        }
+    }
+
     function refreshCalendarLayout() {
         requestAnimationFrame(() => {
+            syncCalendarViewForScreen();
             calendar.updateSize();
-            calendar.render();
         });
     }
 
@@ -101,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 1. طلب إذن التنبيهات عند تحميل الصفحة
     document.addEventListener('DOMContentLoaded', function() {
-        if (Notification.permission !== "granted") {
+        if (supportsNotifications && Notification.permission === "default") {
             Notification.requestPermission();
         }
     });
@@ -153,6 +171,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeModal() {
         modal.style.display = 'none';
         input.value = '';
+        document.getElementById('event-date-input').value = '';
+        document.getElementById('event-start-time').value = '';
+        document.getElementById('event-end-time').value = '';
+        document.getElementById('event-reminder').checked = false;
+        window.tempSubtaskLink = null;
         tempSelectionInfo = null;
         calendar.unselect();
     }
@@ -186,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 60000); // يفحص كل دقيقة
 
     function showNotification(title, body) {
-        if (Notification.permission === "granted") {
+        if (supportsNotifications && Notification.permission === "granted") {
             new Notification(title, {
                 body: body,
                 icon: 'path/to/your/icon.png' // اختياري: لو عندك لوجو للأكاديمية مثلاً

@@ -3,29 +3,33 @@
 const navLinks = document.querySelectorAll('.nav-link');
 const tabs = document.querySelectorAll('.tab-content');
 
+function openTab(tabId, sourceLink = null) {
+    const targetTab = document.getElementById(tabId);
+    if (!targetTab) return;
+
+    navLinks.forEach(l => l.classList.remove('active'));
+    tabs.forEach(t => t.classList.remove('active'));
+
+    targetTab.classList.add('active');
+
+    const matchedNavLink = sourceLink || document.querySelector(`.sidebar .nav-link[data-tab="${tabId}"]`);
+    if (matchedNavLink) matchedNavLink.classList.add('active');
+
+    document.dispatchEvent(new CustomEvent('tab:changed', { detail: { tabId } }));
+
+    if (window.innerWidth <= 1024) {
+        toggleSidebar();
+    }
+
+    if (tabId === 'dashboard') {
+        renderDashboard();
+    }
+}
+
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-
-        const tabId = link.getAttribute('data-tab');
-
-        // 1. Remove active
-        navLinks.forEach(l => l.classList.remove('active'));
-        tabs.forEach(t => t.classList.remove('active'));
-
-        // 2. Activate selected
-        link.classList.add('active');
-        document.getElementById(tabId).classList.add('active');
-
-        // 3. Mobile sidebar auto close
-        if (window.innerWidth <= 1024) {
-            toggleSidebar();
-        }
-
-        // 4. Special tab logic
-        if (tabId === 'dashboard') {
-            renderDashboard();
-        }
+        openTab(link.getAttribute('data-tab'), link.closest('.sidebar') ? link : null);
     });
 });
 

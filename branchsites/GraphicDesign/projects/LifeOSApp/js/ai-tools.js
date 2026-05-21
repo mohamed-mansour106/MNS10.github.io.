@@ -1,30 +1,40 @@
 const AITools = {
-    // Load saved data or fall back to defaults.
-    db: JSON.parse(localStorage.getItem('os_ai_directory')) || {
-        "Coding & Dev": [
-            { name: "Cursor", desc: "AI-native code editor", link: "https://cursor.sh" },
-            { name: "v0.dev", desc: "Generative UI for React", link: "https://v0.dev" }
-        ],
-        "Engineering Tools": [
-            { name: "WolframAlpha", desc: "Computational intelligence", link: "https://wolframalpha.com" }
-        ]
-    },
+    storageKey: 'os_ai_directory',
+    db: {},
 
     init() {
+        this.db = Storage.get(this.storageKey, {
+            'Coding & Dev': [
+                { name: 'Cursor', desc: 'AI-native code editor', link: 'https://cursor.sh' },
+                { name: 'v0.dev', desc: 'Generative UI for React', link: 'https://v0.dev' }
+            ],
+            'Engineering Tools': [
+                { name: 'WolframAlpha', desc: 'Computational intelligence', link: 'https://wolframalpha.com' }
+            ]
+        });
+
         this.renderFolders();
         this.setupForm();
     },
 
+    persist() {
+        Storage.save(this.storageKey, this.db);
+    },
+
     setupForm() {
         const form = document.getElementById('ai-tool-form');
-        form.onsubmit = (e) => {
-            e.preventDefault();
+        if (!form) return;
+
+        form.onsubmit = event => {
+            event.preventDefault();
             this.saveTool();
         };
     },
 
     renderFolders() {
         const container = document.getElementById('folders-container');
+        if (!container) return;
+
         container.innerHTML = Object.keys(this.db).map(folder => `
             <div class="folder-card" onclick="AITools.openFolder('${folder}')">
                 <i class="fa-solid fa-folder"></i>
@@ -38,6 +48,8 @@ const AITools = {
         const display = document.getElementById('tools-display-area');
         const list = document.getElementById('tools-list');
         const title = document.getElementById('current-folder-name');
+
+        if (!display || !list || !title) return;
 
         title.innerHTML = `<i class="fa-solid fa-folder-open"></i> ${folderName}`;
         list.innerHTML = this.db[folderName].map((tool, index) => `
@@ -59,28 +71,36 @@ const AITools = {
         const desc = document.getElementById('ai-desc').value;
         const link = document.getElementById('ai-link').value;
 
+        if (!name || !folder) return;
         if (!this.db[folder]) this.db[folder] = [];
-        
+
         this.db[folder].push({ name, desc, link });
-        this.saveToStorage();
+        this.persist();
         this.renderFolders();
         this.closeModal();
-        alert("Tool saved successfully!");
+        alert('Tool saved successfully!');
     },
 
     deleteTool(folder, index) {
-        if(confirm("Delete this tool?")) {
-            this.db[folder].splice(index, 1);
-            if(this.db[folder].length === 0) delete this.db[folder];
-            this.saveToStorage();
-            this.renderFolders();
-            document.getElementById('tools-display-area').style.display = 'none';
-        }
+        if (!confirm('Delete this tool?')) return;
+
+        this.db[folder].splice(index, 1);
+        if (this.db[folder].length === 0) delete this.db[folder];
+
+        this.persist();
+        this.renderFolders();
+
+        const toolsDisplay = document.getElementById('tools-display-area');
+        if (toolsDisplay) toolsDisplay.style.display = 'none';
     },
 
-    openAddModal() { document.getElementById('ai-modal').style.display = 'flex'; },
-    closeModal() { document.getElementById('ai-modal').style.display = 'none'; },
-    saveToStorage() { localStorage.setItem('os_ai_directory', JSON.stringify(this.db)); }
+    openAddModal() {
+        document.getElementById('ai-modal').style.display = 'flex';
+    },
+
+    closeModal() {
+        document.getElementById('ai-modal').style.display = 'none';
+    }
 };
 
 document.addEventListener('DOMContentLoaded', () => AITools.init());

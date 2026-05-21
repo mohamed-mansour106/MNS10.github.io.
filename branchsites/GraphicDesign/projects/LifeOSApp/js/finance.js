@@ -4,9 +4,9 @@ const Finance = {
     //***************************** */
     // 2. التصنيفات والنسب (نفس صورتك في الإكسيل)
     categories: [
-        { name: "Rent/Housing/Car", percent: 30 },
-        { name: "Project/Gold", percent: 20 },
-        { name: "Food & Drinks", percent: 20 },
+        { name: "Rent/Housing/Car", percent: 50 },
+        { name: "Project/Gold", percent: 10 },
+        { name: "Food & Drinks", percent: 10 },
         { name: "Dad & Mom & Son", percent: 10 },
         { name: "Emergency", percent: 10 },
         { name: "Miscellaneous", percent: 10 }

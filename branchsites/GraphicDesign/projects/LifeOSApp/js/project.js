@@ -660,9 +660,6 @@ function openCalendarForSubtask(subIndex) {
     // so when you save the calendar event, it gets saved too.
     window.tempSubtaskLink = metadata; 
 
-    showTab('schedule-section'); 
-    document.getElementById('event-modal').style.display = 'flex';
-
     // 3. ملء بيانات المودال
     document.getElementById('event-title-input').value = combinedTitle;
     
@@ -670,10 +667,15 @@ function openCalendarForSubtask(subIndex) {
     const now = new Date();
     const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
     document.getElementById('event-start-time').value = currentTime;
+    document.getElementById('event-end-time').value = currentTime;
 
     // 5. الانتقال لتبويب التقويم (Schedule Section)
-    // افترضنا إن عندك دالة لتبديل الـ Tabs
-    showTab('schedule-section'); 
+    // Use the shared tab switcher so calendar resize/render hooks still run.
+    if (typeof openTab === 'function') {
+        openTab('schedule-section');
+    } else {
+        showTab('schedule-section');
+    }
 
     // 6. فتح المودال
     document.getElementById('event-modal').style.display = 'flex';
@@ -686,16 +688,17 @@ function openCalendarForSubtask(subIndex) {
         String(todayDate.getDate()).padStart(2, '0')
     ].join('-');
     document.getElementById('event-date-input').value = today;
-    tempSelectionInfo = { startStr: today + "T" + currentTime, allDay: false };
+    window.tempSelectionInfo = { startStr: today + "T" + currentTime, allDay: false };
 };
 
 // دالة مساعدة للانتقال بين الـ Tabs
 function showTab(tabId) {
-    // Remove active class from all tabs
+    if (typeof openTab === 'function') {
+        openTab(tabId);
+        return;
+    }
+
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-    
-    // Add active class to target tab
-    // CSS handles display via .tab-content { display: none; } and .tab-content.active { display: block; }
     document.getElementById(tabId).classList.add('active');
 };
 

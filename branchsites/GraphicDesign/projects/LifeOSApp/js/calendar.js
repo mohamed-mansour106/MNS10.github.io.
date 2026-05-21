@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const calendarEl = document.getElementById('calendar');
+    if (!calendarEl) return;
 
     // 1. Load existing events from localStorage, or start with an empty array
     // Using a specific key name to match your OS structure
@@ -66,6 +67,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     calendar.render();
+    window.lifeOsCalendar = calendar;
+
+    function refreshCalendarLayout() {
+        requestAnimationFrame(() => {
+            calendar.updateSize();
+            calendar.render();
+        });
+    }
+
+    document.addEventListener('tab:changed', event => {
+        if (event.detail?.tabId === 'schedule-section') {
+            refreshCalendarLayout();
+        }
+    });
+
+    window.addEventListener('resize', refreshCalendarLayout);
 
     // Helper function to update the storage when an event is moved or resized
     function updateEventInStorage(updatedEvent) {

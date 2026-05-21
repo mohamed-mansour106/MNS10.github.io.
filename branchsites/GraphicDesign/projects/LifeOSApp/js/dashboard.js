@@ -9,21 +9,22 @@ let _dashChart = null; // singleton chart instance
 // ─────────────────────────────────────────────────────────────
 // MAIN ENTRY POINT
 // ─────────────────────────────────────────────────────────────
-function renderDashboard() {
+async function renderDashboard() {
+    await Storage.ready;
 
-    /* ── 1. Load all data from localStorage ── */
-    const focusData    = Storage.get('lifeData')        || [];
-    const projects     = Storage.get('userProjects')    || [];
-    const docs         = Storage.get('userDocs')        || [];
-    const habits       = Storage.get('userHabits')      || [];
-    const goals        = _parse('os_goals_v1')          || [];
-    const journal      = _parse('os_journal')           || [];
-    const plannerTasks = _parse('userTasks')            || [];
-    const studies      = _parse('userStudies')          || [];
-    const xpData       = _parse('os_xp')               || { xp: 0, level: 1 };
-    const rpgData      = _parse('planner_rpg')          || { xp: 0, level: 1, streak: 0 };
-    const finDB        = _parse('os_finance_v3')        || { years: {} };
-    const healthData   = _parse('os_health')            || { weight: 0, water: 0, sleep: 0 };
+    /* ── 1. Load all data from indexedDB ── */
+    const focusData    = Storage.get('lifeData', []);
+    const projects     = Storage.get('userProjects', []);
+    const docs         = Storage.get('userDocs', []);
+    const habits       = Storage.get('userHabits', []);
+    const goals        = Storage.get('os_goals_v1', []);
+    const journal      = Storage.get('os_journal', []);
+    const plannerTasks = Storage.get('userTasks', []);
+    const studies      = Storage.get('userStudies', []);
+    const xpData       = Storage.get('os_xp', { xp: 0, level: 1 });
+    const rpgData      = Storage.get('planner_rpg', { xp: 0, level: 1, streak: 0 });
+    const finDB        = Storage.get('os_finance_v3', { years: {} });
+    const healthData   = Storage.get('userHealth', { weight: 0, water: 0, sleep: 0 });
 
     /* ── 2. Finance calculations ── */
     const currentYear  = new Date().getFullYear();

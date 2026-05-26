@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>🍼 Baby Shopping</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #fff4f7;
+      min-height: 100vh;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    body.dark {
+      background: #121212;
+      color: white;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    body.dark .container {
+      background: #1f1f1f;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff4f87;
+      margin-bottom: 20px;
+    }
+
+    .top-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar button {
+      flex: 1;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: #fff0f5;
+      padding: 18px;
+      border-radius: 18px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    body.dark .card {
+      background: #2a2a2a;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .add-box {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    input,
+    select,
+    button {
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+
+    input,
+    select {
+      border: 2px solid #ffd1df;
+    }
+
+    button {
+      background: #ff4f87;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.02);
+    }
+
+    .item {
+      background: #fff0f5;
+      padding: 16px;
+      border-radius: 18px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: fadeIn 0.4s ease;
+      transition: 0.3s;
+    }
+
+    body.dark .item {
+      background: #2b2b2b;
+    }
+
+    .item:hover {
+      transform: translateY(-3px);
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .done {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    .delete-btn {
+      background: crimson;
+    }
+
+    .high {
+      border-right: 6px solid red;
+    }
+
+    .medium {
+      border-right: 6px solid orange;
+    }
+
+    .low {
+      border-right: 6px solid green;
+    }
+
+    .badge {
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: rgba(0,0,0,0.1);
+    }
+
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: #eee;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #ff4f87;
+      transition: 0.4s;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 999px;
+      opacity: 0;
+      transition: 0.4s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      bottom: 40px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>🍼 مشتريات البيبي ❤️</h1>
+
+    <div class="top-bar">
+      <button onclick="login()">🔐 Login with Google</button>
+      <button onclick="toggleTheme()">🌙 Dark Mode</button>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>💰 الإجمالي</h3>
+        <p id="totalPrice">0 EGP</p>
+      </div>
+
+      <div class="card">
+        <h3>📊 نسبة الإنجاز</h3>
+        <p id="progressText">0%</p>
+      </div>
+
+      <div class="card">
+        <h3>👶 موعد الولادة</h3>
+        <p id="deadline">...</p>
+      </div>
+
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="add-box">
+
+      <input type="text" id="itemInput" placeholder="اسم المنتج" />
+
+      <input type="number" id="priceInput" placeholder="السعر" />
+
+      <select id="categoryInput">
+        <option value="👕 هدوم">👕 هدوم</option>
+        <option value="🍼 رضاعة">🍼 رضاعة</option>
+        <option value="🛏️ نوم">🛏️ نوم</option>
+        <option value="🧸 لعب">🧸 لعب</option>
+      </select>
+
+      <select id="priorityInput">
+        <option value="high">🔥 ضروري</option>
+        <option value="medium">⭐ مهم</option>
+        <option value="low">🕒 بعدين</option>
+      </select>
+
+      <button onclick="addItem()">➕ إضافة</button>
+
+    </div>
+
+    <div id="list"></div>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      onSnapshot,
+      deleteDoc,
+      doc,
+      updateDoc
+    } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup
+    } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAczOqdA78q59nD0hH8SoNGWs7Z6iQxBRA",
+
+      authDomain: "marwan-dec0d.firebaseapp.com",
+
+      projectId: "marwan-dec0d",
+
+      storageBucket: "marwan-dec0d.firebasestorage.app",
+
+      messagingSenderId: "986576872191",
+      appId: "1:986576872191:web:caf4ab5161bce4c39622ca",
+      measurementId: "G-DBS6ELV941"
+
+    };
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getFirestore(app);
+
+    const auth = getAuth(app);
+
+    const provider = new GoogleAuthProvider();
+
+    const itemsCollection = collection(db, "baby-items");
+
+    const list = document.getElementById("list");
+
+    window.login = async () => {
+
+      await signInWithPopup(auth, provider);
+
+      showToast("تم تسجيل الدخول ❤️");
+
+    };
+
+    window.toggleTheme = () => {
+
+      document.body.classList.toggle("dark");
+
+      localStorage.setItem(
+        "dark",
+        document.body.classList.contains("dark")
+      );
+
+    };
+
+    if (localStorage.getItem("dark") === "true") {
+
+      document.body.classList.add("dark");
+
+    }
+
+    window.addItem = async () => {
+
+      const text =
+        document.getElementById("itemInput").value;
+
+      const price =
+        Number(document.getElementById("priceInput").value);
+
+      const category =
+        document.getElementById("categoryInput").value;
+
+      const priority =
+        document.getElementById("priorityInput").value;
+
+      if (!text) return;
+
+      await addDoc(itemsCollection, {
+
+        text,
+        price,
+        category,
+        priority,
+        done: false,
+        createdAt: Date.now()
+
+      });
+
+      document.getElementById("itemInput").value = "";
+
+      document.getElementById("priceInput").value = "";
+
+      showToast("تم إضافة منتج جديد 🍼");
+
+    };
+
+    function showToast(message) {
+
+      const toast = document.getElementById("toast");
+
+      toast.innerText = message;
+
+      toast.classList.add("show");
+
+      setTimeout(() => {
+
+        toast.classList.remove("show");
+
+      }, 3000);
+
+    }
+
+    onSnapshot(itemsCollection, (snapshot) => {
+
+      list.innerHTML = "";
+
+      let totalPrice = 0;
+
+      let totalItems = 0;
+
+      let doneItems = 0;
+
+      snapshot.forEach((itemDoc) => {
+
+        const item = itemDoc.data();
+
+        totalItems++;
+
+        totalPrice += item.price || 0;
+
+        if (item.done) doneItems++;
+
+        const div = document.createElement("div");
+
+        div.className =
+          `item ${item.priority}`;
+
+        div.innerHTML = `
+
+          <div class="left">
+
+            <input type="checkbox"
+            ${item.done ? "checked" : ""} />
+
+            <div>
+
+              <div class="${item.done ? "done" : ""}">
+                ${item.text}
+              </div>
+
+              <small>
+                ${item.category} • ${item.price} EGP
+              </small>
+
+            </div>
+
+            <span class="badge">
+              ${item.priority}
+            </span>
+
+          </div>
+
+          <button class="delete-btn">
+            حذف
+          </button>
+
+        `;
+
+        const checkbox =
+          div.querySelector("input");
+
+        checkbox.addEventListener("change",
+          async () => {
+
+            await updateDoc(
+              doc(db, "baby-items", itemDoc.id),
+              {
+                done: checkbox.checked
+              }
+            );
+
+          });
+
+        const deleteBtn =
+          div.querySelector(".delete-btn");
+
+        deleteBtn.addEventListener("click",
+          async () => {
+
+            await deleteDoc(
+              doc(db, "baby-items", itemDoc.id)
+            );
+
+            showToast("تم حذف المنتج");
+
+          });
+
+        list.appendChild(div);
+
+      });
+
+      document.getElementById(
+        "totalPrice"
+      ).innerText =
+      `${totalPrice} EGP`;
+
+      const progress =
+        totalItems
+        ? Math.round((doneItems / totalItems) * 100)
+        : 0;
+
+      document.getElementById(
+        "progressText"
+      ).innerText =
+      `${progress}%`;
+
+      document.getElementById(
+        "progressBar"
+      ).style.width =
+      `${progress}%`;
+
+    });
+
+    const birthDate =
+      new Date("2026-08-25");
+
+    function updateDeadline() {
+
+      const now = new Date();
+
+      const diff = birthDate - now;
+
+      const days =
+        Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      document.getElementById(
+        "deadline"
+      ).innerText =
+      `${days} يوم`;
+
+    }
+
+    updateDeadline();
+
+  </script>
+
+</body>
+
+</html>

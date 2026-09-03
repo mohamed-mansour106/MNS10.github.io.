@@ -1,6 +1,5 @@
 /* ===== Professional Tank Safety Assessment (20 Questions) ===== */
 const questions = [
-
   {
     question: "What is the main purpose of using a standard measurement system?",
     options: [
@@ -9,9 +8,9 @@ const questions = [
       "To increase fluid pressure",
       "To reduce equipment size"
     ],
-    answer: 1
+    correctIndex: 1,
+    explanation: "A standard provides an exact, agreed-upon quantity for comparison to ensure consistent measurement results[span_0](start_span)[span_0](end_span)."
   },
-
   {
     question: "Which of the following is commonly used as an oilfield pressure unit?",
     options: [
@@ -20,9 +19,9 @@ const questions = [
       "°C",
       "bbl"
     ],
-    answer: 0
+    correctIndex: 0,
+    explanation: "Pounds per square inch (psi) is a standard unit for measuring pressure in oilfield operations[span_1](start_span)[span_1](end_span)."
   },
-
   {
     question: "What does accuracy describe in measurement?",
     options: [
@@ -31,9 +30,9 @@ const questions = [
       "How quickly the measurement is taken",
       "The size of the measuring instrument"
     ],
-    answer: 1
+    correctIndex: 1,
+    explanation: "Accuracy refers to how close a given measurement is to the true or accepted target value[span_2](start_span)[span_2](end_span)."
   },
-
   {
     question: "What does precision describe in measurement?",
     options: [
@@ -42,9 +41,9 @@ const questions = [
       "The maximum pressure of the equipment",
       "The volume of the fluid"
     ],
-    answer: 1
+    correctIndex: 1,
+    explanation: "Precision describes the reproducibility or how closely repeated measurements agree with one another[span_3](start_span)[span_3](end_span)."
   },
-
   {
     question: "Which equation is used to calculate the volume of a cylinder?",
     options: [
@@ -53,9 +52,9 @@ const questions = [
       "V = πr²h / 3",
       "V = F / A"
     ],
-    answer: 1
+    correctIndex: 1,
+    explanation: "The volume of a standard cylinder is calculated using the geometric formula V = πr²h[span_4](start_span)[span_4](end_span)."
   },
-
   {
     question: "Which equation is used to calculate the volume of a cuboid?",
     options: [
@@ -64,9 +63,9 @@ const questions = [
       "V = L × W × H",
       "V = MW × 0.052 × TVD"
     ],
-    answer: 2
+    correctIndex: 2,
+    explanation: "Cuboid volume is found by multiplying its Length, Width, and Height (V = L × W × H)[span_5](start_span)[span_5](end_span)."
   },
-
   {
     question: "If the diameter of a cylinder is known, which equation can be used to calculate its volume?",
     options: [
@@ -75,9 +74,9 @@ const questions = [
       "V = d² / h",
       "V = πd² / 4h"
     ],
-    answer: 0
+    correctIndex: 0,
+    explanation: "When utilizing diameter instead of radius, the cylinder volume formula becomes V = πd²h / 4[span_6](start_span)[span_6](end_span)."
   },
-
   {
     question: "Which equation converts Celsius temperature to Fahrenheit?",
     options: [
@@ -86,9 +85,9 @@ const questions = [
       "°F = °C − 32",
       "°F = °C × 5/9"
     ],
-    answer: 0
+    correctIndex: 0,
+    explanation: "Fahrenheit is calculated from Celsius using the relation °F = 32 + (9/5)°C (or °F = 1.8°C + 32)[span_7](start_span)[span_7](end_span)."
   },
-
   {
     question: "What is the temperature above which a substance can no longer be liquefied by increasing pressure?",
     options: [
@@ -97,9 +96,9 @@ const questions = [
       "Critical temperature",
       "Flash point"
     ],
-    answer: 2
+    correctIndex: 2,
+    explanation: "Critical temperature is the threshold above which a gas cannot be liquefied regardless of how much pressure is applied."
   },
-
   {
     question: "What does Specific Gravity represent?",
     options: [
@@ -108,9 +107,9 @@ const questions = [
       "The temperature of crude oil",
       "The volume of a substance"
     ],
-    answer: 1
+    correctIndex: 1,
+    explanation: "Specific gravity is a dimensionless ratio comparing a substance's density against a standard reference (like water)[span_8](start_span)[span_8](end_span)."
   },
-
   {
     question: "At what reference temperature is API Gravity used to classify crude oil in the BOC material?",
     options: [
@@ -119,9 +118,9 @@ const questions = [
       "100°F",
       "212°F"
     ],
-    answer: 1
+    correctIndex: 1,
+    explanation: "API gravity standardizes crude oil weight classifications at a baseline reference temperature of 60°F[span_9](start_span)[span_9](end_span)."
   },
-
   {
     question: "What is the relationship between API Gravity and Specific Gravity?",
     options: [
@@ -130,9 +129,9 @@ const questions = [
       "API = SG × 141.5",
       "API = SG + 131.5"
     ],
-    answer: 1
+    correctIndex: 1,
+    explanation: "The standard API formula is derived as API = (141.5 / SG) − 131.5[span_10](start_span)[span_10](end_span)."
   },
-
   {
     question: "A fluid with a pH less than 7 is classified as:",
     options: [
@@ -141,9 +140,9 @@ const questions = [
       "Acidic",
       "Compressible"
     ],
-    answer: 2
+    correctIndex: 2,
+    explanation: "On the pH scale, values below 7 indicate acidic solutions, while values above 7 are basic[span_11](start_span)[span_11](end_span)."
   },
-
   {
     question: "What is pressure?",
     options: [
@@ -152,9 +151,9 @@ const questions = [
       "Volume per unit time",
       "Temperature per unit volume"
     ],
-    answer: 1
+    correctIndex: 1,
+    explanation: "Pressure is physically defined as the amount of force exerted per unit area (P = F / A)[span_12](start_span)[span_12](end_span)."
   },
-
   {
     question: "Which equation is used to calculate absolute pressure from gauge pressure?",
     options: [
@@ -163,9 +162,9 @@ const questions = [
       "Pabs = Patm + Pgauge",
       "Pabs = Patm / Pgauge"
     ],
-    answer: 2
+    correctIndex: 2,
+    explanation: "Absolute pressure accounts for total pressure by adding atmospheric pressure to gauge pressure."
   },
-
   {
     question: "Which depth should be used in the hydrostatic pressure equation?",
     options: [
@@ -174,9 +173,9 @@ const questions = [
       "Horizontal displacement",
       "Pipe length only"
     ],
-    answer: 1
+    correctIndex: 1,
+    explanation: "True Vertical Depth (TVD) must always be used for hydrostatic pressure calculations, not Measured Depth (MD)."
   },
-
   {
     question: "What is the hydrostatic pressure of a 9.2 ppg fluid at 8,200 ft TVD?",
     options: [
@@ -185,9 +184,9 @@ const questions = [
       "3,922.88 psi",
       "4,095 psi"
     ],
-    answer: 2
+    correctIndex: 2,
+    explanation: "Calculated using HP = 0.052 × MW × TVD -> 0.052 × 9.2 × 8200 = 3,922.88 psi[span_13](start_span)[span_13](end_span)."
   },
-
   {
     question: "What is the pressure gradient of a 13.5 ppg fluid?",
     options: [
@@ -196,9 +195,9 @@ const questions = [
       "0.702 psi/ft",
       "13.5 psi/ft"
     ],
-    answer: 2
+    correctIndex: 2,
+    explanation: "Pressure gradient is Mud Weight × 0.052. For 13.5 ppg, 13.5 × 0.052 = 0.702 psi/ft[span_14](start_span)[span_14](end_span)."
   },
-
   {
     question: "Which equation represents dynamic Bottom Hole Pressure (BHP) according to the BOC material?",
     options: [
@@ -207,10 +206,11 @@ const questions = [
       "BHP = HP + SP + Frictional Pressure",
       "BHP = SP − Frictional Pressure"
     ],
-    answer: 2
+    correctIndex: 2,
+    explanation: "Dynamic bottom hole pressure includes hydrostatic pressure, surface pressure, and added frictional pressure losses[span_15](start_span)[span_15](end_span)."
   }
-
 ];
+
 
 
 /* ===== State ===== */

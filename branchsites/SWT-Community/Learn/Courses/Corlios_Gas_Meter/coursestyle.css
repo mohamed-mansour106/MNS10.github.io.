@@ -1,0 +1,194 @@
+body {
+      background: #07111f;
+      color: #e2e8f0;
+      font-family: Arial, sans-serif;
+    }
+
+    .card{
+    background: rgba(15,23,42,0.9);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+}
+
+    .glass {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+    }
+
+    .lesson-card {
+      transition: all 0.3s ease;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(59,130,246,0.2);
+    }
+
+    .quiz-option:hover {
+      background: rgba(59,130,246,0.2);
+    }
+
+    .formula {
+      background: #020617;
+      border-left: 4px solid #22c55e;
+    }
+
+    .progress-bar {
+      transition: width 0.4s ease;
+    }
+
+    /*****************API Gravity Simulator***********************/
+    
+    canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+    pointer-events:none;
+    }
+
+    video{
+        width:100%;
+    }
+
+    input{
+        min-width:0;
+    }
+
+    button{
+        transition:0.3s ease;
+    }
+
+    .quiz-option{
+        transition:0.3s ease;
+    }
+
+    .card h2{
+        margin-bottom:20px;
+        color:#38bdf8;
+    }
+
+    .formula{
+        text-align:center;
+        font-size:32px;
+        padding:25px;
+        border-radius:15px;
+        background:#0f172a;
+        color:#fbbf24;
+        margin-bottom:25px;
+    }
+
+    label{
+        display:block;
+        margin-bottom:8px;
+        color:#cbd5e1;
+    }
+
+    input[type=range]{
+        width:100%;
+    }
+
+    .valueBox{
+        margin-top:10px;
+        font-size:20px;
+        color:#38bdf8;
+    }
+
+    .apiResult{
+        margin-top:25px;
+        font-size:28px;
+        font-weight:bold;
+    }
+
+    .classification{
+        margin-top:15px;
+        padding:12px;
+        border-radius:10px;
+        font-size:18px;
+    }
+
+    .light{
+        background:rgba(34,197,94,0.2);
+        color:#4ade80;
+    }
+
+    .medium{
+        background:rgba(234,179,8,0.2);
+        color:#fde047;
+    }
+
+    .heavy{
+        background:rgba(239,68,68,0.2);
+        color:#f87171;
+    }
+
+    .steps{
+        line-height:2;
+        font-size:17px;
+    }
+
+    .equationPart{
+        color:#fbbf24;
+        font-weight:bold;
+    }
+
+    .barContainer{
+        width:100%;
+        height:35px;
+        background:#1e293b;
+        border-radius:50px;
+        overflow:hidden;
+        margin-top:25px;
+    }
+
+    .bar{
+        height:100%;
+        width:0%;
+        transition:1s;
+        border-radius:50px;
+    }
+
+    .info{
+        margin-top:25px;
+        color:#cbd5e1;
+        line-height:1.8;
+    }
+
+    .oilTank{
+        width:180px;
+        height:260px;
+        border:5px solid #94a3b8;
+        margin:auto;
+        margin-top:20px;
+        position:relative;
+        border-radius:15px;
+        overflow:hidden;
+    }
+
+    .oilFill{
+        position:absolute;
+        bottom:0;
+        width:100%;
+        height:50%;
+        background:linear-gradient(to top,#78350f,#f59e0b);
+        transition:1s;
+    }
+
+    .tankLabel{
+        text-align:center;
+        margin-top:15px;
+        font-size:20px;
+    }
+
+    @media(max-width:900px){
+        .grid{
+            grid-template-columns:1fr;
+        }
+    }

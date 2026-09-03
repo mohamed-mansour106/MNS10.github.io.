@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Operate Transfer Centrifugal Pump | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">How to Operate Transfer Centrifugal Pump</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: GENERAL ABOUT TRANSFER CENTRIFUGAL PUMP -->
+            <div class="big-div tab-content active" id="tab1">
+
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A"
+                        title="Transfer Centrifugal Pump Course"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="explain-modern">
+                    <h3>1- General about Transfer Centrifugal Pump</h3>
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    What is a Transfer Centrifugal Pump?
+                                </b>
+                                <p>
+                                    A Transfer Centrifugal Pump is used to move liquids such as crude oil,
+                                    produced water, diesel, or other fluids from one location to another
+                                    within an oilfield facility.
+                                </p>
+                            </div>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Heavy Duty Casing and Impeller
+                                </b>
+                                <p>
+                                    Transfer Centrifugal Pumps are equipped with heavy-duty components
+                                    designed to withstand harsh oilfield operating conditions.
+                                </p>
+
+                                <ol style="margin-top: 15px;">
+                                    <li>
+                                        <b>Casing (Pump Body)</b> – The outer housing that contains and
+                                        directs the fluid through the pump.
+                                    </li>
+                                    <li>
+                                        <b>Impeller</b> – The rotating component that transfers energy
+                                        to the liquid and creates flow.
+                                    </li>
+                                </ol>
+                                <p style="margin-top: 15px;">
+                                    These components are designed for continuous service, durability,
+                                    and resistance to wear in demanding field operations.
+                                </p>
+                            </div>
+
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Low Suction Pressure Head
+                                </b>
+
+                                <p>
+                                    Transfer pumps normally operate with relatively low suction pressure.
+                                    They commonly draw liquids from storage tanks, atmospheric vessels,
+                                    or low-pressure process equipment.
+                                </p>
+
+                                <p>
+                                    The impeller then increases the liquid's energy and pushes it
+                                    through the discharge system.
+                                </p>
+                            </div>
+
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Moderate Discharge Pressure
+                                </b>
+
+                                <p>
+                                    Transfer Centrifugal Pumps are intended for liquid transfer rather
+                                    than high-pressure injection applications.
+                                </p>
+
+                                <p>
+                                    Typical discharge pressure ranges from:
+                                </p>
+
+                                <ul style="margin-top: 10px;">
+                                    <li>50 – 150 psig</li>
+                                    <li>Approximately 3.5 – 10 bar</li>
+                                </ul>
+
+                                <p style="margin-top: 15px;">
+                                    This pressure range is sufficient for transferring fluids through
+                                    pipelines, tanks, and process equipment.
+                                </p>
+                            </div>
+
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Single-Stage and Two-Stage Pumps
+                                </b>
+
+                                <p>
+                                    Transfer Centrifugal Pumps may be designed as either:
+                                </p>
+
+                                <ol style="margin-top: 15px;">
+                                    <li>
+                                        <b>Single-Stage Pump</b>
+                                        <ul>
+                                            <li>Contains one impeller.</li>
+                                            <li>Simpler design.</li>
+                                            <li>Suitable for lower discharge pressure requirements.</li>
+                                        </ul>
+                                    </li>
+
+                                    <li style="margin-top: 15px;">
+                                        <b>Two-Stage Pump</b>
+                                        <ul>
+                                            <li>Contains two impellers arranged in series.</li>
+                                            <li>Provides higher discharge pressure.</li>
+                                            <li>Used for longer transfer distances or higher system resistance.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Pump Capacity
+                                </b>
+
+                                <p>
+                                    The liquid flow rate depends on several factors:
+                                </p>
+
+                                <ul style="margin-top: 15px;">
+                                    <li>Suction line size.</li>
+                                    <li>Discharge line size.</li>
+                                    <li>Impeller diameter and design.</li>
+                                    <li>Pump rotational speed.</li>
+                                </ul>
+
+                                <p style="margin-top: 15px;">
+                                    Larger piping and impellers generally provide higher flow capacity.
+                                </p>
+                            </div>
+
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Pump Drive Types
+                                </b>
+
+                                <p>
+                                    Transfer Centrifugal Pumps can be powered by:
+                                </p>
+
+                                <ol style="margin-top: 15px;">
+                                    <li>
+                                        <b>Electric Motor Drive</b>
+                                        <ul>
+                                            <li>Quiet operation.</li>
+                                            <li>High efficiency.</li>
+                                            <li>Low maintenance requirements.</li>
+                                        </ul>
+                                    </li>
+
+                                    <li style="margin-top: 15px;">
+                                        <b>Engine Drive (Diesel/Gas)</b>
+                                        <ul>
+                                            <li>Suitable for remote locations.</li>
+                                            <li>Does not require electrical power.</li>
+                                            <li>Commonly used in temporary well testing operations.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Explosion-Proof and Zone II Requirements
+                                </b>
+
+                                <p>
+                                    Oil and gas facilities often contain flammable gases and vapors.
+                                    Therefore, transfer pumps and associated equipment must comply
+                                    with hazardous-area requirements.
+                                </p>
+
+                                <ul style="margin-top: 15px;">
+                                    <li>
+                                        <b>Explosion-Proof:</b>
+                                        Designed to prevent ignition of the surrounding atmosphere.
+                                    </li>
+
+                                    <li>
+                                        <b>Zone II:</b>
+                                        Suitable for areas where explosive gases are not normally
+                                        present but may occasionally occur.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Sour Service Requirements
+                                </b>
+
+                                <p>
+                                    When Hydrogen Sulfide (H₂S) or Carbon Dioxide (CO₂) is present
+                                    in the production stream, the pump must be suitable for
+                                    Sour Service applications.
+                                </p>
+
+                                <ul style="margin-top: 15px;">
+                                    <li>Corrosion-resistant materials are required.</li>
+                                    <li>Special seals and elastomers may be necessary.</li>
+                                    <li>Equipment should comply with NACE sour-service standards.</li>
+                                </ul>
+
+                                <p style="margin-top: 15px;">
+                                    Sour-service pumps provide safe and reliable operation in
+                                    corrosive production environments.
+                                </p>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">
+                        Next Module &rarr;
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Air Compressor Operational Course Profile Diagram">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>2- Utilization of Transfer Centrifugal Pumps</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    General Function
+                                </b>
+                
+                                <p>
+                                    Centrifugal Pumps are mainly used to transfer different types of liquids
+                                    and liquid mixtures containing small amounts of gas.
+                                </p>
+                
+                                <p>
+                                    Typical fluids handled include:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Water</li>
+                                    <li>Brine</li>
+                                    <li>Crude Oil</li>
+                                    <li>Diesel</li>
+                                    <li>Drilling Mud</li>
+                                    <li>Chemicals</li>
+                                    <li>Additives</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    1. Loading Gantry Operations
+                                </b>
+                
+                                <p>
+                                    A Centrifugal Pump can be connected to a Loading Gantry Skid to transfer
+                                    liquids from storage tanks into road transportation trucks.
+                                </p>
+                
+                                <p style="color: rgb(211, 211, 152);">
+                                    This operation is commonly used for exporting crude oil, produced water,
+                                    or other liquid products from the site.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    2. Mixing H₂S Scavenger Chemicals with Sour Oil
+                                </b>
+                
+                                <p>
+                                    The pump can be connected between the inlet and discharge of storage tanks
+                                    to circulate sour oil and mix it with H₂S scavenger chemicals.
+                                </p>
+                
+                                <p style="color: rgb(211, 211, 152);">
+                                    The purpose is to:
+                                </p>
+                
+                                <ul style="margin-top: 15px; color: rgb(211, 211, 152);">
+                                    <li>Reduce Hydrogen Sulfide (H₂S) concentration.</li>
+                                    <li>Improve safety during storage and transportation.</li>
+                                    <li>Lower tank H₂S content to approximately 15–30 ppm.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    3. Acidic Water Treatment
+                                </b>
+                
+                                <p>
+                                    The pump can circulate acidic water inside storage tanks while mixing
+                                    treatment chemicals.
+                                </p>
+                
+                                <p style="color: rgb(211, 211, 152);">
+                                    The objective is to:
+                                </p>
+                
+                                <ul style="margin-top: 15px; color: rgb(211, 211, 152);">
+                                    <li>Increase pH value.</li>
+                                    <li>Reduce water acidity.</li>
+                                    <li>Improve pH from approximately 3–5 to 7–8.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    4. Booster Pump for High-Pressure Pumps
+                                </b>
+                
+                                <p>
+                                    A Centrifugal Pump may be installed on the suction side of a
+                                    High-Pressure (HP) Pump and operate as a Booster Pump.
+                                </p>
+                
+                                <p style="color: rgb(211, 211, 152);">
+                                    Its purpose is to:
+                                </p>
+                
+                                <ul style="margin-top: 15px; color: rgb(211, 211, 152);">
+                                    <li>Provide adequate Net Positive Suction Head (NPSH).</li>
+                                    <li>Improve suction conditions.</li>
+                                    <li>Reduce the risk of cavitation.</li>
+                                    <li>Increase pump reliability and performance.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    5. Surge Tank Unloading
+                                </b>
+                
+                                <p>
+                                    The pump can be connected to the discharge line of a Surge Tank
+                                    to transfer liquids to the Flare Burner system.
+                                </p>
+                
+                                <p style="color: rgb(211, 211, 152);">
+                                    This application assists in safe liquid disposal and tank management
+                                    during well testing operations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    6. Meter Testing and Calibration
+                                </b>
+                
+                                <p>
+                                    The pump can be connected to Calibration Surge Tanks or Gauge Tanks
+                                    to circulate fluids through flow meters during testing and calibration.
+                                </p>
+                
+                                <p style="color: rgb(211, 211, 152);">
+                                    This ensures:
+                                </p>
+                
+                                <ul style="margin-top: 15px; color: rgb(211, 211, 152);">
+                                    <li>Meter functionality verification/testing.</li>
+                                    <li>Flow measurement accuracy.</li>
+                                    <li>Proper meter calibration.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    7. Offshore Water Screening and Burner Cooling
+                                </b>
+                
+                                <p>
+                                    On offshore installations, Centrifugal Pumps are used in water
+                                    screening systems and flare burner cooling systems.
+                                </p>
+                
+                                <p style="color: rgb(211, 211, 152);">
+                                    Their functions include:
+                                </p>
+                
+                                <ul style="margin-top: 15px; color: rgb(211, 211, 152);">
+                                    <li>Providing filtered seawater for operational systems.</li>
+                                    <li>Supplying cooling water to flare burners.</li>
+                                    <li>Protecting equipment from overheating.</li>
+                                </ul>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Ingersoll Rand Integrated Instrument Display Panel Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>3- Work Roles and Responsibilities</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    5.1 Electrician Responsibilities
+                                </b>
+                
+                                <p>
+                                    The electrician is responsible for properly connecting the electric
+                                    transfer centrifugal pump to a suitable power source.
+                                </p>
+                
+                                <p>
+                                    The power source may be:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Portable Generator Distribution Panel.</li>
+                                    <li>Building Electrical Power Supply.</li>
+                                </ul>
+                
+                                <p style="margin-top: 15px;">
+                                    The electrician shall ensure that all electrical connections are safe,
+                                    correctly installed, properly grounded, and suitable for the pump's
+                                    voltage and power requirements.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Electrician Key Duties
+                                </b>
+                
+                                <ul>
+                                    <li>Connect the pump to the designated power source.</li>
+                                    <li>Verify voltage and frequency requirements.</li>
+                                    <li>Ensure proper grounding (earthing).</li>
+                                    <li>Inspect electrical cables and connections.</li>
+                                    <li>Confirm electrical safety before startup.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    5.2 SWT Supervisor and Team Responsibilities
+                                </b>
+                
+                                <p>
+                                    The SWT Supervisor and crew members are responsible for rigging up,
+                                    installing, and operating the centrifugal pump in accordance with the
+                                    approved P&ID and equipment layout drawings.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Rig-Up Activities
+                                </b>
+                
+                                <p>
+                                    Rig-up refers to preparing and installing the pump and associated
+                                    piping before operation.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Positioning the pump correctly.</li>
+                                    <li>Connecting suction lines.</li>
+                                    <li>Connecting discharge lines.</li>
+                                    <li>Installing valves and fittings.</li>
+                                    <li>Checking all connections before startup.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Suction and Discharge Connections
+                                </b>
+                
+                                <p>
+                                    The SWT team shall properly connect temporary process lines to the pump:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>
+                                        <b>Suction Line:</b>
+                                        The line through which fluid enters the pump.
+                                    </li>
+                
+                                    <li>
+                                        <b>Discharge Line:</b>
+                                        The line through which fluid leaves the pump.
+                                    </li>
+                                </ul>
+                
+                                <p>
+                                    All connections must follow the approved P&ID and equipment layout.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Pump Operation Responsibilities
+                                </b>
+                
+                                <p>
+                                    After installation, the SWT Supervisor and crew are responsible for
+                                    operating the pump safely and efficiently.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Start the pump according to operating procedures.</li>
+                                    <li>Monitor pressure and flow conditions.</li>
+                                    <li>Inspect for leaks or abnormal vibrations.</li>
+                                    <li>Ensure continuous safe operation.</li>
+                                    <li>Report any equipment malfunction immediately.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Shutdown and Isolation Responsibilities
+                                </b>
+                
+                                <p>
+                                    Whenever the pump is not in use, the SWT Supervisor and crew shall:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Switch off the pump.</li>
+                                    <li>Isolate the electrical power source.</li>
+                                    <li>Secure the equipment against accidental startup.</li>
+                                    <li>Follow site safety procedures.</li>
+                                </ul>
+                
+                                <p>
+                                    Proper isolation protects personnel, equipment, and the worksite from
+                                    potential hazards.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Atlas Copco Unit Integration Systems Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>4- Definition of Terms</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    1. MPS Technician
+                                </b>
+                
+                                <p>
+                                    An authorized MPS-SWT employee who possesses the technical knowledge
+                                    and skills required to perform Preventive Maintenance (PM) activities
+                                    on equipment and machinery.
+                                </p>
+                
+                                <p>
+                                    Typical responsibilities include inspection, servicing, adjustment,
+                                    troubleshooting, and maintenance of equipment to ensure reliable
+                                    operation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    2. Machine Operator
+                                </b>
+                
+                                <p>
+                                    A qualified MPS-SWT employee who is authorized to operate machinery
+                                    or equipment in a controlled and safe manner.
+                                </p>
+                
+                                <p>
+                                    The operator must understand equipment functions, operating limits,
+                                    safety requirements, and the potential impacts of incorrect operation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    3. Energy Isolating Device
+                                </b>
+                
+                                <p>
+                                    A mechanical device that physically prevents the transmission,
+                                    release, or supply of energy to equipment.
+                                </p>
+                
+                                <p>
+                                    Energy isolating devices are used to ensure equipment remains
+                                    safely de-energized during maintenance or repair activities.
+                                </p>
+                
+                                <p><b>Examples include:</b></p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Manually operated electrical circuit breaker.</li>
+                                    <li>ON/OFF switch with a visible position indicator (I/O).</li>
+                                </ul>
+                
+                                <p style="margin-top: 15px;">
+                                    <b>Note:</b> Green/Red push-button selector switches are not
+                                    considered energy isolating devices because they do not physically
+                                    isolate the energy source.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    4. Lock-Out Device
+                                </b>
+                
+                                <p>
+                                    A device that uses a lock and key to secure an energy isolating
+                                    device in the safe or OFF position.
+                                </p>
+                
+                                <p>
+                                    The purpose of a lock-out device is to prevent equipment from being
+                                    accidentally energized while maintenance or repair work is being
+                                    performed.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    5. Tag-Out Device
+                                </b>
+                
+                                <p>
+                                    A prominent warning tag that is securely attached to equipment,
+                                    machinery, or an energy isolating device.
+                                </p>
+                
+                                <p>
+                                    The tag identifies the person responsible for the isolation and
+                                    warns personnel not to operate or remove the isolation without
+                                    authorization.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    6. Example of an Energy Control Device
+                                </b>
+                
+                                <p>
+                                    A come-a-long or similar mechanical restraint used to hold a component
+                                    in a safe position must be tagged and identified as an energy control
+                                    device.
+                                </p>
+                
+                                <p>
+                                    It must not be removed except by the person who originally installed it
+                                    or by an authorized individual following the proper procedure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    7. Motor
+                                </b>
+                
+                                <p>
+                                    A motor is an electrically energized device that converts electrical
+                                    energy into mechanical rotational energy.
+                                </p>
+                
+                                <p>
+                                    The motor contains a high-speed rotating shaft that drives another
+                                    mechanical device such as a centrifugal pump.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    8. Centrifugal Pump
+                                </b>
+                
+                                <p>
+                                    A centrifugal pump is a mechanical device used to transport or move
+                                    fluids by utilizing kinetic energy generated by a high-speed rotating
+                                    impeller.
+                                </p>
+                
+                                <p>
+                                    As the impeller rotates, it increases the velocity of the fluid and
+                                    converts that velocity into pressure energy, allowing the fluid to be
+                                    transferred through the system.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Operational Metrics Summary Cover Block">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>5- Checks Prior to Operating a Centrifugal Pump</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    1. Verify Lock-Out / Tag-Out (LOTO) Status
+                                </b>
+                
+                                <p>
+                                    Ensure that all Lock-Out / Tag-Out (LOTO) devices have been removed
+                                    and the pump is authorized for operation.
+                                </p>
+                
+                                <p>
+                                    Equipment must never be started while LOTO procedures are still active.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    2. Identify Electrical Isolation Devices
+                                </b>
+                
+                                <p>
+                                    Locate and identify the circuit breakers, magnetic contactors,
+                                    and control panel associated with the pump.
+                                </p>
+                
+                                <p>
+                                    Operators should know how to isolate power quickly in case of an
+                                    emergency.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    3. Check Earthing System
+                                </b>
+                
+                                <p>
+                                    Verify that the earthing cable and earthing rod are properly connected
+                                    to the designated grounding points.
+                                </p>
+                
+                                <p>
+                                    Proper grounding protects personnel and equipment from electrical faults
+                                    and static electricity hazards.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    4. Inspect Electrical Cable Condition
+                                </b>
+                
+                                <p>
+                                    The electrician shall inspect the electrical cable for:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Continuity.</li>
+                                    <li>Correct cable length.</li>
+                                    <li>Proper cable size and rating.</li>
+                                    <li>Functional operation.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    5. Verify Impeller Rotation Direction
+                                </b>
+                
+                                <p>
+                                    Ensure that the pump impeller rotates in the correct direction as
+                                    indicated by the rotation arrow on the pump casing.
+                                </p>
+                
+                                <p>
+                                    Incorrect rotation may result in poor performance, low flow rate,
+                                    and potential equipment damage.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    6. Check Mechanical Coupling
+                                </b>
+                
+                                <p>
+                                    Inspect the coupling between the motor shaft and pump shaft.
+                                </p>
+                
+                                <p>
+                                    Ensure the coupling is properly aligned, secure, and free from
+                                    visible damage or excessive wear.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    7. Inspect Mechanical Seal
+                                </b>
+                
+                                <p>
+                                    Check the mechanical seal condition, seal oil level, and inspect
+                                    for any signs of leakage around the shaft and pump casing.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    8. Check Pump Pipework and Pressure Gauge
+                                </b>
+                
+                                <p>
+                                    Verify the continuity and integrity of both suction and discharge
+                                    pipework connections.
+                                </p>
+                
+                                <p>
+                                    Ensure that a pressure gauge is installed on the discharge line
+                                    for monitoring pump performance during operation.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                
+                    <h3 style="margin-top: 40px;">6- Operating a Centrifugal Pump</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 1: Open the Suction Valve
+                                </b>
+                
+                                <p>
+                                    Open the suction ball valve and ensure the pump is properly filled
+                                    with liquid.
+                                </p>
+                
+                                <p>
+                                    Remove any trapped air by checking and venting through the sample point.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 2: Open the Discharge Bypass Line
+                                </b>
+                
+                                <p>
+                                    Open the discharge bypass line returning to the tank inlet to establish
+                                    a circulation loop.
+                                </p>
+                
+                                <p>
+                                    This helps maintain liquid movement and eliminates potential air locks
+                                    before directing flow to the final destination.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 3: Recheck Mechanical Seal Condition
+                                </b>
+                
+                                <p>
+                                    Verify the mechanical seal oil level and inspect for leakage between
+                                    the pump casing and shaft before startup.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 4: Start the Pump
+                                </b>
+                
+                                <p>
+                                    Switch the pump ON (I) and observe the discharge pressure gauge.
+                                </p>
+                
+                                <p>
+                                    Expected discharge pressure is typically between 0 and 50 psig during
+                                    circulation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 5: Verify Liquid Circulation
+                                </b>
+                
+                                <p>
+                                    Confirm that the pump is circulating liquid from the tank and returning
+                                    it back through the bypass line.
+                                </p>
+                
+                                <p>
+                                    Stable pressure and continuous flow indicate proper operation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 6: Check for Air Lock
+                                </b>
+                
+                                <p>
+                                    If the pump is not circulating liquid, an air lock may be present.
+                                </p>
+                
+                                <p>
+                                    Immediately stop the pump, remove trapped air, and resolve the issue
+                                    before restarting.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 7: Restart and Monitor Pressure
+                                </b>
+                
+                                <p>
+                                    Restart the pump and continue monitoring the discharge pressure
+                                    to ensure stable operation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 8: Direct Flow to the Required Destination
+                                </b>
+                
+                                <p>
+                                    Open the discharge ball valve and gradually close the bypass valve.
+                                </p>
+                
+                                <p>
+                                    The pump may now transfer liquid to:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Flare Burner System.</li>
+                                    <li>Loading Truck.</li>
+                                    <li>High-Pressure Booster System.</li>
+                                    <li>Other Process Equipment.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 9: Monitor for Leaks
+                                </b>
+                
+                                <p>
+                                    Continuously inspect the pump, piping, and surrounding area for
+                                    any liquid leakage.
+                                </p>
+                
+                                <p>
+                                    Stop the pump immediately if significant leakage is observed.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 10: Monitor Tank Level
+                                </b>
+                
+                                <p>
+                                    Observe the tank level through the sight glass and ensure the liquid
+                                    level decreases as expected during transfer operations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 11: Stop the Pump
+                                </b>
+                
+                                <p>
+                                    Stop the pump when the tank level reaches 0.0 barrels (Bbls) or when
+                                    transfer operations have been completed.
+                                </p>
+                
+                                <p>
+                                    Follow site procedures for shutdown and electrical isolation if the
+                                    pump is no longer required.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+                    <h3>Course Operational Mindmap Breakdown</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                        <img src="img/mindmap1.png" alt="Air Compressor Structural Knowledge Mindmap Architecture" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/summary1.png" alt="Process Workflow Operations Sequential Summary Map" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 7; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

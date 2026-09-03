@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Oil Field Calculations | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+
+
+        /*******************************************/
+        /* =====================================
+   MODERN EXPLAIN SECTION
+===================================== */
+
+.explain-modern{
+    background: linear-gradient(180deg,#0f172a,#111827);
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0;
+    color: #e2e8f0;
+    line-height: 1.8;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+.explain-modern h3{
+    color: #f1c40f;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #f1c40f;
+    padding-left: 15px;
+}
+
+.explain-modern h4{
+    color: #38bdf8;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.explain-modern p{
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.explain-modern ul{
+    margin: 15px 0 20px 25px;
+}
+
+.explain-modern li{
+    margin-bottom: 8px;
+}
+
+.explain-modern hr{
+    border: none;
+    height: 1px;
+    background: #334155;
+    margin: 25px 0;
+}
+
+/* =====================================
+   TIP BOX
+===================================== */
+
+.tip-box{
+    background: rgba(14,165,233,0.12);
+    border-left: 5px solid #0ea5e9;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #dbeafe;
+}
+
+/* =====================================
+   WARNING BOX
+===================================== */
+
+.warning-box{
+    background: rgba(239,68,68,0.12);
+    border-left: 5px solid #ef4444;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fee2e2;
+}
+
+/* =====================================
+   HIGHLIGHT CARD
+===================================== */
+
+.highlight-card{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    border: 1px solid #475569;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #f8fafc;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================================
+   FLOW DIAGRAM
+===================================== */
+
+.flow-diagram{
+    background: #020617;
+    border: 2px dashed #38bdf8;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    font-weight: 700;
+    color: #7dd3fc;
+    line-height: 2;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+/* =====================================
+   FORMULA BOX
+===================================== */
+
+.formula-box{
+    background: #020617;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    overflow-x: auto;
+    margin: 20px 0;
+    color: #f8fafc;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.modern-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.modern-table thead{
+    background: #f1c40f;
+}
+
+.modern-table thead th{
+    color: #000;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.modern-table tbody tr{
+    background: #111827;
+    border-bottom: 1px solid #334155;
+}
+
+.modern-table tbody tr:nth-child(even){
+    background: #0f172a;
+}
+
+.modern-table td{
+    padding: 14px;
+    color: #e2e8f0;
+}
+
+/* =====================================
+   ENGINEERING NOTE
+===================================== */
+
+.engineering-note{
+    background: rgba(241,196,15,0.12);
+    border-left: 5px solid #f1c40f;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fef3c7;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+    .explain-modern{
+        padding: 20px;
+    }
+
+    .explain-modern h3{
+        font-size: 1.5rem;
+    }
+
+    .explain-modern h4{
+        font-size: 1.1rem;
+    }
+
+    .modern-table{
+        display:block;
+        overflow-x:auto;
+        white-space: nowrap;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px; padding: 0 20px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">Basic Oil Field Calculations</h1>
+        <p style="text-align: center; color: #94a3b8; margin-bottom: 30px;">Prepared by Learning and Development Team | Well Testing Services</p>
+        
+        <div class="tabs-container">
+                    
+            <!-- TAB 1: MEASUREMENT SYSTEMS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Measurement Systems Overview" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>1. Measurement Systems & Comparisons</h3>
+                    <p>
+                        A measurement must have a standard[span_0](start_span)[span_0](end_span). A standard is an exact quantity people agree to use for comparison, ensuring that two people using the same object get close to the same results[span_1](start_span)[span_1](end_span).
+                    </p>
+                
+                    <hr>
+                
+                    <h4>American vs. SI (Metric) Systems</h4>
+                    <p>
+                        The United States is currently the only western country not using the metric system as its primary system of measurement (alongside Yemen, Brunei, and a few small islands)[span_2](start_span)[span_2](end_span).
+                    </p>
+                
+                    <div class="tip-box">
+                        <strong>English System Memorization Rule:</strong> In the English system, remember: 12 inches in a foot, 3 feet in a yard, 5,280 feet in a mile, 16 ounces in a pound, and 4 quarts to a gallon[span_3](start_span)[span_3](end_span).
+                    </div>
+
+                    <h4>Metric Prefixes</h4>
+                    <ul>
+                        <li><strong>Kilo:</strong> Thousand (1000)[span_4](start_span)[span_4](end_span)</li>
+                        <li><strong>Hecto:</strong> Hundred (100)[span_5](start_span)[span_5](end_span)</li>
+                        <li><strong>Deca:</strong> Ten (10)[span_6](start_span)[span_6](end_span)</li>
+                        <li><strong>Deci:</strong> One-tenth (1/10)[span_7](start_span)[span_7](end_span)</li>
+                        <li><strong>Centi:</strong> One-hundredth (1/100)[span_8](start_span)[span_8](end_span)</li>
+                        <li><strong>Milli:</strong> One-thousandth (1/1000)[span_9](start_span)[span_9](end_span)</li>
+                    </ul>
+
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Measurement</th>
+                                <th>English System</th>
+                                <th>SI (Metric) System</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Length</td><td>Yard / Inch</td><td>Meter / Centimeter</td>[span_10](start_span)[span_10](end_span)</tr>
+                            <tr><td>Mass</td><td>Ounce / Pound</td><td>Gram / Kilogram</td>[span_11](start_span)[span_11](end_span)</tr>
+                            <tr><td>Volume</td><td>Quart / Gallon</td><td>Liter / Milliliter</td>[span_12](start_span)[span_12](end_span)</tr>
+                            <tr><td>Temperature</td><td>Fahrenheit (°F)</td><td>Celsius (°C) / Kelvin (K)</td>[span_13](start_span)[span_13](end_span)</tr>
+                            <tr><td>Time</td><td>Second</td><td>Second</td>[span_14](start_span)[span_14](end_span)</tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- TAB 2: ESTIMATION, PRECISION & ACCURACY -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Estimation and Accuracy">
+                </div>
+                 
+                <div class="explain-modern">
+                    <h3>2. Estimation, Accuracy & Precision</h3>
+                
+                    <p>
+                        <strong>Estimation</strong> is using your knowledge of something similar in size or amount to determine the size of a new object[span_15](start_span)[span_15](end_span). It helps make rough measurements and is crucial in business, economics, and project planning due to multiple variables[span_16](start_span)[span_16](end_span).
+                    </p>
+
+                    <div class="highlight-card">
+                        <strong>Precision vs. Accuracy:</strong>
+                        <ul>
+                            <li><strong>Precision:</strong> A description of how close measurements are to each other[span_17](start_span)[span_17](end_span).</li>
+                            <li><strong>Accuracy:</strong> Comparing your measurement to the actual or accepted target value[span_18](start_span)[span_18](end_span).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- TAB 3: VOLUMES OF SOLIDS & LIQUIDS -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Volume Calculation Schematics">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>3. Volume Calculations (Solids & Liquids)</h3>
+                
+                    <p>Volume is the amount of space inside a solid[span_19](start_span)[span_19](end_span) or the fluid capacity a container can hold.</p>
+
+                    <h4>Liquid Volume Conversions</h4>
+                    <ul>
+                        <li>1 Gallon = 4 Quarts[span_20](start_span)[span_20](end_span)</li>
+                        <li>1 Quart = 2 Pints[span_21](start_span)[span_21](end_span)</li>
+                        <li>1 Pint = 16 Fluid Ounces (or 2 Cups)[span_22](start_span)[span_22](end_span)</li>
+                        <li>1 Barrel (bbl) = 5.6146 Cubic Feet[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)</li>
+                    </ul>
+
+                    <h4>Geometric Formulas</h4>
+                    
+                    <h4>1. Cylinder Volume</h4>
+                    <div class="formula-box">
+                        $V = \pi r^2 h$<br>
+                        $\pi = 3.14$, $r = \text{radius}$, $h = \text{height}$[span_25](start_span)[span_25](end_span)
+                    </div>
+
+                    <h4>2. Sphere Volume</h4>
+                    <div class="formula-box">
+                        $V = \frac{4}{3}\pi r^3$[span_26](start_span)[span_26](end_span)
+                    </div>
+
+                    <h4>3. Cone Volume</h4>
+                    <div class="formula-box">
+                        $V = \frac{1}{3}\pi r^2 h$[span_27](start_span)[span_27](end_span)
+                    </div>
+
+                    <h4>4. Cuboid Volume</h4>
+                    <div class="formula-box">
+                        $V = \text{Length} \times \text{Width} \times \text{Height} = a^3$[span_28](start_span)[span_28](end_span)
+                    </div>
+
+                    <hr>
+
+                    <h4>Oilfield Tubular Volume Formulas</h4>
+                    <p>Standard oilfield formulas for calculating capacities in wellbores:</p>
+                    
+                    <ul>
+                        <li><strong>Casing / Tubing Capacity:</strong> 
+                            <div class="formula-box">$V_{\text{tubing}} = \frac{ID^2}{1029.4} \times \text{Depth (ft)}$[span_29](start_span)[span_29](end_span) (in bbls)</div>
+                        </li>
+                        <li><strong>Annular Volume:</strong> 
+                            <div class="formula-box">$V_{\text{annulus}} = \frac{ID_{\text{casing}}^2 - OD_{\text{tubing}}^2}{1029.4} \times \text{Depth (ft)}$[span_30](start_span)[span_30](end_span) (in bbls)</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: TEMPERATURE, DENSITY, API & pH -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Temperature and Density Scales">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>4. Temperature, Density, API & pH</h3>
+                
+                    <h4>Temperature Conversions</h4>
+                    <div class="formula-box">
+                        °C = (°F - 32) / 1.8[span_31](start_span)[span_31](end_span)<br>
+                        °F = (°C × 1.8) + 32[span_32](start_span)[span_32](end_span)<br>
+                        Kelvin (K) = °C + 273[span_33](start_span)[span_33](end_span)<br>
+                        Rankine (°R) = °F + 460[span_34](start_span)[span_34](end_span)
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>Critical Points:</strong> Pure water freezes at 32°F (0°C) and boils at 212°F (100°C)[span_35](start_span)[span_35](end_span).
+                    </div>
+
+                    <h4>API Gravity & Specific Gravity</h4>
+                    <p>The American Petroleum Institute (API) scale classifies crude oil weight at a baseline temperature of 60°F[span_36](start_span)[span_36](end_span).</p>
+                    <div class="formula-box">
+                        $\text{API} = \frac{141.5}{\text{S.G.}} - 131.5$[span_37](start_span)[span_37](end_span)<br><br>
+                        $\text{S.G.} = \frac{141.5}{\text{API} + 131.5}$[span_38](start_span)[span_38](end_span)
+                    </div>
+
+                    <h4>pH Scale</h4>
+                    <p>Measures acidity or basicity of aqueous solutions. Values below 7 are acidic, above 7 are basic/alkaline, and 7 is neutral (pure water)[span_39](start_span)[span_39](end_span).</p>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- TAB 5: PRESSURE & HYDROSTATIC HEAD -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Pressure Mechanics">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>5. Pressure & Hydrostatic Head</h3>
+                
+                    <p>Pressure is the force exerted per unit area: $\text{Pressure} = \frac{\text{Force}}{\text{Area}}$[span_40](start_span)[span_40](end_span).</p>
+
+                    <h4>Hydrostatic Pressure (HP) Formula</h4>
+                    <div class="formula-box">
+                        $\text{HP (psi)} = 0.052 \times \text{Density (ppg)} \times \text{TVD (ft)}$[span_41](start_span)[span_41](end_span)
+                    </div>
+
+                    <p>Where constant <strong>0.052</strong> is derived from unit conversions ($12\text{ in/ft} \div 231\text{ in}^3/\text{gal}$)[span_42](start_span)[span_42](end_span).</p>
+
+                    <h4>Pressure Gradient (PG)</h4>
+                    <div class="formula-box">
+                        $\text{Gradient (psi/ft)} = \text{Mud Weight (ppg)} \times 0.052$[span_43](start_span)[span_43](end_span)
+                    </div>
+
+                    <h4>Bottom Hole Pressure (BHP)</h4>
+                    <ul>
+                        <li><strong>Static Condition:</strong> $\text{BHP} = \text{HP} + \text{Surface Pressure (SP)}$[span_44](start_span)[span_44](end_span)</li>
+                        <li><strong>Dynamic Condition:</strong> $\text{BHP} = \text{HP} + \text{SP} + \text{Frictional Pressure (FrP)}$[span_45](start_span)[span_45](end_span)</li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- TAB 6: PRACTICAL CASE STUDY EXERCISE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+                    <h3>6. Comprehensive Case Study Exercise</h3>
+                
+                    <p><strong>Problem Statement:</strong> Calculate hydrostatic pressures and fluid volumes based on the following well profile data:</p>
+                    <ul>
+                        <li><strong>Tubing ID:</strong> 3.5 inches[span_46](start_span)[span_46](end_span)</li>
+                        <li><strong>Pipe OD:</strong> 4 inches[span_47](start_span)[span_47](end_span)</li>
+                        <li><strong>Casing ID:</strong> 9 inches[span_48](start_span)[span_48](end_span)</li>
+                        <li><strong>Brine Gradient:</strong> 0.550 psi/ft[span_49](start_span)[span_49](end_span) (Density = 10.2 ppg)</li>
+                        <li><strong>Annulus Fluid:</strong> 9.2 ppg brine down to 8,200 ft TVD[span_50](start_span)[span_50](end_span)</li>
+                        <li><strong>Tubing Fluid:</strong> 7.50 ppg oil from surface to 10,500 ft[span_51](start_span)[span_51](end_span)</li>
+                    </ul>
+
+                    <h4>Step-by-Step Solutions:</h4>
+                    <ol>
+                        <li><strong>Annulus HP (at 8,200 ft TVD):</strong><br>
+                            $\text{HP} = 8200 \times 9.20 \times 0.052 = \mathbf{3922.88\text{ psi}}$[span_52](start_span)[span_52](end_span)
+                        </li>
+                        <li><strong>Tubing Oil Column HP (at 10,500 ft):</strong><br>
+                            $\text{HP} = 10500 \times 7.50 \times 0.052 = \mathbf{4095\text{ psi}}$[span_53](start_span)[span_53](end_span)
+                        </li>
+                        <li><strong>Tubing Capacity Volume (10,500 ft of 3.5" tubing):</strong><br>
+                            $V = \frac{3.5^2}{1029.4} \times 10500 = \mathbf{123.4\text{ bbls}}$ (or $559.2\text{ bsc}$ / $693.19\text{ ft}^3$)[span_54](start_span)[span_54](end_span)[span_55](start_span)[span_55](end_span)
+                        </li>
+                        <li><strong>Annular Volume (8,200 ft between 9" casing & 3.5" tubing):</strong><br>
+                            $V = \frac{9^2 - 3.5^2}{1029.4} \times 8200 = \mathbf{599.86\text{ bbls}}$ (or $637.39\text{ bbls}$ depending on casing selection)[span_56](start_span)[span_56](end_span)[span_57](start_span)[span_57](end_span)
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- TAB 7: FINAL EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Assessment Review Guide" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Basic Oil Field Calculations - Final Examination</h3>
+                    <div class="content-card" style="background: rgba(11, 15, 25, 0.6); padding: 25px; border-radius: 12px;">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Examination Instructions:</span>
+                        <ol>
+                            <li>Ensure you have reviewed all conversion formulas, volume formulas for cylinders/spheres/cones, and hydrostatic pressure rules.</li>
+                            <li>Have a calculator and scratchpad ready for oilfield capacity and gradient calculations.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Return to Case Study</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 9; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

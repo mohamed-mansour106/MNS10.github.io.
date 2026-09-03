@@ -1,0 +1,2151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Operate H2S sweetening unit | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">How to Operate H2S sweetening unit</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Compressor course in Well Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>H₂S Sweetening Unit</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Purpose of H₂S Sweetening Unit:</b>
+                                <p style="margin-top: 15px;">
+                                    The H₂S Sweetening Unit is used in the sour oil and gas industry during
+                                    <mark>well clean-up</mark>, <mark>backflow operations</mark>, and
+                                    <mark>production testing</mark>, especially after acid stimulation jobs (HCl).
+                                    Its main purpose is to reduce Hydrogen Sulfide (H₂S) concentration in produced fluids
+                                    before transferring them to flowlines, processing facilities, or storage tanks.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">Why H₂S Must Be Removed:</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>H₂S is a highly <mark>toxic gas</mark> and dangerous to personnel.</li>
+                                    <li>Causes severe <mark>corrosion</mark> to pipelines and production equipment.</li>
+                                    <li>Reduces the integrity and lifespan of upstream facilities.</li>
+                                    <li>Creates safety and environmental risks during production operations.</li>
+                                    <li>May prevent produced fluids from being accepted into client facilities.</li>
+                                </ul>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #60a5fa; font-size: 1.1rem;">How the Sweetening Process Works:</b>
+                                <ol style="margin-top: 15px;">
+                                    <li>Sour oil or gas containing dissolved H₂S enters the process stream.</li>
+                                    <li>Specialized <mark>H₂S scavenger chemicals</mark> are injected into the flow.</li>
+                                    <li>The chemicals react with Hydrogen Sulfide and neutralize it.</li>
+                                    <li>H₂S concentration is reduced to an acceptable level.</li>
+                                    <li>The treated fluid is transferred safely to production facilities or storage tanks.</li>
+                                </ol>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #f59e0b; font-size: 1.1rem;">Target H₂S Concentration:</b>
+                                <p style="margin-top: 15px;">
+                                    The objective of the sweetening process is to reduce H₂S concentration
+                                    to approximately <mark>0 – 20 ppm</mark>, producing what is commonly referred to as
+                                    <mark>"Sweet Oil"</mark> or <mark>"Sweet Gas"</mark>.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #a78bfa; font-size: 1.1rem;">Operational Benefits:</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>Protects personnel from toxic H₂S exposure.</li>
+                                    <li>Reduces corrosion and erosion in pipelines and equipment.</li>
+                                    <li>Improves asset integrity and operational reliability.</li>
+                                    <li>Supports <mark>Zero Flaring</mark> and environmentally responsible operations.</li>
+                                    <li>Allows direct transfer of produced fluids to client flowlines and facilities.</li>
+                                    <li>Minimizes maintenance and equipment damage.</li>
+                                </ul>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #ef4444; font-size: 1.1rem;">Chemical Characteristics:</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>Environmentally friendly formulation.</li>
+                                    <li>Mainly organic in nature.</li>
+                                    <li>Produces minimal sediment and deposits.</li>
+                                    <li>Efficiently scavenges dissolved H₂S from oil and gas streams.</li>
+                                </ul>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #06b6d4; font-size: 1.1rem;">Process Flow Summary:</b>
+                                <pre style="margin-top: 15px;">
+                Sour Oil / Gas
+                       │
+                       ▼
+                H₂S Sweetening Unit
+                (Chemical Injection)
+                       │
+                       ▼
+                H₂S Scavenging Reaction
+                       │
+                       ▼
+                Sweet Oil / Gas
+                (0 - 20 ppm H₂S)
+                       │
+                       ▼
+                Flowline / Storage Tank /
+                Production Facility
+                                </pre>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #10b981; font-size: 1.1rem;">Key Takeaway:</b>
+                                <p style="margin-top: 15px;">
+                                    The H₂S Sweetening Unit is a critical safety and integrity system that
+                                    injects H₂S scavenger chemicals into sour hydrocarbon streams to reduce
+                                    Hydrogen Sulfide levels, protect personnel, minimize corrosion, and ensure
+                                    safe transportation and processing of produced fluids.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Air Compressor Operational Course Profile Diagram">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>H₂S Sweetening Unit – Purpose & Policy</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Purpose of the Procedure:</b>
+                                <p style="margin-top: 15px;">
+                                    This operating procedure provides detailed guidelines for the safe and proper
+                                    operation of <mark>H₂S Sweetening Units</mark> during well clean-up and backflow
+                                    operations. It ensures the reduction of Hydrogen Sulfide (H₂S) concentration
+                                    while protecting personnel, equipment, and the environment.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">Main Objectives:</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>Reduce H₂S concentration in produced oil and gas streams.</li>
+                                    <li>Protect personnel from exposure to toxic H₂S gas.</li>
+                                    <li>Prevent corrosion and damage to production equipment.</li>
+                                    <li>Protect the environment from hazardous emissions.</li>
+                                    <li>Ensure safe handling of chemicals according to <mark>MSDS (Material Safety Data Sheet)</mark>.</li>
+                                    <li>Maintain compliance with company <mark>HSEQ Policies and Procedures</mark>.</li>
+                                </ul>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #60a5fa; font-size: 1.1rem;">Chemical Safety Requirements:</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>Always review the MSDS before handling sweetening chemicals.</li>
+                                    <li>Use the required Personal Protective Equipment (PPE).</li>
+                                    <li>Follow approved storage, handling, and disposal procedures.</li>
+                                    <li>Immediately report any chemical spill or exposure incident.</li>
+                                </ul>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #f59e0b; font-size: 1.1rem;">Policy Coverage:</b>
+                                <p style="margin-top: 15px;">
+                                    This procedure applies to <mark>all types of H₂S Sweetening Units</mark>
+                                    used during Surface Well Testing (SWT) operations and follows the company's
+                                    Standard Operating Procedures (SOPs).
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #a78bfa; font-size: 1.1rem;">Applicable Operations:</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>Rig-based well testing operations.</li>
+                                    <li>Rigless well testing operations.</li>
+                                    <li>Onshore installations and facilities.</li>
+                                    <li>Offshore installations and facilities.</li>
+                                    <li>Temporary and permanent sweetening unit setups.</li>
+                                </ul>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #ef4444; font-size: 1.1rem;">HSEQ Compliance:</b>
+                                <ul style="margin-top: 15px;">
+                                    <li><mark>Health:</mark> Protect personnel from H₂S exposure.</li>
+                                    <li><mark>Safety:</mark> Ensure safe operation of equipment and chemicals.</li>
+                                    <li><mark>Environment:</mark> Prevent pollution and harmful emissions.</li>
+                                    <li><mark>Quality:</mark> Maintain operational standards and efficiency.</li>
+                                </ul>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #06b6d4; font-size: 1.1rem;">Key Takeaway:</b>
+                                <p style="margin-top: 15px;">
+                                    The purpose of this procedure is to ensure the safe operation of H₂S
+                                    Sweetening Units, proper handling of sweetening chemicals, reduction of H₂S
+                                    levels in produced fluids, and protection of personnel, assets, and the
+                                    environment while maintaining full compliance with HSEQ standards.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #06b6d4; font-size: 1.1rem;">Interview Question</b>
+                                <br>
+                                <mark>Q: Why is the H₂S Sweetening Unit Operating Procedure important?</mark>
+                                <p style="margin-top: 15px;">
+                                  A: It provides standardized guidelines for safely operating H₂S Sweetening Units, reducing H₂S concentration in produced fluids, protecting personnel and equipment, ensuring environmental compliance, and maintaining HSEQ standards during well testing operations.    
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Ingersoll Rand Integrated Instrument Display Panel Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>H₂S Sweetening Unit – Design Specifications</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Maximum Operating Pressure:</b>
+                                <p style="margin-top: 15px;">
+                                    The H₂S Sweetening Unit is designed to safely operate at a maximum pressure of
+                                    <mark>1,440 psi</mark>. All components including piping, valves, pumps, and
+                                    instrumentation are selected and rated to withstand this operating pressure.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">H₂S Sour Service Design:</b>
+                                <p style="margin-top: 15px;">
+                                    The system is specifically designed for <mark>Sour Service</mark> applications,
+                                    meaning it can safely handle fluids containing Hydrogen Sulfide (H₂S).
+                                    Materials are selected to resist corrosion, sulfide stress cracking (SSC),
+                                    and other H₂S-related damage mechanisms.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #60a5fa; font-size: 1.1rem;">Fully Automated System:</b>
+                                <p style="margin-top: 15px;">
+                                    The unit operates automatically through an advanced control system that monitors
+                                    process conditions and regulates chemical injection rates. A
+                                    <mark>manual override option</mark> is also available, allowing operators to
+                                    take control during abnormal situations or maintenance activities.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #f59e0b; font-size: 1.1rem;">Intrinsically Safe PLC:</b>
+                                <p style="margin-top: 15px;">
+                                    The unit is equipped with an <mark>Intrinsically Safe PLC (Programmable Logic Controller)</mark>.
+                                    This design limits electrical energy to levels that cannot ignite flammable gases,
+                                    making it suitable for hazardous oil and gas environments.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #a78bfa; font-size: 1.1rem;">Zone II Hazardous Area Certification:</b>
+                                <p style="margin-top: 15px;">
+                                    The system is designed for <mark>Zone II Applications</mark>, where explosive gas
+                                    atmospheres are not normally present but may occur occasionally under abnormal
+                                    operating conditions. This ensures compliance with oilfield hazardous area
+                                    requirements.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #10b981; font-size: 1.1rem;">Environmentally Friendly H₂S Scavenger:</b>
+                                <p style="margin-top: 15px;">
+                                    The sweetening process utilizes an <mark>environmentally friendly H₂S scavenger reagent</mark>
+                                    that reacts with Hydrogen Sulfide and reduces its concentration to acceptable levels.
+                                    The chemical is designed to minimize environmental impact while maintaining high
+                                    sweetening efficiency.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #ef4444; font-size: 1.1rem;">Operational Advantages:</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>Safe operation in sour service environments.</li>
+                                    <li>Reduced corrosion and equipment damage.</li>
+                                    <li>Automatic chemical injection control.</li>
+                                    <li>Enhanced personnel safety in hazardous areas.</li>
+                                    <li>Compliance with oil & gas industry standards.</li>
+                                    <li>Reduced environmental impact through eco-friendly chemicals.</li>
+                                </ul>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #06b6d4; font-size: 1.1rem;">Key Takeaway:</b>
+                                <p style="margin-top: 15px;">
+                                    The H₂S Sweetening Unit is a fully automated sour-service system designed for
+                                    oil and gas operations. It operates up to <mark>1,440 psi</mark>, utilizes an
+                                    <mark>intrinsically safe PLC</mark>, is certified for <mark>Zone II hazardous areas</mark>,
+                                    and injects environmentally friendly H₂S scavenger chemicals to safely sweeten
+                                    produced oil and gas streams.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Atlas Copco Unit Integration Systems Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>H₂S Sweetening Unit – Operating Philosophy</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    System Overview:
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    The H₂S Sweetening Unit is designed to <mark>remove and neutralize Hydrogen Sulfide (H₂S)</mark>
+                                    from produced oil and gas streams before sending them to client facilities, flowlines,
+                                    disposal wells, or storage tanks. The objective is to reduce H₂S concentration to an
+                                    acceptable level of <mark>0 – 20 ppm</mark>.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Main Components:
+                                </b>
+                                <ol style="margin-top: 15px;">
+                                    <li><mark>H₂S Probe Analyzer</mark> installed in the process line.</li>
+                                    <li><mark>4–20 mA Signal Output</mark> transmitting H₂S readings.</li>
+                                    <li><mark>PLC (Programmable Logic Controller)</mark> for automatic control.</li>
+                                    <li><mark>Pneumatic Chemical Injection Pump</mark>.</li>
+                                    <li><mark>EMO-XXXX Organic Base Chemical</mark> or approved alternative scavenger.</li>
+                                </ol>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    How the System Works:
+                                </b>
+                                <ol style="margin-top: 15px;">
+                                    <li>The H₂S probe continuously measures H₂S concentration in the process stream.</li>
+                                    <li>The probe sends a <mark>4–20 mA signal</mark> to the PLC.</li>
+                                    <li>The PLC calculates the required chemical injection rate.</li>
+                                    <li>The pneumatic dosing pump injects the required amount of scavenger chemical.</li>
+                                    <li>The injected chemical reacts with H₂S and neutralizes it.</li>
+                                    <li>The treated fluid continues through the process with reduced H₂S content.</li>
+                                </ol>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Chemical Injection Locations:
+                                </b>
+                                <ul style="margin-top: 15px;">
+                                    <li>Upstream of the Special Separator inlet.</li>
+                                    <li>Within the flowline before separation.</li>
+                                    <li>At the oil outlet line before reinjection.</li>
+                                    <li>Before storage tank farms or client flowlines.</li>
+                                </ul>
+                
+                                <p style="margin-top: 10px;">
+                                    Injecting upstream provides <mark>longer mixing time</mark>, improving H₂S removal efficiency.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Factors Affecting Chemical Dosage:
+                                </b>
+                                <ol style="margin-top: 15px;">
+                                    <li>Measured H₂S concentration (ppm).</li>
+                                    <li>Oil or gas flow rate.</li>
+                                    <li>Expected H₂S levels from the job program.</li>
+                                    <li>Reservoir rock characteristics.</li>
+                                    <li>Client-required sweetening specifications.</li>
+                                </ol>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Final Objective:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    The system continuously monitors H₂S concentration and automatically adjusts chemical
+                                    injection rates to ensure treated oil and gas meet the client's approved specification
+                                    of <mark>0 – 20 ppm H₂S</mark>, while protecting personnel, equipment integrity,
+                                    and the environment.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #f59e0b; font-size: 1.1rem;">
+                                    Process Flow Summary:
+                                </b>
+                
+                                <pre style="margin-top:15px; white-space:pre-wrap;">
+                Well Flow
+                    ↓
+                H₂S Probe Measures H₂S
+                    ↓
+                4–20 mA Signal to PLC
+                    ↓
+                PLC Calculates Dosage Rate
+                    ↓
+                Pneumatic Injection Pump
+                    ↓
+                EMO-XXXX Chemical Injection
+                    ↓
+                H₂S Neutralization
+                    ↓
+                Sweetened Oil / Gas
+                    ↓
+                Client Flowline / Storage Tank
+                                </pre>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Operational Metrics Summary Cover Block">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>H₂S Sweetening Unit – Pump Assembly</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Purpose of Proper Pump Installation:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    The chemical injection pump must be installed correctly to ensure
+                                    <mark>maximum pumping efficiency</mark>, reliable chemical delivery,
+                                    easier maintenance, and long-term operational performance.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Pump Orientation:
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Install the pump in a <mark>vertical upright position</mark>.</li>
+                                    <li>The <mark>diaphragm section must be located at the top</mark>.</li>
+                                    <li>Allow sufficient space around the pump for maintenance and inspection.</li>
+                                    <li>Ensure easy access to all fittings, valves, and moving parts.</li>
+                                </ol>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Suction and Check Valve Position:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    For optimum performance, the pump suction line and check valve must be
+                                    installed <mark>pointing straight downward</mark>.
+                                </p>
+                
+                                <pre style="margin-top:15px; white-space:pre-wrap;">
+                      Diaphragm
+                          ▲
+                          │
+                        Pump
+                          │
+                          ▼
+                     Suction Line
+                          ▼
+                      Check Valve
+                                </pre>
+                
+                                <p>
+                                    This orientation allows the check valve to function correctly and
+                                    improves pump priming and chemical flow.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Check Valve Design Consideration:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    The pump check valve is designed <mark>without a supporting spring</mark>.
+                                    Therefore, it relies on gravity to assist proper seating and sealing.
+                                    Incorrect installation may reduce efficiency and affect suction performance.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Chemical Reservoir Tank Position:
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Install the chemical reservoir tank at a <mark>higher elevation</mark> than the pump.</li>
+                                    <li>This allows chemical fluid to naturally flow toward the pump suction.</li>
+                                    <li>Provides sufficient <mark>Net Positive Suction Head (NPSH)</mark>.</li>
+                                    <li>Reduces the possibility of cavitation and loss of prime.</li>
+                                </ol>
+                
+                                <pre style="margin-top:15px; white-space:pre-wrap;">
+                Chemical Tank
+                      ▲
+                      │
+                      │ Gravity Flow
+                      ▼
+                Injection Pump
+                                </pre>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Benefits of Correct Installation:
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Improved pump efficiency.</li>
+                                    <li>Reliable chemical injection rates.</li>
+                                    <li>Reduced maintenance requirements.</li>
+                                    <li>Better suction performance.</li>
+                                    <li>Prevention of cavitation and air locking.</li>
+                                    <li>Longer pump service life.</li>
+                                </ul>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #f59e0b; font-size: 1.1rem;">
+                                    Installation Rule to Remember:
+                                </b>
+                
+                                <pre style="margin-top:15px; white-space:pre-wrap;">
+                                    Diaphragm → UP
+                                    Pump Body → Vertical
+                                    Suction Line → DOWN
+                                    Check Valve → DOWN
+                                    Chemical Tank → Higher than Pump
+                                    NPSH → Sufficient
+                                </pre>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+                    <h3>H₂S Sweetening Unit – Start-Up Procedure</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Purpose:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    The start-up procedure ensures that the H₂S Sweetening Unit is properly connected,
+                                    powered, supplied with air and chemicals, and fully prepared for safe automatic
+                                    operation before processing sour oil or gas streams.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 1 – Connect to Process Line:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Connect the sweetening unit to the process flow line using
+                                    <mark>3" Figure 602 inlet</mark> and
+                                    <mark>3" Figure 602 outlet</mark> connections.
+                                </p>
+                
+                                <p>
+                                    This allows the process fluid containing H₂S to flow through the sweetening system.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 2 – Connect Instrument Air:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Connect the unit air supply from one of the following sources:
+                                </p>
+                
+                                <ul>
+                                    <li>Instrument Air Compressor</li>
+                                    <li>Diesel Air Compressor</li>
+                                    <li>Approved Air Supply Source</li>
+                                </ul>
+                
+                                <p>
+                                    The PLC controller uses this air supply to operate the pneumatic chemical injection system.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 3 – Verify Air Pressure:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Ensure air supply pressure is maintained between:
+                                </p>
+                
+                                <p>
+                                    <mark>100 – 150 psig</mark>
+                                </p>
+                
+                                <p>
+                                    Insufficient air pressure may affect pump performance and chemical injection rates.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 4 – Connect POS-8 Relay:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Connect the air supply line to the
+                                    <mark>POS-8 Relay</mark>
+                                    of the chemical injection pump according to the system drawing.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 5 – Set Pressure Regulators:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Verify that all unit pressure regulators are adjusted to their required operating
+                                    range and are capable of operating between:
+                                </p>
+                
+                                <p>
+                                    <mark>0 – 100%</mark>
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 6 – PLC Controller Check:
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Ensure the PLC controller is switched OFF before startup.</li>
+                                    <li>Verify the controller mode is set to <mark>AUTO</mark>.</li>
+                                    <li>Do not leave the controller in <mark>MANUAL (Override)</mark> mode unless specifically required.</li>
+                                </ol>
+                
+                                <p>
+                                    AUTO mode allows the PLC to automatically control chemical injection based on H₂S readings.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 7 – Electrical Power Supply:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Connect the PLC controller to a suitable power source:
+                                </p>
+                
+                                <ul>
+                                    <li>50 Hz or 60 Hz Supply</li>
+                                    <li>120 VAC or 220 VAC Input</li>
+                                    <li>Converted internally to <mark>24 VDC</mark></li>
+                                </ul>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 8 – Fill Chemical Tank:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Fill the unit chemical reservoir with the required
+                                    <mark>EMO-XXXX H₂S Scavenger Chemical</mark>.
+                                </p>
+                
+                                <p>
+                                    Ensure sufficient chemical volume is available before starting operations.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #f59e0b; font-size: 1.1rem;">
+                                    Safety Requirement:
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    The chemical <mark>MSDS (Material Safety Data Sheet)</mark> must always be available
+                                    on site for reference during handling, operation, storage, or emergency situations.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Final Function Test:
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Perform a complete function test of the unit.</li>
+                                    <li>Verify PLC operation.</li>
+                                    <li>Verify air system operation.</li>
+                                    <li>Verify chemical injection system operation.</li>
+                                    <li>Confirm all alarms and safety systems are operational.</li>
+                                </ol>
+                
+                                <p>
+                                    Although the unit has been tested in the workshop, a final site function test is mandatory.
+                                </p>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Ready for Operation:
+                                </b>
+                
+                                <pre style="margin-top:15px; white-space:pre-wrap;">
+                Process Line Connected
+                        ↓
+                Air Supply Connected
+                        ↓
+                100–150 psig Verified
+                        ↓
+                POS-8 Relay Connected
+                        ↓
+                Regulators Checked
+                        ↓
+                PLC Set to AUTO
+                        ↓
+                Power Connected (24VDC)
+                        ↓
+                Chemical Tank Filled
+                        ↓
+                MSDS Available
+                        ↓
+                Function Test Completed
+                        ↓
+                UNIT READY FOR OPERATION
+                                </pre>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="explain-modern">
+
+                    <h3>H₂S Sweetening Unit – Operating Procedure</h3>
+                    
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q1: What should be verified before operating the H₂S Sweetening Unit?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Ensure all process, air, electrical, and instrument connections are correctly installed according to the approved P&ID (Piping & Instrumentation Diagram).
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q2: Why is checking the P&ID important?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    The P&ID confirms that all equipment, valves, instruments, and control systems are connected correctly and safely.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q3: What is the first operational action after verifying connections?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Turn ON the PLC electronic controller power supply.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q4: How can the operator confirm that the PLC is energized?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    By checking that the panel indicator lights are illuminated and operating normally.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q5: What condition is required for the system to start functioning automatically?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Adequate compressed air supply must be available to the unit.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q6: What is the function of the H₂S Monitor/Indicator?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    It continuously samples the process stream and measures the concentration of Hydrogen Sulfide (H₂S).
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q7: What type of signal does the H₂S analyzer send to the control system?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    It sends a control signal to the PLC, which adjusts the chemical injection rate accordingly.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q8: What happens when H₂S concentration increases?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    The PLC increases the chemical injection dosage to remove more H₂S from the process stream.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q9: What happens when H₂S concentration decreases?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    The PLC reduces the chemical injection dosage to optimize chemical consumption.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q10: What is the purpose of automatic dosage adjustment?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    To maintain H₂S levels within the acceptable target range while minimizing chemical usage.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q11: What happens after the PLC sends a command to the injection pump?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    The pump starts injecting H₂S scavenger chemical into the process line.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q12: What is the purpose of injecting the scavenger chemical?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    To chemically react with and remove Hydrogen Sulfide from the produced fluids.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q13: What is the sweetening process?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Sweetening is the treatment process that reduces H₂S concentration to acceptable operational limits.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q14: Is chemical injection performed manually during normal operation?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    No. Under AUTO mode, the PLC automatically controls the injection rate based on H₂S readings.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q15: What role does the air supply play during operation?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    The air supply powers the pneumatic components and drives the chemical injection pump.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q16: What should the operator monitor during operation?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    H₂S readings, pump performance, air pressure, chemical tank level, and PLC status indicators.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q17: What should be done if the injection pump fails to operate correctly?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Consult the troubleshooting guide and inspect the system for faults.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q18: When should instrument support be contacted?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    When troubleshooting cannot resolve the problem or when instrument-related faults are suspected.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q19: What is the overall purpose of the operating procedure?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    To continuously monitor H₂S concentration and automatically inject the correct amount of scavenger chemical for safe sweetening operations.
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q20: What is the expected result of proper operation?
+                                </b>
+                
+                                <p style="margin-top: 15px;">
+                                    Safe reduction of H₂S concentration to approved limits while protecting personnel, equipment, and the environment.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    
+                    
+                    <hr>
+                    
+                    <h3>Operating Sequence Summary</h3>
+                    
+                    <pre>
+                    Verify P&ID Connections
+                              ↓
+                    Power ON PLC Controller
+                              ↓
+                    Confirm Air Supply Available
+                              ↓
+                    H₂S Analyzer Starts Sampling
+                              ↓
+                    PLC Receives H₂S Signal
+                              ↓
+                    PLC Calculates Required Dosage
+                              ↓
+                    Injection Pump Starts
+                              ↓
+                    Scavenger Chemical Injected
+                              ↓
+                    H₂S Concentration Reduced
+                              ↓
+                    Continuous Automatic Control
+                    </pre>
+                    
+                    </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab8')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab8">
+                <div class="explain-modern">
+
+                    <h3>H₂S Sweetening Unit – System Disconnection Procedure</h3>
+                    
+                    <ul>
+
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q1: What is the purpose of the System Disconnection procedure?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    The procedure ensures the H₂S Sweetening Unit is safely isolated, depressurized, cleaned, and disconnected after operations are completed.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q2: What is the first step when disconnecting the system?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    Reset all pressure regulators to zero to eliminate operating pressure from the unit.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q3: Why should pressure regulators be reset to zero?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    To prevent accidental pressure buildup and ensure safe shutdown of the pneumatic and chemical injection systems.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q4: What should be done after resetting the regulators?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    Turn OFF the power supply switch of the PLC electronic controller.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q5: Why is the PLC controller switched OFF before disconnection?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    To stop all automatic monitoring, control, and chemical injection functions.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q6: What is the next step after turning off the PLC?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    Disconnect or unplug the electronic controller from its power source.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q7: Why should the controller be unplugged?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    To completely isolate the system electrically and prevent accidental startup.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q8: What does "Depressurize the System" mean?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    It means releasing all trapped pressure from the process lines, pump, hoses, and associated equipment.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q9: Why is depressurization important?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    It prevents injuries, equipment damage, and uncontrolled release of fluids or chemicals during disconnection.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q10: What should the system pressure be before disconnecting any lines?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    The system pressure should be reduced to zero psig.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q11: What is meant by "Bleed Off" the system?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    Bleeding off means safely venting any remaining trapped pressure from the unit.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q12: What is the purpose of flushing the system with water?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    To remove residual H₂S scavenger chemicals and clean the internal piping and equipment.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q13: Which parts benefit from water flushing?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    The injection pump, tubing, process piping, valves, and chemical injection lines.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q14: Why is flushing important before storage or transportation?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    It prevents chemical deposits, blockages, corrosion, and contamination inside the system.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q15: What chemicals are typically removed during flushing?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    Residual EMO-XXXX H₂S scavenger chemicals or other approved treatment chemicals.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q16: What is the final physical step in the disconnection procedure?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    Disconnect all system lines from the process lines.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q17: Which connections are normally disconnected?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    Process inlet lines, outlet lines, air supply lines, and chemical injection connections.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q18: Why should process lines only be disconnected after depressurization?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    To avoid sudden release of pressure, fluids, or chemicals that could cause injury or equipment damage.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q19: What condition should the unit be in after completing all disconnection steps?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    The unit should be pressure-free, electrically isolated, clean, and safe for maintenance, transportation, or storage.
+                                </p>
+                            </div>
+                        </li>
+                    
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q20: What are the main safety objectives of the disconnection procedure?
+                                </b>
+                                <p style="margin-top: 15px;">
+                                    To protect personnel, equipment, and the environment by ensuring a controlled and safe shutdown process.
+                                </p>
+                            </div>
+                        </li>
+                    
+                    </ul>
+                    
+                    <hr>
+                    
+                    <h3>System Disconnection Flow</h3>
+                    
+                    <pre>
+                    Finish Operation
+                            ↓
+                    Reset Regulators to Zero
+                            ↓
+                    Switch OFF PLC Controller
+                            ↓
+                    Disconnect Power Supply
+                            ↓
+                    Depressurize System
+                            ↓
+                    Bleed Off Remaining Pressure
+                            ↓
+                    Flush System with Water
+                            ↓
+                    Disconnect Process Lines
+                            ↓
+                    Ready for Maintenance / Storage / Transport
+                    </pre>
+                    
+                    </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab7')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab9')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab9">
+                <div class="explain-modern">
+                    <h3>Course Operational layouts </h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                        <img src="img/1.jpeg" alt="Unit Specifications & Drawings" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/2.jpeg" alt=" Unit Specifications & Drawings " style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/3.jpeg" alt=" Unit Specifications & Drawings " style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/4.jpeg" alt=" Williams Solenoid Valve (Model – SV-024 and SV-120):  " style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/5.jpeg" alt=" Williams Solenoid Valve (Model – SV-024 and SV-120):  " style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/6.jpeg" alt="  Williams Electronic Pump Controller (Model – Wpc-9001):  " style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        
+                        <hr>
+
+                        <ul>
+
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q1: What is the H₂S Sweetening Unit used for?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        It is used in sour oil and gas operations to treat produced fluids containing Hydrogen Sulfide (H₂S),
+                                        reducing toxicity and corrosion risks before sending fluids to flow lines or storage tanks.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q2: What is the main objective of the system?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        To reduce H₂S concentration in produced fluids to a safe acceptable range (0–20 ppm) while protecting personnel,
+                                        equipment integrity, and the environment.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q3: How does the system work in general?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        The system uses an H₂S probe (4–20 mA signal) connected to a PLC that automatically controls a chemical injection pump
+                                        to dose scavenger chemicals based on real-time H₂S readings.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q4: What chemicals are used in the process?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        Environmentally friendly organic scavenger chemicals (e.g., EMO-XXXX) are injected to neutralize dissolved H₂S in the flow stream.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q5: What is the role of the PLC system?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        The PLC acts as the central controller, receiving signals from the H₂S analyzer and adjusting pump injection rates automatically or manually.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q6: What is the operating philosophy?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        The system continuously monitors H₂S levels and adjusts chemical dosing in real time to maintain safe limits below 20 ppm
+                                        during well testing and backflow operations.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q7: What are the key safety features?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        The unit is designed for Zone II hazardous areas, includes intrinsically safe PLC systems, and is integrated with ESD shutdown
+                                        to protect personnel, equipment, and the environment.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q8: What is required during start-up?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        Proper mechanical, electrical, and air connections must be completed, regulators set correctly, chemical tank filled,
+                                        and PLC powered in AUTO mode before operation begins.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q9: What is the normal operating process?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        The H₂S sensor detects gas levels, sends a 4–20 mA signal to the PLC, which controls the pump to inject the required chemical dosage,
+                                        maintaining continuous automatic sweetening.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q10: What happens when H₂S increases or decreases?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        The PLC increases chemical injection when H₂S rises and reduces dosage when levels drop to optimize chemical consumption and maintain target limits.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q11: What is the pump system role?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        The pneumatic metering pump injects scavenger chemicals into the process line, controlled by air supply and PLC signals for precise dosing.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q12: What is the function of the air system?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        Instrument air powers the pneumatic pump system and ensures stable and controlled injection performance.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q13: What happens during shutdown or disconnection?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        The system is safely isolated by resetting regulators, switching off PLC, depressurizing, flushing with water, and disconnecting all process lines.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q14: Why is flushing important?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        Flushing removes residual chemicals, prevents corrosion and blockages, and prepares the system for storage or transport.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q15: What are the main safety principles?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        Safe handling of toxic H₂S gas, controlled chemical injection, pressure isolation, and emergency shutdown capability are key safety priorities.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q16: What is the overall system design based on?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        The system is designed for high-pressure sour service up to 1440 psi, Zone II environments, and fully automated PLC-based control with manual override options.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="content-card">
+                                    <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                        Q17: What is the final outcome of the system?
+                                    </b>
+                                    <p style="margin-top: 15px;">
+                                        Safe reduction of H₂S levels in produced fluids, ensuring compliance with environmental standards, operational safety, and asset protection.
+                                    </p>
+                                </div>
+                            </li>
+                        
+                        </ul>
+
+
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab8')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab10')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab10">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab9')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 10; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Operate ESD valve | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">How to Operate ESD valve</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Compressor course in Well Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>Emergency Surface Shutdown Valve (ESDV)</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">What is an ESD Valve?</b>
+                                <p>
+                                    The Emergency Surface Shutdown Valve (ESDV) is a hydraulic actuated gate valve
+                                    designed to provide an additional layer of safety protection on the well test
+                                    spread. It works alongside the Master Valve (MV) and Wing Valve (WV) installed
+                                    on the wellhead tree.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">How Does the ESDV Operate?</b>
+                                <p>
+                                    The valve is controlled by a hydraulic control panel or by High/Low Pressure
+                                    Pilots (Hi/Lo Pilots). It can automatically shut down when unsafe operating
+                                    conditions occur or manually by the Well Test crew through the ESD Panel.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Main Safety Function</b>
+                                <p>
+                                    The ESDV provides emergency isolation of well flow whenever abnormal pressure
+                                    conditions or emergency situations are detected, protecting personnel,
+                                    equipment, and the environment.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Typical Installation Location</b>
+                                <ol style="margin-top: 15px;">
+                                    <li>Normally installed upstream of the Choke Manifold.</li>
+                                    <li>Connected to High/Low Pressure Pilots for automatic shutdown.</li>
+                                    <li>May also be installed downstream of the Choke Manifold and upstream of the Heater to protect against pressure surges.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Operating Methods</b>
+                                <ol style="margin-top: 15px;">
+                                    <li>Manual shutdown from the ESD Control Panel.</li>
+                                    <li>Remote shutdown from remote ESD stations.</li>
+                                    <li>Automatic shutdown by Hi/Lo Pressure Pilots.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">Hydraulic Pressure Precaution</b>
+                                <p>
+                                    When opening the ESD Valve, consider the effect of hydraulic oil thermal
+                                    expansion. Excessive hydraulic pressure may damage the actuator system.
+                                </p>
+                                <p>
+                                    <mark>Do not exceed the normal operating hydraulic pressure range of 2000–3000 psig.</mark>
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">Important Limitation</b>
+                                <p>
+                                    The ESD Valve is intended purely as a safety device and should not be used
+                                    for pressure testing of surface equipment.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">Emergency Shutdown Recommendation</b>
+                                <p>
+                                    Following an emergency shutdown, it is recommended to equalize pressure on
+                                    both the upstream and downstream sides of the ESD Valve before reopening
+                                    whenever possible.
+                                </p>
+                                <p>
+                                    This helps protect the gate and seat components from erosion and excessive wear.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Key Learning Points</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>ESDV = Emergency Surface Shutdown Valve.</li>
+                                    <li>Hydraulically actuated gate valve.</li>
+                                    <li>Provides emergency isolation of well flow.</li>
+                                    <li>Can be operated manually, remotely, or automatically.</li>
+                                    <li>Usually installed before the Choke Manifold.</li>
+                                    <li>Not recommended for pressure testing operations.</li>
+                                    <li>Maximum hydraulic operating pressure should remain within 2000–3000 psig.</li>
+                                    <li>Pressure equalization is recommended before reopening after an emergency shutdown.</li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Air Compressor Operational Course Profile Diagram">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>2- Sizes of Emergency Shutdown Valves (ESDV)</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">ESDV Design Standards</b>
+                                <p>
+                                    Emergency Shutdown Valves (ESDVs) are hydraulic actuated gate valves
+                                    manufactured in accordance with <mark>API Standards</mark> to ensure safe,
+                                    reliable, and standardized operation in oil and gas applications.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Connection Types</b>
+                                <p>
+                                    Depending on the required Cold Working Pressure (CWP) and system design,
+                                    ESD valves may be equipped with:
+                                </p>
+                                <ol style="margin-top: 15px;">
+                                    <li><mark>Hammer Union Connections</mark></li>
+                                    <li><mark>Greylock Connections</mark></li>
+                                </ol>
+                                <p>
+                                    These connection types provide secure, pressure-rated connections for
+                                    high-pressure well testing operations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Available Valve Sizes & Pressure Ratings</b>
+                                <p>
+                                    ESD valves are available in different sizes and pressure ratings to match
+                                    various well conditions and operating requirements:
+                                </p>
+                
+                                <table style="width:100%; margin-top:15px;">
+                                    <tr>
+                                        <th>Valve Size</th>
+                                        <th>Pressure Rating</th>
+                                    </tr>
+                                    <tr>
+                                        <td>3 inch</td>
+                                        <td>5,000 psig</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3 inch & 4 inch</td>
+                                        <td>10,000 psig</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3 inch & 4 inch</td>
+                                        <td>15,000 psig</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3 inch & 4 inch</td>
+                                        <td>20,000 psig</td>
+                                    </tr>
+                                </table>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Why Different Pressure Ratings?</b>
+                                <p>
+                                    Different wells operate at different pressures. Higher pressure wells
+                                    require ESD valves with higher pressure ratings to safely contain the
+                                    well fluids and maintain operational integrity.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">Sour Service Certification</b>
+                                <p>
+                                    All hydraulic operated ESD gate valves are certified for
+                                    <mark>Sour Service</mark> applications.
+                                </p>
+                
+                                <p>
+                                    This means they are specially designed and manufactured to safely handle
+                                    fluids containing:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li><mark>H₂S (Hydrogen Sulfide)</mark></li>
+                                    <li><mark>CO₂ (Carbon Dioxide)</mark></li>
+                                </ul>
+                
+                                <p>
+                                    The valve materials comply with sour service requirements to prevent
+                                    sulfide stress cracking, corrosion, and material failure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">Key Learning Points</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>ESDVs are API certified hydraulic gate valves.</li>
+                                    <li>Available with Hammer Union or Greylock connections.</li>
+                                    <li>Common sizes are 3" and 4".</li>
+                                    <li>Pressure ratings range from 5,000 psi to 20,000 psi.</li>
+                                    <li>Used for emergency isolation of well flow.</li>
+                                    <li>Certified for Sour Service containing H₂S and CO₂.</li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Ingersoll Rand Integrated Instrument Display Panel Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>3- Opening the Emergency Shutdown Valve (ESDV)</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Fail-Close Valve Design</b>
+                                <p>
+                                    The ESDV is a <mark>spring-loaded hydraulic gate valve</mark> designed as a
+                                    <mark>Fail-Close Safety Valve</mark>. Hydraulic pressure must be applied to the
+                                    actuator in order to open the valve. If hydraulic pressure is lost, the valve
+                                    automatically closes to protect personnel and equipment.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Check Hydraulic Oil Level</b>
+                                <p>
+                                    Before operating the valve, ensure the ESD Control Panel hydraulic oil reservoir
+                                    is at least <mark>80% full</mark>. Adequate hydraulic oil is required to generate
+                                    pressure and move the valve actuator.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Connect the Hydraulic Control Line</b>
+                                <p>
+                                    Connect the ESD Panel output to the ESDV actuator using a
+                                    <mark>½" Ball Valve / Needle Valve Manifold</mark> and install a suitable
+                                    pressure gauge for monitoring hydraulic pressure during operation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Quick Release System for Gas Wells</b>
+                                <p>
+                                    For gas well operations, it is recommended to install a
+                                    <mark>Hydraulic Quick Release System</mark> on the ½" manifold.
+                                </p>
+                                <ul style="margin-top: 15px;">
+                                    <li>Provides rapid emergency shutdown.</li>
+                                    <li>Reduces valve closing time.</li>
+                                    <li>Typical shutdown response time: <mark>5–10 seconds</mark>.</li>
+                                    <li>Should be connected to a proper dumping bucket.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Verify Air Supply Pressure</b>
+                                <p>
+                                    Ensure the control panel receives sufficient air or nitrogen supply pressure.
+                                </p>
+                                <p>
+                                    Recommended supply pressure:
+                                    <mark>80 – 100 psig</mark>
+                                </p>
+                                <p>
+                                    Perform a functional test before operating the valve.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Adjust Hydraulic Pressure</b>
+                                <p>
+                                    Set the ESDV hydraulic regulator output to approximately
+                                    <mark>2000 psig</mark>.
+                                </p>
+                
+                                <p>
+                                    Although the actuator may be rated up to
+                                    <mark>10,000 psig</mark>, the normal operating pressure range is:
+                                </p>
+                
+                                <p>
+                                    <mark>1500 – 2000 psig</mark>
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Open the ESD Valve</b>
+                                <ol style="margin-top: 15px;">
+                                    <li>Apply hydraulic pressure between <mark>1500 – 2000 psig</mark>.</li>
+                                    <li>Observe the actuator stem movement.</li>
+                                    <li>Continue pressurizing until the stem reaches its fully open position.</li>
+                                    <li>Confirm that the ESDV gate valve is completely open.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Activate the Safety System</b>
+                                <p>
+                                    After opening the valve, energize the control panel to ensure automatic
+                                    shutdown protection is active.
+                                </p>
+                
+                                <p>The ESDV should respond to:</p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Manual Emergency Shutdown</li>
+                                    <li>High Pressure Pilots</li>
+                                    <li>Low Pressure Pilots</li>
+                                    <li>High Level Pilots</li>
+                                    <li>Low Level Pilots</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">Important Note A – Pressure Equalization</b>
+                                <p>
+                                    Following an Emergency Shutdown, it is recommended to equalize pressure
+                                    upstream and downstream of the ESDV before reopening whenever possible.
+                                </p>
+                
+                                <p>
+                                    This minimizes gate erosion and protects internal valve components from
+                                    excessive wear.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">Important Note B – Choke Manifold Precaution</b>
+                                <p>
+                                    If the ESDV has closed during operations due to an emergency shutdown,
+                                    it is recommended to close the <mark>Choke Manifold</mark> before
+                                    re-energizing the ESD system.
+                                </p>
+                
+                                <p>
+                                    This prevents pressure surges and reduces the risk of
+                                    <mark>Hammer Effect (Water Hammer)</mark> damage to equipment and pipework.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">Key Learning Points</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>ESDV is a Fail-Close hydraulic safety valve.</li>
+                                    <li>Hydraulic oil reservoir should be at least 80% full.</li>
+                                    <li>Required air supply pressure is 80–100 psig.</li>
+                                    <li>Normal hydraulic operating pressure is 1500–2000 psig.</li>
+                                    <li>Quick Release Systems are recommended for gas wells.</li>
+                                    <li>Always monitor stem movement during opening.</li>
+                                    <li>Pressure equalization is recommended before reopening after ESD activation.</li>
+                                    <li>Close the Choke Manifold before restarting the system to avoid Hammer Effect.</li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Atlas Copco Unit Integration Systems Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>4- Closing the Emergency Shutdown Valve (ESDV)</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">Fail-Close Operating Principle</b>
+                                <p>
+                                    The ESDV is a <mark>spring-loaded Fail-Close gate valve</mark>. To close the valve,
+                                    hydraulic pressure must be released from the actuator by allowing the hydraulic oil
+                                    to return to the panel oil reservoir.
+                                </p>
+                
+                                <p>
+                                    Once hydraulic pressure is removed, the internal spring force automatically pushes
+                                    the actuator back and closes the gate valve.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Check Reservoir Capacity</b>
+                                <p>
+                                    Before closing the ESDV, ensure that the control panel oil reservoir has enough
+                                    free capacity to receive the returned hydraulic oil.
+                                </p>
+                
+                                <p>
+                                    Recommended reservoir level:
+                                    <mark>Approximately 60% Full</mark>
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Monitor Hydraulic Pressure</b>
+                                <p>
+                                    Observe the pressure gauge installed on the
+                                    <mark>½" Ball / Needle Valve Manifold</mark>.
+                                </p>
+                
+                                <p>
+                                    As the valve closes, hydraulic pressure should gradually decrease until it reaches:
+                                </p>
+                
+                                <p>
+                                    <mark>0 psig</mark>
+                                </p>
+                
+                                <p>
+                                    Zero pressure on both the manifold gauge and the ESD panel gauge confirms that the
+                                    valve has fully closed.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Quick Emergency Closure (Gas Wells)</b>
+                                <p>
+                                    For gas well operations, a <mark>Hydraulic Quick Release System</mark> is highly
+                                    recommended.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Installed on the ½" hydraulic manifold.</li>
+                                    <li>Connected to a proper dumping bucket.</li>
+                                    <li>Provides rapid hydraulic pressure release.</li>
+                                    <li>Typical shutdown response time: <mark>5–10 seconds</mark>.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">Manual Valve Closure</b>
+                                <p>
+                                    The ESDV may be closed manually by turning the control manifold ball valve
+                                    indicator from:
+                                </p>
+                
+                                <p>
+                                    <mark>SERVICE → SHUT IN</mark>
+                                </p>
+                
+                                <p>
+                                    This action releases hydraulic pressure back to the reservoir and allows the spring
+                                    mechanism to close the valve.
+                                </p>
+                
+                                <p>
+                                    Continue monitoring the pressure gauge until it reaches <mark>0 psig</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #ef4444; font-size: 1.1rem;">Emergency Shutdown Method</b>
+                                <p>
+                                    In an emergency situation, the ESDV can be closed instantly by pressing the
+                                    <mark>RED Emergency Shutdown Button</mark> located on the ESD Control Panel.
+                                </p>
+                
+                                <p>
+                                    This action initiates a complete system shutdown and rapidly dumps hydraulic pressure,
+                                    causing all connected safety valves to move to their fail-safe position.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">Important Note A – Pressure Equalization</b>
+                                <p>
+                                    After an Emergency Shutdown, it is recommended to equalize pressure on both sides
+                                    of the ESD Valve whenever possible.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Reduces gate erosion.</li>
+                                    <li>Protects valve internals.</li>
+                                    <li>Improves valve service life.</li>
+                                    <li>Minimizes pressure shock during reopening.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">Important Note B – Choke Manifold Precaution</b>
+                                <p>
+                                    Whenever the ESDV has shut in due to an emergency activation,
+                                    it is recommended to close the <mark>Choke Manifold</mark>
+                                    before attempting to re-energize the ESD system.
+                                </p>
+                
+                                <p>
+                                    This prevents:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Pressure Surges</li>
+                                    <li>Hammer Effect (Water Hammer)</li>
+                                    <li>Equipment Damage</li>
+                                    <li>Pipework Stress</li>
+                                    <li>Valve Impact Loads</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">Key Learning Points</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>ESDV is a Spring-Loaded Fail-Close Safety Valve.</li>
+                                    <li>Closing is achieved by releasing hydraulic pressure back to the reservoir.</li>
+                                    <li>Reservoir should have sufficient free capacity (around 60% full).</li>
+                                    <li>Valve closure is confirmed when hydraulic pressure reaches 0 psig.</li>
+                                    <li>Quick Release Systems are recommended for gas wells.</li>
+                                    <li>Manual closure is performed by switching from SERVICE to SHUT IN.</li>
+                                    <li>Emergency closure is performed using the RED Emergency Shutdown Button.</li>
+                                    <li>Always equalize pressure before reopening when possible.</li>
+                                    <li>Close the Choke Manifold before restarting after an ESD event.</li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Operational Metrics Summary Cover Block">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>Emergency Shutdown Valve (ESDV) – Course Summary</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">What is an ESDV?</b>
+                                <p>
+                                    The <mark>Emergency Shutdown Valve (ESDV)</mark> is a hydraulic-operated,
+                                    spring-loaded <mark>Fail-Close Gate Valve</mark> used as a critical safety device
+                                    during Well Testing operations.
+                                </p>
+                
+                                <p>
+                                    It provides an additional layer of protection to the
+                                    <mark>Master Valve (MV)</mark>,
+                                    <mark>Wing Valve (WV)</mark>,
+                                    and other tree safety valves by automatically isolating well flow during emergency conditions.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Main Functions</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>Provides emergency well isolation.</li>
+                                    <li>Protects personnel and equipment.</li>
+                                    <li>Responds to High/Low Pressure Pilots.</li>
+                                    <li>Responds to High/Low Level Pilots.</li>
+                                    <li>Can be activated manually or automatically.</li>
+                                    <li>Protects process equipment from abnormal operating conditions.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Location of ESDV</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>Normally installed upstream of the Choke Manifold.</li>
+                                    <li>Connected to Hi/Lo Pressure Pilot systems.</li>
+                                    <li>Can also be installed upstream of the Heater to protect against pressure surges.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Available Sizes & Ratings</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>3" × 5,000 psig</li>
+                                    <li>3" & 4" × 10,000 psig</li>
+                                    <li>3" & 4" × 15,000 psig</li>
+                                    <li>3" & 4" × 20,000 psig</li>
+                                    <li>API Certified Gate Valves</li>
+                                    <li>Hammer Union or Greylock Connections</li>
+                                    <li>Sour Service Certified (H₂S / CO₂)</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">Opening the ESDV</b>
+                                <ol style="margin-top: 15px;">
+                                    <li>Verify hydraulic oil reservoir is approximately <mark>80% full</mark>.</li>
+                                    <li>Check air supply pressure <mark>(80–100 psig)</mark>.</li>
+                                    <li>Connect hydraulic control line and pressure gauge.</li>
+                                    <li>Adjust hydraulic regulator to approximately <mark>2000 psig</mark>.</li>
+                                    <li>Apply hydraulic pressure between <mark>1500–2000 psig</mark>.</li>
+                                    <li>Observe stem movement until valve is fully open.</li>
+                                    <li>Activate ESD panel and safety shutdown system.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">Closing the ESDV</b>
+                                <ol style="margin-top: 15px;">
+                                    <li>Release hydraulic pressure back to the oil reservoir.</li>
+                                    <li>Ensure reservoir has enough free volume (<mark>approximately 60% full</mark>).</li>
+                                    <li>Observe pressure decreasing to <mark>0 psig</mark>.</li>
+                                    <li>The internal spring automatically closes the valve.</li>
+                                    <li>Valve can be closed manually by switching from <mark>SERVICE → SHUT IN</mark>.</li>
+                                    <li>Emergency closure can be initiated using the <mark>RED ESD Button</mark>.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">Emergency Shutdown Sequence</b>
+                                <p>
+                                    During an emergency, the ESD system rapidly dumps hydraulic pressure,
+                                    causing the ESDV to automatically move to its fail-safe closed position.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Manual ESD Button Activation</li>
+                                    <li>Remote Shutdown Station Activation</li>
+                                    <li>High Pressure Pilot Trip</li>
+                                    <li>Low Pressure Pilot Trip</li>
+                                    <li>High Level Pilot Trip</li>
+                                    <li>Low Level Pilot Trip</li>
+                                    <li>Loss of Hydraulic Pressure</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #8b5cf6; font-size: 1.1rem;">Quick Release System</b>
+                                <p>
+                                    Gas wells should utilize a <mark>Hydraulic Quick Release System</mark>
+                                    connected to the ½" manifold.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Provides rapid pressure dumping.</li>
+                                    <li>Reduces shutdown time to approximately <mark>5–10 seconds</mark>.</li>
+                                    <li>Improves emergency response performance.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f59e0b; font-size: 1.1rem;">Important Operational Precautions</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>Never exceed recommended hydraulic pressure of <mark>2000–3000 psig</mark>.</li>
+                                    <li>Consider hydraulic oil thermal expansion effects.</li>
+                                    <li>Equalize pressure upstream and downstream before reopening after shutdown.</li>
+                                    <li>Close the Choke Manifold before re-energizing the ESD system.</li>
+                                    <li>Avoid Hammer Effect (pressure surge) damage.</li>
+                                    <li>Do not use the ESDV for pressure testing operations.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #06b6d4; font-size: 1.1rem;">Key Learning Points</b>
+                                <ul style="margin-top: 15px;">
+                                    <li>ESDV = Emergency Shutdown Safety Valve.</li>
+                                    <li>Hydraulic Operated + Spring Loaded = Fail Close.</li>
+                                    <li>Opens using hydraulic pressure.</li>
+                                    <li>Closes when hydraulic pressure is released.</li>
+                                    <li>Primary purpose is emergency well isolation.</li>
+                                    <li>Controlled by ESD Panel and Safety Pilots.</li>
+                                    <li>Common operating pressure: 1500–2000 psig.</li>
+                                    <li>Air supply required: 80–100 psig.</li>
+                                    <li>Quick Release Systems improve shutdown response.</li>
+                                    <li>Always prioritize safety and pressure equalization procedures.</li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+                    <h3>ESDV Course – Questions & Answers</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b>Q1: What does ESDV stand for?</b>
+                                <p><mark>A:</mark> Emergency Shutdown Valve.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q2: What is the primary purpose of an ESDV?</b>
+                                <p><mark>A:</mark> To safely isolate well flow during emergency conditions.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q3: What type of valve is an ESDV?</b>
+                                <p><mark>A:</mark> A hydraulic-operated, spring-loaded gate valve.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q4: What is meant by "Fail Close"?</b>
+                                <p><mark>A:</mark> The valve automatically closes when hydraulic pressure is lost.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q5: Where is the ESDV normally installed?</b>
+                                <p><mark>A:</mark> Upstream of the Choke Manifold.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q6: What devices can automatically trigger an ESD shutdown?</b>
+                                <p><mark>A:</mark> High/Low Pressure Pilots and High/Low Level Pilots.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q7: Can the ESDV be operated manually?</b>
+                                <p><mark>A:</mark> Yes, from the control panel or by remote shutdown systems.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q8: What hydraulic pressure is normally required to open the ESDV?</b>
+                                <p><mark>A:</mark> Approximately 1500–2000 psig.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q9: What should be the minimum hydraulic oil level before opening the valve?</b>
+                                <p><mark>A:</mark> Around 80% full.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q10: What air supply pressure is required for the control panel?</b>
+                                <p><mark>A:</mark> 80–100 psig.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q11: What indicates that the ESDV is fully open?</b>
+                                <p><mark>A:</mark> Full stem movement and stable hydraulic pressure.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q12: What should be observed while opening the valve?</b>
+                                <p><mark>A:</mark> The actuator stem movement and hydraulic pressure gauge.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q13: Why is a hydraulic quick release system recommended for gas wells?</b>
+                                <p><mark>A:</mark> To achieve rapid emergency shutdown within 5–10 seconds.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q14: How is the ESDV manually closed?</b>
+                                <p><mark>A:</mark> By switching the ball valve indicator from SERVICE to SHUT IN.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q15: What pressure should the hydraulic gauge show when the valve is fully closed?</b>
+                                <p><mark>A:</mark> 0 psig.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q16: What happens to the hydraulic oil when the ESDV closes?</b>
+                                <p><mark>A:</mark> It returns to the control panel oil reservoir.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q17: Why should upstream and downstream pressure be equalized after an emergency shutdown?</b>
+                                <p><mark>A:</mark> To reduce gate erosion and protect valve internals.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q18: Why should the Choke Manifold be closed before re-energizing the ESD system?</b>
+                                <p><mark>A:</mark> To prevent Hammer Effect and pressure surges.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q19: Is the ESDV recommended for pressure testing operations?</b>
+                                <p><mark>A:</mark> No, it is intended only as a safety shutdown device.</p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b>Q20: What service are hydraulic-operated ESDVs certified for?</b>
+                                <p><mark>A:</mark> Sour Service (H₂S and CO₂ environments).</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 7; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

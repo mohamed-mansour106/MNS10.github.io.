@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Operate Eruption Manifold | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">How to Operate Eruption Manifold</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Compressor course in Well Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>1- Eruption Manifold Description & Specifications</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    What is an Eruption Manifold?
+                                </b>
+                
+                                <p>
+                                    An Eruption Manifold is a high-pressure flow control manifold used in
+                                    Surface Well Testing (SWT) and production operations to safely control,
+                                    route, and divert well fluids under high-pressure conditions.
+                                </p>
+                
+                                <p>
+                                    It is specifically designed to handle severe service applications,
+                                    including wells containing H₂S and CO₂.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Sour Service Design
+                                </b>
+                
+                                <p>
+                                    The Eruption Manifold is manufactured for
+                                    <mark>Sour Service</mark> applications.
+                                </p>
+                
+                                <p>
+                                    This means it is suitable for handling fluids containing:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Hydrogen Sulfide (H₂S)</li>
+                                    <li>Carbon Dioxide (CO₂)</li>
+                                </ul>
+                
+                                <p>
+                                    Special materials are used to resist corrosion, sulfide stress
+                                    cracking, and other failures associated with sour environments.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Size and Pressure Rating
+                                </b>
+                
+                                <p>
+                                    The manifold is rated as:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li><mark>2 Inch Line Size</mark></li>
+                                    <li><mark>10,000 psi Cold Working Pressure (CWP)</mark></li>
+                                </ul>
+                
+                                <p>
+                                    This high-pressure rating makes the manifold suitable for demanding
+                                    well testing and production operations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Valve Configuration
+                                </b>
+                
+                                <p>
+                                    The Eruption Manifold is equipped with:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>8 Plug Valves, or</li>
+                                    <li>8 Gate Valves</li>
+                                </ul>
+                
+                                <p>
+                                    Depending on the manifold design and operational requirements.
+                                </p>
+                
+                                <p>
+                                    These valves provide flexibility in directing and controlling
+                                    high-pressure well flow.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Inlet Connections
+                                </b>
+                
+                                <p>
+                                    The manifold contains multiple inlet connections to allow connection
+                                    from different process lines.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>4 × 2" Figure 1502 Threaded Inlet Connections</li>
+                                </ul>
+                
+                                <p>
+                                    Multiple inlets provide operational flexibility during flow routing
+                                    and well testing activities.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Outlet Connection
+                                </b>
+                
+                                <p>
+                                    The manifold is equipped with:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>1 × 3" Figure 1502 Wing Outlet Connection</li>
+                                </ul>
+                
+                                <p>
+                                    The outlet directs flow safely to downstream equipment and process systems.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Figure 1502 Hammer Union Connections
+                                </b>
+                
+                                <p>
+                                    The manifold uses <mark>Figure 1502 Hammer Union Connections</mark>,
+                                    which are widely used in high-pressure oilfield applications.
+                                </p>
+                
+                                <p>
+                                    These connections provide:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>High-pressure capability.</li>
+                                    <li>Reliable sealing performance.</li>
+                                    <li>Quick rig-up and rig-down operations.</li>
+                                    <li>Excellent durability in harsh field conditions.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    NACE MR0175 Compliance
+                                </b>
+                
+                                <p>
+                                    The Eruption Manifold complies with
+                                    <mark>NACE MR0175</mark> requirements.
+                                </p>
+                
+                                <p>
+                                    This international standard specifies material requirements for
+                                    equipment operating in sour service environments containing H₂S.
+                                </p>
+                
+                                <p>
+                                    Compliance helps prevent:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Sulfide Stress Cracking (SSC).</li>
+                                    <li>Hydrogen Embrittlement.</li>
+                                    <li>Corrosion-related failures.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Typical Applications
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Surface Well Testing (SWT).</li>
+                                    <li>High-Pressure Well Flow Operations.</li>
+                                    <li>Well Clean-Up Activities.</li>
+                                    <li>Production Testing.</li>
+                                    <li>Emergency Flow Routing.</li>
+                                    <li>Sour Gas and Sour Oil Operations.</li>
+                                </ul>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Air Compressor Operational Course Profile Diagram">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>2- Purpose & Benefits of Eruption Manifold</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Gathering Manifold for Dual String Wells
+                                </b>
+                
+                                <p>
+                                    The Eruption Manifold is designed to serve as a gathering and control
+                                    manifold for <mark>Dual String Wells</mark>.
+                                </p>
+                
+                                <p>
+                                    A dual string well contains two separate production strings:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Long String</li>
+                                    <li>Short String</li>
+                                </ul>
+                
+                                <p>
+                                    The manifold allows operators to safely manage, monitor, and direct
+                                    flow from both strings independently.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Saving Operational Time
+                                </b>
+                
+                                <p>
+                                    One of the major advantages of an Eruption Manifold is the ability to
+                                    switch flow from one string to another without disconnecting any
+                                    pipework or flowlines.
+                                </p>
+                
+                                <p>
+                                    This significantly reduces:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Rig-up time.</li>
+                                    <li>Rig-down time.</li>
+                                    <li>Operational delays.</li>
+                                    <li>Personnel exposure to hazardous operations.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Simultaneous Production and Treatment
+                                </b>
+                
+                                <p>
+                                    The Eruption Manifold allows operators to produce from one string
+                                    while simultaneously monitoring or treating the other string.
+                                </p>
+                
+                                <p>
+                                    Examples include:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Flowing the Long String while monitoring the Short String.</li>
+                                    <li>Producing one string while pumping acid into the other.</li>
+                                    <li>Testing one string while keeping the second string isolated.</li>
+                                </ul>
+                
+                                <p>
+                                    This flexibility improves efficiency and minimizes production downtime.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Independent Monitoring and Pumping Operations
+                                </b>
+                
+                                <p>
+                                    The manifold enables independent monitoring and pumping operations
+                                    on each production string.
+                                </p>
+                
+                                <p>
+                                    Operators can:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Monitor pressure on both strings.</li>
+                                    <li>Inject treatment chemicals.</li>
+                                    <li>Pump acid.</li>
+                                    <li>Perform well kill operations.</li>
+                                    <li>Conduct pressure testing.</li>
+                                </ul>
+                
+                                <p>
+                                    Each string can be controlled separately from different flow sources.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Well Kill Operations
+                                </b>
+                
+                                <p>
+                                    The Eruption Manifold allows kill fluid to be pumped into a selected
+                                    string without affecting the second string.
+                                </p>
+                
+                                <p>
+                                    This capability is important during well control, intervention,
+                                    and maintenance operations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Annulus Pressure Monitoring
+                                </b>
+                
+                                <p>
+                                    The manifold allows monitoring of both annulus spaces in a dual-string well:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li><mark>A Annulus (Production Tubing to Production Casing)</mark></li>
+                                    <li><mark>B Annulus (Between Casing Strings)</mark></li>
+                                </ul>
+                
+                                <p>
+                                    Continuous annulus monitoring helps detect:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Pressure build-up.</li>
+                                    <li>Tubing leaks.</li>
+                                    <li>Casing leaks.</li>
+                                    <li>Well integrity issues.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Key Benefits
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Provides control of dual-string wells.</li>
+                                    <li>Eliminates the need to disconnect flowlines when switching strings.</li>
+                                    <li>Allows production and treatment operations simultaneously.</li>
+                                    <li>Supports independent monitoring of each string.</li>
+                                    <li>Facilitates acid pumping and well kill operations.</li>
+                                    <li>Allows monitoring of A and B annulus pressures.</li>
+                                    <li>Improves operational efficiency and safety.</li>
+                                </ul>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Ingersoll Rand Integrated Instrument Display Panel Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>3- Applications & Operations of Eruption Manifold</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Flowing the Long String (LS) – Valve No. 8
+                                </b>
+                
+                                <p>
+                                    When the Long String (LS) is selected for production or well testing,
+                                    the flow path must be established safely through the Eruption Manifold.
+                                </p>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Ensure Choke Manifold gate valves are closed.</li>
+                                    <li>Verify all Eruption Manifold valves are closed.</li>
+                                    <li>Gradually open Valve No. 2.</li>
+                                    <li>Gradually open Valve No. 8.</li>
+                                    <li>Read the shut-in pressure using the DWT gauge (WHCIP).</li>
+                                    <li>Open the Choke Manifold to start clean-up or well testing operations.</li>
+                                </ol>
+                
+                                <p>
+                                    <mark>WHCIP = Wellhead Closed-In Pressure.</mark>
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Shutting In the Long String (LS)
+                                </b>
+                
+                                <p>
+                                    To safely isolate the Long String after testing or production:
+                                </p>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Close the Choke Manifold and stop well flow.</li>
+                                    <li>Close Valve No. 8.</li>
+                                    <li>Close Valve No. 2.</li>
+                                </ol>
+                
+                                <p>
+                                    This completely isolates the Long String from the flow path.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Flowing the Short String (SS) – Valve No. 5
+                                </b>
+                
+                                <p>
+                                    The Short String (SS) can be flowed independently through a separate
+                                    route within the Eruption Manifold.
+                                </p>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Ensure Choke Manifold gate valves are closed.</li>
+                                    <li>Confirm all Eruption Manifold valves are closed.</li>
+                                    <li>Gradually open Valve No. 1.</li>
+                                    <li>Gradually open Valve No. 5.</li>
+                                    <li>Record WHCIP using the DWT gauge.</li>
+                                    <li>Open the Choke Manifold to begin clean-up or testing operations.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Shutting In the Short String (SS)
+                                </b>
+                
+                                <p>
+                                    To isolate the Short String:
+                                </p>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Close the Choke Manifold.</li>
+                                    <li>Stop all well flow.</li>
+                                    <li>Close Valve No. 5.</li>
+                                    <li>Close Valve No. 1.</li>
+                                </ol>
+                
+                                <p>
+                                    The Short String is now fully shut in.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Acidizing / Kill Pumping to Short String (Valve No. 5)
+                                </b>
+                
+                                <p>
+                                    This configuration allows acid treatment or kill fluid to be pumped
+                                    into the Short String.
+                                </p>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Close all Eruption Manifold valves.</li>
+                                    <li>Gradually open Valve No. 5.</li>
+                                    <li>Gradually open Valve No. 3.</li>
+                                    <li>Gradually open Valve No. 6.</li>
+                                    <li>Record initial well pressure.</li>
+                                    <li>Start pumping acid or kill fluid (Bullheading operation).</li>
+                                </ol>
+                
+                                <p>
+                                    <mark>Bullheading</mark> means pumping fluid directly into the well
+                                    against formation pressure without allowing flow back to surface.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Shut In Pumping Operations to Short String
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Stop pumping operations.</li>
+                                    <li>Record well pressure.</li>
+                                    <li>Gradually close Valve No. 6.</li>
+                                    <li>Gradually close Valve No. 3.</li>
+                                    <li>Gradually close Valve No. 5.</li>
+                                </ol>
+                
+                                <p>
+                                    This safely isolates the pumping line and the Short String.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Acidizing / Kill Pumping to Long String (Valve No. 8)
+                                </b>
+                
+                                <p>
+                                    This configuration is used when treatment fluids must be pumped into
+                                    the Long String.
+                                </p>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Close all Eruption Manifold valves.</li>
+                                    <li>Gradually open Valve No. 8.</li>
+                                    <li>Gradually open Valve No. 4.</li>
+                                    <li>Gradually open Valve No. 6.</li>
+                                    <li>Record initial well pressure.</li>
+                                    <li>Start pumping acid or kill fluid.</li>
+                                </ol>
+                
+                                <p>
+                                    The Long String can now receive treatment fluid safely.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Shut In Pumping Operations to Long String
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Stop pumping.</li>
+                                    <li>Record well pressure.</li>
+                                    <li>Gradually close Valve No. 6.</li>
+                                    <li>Close the pumping line valve.</li>
+                                    <li>Close the Long String valve (Valve No. 8).</li>
+                                </ol>
+                
+                                <p>
+                                    This isolates both the pump and the Long String after treatment.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Key Learning Points
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Valve No. 8 is typically associated with the Long String (LS).</li>
+                                    <li>Valve No. 5 is typically associated with the Short String (SS).</li>
+                                    <li>Always record WHCIP before flowing the well.</li>
+                                    <li>Always close the Choke Manifold before shutting in a string.</li>
+                                    <li>Acid and kill fluids can be pumped independently into either string.</li>
+                                    <li>Valves should always be opened and closed gradually to prevent pressure shock.</li>
+                                    <li>Proper valve sequencing is critical for safe well control operations.</li>
+                                </ul>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Atlas Copco Unit Integration Systems Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>Eruption Manifold - Summary Q&A</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q1: What is an Eruption Manifold?
+                                </b>
+                                <p>
+                                    An Eruption Manifold is a high-pressure flow control manifold used to
+                                    direct, monitor, isolate, and control flow from dual-string wells.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q2: What is the working pressure of the Eruption Manifold?
+                                </b>
+                                <p>
+                                    The manifold is rated for <mark>10,000 psi Cold Working Pressure (CWP)</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q3: Why is the Eruption Manifold suitable for sour service?
+                                </b>
+                                <p>
+                                    Because it complies with <mark>NACE MR-0175</mark> requirements and is designed for
+                                    <mark>H₂S and CO₂ service</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q4: What is the main purpose of an Eruption Manifold?
+                                </b>
+                                <p>
+                                    To control flow from dual-string wells and allow production,
+                                    monitoring, acidizing, and well kill operations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q5: What are the two strings commonly connected to the manifold?
+                                </b>
+                                <p>
+                                    <mark>Long String (LS)</mark> and <mark>Short String (SS)</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q6: What is the benefit of switching between strings using the manifold?
+                                </b>
+                                <p>
+                                    It saves time because operators can switch strings without
+                                    disconnecting any flowlines or pipework.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q7: Which valve is connected to the Long String (LS)?
+                                </b>
+                                <p>
+                                    <mark>Valve No. 8</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q8: Which valve is connected to the Short String (SS)?
+                                </b>
+                                <p>
+                                    <mark>Valve No. 5</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q9: Which valves are opened to flow the Long String?
+                                </b>
+                                <p>
+                                    Open <mark>Valve No. 2</mark> and <mark>Valve No. 8</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q10: Which valves are opened to flow the Short String?
+                                </b>
+                                <p>
+                                    Open <mark>Valve No. 1</mark> and <mark>Valve No. 5</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q11: What must be recorded before opening the Choke Manifold?
+                                </b>
+                                <p>
+                                    <mark>WHCIP (Wellhead Closed-In Pressure)</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q12: What does WHCIP stand for?
+                                </b>
+                                <p>
+                                    <mark>Wellhead Closed-In Pressure</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q13: Which valve is commonly used as the Pump/Kill connection?
+                                </b>
+                                <p>
+                                    <mark>Valve No. 6</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q14: Which valves are opened to pump acid into the Short String?
+                                </b>
+                                <p>
+                                    Open <mark>Valve No. 5</mark>, <mark>Valve No. 3</mark>,
+                                    and <mark>Valve No. 6</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q15: Which valves are opened to pump acid into the Long String?
+                                </b>
+                                <p>
+                                    Open <mark>Valve No. 8</mark>, <mark>Valve No. 4</mark>,
+                                    and <mark>Valve No. 6</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q16: What is Bullheading?
+                                </b>
+                                <p>
+                                    Bullheading is pumping fluid directly into the well against formation pressure
+                                    without allowing returns to surface.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q17: What annulus pressures can be monitored using the Eruption Manifold?
+                                </b>
+                                <p>
+                                    Both <mark>A Annulus</mark> (Production-Casing) and
+                                    <mark>B Annulus</mark> (Casing-Casing).
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q18: Why should valves be opened and closed gradually?
+                                </b>
+                                <p>
+                                    To prevent pressure shock, water hammer effects,
+                                    and equipment damage.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Q19: What are the most important valves to remember?
+                                </b>
+                                <p>
+                                    <mark>Valve 8 = Long String (LS)</mark><br>
+                                    <mark>Valve 5 = Short String (SS)</mark><br>
+                                    <mark>Valve 6 = Pump / Kill Line</mark>
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Q20: What is the key learning point of the Eruption Manifold?
+                                </b>
+                                <p>
+                                    The Eruption Manifold allows safe control, monitoring,
+                                    production, testing, acidizing, and well kill operations
+                                    for dual-string wells while minimizing downtime and improving safety.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Operational Metrics Summary Cover Block">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>Eruption Manifold - Mind Map</h3>
+                
+                    <div class="content-card">
+                        <pre style="white-space: pre-wrap; font-family: Consolas, monospace; line-height: 1.8;">
+                
+                Eruption Manifold
+                │
+                ├── 1. Description & Specifications
+                │   │
+                │   ├── Sour Service Equipment
+                │   ├── 2" x 10,000 psi Working Pressure
+                │   ├── 8 Plug / Gate Valves
+                │   ├── Hammer Union Connections
+                │   ├── 4 Inlet Connections
+                │   │    └── 2" Fig 1502 Thread
+                │   ├── 1 Outlet Connection
+                │   │    └── 3" Fig 1502 Wing
+                │   ├── NACE MR-0175 Compliant
+                │   └── Suitable for H₂S / CO₂ Service
+                │
+                ├── 2. Purpose & Benefits
+                │   │
+                │   ├── Dual String Well Operations
+                │   │    ├── Long String (LS)
+                │   │    └── Short String (SS)
+                │   │
+                │   ├── Switch Between Strings
+                │   │    └── No Pipe Disconnection Required
+                │   │
+                │   ├── Simultaneous Operations
+                │   │    ├── Flow One String
+                │   │    └── Monitor / Acidize Other String
+                │   │
+                │   ├── Pump / Kill Operations
+                │   │    ├── Acid Pumping
+                │   │    └── Well Kill
+                │   │
+                │   └── Annulus Monitoring
+                │        ├── A Annulus
+                │        └── B Annulus
+                │
+                ├── 3. Main Valve Identification
+                │   │
+                │   ├── Valve 8 → Long String (LS)
+                │   ├── Valve 5 → Short String (SS)
+                │   ├── Valve 6 → Pump / Kill Line
+                │   ├── Valve 2 → LS Flow Route
+                │   ├── Valve 1 → SS Flow Route
+                │   ├── Valve 3 → SS Pump Route
+                │   └── Valve 4 → LS Pump Route
+                │
+                ├── 4. Long String Operations (LS)
+                │   │
+                │   ├── Flow LS
+                │   │    ├── Open Valve 2
+                │   │    ├── Open Valve 8
+                │   │    ├── Read WHCIP
+                │   │    └── Open Choke Manifold
+                │   │
+                │   └── Shut In LS
+                │        ├── Close Choke Manifold
+                │        ├── Close Valve 8
+                │        └── Close Valve 2
+                │
+                ├── 5. Short String Operations (SS)
+                │   │
+                │   ├── Flow SS
+                │   │    ├── Open Valve 1
+                │   │    ├── Open Valve 5
+                │   │    ├── Read WHCIP
+                │   │    └── Open Choke Manifold
+                │   │
+                │   └── Shut In SS
+                │        ├── Close Choke Manifold
+                │        ├── Close Valve 5
+                │        └── Close Valve 1
+                │
+                ├── 6. Acid / Kill Operations
+                │   │
+                │   ├── Pump to Short String
+                │   │    ├── Open Valve 5
+                │   │    ├── Open Valve 3
+                │   │    ├── Open Valve 6
+                │   │    └── Start Pumping
+                │   │
+                │   ├── Stop Pump to Short String
+                │   │    ├── Close Valve 6
+                │   │    ├── Close Valve 3
+                │   │    └── Close Valve 5
+                │   │
+                │   ├── Pump to Long String
+                │   │    ├── Open Valve 8
+                │   │    ├── Open Valve 4
+                │   │    ├── Open Valve 6
+                │   │    └── Start Pumping
+                │   │
+                │   └── Stop Pump to Long String
+                │        ├── Close Valve 6
+                │        ├── Close Valve 4
+                │        └── Close Valve 8
+                │
+                ├── 7. Important Terms
+                │   │
+                │   ├── WHCIP
+                │   │    └── Wellhead Closed-In Pressure
+                │   │
+                │   ├── DWT
+                │   │    └── Dead Weight Tester
+                │   │
+                │   ├── Bullheading
+                │   │    └── Pumping Against Formation Pressure
+                │   │
+                │   └── Sour Service
+                │        └── H₂S / CO₂ Resistant Equipment
+                │
+                └── 8. Safety Rules
+                    │
+                    ├── Open Valves Gradually
+                    ├── Close Choke Before Shut-In
+                    ├── Record WHCIP Before Flowing
+                    ├── Follow Correct Valve Sequence
+                    ├── Verify Pressure Before Pumping
+                    └── Use Proper Well Control Procedures
+                
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+                    <h3>Course Operational Mindmap Breakdown</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                        <img src="img/mindmap1.png" alt="Air Compressor Structural Knowledge Mindmap Architecture" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/summary1.png" alt="Process Workflow Operations Sequential Summary Map" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 7; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

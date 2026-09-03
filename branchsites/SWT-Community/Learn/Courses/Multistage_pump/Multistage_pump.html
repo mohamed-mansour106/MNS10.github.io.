@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Operate Multistage pump | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+
+
+        /*******************************************/
+        /* =====================================
+   MODERN EXPLAIN SECTION
+===================================== */
+
+.explain-modern{
+    background: linear-gradient(180deg,#0f172a,#111827);
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0;
+    color: #e2e8f0;
+    line-height: 1.8;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+.explain-modern h3{
+    color: #f1c40f;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #f1c40f;
+    padding-left: 15px;
+}
+
+.explain-modern h4{
+    color: #38bdf8;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.explain-modern p{
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.explain-modern ul{
+    margin: 15px 0 20px 25px;
+}
+
+.explain-modern li{
+    margin-bottom: 8px;
+}
+
+.explain-modern hr{
+    border: none;
+    height: 1px;
+    background: #334155;
+    margin: 25px 0;
+}
+
+/* =====================================
+   TIP BOX
+===================================== */
+
+.tip-box{
+    background: rgba(14,165,233,0.12);
+    border-left: 5px solid #0ea5e9;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #dbeafe;
+}
+
+/* =====================================
+   WARNING BOX
+===================================== */
+
+.warning-box{
+    background: rgba(239,68,68,0.12);
+    border-left: 5px solid #ef4444;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fee2e2;
+}
+
+/* =====================================
+   HIGHLIGHT CARD
+===================================== */
+
+.highlight-card{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    border: 1px solid #475569;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #f8fafc;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================================
+   FLOW DIAGRAM
+===================================== */
+
+.flow-diagram{
+    background: #020617;
+    border: 2px dashed #38bdf8;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    font-weight: 700;
+    color: #7dd3fc;
+    line-height: 2;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+/* =====================================
+   FORMULA BOX
+===================================== */
+
+.formula-box{
+    background: #020617;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    overflow-x: auto;
+    margin: 20px 0;
+    color: #f8fafc;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.modern-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.modern-table thead{
+    background: #f1c40f;
+}
+
+.modern-table thead th{
+    color: #000;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.modern-table tbody tr{
+    background: #111827;
+    border-bottom: 1px solid #334155;
+}
+
+.modern-table tbody tr:nth-child(even){
+    background: #0f172a;
+}
+
+.modern-table td{
+    padding: 14px;
+    color: #e2e8f0;
+}
+
+/* =====================================
+   ENGINEERING NOTE
+===================================== */
+
+.engineering-note{
+    background: rgba(241,196,15,0.12);
+    border-left: 5px solid #f1c40f;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fef3c7;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+    .explain-modern{
+        padding: 20px;
+    }
+
+    .explain-modern h3{
+        font-size: 1.5rem;
+    }
+
+    .explain-modern h4{
+        font-size: 1.1rem;
+    }
+
+    .modern-table{
+        display:block;
+        overflow-x:auto;
+        white-space: nowrap;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">How to Operate Multistage pump</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Compressor course in Well Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h2>📌 Multi-Stage Pumps Procedure (Explanation)</h2>
+                  
+                    <h3>1. General</h3>
+                    <p>
+                      Multi-stage pumps (or other pump types) are used in surface well testing and production operations
+                      to re-inject produced fluids such as oil and dissolved gas back into either the production line
+                      or the sea line.
+                    </p>
+                  
+                    <p>
+                      The main objective is to comply with environmental regulations and operating philosophy of
+                      <b>Zero Flaring</b> and <b>Zero Dumping</b>, meaning no burning of gas and no disposal of fluids
+                      to the environment. This helps reduce pollution affecting air, sea, and land.
+                    </p>
+                  
+                    <h3>2. Purpose</h3>
+                    <p>
+                      The purpose of this procedure is to define a safe and clear method for re-injecting produced
+                      hydrocarbons (oil and dissolved gas) during well testing operations.
+                    </p>
+                  
+                    <p>
+                      It ensures protection of:
+                      <ul>
+                        <li>👷 Personnel safety</li>
+                        <li>⚙️ Equipment and assets</li>
+                        <li>🌍 Environment</li>
+                      </ul>
+                    </p>
+                  
+                    <p>
+                      All activities must follow the company <b>HSEQ policy</b> (Health, Safety, Environment, Quality).
+                    </p>
+                  
+                    <h3>3. Policy</h3>
+                    <p>
+                      This procedure applies to all types of multi-stage pumps used in surface well testing operations,
+                      whether offshore or onshore.
+                    </p>
+                  
+                    <p>
+                      It is aligned with standard operating procedures (SOPs) to ensure consistent, safe, and controlled
+                      handling of produced fluids during reinjection operations.
+                    </p>
+                  </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Air Compressor Operational Course Profile Diagram">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h2>📌 Multi-Stage Pump Handling, Transport & Installation</h2>
+                  
+                    <h3>4. Pump Handling</h3>
+                    <p>
+                      This section explains how to safely handle a multi-stage pump during lifting and installation.
+                    </p>
+                  
+                    <p>
+                      The main safety rule is to always respect the <b>center of gravity</b>, which is closer to the
+                      <b>motor end</b> of the skid (not the middle). If this is ignored, the pump can tilt or drop
+                      during lifting.
+                    </p>
+                  
+                    <ul>
+                      <li>✔ Use proper lifting lugs or designed cross members only.</li>
+                      <li>⚠️ Always check the center of gravity before lifting even slightly.</li>
+                      <li>❌ Never use chains or straps directly on pump body, supports, or brackets.</li>
+                      <li>❌ Do NOT lift using motor eyebolts or wrap straps over the motor.</li>
+                      <li>⚠️ Do NOT disturb pump-motor alignment (very critical for performance).</li>
+                    </ul>
+                  
+                    <h3>4.2 Pump Transportation</h3>
+                    <p>
+                      This part covers how to safely transport the pump from one location to another.
+                    </p>
+                  
+                    <ul>
+                      <li>🚛 Follow proper loading and offloading procedures at all times.</li>
+                      <li>📸 Use tag lines for stability and take photos if any damage is observed.</li>
+                      <li>📩 Report damage immediately to logistics coordinator for insurance follow-up.</li>
+                      <li>🧳 Ensure transport method provides short-term protection during shipping.</li>
+                      <li>🧪 If long-term storage is required, fill pump with proper solvent and seal inlet/outlet.</li>
+                    </ul>
+                  
+                    <h3>4.3 Pump Spot & Location (Installation Positioning)</h3>
+                    <p>
+                      This section explains how to properly position the pump at site for safe and efficient operation.
+                    </p>
+                  
+                    <ul>
+                      <li>
+                        📏 Maintain proper <b>NPSH (Net Positive Suction Head)</b> to avoid cavitation.
+                        This is done by placing the pump close to the fluid source and ensuring sufficient liquid head.
+                      </li>
+                      <li>
+                        ⚠️ Poor NPSH leads to cavitation, vibration, and possible pump damage.
+                      </li>
+                      <li>
+                        🏗️ Ensure enough floor space and overhead clearance for crane lifting and maintenance.
+                      </li>
+                      <li>
+                        🧰 The pump skid can be supported along its full length or on support pillars.
+                      </li>
+                      <li>
+                        📐 Support spacing should not exceed approximately 4 feet between supports.
+                      </li>
+                    </ul>
+                  </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Ingersoll Rand Integrated Instrument Display Panel Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h2>📌 Piping Instructions (شرح بسيط لمواسير الـ Multi-Stage Pump)</h2>
+                  
+                    <h3>🔧 1) تركيب المواسير (General Piping Rules)</h3>
+                    <p>
+                      لازم تركيب المواسير يتم حسب <b>Hydraulic Institute Standards</b> علشان تضمن تشغيل آمن بدون اهتزازات أو مشاكل تدفق.
+                    </p>
+                  
+                    <ul>
+                      <li>✔ المواسير لازم تكون مدعومة كويس (steel أو wood supports).</li>
+                      <li>❌ ممنوع تعتمد على الـ pump flange في حمل المواسير.</li>
+                      <li>⚠️ أي force على الفلانشات ممكن يسبب leakage أو misalignment.</li>
+                    </ul>
+                  
+                    <h3>📉 2) Suction Line (خط السحب)</h3>
+                    <p>
+                      خط السحب هو أهم جزء لأنه يؤثر مباشرة على أداء المضخة و NPSH.
+                    </p>
+                  
+                    <ul>
+                      <li>✔ لازم يكون قصير قدر الإمكان لتقليل friction losses.</li>
+                      <li>⚠️ كل ما الخط أطول = فقد ضغط أعلى = احتمال cavitation أعلى.</li>
+                      <li>🔧 يفضل استخدام flexible hose أو expansion joint.</li>
+                    </ul>
+                  
+                    <p>
+                      الهدف من الـ flexible connection هو امتصاص:
+                    </p>
+                    <ul>
+                      <li>🔹 التمدد الحراري (thermal expansion)</li>
+                      <li>🔹 الاهتزازات (vibration)</li>
+                      <li>🔹 أي حركة في المواسير</li>
+                    </ul>
+                  
+                    <p>
+                      لو لم يتم استخدامه → ممكن يحدث:
+                      misalignment + leakage + pump failure
+                    </p>
+                  
+                    <h3>📈 3) Discharge Line (خط الطرد)</h3>
+                    <ul>
+                      <li>✔ لازم يتحمل ضغط أعلى من pump shut-off pressure (no flow condition).</li>
+                      <li>✔ لازم يكون مناسب لـ operating duty point pressure.</li>
+                    </ul>
+                  
+                    <h3>🔒 4) Valves & Protection Devices</h3>
+                  
+                    <h4>🟢 Suction & Discharge Isolation Valves</h4>
+                    <p>
+                      يتم تركيب valves لعزل المضخة أثناء التشغيل أو الصيانة.
+                    </p>
+                  
+                    <h4>🔁 Relief Valve</h4>
+                    <p>
+                      يتم توصيله يرجع إلى suction tank.
+                      وظيفته حماية النظام من overpressure ويجب أن يتحمل على الأقل minimum flow of pump.
+                    </p>
+                  
+                    <h4>🎚️ Adjustable Choke / VSD</h4>
+                    <p>
+                      يستخدم للتحكم في التدفق والضغط أثناء التشغيل.
+                    </p>
+                    <p>
+                      مهم جدًا عند بداية التشغيل لأن المضخة ممكن تشتغل على ضغط منخفض، لذلك نستخدم auto-choke
+                      لتجنب تشغيلها في حالة unsafe (upper thrust condition).
+                    </p>
+                  
+                    <h4>🔄 Check Valve</h4>
+                    <p>
+                      يتم تركيبه على discharge line لمنع رجوع السائل (backflow) عند توقف المضخة.
+                    </p>
+                  
+                    <h3>📌 الخلاصة</h3>
+                    <p>
+                      أهم 3 أفكار في piping:
+                    </p>
+                    <ul>
+                      <li>✔ لا تضغط على الفلانشات</li>
+                      <li>✔ suction line قصير ومرن</li>
+                      <li>✔ حماية المضخة من backflow و overpressure</li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Atlas Copco Unit Integration Systems Layout">
+                </div>
+                                    
+                
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Operational Metrics Summary Cover Block">
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>🔹 Pump Operations Procedure – Detailed Explanation</h3>
+                    
+                    <p>
+                    This procedure explains how to safely start, operate, and monitor the transfer pump while maintaining proper flow rate, pressure, cooling, and equipment protection.
+                    </p>
+                    
+                    <h4>1. Determine Required Flow Rate</h4>
+                    <p>
+                    Before starting the pump, determine the required production or transfer rate.
+                    </p>
+                    
+                    <ul>
+                    <li><strong>50 Hz:</strong> 2,000 – 6,200 BPD</li>
+                    <li><strong>60 Hz:</strong> 3,000 – 7,400 BPD</li>
+                    </ul>
+                    
+                    <p>
+                    Pump capacity depends on motor frequency. Higher frequency increases pump speed and flow rate.
+                    </p>
+                    
+                    <h4>2. Start the Generator</h4>
+                    <p>
+                    Start the generator according to standard operating procedures and set the required frequency and voltage.
+                    </p>
+                    
+                    <h4>3. Check Thrust Chamber Oil Level</h4>
+                    <p>
+                    Verify that the thrust chamber oil level is between the minimum and maximum marks.
+                    </p>
+                    
+                    <p>
+                    The thrust chamber oil lubricates and cools the thrust bearings that absorb axial loads generated by the pump.
+                    </p>
+                    
+                    <h4>4. Check Seal Pot Oil Level</h4>
+                    <p>
+                    Ensure the seal pot oil level is between the minimum and maximum limits.
+                    </p>
+                    
+                    <p>
+                    The seal pot protects the mechanical seal and prevents process fluid contamination.
+                    </p>
+                    
+                    <h4>5. Charge Seal Pot with Nitrogen</h4>
+                    <p>
+                    Pressurize the seal pot with nitrogen gas at approximately 25 psi higher than the pump intake pressure.
+                    </p>
+                    
+                    <p>
+                    This positive pressure prevents process fluid from entering the seal system.
+                    </p>
+                    
+                    <h4>6. Check for Leaks</h4>
+                    <p>
+                    Inspect all piping connections, valves, flanges, hoses, and fittings for leaks before startup.
+                    </p>
+                    
+                    <h4>7. Open Cooling Water Valves</h4>
+                    <p>
+                    Open the cooling water supply to the seal pot at approximately 10% flow.
+                    </p>
+                    
+                    <p>
+                    Cooling water removes heat generated around the seal assembly during operation.
+                    </p>
+                    
+                    <h4>8. Open Pump Suction Valves</h4>
+                    <p>
+                    Ensure all suction valves are fully open to provide unrestricted fluid flow to the pump.
+                    </p>
+                    
+                    <p>
+                    Restricted suction flow may cause cavitation and pump damage.
+                    </p>
+                    
+                    <h4>9. Maintain Adequate NPSH</h4>
+                    <p>
+                    Keep the surge tank liquid level at least 500 mm above the pump centerline.
+                    </p>
+                    
+                    <p>
+                    This provides sufficient Net Positive Suction Head (NPSH) and prevents vapor formation inside the pump.
+                    </p>
+                    
+                    <h4>10. Set Adjustable Choke</h4>
+                    <p>
+                    Initially set the adjustable choke at approximately 20% open.
+                    </p>
+                    
+                    <p>
+                    This allows controlled startup and gradual increase in flow rate.
+                    </p>
+                    
+                    <h4>11. Open Discharge Isolation Valves</h4>
+                    <p>
+                    Ensure all discharge isolation valves are fully open before starting the pump.
+                    </p>
+                    
+                    <h4>12. Bleed Air from the System</h4>
+                    <p>
+                    Open bleed valves when necessary to remove trapped air from suction and discharge lines.
+                    </p>
+                    
+                    <p>
+                    Air pockets can reduce pump performance and create unstable operation.
+                    </p>
+                    
+                    <h4>13. Energize the Control Panel</h4>
+                    <p>
+                    Switch ON the power supply to the control panel and verify normal indications.
+                    </p>
+                    
+                    <h4>14. Start the Pump</h4>
+                    <p>
+                    Start the pump and observe startup conditions carefully.
+                    </p>
+                    
+                    <h4>15. Adjust Flow Rate and Pressure</h4>
+                    <p>
+                    Monitor discharge pressure and adjust the choke to achieve the required operating flow rate and pressure.
+                    </p>
+                    
+                    <h4>16. Maintain Differential Pressure</h4>
+                    <p>
+                    Compare pump discharge pressure with the sea line or production line pressure.
+                    </p>
+                    
+                    <p>
+                    Maintain a differential pressure between:
+                    </p>
+                    
+                    <ul>
+                    <li><strong>50 – 100 psig</strong></li>
+                    </ul>
+                    
+                    <p>
+                    This pressure difference ensures proper flow through the system without overloading the pump.
+                    </p>
+                    
+                    <h4>17. Choke Adjustment During Operation</h4>
+                    <p>
+                    If differential pressure increases above the required range:
+                    </p>
+                    
+                    <ul>
+                    <li>Gradually open the adjustable choke.</li>
+                    <li>Reduce discharge pressure.</li>
+                    <li>Maintain the pump pressure only 50–100 psi above line pressure.</li>
+                    </ul>
+                    
+                    <p>
+                    If differential pressure becomes too low:
+                    </p>
+                    
+                    <ul>
+                    <li>Reduce choke opening gradually.</li>
+                    <li>Do not close the choke below <strong>24/64"</strong>.</li>
+                    </ul>
+                    
+                    <p>
+                    Operating below this minimum opening may cause excessive backpressure and equipment damage.
+                    </p>
+                    
+                    <h4>18. Temperature Monitoring</h4>
+                    <p>
+                    After approximately 15 minutes of operation, measure temperatures using a temperature gun.
+                    </p>
+                    
+                    <p>
+                    Record temperatures of:
+                    </p>
+                    
+                    <ul>
+                    <li>Pump body</li>
+                    <li>Motor housing</li>
+                    <li>Thrust chamber</li>
+                    <li>Seal housing</li>
+                    </ul>
+                    
+                    <p>
+                    Abnormally high temperatures may indicate lubrication problems, cooling issues, or excessive mechanical load.
+                    </p>
+                    
+                    <h4>19. Record Operating Pressures</h4>
+                    <p>
+                    Record:
+                    </p>
+                    
+                    <ul>
+                    <li>Pump intake pressure</li>
+                    <li>Pump discharge pressure</li>
+                    </ul>
+                    
+                    <p>
+                    Initial readings should be taken after startup and then recorded every hour throughout operation.
+                    </p>
+                    
+                    <h4>20. Assign Dedicated Operator</h4>
+                    <p>
+                    One person should be assigned to continuously monitor both the pump and generator during operation.
+                    </p>
+                    
+                    <p>
+                    The operator is responsible for:
+                    </p>
+                    
+                    <ul>
+                    <li>Monitoring pressures</li>
+                    <li>Monitoring temperatures</li>
+                    <li>Checking oil levels</li>
+                    <li>Checking cooling water flow</li>
+                    <li>Checking for leaks</li>
+                    <li>Monitoring generator performance</li>
+                    </ul>
+                    
+                    <h4>🔹 Key Safety Points</h4>
+                    
+                    <ul>
+                    <li>Never start the pump with suction valves closed.</li>
+                    <li>Always maintain sufficient NPSH.</li>
+                    <li>Keep seal pot pressure higher than intake pressure.</li>
+                    <li>Monitor temperatures regularly.</li>
+                    <li>Maintain differential pressure between 50–100 psig.</li>
+                    <li>Never reduce choke opening below 24/64".</li>
+                    <li>Always keep a dedicated operator supervising the equipment.</li>
+                    </ul>
+                    
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+
+                    <h3>Diesel Fired Indirect Heater – Start-Up Procedure</h3>
+                
+                    <p>
+                        A Diesel Fired Indirect Heater operates using a diesel burner instead of fuel gas. The burner
+                        heats a water/glycol bath inside the heater shell, and the heat is then transferred to the
+                        process fluid flowing through the heater coil. Proper startup procedures ensure safe operation,
+                        maximum heating efficiency, and protection of personnel and equipment.
+                    </p>
+                
+                    <h4>1. Complete Initial Startup Requirements</h4>
+                
+                    <p>
+                        Before operating the heater, ensure all Initial Startup procedures have been completed,
+                        including chimney installation, shell filling, pressure testing, and leak inspection.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Installation Complete
+                        <br>↓
+                        <br>Pressure Test Passed
+                        <br>↓
+                        <br>Water/Glycol Filled
+                        <br>↓
+                        <br>Ready for Burner Startup
+                    </div>
+                
+                    <h4>2. Inspect the Diesel Burner</h4>
+                
+                    <p>
+                        Check the RELIO diesel burner and verify that all components are in good condition.
+                        Inspect fuel nozzles, ignition system, blower, and electrical connections.
+                    </p>
+                
+                    <div class="engineering-note">
+                        A damaged burner can result in poor combustion, excessive smoke, or ignition failure.
+                    </div>
+                
+                    <h4>3. Connect the Diesel Fuel Supply</h4>
+                
+                    <p>
+                        Open the diesel supply valve and allow fuel to flow through the diesel filter to the burner.
+                        Ensure all fuel connections are leak-free.
+                    </p>
+                
+                    <h4>4. Verify the Diesel Return Line</h4>
+                
+                    <p>
+                        Check that the diesel return line is properly connected to the diesel tank and free from
+                        blockages.
+                    </p>
+                
+                    <p>
+                        Excess fuel not consumed by the burner is returned through this line.
+                    </p>
+                
+                    <h4>5. Fill the Diesel Tank</h4>
+                
+                    <p>
+                        Fill the diesel tank with sufficient fuel for the operation. Keep an external diesel refill
+                        hose available and fitted with a control valve for safe refueling during operation.
+                    </p>
+                
+                    <h4>6. Connect Electrical Power</h4>
+                
+                    <p>
+                        Connect the heater electrical panel to the appropriate power source:
+                    </p>
+                
+                    <ul>
+                        <li>110V or 220V</li>
+                        <li>50Hz or 60Hz</li>
+                    </ul>
+                
+                    <p>
+                        Install and secure the grounding (earthing) rod to prevent static electricity buildup.
+                    </p>
+                
+                    <div class="warning-box">
+                        Proper grounding is mandatory to prevent electrical hazards and ignition risks.
+                    </div>
+                
+                    <h4>7. Check Blower Rotation Direction</h4>
+                
+                    <p>
+                        Verify that the blower impeller rotates in the correct direction according to the arrow
+                        marked on the burner housing.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Power ON
+                        <br>↓
+                        <br>Observe Blower Rotation
+                        <br>↓
+                        <br>Correct Direction?
+                        <br>↓
+                        <br>YES → Continue
+                        <br>NO → Swap Phases and Recheck
+                    </div>
+                
+                    <p>
+                        If rotation is incorrect, reconnect electrical phases (E, N, L1, L2) until the proper
+                        rotation direction is achieved.
+                    </p>
+                
+                    <h4>8. Connect Emergency Shutdown (ESD)</h4>
+                
+                    <p>
+                        Connect the heater pneumatic shutdown port to the ESD control panel.
+                    </p>
+                
+                    <p>
+                        Perform a function test to verify that the heater trips properly during an emergency shutdown.
+                    </p>
+                
+                    <div class="highlight-card">
+                        The heater must shut down immediately when an ESD signal is activated.
+                    </div>
+                
+                    <h4>9. Energize the System</h4>
+                
+                    <p>
+                        Once all checks are complete:
+                    </p>
+                
+                    <ol>
+                        <li>Open instrument air supply.</li>
+                        <li>Energize the ESD panel.</li>
+                        <li>Switch electrical power ON.</li>
+                        <li>Wait for the diesel burner to start automatically.</li>
+                    </ol>
+                
+                    <h4>10. Keep Heater Flow Paths Open</h4>
+                
+                    <p>
+                        During warm-up, keep the following valves open:
+                    </p>
+                
+                    <ul>
+                        <li>Inlet Valve</li>
+                        <li>Outlet Valve</li>
+                        <li>Bypass Valve</li>
+                    </ul>
+                
+                    <p>
+                        This prevents pressure buildup caused by thermal expansion of trapped fluids inside the heater coil.
+                    </p>
+                
+                    <div class="warning-box">
+                        Trapped fluid exposed to heat can create extremely high pressures and damage the coil.
+                    </div>
+                
+                    <h4>11. Heat the Water Bath</h4>
+                
+                    <p>
+                        Adjust the burner to maximum firing rate to heat the water/glycol bath quickly.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Burner at Maximum Fire
+                        <br>↓
+                        <br>Water/Glycol Temperature Increases
+                        <br>↓
+                        <br>Approaches Operating Temperature
+                    </div>
+                
+                    <h4>12. Monitor Chimney Exhaust</h4>
+                
+                    <p>
+                        Observe the exhaust leaving the chimney.
+                    </p>
+                
+                    <ul>
+                        <li><strong>Clean Exhaust:</strong> Proper combustion.</li>
+                        <li><strong>Black Smoke:</strong> Insufficient air supply.</li>
+                    </ul>
+                
+                    <p>
+                        If black smoke is observed:
+                    </p>
+                
+                    <ul>
+                        <li>Increase combustion air intake.</li>
+                        <li>Adjust fuel-to-air ratio.</li>
+                        <li>Lubricate moving air intake components if required.</li>
+                    </ul>
+                
+                    <h4>13. Set Operating Temperature</h4>
+                
+                    <p>
+                        Monitor the bath temperature gauge continuously.
+                    </p>
+                
+                    <ul>
+                        <li>Recommended Bath Temperature: <strong>180°F</strong></li>
+                        <li>High Temperature Shutdown (HTSD): <strong>200°F</strong></li>
+                    </ul>
+                
+                    <p>
+                        The HTSD controller automatically shuts down the burner if temperature exceeds the safe limit.
+                    </p>
+                
+                    <div class="engineering-note">
+                        Water boils at approximately 212°F. The HTSD setting provides a safety margin below the boiling point.
+                    </div>
+                
+                    <h4>14. Divert Process Flow Through the Heater</h4>
+                
+                    <p>
+                        Once the bath reaches operating temperature:
+                    </p>
+                
+                    <ul>
+                        <li>Keep inlet valve open.</li>
+                        <li>Keep outlet valve open.</li>
+                        <li>Close bypass valve.</li>
+                    </ul>
+                
+                    <div class="flow-diagram">
+                        Process Flow
+                        <br>↓
+                        <br>Inlet Valve
+                        <br>↓
+                        <br>Heater Coil
+                        <br>↓
+                        <br>Outlet Valve
+                        <br>↓
+                        <br>Separator
+                    </div>
+                
+                    <p>
+                        Closing the bypass valve forces the process fluid through the heated coil, allowing heat transfer.
+                    </p>
+                
+                    <h4>15. Heater Shutdown Procedure</h4>
+                
+                    <p>
+                        To safely shut down the heater:
+                    </p>
+                
+                    <ol>
+                        <li>Switch the heater OFF.</li>
+                        <li>Close the diesel fuel supply valve.</li>
+                        <li>Verify burner shutdown.</li>
+                        <li>Leave the heater in a safe condition.</li>
+                    </ol>
+                
+                    <div class="note-modern">
+                        <strong>Key Safety Reminders:</strong>
+                        <ul>
+                            <li>Always verify blower rotation before startup.</li>
+                            <li>Maintain adequate diesel supply throughout operation.</li>
+                            <li>Monitor chimney exhaust for signs of poor combustion.</li>
+                            <li>Ensure ESD functionality is tested before use.</li>
+                            <li>Keep the water level above the upper process coil.</li>
+                            <li>Never operate the heater without proper grounding.</li>
+                        </ul>
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="explain-modern">
+
+                    <h2>Indirect Fired Heaters – Course Summary</h2>
+                
+                    <p>
+                        This course explains the design, operation, installation, and safe start-up of indirect fired heaters
+                        used in oil and gas well testing operations to control temperature, improve separation efficiency,
+                        and prevent hydrate, wax, and emulsions issues.
+                    </p>
+                
+                    <h3>1. Equipment Overview</h3>
+                
+                    <ul>
+                        <li>
+                            <strong>Shell:</strong> Atmospheric horizontal vessel filled with water/glycol mixture used as a heat medium.
+                        </li>
+                        <li>
+                            <strong>Coil (HP Tubes):</strong> High-pressure carbon steel coil (multi-pass) carrying process oil & gas.
+                        </li>
+                        <li>
+                            <strong>Burner System:</strong> Gas or diesel fired system generating heat inside firebox.
+                        </li>
+                        <li>
+                            <strong>U-Tube / Firebox:</strong> Transfers combustion heat to heating medium safely without mixing with process fluid.
+                        </li>
+                    </ul>
+                
+                    <h3>2. Main Function</h3>
+                
+                    <p>
+                        Indirect fired heaters increase fluid temperature in a controlled way to improve flow assurance and separation.
+                    </p>
+                
+                    <ul>
+                        <li>Prevent hydrate formation in gas streams.</li>
+                        <li>Reduce wax deposition and improve crude mobility.</li>
+                        <li>Break emulsions and improve oil-water separation.</li>
+                        <li>Enhance separator efficiency in foamy crude conditions.</li>
+                    </ul>
+                
+                    <h3>3. Installation Summary</h3>
+                
+                    <ul>
+                        <li>Place skid on leveled foundation.</li>
+                        <li>Install and secure chimney stack.</li>
+                        <li>Verify burner assembly tightness.</li>
+                        <li>Connect coil inlet/outlet and fuel system.</li>
+                        <li>Perform hydrotest (coil) and pneumatic test (instrument lines).</li>
+                    </ul>
+                
+                    <h3>4. Pre-Start Safety Checks</h3>
+                
+                    <ul>
+                        <li>Ensure shell is filled with water/glycol above coil level (~3 inches minimum).</li>
+                        <li>Verify all valves, flanges, and manifolds are properly tightened.</li>
+                        <li>Confirm bypass line is available for pressure protection.</li>
+                        <li>Check ESD system and pneumatic shutdown connection.</li>
+                    </ul>
+                
+                    <h3>5. Gas Fired Heater Operation</h3>
+                
+                    <ul>
+                        <li>Set fuel gas pressure regulators (high and low pressure stages).</li>
+                        <li>Purge firebox before ignition.</li>
+                        <li>Ignite pilot flame and confirm stable combustion.</li>
+                        <li>Start main burner and adjust air/fuel ratio.</li>
+                        <li>Control temperature using thermostat (typically ~180°F operating).</li>
+                        <li>Monitor water bath level continuously for efficiency.</li>
+                        <li>Ensure smokeless combustion (proper air adjustment).</li>
+                    </ul>
+                
+                    <h3>6. Diesel Fired Heater Operation</h3>
+                
+                    <ul>
+                        <li>Check diesel system, burner condition, and return line.</li>
+                        <li>Ensure correct electrical supply and grounding.</li>
+                        <li>Verify blower rotation direction.</li>
+                        <li>Start burner via control panel and ESD system.</li>
+                        <li>Adjust fuel/air ratio for clean combustion.</li>
+                        <li>Maintain water bath temperature around 180°F.</li>
+                    </ul>
+                
+                    <h3>7. Safety Highlights</h3>
+                
+                    <ul>
+                        <li>Never allow coil to overpressure — always keep bypass logic in mind.</li>
+                        <li>Ensure ESD system is functional before operation.</li>
+                        <li>Prevent dry operation of heater shell.</li>
+                        <li>Maintain proper ventilation and chimney flow.</li>
+                        <li>Use controlled shutdown procedures for both gas and diesel systems.</li>
+                    </ul>
+                
+                    <h3>8. Key Engineering Concepts</h3>
+                
+                    <ul>
+                        <li>Heat transfer through indirect water bath system.</li>
+                        <li>Pressure protection via multi-pass coil design.</li>
+                        <li>Fuel combustion control (air/fuel ratio optimization).</li>
+                        <li>Thermal efficiency monitoring via inlet/outlet temperature.</li>
+                    </ul>
+                
+                    <h3>Final Summary</h3>
+                
+                    <p>
+                        Indirect fired heaters are critical surface well testing equipment designed to safely heat hydrocarbon
+                        fluids using controlled combustion without direct contact between flame and process fluid.
+                        Proper installation, pressure testing, and burner control ensure safe operation and high efficiency
+                        during well testing operations.
+                    </p>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab8')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab8">
+                <div class="explain-modern">
+
+                    <h2>Indirect Fired Heaters – Q&A (Well Testing)</h2>
+                
+                    <p>
+                        This section covers common questions and answers for understanding indirect fired heaters
+                        used in oil & gas well testing operations.
+                    </p>
+                
+                    <h3>Q1: What is an indirect fired heater?</h3>
+                    <p>
+                        It is a heating system where combustion heat is transferred to a water/glycol bath,
+                        which then heats a high-pressure coil carrying the process fluid without direct flame contact.
+                    </p>
+                
+                    <h3>Q2: Why do we use indirect fired heaters in well testing?</h3>
+                    <p>
+                        To safely heat oil and gas streams for improving flow, preventing hydrates, reducing wax,
+                        breaking emulsions, and improving separator performance.
+                    </p>
+                
+                    <h3>Q3: What is inside the heater shell?</h3>
+                    <p>
+                        A mixture of fresh water and glycol that acts as a heat transfer medium surrounding the coil system.
+                    </p>
+                
+                    <h3>Q4: What is the function of the coil?</h3>
+                    <p>
+                        The coil carries high-pressure production fluids and absorbs heat from the surrounding hot water bath.
+                    </p>
+                
+                    <h3>Q5: Why do we use glycol in the shell?</h3>
+                    <p>
+                        Glycol prevents freezing in cold environments and improves heat transfer stability.
+                    </p>
+                
+                    <h3>Q6: What is the purpose of the burner?</h3>
+                    <p>
+                        The burner generates controlled heat using gas or diesel fuel to heat the water/glycol bath.
+                    </p>
+                
+                    <h3>Q7: What is the safe operating temperature?</h3>
+                    <p>
+                        Typically around 180°F, with a high temperature shutdown set below the boiling point of water (212°F).
+                    </p>
+                
+                    <h3>Q8: What is the role of the bypass line?</h3>
+                    <p>
+                        It allows fluid to bypass the heater during startup, shutdown, or pressure stabilization to avoid overheating or overpressure.
+                    </p>
+                
+                    <h3>Q9: What is the purpose of pressure testing?</h3>
+                    <p>
+                        To ensure the coil and manifold can safely handle design pressure (up to 5K–10K psi depending on specification)
+                        without leaks or failure.
+                    </p>
+                
+                    <h3>Q10: What is the difference between gas-fired and diesel-fired heaters?</h3>
+                    <p>
+                        Gas-fired heaters use natural gas as fuel, while diesel-fired heaters use liquid diesel.
+                        Both perform the same heating function but differ in burner system and fuel handling.
+                    </p>
+                
+                    <h3>Q11: What happens if water level drops in the shell?</h3>
+                    <p>
+                        It reduces heat transfer efficiency and may cause overheating and damage to the coil system.
+                    </p>
+                
+                    <h3>Q12: Why is air/fuel ratio important?</h3>
+                    <p>
+                        It ensures clean combustion, prevents smoke formation, improves efficiency, and protects burner components.
+                    </p>
+                
+                    <h3>Q13: What is the function of the ESD system?</h3>
+                    <p>
+                        Emergency Shutdown (ESD) system automatically shuts down the heater in unsafe conditions such as high temperature,
+                        fire risk, or abnormal pressure.
+                    </p>
+                
+                    <h3>Q14: Why do we purge before ignition?</h3>
+                    <p>
+                        To remove any accumulated gas from the firebox and prevent explosion during ignition.
+                    </p>
+                
+                    <h3>Q15: What is the main safety rule during operation?</h3>
+                    <p>
+                        Never operate the heater without proper water level, functional ESD system, and controlled pressure in the coil.
+                    </p>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab7')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab9')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab9">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 9; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

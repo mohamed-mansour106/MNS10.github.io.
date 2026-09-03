@@ -1,0 +1,2574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Estimate of Shrinkage Factor | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+        /************************************************/
+        /* =========================================
+   Modern Explanation Box
+========================================= */
+
+.explain-modern{
+    background: linear-gradient(145deg,#0d1624,#13213a);
+    border: 1px solid #2c3e50;
+    border-left: 5px solid #f1c40f;
+    border-radius: 16px;
+    padding: 30px;
+    margin: 25px 0;
+    color: #ecf0f1;
+    line-height: 1.9;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    animation: fadeIn .4s ease;
+}
+
+.explain-modern h3{
+    color:#f1c40f;
+    font-size:2rem;
+    margin-bottom:20px;
+    border-bottom:2px solid rgba(241,196,15,.3);
+    padding-bottom:10px;
+}
+
+.explain-modern h4{
+    color:#00d4ff;
+    margin-top:30px;
+    margin-bottom:12px;
+    font-size:1.25rem;
+}
+
+.explain-modern p{
+    color:#d6dde8;
+    margin-bottom:15px;
+}
+
+.explain-modern ul{
+    margin:15px 0;
+    padding-left:25px;
+}
+
+.explain-modern li{
+    margin-bottom:10px;
+    color:#e5e7eb;
+}
+
+.explain-modern strong{
+    color:#ffffff;
+}
+
+/* =========================================
+   Tip Box
+========================================= */
+
+.tip-box{
+    background:rgba(0,212,255,.08);
+    border-left:4px solid #00d4ff;
+    padding:18px;
+    border-radius:10px;
+    margin:20px 0;
+    color:#eaf9ff;
+}
+
+/* =========================================
+   Note Box
+========================================= */
+
+.note-box{
+    background:rgba(46,204,113,.08);
+    border-left:4px solid #2ecc71;
+    padding:18px;
+    border-radius:10px;
+    margin-top:25px;
+    color:#eafaf1;
+}
+
+/* =========================================
+   Warning Box
+========================================= */
+
+.warning-box{
+    background:rgba(231,76,60,.08);
+    border-left:4px solid #e74c3c;
+    padding:18px;
+    border-radius:10px;
+    margin-top:20px;
+    color:#ffeaea;
+}
+
+/* =========================================
+   Formula Box
+========================================= */
+
+.formula-box{
+    background:#08101c;
+    border:1px solid #34495e;
+    border-radius:12px;
+    padding:18px;
+    margin:20px 0;
+    text-align:center;
+    font-size:1.2rem;
+    color:#00ffff;
+    overflow-x:auto;
+    font-weight:bold;
+}
+
+/* =========================================
+   Highlight Card
+========================================= */
+
+.highlight-card{
+    background:linear-gradient(
+        135deg,
+        rgba(241,196,15,.08),
+        rgba(255,140,0,.08)
+    );
+    border:1px solid rgba(241,196,15,.25);
+    border-radius:14px;
+    padding:20px;
+    margin:20px 0;
+}
+
+.highlight-card h5{
+    color:#f1c40f;
+    margin-bottom:10px;
+    font-size:1.1rem;
+}
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media(max-width:768px){
+
+    .explain-modern{
+        padding:20px;
+    }
+
+    .explain-modern h3{
+        font-size:1.5rem;
+    }
+
+    .formula-box{
+        font-size:1rem;
+    }
+}
+
+/* =========================================
+   Animation
+========================================= */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">How to Estimate of Shrinkage Factor </h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Compressor course in Well Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>What is Shrinkage Factor?</h3>
+                
+                    <p>
+                        When crude oil is produced from the reservoir, it contains a significant amount of
+                        dissolved gas. As the fluid flows through the separator, pressure decreases and part
+                        of this dissolved gas comes out of solution (gas flashes off).
+                    </p>
+                
+                    <p>
+                        Because some of the gas leaves the liquid phase, the volume of oil becomes smaller.
+                        This reduction in oil volume is known as <strong>Oil Shrinkage</strong>.
+                    </p>
+                
+                    <div class="tip-box">
+                        <strong>Simple Idea:</strong><br>
+                        Reservoir Oil Volume → Separator Oil Volume → Stock Tank Oil Volume<br>
+                        The oil volume continuously decreases as gas is released.
+                    </div>
+                
+                    <h4>Why is Shrinkage Important?</h4>
+                
+                    <p>
+                        During well testing, engineers need to estimate how much stock tank oil will be
+                        obtained from the measured separator oil volume.
+                    </p>
+                
+                    <p>
+                        Since laboratory PVT data is not always available in the field, empirical shrinkage
+                        correlations are used to estimate this volume reduction.
+                    </p>
+                
+                    <h4>What Does the Shrinkage Factor Represent?</h4>
+                
+                    <p>
+                        The Shrinkage Factor represents the relationship between:
+                    </p>
+                
+                    <ul>
+                        <li>Separator Oil Volume</li>
+                        <li>Stock Tank Oil Volume</li>
+                    </ul>
+                
+                    <p>
+                        It indicates how much liquid volume remains after dissolved gas has been removed.
+                    </p>
+                
+                    <div class="formula-box">
+                        Shrinkage Factor = Stock Tank Oil Volume ÷ Separator Oil Volume
+                    </div>
+                
+                    <h4>Example</h4>
+                
+                    <p>
+                        If 100 barrels of separator oil produce only 84 barrels of stock tank oil:
+                    </p>
+                
+                    <div class="formula-box">
+                        Shrinkage Factor = 84 ÷ 100 = 0.84
+                    </div>
+                
+                    <p>
+                        This means the oil experienced a volume reduction of:
+                    </p>
+                
+                    <div class="formula-box">
+                        Oil Shrinkage = (1 − 0.84) × 100 = 16%
+                    </div>
+                
+                    <h4>Parameters Affecting Shrinkage Factor</h4>
+                
+                    <ul>
+                        <li><strong>Separator Pressure:</strong> Higher pressure keeps more gas dissolved.</li>
+                        <li><strong>Separator Temperature:</strong> Influences gas liberation from oil.</li>
+                        <li><strong>Gas Specific Gravity:</strong> Heavier gases affect shrinkage behavior.</li>
+                        <li><strong>Oil API Gravity:</strong> Light oils generally experience greater shrinkage.</li>
+                        <li><strong>Observed Temperature:</strong> Used to correct gas gravity calculations.</li>
+                    </ul>
+                
+                    <div class="note-box">
+                        <strong>Field Application:</strong><br>
+                        Shrinkage Factor is widely used during well testing to estimate stock tank oil
+                        production when laboratory PVT analysis is unavailable.
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Air Compressor Operational Course Profile Diagram">
+                </div>
+                <div class="explain-modern">
+
+                    <h3>Why Does Oil Shrinkage Happen?</h3>
+                
+                    <p>
+                        Crude oil inside the reservoir exists under very high pressure. Under these conditions,
+                        a large amount of natural gas remains dissolved in the oil, similar to carbon dioxide
+                        dissolved in a sealed soft drink bottle.
+                    </p>
+                
+                    <div class="tip-box">
+                        <strong>Think of a soda bottle:</strong><br>
+                        When the bottle is closed, the gas stays dissolved in the liquid.
+                        Once opened, pressure drops and gas bubbles escape.
+                    </div>
+                
+                    <h4>Shrinkage Process</h4>
+                
+                    <div class="formula-box">
+                        Reservoir Oil
+                        ↓<br>
+                        High Pressure → Gas Dissolved in Oil
+                        ↓<br>
+                        Separator Pressure Drops
+                        ↓<br>
+                        Gas Liberated (Flashes Off)
+                        ↓<br>
+                        Oil Volume Decreases
+                        ↓<br>
+                        Shrinkage Occurs
+                    </div>
+                
+                    <p>
+                        As the produced fluid enters the separator, pressure decreases significantly compared
+                        with reservoir pressure. This pressure reduction causes part of the dissolved gas to
+                        leave the oil and become free gas.
+                    </p>
+                
+                    <p>
+                        Since some of the volume previously occupied by dissolved gas is removed from the liquid,
+                        the remaining oil occupies less space. Therefore, the oil volume decreases.
+                    </p>
+                
+                    <h4>Example</h4>
+                
+                    <p>
+                        Suppose 100 barrels of separator oil contain dissolved gas.
+                        After stabilization in the stock tank, some gas escapes and only 84 barrels of oil remain.
+                    </p>
+                
+                    <div class="formula-box">
+                        Separator Oil = 100 bbl
+                
+                        ↓
+                
+                        Gas Released = 16%
+                
+                        ↓
+                
+                        Stock Tank Oil = 84 bbl
+                    </div>
+                
+                    <div class="highlight-card">
+                        <h5>Key Engineering Concept</h5>
+                        <p>
+                            The more dissolved gas the oil contains, the greater the shrinkage will be when
+                            pressure decreases.
+                        </p>
+                    </div>
+                
+                    <div class="note-box">
+                        Light oils (high API gravity) generally contain more dissolved gas and therefore
+                        experience greater shrinkage than heavy oils.
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Ingersoll Rand Integrated Instrument Display Panel Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>Required Inputs for Shrinkage Factor Calculation</h3>
+                
+                    <p>
+                        To estimate the oil shrinkage factor, several field measurements are required.
+                        Each parameter affects how much gas leaves the oil when pressure and temperature change.
+                    </p>
+                
+                    <h4>1. Separator Pressure (Psep)</h4>
+                
+                    <p>
+                        Separator Pressure is the operating pressure inside the separator where oil and gas
+                        are separated.
+                    </p>
+                
+                    <div class="formula-box">
+                        Unit = psig
+                    </div>
+                
+                    <p>
+                        Higher separator pressure keeps more gas dissolved in the oil.
+                        Therefore, less gas is released and shrinkage becomes smaller.
+                    </p>
+                
+                    <div class="tip-box">
+                        High Psep → Less Gas Liberated → Less Shrinkage
+                    </div>
+                
+                    <hr>
+                
+                    <h4>2. Separator Temperature (Tsep)</h4>
+                
+                    <p>
+                        Separator Temperature is the temperature of the fluid inside the separator.
+                    </p>
+                
+                    <div class="formula-box">
+                        Unit = °F
+                    </div>
+                
+                    <p>
+                        As temperature increases, gas becomes less soluble in oil and more gas is released.
+                        This results in greater oil shrinkage.
+                    </p>
+                
+                    <div class="tip-box">
+                        High Tsep → More Gas Released → More Shrinkage
+                    </div>
+                
+                    <hr>
+                
+                    <h4>3. Gas Specific Gravity (γg)</h4>
+                
+                    <p>
+                        Gas Specific Gravity compares the density of produced gas with the density of air.
+                    </p>
+                
+                    <div class="formula-box">
+                        γg = Gas Density / Air Density
+                    </div>
+                
+                    <p>
+                        It indicates whether the gas is light or heavy and affects the shrinkage correlation.
+                    </p>
+                
+                    <div class="formula-box">
+                        γg = 0.65 → Light Gas
+                
+                        γg = 0.90 → Heavy Gas
+                    </div>
+                
+                    <hr>
+                
+                    <h4>4. Oil API Gravity (API)</h4>
+                
+                    <p>
+                        API Gravity measures how light or heavy the crude oil is compared to water.
+                    </p>
+                
+                    <div class="formula-box">
+                        API = Lightness of Crude Oil
+                    </div>
+                
+                    <p>
+                        Light oils usually contain more dissolved gas than heavy oils.
+                        Therefore, they generally experience greater shrinkage.
+                    </p>
+                
+                    <div class="formula-box">
+                        20 API → Heavy Oil
+                
+                        45 API → Light Oil
+                    </div>
+                
+                    <div class="tip-box">
+                        Higher API → More Dissolved Gas → Higher Shrinkage
+                    </div>
+                
+                    <hr>
+                
+                    <h4>5. Observed Temperature (Tobs)</h4>
+                
+                    <p>
+                        Observed Temperature is the temperature at which the gas gravity was measured.
+                    </p>
+                
+                    <div class="formula-box">
+                        Unit = °F
+                    </div>
+                
+                    <p>
+                        Since gas density changes with temperature, the observed gas gravity must be corrected
+                        to standard conditions before calculating the shrinkage factor.
+                    </p>
+                
+                    <div class="tip-box">
+                        Tobs is used to calculate the Adjusted Gas Gravity (γg adj).
+                    </div>
+                
+                    <div class="highlight-card">
+                        <h5>Important Note</h5>
+                        <p>
+                            Accurate field measurements of pressure, temperature, gas gravity, and API gravity
+                            are essential because small errors can significantly affect the final shrinkage factor.
+                        </p>
+                    </div>
+                
+                </div>
+
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Atlas Copco Unit Integration Systems Layout">
+                </div>
+              
+                <div class="explain-modern">
+
+                    <h3>Calculation Logic – Step by Step</h3>
+                
+                    <p>
+                        The Shrinkage Factor calculation is performed through a sequence of empirical correlations.
+                        Each step uses the result of the previous step until the final shrinkage factor is obtained.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 1 – Gas Gravity Correction</h4>
+                
+                    <div class="formula-box">
+                       Gas S.G. ($$yg_{adj}) = \gamma_g + [0.00069-(0.0003725\gamma_g)](T_{obs}-60)$$
+                    </div>
+                
+                    <p>
+                        Gas specific gravity is normally measured at a temperature different from the standard
+                        reference temperature (60°F). Therefore, the first step is to correct the observed gas gravity.
+                    </p>
+                
+                    <div class="tip-box">
+                        Purpose:
+                        Adjust gas gravity to standard conditions before using it in the shrinkage correlation.
+                    </div>
+                
+                    <p>
+                        Output:
+                        <strong>Adjusted Gas Gravity (ygadj)</strong>
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 2 – Calculate F1</h4>
+                
+                    <div class="formula-box">
+                        $$F1=\left(\frac{1.797}{yg_{adj}}-1.838\right)P_{sep}$$
+                    </div>
+                
+                    <p>
+                        This parameter combines the effects of separator pressure and corrected gas gravity.
+                    </p>
+                
+                    <div class="tip-box">
+                        Purpose:
+                        Determine how separator operating conditions influence gas liberation.
+                    </div>
+                    
+                    <p>
+                        Higher separator pressure generally reduces gas liberation and therefore reduces shrinkage.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 3 – Calculate F2</h4>
+                
+                    <div class="formula-box">
+                        $$F2=API\left(0.02-3.57\times10^{-6}F1\right)+0.25$$
+                    </div>
+                
+                    <p>
+                        This step introduces the effect of crude oil quality through API gravity.
+                    </p>
+                
+                    <div class="tip-box">
+                        Purpose:
+                        Apply oil gravity correction to the shrinkage correlation.
+                    </div>
+                
+                    <p>
+                        Light oils (high API) normally contain more dissolved gas and therefore tend to shrink more.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 4 – Calculate Volume Parameter (Fvol)</h4>
+                
+                    <div class="formula-box">
+                        $$F_{vol}=F1\sqrt{\frac{F2}{yg_{adj}}}+1.25T_{sep}$$
+                    </div>
+                
+                    <p>
+                        This step combines all major field variables:
+                    </p>
+                
+                    <ul>
+                        <li>Separator Pressure</li>
+                        <li>Separator Temperature</li>
+                        <li>Gas Gravity</li>
+                        <li>Oil API Gravity</li>
+                    </ul>
+                
+                    <div class="tip-box">
+                        Purpose:
+                        Generate an empirical volume parameter that represents the fluid behavior.
+                    </div>
+                
+                    <p>
+                        This is one of the most important intermediate values in the calculation.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 5 – Calculate Oil Formation Volume Factor (Bo)</h4>
+                
+                    <div class="formula-box">
+                        $$B_o=0.9759+12\times10^{-5}(F_{vol})^{1.2}$$
+                    </div>
+                
+                    <p>
+                        The Oil Formation Volume Factor (Bo) represents the relationship between oil volume at
+                        separator conditions and oil volume at stock tank conditions.
+                    </p>
+                
+                    <div class="tip-box">
+                        Purpose:
+                        Estimate the volume correction factor for the crude oil.
+                    </div>
+                
+                    <p>
+                        A larger Bo indicates a greater difference between separator and stock tank volumes.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 6 – Calculate Shrinkage Factor</h4>
+                
+                    <div class="formula-box">
+                        $$Shrinkage=\frac{1}{B_o}$$
+                    </div>
+                
+                    <p>
+                        The final shrinkage factor is simply the inverse of the Oil Formation Volume Factor.
+                    </p>
+                
+                    <div class="tip-box">
+                        Purpose:
+                        Estimate how much separator oil remains as stock tank oil after gas liberation.
+                    </div>
+                
+                    <div class="highlight-card">
+                        <h5>Interpretation</h5>
+                
+                        <p>
+                            If Shrinkage Factor = 0.84
+                        </p>
+                
+                        <div class="formula-box">
+                            100 bbl Separator Oil
+                
+                            ↓
+                
+                            84 bbl Stock Tank Oil
+                        </div>
+                
+                        <p>
+                            This means 16% of the apparent separator volume was lost due to gas coming out of solution.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Complete Calculation Flow</h4>
+                
+                    <div class="formula-box">
+                        Inputs
+                
+                        ↓
+                
+                        Gas Gravity Correction (ygadj)
+                
+                        ↓
+                
+                        F1
+                
+                        ↓
+                
+                        F2
+                
+                        ↓
+                
+                        Fvol
+                
+                        ↓
+                
+                        Bo
+                
+                        ↓
+                
+                        Shrinkage Factor
+                    </div>
+                
+                </div>
+
+                <div class="explain-modern">
+
+                    <h3>Temperature Volume Correction (60°F)</h3>
+                
+                    <p>
+                        Crude oil expands when temperature increases and contracts when temperature decreases.
+                        For this reason, oil volumes are normally corrected to the industry standard reference temperature of <strong>60°F</strong>.
+                    </p>
+                
+                    <div class="formula-box">
+                        V60 = Vobs / [ 1 + α × (Tobs − 60) ]
+                    </div>
+                
+                    <h4>Where:</h4>
+                
+                    <ul>
+                        <li><strong>Vobs</strong> = Observed oil volume at measured temperature.</li>
+                        <li><strong>V60</strong> = Corrected oil volume at 60°F.</li>
+                        <li><strong>Tobs</strong> = Observed oil temperature (°F).</li>
+                        <li><strong>α</strong> = Thermal expansion coefficient of crude oil.</li>
+                    </ul>
+                
+                    <h4>Typical α Values</h4>
+                
+                    <table class="modern-table">
+                        <tr>
+                            <th>Crude Type</th>
+                            <th>α (1/°F)</th>
+                        </tr>
+                        <tr>
+                            <td>Heavy Oil</td>
+                            <td>0.00030</td>
+                        </tr>
+                        <tr>
+                            <td>Medium Oil</td>
+                            <td>0.00035</td>
+                        </tr>
+                        <tr>
+                            <td>Light Oil</td>
+                            <td>0.00040 – 0.00045</td>
+                        </tr>
+                    </table>
+                
+                    <h4>Example</h4>
+                
+                    <p>
+                        Observed Volume = <strong>1000 BBL</strong><br>
+                        Temperature = <strong>100°F</strong><br>
+                        α = <strong>0.00040</strong>
+                    </p>
+                
+                    <div class="formula-box">
+                        ΔT = 100 − 60 = 40°F
+                    </div>
+                
+                    <div class="formula-box">
+                        V60 = 1000 / (1 + 0.00040 × 40)
+                    </div>
+                
+                    <div class="formula-box">
+                        V60 = 984.25 BBL
+                    </div>
+                
+                    <p>
+                        Therefore, an observed volume of <strong>1000 BBL at 100°F</strong>
+                        is equivalent to approximately <strong>984.25 BBL at 60°F</strong>.
+                    </p>
+                
+                    <div class="note-box">
+                        In Well Testing, temperature correction is usually applied before shrinkage correction:
+                        <br><br>
+                        Meter Oil Rate → Temperature Correction (CTL) → Oil @ 60°F → Shrinkage Correction → Stock Tank Oil
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Operational Metrics Summary Cover Block">
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>Module 5 – Worked Example</h3>
+                
+                    <p>
+                        Let's apply the Shrinkage Factor calculation using actual field data.
+                        This example demonstrates how the calculator estimates the volume reduction
+                        that occurs when gas is liberated from crude oil.
+                    </p>
+                
+                    <h4>Input Data</h4>
+                
+                    <div class="formula-box">
+                        Separator Pressure = 620 psig
+                
+                        Separator Temperature = 95°F
+                
+                        Gas Gravity = 0.762
+                
+                        Oil API Gravity = 43°
+                
+                        Observed Temperature = 72°F
+                    </div>
+                
+                    <p>
+                        These values are entered into the Shrinkage Calculator.
+                        The calculator then performs all intermediate calculations
+                        (Gas Gravity Correction → F1 → F2 → Fvol → Bo).
+                    </p>
+                
+                    <h4>Calculation Results</h4>
+                
+                    <div class="formula-box">
+                        Bo ≈ 1.193
+                
+                        Shrinkage Factor ≈ 0.838
+                    </div>
+                
+                    <h4>What Does Bo Mean?</h4>
+                
+                    <p>
+                        The Oil Formation Volume Factor (Bo) indicates the relationship between
+                        the oil volume at separator conditions and the stabilized oil volume
+                        at stock tank conditions.
+                    </p>
+                
+                    <div class="tip-box">
+                        Bo > 1 means the oil occupies a larger volume before stabilization because
+                        it still contains dissolved gas.
+                    </div>
+                
+                    <h4>What Does Shrinkage Factor Mean?</h4>
+                
+                    <p>
+                        A Shrinkage Factor of 0.838 means that only 83.8% of the separator oil volume
+                        remains after the dissolved gas has escaped.
+                    </p>
+                
+                    <div class="formula-box">
+                        1.000 bbl Separator Oil
+                
+                        ↓
+                
+                        0.838 STB Stock Tank Oil
+                    </div>
+                
+                    <h4>Volume Loss Calculation</h4>
+                
+                    <div class="formula-box">
+                        Volume Loss = 1 - 0.838
+                
+                        = 0.162
+                
+                        = 16.2%
+                    </div>
+                
+                    <p>
+                        Therefore, approximately 16.2% of the apparent separator oil volume is lost
+                        due to gas liberation and stabilization.
+                    </p>
+                
+                    <div class="highlight-card">
+                        <h5>Engineering Interpretation</h5>
+                
+                        <p>
+                            If the separator measures 1,000 barrels of oil,
+                            the expected stock tank oil volume will be:
+                        </p>
+                
+                        <div class="formula-box">
+                            Stock Tank Oil
+                
+                            = 1000 × 0.838
+                
+                            = 838 STB
+                        </div>
+                
+                        <p>
+                            This means approximately 162 barrels represent shrinkage caused by
+                            dissolved gas leaving the oil.
+                        </p>
+                    </div>
+                
+                    <div class="note-box">
+                        The Shrinkage Factor is extremely important during well testing because it allows
+                        engineers to estimate stock tank oil production when laboratory PVT data is not available.
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+
+                    <h3>Module 6 – Engineering Interpretation</h3>
+                
+                    <p>
+                        The Shrinkage Factor indicates how much separator oil remains after the dissolved gas
+                        is released and the oil reaches stock tank conditions.
+                    </p>
+                
+                    <p>
+                        A higher shrinkage factor means less gas was dissolved in the oil.
+                        A lower shrinkage factor means more gas escaped from the oil.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Case 1 – Shrinkage Factor = 0.95</h4>
+                
+                    <div class="formula-box">
+                        Shrinkage = 0.95
+                    </div>
+                
+                    <p>
+                        This means 95% of the separator oil volume remains as stock tank oil.
+                    </p>
+                
+                    <div class="formula-box">
+                        1000 bbl Separator Oil
+                
+                        ↓
+                
+                        950 STB Stock Tank Oil
+                    </div>
+                
+                    <div class="tip-box">
+                        Interpretation:
+                        Very little gas was liberated from the crude oil.
+                    </div>
+                
+                    <ul>
+                        <li>Low Gas-Oil Ratio (GOR)</li>
+                        <li>Heavy or moderately heavy crude</li>
+                        <li>Small volume reduction</li>
+                        <li>Minimal shrinkage losses</li>
+                    </ul>
+                
+                    <hr>
+                
+                    <h4>Case 2 – Shrinkage Factor = 0.85</h4>
+                
+                    <div class="formula-box">
+                        Shrinkage = 0.85
+                    </div>
+                
+                    <p>
+                        This means 85% of the separator oil volume remains after stabilization.
+                    </p>
+                
+                    <div class="formula-box">
+                        1000 bbl Separator Oil
+                
+                        ↓
+                
+                        850 STB Stock Tank Oil
+                    </div>
+                
+                    <div class="tip-box">
+                        Interpretation:
+                        Normal light crude oil behavior.
+                    </div>
+                
+                    <ul>
+                        <li>Moderate dissolved gas content</li>
+                        <li>Typical well test conditions</li>
+                        <li>Common shrinkage range for many oil wells</li>
+                        <li>Approximately 15% volume loss</li>
+                    </ul>
+                
+                    <hr>
+                
+                    <h4>Case 3 – Shrinkage Factor = 0.75</h4>
+                
+                    <div class="formula-box">
+                        Shrinkage = 0.75
+                    </div>
+                
+                    <p>
+                        This means only 75% of the separator oil volume remains after gas liberation.
+                    </p>
+                
+                    <div class="formula-box">
+                        1000 bbl Separator Oil
+                
+                        ↓
+                
+                        750 STB Stock Tank Oil
+                    </div>
+                
+                    <div class="tip-box">
+                        Interpretation:
+                        Large amount of gas was released from the crude oil.
+                    </div>
+                
+                    <ul>
+                        <li>High Gas-Oil Ratio (GOR)</li>
+                        <li>Very light crude oil</li>
+                        <li>Large volume reduction</li>
+                        <li>Significant shrinkage losses</li>
+                    </ul>
+                
+                    <hr>
+                
+                    <h4>Quick Engineering Guide</h4>
+                
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Shrinkage Factor</th>
+                                <th>Volume Remaining</th>
+                                <th>Engineering Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0.95+</td>
+                                <td>95%+</td>
+                                <td>Very Low Gas Liberation</td>
+                            </tr>
+                            <tr>
+                                <td>0.85 - 0.95</td>
+                                <td>85-95%</td>
+                                <td>Normal Oil Well Range</td>
+                            </tr>
+                            <tr>
+                                <td>0.75 - 0.85</td>
+                                <td>75-85%</td>
+                                <td>High Gas Liberation</td>
+                            </tr>
+                            <tr>
+                                <td>&lt; 0.75</td>
+                                <td>&lt; 75%</td>
+                                <td>Very Gassy Oil / High Shrinkage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <div class="highlight-card">
+                        <h5>Remember</h5>
+                
+                        <p>
+                            Higher Shrinkage Factor = More Oil Remaining = Less Gas Released
+                        </p>
+                
+                        <p>
+                            Lower Shrinkage Factor = Less Oil Remaining = More Gas Released
+                        </p>
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="explain-modern">
+
+                    <h3>Module 7 – Factors Affecting Shrinkage</h3>
+                
+                    <p>
+                        Shrinkage is not a fixed value. It changes depending on well conditions,
+                        separator operating conditions, and fluid properties.
+                    </p>
+                
+                    <p>
+                        Understanding these factors helps engineers predict stock tank oil volume
+                        more accurately during well testing operations.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>1. Separator Pressure</h4>
+                
+                    <div class="formula-box">
+                        Separator Pressure ↑
+                
+                        ↓
+                
+                        Shrinkage Factor ↑
+                    </div>
+                
+                    <p>
+                        Higher separator pressure keeps more gas dissolved inside the oil.
+                        Since less gas escapes, the oil volume decreases less.
+                    </p>
+                
+                    <div class="tip-box">
+                        Higher Separator Pressure = Less Gas Liberation = Less Shrinkage
+                    </div>
+                
+                    <p><strong>Example:</strong></p>
+                
+                    <ul>
+                        <li>Separator at 1000 psig → Less shrinkage</li>
+                        <li>Separator at 200 psig → More shrinkage</li>
+                    </ul>
+                
+                    <hr>
+                
+                    <h4>2. Separator Pressure Decrease</h4>
+                
+                    <div class="formula-box">
+                        Separator Pressure ↓
+                
+                        ↓
+                
+                        Shrinkage Factor ↓
+                    </div>
+                
+                    <p>
+                        When separator pressure decreases, more dissolved gas flashes out of solution.
+                        This causes a greater reduction in oil volume.
+                    </p>
+                
+                    <div class="tip-box">
+                        Lower Separator Pressure = More Gas Released = More Shrinkage
+                    </div>
+                
+                    <hr>
+                
+                    <h4>3. Gas Gravity (γg)</h4>
+                
+                    <div class="formula-box">
+                        Gas Gravity ↑
+                
+                        ↓
+                
+                        Changes Dissolved Gas Behavior
+                    </div>
+                
+                    <p>
+                        Gas gravity indicates how heavy or light the gas is compared with air.
+                    </p>
+                
+                    <ul>
+                        <li>Low Gas Gravity → Lighter Gas</li>
+                        <li>High Gas Gravity → Heavier Gas</li>
+                    </ul>
+                
+                    <p>
+                        Different gas compositions affect how gas dissolves in crude oil and how easily it separates.
+                    </p>
+                
+                    <div class="tip-box">
+                        Gas gravity affects shrinkage indirectly through gas solubility behavior.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>4. Oil API Gravity</h4>
+                
+                    <div class="formula-box">
+                        API Gravity ↑
+                
+                        ↓
+                
+                        Shrinkage Usually ↑
+                    </div>
+                
+                    <p>
+                        Light oils generally contain more dissolved gas than heavy oils.
+                    </p>
+                
+                    <ul>
+                        <li>20 API → Heavy Oil</li>
+                        <li>45 API → Light Oil</li>
+                    </ul>
+                
+                    <p>
+                        When pressure drops, light oils release larger quantities of gas,
+                        resulting in greater shrinkage.
+                    </p>
+                
+                    <div class="tip-box">
+                        Higher API = More Dissolved Gas = Higher Shrinkage Potential
+                    </div>
+                
+                    <hr>
+                
+                    <h4>5. Separator Temperature</h4>
+                
+                    <div class="formula-box">
+                        Temperature ↑
+                
+                        ↓
+                
+                        More Gas Liberation
+                    </div>
+                
+                    <p>
+                        Increasing temperature reduces gas solubility in crude oil.
+                    </p>
+                
+                    <p>
+                        As temperature rises, gas escapes more easily from the liquid phase.
+                    </p>
+                
+                    <div class="tip-box">
+                        Higher Temperature = More Gas Released = More Shrinkage
+                    </div>
+                
+                    <p><strong>Example:</strong></p>
+                
+                    <ul>
+                        <li>Separator at 70°F → Lower shrinkage</li>
+                        <li>Separator at 120°F → Higher shrinkage</li>
+                    </ul>
+                
+                    <hr>
+                
+                    <h4>Engineering Summary</h4>
+                
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Factor</th>
+                                <th>Increase</th>
+                                <th>Effect on Shrinkage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Separator Pressure</td>
+                                <td>↑</td>
+                                <td>Less Shrinkage</td>
+                            </tr>
+                            <tr>
+                                <td>Separator Temperature</td>
+                                <td>↑</td>
+                                <td>More Shrinkage</td>
+                            </tr>
+                            <tr>
+                                <td>API Gravity</td>
+                                <td>↑</td>
+                                <td>Usually More Shrinkage</td>
+                            </tr>
+                            <tr>
+                                <td>Gas Gravity</td>
+                                <td>↑</td>
+                                <td>Changes Gas Behavior</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <div class="highlight-card">
+                        <h5>Easy Rule to Remember</h5>
+                
+                        <p>
+                            High Pressure → Less Shrinkage
+                        </p>
+                
+                        <p>
+                            High Temperature → More Shrinkage
+                        </p>
+                
+                        <p>
+                            High API Oil → More Shrinkage
+                        </p>
+                
+                        <p>
+                            Gas Gravity affects how gas dissolves and separates from oil.
+                        </p>
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab8')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab8">
+                <div class="explain-modern">
+
+                    <h3>Module 8 – Field Applications of Shrinkage Factor</h3>
+                
+                    <p>
+                        Shrinkage Factor is one of the most important calculations used in well testing and production engineering.
+                        It helps engineers estimate how much oil volume will remain after gas is separated from the crude oil.
+                    </p>
+                
+                    <p>
+                        Since separator oil volume is always larger than stock tank oil volume, the shrinkage factor is used to
+                        convert field measurements into realistic production figures.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>1. Well Testing Operations</h4>
+                
+                    <p>
+                        During well testing, oil production is usually measured at the separator.
+                        However, the client normally requires production rates in Stock Tank Barrels (STB).
+                    </p>
+                
+                    <div class="tip-box">
+                        Shrinkage Factor converts separator oil volume into stock tank oil volume.
+                    </div>
+                
+                    <p><strong>Example:</strong></p>
+                
+                    <ul>
+                        <li>Separator Oil = 1,000 BBL/day</li>
+                        <li>Shrinkage = 0.85</li>
+                        <li>Stock Tank Oil = 850 STB/day</li>
+                    </ul>
+                
+                    <hr>
+                
+                    <h4>2. Production Testing</h4>
+                
+                    <p>
+                        During production tests, engineers need accurate estimates of stabilized oil production.
+                    </p>
+                
+                    <p>
+                        Shrinkage Factor helps determine the actual saleable oil volume after gas separation.
+                    </p>
+                
+                    <div class="tip-box">
+                        Essential for calculating realistic production rates.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>3. Temporary Well Test Facilities</h4>
+                
+                    <p>
+                        Temporary separators used during exploration or appraisal testing usually do not have complete
+                        laboratory PVT data available.
+                    </p>
+                
+                    <p>
+                        Engineers use empirical shrinkage correlations to estimate stock tank production directly in the field.
+                    </p>
+                
+                    <div class="tip-box">
+                        Provides quick production estimates without laboratory analysis.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>4. Separator Performance Evaluation</h4>
+                
+                    <p>
+                        Shrinkage calculations help evaluate how effectively the separator removes gas from the oil.
+                    </p>
+                
+                    <p>
+                        Changes in separator pressure and temperature can significantly affect shrinkage results.
+                    </p>
+                
+                    <div class="tip-box">
+                        Useful for optimizing separator operating conditions.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>5. Estimating Stock Tank Oil Production</h4>
+                
+                    <p>
+                        One of the primary uses of shrinkage factor is estimating Stock Tank Oil (STO) production.
+                    </p>
+                
+                    <div class="formula-box">
+                        Stock Tank Oil = Separator Oil × Shrinkage Factor
+                    </div>
+                
+                    <p>
+                        This allows production engineers to report actual recoverable oil volumes.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>6. Production Reporting</h4>
+                
+                    <p>
+                        Production reports submitted to operators and regulatory authorities are normally based on
+                        stock tank oil volumes rather than separator volumes.
+                    </p>
+                
+                    <p>
+                        Shrinkage Factor is therefore a critical reporting parameter.
+                    </p>
+                
+                    <div class="tip-box">
+                        Ensures accurate daily, monthly, and annual production reporting.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>7. PVT Approximation When Laboratory Data Is Unavailable</h4>
+                
+                    <p>
+                        Laboratory PVT studies provide the most accurate fluid properties, but they are not always available
+                        during early well testing operations.
+                    </p>
+                
+                    <p>
+                        Shrinkage correlations provide a practical alternative for estimating:
+                    </p>
+                
+                    <ul>
+                        <li>Oil Formation Volume Factor (Bo)</li>
+                        <li>Stock Tank Oil Volume</li>
+                        <li>Expected Shrinkage</li>
+                        <li>Production Performance</li>
+                    </ul>
+                
+                    <div class="tip-box">
+                        Empirical shrinkage models are widely used until laboratory PVT data becomes available.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Engineering Summary</h4>
+                
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Application</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Well Testing</td>
+                                <td>Convert separator oil to stock tank oil</td>
+                            </tr>
+                            <tr>
+                                <td>Production Testing</td>
+                                <td>Estimate actual oil production</td>
+                            </tr>
+                            <tr>
+                                <td>Temporary Facilities</td>
+                                <td>Provide field estimates without PVT data</td>
+                            </tr>
+                            <tr>
+                                <td>Separator Evaluation</td>
+                                <td>Assess separation efficiency</td>
+                            </tr>
+                            <tr>
+                                <td>Production Reporting</td>
+                                <td>Generate accurate production figures</td>
+                            </tr>
+                            <tr>
+                                <td>PVT Approximation</td>
+                                <td>Estimate fluid behavior when lab data is unavailable</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <div class="highlight-card">
+                        <h5>Key Takeaway</h5>
+                
+                        <p>
+                            Shrinkage Factor bridges the gap between what is measured at the separator
+                            and the actual oil volume that reaches the stock tank.
+                        </p>
+                
+                        <p>
+                            Without shrinkage calculations, production rates can be significantly overestimated.
+                        </p>
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab7')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab9')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab9">
+                <div class="explain-modern">
+
+                    <h3>Module 9 – Limitations of the Shrinkage Calculator</h3>
+                
+                    <p>
+                        Although the Shrinkage Factor Calculator is a useful engineering tool, it is important to
+                        understand its limitations before using the results for critical reservoir or production decisions.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>1. Empirical Correlation Only</h4>
+                
+                    <p>
+                        The calculator is based on an empirical correlation developed from field observations and
+                        historical production data.
+                    </p>
+                
+                    <p>
+                        It does not directly measure fluid properties. Instead, it estimates shrinkage using relationships
+                        between separator pressure, temperature, gas gravity, and oil API gravity.
+                    </p>
+                
+                    <div class="tip-box">
+                        The calculator provides an estimate, not an exact measurement.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>2. Not a Replacement for Laboratory PVT Analysis</h4>
+                
+                    <p>
+                        Laboratory PVT (Pressure-Volume-Temperature) studies remain the most accurate method for
+                        determining fluid properties such as:
+                    </p>
+                
+                    <ul>
+                        <li>Oil Formation Volume Factor (Bo)</li>
+                        <li>Bubble Point Pressure</li>
+                        <li>Solution Gas-Oil Ratio (Rs)</li>
+                        <li>Shrinkage Factor</li>
+                        <li>Fluid Phase Behavior</li>
+                    </ul>
+                
+                    <p>
+                        The calculator should never be considered a substitute for a complete laboratory PVT report.
+                    </p>
+                
+                    <div class="warning-box">
+                        For reservoir studies and reserves calculations, laboratory PVT data should always be used whenever available.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>3. Accuracy Decreases for Unusual Fluids</h4>
+                
+                    <p>
+                        The correlation was developed for typical crude oil systems.
+                        Accuracy may decrease when dealing with unusual reservoir fluids such as:
+                    </p>
+                
+                    <ul>
+                        <li>Very heavy oil</li>
+                        <li>Very light condensate</li>
+                        <li>Volatile oil systems</li>
+                        <li>High CO₂ content fluids</li>
+                        <li>High H₂S content fluids</li>
+                        <li>Retrograde condensate reservoirs</li>
+                    </ul>
+                
+                    <p>
+                        In these cases, actual fluid behavior may differ significantly from the correlation prediction.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>4. Best Used for Field Estimates and Quick Calculations</h4>
+                
+                    <p>
+                        The primary purpose of the calculator is to provide rapid estimates during:
+                    </p>
+                
+                    <ul>
+                        <li>Well testing operations</li>
+                        <li>Production testing</li>
+                        <li>Temporary well test facilities</li>
+                        <li>Early production evaluations</li>
+                        <li>Daily field reporting</li>
+                    </ul>
+                
+                    <div class="tip-box">
+                        It is ideal when quick decisions are needed and laboratory data is not yet available.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>5. Results Should Be Validated with Laboratory Data</h4>
+                
+                    <p>
+                        Whenever laboratory PVT data becomes available, the estimated shrinkage factor should be
+                        compared against the laboratory results.
+                    </p>
+                
+                    <p>
+                        Any significant difference should be investigated and corrected in production calculations.
+                    </p>
+                
+                    <div class="formula-box">
+                        Field Estimate → Initial Decision
+                        <br><br>
+                        Laboratory PVT → Final Engineering Value
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Engineering Summary</h4>
+                
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Limitation</th>
+                                <th>Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Empirical Correlation</td>
+                                <td>Provides estimates only</td>
+                            </tr>
+                            <tr>
+                                <td>No Laboratory Measurements</td>
+                                <td>Less accurate than PVT analysis</td>
+                            </tr>
+                            <tr>
+                                <td>Unusual Fluids</td>
+                                <td>Accuracy may decrease</td>
+                            </tr>
+                            <tr>
+                                <td>Field Application</td>
+                                <td>Best for quick engineering estimates</td>
+                            </tr>
+                            <tr>
+                                <td>PVT Validation Required</td>
+                                <td>Final values should come from laboratory data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <div class="highlight-card">
+                        <h5>Key Takeaway</h5>
+                
+                        <p>
+                            The Shrinkage Calculator is an excellent field engineering tool for estimating stock tank oil volumes,
+                            but it should be viewed as an approximation method rather than a substitute for laboratory PVT analysis.
+                        </p>
+                
+                        <p>
+                            Use it for quick operational decisions, and always verify the results when laboratory fluid data becomes available.
+                        </p>
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab8')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab10')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab10">
+                <div class="explain-modern">
+                    <section class="section">
+                        <h2 class="section-title">Course Summary</h2>
+                    
+                        <div class="explain-modern">
+                            <h3>Estimate of Shrinkage Factor</h3>
+                    
+                            <p>
+                                Shrinkage Factor is used to estimate the reduction in crude oil volume when oil moves
+                                from separator conditions to stock tank conditions.
+                            </p>
+                    
+                            <p>
+                                As pressure decreases, dissolved gas escapes from the oil causing the oil volume
+                                to shrink. This calculator estimates the relationship between Separator Oil Volume
+                                and Stock Tank Oil Volume using separator pressure, separator temperature,
+                                gas gravity, oil API gravity, and observed temperature.
+                            </p>
+                    
+                            <h4>Final Equation</h4>
+                    
+                            <p>
+                                Shrinkage Factor = 1 / Bo
+                            </p>
+                    
+                            <p>
+                                Where Bo is the estimated Oil Formation Volume Factor.
+                            </p>
+                    
+                            <h4>Engineering Use</h4>
+                    
+                            <ul>
+                                <li>Well Testing Operations</li>
+                                <li>Production Testing</li>
+                                <li>Temporary Production Facilities</li>
+                                <li>Stock Tank Oil Estimation</li>
+                                <li>Production Reporting</li>
+                                <li>PVT Approximation</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab9')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab11')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab11">
+                <div class="explain-modern">
+                    <section class="section">
+                        <h2 class="section-title">Worked Example</h2>
+                    
+                        <div class="explain-modern">
+                    
+                            <h3>Input Data</h3>
+                    
+                            <ul>
+                                <li>Separator Pressure = 620 psig</li>
+                                <li>Separator Temperature = 95°F</li>
+                                <li>Observed Gas S.G = 0.762</li>
+                                <li>Observed Oil API = 43</li>
+                                <li>Observed Temperature = 72°F</li>
+                            </ul>
+                    
+                            <h3>Calculation Sequence</h3>
+                    
+                            <ol>
+                                <li>Correct Gas Gravity</li>
+                                <li>Calculate F1</li>
+                                <li>Calculate F2</li>
+                                <li>Calculate Fvol</li>
+                                <li>Calculate Bo</li>
+                                <li>Calculate Shrinkage = 1/Bo</li>
+                            </ol>
+                    
+                            <h3>Result</h3>
+                    
+                            <div class="formula-box">
+                                Shrinkage Factor ≈ 0.838
+                            </div>
+                    
+                            <p>
+                                This means 1.0 barrel of separator oil becomes approximately
+                                0.838 stock tank barrels after gas liberation.
+                            </p>
+                    
+                        </div>
+                    </section>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab10')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab12')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab12">
+                <div class="explain-modern">
+                    <section class="section">
+                        <h2 class="section-title">Engineering Interpretation</h2>
+                    
+                        <div class="explain-modern">
+                    
+                            <h4>Shrinkage = 0.95</h4>
+                            <p>Very little gas released from oil.</p>
+                    
+                            <h4>Shrinkage = 0.90</h4>
+                            <p>Moderate shrinkage.</p>
+                    
+                            <h4>Shrinkage = 0.85</h4>
+                            <p>Typical light crude oil.</p>
+                    
+                            <h4>Shrinkage = 0.80</h4>
+                            <p>High gas liberation.</p>
+                    
+                            <h4>Shrinkage = 0.75</h4>
+                            <p>Very volatile oil with large dissolved gas content.</p>
+                    
+                        </div>
+                    </section>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab11')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab13')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab13">
+                <div class="explain-modern">
+                    <section class="section">
+                        <h2 class="section-title">Field Engineer Notes</h2>
+                    
+                        <div class="explain-modern">
+                    
+                            <ul>
+                                <li>Higher separator pressure usually increases shrinkage factor.</li>
+                    
+                                <li>Lower separator pressure allows more gas to flash off.</li>
+                    
+                                <li>Light oils (High API) generally contain more dissolved gas.</li>
+                    
+                                <li>Separator temperature significantly affects gas liberation.</li>
+                    
+                                <li>Always compare estimated shrinkage against laboratory PVT reports when available.</li>
+                    
+                                <li>This correlation is intended for field estimation only.</li>
+                    
+                            </ul>
+                    
+                        </div>
+                    </section>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab12')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab14')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab14">
+                <div class="explain-modern">
+                    <section class="section">
+                        <h2 class="section-title">Common Mistakes</h2>
+                    
+                        <div class="explain-modern">
+                    
+                            <ol>
+                    
+                                <li>
+                                    Entering separator pressure in absolute pressure instead of psig.
+                                </li>
+                    
+                                <li>
+                                    Confusing Oil API with Specific Gravity.
+                                </li>
+                    
+                                <li>
+                                    Using gas gravity from another separator stage.
+                                </li>
+                    
+                                <li>
+                                    Entering temperature in Celsius instead of Fahrenheit.
+                                </li>
+                    
+                                <li>
+                                    Assuming shrinkage factor is constant for all wells.
+                                </li>
+                    
+                                <li>
+                                    Using estimated shrinkage instead of laboratory PVT data when laboratory results are available.
+                                </li>
+                    
+                            </ol>
+                    
+                        </div>
+                    </section>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab13')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab15')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab15">
+                <div class="explain-modern">
+                    <section class="section">
+                        <h2 class="section-title">Mind Map</h2>
+                    
+                    <pre class="mindmap">
+                                        SHRINKAGE FACTOR
+                                                │
+                          ┌─────────────────────┼─────────────────────┐
+                          │                     │                     │
+                          ▼                     ▼                     ▼
+                    
+                    Separator Data      Fluid Properties       Results
+                    
+                          │                     │                  │
+                          │                     │                  │
+                    
+                    Psep              Gas Gravity          Bo
+                    
+                    Tsep              Oil API              Shrinkage
+                    
+                    Tobs                                   Stock Tank Oil
+                    
+                                                │
+                                                ▼
+                    
+                                         Engineering Uses
+                    
+                                                │
+                    
+                          ├─ Well Testing
+                          ├─ Production Reports
+                          ├─ Temporary Facilities
+                          ├─ PVT Estimation
+                          └─ Oil Accounting
+                    </pre>
+                    
+                    </section>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab14')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab16')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab16">
+                    <section class="section">
+                        <h2 class="section-title">Quick Knowledge Check</h2>
+                    
+                        <div class="explain-modern">
+
+                            <h3>Q1: What causes oil shrinkage?</h3>
+                            <p>
+                                Oil shrinkage occurs when pressure decreases and dissolved gas escapes from the crude oil.
+                                As gas leaves the liquid phase, the oil occupies less volume, causing shrinkage.
+                            </p>
+                        
+                            <h3>Q2: Why does gas come out of solution?</h3>
+                            <p>
+                                Gas remains dissolved in oil under high reservoir pressure. When pressure drops at the separator,
+                                the oil can no longer hold all the gas, causing the excess gas to come out of solution.
+                            </p>
+                        
+                            <h3>Q3: What is the purpose of Bo?</h3>
+                            <p>
+                                Bo (Oil Formation Volume Factor) represents the relationship between reservoir oil volume
+                                and stock tank oil volume. It is used to estimate how oil volume changes as pressure and gas content change.
+                            </p>
+                        
+                            <h3>Q4: What does API gravity represent?</h3>
+                            <p>
+                                API gravity measures how light or heavy an oil is compared to water.
+                                Higher API values indicate lighter oils, which generally contain more dissolved gas.
+                            </p>
+                        
+                            <h3>Q5: Why is gas gravity corrected?</h3>
+                            <p>
+                                Gas gravity is corrected to standard conditions because gas density changes with temperature.
+                                This correction improves the accuracy of shrinkage calculations.
+                            </p>
+                        
+                            <h3>Q6: What is separator pressure?</h3>
+                            <p>
+                                Separator pressure is the operating pressure inside the separator where oil and gas are separated.
+                                It strongly influences the amount of gas released from the oil.
+                            </p>
+                        
+                            <h3>Q7: What happens if separator pressure decreases?</h3>
+                            <p>
+                                Lower separator pressure causes more dissolved gas to flash out of the oil,
+                                resulting in greater shrinkage and lower stock tank oil volume.
+                            </p>
+                        
+                            <h3>Q8: What happens if separator temperature increases?</h3>
+                            <p>
+                                Higher separator temperature promotes gas liberation from the oil,
+                                which generally increases oil shrinkage.
+                            </p>
+                        
+                            <h3>Q9: Why is observed temperature required?</h3>
+                            <p>
+                                Observed temperature is used to correct the gas gravity value to standard conditions,
+                                ensuring more reliable shrinkage calculations.
+                            </p>
+                        
+                            <h3>Q10: What does F1 represent?</h3>
+                            <p>
+                                F1 is an intermediate pressure-related parameter that combines separator pressure
+                                and corrected gas gravity to estimate gas liberation effects.
+                            </p>
+                        
+                            <h3>Q11: What does F2 represent?</h3>
+                            <p>
+                                F2 is an oil gravity correction factor that adjusts the calculation
+                                based on the oil API gravity and separator conditions.
+                            </p>
+                        
+                            <h3>Q12: What does Fvol represent?</h3>
+                            <p>
+                                Fvol is an empirical volume parameter that combines pressure,
+                                temperature, gas gravity, and oil gravity effects into a single value
+                                used to estimate Bo.
+                            </p>
+                        
+                            <h3>Q13: How is Shrinkage calculated?</h3>
+                            <p>
+                                Shrinkage is calculated by taking the inverse of the Oil Formation Volume Factor:
+                            </p>
+                            <p>
+                                <strong>Shrinkage = 1 / Bo</strong>
+                            </p>
+                        
+                            <h3>Q14: What does a shrinkage factor of 0.85 mean?</h3>
+                            <p>
+                                A shrinkage factor of 0.85 means that 1 barrel of separator oil will become
+                                approximately 0.85 stock tank barrels after gas separation.
+                            </p>
+                        
+                            <h3>Q15: What does a shrinkage factor of 0.95 mean?</h3>
+                            <p>
+                                A shrinkage factor of 0.95 indicates very little gas liberation.
+                                Most of the original oil volume remains after separation.
+                            </p>
+                        
+                            <h3>Q16: Where is shrinkage used in well testing?</h3>
+                            <p>
+                                Shrinkage is used to convert separator oil measurements into stock tank oil production,
+                                allowing engineers to estimate actual saleable oil volumes.
+                            </p>
+                        
+                            <h3>Q17: Why is laboratory PVT preferred?</h3>
+                            <p>
+                                Laboratory PVT analysis directly measures fluid properties under controlled conditions,
+                                making it more accurate than empirical shrinkage correlations.
+                            </p>
+                        
+                            <h3>Q18: Can shrinkage be greater than 1?</h3>
+                            <p>
+                                Normally no. Shrinkage factors are typically less than 1 because oil volume decreases
+                                when gas is removed. A value greater than 1 would indicate an error or unusual conditions.
+                            </p>
+                        
+                            <h3>Q19: What is Stock Tank Oil?</h3>
+                            <p>
+                                Stock Tank Oil (STO) is the stabilized oil remaining after gas has been separated
+                                and the oil has reached atmospheric conditions in storage tanks.
+                            </p>
+                        
+                            <h3>Q20: Why is shrinkage important for production reporting?</h3>
+                            <p>
+                                Production reports are based on stock tank oil volumes rather than separator volumes.
+                                Shrinkage ensures accurate reporting of the actual recoverable oil produced from the well.
+                            </p>
+                        
+                        </div>
+                    </section>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab15')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab17')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab17">
+                <div class="explain-modern">
+                    <h3>Course Operational Mindmap Breakdown</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                        <img src="img/mindmap1.png" alt="Air Compressor Structural Knowledge Mindmap Architecture" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/summary1.png" alt="Process Workflow Operations Sequential Summary Map" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab16')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab18')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab18">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab17')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 19; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

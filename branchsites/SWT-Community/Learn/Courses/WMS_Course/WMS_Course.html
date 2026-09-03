@@ -1,0 +1,3470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn about Work Management System | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+
+
+        /*******************************************/
+        /* =====================================
+   MODERN EXPLAIN SECTION
+===================================== */
+
+.explain-modern{
+    background: linear-gradient(180deg,#0f172a,#111827);
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0;
+    color: #e2e8f0;
+    line-height: 1.8;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+.explain-modern h3{
+    color: #f1c40f;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #f1c40f;
+    padding-left: 15px;
+}
+
+.explain-modern h4{
+    color: #38bdf8;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.explain-modern p{
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.explain-modern ul{
+    margin: 15px 0 20px 25px;
+}
+
+.explain-modern li{
+    margin-bottom: 8px;
+}
+
+.explain-modern hr{
+    border: none;
+    height: 1px;
+    background: #334155;
+    margin: 25px 0;
+}
+
+/* =====================================
+   TIP BOX
+===================================== */
+
+.tip-box{
+    background: rgba(14,165,233,0.12);
+    border-left: 5px solid #0ea5e9;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #dbeafe;
+}
+
+/* =====================================
+   WARNING BOX
+===================================== */
+
+.warning-box{
+    background: rgba(239,68,68,0.12);
+    border-left: 5px solid #ef4444;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fee2e2;
+}
+
+/* =====================================
+   HIGHLIGHT CARD
+===================================== */
+
+.highlight-card{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    border: 1px solid #475569;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #f8fafc;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================================
+   FLOW DIAGRAM
+===================================== */
+
+.flow-diagram{
+    background: #020617;
+    border: 2px dashed #38bdf8;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    font-weight: 700;
+    color: #7dd3fc;
+    line-height: 2;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+/* =====================================
+   FORMULA BOX
+===================================== */
+
+.formula-box{
+    background: #020617;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    overflow-x: auto;
+    margin: 20px 0;
+    color: #f8fafc;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.modern-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.modern-table thead{
+    background: #f1c40f;
+}
+
+.modern-table thead th{
+    color: #000;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.modern-table tbody tr{
+    background: #111827;
+    border-bottom: 1px solid #334155;
+}
+
+.modern-table tbody tr:nth-child(even){
+    background: #0f172a;
+}
+
+.modern-table td{
+    padding: 14px;
+    color: #e2e8f0;
+}
+
+/* =====================================
+   ENGINEERING NOTE
+===================================== */
+
+.engineering-note{
+    background: rgba(241,196,15,0.12);
+    border-left: 5px solid #f1c40f;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fef3c7;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+    .explain-modern{
+        padding: 20px;
+    }
+
+    .explain-modern h3{
+        font-size: 1.5rem;
+    }
+
+    .explain-modern h4{
+        font-size: 1.1rem;
+    }
+
+    .modern-table{
+        display:block;
+        overflow-x:auto;
+        white-space: nowrap;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">Work Management System</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="ADNOC Work Management System (WMS) Framework" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+            
+                    <h3>ADNOC Work Management System (WMS) Framework</h3>
+                
+                    <p>
+                        The <strong>ADNOC Work Management System (WMS) Framework</strong> is a comprehensive safety tool designed to ensure that all operational work across ADNOC facilities is properly controlled, coordinated, and communicated.
+                        It provides a standardized approach to formal risk assessment, isolation, permitting, and job execution.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>1. Key Objectives & Scope</h4>
+                
+                    <p>
+                        The WMS Framework establishes unified governance across all ADNOC operating units:
+                    </p>
+                
+                    <ul>
+                        <li><strong>Single System Procedure:</strong> One standardized set of rules for all ADNOC Group Companies.</li>
+                        <li><strong>Harmonized Terminology:</strong> Common definitions and roles across the entire workforce.</li>
+                        <li><strong>Workforce Mobility:</strong> Allows contractors and personnel to move between sites without system limitations.</li>
+                        <li><strong>Universal Scope:</strong> Applies strictly to all employees, contractors, operating sites, and interface areas.</li>
+                    </ul>
+                
+                    <div class="tip-box">
+                        The WMS Framework applies to all activities and services across ADNOC Group Companies without exception.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>2. The 5 Core Elements of WMS</h4>
+                
+                    <p>
+                        The Work Management System integrates five essential safety components into a unified workflow:
+                    </p>
+                
+                    <ul>
+                        <li><strong>Permit to Work (PTW):</strong> Standardized authorization for high-risk work execution.</li>
+                        <li><strong>Job Safety Analysis (JSA):</strong> Formal step-by-step risk assessment and control identification.</li>
+                        <li><strong>Energy Isolation (EI):</strong> Safe isolation of hazardous mechanical, electrical, or chemical energy sources.</li>
+                        <li><strong>Temporary Defeat (TD):</strong> Strict authorization required when bypassing safety-critical systems or alarms.</li>
+                        <li><strong>Simultaneous Operations (SIMOPS):</strong> Risk management and coordination of concurrent work activities.</li>
+                    </ul>
+            
+                    <div class="flow-diagram">
+                        Permit to Work (PTW)
+                        <br>+ JSA
+                        <br>+ Energy Isolation
+                        <br>+ Temporary Defeat
+                        <br>+ SIMOPS
+                        <br>↓
+                        <br>Integrated Safe Work Execution
+                    </div>
+                
+                    <hr>
+                
+                    <h4>3. The 8-Step WMS Process Lifecycle</h4>
+                
+                    <p>
+                        Work execution under the WMS framework follows a strict sequential 8-step lifecycle:
+                    </p>
+                
+                    <ol>
+                        <li><strong>Work Request & Planning:</strong> Initial job submission and operational review.</li>
+                        <li><strong>Identify & Approve Controls:</strong> Defining mandatory safety precautions and JSA.</li>
+                        <li><strong>Worksite Controls Implementation:</strong> Establishing isolations, barriers, and environmental controls.</li>
+                        <li><strong>Authorize Work Permit:</strong> Formal approval by designated Area Authorities.</li>
+                        <li><strong>Communicate Controls & Commence Work:</strong> Pre-job toolbox talk and work kickoff.</li>
+                        <li><strong>Dynamic Risk Assessment:</strong> On-site continuous safety assessment during work execution.</li>
+                        <li><strong>Work Handover / Suspension / Extension:</strong> Managing shifts, delays, and ongoing authorizations.</li>
+                        <li><strong>Permit Closure & Handback:</strong> Restoring site to normal operational status and closing documentation.</li>
+                    </ol>
+                
+                    <div class="highlight-card">
+                        <strong>Continuous Assurance:</strong> All work steps rely on active monitoring, clear sign-offs, and compliance checks at every tier of authority.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>4. Governance, Roles & Responsibilities</h4>
+                
+                    <p>
+                        Clear lines of responsibility are defined to ensure operational integrity and compliance:
+                    </p>
+                
+                    <ul>
+                        <li><strong>ADNOC Group HSE, SVP:</strong> Reviews and approves WMS Standards, revisions, and Tier 3 audit overviews.</li>
+                        <li><strong>Group Company CEO:</strong> Authorizes and appoints Asset Owners across site facilities.</li>
+                        <li><strong>Group Company VP-HSE:</strong> Provides technical advice, conducts Tier 2 audits, and endorses deviation requests.</li>
+                        <li><strong>Asset Owner / VPO:</strong> Appoints authorized signatories (AAA, AA) in writing and ensures WMS compliance.</li>
+                        <li><strong>Area Authority (AA):</strong> Manages daily permit authorization, active limits, and daily PTW coordination meetings.</li>
+                        <li><strong>Job Performer (JP):</strong> Retains original permit on site and directly supervises safe work execution.</li>
+                    </ul>
+                
+                    <hr>
+                
+                    <h4>5. Audits, Assurance & Business Rules</h4>
+                
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Standard / Business Rule Requirement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Tier 1 Audit</strong></td>
+                                <td>Daily monitoring and self-auditing of active permits and daily WMS documentation.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tier 2 Audit</strong></td>
+                                <td>Annual audit conducted by Corporate HSE to assess standard effectiveness.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tier 3 Audit</strong></td>
+                                <td>Independent oversight conducted according to ADNOC Group Audit Guidelines.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PTW Exempt Work</strong></td>
+                                <td>Asset Owner maintains a written, annually updated list of low-risk jobs not requiring PTW.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PTW Crash Pack</strong></td>
+                                <td>Mandatory hard-copy paper system used during electronic PTW system outages.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Document Retention</strong></td>
+                                <td>All original permits, attachments, and wet-signature hard copies retained for minimum 12 months.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Competency Assurance</strong></td>
+                                <td>WMS Signatory certificates are valid for 3 years, requiring formal re-training before expiry.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!---->
+                    
+                    
+                        <div class="explain-modern">
+                    
+                            <h3>Work Management System (WMS) Framework & Governance Summary</h3>
+                    
+                            <p>
+                                The final module consolidates the core governance principles, administrative responsibilities, document retention protocols, and audit tiers mandated across all ADNOC operational facilities.
+                            </p>
+                    
+                            <hr>
+                    
+                            <h4>1. WMS Scope & Core Obligations</h4>
+                    
+                            <ul>
+                                <li><strong>Safety Tool Purpose:</strong> WMS ensures that all operational and maintenance work is properly controlled, coordinated, and communicated.</li>
+                                <li><strong>HSE Critical Processes:</strong> Fully integrates Job Safety Analysis (JSA), Permit to Work (PTW), Energy Isolation, Temporary Defeat, and SIMOPS.</li>
+                                <li><strong>Contractor Compliance:</strong> Contractors are fully bound by WMS standards and receive no exemptions for activities performed within operating facilities.</li>
+                            </ul>
+                    
+                            <hr>
+                    
+                            <h4>2. Administrative Governance & Signatories</h4>
+                    
+                            <table class="modern-table">
+                                <thead>
+                                    <tr>
+                                        <th>Role / Function</th>
+                                        <th>Responsibility & Accountability</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Principal Custodian</strong></td>
+                                        <td>The <strong>Senior Vice President, HSE ADNOC Group</strong>, holds sole authority for authorizing all framework modifications.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Asset Owner Responsibilities</strong></td>
+                                        <td>Must approve and maintain a written list of authorized WMS Signatories. Appoints competent signatories upon successful training completion.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Deviations Process</strong></td>
+                                        <td>Deviations from WMS standards require formal written requests with Risk Assessments, reviewed by Group Company Corporate HSE VPs, and approved by SVP HSE ADNOC Group.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    
+                            <hr>
+                    
+                            <h4>3. Documentation & Archiving Standards</h4>
+                    
+                            <p>
+                                Strict document control rules govern both paper-based and electronic records to ensure full traceability during audits and investigations.
+                            </p>
+                    
+                            <ul>
+                                <li><strong>Retention Period:</strong> Original signed documents, attachments, and wet-ink hard copies must be archived for a minimum period of <strong>twelve (12) months</strong>.</li>
+                                <li><strong>Investigation Holds:</strong> If any documentation or attachment forms part of an incident investigation, records must remain archived for the entire duration of the investigation.</li>
+                            </ul>
+                    
+                            <hr>
+                    
+                            <h4>4. WMS Audit Tiers</h4>
+                    
+                            <div class="flow-diagram">
+                                Tier 1: Daily Monitoring (Operational field checks)
+                                <br>↓
+                                <br>Tier 2: Independent Assessment (Facility-level compliance reviews)
+                                <br>↓
+                                <br>Tier 3: Assessment by Group Company (Corporate oversight audits)
+                            </div>
+                    
+                            <div class="tip-box">
+                                Adherence to WMS governance guarantees that operational risks remain controlled, transparent, and aligned with ADNOC process safety objectives.
+                            </div>
+                    
+                        </div>
+                    
+                        
+                    
+                    <!---->
+                
+                    <div class="warning-box">
+                        <strong>Emergency Deviations:</strong> Any changes implemented during emergency deviations must be formally re-assessed and retroactively approved as a standard deviation once the site is stabilized.
+                    </div>
+                
+                </div>
+            
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+            
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/PTWSystemCourse.png" alt="Permit To Work Operational Framework Diagram">
+                </div>
+            
+                <div class="explain-modern">
+            
+                    <h3>Permit To Work (PTW) System Framework</h3>
+            
+                    <p>
+                        The <strong>Permit To Work (PTW)</strong> system is a formal safety framework designed to ensure that maintenance, construction, and operational tasks are executed safely to minimize risks to personnel, assets, and the environment.
+                    </p>
+            
+                    <hr>
+            
+                    <h4>1. Core Concept & Objectives</h4>
+            
+                    <p>
+                        A PTW is a set of official documents used to maintain safe working conditions for a specific task. It provides clear operational boundaries prior to commencing work.
+                    </p>
+            
+                    <p>
+                        The primary objectives of the PTW framework include:
+                    </p>
+            
+                    <ul>
+                        <li>Clearly describing the work scope and boundaries.</li>
+                        <li>Ensuring proper authorization is in place before execution.</li>
+                        <li>Identifying hazards and verifying implemented controls.</li>
+                        <li>Acting as a written agreement between involved parties.</li>
+                        <li>Maintaining a permanent saved record of executed work.</li>
+                    </ul>
+            
+                    <div class="flow-diagram">
+                        Electronic PTW (eWMS) Unavailable
+                        <br>↓
+                        <br>PTW Crash Pack Activated
+                        <br>↓
+                        <br>Pre-Printed Forms Hand-written
+                        <br>↓
+                        <br>Site HSE Manager Endorsement
+                        <br>↓
+                        <br>Asset Owner Authorization
+                    </div>
+            
+                    <p>
+                        Tasks are primarily managed via an electronic system (eWMS). If unavailable, a paper-based contingency system (Crash Pack) is used with prior authorization.
+                    </p>
+            
+                    <div class="tip-box">
+                        A printed hard copy of the active permit must be displayed at the worksite at all times during task execution.
+                    </div>
+            
+                    <hr>
+            
+                    <h4>2. Types of PTW Forms</h4>
+            
+                    <p>
+                        Permits are categorized based on risk and task nature. A Work Categorization Chart (WCC) is used to determine the correct permit type.
+                    </p>
+            
+                    <ul>
+                        <li><strong>Hot Work Permit:</strong> Required for tasks containing a positive source of ignition or potential spark (e.g., naked flames, hot surfaces, grinding).</li>
+                        <li><strong>Critical Work Permit:</strong> Required for high-risk activities listed in the Work Categorization Chart or identified as Critical/High Risk.</li>
+                        <li><strong>General Work Permit:</strong> Used for non-critical activities that do not contain any hot work.</li>
+                    </ul>
+            
+                    <div class="highlight-card">
+                        Exempt Work Criteria: Routine + Low Risk + Single Discipline + Completed in One Shift + No Operational Impact → No Permit Needed
+                    </div>
+            
+                    <hr>
+            
+                    <h4>3. Key Roles & Responsibilities</h4>
+            
+                    <p>
+                        Clear segregation of duties ensures safe control and oversight during permit lifecycle.
+                    </p>
+            
+                    <div class="flow-diagram">
+                        Performing Authority (PA) Requests
+                        <br>↓
+                        <br>Asset Approval Authority (AAA) Endorses
+                        <br>↓
+                        <br>Area Authority (AA) Authorizes
+                        <br>↓
+                        <br>Permit Issuer (PI) Verifies Site
+                        <br>↓
+                        <br>Job Performer (JP) Executes Work
+                    </div>
+            
+                    <p>
+                        Key responsibilities within the WMS include:
+                    </p>
+            
+                    <ul>
+                        <li><strong>Asset Approval Authority (AAA):</strong> Approves Critical and Hot Work permits, ensuring risks are reduced to ALARP.</li>
+                        <li><strong>Area Authority (AA):</strong> Manages area safety, authorizes permits, and oversees re-validations, suspensions, and closures.</li>
+                        <li><strong>Permit Issuer (PI):</strong> Inspects worksite, verifies control measures, confirms zero energy state, and conducts gas tests.</li>
+                        <li><strong>Performing Authority (PA):</strong> Requests the permit, provides clear scope, and ensures complete JSA coverage.</li>
+                        <li><strong>Job Performer (JP):</strong> Directly supervises work execution, conducts Toolbox Talks (TBT), and maintains site safety controls.</li>
+                    </ul>
+            
+                    <div class="engineering-note">
+                        Mandatory Separation of Roles: The Area Authority (AA) and Job Performer (JP) shall NOT be the same person. Similarly, the Permit Issuer (PI) and Job Performer (JP) shall NOT be the same person.
+                    </div>
+            
+                    <hr>
+            
+                    <h4>4. The 8-Step PTW Controlling Process</h4>
+            
+                    <p>
+                        Every permit follows a standardized 8-step overall controlling process to guarantee operational compliance.
+                    </p>
+            
+                    <div class="flow-diagram">
+                        1. Work Request & Planning
+                        <br>↓
+                        <br>2. Identify & Approve Controls
+                        <br>↓
+                        <br>3. Worksite Controls Implementation
+                        <br>↓
+                        <br>4. Authorize PTW
+                        <br>↓
+                        <br>5. Communicate Controls & Commence Work
+                        <br>↓
+                        <br>6. Dynamic Risk Assessment
+                        <br>↓
+                        <br>7. Work Handover / Suspension / Extension
+                        <br>↓
+                        <br>8. Permit Closure & Handback
+                    </div>
+            
+                    <hr>
+            
+                    <h4>Engineering Summary</h4>
+            
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>PTW Parameter</th>
+                                <th>Standard Requirement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Maximum Validity Period</td>
+                                <td>Valid for a maximum of seven (7) consecutive calendar days from issuance.</td>
+                            </tr>
+                            <tr>
+                                <td>Shift Re-validation</td>
+                                <td>Must be formally re-validated at every shift change prior to commencing work.</td>
+                            </tr>
+                            <tr>
+                                <td>Advance Submission</td>
+                                <td>Permits must be submitted at least one (1) day prior to planned commencement.</td>
+                            </tr>
+                            <tr>
+                                <td>Maximum Extension Limit</td>
+                                <td>Allowed for up to 4 hours, equating to a total continuous work duration of 16 hours.</td>
+                            </tr>
+                            <tr>
+                                <td>Pre-Start Communication</td>
+                                <td>Authorized Gas Testing (AGT) and site Toolbox Talk (TBT) mandatory before starting work.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <div class="warning-box">
+                        Failure to re-validate permits post-shift change or commencing work without proper Area Authority authorization can lead to immediate work cancellation and severe safety breaches.
+                    </div>
+            
+                </div>
+
+                <!---->
+                
+                
+                    <div class="explain-modern">
+                
+                        <h3>Permit to Work (PTW) Framework & Lifecycle Summary</h3>
+                
+                        <p>
+                            The <strong>Permit to Work (PTW) Module</strong> ensures that all high-risk, critical, and general maintenance activities are authorized, risk-assessed, and safely executed across ADNOC facilities.
+                        </p>
+                
+                        <hr>
+                
+                        <h4>1. PTW Classification & Approvals</h4>
+                
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>Permit Type</th>
+                                    <th>Approval Authority</th>
+                                    <th>Key Application Examples</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Hot Work Permit</strong></td>
+                                    <td>Asset Approval Authority (AAA) & Area Authority (AA)</td>
+                                    <td>Welding, grinding, or open-flame operations in live areas.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Critical Work Permit</strong></td>
+                                    <td>Asset Approval Authority (AAA) & Area Authority (AA)</td>
+                                    <td>Heavy lifting over live plant, complex isolations, or critical excavations.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>General Work Permit</strong></td>
+                                    <td>Area Authority (AA)</td>
+                                    <td>Standard, non-sparking operational maintenance work.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                
+                        <div class="tip-box">
+                            Permits must be submitted at least <strong>2 days prior</strong> to planned work execution (except for emergency tasks).
+                        </div>
+                
+                        <hr>
+                
+                        <h4>2. Operational Validity & Site Rules</h4>
+                
+                        <ul>
+                            <li><strong>Maximum Permit Validity:</strong> Valid for up to <strong>7 consecutive calendar days</strong>.</li>
+                            <li><strong>Shift Work Extension:</strong> A maximum <strong>4-hour time extension</strong> is permitted under specific conditions.</li>
+                            <li><strong>Worksite Display:</strong> The original PTW copy must be held by the Job Performer (JP) and <strong>visibly displayed at the worksite</strong>.</li>
+                            <li><strong>Tool Box Talk (TBT):</strong> Mandatory briefing conducted by the JP covering task hazards, safety controls, and work party roles prior to starting.</li>
+                        </ul>
+                
+                        <hr>
+                
+                        <h4>3. Job Performer (JP) Handover & PTW Suspension</h4>
+                
+                        <div class="flow-diagram">
+                            1. JP Change Required (Handover triggered during work execution)
+                            <br>↓
+                            <br>2. Authorization (Authorized by Performing Authority [PA])
+                            <br>↓
+                            <br>3. Endorsement (Re-approval signed by Area Authority [AA] & Permit Issuer [PI])
+                            <br>↓
+                            <br>4. Emergency/Alarm Action (Work stops immediately; site made safe; personnel evacuate)
+                        </div>
+                
+                    </div>
+                
+                    
+                
+                
+                <!---->
+            
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+
+            
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/PTWCertificatesCourse.png" alt="PTW Supporting Certificates and Governance Framework Diagram">
+                </div>
+            
+                <div class="explain-modern">
+            
+                    <h3>PTW Supporting Certificates & Governance Rules</h3>
+            
+                    <p>
+                        Certificates are supporting, complementary documents attached to Permits to Work (PTWs) to authorize specific preparatory or high-risk activities. Certificates do not authorize work on their own and must be paired with an active permit.
+                    </p>
+            
+                    <hr>
+            
+                    <h4>1. The 10 Types of PTW Certificates</h4>
+            
+                    <p>
+                        The WMS Framework defines ten specialized certificates to manage specific high-hazard activities:
+                    </p>
+            
+                    <ul>
+                        <li><strong>Confined Space Entry:</strong> Controls entry precautions, atmospheric monitoring, gas testing, and rescue team readiness.</li>
+                        <li><strong>Energy Isolation:</strong> Regulates process, mechanical, electrical, and instrument isolations, including Sanction to Test (STT).</li>
+                        <li><strong>Temporary Defeat:</strong> Manages the temporary override or bypass of safety systems, alarms, or interlocks.</li>
+                        <li><strong>Excavation:</strong> Verifies underground services (electrical, telecom, piping) and structural shoring before ground disturbance.</li>
+                        <li><strong>Ionizing Radiation:</strong> Sets controlled boundary zones, exposure limits, and safety measures for radiography work.</li>
+                        <li><strong>Road Closure:</strong> Manages traffic re-routing, barrier placement, and emergency access notifications.</li>
+                        <li><strong>Diving:</strong> Oversees underwater operations, diving crew safety, and marine interface communications.</li>
+                        <li><strong>Vehicle Entry:</strong> Regulates unauthorized or motorized equipment entry into process or restricted areas.</li>
+                        <li><strong>Atmospheric Test Record Form:</strong> Logs mandatory gas test parameters (Oxygen, LEL, H2S, CO) before and during work.</li>
+                        <li><strong>Easement:</strong> Handles third-party or cross-boundary work authorizations and operational notifications.</li>
+                    </ul>
+            
+                    <div class="tip-box">
+                        Certificates are complementary to PTWs and do not, in themselves, authorize work to be carried out without an active PTW.
+                    </div>
+            
+                    <hr>
+            
+                    <h4>2. Form Validity & Re-validation Rules</h4>
+            
+                    <p>
+                        Operational safety mandates strict validity limits and shift re-validation rules across all forms and certificates.
+                    </p>
+            
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Form / Certificate</th>
+                                <th>Maximum Validity</th>
+                                <th>Re-validation Frequency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hot Work Permit</td>
+                                <td>7 consecutive calendar days</td>
+                                <td>Every shift</td>
+                            </tr>
+                            <tr>
+                                <td>Critical Work Permit</td>
+                                <td>7 consecutive calendar days</td>
+                                <td>Every shift</td>
+                            </tr>
+                            <tr>
+                                <td>General Work Permit</td>
+                                <td>7 consecutive calendar days</td>
+                                <td>Every shift</td>
+                            </tr>
+                            <tr>
+                                <td>Confined Space Entry (CSE) Certificate</td>
+                                <td>7 consecutive calendar days</td>
+                                <td>Every shift</td>
+                            </tr>
+                            <tr>
+                                <td>Specialized Certificates (Excavation, Radiation, Isolation, etc.)</td>
+                                <td>Specified by Area Authority (AA)</td>
+                                <td>Not applicable</td>
+                            </tr>
+                            <tr>
+                                <td>Atmospheric Test Record Form</td>
+                                <td>Not applicable</td>
+                                <td>Not applicable</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <hr>
+            
+                    <h4>3. Signatory Responsibilities for Hot & Critical Work</h4>
+            
+                    <p>
+                        Sign-off protocols enforce multi-tiered authorization before any critical task can commence in the field.
+                    </p>
+            
+                    <div class="flow-diagram">
+                        Permit Request (PA)
+                        <br>↓
+                        <br>Worksite Controls & Supporting Documents (AA)
+                        <br>↓
+                        <br>Permit Endorsement (PE)
+                        <br>↓
+                        <br>Permit Approval (AAA)
+                        <br>↓
+                        <br>Permit Authorization (AA)
+                        <br>↓
+                        <br>Worksite Issue & Suspension (JP / AA / PI)
+                        <br>↓
+                        <br>Permit Closure (PA / PI / AA)
+                    </div>
+            
+                    <div class="engineering-note">
+                        The Asset Approval Authority (AAA) must be at least one level above the Area Authority (AA) to maintain objective approval oversight for high-risk permits.
+                    </div>
+            
+                    <hr>
+            
+                    <h4>4. Mandatory PTW Register Requirements</h4>
+            
+                    <p>
+                        Each Group Company must maintain an up-to-date central PTW register containing complete operational trace data.
+                    </p>
+            
+                    <ul>
+                        <li><strong>Permit Details:</strong> Permit number, type/risk level, work description, work order number, and start date.</li>
+                        <li><strong>PTW Signatories:</strong> Recorded names of JP, PE, High Risk Authority (HRA), AA, and PI.</li>
+                        <li><strong>Certificates Attached:</strong> Cross-referenced numbers for CSE, Isolation, Vehicle, Radiation, or Excavation certificates.</li>
+                        <li><strong>Execution Details:</strong> Assigned work area, work crew size, LOTO box number, and validity dates.</li>
+                        <li><strong>Closure Status:</strong> Closure date, work completion confirmation (Yes/No), and closing signatures.</li>
+                    </ul>
+            
+                    <div class="warning-box">
+                        The eWMS automatically enforces Business Rules using computer logic. If using the paper-based Crash Pack contingency, competent personnel must manually execute all business rules and register entries without exception.
+                    </div>
+            
+                </div>
+
+                
+            
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+            
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/JSARiskAssessmentCourse.png" alt="Job Safety Analysis and Formal Risk Assessment Framework Diagram">
+                </div>
+            
+                <div class="explain-modern">
+            
+                    <h3>Job Safety Analysis (JSA) & Formal Risk Assessment (FRA)</h3>
+            
+                    <p>
+                        The <strong>Job Safety Analysis (JSA)</strong> standard establishes mandatory requirements and procedures for conducting hazard evaluations prior to the commencement of work. It ensures that task steps, location hazards, and risk significance are defined to reduce risks to <strong>As Low As Reasonably Practicable (ALARP)</strong>.
+                    </p>
+            
+                    <hr>
+            
+                    <h4>1. JSA Integration in the PTW Workflow</h4>
+            
+                    <p>
+                        Risk assessment directly feeds into the PTW lifecycle during the <em>Work Request & Planning</em> and <em>Identify & Approve Controls</em> stages.
+                    </p>
+            
+                    <div class="flow-diagram">
+                        Define Task Content & Location
+                        <br>↓
+                        <br>Identify Task & Site Hazards
+                        <br>↓
+                        <br>Evaluate Hazard Significance
+                        <br>↓
+                        <br>Define Control Measures (ALARP) <sub>As Low As Reasonably Practicable</sub>
+                        <br>↓
+                        <br>Feed Controls into eWMS / Crash Pack
+                    </div>
+            
+                    <div class="tip-box">
+                        In eWMS, all JSA controls are embedded into system modules with e-signatures. When using the paper-based Crash Pack, wet-ink signatures are required on physical forms. A printed copy must remain at the worksite.
+                    </div>
+            
+                    <hr>
+            
+                    <h4>2. Assessment Levels & Tool Selection</h4>
+            
+                    <p>
+                        The risk assessment level is determined by the work category and initial risk potential.
+                    </p>
+            
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Level</th>
+                                <th>Associated Permit</th>
+                                <th>Required Forms</th>
+                                <th>Team Composition</th>
+                                <th>PTW Approver</th>
+                                <th>Validity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>JSA-1</strong></td>
+                                <td>General Work Permit (GWP)</td>
+                                <td>SHCF (Standard Hazard & Control Form)</td>
+                                <td>Performing Authority (PA)</td>
+                                <td>Area Authority (AA)</td>
+                                <td>N/A</td>
+                            </tr>
+                            <tr>
+                                <td><strong>JSA-2</strong></td>
+                                <td>Hot Work (HWP) / Critical Work (CWP)</td>
+                                <td>SHCF + HMF (Hazard Management Form)</td>
+                                <td>PA + Asset Owner Rep (AA or delegate)</td>
+                                <td>Asset Approval Authority (AAA)</td>
+                                <td>2 Years</td>
+                            </tr>
+                            <tr>
+                                <td><strong>FRA</strong></td>
+                                <td>Work requiring Formal Risk Assessment</td>
+                                <td>SHCF + FRA Form</td>
+                                <td>Minimum 2 people + Specialists based on risk</td>
+                                <td>Asset Approval Authority (AAA)</td>
+                                <td>1 Year</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <hr>
+            
+                    <h4>3. Formal Risk Assessment (FRA) Team Composition</h4>
+            
+                    <p>
+                        When work requires an FRA, team selection scales with the initial unmitigated risk level:
+                    </p>
+            
+                    <ul>
+                        <li><strong>Low Risk:</strong> Performing Authority (PA/Supervisor) + Asset Owner Rep (AA or delegate).</li>
+                        <li><strong>Medium Risk:</strong> Performing Authority (PA/Supervisor) + Asset Owner Rep (AA or delegate).</li>
+                        <li><strong>High Risk:</strong> PA + Asset Owner Rep (AA or higher) + HSE Representative + Affected Parties + Fire & Rescue Supervisor + Other Technical Specialists.</li>
+                    </ul>
+            
+                    <div class="engineering-note">
+                        Completed JSAs can be uploaded to the central JSA library for future reference and standardized reuse across facilities.
+                    </div>
+            
+                    <hr>
+            
+                    <h4>4. Risk Matrix & Approval Escalation</h4>
+            
+                    <p>
+                        The Formal Risk Assessment matrix evaluates potential severity against likelihood to categorize residual risk.
+                    </p>
+            
+                    <div class="flow-diagram">
+                        Low Risk (Green) → Standard Site Precautions
+                        <br>↓
+                        <br>Medium Risk (Yellow) → Additional Mitigation Review
+                        <br>↓
+                        <br>High Risk (Red) → Work Prohibited / Executive Approval (AAA)
+                    </div>
+            
+                    <div class="warning-box">
+                        Work classified in the Red (High Risk) zone cannot proceed without mandatory formal risk endorsement and explicit AAA approval demonstrating ALARP mitigation.
+                    </div>
+            
+                </div>
+
+                <!---->
+               
+                <div class="explain-modern">
+                
+                    <h3>Job Safety Analysis (JSA) Framework Summary</h3>
+            
+                    <p>
+                        The <strong>Job Safety Analysis (JSA) Module</strong> outlines the process for identifying task-specific hazards, establishing control measures, and ensuring risks are reduced to As Low As Reasonably Practicable (ALARP) prior to permit issuance.
+                    </p>
+            
+                    <hr>
+            
+                    <h4>1. JSA Classification & PTW Alignment</h4>
+            
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>JSA Category</th>
+                                <th>Associated PTW Type</th>
+                                <th>Document Type & Characteristics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>JSA Level 1</strong></td>
+                                <td>General Work Permit</td>
+                                <td><strong>Standard Hazard & Control Form:</strong> Applied to lower-risk activities; selects applicable PPE, Life Saving Rules, and generic controls.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>JSA Level 2</strong></td>
+                                <td>Hot Work & Critical Work Permits</td>
+                                <td><strong>Hazard Management Form (HMF):</strong> Mandatory for higher-risk tasks; details major work steps, specific site hazards, and tailored controls.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <div class="tip-box">
+                        The <strong>Work Categorization Chart (WCC)</strong> and <strong>IWAP Team</strong> determine whether a task requires JSA Level 1, JSA Level 2, or a Formal Risk Assessment (FRA).
+                    </div>
+            
+                    <hr>
+            
+                    <h4>2. Review Frequencies & Key Governance Rules</h4>
+            
+                    <ul>
+                        <li><strong>Formal Risk Assessment (FRA) Review:</strong> Must be reviewed every <strong>1 year</strong>.</li>
+                        <li><strong>JSA Level 2 Template Review:</strong> Must be reviewed every <strong>2 years</strong>.</li>
+                        <li><strong>JSA Library Uploads:</strong> Templates must receive formal approval from the <strong>Asset Owner Representative</strong> before being uploaded for reuse.</li>
+                        <li><strong>Asset Approval Authority (AAA) Scope:</strong> The AAA approves high-risk/critical permit packs (Hot Work, Critical Work) rather than all permit packs.</li>
+                    </ul>
+            
+                    <hr>
+            
+                    <h4>3. Verification & Execution Workflow</h4>
+            
+                    <div class="flow-diagram">
+                        1. JSA Development (Performing Authority [PA] breaks down steps & hazards)
+                        <br>↓
+                        <br>2. Worksite Verification (Area Authority [AA] confirms all JSA controls are in place)
+                        <br>↓
+                        <br>3. Prerequisite Controls (AA verifies prerequisite safety controls prior to signing PTW)
+                        <br>↓
+                        <br>4. Permit Issuance & TBT (Controls communicated to the crew via Tool Box Talk)
+                    </div>
+            
+                </div>
+            
+            
+            <!---->
+            
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+            
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/EnergyIsolationCourse.png" alt="Energy Isolation, LOTO Key Management, and Workflow Diagram">
+                </div>
+            
+                <div class="explain-modern">
+            
+                    <h3>Energy Isolation (EI) & Lockout / Tagout (LOTO) Framework</h3>
+            
+                    <p>
+                        The <strong>Energy Isolation (EI) Standard</strong> establishes a mandatory, structured process across all operational facilities to ensure a secure break in energy supplies. Isolation controls guarantee that equipment cannot be inadvertently re-energized or pressurized while work is underway, reducing operational risk to <strong>ALARP</strong>.
+                    </p>
+            
+                    <hr>
+            
+                    <h4>1. Key Roles & Responsibilities</h4>
+            
+                    <p>
+                        Strict segregation of duties prevents procedural overlaps and ensures clear accountability across isolation activities.
+                    </p>
+            
+                    <ul>
+                        <li><strong>Area Authority (AA):</strong> Approves all isolation points after technical consultation and retains primary responsibility for confirming full implementation prior to intrusive work.</li>
+                        <li><strong>Isolating Authority (IA):</strong> Holds technical oversight for correct isolation design and boundary integrity. Must possess detailed facility knowledge.</li>
+                        <li><strong>Isolating Operator (ISO):</strong> Executes physical field isolations, valve line-ups, and lock installations. <em>Note: The ISO cannot act as the Job Performer (JP) for the same activity.</em></li>
+                    </ul>
+            
+                    <hr>
+            
+                    <h4>2. Isolation Certificates & Test Permits</h4>
+            
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Certificate / Form</th>
+                                <th>Application Scope</th>
+                                <th>Key Protocol / Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Mechanical / Process / Instrument</strong></td>
+                                <td>Physical fluid, process, or mechanical energy boundaries.</td>
+                                <td>Documents positive isolation, method, zero energy test, and independent verification.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Electrical Isolation</strong></td>
+                                <td>High/Low voltage electrical distribution equipment.</td>
+                                <td>Requires switching execution, racking out, and continuous lock control.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sanction to Test (STT)</strong></td>
+                                <td>Temporary removal of isolation points for equipment testing.</td>
+                                <td><strong>Valid for 1 shift only.</strong> Suspends active PTWs during test execution.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <div class="tip-box">
+                        In eWMS, e-signatures authorize isolation modules. When executing under Crash Pack paper contingencies, wet-ink signatures are mandatory on all physical certificate sections before field work begins.
+                    </div>
+            
+                    <hr>
+            
+                    <h4>3. Baseline Isolation Standards</h4>
+            
+                    <p>
+                        Isolation complexity is governed by fluid toxicity, design pressure, and line sizing to determine positive isolation requirements.
+                    </p>
+            
+                    <ul>
+                        <li><strong>Category 1 (Toxic / Extreme Flammables):</strong> Requires Single Block & Bleed up to ANSI Class 150; Double Block & Bleed required for ANSI Class 300 and above.</li>
+                        <li><strong>Category 2 (Hydrocarbons / Fuel Gas / N2):</strong> Single Block & Bleed up to ANSI Class 150/600; Double Block & Bleed mandatory for ANSI Class 900+.</li>
+                        <li><strong>Positive Isolation:</strong> Involves physical disconnects such as line blinds, spectacle plates, spades, or spool removal.</li>
+                    </ul>
+            
+                    <hr>
+            
+                    <h4>4. Lockout / Tagout (LOTO) Key Management Flow</h4>
+            
+                    <p>
+                        Key security uses a multi-padlock cascade system via a centralized Group Lock Box.
+                    </p>
+            
+                    <div class="flow-diagram">
+                        ISO installs isolation locks & tags at field points
+                        <br>↓
+                        <br>Isolation keys placed inside Key Cabinet / Group Lock Box
+                        <br>↓
+                        <br>Asset Owner Representative locks cabinet with Master Lock
+                        <br>↓
+                        <br>Job Performer (JP) attaches personal lock to Group Lock Box
+                        <br>↓
+                        <br>Zero Energy Verification & Work Commencement
+                    </div>
+            
+                    <div class="engineering-note">
+                        The JP retains personal control over their padlock on the Group Lock Box throughout the job. Physical isolation keys cannot be extracted from the cabinet until all working parties remove their personal locks.
+                    </div>
+            
+                    <hr>
+            
+                    <h4>5. De-Isolation & Extended Period Isolation (EPI)</h4>
+            
+                    <p>
+                        Upon job completion or extended plant shutdown, strict handback protocols apply:
+                    </p>
+            
+                    <ul>
+                        <li><strong>Standard De-isolation:</strong> Permits are closed, field checks confirm equipment readiness, AA authorizes lock removal, and the ISO reinstates the process equipment.</li>
+                        <li><strong>Extended Period Isolation (EPI):</strong> Applied when equipment remains isolated beyond active permit validity without ongoing work. Long-term isolations are logged in the EPI Register and require formal AA approval to reinstate to "Live" status.</li>
+                    </ul>
+            
+                    <div class="warning-box">
+                        Never attempt to perform work under an isolation controlled solely by a Sanction to Test (STT) form. STT is restricted to live test conditions and requires explicit AA authorization.
+                    </div>
+            
+                </div>
+
+                <!---->
+                
+                
+                    <div class="explain-modern">
+                
+                        <h3>Energy Isolation & LOTO Framework Summary</h3>
+                
+                        <p>
+                            The <strong>Energy Isolation Module</strong> establishes strict engineering, mechanical, and electrical control requirements to ensure zero energy state and prevent accidental re-energization during maintenance or project activities.
+                        </p>
+                
+                        <hr>
+                
+                        <h4>1. Baseline Standards & Risk Assessments</h4>
+                
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>Assessment Tool</th>
+                                    <th>Core Function & Application</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Hazard Factor Assessment (HFA)</strong></td>
+                                    <td>Determines Baseline Isolation Standards by evaluating substance category, release factors, and location factors.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Formal Risk Assessment (FRA)</strong></td>
+                                    <td>Mandatory requirement when Minimum Isolation Standards cannot be met for a proposed work scope.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                
+                        <div class="tip-box">
+                            Process isolations involve valve operations, whereas mechanical isolations involve positive physical barriers like blinds, spades, or spectacle blinds.
+                        </div>
+                
+                        <hr>
+                
+                        <h4>2. Key Roles, Responsibilities & Verification</h4>
+                
+                        <ul>
+                            <li><strong>Independent Verification:</strong> The requirement to conduct independent verification of each isolation point is strictly determined by the <strong>Area Authority (AA)</strong>.</li>
+                            <li><strong>Isolating Authority & Operator:</strong> The Area Authority must approve the Energy Isolation Certificate before the Isolating Operator can proceed with physical isolation tasks.</li>
+                            <li><strong>Remote Field Delegations:</strong> In remote field isolations, the Area Authority may delegate final sign-off (authorization to commence work) and approval to de-isolate to the Permit Issuer (PI).</li>
+                            <li><strong>Zero Energy Demonstration:</strong> Verified through testing, checking, opening vents/drains, or trying to operate equipment to confirm integrity and effectiveness.</li>
+                        </ul>
+                
+                        <hr>
+                
+                        <h4>3. Specialized Isolations & Sanction of Test (STT)</h4>
+                
+                        <div class="flow-diagram">
+                            1. Extended Period Isolations (Requires periodic reviews, integrity checks, and logging in the Isolation Register)
+                            <br>↓
+                            <br>2. Mechanical/Electrical Work (Installs blinds/spades or high/low voltage electrical isolations requiring formal PTW linking)
+                            <br>↓
+                            <br>3. Sanction of Test (STT) (Suspends existing permits and utilizes a separate STT form for diagnostic testing)
+                        </div>
+                
+                    </div>
+                
+                    
+                
+                <!---->
+            
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+            
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="video-container-modern">
+                    <img src="img/TemporaryDefeatCourse.png" alt="Temporary Defeat Workflow and Approval Matrix Diagram">
+                </div>
+            
+                <div class="explain-modern">
+            
+                    <h3>Temporary Defeat (TD) of HSE Critical Equipment & Systems (HSECES)</h3>
+            
+                    <p>
+                        The <strong>Temporary Defeat Standard</strong> establishes a mandatory, highly regulated methodology for temporarily bypassing, isolating, bridging, or overriding safety-critical equipment. It ensures that whenever safety safeguards are bypassed, risks remain reduced to <strong>ALARP</strong> through alternative control measures.
+                    </p>
+            
+                    <hr>
+            
+                    <h4>1. Scope & System Definition</h4>
+            
+                    <p>
+                        A Temporary Defeat applies specifically to <strong>HSECES</strong>—installations, systems, and equipment whose failure could cause or fail to mitigate a Major Accident.
+                    </p>
+            
+                    <ul>
+                        <li><strong>Integrity Protection Systems:</strong> Pressure Safety Valves (PSVs) and overpressure trip loops.</li>
+                        <li><strong>Release Control Systems:</strong> Emergency Blowdown Valves (BDVs) and ESD loops.</li>
+                        <li><strong>Secondary Containment:</strong> Bund walls, dykes, and drainage pits.</li>
+                        <li><strong>Fire & Gas Suppression:</strong> Deluge systems, foam systems, and gas detection loops.</li>
+                    </ul>
+            
+                    <div class="warning-box">
+                        Defeats are strictly prohibited if alternate protection is unavailable or if the plant is in an upset condition. DCS/PLC shutdown process overrides, fire/gas overrides, and car seal removal require explicit Lockout/Tagout enforcement.
+                    </div>
+            
+                    <hr>
+            
+                    <h4>2. Key Roles & Responsibilities</h4>
+            
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Role</th>
+                                <th>Core Responsibilities</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Approval Authority</strong></td>
+                                <td>Approves the TDC based on the unmitigated risk severity and proposed duration (Operations Manager / VP / SVP).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Defeat Authority (DA)</strong></td>
+                                <td>Develops the defeat plan using P&IDs, identifies exact bypass points, leads the Temporary Defeat Risk Assessment, and endorses the TDC.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Defeat Performer (DP)</strong></td>
+                                <td>Physically executes or removes the defeat, logs status in the Defeat Register and shift handover logs, and ensures alternate mitigations are functional.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <hr>
+            
+                    <h4>3. Risk-Based Approval Matrix</h4>
+            
+                    <p>
+                        Approval levels escalate based on system criticality (SIL / Severity) and the intended defeat duration.
+                    </p>
+            
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Magnitude / Severity</th>
+                                <th>&lt; 12 Hours</th>
+                                <th>12 to 72 Hours</th>
+                                <th>&gt; 72 Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Plant or SIL &gt; 2</strong></td>
+                                <td>Manager Operations / Equivalent</td>
+                                <td>SVP / VP Operations / Equivalent</td>
+                                <td>SVP / VP Operations / Equivalent</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Process Unit or SIL 2</strong></td>
+                                <td>Manager Operations / Equivalent</td>
+                                <td>Manager Operations / Equivalent</td>
+                                <td>SVP / VP Operations / Equivalent</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Process Section or SIL 1</strong></td>
+                                <td>Team Leader / Section Leader</td>
+                                <td>Team Leader / Section Leader</td>
+                                <td>VP Operations / Equivalent</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Individual Equipment</strong></td>
+                                <td>Area Authority (AA)</td>
+                                <td>Team Leader / Section Leader</td>
+                                <td>VP Operations / Equivalent</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <div class="tip-box">
+                        Any defeat exceeding 72 hours without permanent resolution elevates the facility status to a <strong>Downgraded Situation (DGS)</strong>, triggering heightened operational monitoring.
+                    </div>
+            
+                    <hr>
+            
+                    <h4>4. Temporary Defeat Execution & Restoration Workflow</h4>
+            
+                    <p>
+                        The lifecycle of a Temporary Defeat follows a structured 9-step governance process within WMS:
+                    </p>
+            
+                    <div class="flow-diagram">
+                        1. Work Request & Planning (Certificate Applicant initiates TDC)
+                        <br>↓
+                        <br>2. Identify & Approve Controls (DA evaluates alternate controls using Hierarchy of Controls)
+                        <br>↓
+                        <br>3. Authorize Defeat (Approval signed per Matrix duration & severity)
+                        <br>↓
+                        <br>4. Authorize PTW (AA attaches TDC to active PTW)
+                        <br>↓
+                        <br>5. Communicate Controls & Commence Work (DP logs in Defeat Register; JP verifies worksite)
+                        <br>↓
+                        <br>6. Dynamic Risk Assessment & Shift Handover Logging
+                        <br>↓
+                        <br>7. De-isolation & Function Testing (DP restores HSECES and tests safeguards)
+                        <br>↓
+                        <br>8. Closure & Defeat Register Update (AA signs off closure)
+                        <br>↓
+                        <br>9. Under Asset Owner Control: Final handover back to operational control
+                    </div>
+            
+                    <div class="engineering-note">
+                        When returning HSECES back to service, functional testing is mandatory based on safeguard type (mechanical, electrical, or instrument). Test results must be logged in the facility Defeat Register prior to final TDC cancellation.
+                    </div>
+            
+                </div>
+
+                <!---->
+                
+                
+                    <div class="explain-modern">
+                
+                        <h3>Temporary Defeat of HSECES Framework Summary</h3>
+                
+                        <p>
+                            The <strong>Temporary Defeat Module</strong> governs the evaluation, mitigation, and authorization processes required when temporarily bypassing HSE Critical Equipment and Systems (HSECES).
+                        </p>
+                
+                        <hr>
+                
+                        <h4>1. Defeat Categories & Applicants</h4>
+                
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>Defeat Type</th>
+                                    <th>Certificate Applicant</th>
+                                    <th>Core Operational Rule</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Process Defeat</strong></td>
+                                    <td>DCS (Distribution Control System) Supervisor</td>
+                                    <td>Only the minimum number of HSECES that can be adequately monitored may be taken out of service within the same zone.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Maintenance Defeat</strong></td>
+                                    <td>Maintenance Supervisor</td>
+                                    <td>Must indicate the maximum period allowed for temporary equipment/safeguard bypasses.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                
+                        <div class="tip-box">
+                            Temporary defeats exceeding planned status or remaining active for <strong>more than 72 hours</strong> trigger downgraded situation requirements.
+                        </div>
+                
+                        <hr>
+                
+                        <h4>2. Approval Hierarchy & Validity</h4>
+                
+                        <ul>
+                            <li><strong>Approval Authority Matrix:</strong> Determined by the <strong>magnitude of the defeat</strong>, ranging from the Area Authority up to Operations Managers, VPs, or SVPs.</li>
+                            <li><strong>Validity Oversight:</strong> The <strong>Area Authority (AA)</strong> must ensure that the Temporary Defeat Certificate is valid according to the requested timeframe and has not expired.</li>
+                            <li><strong>Defeat Performer (DP) Role:</strong> Implements the defeat, verifies controls against the risk assessment, enforces mitigations, and updates the Defeat Register.</li>
+                        </ul>
+                
+                        <hr>
+                
+                        <h4>3. Lifecycle Workflow</h4>
+                
+                        <div class="flow-diagram">
+                            1. Application (DCS or Maintenance Supervisor submits certificate)
+                            <br>↓
+                            <br>2. Approval & Magnitude Check (Authorized based on the defeat magnitude matrix)
+                            <br>↓
+                            <br>3. Implementation & Monitoring (DP implements controls; monitored to prevent 72-hour threshold breaches)
+                            <br>↓
+                            <br>4. Restoration & Sign-off (Defeat removed safely, register signed off, and records updated)
+                        </div>
+                
+                    </div>
+                
+                    
+                
+                <!---->
+            
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Next Module &rarr;</button>
+                </div>
+            </div>
+            
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="video-container-modern">
+                    <img src="img/SIMOPSCourse.png" alt="Simultaneous Operations (SIMOPS) Framework and MOPO Matrix">
+                </div>
+            
+                <div class="explain-modern">
+            
+                    <h3>Simultaneous Operations (SIMOPS) Framework</h3>
+            
+                    <p>
+                        The <strong>SIMOPS Standard</strong> provides a structured governance framework to identify, assess, and manage interaction hazards when two or more operations, maintenance, or construction activities occur concurrently in the same area.
+                    </p>
+            
+                    <hr>
+            
+                    <h4>1. SIMOPS Classification & Governance Tools</h4>
+            
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Characteristics</th>
+                                <th>Assessment Tool</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Routine SIMOPS</strong></td>
+                                <td>Pre-identified recurring concurrent operations (e.g., hot work vs. draining hydrocarbons).</td>
+                                <td>Governed by the pre-approved <strong>Matrix of Permitted Operations (MOPO)</strong> and Restrictions Tables.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Non-Routine SIMOPS</strong></td>
+                                <td>Unplanned or complex concurrent tasks not pre-mapped in MOPO (e.g., heavy lifts over live process lines).</td>
+                                <td>Requires a dedicated specialist workshop, Task-Based Risk Assessment (TBRA/JSA), and specific mitigations.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <div class="tip-box">
+                        The MOPO Matrix uses color codes: <strong>Green</strong> (Allowed), <strong>Yellow</strong> (Restricted with Controls defined in Restrictions Tables), and <strong>Red</strong> (Prohibited).
+                    </div>
+            
+                    <hr>
+            
+                    <h4>2. Key Roles & Emergency Matrices</h4>
+            
+                    <ul>
+                        <li><strong>SIMOPS Coordinator (SC):</strong> Competent supervisor appointed by the Asset Owner to manage daily SIMOPS schedules, chair coordination meetings, and verify emergency preparedness. (The Area Authority acts as SC during normal operations).</li>
+                        <li><strong>Adverse Weather Matrix:</strong> Enforces activity limits based on wind speeds, sandstorms, night work, heavy rain/lightning, or extreme temperatures (&gt;50°C).</li>
+                        <li><strong>HSECES / Critical Equipment Impairment Matrix:</strong> Defines operational controls when safety-critical systems (gas/fire detection, ESD, secondary containment) or DCS/utilities are impaired.</li>
+                    </ul>
+            
+                    <hr>
+            
+                    <h4>3. Lifecycle Execution Phases</h4>
+            
+                    <div class="flow-diagram">
+                        1. Identification Phase (Identify interaction hazards & restricted combinations)
+                        <br>↓
+                        <br>2. Preparation Phase (Appoint SC, draft SIMOPS Management Plan & Emergency Plan)
+                        <br>↓
+                        <br>3. Setup Phase (Approve permits, test emergency comms, hold site safety meetings)
+                        <br>↓
+                        <br>4. Operational Execution (Daily SIMOPS meetings, shift handovers, Dynamic Risk Assessments)
+                        <br>↓
+                        <br>5. Post-Completion (Conduct After Action Review to capture lessons learned & update MOC)
+                    </div>
+            
+                </div>
+
+                <!---->
+                
+                
+                    <div class="explain-modern">
+                
+                        <h3>Simultaneous Operations (SIMOPS) Framework Summary</h3>
+                
+                        <p>
+                            The <strong>SIMOPS Module</strong> provides a structured framework to identify potential hazards and threats associated with concurrent operations, ensuring combined risks are managed to As Low As Reasonably Practicable (ALARP).
+                        </p>
+                
+                        <hr>
+                
+                        <h4>1. SIMOPS Categories & Core Conditions</h4>
+                
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>SIMOPS Aspect</th>
+                                    <th>Description & Categories</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Operational Categories</strong></td>
+                                    <td>SIMOPS are divided into two main types: <strong>Routine SIMOPS</strong> and <strong>Non-routine SIMOPS</strong>. Combinations can fall into allowed, prohibited, or restricted categories.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Defining Conditions</strong></td>
+                                    <td>Includes activities located in the same area, performed at the same time, or that directly/indirectly affect the safe performance of another activity.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                
+                        <div class="tip-box">
+                            The SIMOPS Standard applies fully to contractors and integrates closely with other WMS standards rather than operating independently.
+                        </div>
+                
+                        <hr>
+                
+                        <h4>2. Governance, Tools & MOPO Matrix</h4>
+                
+                        <ul>
+                            <li><strong>MOPO Matrix & Restrictions:</strong> Manual of Permitted Operations (MOPO) matrices and restriction tables must be approved by the Asset Owner, kept readily available in control facilities, and updated upon modifications.</li>
+                            <li><strong>Decision Tree & Review:</strong> The SIMOPS Matrix Decision Tree assists in identifying SIMOPS during the PTW process. An After Action Review (AAR) is initiated by the Asset Owner Representative to capture lessons learned.</li>
+                            <li><strong>SIMOPS Coordinator (SC) Roles:</strong> For routine operations, the <strong>Area Authority (AA) acts as the SC</strong>. For non-routine operations, the SC endorses the permit and facilitates daily planning meetings, handovers, and safety communication.</li>
+                        </ul>
+                
+                        <hr>
+                
+                        <h4>3. Lifecycle & Execution Workflow</h4>
+                
+                        <div class="flow-diagram">
+                            1. Identification & Scheduling (Decision Tree maps concurrent operations during PTW planning)
+                            <br>↓
+                            <br>2. MOPO & Restriction Verification (Checked against approved restriction tables and matrix rules)
+                            <br>↓
+                            <br>3. Coordination & Endorsement (SC or AA manages conflicts, communication lines, and permit endorsement)
+                            <br>↓
+                            <br>4. Review & Lessons Learned (After Action Review evaluates effectiveness post-activity)
+                        </div>
+                
+                    </div>
+                
+                    
+                
+                <!---->
+            
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab8')">Next Module &rarr;</button>
+                </div>
+            </div>
+            
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab8">
+                <div class="explain-modern">
+
+                    <h1>🚨 WMS FRAMEWORK II — EXAM CRASH COURSE</h1>
+                    <p><strong>ADNOC Technical Academy | 2-Day Course</strong></p>
+                    <p>Exam-focused summary based on the uploaded WMS Framework II PDF.</p>
+                  
+                    <hr>
+                  
+                    <h2>🟦 1. WORK MANAGEMENT SYSTEM — WMS</h2>
+                  
+                    <h3>What is WMS?</h3>
+                    <p><strong>WMS = Work Management System</strong></p>
+                  
+                    <p>
+                      A safety tool used to ensure that work is properly
+                      <strong>controlled, coordinated and communicated.</strong>
+                    </p>
+                  
+                    <h3>5 Elements of WMS</h3>
+                  
+                    <div class="card-grid">
+                      <div class="card">
+                        <span class="number">1</span>
+                        <h4>PTW</h4>
+                        <p>Permit to Work</p>
+                      </div>
+                  
+                      <div class="card">
+                        <span class="number">2</span>
+                        <h4>JSA</h4>
+                        <p>Job Safety Analysis</p>
+                      </div>
+                  
+                      <div class="card">
+                        <span class="number">3</span>
+                        <h4>Energy Isolation</h4>
+                        <p>Control hazardous energy</p>
+                      </div>
+                  
+                      <div class="card">
+                        <span class="number">4</span>
+                        <h4>Temporary Defeat</h4>
+                        <p>Temporary bypass of safety protection</p>
+                      </div>
+                  
+                      <div class="card">
+                        <span class="number">5</span>
+                        <h4>SIMOPS</h4>
+                        <p>Simultaneous Operations</p>
+                      </div>
+                    </div>
+                  
+                    <div class="exam-box">
+                      <strong>⭐ EXAM QUESTION</strong>
+                      <p><strong>Q:</strong> What are the 5 elements of WMS?</p>
+                      <p><strong>A:</strong> PTW + JSA + Energy Isolation + Temporary Defeat + SIMOPS</p>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>🔄 2. WMS 8-STEP PROCESS</h2>
+                  
+                    <ol class="process-list">
+                      <li>Work Request &amp; Planning</li>
+                      <li>Identify &amp; Approve Controls</li>
+                      <li>Worksite Controls Implementation</li>
+                      <li>Authorize PTW</li>
+                      <li>Communicate Controls &amp; Commence Work</li>
+                      <li>Dynamic Risk Assessment</li>
+                      <li>Work Handover / Suspension / Extension</li>
+                      <li>Closure &amp; Hand Back</li>
+                    </ol>
+                  
+                    <hr>
+                  
+                    <h2>🟧 3. PERMIT TO WORK — PTW</h2>
+                  
+                    <h3>What is PTW?</h3>
+                  
+                    <p>
+                      A PTW is a set of documents used to maintain
+                      <strong>safe working conditions for a particular task.</strong>
+                    </p>
+                  
+                    <ul>
+                      <li>✅ Describes the work</li>
+                      <li>✅ Ensures correct authorization</li>
+                      <li>✅ Identifies hazards</li>
+                      <li>✅ Ensures controls are implemented</li>
+                      <li>✅ Acts as a written agreement</li>
+                      <li>✅ Becomes a record of work performed</li>
+                    </ul>
+                  
+                    <h3>📋 Types of PTW</h3>
+                  
+                    <div class="permit-grid">
+                      <div class="permit critical">
+                        <h4>🔴 Critical Work Permit</h4>
+                        <p>For defined critical/high-risk activities.</p>
+                      </div>
+                  
+                      <div class="permit hot">
+                        <h4>🔥 Hot Work Permit</h4>
+                        <p>For work involving hot work / ignition hazards.</p>
+                      </div>
+                  
+                      <div class="permit general">
+                        <h4>🟢 General Work Permit</h4>
+                        <p>Work that is not critical work and does not contain hot work.</p>
+                      </div>
+                    </div>
+                  
+                    <h3>⏰ PTW Validity</h3>
+                  
+                    <div class="key-number">
+                      <strong>7 CALENDAR DAYS</strong>
+                      <span>Maximum PTW validity</span>
+                    </div>
+                  
+                    <div class="key-number">
+                      <strong>EVERY SHIFT</strong>
+                      <span>Required revalidation</span>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>👷 4. PTW ROLES &amp; RESPONSIBILITIES</h2>
+                  
+                    <div class="role">
+                      <h3>👑 AAA — Asset Approval Authority</h3>
+                      <p><strong>Remember: AAA = Critical + Hot Work Approval</strong></p>
+                      <ul>
+                        <li>Approves Critical and Hot Work Permits.</li>
+                        <li>Confirms controls reduce risk to ALARP.</li>
+                        <li><strong>AAA must be at least ONE level above AA.</strong></li>
+                      </ul>
+                    </div>
+                  
+                    <div class="role">
+                      <h3>🟨 AA — Area Authority</h3>
+                      <p><strong>Remember: AA = Controls the Area</strong></p>
+                      <ul>
+                        <li>Authorizes permits.</li>
+                        <li>Confirms controls are effective.</li>
+                        <li>Manages SIMOPS.</li>
+                        <li>Reviews and approves isolation requirements.</li>
+                        <li>Manages revalidation.</li>
+                        <li>Can suspend permits.</li>
+                        <li>Closes permits.</li>
+                        <li>Authorizes STT and de-isolation.</li>
+                      </ul>
+                    </div>
+                  
+                    <div class="role">
+                      <h3>🟦 PI — Permit Issuer</h3>
+                      <p><strong>Remember: PI = Clearance to Start Work</strong></p>
+                      <ul>
+                        <li>Checks the worksite.</li>
+                        <li>Confirms required controls are in place.</li>
+                        <li>Provides clearance before work starts.</li>
+                      </ul>
+                    </div>
+                  
+                    <div class="role">
+                      <h3>🟩 PA — Performing Authority</h3>
+                      <p><strong>Remember: PA = Requests / Manages the Job</strong></p>
+                      <ul>
+                        <li>Requests the permit.</li>
+                        <li>Describes the work.</li>
+                        <li>Ensures JSA requirements are addressed.</li>
+                        <li>Supervises / coordinates Job Performers.</li>
+                        <li>Requests permit closure.</li>
+                      </ul>
+                    </div>
+                  
+                    <div class="role">
+                      <h3>🟪 JP — Job Performer</h3>
+                      <p><strong>Remember: JP = Performs / Supervises the Actual Work</strong></p>
+                      <ul>
+                        <li>Accepts the permit.</li>
+                        <li>Checks the worksite.</li>
+                        <li>Checks the work party.</li>
+                        <li>Checks equipment.</li>
+                        <li>Communicates hazards and controls.</li>
+                        <li>Follows PI instructions.</li>
+                      </ul>
+                    </div>
+                  
+                    <div class="warning-box">
+                      <h3>🚨 IMPORTANT EXAM POINT</h3>
+                      <p>❌ ISO cannot be JP</p>
+                      <p>❌ AA cannot be JP</p>
+                      <p>❌ PI cannot be JP</p>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>💻 5. eWMS vs CRASH PACK</h2>
+                  
+                    <div class="comparison">
+                      <div>
+                        <h3>💻 eWMS</h3>
+                        <p>Normal electronic WMS system.</p>
+                      </div>
+                  
+                      <div>
+                        <h3>📄 Crash Pack</h3>
+                        <p>
+                          Paper-based contingency system used when the electronic PTW system
+                          is unavailable.
+                        </p>
+                      </div>
+                    </div>
+                  
+                    <p>
+                      Crash Pack use requires
+                      <strong>Asset Owner authorization + Site HSE Manager endorsement.</strong>
+                    </p>
+                  
+                    <hr>
+                  
+                    <h2>🟨 6. JOB SAFETY ANALYSIS — JSA</h2>
+                  
+                    <h3>What is JSA?</h3>
+                  
+                    <p><strong>JSA = Job Safety Analysis</strong></p>
+                  
+                    <p>The purpose is to:</p>
+                  
+                    <ol>
+                      <li>Define the work.</li>
+                      <li>Identify hazards.</li>
+                      <li>Assess hazards.</li>
+                      <li>Define controls.</li>
+                      <li>Reduce risk to ALARP.</li>
+                    </ol>
+                  
+                    <div class="memory-box">
+                      🧠 <strong>JSA = Hazards → Risk → Controls → ALARP</strong>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>⚡ 7. ENERGY ISOLATION</h2>
+                  
+                    <p>
+                      Energy Isolation establishes a
+                      <strong>secure break in the energy supply that cannot inadvertently
+                      be reconnected.</strong>
+                    </p>
+                  
+                    <h3>Energy Isolation Roles</h3>
+                  
+                    <div class="role-grid">
+                      <div>
+                        <strong>AA</strong>
+                        <p>Approves isolation points.</p>
+                      </div>
+                  
+                      <div>
+                        <strong>ISA</strong>
+                        <p>Responsible for correct implementation of isolations.</p>
+                      </div>
+                  
+                      <div>
+                        <strong>ISO</strong>
+                        <p>Implements the field isolation.</p>
+                      </div>
+                    </div>
+                  
+                    <div class="warning-box">
+                      <strong>🚨 ISO CANNOT BE JP</strong>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>🔐 8. LOTO</h2>
+                  
+                    <h3>LOTO = Lock Out / Tag Out</h3>
+                  
+                    <p>Purpose:</p>
+                  
+                    <blockquote>
+                      Prevent hazardous energy from being inadvertently restored.
+                    </blockquote>
+                  
+                    <div class="card-grid">
+                      <div class="card">
+                        <h4>🔒 LOCK</h4>
+                        <p>Secure the isolation.</p>
+                      </div>
+                  
+                      <div class="card">
+                        <h4>🏷️ TAG</h4>
+                        <p>Identify the isolation.</p>
+                      </div>
+                  
+                      <div class="card">
+                        <h4>🔑 KEY CONTROL</h4>
+                        <p>Prevent unauthorized operation.</p>
+                      </div>
+                  
+                      <div class="card">
+                        <h4>✅ VERIFY</h4>
+                        <p>Confirm the energy state.</p>
+                      </div>
+                    </div>
+                  
+                    <h3>🟢 Zero Energy Verification</h3>
+                  
+                    <p>
+                      Before work starts:
+                      <strong>PI demonstrates ZERO ENERGY to JP.</strong>
+                    </p>
+                  
+                    <div class="warning-box">
+                      <strong>🛑 If there is any unexpected variation → STOP / SUSPEND WORK.</strong>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>🧪 9. STT — SANCTION TO TEST</h2>
+                  
+                    <p>
+                      <strong>STT</strong> is required when an isolation needs to be
+                      temporarily reversed for testing.
+                    </p>
+                  
+                    <div class="process">
+                      <span>STOP WORK</span>
+                      <span>→</span>
+                      <span>AUTHORIZE TEST</span>
+                      <span>→</span>
+                      <span>TEMPORARILY REVERSE ISOLATION</span>
+                      <span>→</span>
+                      <span>TEST</span>
+                      <span>→</span>
+                      <span>RESTORE ISOLATION</span>
+                      <span>→</span>
+                      <span>VERIFY</span>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>🟣 10. TEMPORARY DEFEAT</h2>
+                  
+                    <h3>What is Temporary Defeat?</h3>
+                  
+                    <p>
+                      A Temporary Defeat occurs when a
+                      <strong>safety interlock/device is bypassed while the equipment or
+                      facility it protects remains in service.</strong>
+                    </p>
+                  
+                    <div class="comparison">
+                      <div>
+                        <h3>⚡ Energy Isolation</h3>
+                        <p><strong>Controls hazardous energy.</strong></p>
+                      </div>
+                  
+                      <div>
+                        <h3>🛡️ Temporary Defeat</h3>
+                        <p><strong>Temporarily bypasses safety protection.</strong></p>
+                      </div>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>🛡️ 11. HSECES</h2>
+                  
+                    <p>
+                      <strong>HSECES = Health, Safety &amp; Environment Critical Equipment
+                      and Systems</strong>
+                    </p>
+                  
+                    <p>Examples include:</p>
+                  
+                    <ul>
+                      <li>Pressure Safety Valves</li>
+                      <li>Emergency Blowdown Systems</li>
+                      <li>Secondary Containment</li>
+                      <li>Deluge Systems</li>
+                      <li>Foam Systems</li>
+                    </ul>
+                  
+                    <hr>
+                  
+                    <h2>📄 12. TDC — TEMPORARY DEFEAT CERTIFICATE</h2>
+                  
+                    <p>
+                      The <strong>TDC</strong> is used to control and document the temporary
+                      defeat.
+                    </p>
+                  
+                    <div class="process">
+                      <span>IDENTIFY</span>
+                      <span>→</span>
+                      <span>RISK ASSESS</span>
+                      <span>→</span>
+                      <span>CONTROLS</span>
+                      <span>→</span>
+                      <span>APPROVE</span>
+                      <span>→</span>
+                      <span>IMPLEMENT</span>
+                      <span>→</span>
+                      <span>MONITOR</span>
+                      <span>→</span>
+                      <span>RESTORE</span>
+                      <span>→</span>
+                      <span>CLOSE</span>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>⏱️ 13. DGS — DOWNGRADED SITUATION</h2>
+                  
+                    <p>
+                      A prolonged HSECES defeat can create a
+                      <strong>Downgraded Situation (DGS).</strong>
+                    </p>
+                  
+                    <div class="key-number">
+                      <strong>72 HOURS / 3 DAYS</strong>
+                      <span>Important prolonged-defeat threshold</span>
+                    </div>
+                  
+                    <div class="memory-box">
+                      🧠 <strong>HSECES defeat &gt; 72 hours → Think DGS</strong>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>🔥 14. SIMOPS</h2>
+                  
+                    <h3>SIMOPS = Simultaneous Operations</h3>
+                  
+                    <p>
+                      SIMOPS occurs when:
+                    </p>
+                  
+                    <blockquote>
+                      Two or more activities occur at the same time, in the same area,
+                      and could potentially affect the safe performance of another activity.
+                    </blockquote>
+                  
+                    <div class="example-box">
+                      <h3>🔥 Example</h3>
+                      <p><strong>Hot Work + Breaking Containment</strong></p>
+                      <p>⬇️</p>
+                      <p><strong>⚠️ SIMOPS Concern</strong></p>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>🟢🟡🔴 15. SIMOPS MOPO MATRIX</h2>
+                  
+                    <div class="mopo-grid">
+                      <div class="green">
+                        <h3>🟢 GREEN</h3>
+                        <strong>ALLOWED</strong>
+                      </div>
+                  
+                      <div class="yellow">
+                        <h3>🟡 YELLOW</h3>
+                        <strong>RESTRICTED</strong>
+                        <p>Additional controls required.</p>
+                      </div>
+                  
+                      <div class="red">
+                        <h3>🔴 RED</h3>
+                        <strong>PROHIBITED</strong>
+                      </div>
+                    </div>
+                  
+                    <div class="memory-box">
+                      🧠 <strong>GO → CONTROL → STOP</strong>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>🔄 16. ROUTINE vs NON-ROUTINE SIMOPS</h2>
+                  
+                    <div class="comparison">
+                      <div>
+                        <h3>🟢 Routine SIMOPS</h3>
+                        <p>
+                          Activities already identified in
+                          <strong>MOPO + Restrictions Tables.</strong>
+                        </p>
+                      </div>
+                  
+                      <div>
+                        <h3>🟠 Non-Routine SIMOPS</h3>
+                        <p>
+                          Concurrent activities not covered by the existing MOPO and requiring
+                          appropriate risk assessment/JSA and controls.
+                        </p>
+                      </div>
+                    </div>
+                  
+                    <h3>Examples of Non-Routine SIMOPS</h3>
+                  
+                    <ul>
+                      <li>Heavy lifting near operating equipment</li>
+                      <li>Excavation during plant operation</li>
+                      <li>Piping tie-in</li>
+                      <li>Electrical/instrument cable laying</li>
+                    </ul>
+                  
+                    <hr>
+                  
+                    <h2>👷 17. SIMOPS COORDINATOR — SC</h2>
+                  
+                    <p><strong>SC = SIMOPS Coordinator</strong></p>
+                  
+                    <ul>
+                      <li>Temporary role.</li>
+                      <li>Appointed for concurrent operations.</li>
+                      <li>Must be competent.</li>
+                      <li>Appointed by the Asset Owner.</li>
+                      <li>Must have detailed knowledge of the asset and activities.</li>
+                    </ul>
+                  
+                    <div class="exam-box">
+                      <strong>⭐ EXAM POINT</strong>
+                      <p>
+                        During normal operations, the
+                        <strong>Area Authority (AA) will normally be the SIMOPS Coordinator.</strong>
+                      </p>
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>🧠🔥 FINAL EXAM MEMORY MAP</h2>
+                  
+                    <div class="exam-memory">
+                  
+                      <div class="memory-item">
+                        <strong>🏭 WMS</strong>
+                        <span>PTW + JSA + EI + TD + SIMOPS</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>🔄 WMS</strong>
+                        <span>8-Step Process</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>📋 PTW</strong>
+                        <span>Critical + Hot + General</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>⏰ Validity</strong>
+                        <span>7 Calendar Days</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>🔄 Revalidation</strong>
+                        <span>Every Shift</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>👑 AAA</strong>
+                        <span>Critical + Hot Work Approval</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>📍 AA</strong>
+                        <span>Area / Permit Control</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>🚦 PI</strong>
+                        <span>Clearance to Start</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>👨‍💼 PA</strong>
+                        <span>Permit / Job Management</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>👷 JP</strong>
+                        <span>Performs Work</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>⚡ EI</strong>
+                        <span>Control Hazardous Energy</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>🔐 LOTO</strong>
+                        <span>Lock + Tag + Control + Verify</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>🟢 Zero Energy</strong>
+                        <span>PI demonstrates to JP</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>🧪 STT</strong>
+                        <span>Temporary reversal of isolation for testing</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>🟣 Temporary Defeat</strong>
+                        <span>Bypass safety protection while equipment remains in service</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>🛡️ HSECES</strong>
+                        <span>Safety-critical equipment/system</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>⏱️ DGS</strong>
+                        <span>Downgraded Situation</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>72 HOURS</strong>
+                        <span>Important prolonged-defeat threshold</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>🔥 SIMOPS</strong>
+                        <span>Concurrent activities affecting each other's safety</span>
+                      </div>
+                  
+                      <div class="memory-item">
+                        <strong>🟢🟡🔴 MOPO</strong>
+                        <span>Allowed → Restricted → Prohibited</span>
+                      </div>
+                  
+                    </div>
+                  
+                    <hr>
+                  
+                    <h2>🎯 THE 5 CONCEPTS YOU MUST NOT CONFUSE</h2>
+                  
+                    <table class="exam-table">
+                      <thead>
+                        <tr>
+                          <th>Concept</th>
+                          <th>Think About</th>
+                        </tr>
+                      </thead>
+                  
+                      <tbody>
+                        <tr>
+                          <td><strong>JSA</strong></td>
+                          <td>🧠 Hazards &amp; Controls</td>
+                        </tr>
+                  
+                        <tr>
+                          <td><strong>PTW</strong></td>
+                          <td>📋 Authorization to Work</td>
+                        </tr>
+                  
+                        <tr>
+                          <td><strong>Energy Isolation</strong></td>
+                          <td>⚡ Hazardous Energy</td>
+                        </tr>
+                  
+                        <tr>
+                          <td><strong>Temporary Defeat</strong></td>
+                          <td>🛡️ Safety Protection Bypass</td>
+                        </tr>
+                  
+                        <tr>
+                          <td><strong>SIMOPS</strong></td>
+                          <td>🔥 Interaction Between Activities</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  
+                    <div class="final-memory">
+                      <h2>🧠 ONE SENTENCE TO REMEMBER EVERYTHING</h2>
+                  
+                      <p>
+                        <strong>
+                          JSA identifies the hazards,
+                          PTW authorizes the work,
+                          Energy Isolation controls the energy,
+                          Temporary Defeat controls bypassed safeguards,
+                          and SIMOPS controls interactions between simultaneous activities.
+                        </strong>
+                      </p>
+                    </div>
+                  
+                  </div>
+
+                  
+                <!---->
+                    <div class="explain-modern">
+                
+                        <h3>ADNOC Work Management System (WMS) Master Summary</h3>
+                
+                        <p>
+                            The <strong>WMS Master Module</strong> integrates core safety standards—including Permit to Work (PTW), Job Safety Analysis (JSA), Energy Isolation, Temporary Defeat of HSECES, and Simultaneous Operations (SIMOPS)—to govern high-risk operational and project activities.
+                        </p>
+                
+                        <hr>
+                
+                        <h4>1. Framework Governance & Audit Requirements</h4>
+                
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>Governance Element</th>
+                                    <th>Standard Requirement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Custodianship</strong></td>
+                                    <td>Senior Vice President, ADNOC Group HSE, acts as the framework custodian. WMS standards apply fully to contractors.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Retention Period</strong></td>
+                                    <td>All signed documents, permits, and risk records must be retained for a minimum of <strong>12 months</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Audit Tier Structure</strong></td>
+                                    <td>Comprises Tier 1 (Daily PTW Monitoring), Tier 2 (Independent Assessment), and Tier 3 (ADNOC Group Company assessment).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                
+                        <div class="tip-box">
+                            Permits have a maximum validity of <strong>7 consecutive calendar days</strong>, with a shift work time extension rule allowing up to <strong>4 extra hours</strong>.
+                        </div>
+                
+                        <hr>
+                
+                        <h4>2. Key Operational Rules Across Modules</h4>
+                
+                        <ul>
+                            <li><strong>PTW & Worksite Display:</strong> The original PTW copy must be held by the Job Performer (JP) and visibly displayed at the worksite, preceded by a mandatory Tool Box Talk (TBT).</li>
+                            <li><strong>JSA & Risk Reviews:</strong> Formal Risk Assessments (FRAs) are reviewed every <strong>1 year</strong>, while JSA Level 2 templates are reviewed every <strong>2 years</strong>. Asset Owner Representative approval is required before JSA library uploads.</li>
+                            <li><strong>Energy Isolation Verification:</strong> Zero energy state is demonstrated via testing, checks, venting/draining, or equipment operation. The Area Authority (AA) determines independent verification requirements.</li>
+                            <li><strong>Temporary Defeat Thresholds:</strong> Defeats active for <strong>more than 72 hours</strong> trigger downgraded situation requirements.</li>
+                            <li><strong>SIMOPS Coordination:</strong> For routine operations, the <strong>Area Authority (AA) acts as the SIMOPS Coordinator (SC)</strong>, utilizing approved MOPO and restriction matrices.</li>
+                        </ul>
+                
+                        <hr>
+                
+                        <h4>3. End-to-End WMS Lifecycle Workflow</h4>
+                
+                        <div class="flow-diagram">
+                            1. Planning & IWAP (Work Categorization Chart determines JSA level, isolations, and SIMOPS)
+                            <br>↓
+                            <br>2. Authorization & Verification (AA verifies JSA controls, isolation integrity, and defeat certificates)
+                            <br>↓
+                            <br>3. Permit Issuance & Execution (PTW displayed on-site; TBT conducted; work executed safely)
+                            <br>↓
+                            <br>4. Completion & Review (Work completed, permits closed out, and lessons learned logged via AAR)
+                        </div>
+                
+                    </div>
+                
+                    
+                
+
+                  <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab7')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab9')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab9">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h1>🎯 WMS FRAMEWORK II — 50 Q&A</h1>
+                  
+                    <p><strong>Exam Revision — Questions & Answers</strong></p>
+                  
+                    <!-- Q1 -->
+                    <div class="qa-card">
+                      <div class="question">Q1. What does WMS stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Work Management System.
+                      </div>
+                    </div>
+                  
+                    <!-- Q2 -->
+                    <div class="qa-card">
+                      <div class="question">Q2. What is the main purpose of WMS?</div>
+                      <div class="answer">
+                        <strong>A:</strong> To ensure work is properly
+                        <strong>controlled, coordinated and communicated.</strong>
+                      </div>
+                    </div>
+                  
+                    <!-- Q3 -->
+                    <div class="qa-card">
+                      <div class="question">Q3. What are the five elements of WMS?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <ol>
+                          <li>Permit to Work — PTW</li>
+                          <li>Job Safety Analysis — JSA</li>
+                          <li>Energy Isolation</li>
+                          <li>Temporary Defeat</li>
+                          <li>Simultaneous Operations — SIMOPS</li>
+                        </ol>
+                      </div>
+                    </div>
+                  
+                    <!-- Q4 -->
+                    <div class="qa-card">
+                      <div class="question">Q4. What does PTW stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Permit to Work.
+                      </div>
+                    </div>
+                  
+                    <!-- Q5 -->
+                    <div class="qa-card">
+                      <div class="question">Q5. What are the three main types of PTW?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <ul>
+                          <li>🔥 Hot Work Permit</li>
+                          <li>🔴 Critical Work Permit</li>
+                          <li>🟢 General Work Permit</li>
+                        </ul>
+                      </div>
+                    </div>
+                  
+                    <!-- Q6 -->
+                    <div class="qa-card">
+                      <div class="question">Q6. What is the maximum validity of a PTW?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <span class="highlight">7 consecutive calendar days.</span>
+                      </div>
+                    </div>
+                  
+                    <!-- Q7 -->
+                    <div class="qa-card">
+                      <div class="question">Q7. How often must a PTW be revalidated?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <span class="highlight">Every shift.</span>
+                      </div>
+                    </div>
+                  
+                    <!-- Q8 -->
+                    <div class="qa-card">
+                      <div class="question">Q8. What is the maximum PTW extension?</div>
+                      <div class="answer">
+                        <strong>A:</strong> 4 hours, giving a maximum continuous work duration
+                        of 16 hours.
+                      </div>
+                    </div>
+                  
+                    <!-- Q9 -->
+                    <div class="qa-card">
+                      <div class="question">Q9. What does AAA stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Asset Approval Authority.
+                      </div>
+                    </div>
+                  
+                    <!-- Q10 -->
+                    <div class="qa-card">
+                      <div class="question">Q10. What is the main responsibility of AAA?</div>
+                      <div class="answer">
+                        <strong>A:</strong> To approve applicable
+                        <strong>Hot Work and Critical Work Permits</strong> and confirm that
+                        controls reduce risk to ALARP.
+                      </div>
+                    </div>
+                  
+                    <!-- Q11 -->
+                    <div class="qa-card">
+                      <div class="question">Q11. What is the required level relationship between AAA and AA?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <span class="highlight">AAA must be at least one level above AA.</span>
+                      </div>
+                    </div>
+                  
+                    <!-- Q12 -->
+                    <div class="qa-card">
+                      <div class="question">Q12. What does AA stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Area Authority.
+                      </div>
+                    </div>
+                  
+                    <!-- Q13 -->
+                    <div class="qa-card">
+                      <div class="question">Q13. What is the main responsibility of AA?</div>
+                      <div class="answer">
+                        <strong>A:</strong> AA is responsible for the area and authorizes
+                        permits after confirming that prerequisite controls are in place
+                        and effective.
+                      </div>
+                    </div>
+                  
+                    <!-- Q14 -->
+                    <div class="qa-card">
+                      <div class="question">Q14. Can AA and JP be the same person?</div>
+                      <div class="answer no">
+                        <strong>A:</strong> ❌ No. AA and JP shall not be the same person.
+                      </div>
+                    </div>
+                  
+                    <!-- Q15 -->
+                    <div class="qa-card">
+                      <div class="question">Q15. Can PI and JP be the same person?</div>
+                      <div class="answer no">
+                        <strong>A:</strong> ❌ No. PI and JP shall not be the same person.
+                      </div>
+                    </div>
+                  
+                    <!-- Q16 -->
+                    <div class="qa-card">
+                      <div class="question">Q16. What does PI stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Permit Issuer.
+                      </div>
+                    </div>
+                  
+                    <!-- Q17 -->
+                    <div class="qa-card">
+                      <div class="question">Q17. What must PI do before work commences?</div>
+                      <div class="answer">
+                        <strong>A:</strong> PI provides the required worksite clearance and,
+                        where applicable, demonstrates <strong>zero energy to the JP.</strong>
+                      </div>
+                    </div>
+                  
+                    <!-- Q18 -->
+                    <div class="qa-card">
+                      <div class="question">Q18. What does PA stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Performing Authority.
+                      </div>
+                    </div>
+                  
+                    <!-- Q19 -->
+                    <div class="qa-card">
+                      <div class="question">Q19. What does JP stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Job Performer.
+                      </div>
+                    </div>
+                  
+                    <!-- Q20 -->
+                    <div class="qa-card">
+                      <div class="question">Q20. What is one important responsibility of JP?</div>
+                      <div class="answer">
+                        <strong>A:</strong> JP accepts the permit and ensures the work party
+                        follows the applicable permit controls and worksite requirements.
+                      </div>
+                    </div>
+                  
+                    <!-- Q21 -->
+                    <div class="qa-card">
+                      <div class="question">Q21. What is Energy Isolation?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Establishing a secure break in the energy supply
+                        that cannot inadvertently be reconnected.
+                      </div>
+                    </div>
+                  
+                    <!-- Q22 -->
+                    <div class="qa-card">
+                      <div class="question">Q22. What does ISA stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Isolating Authority.
+                      </div>
+                    </div>
+                  
+                    <!-- Q23 -->
+                    <div class="qa-card">
+                      <div class="question">Q23. What is the responsibility of ISA?</div>
+                      <div class="answer">
+                        <strong>A:</strong> To ensure the
+                        <strong>correct implementation of isolations.</strong>
+                      </div>
+                    </div>
+                  
+                    <!-- Q24 -->
+                    <div class="qa-card">
+                      <div class="question">Q24. What does ISO stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Isolating Operator.
+                      </div>
+                    </div>
+                  
+                    <!-- Q25 -->
+                    <div class="qa-card">
+                      <div class="question">Q25. What is the responsibility of ISO?</div>
+                      <div class="answer">
+                        <strong>A:</strong> ISO is responsible for implementing the
+                        <strong>field isolation</strong> of the asset.
+                      </div>
+                    </div>
+                  
+                    <!-- Q26 -->
+                    <div class="qa-card">
+                      <div class="question">Q26. Can ISO be the Job Performer?</div>
+                      <div class="answer no">
+                        <strong>A:</strong>
+                        ❌ No. <strong>ISO cannot be JP.</strong>
+                      </div>
+                    </div>
+                  
+                    <!-- Q27 -->
+                    <div class="qa-card">
+                      <div class="question">Q27. What does LOTO stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <span class="highlight">Lock Out / Tag Out.</span>
+                      </div>
+                    </div>
+                  
+                    <!-- Q28 -->
+                    <div class="qa-card">
+                      <div class="question">Q28. What is the purpose of LOTO?</div>
+                      <div class="answer">
+                        <strong>A:</strong> To protect individuals from
+                        <strong>hazardous energy</strong> and prevent inadvertent restoration
+                        of energy.
+                      </div>
+                    </div>
+                  
+                    <!-- Q29 -->
+                    <div class="qa-card">
+                      <div class="question">Q29. What are important LOTO principles?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <ul>
+                          <li>🔒 Locks cannot be inadvertently removed.</li>
+                          <li>🏷️ Valves are secured against inadvertent operation.</li>
+                          <li>🏷️ Locks are tagged.</li>
+                          <li>🔑 Keys are securely controlled.</li>
+                          <li>👷 JP places the JP lock and retains control during the work.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  
+                    <!-- Q30 -->
+                    <div class="qa-card">
+                      <div class="question">Q30. Who demonstrates Zero Energy to the JP?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <span class="highlight">Permit Issuer — PI.</span>
+                      </div>
+                    </div>
+                  
+                    <!-- Q31 -->
+                    <div class="qa-card">
+                      <div class="question">Q31. What happens if there is any variation during isolation?</div>
+                      <div class="answer no">
+                        <strong>A:</strong>
+                        🛑 <strong>All work must be suspended.</strong>
+                      </div>
+                    </div>
+                  
+                    <!-- Q32 -->
+                    <div class="qa-card">
+                      <div class="question">Q32. What does STT stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Sanction to Test.
+                      </div>
+                    </div>
+                  
+                    <!-- Q33 -->
+                    <div class="qa-card">
+                      <div class="question">Q33. When is STT required?</div>
+                      <div class="answer">
+                        <strong>A:</strong> When isolation needs to be
+                        <strong>temporarily reversed for testing.</strong>
+                      </div>
+                    </div>
+                  
+                    <!-- Q34 -->
+                    <div class="qa-card">
+                      <div class="question">Q34. Who approves removal of isolation points during STT?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <span class="highlight">AA approval.</span>
+                      </div>
+                    </div>
+                  
+                    <!-- Q35 -->
+                    <div class="qa-card">
+                      <div class="question">Q35. Who approves re-application of isolation after testing?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <span class="highlight">AA approval.</span>
+                      </div>
+                    </div>
+                  
+                    <!-- Q36 -->
+                    <div class="qa-card">
+                      <div class="question">Q36. What is Temporary Defeat?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Temporary Defeat occurs when a
+                        <strong>safety interlock or device is bypassed</strong> while the
+                        equipment or facility being protected remains in service.
+                      </div>
+                    </div>
+                  
+                    <!-- Q37 -->
+                    <div class="qa-card">
+                      <div class="question">Q37. What does HSECES stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        Health, Safety &amp; Environment Critical Equipment and Systems.
+                      </div>
+                    </div>
+                  
+                    <!-- Q38 -->
+                    <div class="qa-card">
+                      <div class="question">Q38. Give three examples of HSECES.</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <ul>
+                          <li>Pressure Safety Valves</li>
+                          <li>Emergency Blowdown Systems</li>
+                          <li>Secondary Containment</li>
+                          <li>Deluge Systems</li>
+                          <li>Foam Systems</li>
+                        </ul>
+                      </div>
+                    </div>
+                  
+                    <!-- Q39 -->
+                    <div class="qa-card">
+                      <div class="question">Q39. What are the main categories of Temporary Defeat?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <ol>
+                          <li>Process Defeat</li>
+                          <li>Maintenance Defeat</li>
+                        </ol>
+                      </div>
+                    </div>
+                  
+                    <!-- Q40 -->
+                    <div class="qa-card">
+                      <div class="question">Q40. What is a Process Defeat?</div>
+                      <div class="answer">
+                        <strong>A:</strong> A process-related bypass required during
+                        <strong>start-up, shutdown or process upset.</strong>
+                      </div>
+                    </div>
+                  
+                    <!-- Q41 -->
+                    <div class="qa-card">
+                      <div class="question">Q41. What is a Maintenance Defeat?</div>
+                      <div class="answer">
+                        <strong>A:</strong> A bypass related to enabling
+                        <strong>corrective or preventive maintenance.</strong>
+                      </div>
+                    </div>
+                  
+                    <!-- Q42 -->
+                    <div class="qa-card">
+                      <div class="question">Q42. What does DGS stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <span class="highlight">Downgraded Situation.</span>
+                      </div>
+                    </div>
+                  
+                    <!-- Q43 -->
+                    <div class="qa-card">
+                      <div class="question">Q43. When can an HSECES defeat trigger a DGS?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        When an HSECES system is defeated for
+                        <span class="highlight">more than 72 hours.</span>
+                      </div>
+                    </div>
+                  
+                    <!-- Q44 -->
+                    <div class="qa-card">
+                      <div class="question">Q44. Under what conditions are Temporary Defeats allowed?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        They are allowed when they prevent a greater risk from continued
+                        plant operation and the risk is reduced to <strong>ALARP</strong>
+                        with mitigation measures.
+                      </div>
+                    </div>
+                  
+                    <!-- Q45 -->
+                    <div class="qa-card">
+                      <div class="question">Q45. When are Temporary Defeats NOT allowed?</div>
+                      <div class="answer no">
+                        <strong>A:</strong>
+                        <ul>
+                          <li>❌ When mitigation is not available.</li>
+                          <li>❌ When the plant is in an upset condition or outside normal operating mode.</li>
+                          <li>❌ When an alternate protection method is not available.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  
+                    <!-- Q46 -->
+                    <div class="qa-card">
+                      <div class="question">Q46. What does SIMOPS stand for?</div>
+                      <div class="answer">
+                        <strong>A:</strong> Simultaneous Operations.
+                      </div>
+                    </div>
+                  
+                    <!-- Q47 -->
+                    <div class="qa-card">
+                      <div class="question">Q47. What is SIMOPS?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        Activities occurring at the same time and in the same area that could
+                        potentially affect the safe performance of another activity.
+                        <br><br>
+                        <strong>Example:</strong> Hot Work + Breaking Containment.
+                      </div>
+                    </div>
+                  
+                    <!-- Q48 -->
+                    <div class="qa-card">
+                      <div class="question">Q48. What do the three SIMOPS MOPO colors mean?</div>
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <div class="mopo-grid">
+                          <div class="mopo green">
+                            🟢 <strong>GREEN</strong>
+                            <br>Allowed
+                          </div>
+                  
+                          <div class="mopo yellow">
+                            🟡 <strong>YELLOW</strong>
+                            <br>Restricted
+                          </div>
+                  
+                          <div class="mopo red">
+                            🔴 <strong>RED</strong>
+                            <br>Prohibited
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <!-- Q49 -->
+                    <div class="qa-card">
+                      <div class="question">
+                        Q49. What is the difference between Routine and Non-Routine SIMOPS?
+                      </div>
+                  
+                      <div class="answer">
+                        <strong>A:</strong>
+                  
+                        <h4>🟢 Routine SIMOPS</h4>
+                        <p>
+                          Activities that are pre-identified and included in the
+                          <strong>MOPO and Restrictions Tables.</strong>
+                        </p>
+                  
+                        <h4>🟠 Non-Routine SIMOPS</h4>
+                        <p>
+                          Concurrent activities that are <strong>not covered by the MOPO</strong>
+                          and require appropriate risk assessment/JSA and controls.
+                        </p>
+                      </div>
+                    </div>
+                  
+                    <!-- Q50 -->
+                    <div class="qa-card final-question">
+                      <div class="question">
+                        Q50. Who is normally the SIMOPS Coordinator during normal operations?
+                      </div>
+                  
+                      <div class="answer">
+                        <strong>A:</strong>
+                        <span class="highlight">Area Authority — AA.</span>
+                  
+                        <p>
+                          The SIMOPS Coordinator is a temporary role appointed for the duration
+                          of concurrent operations. During normal operations, the AA will
+                          normally be the SIMOPS Coordinator.
+                        </p>
+                      </div>
+                    </div>
+                  
+                    <hr>
+                  
+                    <div class="memory-box">
+                      <h2>🧠 QUICK MEMORY</h2>
+                  
+                      <p>
+                        <strong>WMS</strong> =
+                        PTW + JSA + Energy Isolation + Temporary Defeat + SIMOPS
+                      </p>
+                  
+                      <p>
+                        <strong>PTW</strong> =
+                        Hot + Critical + General
+                      </p>
+                  
+                      <p>
+                        <strong>PTW Validity</strong> =
+                        7 Calendar Days
+                      </p>
+                  
+                      <p>
+                        <strong>Revalidation</strong> =
+                        Every Shift
+                      </p>
+                  
+                      <p>
+                        <strong>STT</strong> =
+                        Temporary Reversal of Isolation for Testing
+                      </p>
+                  
+                      <p>
+                        <strong>Temporary Defeat</strong> =
+                        Safety Protection Bypass
+                      </p>
+                  
+                      <p>
+                        <strong>DGS</strong> =
+                        Downgraded Situation
+                      </p>
+                  
+                      <p>
+                        <strong>72 Hours</strong> =
+                        Important HSECES Defeat Threshold
+                      </p>
+                  
+                      <p>
+                        <strong>SIMOPS MOPO</strong> =
+                        🟢 Allowed → 🟡 Restricted → 🔴 Prohibited
+                      </p>
+                    </div>
+                  
+                  </div>
+
+                  <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab8')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab10')">Proceed to exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab10">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Study Over</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 9; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

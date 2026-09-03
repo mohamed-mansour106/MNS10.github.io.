@@ -1,0 +1,2393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Well Testing crash Course | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+
+
+        /*******************************************/
+        /* =====================================
+   MODERN EXPLAIN SECTION
+===================================== */
+
+.explain-modern{
+    background: linear-gradient(180deg,#0f172a,#111827);
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0;
+    color: #e2e8f0;
+    line-height: 1.8;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+.explain-modern h3{
+    color: #f1c40f;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #f1c40f;
+    padding-left: 15px;
+}
+
+.explain-modern h4{
+    color: #38bdf8;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.explain-modern p{
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.explain-modern ul{
+    margin: 15px 0 20px 25px;
+}
+
+.explain-modern li{
+    margin-bottom: 8px;
+}
+
+.explain-modern hr{
+    border: none;
+    height: 1px;
+    background: #334155;
+    margin: 25px 0;
+}
+
+/* =====================================
+   TIP BOX
+===================================== */
+
+.tip-box{
+    background: rgba(14,165,233,0.12);
+    border-left: 5px solid #0ea5e9;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #dbeafe;
+}
+
+/* =====================================
+   WARNING BOX
+===================================== */
+
+.warning-box{
+    background: rgba(239,68,68,0.12);
+    border-left: 5px solid #ef4444;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fee2e2;
+}
+
+/* =====================================
+   HIGHLIGHT CARD
+===================================== */
+
+.highlight-card{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    border: 1px solid #475569;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #f8fafc;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================================
+   FLOW DIAGRAM
+===================================== */
+
+.flow-diagram{
+    background: #020617;
+    border: 2px dashed #38bdf8;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    font-weight: 700;
+    color: #7dd3fc;
+    line-height: 2;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+/* =====================================
+   FORMULA BOX
+===================================== */
+
+.formula-box{
+    background: #020617;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    overflow-x: auto;
+    margin: 20px 0;
+    color: #f8fafc;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.modern-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.modern-table thead{
+    background: #f1c40f;
+}
+
+.modern-table thead th{
+    color: #000;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.modern-table tbody tr{
+    background: #111827;
+    border-bottom: 1px solid #334155;
+}
+
+.modern-table tbody tr:nth-child(even){
+    background: #0f172a;
+}
+
+.modern-table td{
+    padding: 14px;
+    color: #e2e8f0;
+}
+
+/* =====================================
+   ENGINEERING NOTE
+===================================== */
+
+.engineering-note{
+    background: rgba(241,196,15,0.12);
+    border-left: 5px solid #f1c40f;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fef3c7;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+    .explain-modern{
+        padding: 20px;
+    }
+
+    .explain-modern h3{
+        font-size: 1.5rem;
+    }
+
+    .explain-modern h4{
+        font-size: 1.1rem;
+    }
+
+    .modern-table{
+        display:block;
+        overflow-x:auto;
+        white-space: nowrap;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">Well Testing crash Course</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Compressor course in Well Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>1. What is Well Testing?</h3>
+                
+                    <p>
+                        <strong>Well Testing</strong> is the process of measuring and evaluating a well's production
+                        under controlled operating conditions. During the test, engineers monitor the production of
+                        <strong>oil, gas, and water</strong> while recording the three most important operating
+                        parameters:
+                    </p>
+                
+                    <ul>
+                        <li><strong>Pressure (P)</strong></li>
+                        <li><strong>Temperature (T)</strong></li>
+                        <li><strong>Flow Rate / Volume (V)</strong></li>
+                    </ul>
+                
+                    <p>
+                        These measurements provide valuable information about both the
+                        <strong>well performance</strong> and the <strong>reservoir behavior</strong>.
+                    </p>
+                
+                    <div class="info-box">
+                        <strong>Simple Definition:</strong><br>
+                        Well Testing is the science of measuring how a well behaves while producing or after being shut in,
+                        in order to understand the reservoir and predict future production.
+                    </div>
+                
+                    <hr>
+                
+                    <h3>2. Pressure Disturbance</h3>
+                
+                    <p>
+                        Every well test begins by creating a
+                        <strong>Pressure Disturbance</strong>.
+                    </p>
+                
+                    <p>
+                        A pressure disturbance means intentionally changing the reservoir pressure by either:
+                    </p>
+                
+                    <ul>
+                        <li>Starting production.</li>
+                        <li>Stopping production.</li>
+                        <li>Increasing the production rate.</li>
+                        <li>Reducing the production rate.</li>
+                    </ul>
+                
+                    <p>
+                        Engineers then record how the reservoir pressure changes over time.
+                        By analyzing this pressure response together with the production rate,
+                        they can calculate many important reservoir properties.
+                    </p>
+                
+                    <div class="note-box">
+                        The pressure response acts like the reservoir's "fingerprint." Every reservoir reacts differently,
+                        allowing engineers to determine its characteristics.
+                    </div>
+                
+                    <hr>
+                
+                    <h3>3. How is Pressure Disturbance Created?</h3>
+                
+                    <h4>A. Drawdown Test</h4>
+                
+                    <p>
+                        If the well has been shut in for a long period, engineers start production.
+                        As fluids begin flowing, reservoir pressure decreases.
+                    </p>
+                
+                    <div class="flow-box">
+                        Shut-in Well
+                        ↓<br>
+                        Open the Well
+                        ↓<br>
+                        Pressure Drops
+                        ↓<br>
+                        Drawdown Test
+                    </div>
+                
+                    <p>
+                        Drawdown tests are mainly used to evaluate how easily fluids flow through the reservoir.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>B. Build-Up Test</h4>
+                
+                    <p>
+                        If the well has been producing for a long time, engineers stop production.
+                        Once the well is shut in, reservoir pressure gradually builds back toward its original value.
+                    </p>
+                
+                    <div class="flow-box">
+                        Flowing Well
+                        ↓<br>
+                        Shut the Well
+                        ↓<br>
+                        Pressure Recovers
+                        ↓<br>
+                        Build-Up Test
+                    </div>
+                
+                    <p>
+                        Build-up tests are widely used because they provide highly accurate reservoir pressure data.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>C. Flow Rate Change Test</h4>
+                
+                    <p>
+                        Engineers may also change the production rate while the well is flowing.
+                    </p>
+                
+                    <div class="flow-box">
+                        Increase Flow Rate
+                        ↓<br>
+                        Reservoir Pressure Changes
+                        ↓<br>
+                        Measure Response
+                    </div>
+                
+                    <p>or</p>
+                
+                    <div class="flow-box">
+                        Reduce Flow Rate
+                        ↓<br>
+                        Reservoir Pressure Changes
+                        ↓<br>
+                        Measure Response
+                    </div>
+                
+                    <p>
+                        This method helps evaluate the well's response under different production conditions.
+                    </p>
+                
+                    <hr>
+                
+                    <h3>4. Why Do We Perform Well Testing?</h3>
+                
+                    <p>
+                        Reservoirs continuously change as production continues.
+                        Pressure decreases, water production may increase,
+                        gas-oil ratio changes, and well productivity may decline.
+                    </p>
+                
+                    <p>
+                        Well Testing allows engineers to monitor these changes and make the correct production decisions.
+                    </p>
+                
+                    <div class="important-box">
+                        Wells are like people—they change over time.
+                        Regular Well Testing helps engineers understand these changes and optimize production.
+                    </div>
+                
+                    <hr>
+                
+                    <h3>5. Main Objectives of Well Testing</h3>
+                
+                    <h4>① Determine Reservoir Characteristics</h4>
+                
+                    <p>
+                        One of the primary objectives is understanding the reservoir itself.
+                    </p>
+                
+                    <ul>
+                        <li>Reservoir Pressure</li>
+                        <li>Reservoir Temperature</li>
+                        <li>Permeability</li>
+                        <li>Reservoir Thickness</li>
+                        <li>Skin Factor (Formation Damage)</li>
+                        <li>Reservoir Boundaries</li>
+                        <li>Well Productivity Index (PI)</li>
+                        <li>Gas Deliverability</li>
+                        <li>AOFP (Absolute Open Flow Potential)</li>
+                    </ul>
+                
+                    <hr>
+                
+                    <h4>② Identify Produced Fluids</h4>
+                
+                    <p>
+                        Engineers determine:
+                    </p>
+                
+                    <ul>
+                        <li>Oil properties</li>
+                        <li>Gas properties</li>
+                        <li>Water production</li>
+                        <li>Fluid composition</li>
+                    </ul>
+                
+                    <hr>
+                
+                    <h4>③ Obtain Representative Fluid Samples</h4>
+                
+                    <p>
+                        Samples collected during the test are sent to the laboratory for
+                        <strong>PVT analysis</strong>, helping determine the physical properties
+                        of reservoir fluids.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>④ Reservoir Description</h4>
+                
+                    <p>
+                        Test results help engineers describe the reservoir accurately,
+                        compare it with nearby wells, and identify production similarities.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>⑤ Reservoir Evaluation</h4>
+                
+                    <p>
+                        Engineers determine whether the reservoir can produce economically and whether further
+                        field development is justified.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>⑥ Reservoir Management</h4>
+                
+                    <p>
+                        Throughout the life of the field, repeated well tests help optimize production,
+                        monitor reservoir performance, and improve recovery.
+                    </p>
+                
+                    <div class="success-box">
+                        Good Well Testing leads to better reservoir management,
+                        higher oil recovery, safer operations, and more accurate production forecasting.
+                    </div>
+                
+                    <hr>
+                
+                    <h3>6. Summary</h3>
+                
+                    <table class="summary-table">
+                        <tr>
+                            <th>Topic</th>
+                            <th>Explanation</th>
+                        </tr>
+                        <tr>
+                            <td>Well Testing</td>
+                            <td>Measures well performance under controlled conditions.</td>
+                        </tr>
+                        <tr>
+                            <td>Main Parameters</td>
+                            <td>Pressure, Temperature, and Flow Rate.</td>
+                        </tr>
+                        <tr>
+                            <td>Pressure Disturbance</td>
+                            <td>Created by opening, shutting, or changing the production rate.</td>
+                        </tr>
+                        <tr>
+                            <td>Drawdown Test</td>
+                            <td>Pressure decreases after opening the well.</td>
+                        </tr>
+                        <tr>
+                            <td>Build-Up Test</td>
+                            <td>Pressure recovers after shutting the well.</td>
+                        </tr>
+                        <tr>
+                            <td>Main Goal</td>
+                            <td>Understand reservoir performance and optimize production.</td>
+                        </tr>
+                    </table>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Air Compressor Operational Course Profile Diagram">
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>Applications of Indirect Fired Heaters</h3>
+                
+                    <p>
+                        Indirect Fired Heaters are widely used in oil and gas operations to improve production efficiency,
+                        solve flow assurance problems, and enhance separation performance. They are particularly important
+                        during well testing and production operations where temperature control is critical.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>1. Hydrate Prevention</h4>
+                
+                    <p>
+                        One of the most important applications of a heater is preventing the formation of
+                        <strong>gas hydrates</strong>.
+                    </p>
+                
+                    <p>
+                        Hydrates are ice-like crystals formed when:
+                    </p>
+                
+                    <ul>
+                        <li>Water vapor is present in the gas stream.</li>
+                        <li>Pressure drops suddenly.</li>
+                        <li>Gas temperature decreases rapidly.</li>
+                    </ul>
+                
+                    <div class="flow-diagram">
+                        High Pressure Gas
+                        <br>↓
+                        <br>Pressure Drop
+                        <br>↓
+                        <br>Temperature Drop
+                        <br>↓
+                        <br>Hydrate Formation
+                        <br>↓
+                        <br>Flow Restriction / Plugging
+                    </div>
+                
+                    <p>
+                        The heater raises the gas temperature before the pressure reduction point,
+                        preventing hydrates from forming and blocking the process equipment.
+                    </p>
+                
+                    <div class="tip-box">
+                        Hydrates can completely block chokes, flowlines, and separators if temperature is not controlled.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>2. Wax Dissolution and Viscosity Improvement</h4>
+                
+                    <p>
+                        During cold weather operations, crude oil temperature may fall below its wax appearance temperature.
+                        This causes wax crystals to form and deposit inside pipelines and equipment.
+                    </p>
+                
+                    <p>
+                        Heating the crude oil helps:
+                    </p>
+                
+                    <ul>
+                        <li>Dissolve existing wax deposits.</li>
+                        <li>Prevent new wax formation.</li>
+                        <li>Reduce oil viscosity.</li>
+                        <li>Improve crude oil mobility and flow.</li>
+                    </ul>
+                
+                    <div class="highlight-card">
+                        Higher Temperature → Lower Viscosity → Easier Oil Flow
+                    </div>
+                
+                    <hr>
+                
+                    <h4>3. Emulsion Reduction</h4>
+                
+                    <p>
+                        During production, especially from wells with high water cut,
+                        stable oil-water emulsions may form.
+                    </p>
+                
+                    <p>
+                        An emulsion is a mixture where tiny water droplets remain suspended inside the oil,
+                        making separation difficult.
+                    </p>
+                
+                    <p>
+                        Heating reduces the viscosity of the fluids and weakens the emulsion,
+                        allowing oil and water to separate more easily.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Oil + Water
+                        <br>↓
+                        <br>Emulsion Formation
+                        <br>↓
+                        <br>Heating
+                        <br>↓
+                        <br>Emulsion Breakdown
+                        <br>↓
+                        <br>Improved Separation
+                    </div>
+                
+                    <hr>
+                
+                    <h4>4. Improve Three-Phase Separator Performance</h4>
+                
+                    <p>
+                        Some crude oils produce excessive foam during production and well testing.
+                        Foam can negatively affect separator performance and reduce separation efficiency.
+                    </p>
+                
+                    <p>
+                        Heating helps:
+                    </p>
+                
+                    <ul>
+                        <li>Reduce foam stability.</li>
+                        <li>Improve gas-liquid separation.</li>
+                        <li>Improve oil-water separation.</li>
+                        <li>Increase overall separator efficiency.</li>
+                    </ul>
+                
+                    <div class="engineering-note">
+                        Three-phase separators are designed to separate Gas, Oil, and Water.
+                        Proper heating significantly improves this separation process.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Engineering Summary</h4>
+                
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Application</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hydrate Prevention</td>
+                                <td>Prevent hydrate formation caused by pressure and temperature reduction.</td>
+                            </tr>
+                            <tr>
+                                <td>Wax Control</td>
+                                <td>Dissolve wax and improve crude oil flow.</td>
+                            </tr>
+                            <tr>
+                                <td>Viscosity Reduction</td>
+                                <td>Improve crude oil mobility and production rates.</td>
+                            </tr>
+                            <tr>
+                                <td>Emulsion Treatment</td>
+                                <td>Improve oil-water separation.</td>
+                            </tr>
+                            <tr>
+                                <td>Foam Reduction</td>
+                                <td>Enhance three-phase separator efficiency.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <div class="warning-box">
+                        Failure to maintain adequate process temperature can lead to hydrate plugging,
+                        wax deposition, poor separation efficiency, and production losses.
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Ingersoll Rand Integrated Instrument Display Panel Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>Installation of Indirect Fired Heater</h3>
+                
+                    <p>
+                        Indirect Fired Heaters are supplied as <strong>skid-mounted, self-contained units</strong>.
+                        The complete heater assembly can be transported to the location and prepared for operation
+                        with minimal installation work. Typical site preparation includes erecting the chimney stack,
+                        connecting the fuel source, and filling the heating medium system with a fresh water and glycol mixture.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 1 – Review Documentation</h4>
+                
+                    <p>
+                        Before installation begins, carefully review all heater manuals, operating instructions,
+                        drawings, and P&ID diagrams.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Review Drawings
+                        <br>↓
+                        <br>Understand Connections
+                        <br>↓
+                        <br>Verify Installation Requirements
+                        <br>↓
+                        <br>Safe Installation
+                    </div>
+                
+                    <p>
+                        This ensures the installation team is familiar with the heater design,
+                        operating requirements, and safety precautions.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 2 – Position the Heater Skid</h4>
+                
+                    <p>
+                        Place the heater skid on a suitable foundation and ensure the unit is properly leveled.
+                    </p>
+                
+                    <ul>
+                        <li>Use a stable foundation.</li>
+                        <li>Ensure adequate load-bearing capacity.</li>
+                        <li>Verify horizontal alignment using leveling tools.</li>
+                    </ul>
+                
+                    <div class="tip-box">
+                        An uneven heater can reduce heating efficiency and cause improper circulation
+                        of the heating medium inside the shell.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Step 3 – Install the Chimney Stack</h4>
+                
+                    <p>
+                        During transportation, the chimney stack is secured in a horizontal shipping cradle.
+                        It must be raised and installed in the vertical position before operation.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Shipping Position
+                        <br>↓
+                        <br>Lift Chimney
+                        <br>↓
+                        <br>Vertical Position
+                        <br>↓
+                        <br>Bolt Flange Connection
+                        <br>↓
+                        <br>Install High Temperature Gasket
+                    </div>
+                
+                    <p>
+                        The chimney safely directs combustion gases away from personnel and equipment.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 4 – Inspect Burner Assembly</h4>
+                
+                    <p>
+                        Verify that the burner assembly is securely mounted and all bolts are properly tightened.
+                    </p>
+                
+                    <ul>
+                        <li>Check burner mounting bolts.</li>
+                        <li>Inspect fuel connections.</li>
+                        <li>Ensure no loose components exist.</li>
+                        <li>Confirm burner alignment.</li>
+                    </ul>
+                
+                    <div class="warning-box">
+                        Loose burner components can cause poor combustion, vibration,
+                        fuel leaks, or burner malfunction.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Step 5 – Connect Process and Fuel Piping (Gas Fired Heater)</h4>
+                
+                    <p>
+                        For gas-fired heaters, all required process and fuel piping must be connected.
+                    </p>
+                
+                    <ul>
+                        <li>Fuel Gas Supply Line</li>
+                        <li>Coil Inlet Connection</li>
+                        <li>Coil Outlet Connection</li>
+                        <li>Instrument Air Connections</li>
+                    </ul>
+                
+                    <p>
+                        After installation, all piping systems must be pressure tested.
+                    </p>
+                
+                    <div class="engineering-note">
+                        Hydrostatic Test is performed on the process coil.
+                        Instrument piping is normally air tested at 125 psi.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Pressure Testing Requirements</h4>
+                
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>System</th>
+                                <th>Test Type</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Process Coil</td>
+                                <td>Hydrostatic Test</td>
+                                <td>Verify coil integrity and detect leaks.</td>
+                            </tr>
+                            <tr>
+                                <td>Instrument Piping</td>
+                                <td>125 psi Air Test</td>
+                                <td>Verify pneumatic system tightness.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <hr>
+                
+                    <h4>Step 6 – Check Diesel System (Diesel Fired Heater)</h4>
+                
+                    <p>
+                        If the heater uses diesel fuel instead of gas, the fuel system must be inspected carefully.
+                    </p>
+                
+                    <ul>
+                        <li>Inspect diesel tank condition.</li>
+                        <li>Verify fuel level.</li>
+                        <li>Check diesel filter cleanliness.</li>
+                        <li>Verify diesel return line condition.</li>
+                    </ul>
+                
+                    <div class="flow-diagram">
+                        Diesel Tank
+                        <br>↓
+                        <br>Fuel Filter
+                        <br>↓
+                        <br>Burner
+                        <br>↓
+                        <br>Combustion
+                        <br>↓
+                        <br>Diesel Return Line
+                    </div>
+                
+                    <p>
+                        A clean diesel system ensures proper burner operation and stable heater performance.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Engineering Summary</h4>
+                
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Installation Activity</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Review Documentation</td>
+                                <td>Understand system configuration.</td>
+                            </tr>
+                            <tr>
+                                <td>Level Heater Skid</td>
+                                <td>Ensure efficient heating operation.</td>
+                            </tr>
+                            <tr>
+                                <td>Install Chimney Stack</td>
+                                <td>Safely exhaust combustion gases.</td>
+                            </tr>
+                            <tr>
+                                <td>Inspect Burner</td>
+                                <td>Prevent combustion problems.</td>
+                            </tr>
+                            <tr>
+                                <td>Connect Fuel & Process Lines</td>
+                                <td>Prepare heater for operation.</td>
+                            </tr>
+                            <tr>
+                                <td>Pressure Testing</td>
+                                <td>Verify leak-free system.</td>
+                            </tr>
+                            <tr>
+                                <td>Inspect Diesel System</td>
+                                <td>Ensure reliable burner performance.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <div class="highlight-card">
+                        Proper installation of an Indirect Fired Heater is critical for safe operation,
+                        efficient heat transfer, and long equipment life during well testing and production operations.
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Atlas Copco Unit Integration Systems Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>Initial Start-Up of Indirect Fired Heater</h3>
+                
+                    <p>
+                        After the heater has been fully installed and rigged up on location, a series of startup checks
+                        and pressure tests must be completed before introducing process fluids. These procedures ensure
+                        safe operation, leak-free performance, and protection of the heater coils from excessive pressure.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 1 – Verify Chimney Installation</h4>
+                
+                    <p>
+                        Ensure the heater chimney stack is installed vertically and firmly secured.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Chimney Installed
+                        <br>↓
+                        <br>Vertical Position
+                        <br>↓
+                        <br>Secure Fastening
+                        <br>↓
+                        <br>Safe Exhaust Flow
+                    </div>
+                
+                    <p>
+                        The chimney safely directs combustion gases away from personnel and equipment.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 2 – Fill Heater Shell</h4>
+                
+                    <p>
+                        Fill the heater shell with a mixture of fresh water and glycol.
+                        The liquid level should be maintained approximately <strong>3 inches above the upper coil</strong>.
+                    </p>
+                
+                    <div class="engineering-note">
+                        Water transfers heat efficiently while glycol provides freeze protection during cold weather operations.
+                    </div>
+                
+                    <p>
+                        During filling, inspect the shell carefully for leaks.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 3 – Inspect High Pressure Manifold</h4>
+                
+                    <p>
+                        Verify that all high-pressure manifold valves are closed and all flange bolts are properly tightened.
+                    </p>
+                
+                    <ul>
+                        <li>Check inlet valve.</li>
+                        <li>Check outlet valve.</li>
+                        <li>Check bypass valve.</li>
+                        <li>Inspect flange bolts.</li>
+                        <li>Verify no visible leaks.</li>
+                    </ul>
+                
+                    <div class="tip-box">
+                        Loose flange bolts can lead to dangerous leaks when pressure testing begins.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Understanding the Three-Valve Manifold</h4>
+                
+                    <p>
+                        The heater coil system is equipped with a three-valve manifold arrangement.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Process Flow
+                        <br>↓
+                        <br>Inlet Valve
+                        <br>↓
+                        <br>Heater Coil
+                        <br>↓
+                        <br>Outlet Valve
+                        <br>↓
+                        <br>Separator
+                    </div>
+                
+                    <p>
+                        A bypass valve is also installed to allow process fluids to bypass the heater completely
+                        when heating is not required.
+                    </p>
+                
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Valve</th>
+                                <th>Function</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Inlet Valve</td>
+                                <td>Controls flow entering heater coil.</td>
+                            </tr>
+                            <tr>
+                                <td>Outlet Valve</td>
+                                <td>Controls flow leaving heater coil.</td>
+                            </tr>
+                            <tr>
+                                <td>Bypass Valve</td>
+                                <td>Directs flow around the heater.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <hr>
+                
+                    <h4>Step 4 – Pressure Test the Heater</h4>
+                
+                    <p>
+                        Pressure testing must be performed on:
+                    </p>
+                
+                    <ul>
+                        <li>Manifold gate/ball valves.</li>
+                        <li>High-pressure process coil.</li>
+                    </ul>
+                
+                    <p>
+                        Testing should be conducted up to the equipment design pressure and cold working pressure
+                        rating (5,000 psi or 10,000 psi depending on the heater specification).
+                    </p>
+                
+                    <div class="warning-box">
+                        Never exceed the design pressure of the heater coil or manifold during testing.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Step 5 – Flush the Coil</h4>
+                
+                    <p>
+                        Open the inlet valve, outlet valve, and adjustable choke while keeping the bypass valve closed.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Open Inlet Valve
+                        <br>↓
+                        <br>Open Outlet Valve
+                        <br>↓
+                        <br>Open Adjustable Choke
+                        <br>↓
+                        <br>Flush Coil With Fresh Water
+                        <br>↓
+                        <br>Remove Trapped Air
+                    </div>
+                
+                    <p>
+                        Flushing removes debris and trapped air before pressure testing.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Step 6 – High Pressure Leak Test</h4>
+                
+                    <p>
+                        Close the heater choke and gradually increase upstream pressure to line pressure.
+                    </p>
+                
+                    <p>
+                        Inspect all:
+                    </p>
+                
+                    <ul>
+                        <li>Connections</li>
+                        <li>Hammer unions</li>
+                        <li>Flanges</li>
+                        <li>Valves</li>
+                    </ul>
+                
+                    <p>
+                        If leaks are detected:
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Leak Found
+                        <br>↓
+                        <br>Depressurize Unit
+                        <br>↓
+                        <br>Tighten Connections
+                        <br>↓
+                        <br>Retest System
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Step 7 – Downstream Coil Pressure Test</h4>
+                
+                    <p>
+                        Close the outlet valve and slowly open the adjustable choke to increase downstream coil pressure.
+                    </p>
+                
+                    <p>
+                        The downstream section should be pressure tested up to:
+                    </p>
+                
+                    <div class="highlight-card">
+                        5,000 psi or 10,000 psi depending on the heater coil design rating.
+                    </div>
+                
+                    <p>
+                        Again inspect all joints and fittings for leakage.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Bottle-Necking Effect of the Heater Coil</h4>
+                
+                    <p>
+                        The heater coil contains an adjustable choke that separates the upstream and downstream coil sections.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Upstream Coil
+                        <br>(10K psi Rating)
+                        <br>↓
+                        <br>Adjustable Choke
+                        <br>↓
+                        <br>Downstream Coil
+                        <br>(5K psi Rating)
+                    </div>
+                
+                    <p>
+                        The choke creates a controlled pressure drop and protects the downstream coil from excessive pressure.
+                    </p>
+                
+                    <div class="warning-box">
+                        Because the downstream section has a lower pressure rating,
+                        pressure testing must never exceed its allowable working pressure.
+                    </div>
+                
+                    <hr>
+                
+                    <h4>Coil Construction</h4>
+                
+                    <p>
+                        The heater coil typically consists of multiple pipe passes (commonly 8 passes)
+                        manufactured from high-strength carbon steel pipe such as:
+                    </p>
+                
+                    <ul>
+                        <li>3" XXH A106 Grade B Pipe</li>
+                        <li>3" XH A106 Grade B Pipe</li>
+                    </ul>
+                
+                    <p>
+                        These multiple passes maximize heat transfer between the process fluid and the heating medium.
+                    </p>
+                
+                    <hr>
+                
+                    <h4>Engineering Summary</h4>
+                
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Startup Activity</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Verify Chimney</td>
+                                <td>Safe exhaust gas discharge.</td>
+                            </tr>
+                            <tr>
+                                <td>Fill Shell with Water/Glycol</td>
+                                <td>Provide heat transfer medium.</td>
+                            </tr>
+                            <tr>
+                                <td>Inspect Manifold</td>
+                                <td>Prevent leaks and failures.</td>
+                            </tr>
+                            <tr>
+                                <td>Pressure Test Coil</td>
+                                <td>Verify mechanical integrity.</td>
+                            </tr>
+                            <tr>
+                                <td>Flush Coil</td>
+                                <td>Remove air and debris.</td>
+                            </tr>
+                            <tr>
+                                <td>Leak Test</td>
+                                <td>Ensure safe operation.</td>
+                            </tr>
+                            <tr>
+                                <td>Check Choke Protection</td>
+                                <td>Protect downstream coil section.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <div class="highlight-card">
+                        The most important objective of the Initial Start-Up procedure is to ensure that the heater
+                        shell, manifold, and process coils are leak-free, properly filled, pressure-tested, and ready
+                        for safe hydrocarbon service.
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Operational Metrics Summary Cover Block">
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>Gas Fired Indirect Heater – Start-Up Procedure</h3>
+                
+                    <p>
+                        A Gas Fired Indirect Heater uses fuel gas to heat a water/glycol bath, which then transfers heat to the process fluid flowing through the heater coil. Proper startup is critical to ensure safe operation, maximum heating efficiency, and protection of personnel and equipment.
+                    </p>
+                
+                    <h4>1. Complete Initial Startup Checks</h4>
+                    <p>
+                        Before lighting the heater, ensure all installation and pressure testing procedures have been completed successfully. The chimney must be secured, the shell filled with water and glycol, and all piping connections verified leak-free.
+                    </p>
+                
+                    <h4>2. Adjust Fuel Gas Pressure</h4>
+                    <p>
+                        Fuel gas must be lined up to the heater and regulated correctly:
+                    </p>
+                
+                    <ul>
+                        <li>High Pressure Regulator: <strong>30–40 psig</strong></li>
+                        <li>Low Pressure Regulator: <strong>10–15 psig</strong></li>
+                    </ul>
+                
+                    <p>
+                        These pressures supply both the burner and pilot flame with the proper amount of fuel gas.
+                    </p>
+                
+                    <h4>3. Verify Fuel Gas Control System</h4>
+                    <p>
+                        The heater contains a thermostat and High Temperature Shutdown (HTSD) controller. These devices automatically control the fuel gas valve and shut down the burner if excessive temperatures occur.
+                    </p>
+                
+                    <h4>4. Purge the Firebox</h4>
+                    <p>
+                        Before ignition, briefly allow fuel gas into the firebox and then close the valve. Wait at least five minutes to purge any accumulated gas. This prevents flash fires or explosions during ignition.
+                    </p>
+                
+                    <h4>5. Ignite the Pilot Flame</h4>
+                    <p>
+                        The pilot flame is ignited first and observed through the magic-eye viewing glass. Slowly open the pilot gas valve and adjust the flame until a stable, steady pilot flame is obtained.
+                    </p>
+                
+                    <h4>6. Start the Main Burner</h4>
+                    <p>
+                        With the pilot burning properly, slowly open the fuel gas shutoff valve. The main burner should ignite automatically from the pilot flame.
+                    </p>
+                
+                    <p>
+                        If the burner does not ignite, adjust the thermostat clockwise until the fuel gas valve opens and the burner lights.
+                    </p>
+                
+                    <h4>7. Adjust Fuel-to-Air Ratio</h4>
+                    <p>
+                        Proper combustion requires the correct mixture of fuel gas and air:
+                    </p>
+                
+                    <ul>
+                        <li><strong>Too much air:</strong> Unstable or blasting flame.</li>
+                        <li><strong>Too little air:</strong> Orange flame and black smoke.</li>
+                        <li><strong>Correct adjustment:</strong> Clean, stable flame with minimal smoke.</li>
+                    </ul>
+                
+                    <p>
+                        Air adjustment is performed using the rotating air damper located near the burner assembly.
+                    </p>
+                
+                    <h4>8. Set Operating Temperature</h4>
+                    <p>
+                        Monitor the bath temperature gauge and adjust the thermostat accordingly.
+                    </p>
+                
+                    <ul>
+                        <li>Recommended Bath Temperature: <strong>180°F</strong></li>
+                        <li>High Temperature Shutdown (HTSD): <strong>200°F</strong></li>
+                    </ul>
+                
+                    <p>
+                        These settings provide efficient heating while maintaining a safe margin below the water boiling point of 212°F.
+                    </p>
+                
+                    <h4>9. Monitor Water/Glycol Level</h4>
+                    <p>
+                        The bath liquid level must always remain at least 3 inches above the upper process coil. Low water level can reduce heating efficiency and may damage the heater coil.
+                    </p>
+                
+                    <h4>10. Connect the ESD System</h4>
+                    <p>
+                        The heater must be connected to the Emergency Shutdown (ESD) system. In case of fire, gas leak, H₂S release, or any emergency condition, the ESD system can automatically trip and shut down the heater.
+                    </p>
+                
+                    <h4>11. Energize the Heater</h4>
+                    <p>
+                        Once all systems are verified:
+                    </p>
+                
+                    <ol>
+                        <li>Open instrument air supply.</li>
+                        <li>Energize the ESD panel.</li>
+                        <li>Switch electrical power ON.</li>
+                        <li>Allow the burner to start automatically.</li>
+                    </ol>
+                
+                    <h4>12. Keep Flow Paths Open During Warm-Up</h4>
+                    <p>
+                        During initial heating, it is recommended to keep the inlet valve, outlet valve, and bypass valve open. This prevents excessive pressure build-up caused by thermal expansion of trapped fluids inside the heater coil.
+                    </p>
+                
+                    <h4>13. Heat the Water Bath</h4>
+                    <p>
+                        Adjust the burner to maximum firing rate initially to raise the bath temperature quickly and reduce startup time.
+                    </p>
+                
+                    <h4>14. Monitor Chimney Exhaust</h4>
+                    <p>
+                        The exhaust should be clean and nearly smokeless.
+                    </p>
+                
+                    <ul>
+                        <li><strong>Black Smoke:</strong> Indicates insufficient combustion air.</li>
+                        <li><strong>Solution:</strong> Increase air intake and adjust the fuel/air ratio.</li>
+                    </ul>
+                
+                    <h4>15. Divert Process Flow Through the Heater</h4>
+                    <p>
+                        Once the water bath reaches approximately 180°F:
+                    </p>
+                
+                    <ul>
+                        <li>Keep inlet valve open.</li>
+                        <li>Keep outlet valve open.</li>
+                        <li>Close the bypass valve.</li>
+                    </ul>
+                
+                    <p>
+                        This forces the process fluid through the heater coil, allowing heat transfer to occur.
+                    </p>
+                
+                    <h4>16. Heater Shutdown</h4>
+                    <p>
+                        To safely shut down the heater:
+                    </p>
+                
+                    <ol>
+                        <li>Switch the heater OFF.</li>
+                        <li>Close the fuel gas supply valve.</li>
+                        <li>Verify burner flame extinction.</li>
+                        <li>Leave the system in a safe condition.</li>
+                    </ol>
+                
+                    <div class="note-modern">
+                        <strong>Important Safety Notes:</strong>
+                        <ul>
+                            <li>Always purge the firebox before ignition.</li>
+                            <li>Maintain water level above the process coil.</li>
+                            <li>Monitor burner flame quality continuously.</li>
+                            <li>Ensure ESD functionality is tested before operation.</li>
+                            <li>Keep bypass, inlet, and outlet valves properly positioned to prevent thermal pressure build-up.</li>
+                        </ul>
+                    </div>
+                
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+
+                    <h3>Diesel Fired Indirect Heater – Start-Up Procedure</h3>
+                
+                    <p>
+                        A Diesel Fired Indirect Heater operates using a diesel burner instead of fuel gas. The burner
+                        heats a water/glycol bath inside the heater shell, and the heat is then transferred to the
+                        process fluid flowing through the heater coil. Proper startup procedures ensure safe operation,
+                        maximum heating efficiency, and protection of personnel and equipment.
+                    </p>
+                
+                    <h4>1. Complete Initial Startup Requirements</h4>
+                
+                    <p>
+                        Before operating the heater, ensure all Initial Startup procedures have been completed,
+                        including chimney installation, shell filling, pressure testing, and leak inspection.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Installation Complete
+                        <br>↓
+                        <br>Pressure Test Passed
+                        <br>↓
+                        <br>Water/Glycol Filled
+                        <br>↓
+                        <br>Ready for Burner Startup
+                    </div>
+                
+                    <h4>2. Inspect the Diesel Burner</h4>
+                
+                    <p>
+                        Check the RELIO diesel burner and verify that all components are in good condition.
+                        Inspect fuel nozzles, ignition system, blower, and electrical connections.
+                    </p>
+                
+                    <div class="engineering-note">
+                        A damaged burner can result in poor combustion, excessive smoke, or ignition failure.
+                    </div>
+                
+                    <h4>3. Connect the Diesel Fuel Supply</h4>
+                
+                    <p>
+                        Open the diesel supply valve and allow fuel to flow through the diesel filter to the burner.
+                        Ensure all fuel connections are leak-free.
+                    </p>
+                
+                    <h4>4. Verify the Diesel Return Line</h4>
+                
+                    <p>
+                        Check that the diesel return line is properly connected to the diesel tank and free from
+                        blockages.
+                    </p>
+                
+                    <p>
+                        Excess fuel not consumed by the burner is returned through this line.
+                    </p>
+                
+                    <h4>5. Fill the Diesel Tank</h4>
+                
+                    <p>
+                        Fill the diesel tank with sufficient fuel for the operation. Keep an external diesel refill
+                        hose available and fitted with a control valve for safe refueling during operation.
+                    </p>
+                
+                    <h4>6. Connect Electrical Power</h4>
+                
+                    <p>
+                        Connect the heater electrical panel to the appropriate power source:
+                    </p>
+                
+                    <ul>
+                        <li>110V or 220V</li>
+                        <li>50Hz or 60Hz</li>
+                    </ul>
+                
+                    <p>
+                        Install and secure the grounding (earthing) rod to prevent static electricity buildup.
+                    </p>
+                
+                    <div class="warning-box">
+                        Proper grounding is mandatory to prevent electrical hazards and ignition risks.
+                    </div>
+                
+                    <h4>7. Check Blower Rotation Direction</h4>
+                
+                    <p>
+                        Verify that the blower impeller rotates in the correct direction according to the arrow
+                        marked on the burner housing.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Power ON
+                        <br>↓
+                        <br>Observe Blower Rotation
+                        <br>↓
+                        <br>Correct Direction?
+                        <br>↓
+                        <br>YES → Continue
+                        <br>NO → Swap Phases and Recheck
+                    </div>
+                
+                    <p>
+                        If rotation is incorrect, reconnect electrical phases (E, N, L1, L2) until the proper
+                        rotation direction is achieved.
+                    </p>
+                
+                    <h4>8. Connect Emergency Shutdown (ESD)</h4>
+                
+                    <p>
+                        Connect the heater pneumatic shutdown port to the ESD control panel.
+                    </p>
+                
+                    <p>
+                        Perform a function test to verify that the heater trips properly during an emergency shutdown.
+                    </p>
+                
+                    <div class="highlight-card">
+                        The heater must shut down immediately when an ESD signal is activated.
+                    </div>
+                
+                    <h4>9. Energize the System</h4>
+                
+                    <p>
+                        Once all checks are complete:
+                    </p>
+                
+                    <ol>
+                        <li>Open instrument air supply.</li>
+                        <li>Energize the ESD panel.</li>
+                        <li>Switch electrical power ON.</li>
+                        <li>Wait for the diesel burner to start automatically.</li>
+                    </ol>
+                
+                    <h4>10. Keep Heater Flow Paths Open</h4>
+                
+                    <p>
+                        During warm-up, keep the following valves open:
+                    </p>
+                
+                    <ul>
+                        <li>Inlet Valve</li>
+                        <li>Outlet Valve</li>
+                        <li>Bypass Valve</li>
+                    </ul>
+                
+                    <p>
+                        This prevents pressure buildup caused by thermal expansion of trapped fluids inside the heater coil.
+                    </p>
+                
+                    <div class="warning-box">
+                        Trapped fluid exposed to heat can create extremely high pressures and damage the coil.
+                    </div>
+                
+                    <h4>11. Heat the Water Bath</h4>
+                
+                    <p>
+                        Adjust the burner to maximum firing rate to heat the water/glycol bath quickly.
+                    </p>
+                
+                    <div class="flow-diagram">
+                        Burner at Maximum Fire
+                        <br>↓
+                        <br>Water/Glycol Temperature Increases
+                        <br>↓
+                        <br>Approaches Operating Temperature
+                    </div>
+                
+                    <h4>12. Monitor Chimney Exhaust</h4>
+                
+                    <p>
+                        Observe the exhaust leaving the chimney.
+                    </p>
+                
+                    <ul>
+                        <li><strong>Clean Exhaust:</strong> Proper combustion.</li>
+                        <li><strong>Black Smoke:</strong> Insufficient air supply.</li>
+                    </ul>
+                
+                    <p>
+                        If black smoke is observed:
+                    </p>
+                
+                    <ul>
+                        <li>Increase combustion air intake.</li>
+                        <li>Adjust fuel-to-air ratio.</li>
+                        <li>Lubricate moving air intake components if required.</li>
+                    </ul>
+                
+                    <h4>13. Set Operating Temperature</h4>
+                
+                    <p>
+                        Monitor the bath temperature gauge continuously.
+                    </p>
+                
+                    <ul>
+                        <li>Recommended Bath Temperature: <strong>180°F</strong></li>
+                        <li>High Temperature Shutdown (HTSD): <strong>200°F</strong></li>
+                    </ul>
+                
+                    <p>
+                        The HTSD controller automatically shuts down the burner if temperature exceeds the safe limit.
+                    </p>
+                
+                    <div class="engineering-note">
+                        Water boils at approximately 212°F. The HTSD setting provides a safety margin below the boiling point.
+                    </div>
+                
+                    <h4>14. Divert Process Flow Through the Heater</h4>
+                
+                    <p>
+                        Once the bath reaches operating temperature:
+                    </p>
+                
+                    <ul>
+                        <li>Keep inlet valve open.</li>
+                        <li>Keep outlet valve open.</li>
+                        <li>Close bypass valve.</li>
+                    </ul>
+                
+                    <div class="flow-diagram">
+                        Process Flow
+                        <br>↓
+                        <br>Inlet Valve
+                        <br>↓
+                        <br>Heater Coil
+                        <br>↓
+                        <br>Outlet Valve
+                        <br>↓
+                        <br>Separator
+                    </div>
+                
+                    <p>
+                        Closing the bypass valve forces the process fluid through the heated coil, allowing heat transfer.
+                    </p>
+                
+                    <h4>15. Heater Shutdown Procedure</h4>
+                
+                    <p>
+                        To safely shut down the heater:
+                    </p>
+                
+                    <ol>
+                        <li>Switch the heater OFF.</li>
+                        <li>Close the diesel fuel supply valve.</li>
+                        <li>Verify burner shutdown.</li>
+                        <li>Leave the heater in a safe condition.</li>
+                    </ol>
+                
+                    <div class="note-modern">
+                        <strong>Key Safety Reminders:</strong>
+                        <ul>
+                            <li>Always verify blower rotation before startup.</li>
+                            <li>Maintain adequate diesel supply throughout operation.</li>
+                            <li>Monitor chimney exhaust for signs of poor combustion.</li>
+                            <li>Ensure ESD functionality is tested before use.</li>
+                            <li>Keep the water level above the upper process coil.</li>
+                            <li>Never operate the heater without proper grounding.</li>
+                        </ul>
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="explain-modern">
+
+                    <h2>Indirect Fired Heaters – Course Summary</h2>
+                
+                    <p>
+                        This course explains the design, operation, installation, and safe start-up of indirect fired heaters
+                        used in oil and gas well testing operations to control temperature, improve separation efficiency,
+                        and prevent hydrate, wax, and emulsions issues.
+                    </p>
+                
+                    <h3>1. Equipment Overview</h3>
+                
+                    <ul>
+                        <li>
+                            <strong>Shell:</strong> Atmospheric horizontal vessel filled with water/glycol mixture used as a heat medium.
+                        </li>
+                        <li>
+                            <strong>Coil (HP Tubes):</strong> High-pressure carbon steel coil (multi-pass) carrying process oil & gas.
+                        </li>
+                        <li>
+                            <strong>Burner System:</strong> Gas or diesel fired system generating heat inside firebox.
+                        </li>
+                        <li>
+                            <strong>U-Tube / Firebox:</strong> Transfers combustion heat to heating medium safely without mixing with process fluid.
+                        </li>
+                    </ul>
+                
+                    <h3>2. Main Function</h3>
+                
+                    <p>
+                        Indirect fired heaters increase fluid temperature in a controlled way to improve flow assurance and separation.
+                    </p>
+                
+                    <ul>
+                        <li>Prevent hydrate formation in gas streams.</li>
+                        <li>Reduce wax deposition and improve crude mobility.</li>
+                        <li>Break emulsions and improve oil-water separation.</li>
+                        <li>Enhance separator efficiency in foamy crude conditions.</li>
+                    </ul>
+                
+                    <h3>3. Installation Summary</h3>
+                
+                    <ul>
+                        <li>Place skid on leveled foundation.</li>
+                        <li>Install and secure chimney stack.</li>
+                        <li>Verify burner assembly tightness.</li>
+                        <li>Connect coil inlet/outlet and fuel system.</li>
+                        <li>Perform hydrotest (coil) and pneumatic test (instrument lines).</li>
+                    </ul>
+                
+                    <h3>4. Pre-Start Safety Checks</h3>
+                
+                    <ul>
+                        <li>Ensure shell is filled with water/glycol above coil level (~3 inches minimum).</li>
+                        <li>Verify all valves, flanges, and manifolds are properly tightened.</li>
+                        <li>Confirm bypass line is available for pressure protection.</li>
+                        <li>Check ESD system and pneumatic shutdown connection.</li>
+                    </ul>
+                
+                    <h3>5. Gas Fired Heater Operation</h3>
+                
+                    <ul>
+                        <li>Set fuel gas pressure regulators (high and low pressure stages).</li>
+                        <li>Purge firebox before ignition.</li>
+                        <li>Ignite pilot flame and confirm stable combustion.</li>
+                        <li>Start main burner and adjust air/fuel ratio.</li>
+                        <li>Control temperature using thermostat (typically ~180°F operating).</li>
+                        <li>Monitor water bath level continuously for efficiency.</li>
+                        <li>Ensure smokeless combustion (proper air adjustment).</li>
+                    </ul>
+                
+                    <h3>6. Diesel Fired Heater Operation</h3>
+                
+                    <ul>
+                        <li>Check diesel system, burner condition, and return line.</li>
+                        <li>Ensure correct electrical supply and grounding.</li>
+                        <li>Verify blower rotation direction.</li>
+                        <li>Start burner via control panel and ESD system.</li>
+                        <li>Adjust fuel/air ratio for clean combustion.</li>
+                        <li>Maintain water bath temperature around 180°F.</li>
+                    </ul>
+                
+                    <h3>7. Safety Highlights</h3>
+                
+                    <ul>
+                        <li>Never allow coil to overpressure — always keep bypass logic in mind.</li>
+                        <li>Ensure ESD system is functional before operation.</li>
+                        <li>Prevent dry operation of heater shell.</li>
+                        <li>Maintain proper ventilation and chimney flow.</li>
+                        <li>Use controlled shutdown procedures for both gas and diesel systems.</li>
+                    </ul>
+                
+                    <h3>8. Key Engineering Concepts</h3>
+                
+                    <ul>
+                        <li>Heat transfer through indirect water bath system.</li>
+                        <li>Pressure protection via multi-pass coil design.</li>
+                        <li>Fuel combustion control (air/fuel ratio optimization).</li>
+                        <li>Thermal efficiency monitoring via inlet/outlet temperature.</li>
+                    </ul>
+                
+                    <h3>Final Summary</h3>
+                
+                    <p>
+                        Indirect fired heaters are critical surface well testing equipment designed to safely heat hydrocarbon
+                        fluids using controlled combustion without direct contact between flame and process fluid.
+                        Proper installation, pressure testing, and burner control ensure safe operation and high efficiency
+                        during well testing operations.
+                    </p>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab8')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab8">
+                <div class="explain-modern">
+
+                    <h2>Indirect Fired Heaters – Q&A (Well Testing)</h2>
+                
+                    <p>
+                        This section covers common questions and answers for understanding indirect fired heaters
+                        used in oil & gas well testing operations.
+                    </p>
+                
+                    <h3>Q1: What is an indirect fired heater?</h3>
+                    <p>
+                        It is a heating system where combustion heat is transferred to a water/glycol bath,
+                        which then heats a high-pressure coil carrying the process fluid without direct flame contact.
+                    </p>
+                
+                    <h3>Q2: Why do we use indirect fired heaters in well testing?</h3>
+                    <p>
+                        To safely heat oil and gas streams for improving flow, preventing hydrates, reducing wax,
+                        breaking emulsions, and improving separator performance.
+                    </p>
+                
+                    <h3>Q3: What is inside the heater shell?</h3>
+                    <p>
+                        A mixture of fresh water and glycol that acts as a heat transfer medium surrounding the coil system.
+                    </p>
+                
+                    <h3>Q4: What is the function of the coil?</h3>
+                    <p>
+                        The coil carries high-pressure production fluids and absorbs heat from the surrounding hot water bath.
+                    </p>
+                
+                    <h3>Q5: Why do we use glycol in the shell?</h3>
+                    <p>
+                        Glycol prevents freezing in cold environments and improves heat transfer stability.
+                    </p>
+                
+                    <h3>Q6: What is the purpose of the burner?</h3>
+                    <p>
+                        The burner generates controlled heat using gas or diesel fuel to heat the water/glycol bath.
+                    </p>
+                
+                    <h3>Q7: What is the safe operating temperature?</h3>
+                    <p>
+                        Typically around 180°F, with a high temperature shutdown set below the boiling point of water (212°F).
+                    </p>
+                
+                    <h3>Q8: What is the role of the bypass line?</h3>
+                    <p>
+                        It allows fluid to bypass the heater during startup, shutdown, or pressure stabilization to avoid overheating or overpressure.
+                    </p>
+                
+                    <h3>Q9: What is the purpose of pressure testing?</h3>
+                    <p>
+                        To ensure the coil and manifold can safely handle design pressure (up to 5K–10K psi depending on specification)
+                        without leaks or failure.
+                    </p>
+                
+                    <h3>Q10: What is the difference between gas-fired and diesel-fired heaters?</h3>
+                    <p>
+                        Gas-fired heaters use natural gas as fuel, while diesel-fired heaters use liquid diesel.
+                        Both perform the same heating function but differ in burner system and fuel handling.
+                    </p>
+                
+                    <h3>Q11: What happens if water level drops in the shell?</h3>
+                    <p>
+                        It reduces heat transfer efficiency and may cause overheating and damage to the coil system.
+                    </p>
+                
+                    <h3>Q12: Why is air/fuel ratio important?</h3>
+                    <p>
+                        It ensures clean combustion, prevents smoke formation, improves efficiency, and protects burner components.
+                    </p>
+                
+                    <h3>Q13: What is the function of the ESD system?</h3>
+                    <p>
+                        Emergency Shutdown (ESD) system automatically shuts down the heater in unsafe conditions such as high temperature,
+                        fire risk, or abnormal pressure.
+                    </p>
+                
+                    <h3>Q14: Why do we purge before ignition?</h3>
+                    <p>
+                        To remove any accumulated gas from the firebox and prevent explosion during ignition.
+                    </p>
+                
+                    <h3>Q15: What is the main safety rule during operation?</h3>
+                    <p>
+                        Never operate the heater without proper water level, functional ESD system, and controlled pressure in the coil.
+                    </p>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab7')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab9')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab9">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 9; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

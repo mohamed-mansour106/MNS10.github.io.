@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn DAS Course Level1 | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+
+
+        /*******************************************/
+        /* =====================================
+   MODERN EXPLAIN SECTION
+===================================== */
+
+.explain-modern{
+    background: linear-gradient(180deg,#0f172a,#111827);
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0;
+    color: #e2e8f0;
+    line-height: 1.8;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+.explain-modern h3{
+    color: #f1c40f;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #f1c40f;
+    padding-left: 15px;
+}
+
+.explain-modern h4{
+    color: #38bdf8;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.explain-modern p{
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.explain-modern ul{
+    margin: 15px 0 20px 25px;
+}
+
+.explain-modern li{
+    margin-bottom: 8px;
+}
+
+.explain-modern hr{
+    border: none;
+    height: 1px;
+    background: #334155;
+    margin: 25px 0;
+}
+
+/* =====================================
+   TIP BOX
+===================================== */
+
+.tip-box{
+    background: rgba(14,165,233,0.12);
+    border-left: 5px solid #0ea5e9;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #dbeafe;
+}
+
+/* =====================================
+   WARNING BOX
+===================================== */
+
+.warning-box{
+    background: rgba(239,68,68,0.12);
+    border-left: 5px solid #ef4444;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fee2e2;
+}
+
+/* =====================================
+   HIGHLIGHT CARD
+===================================== */
+
+.highlight-card{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    border: 1px solid #475569;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #f8fafc;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================================
+   FLOW DIAGRAM
+===================================== */
+
+.flow-diagram{
+    background: #020617;
+    border: 2px dashed #38bdf8;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    font-weight: 700;
+    color: #7dd3fc;
+    line-height: 2;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+/* =====================================
+   FORMULA BOX
+===================================== */
+
+.formula-box{
+    background: #020617;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    overflow-x: auto;
+    margin: 20px 0;
+    color: #f8fafc;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.modern-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.modern-table thead{
+    background: #f1c40f;
+}
+
+.modern-table thead th{
+    color: #000;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.modern-table tbody tr{
+    background: #111827;
+    border-bottom: 1px solid #334155;
+}
+
+.modern-table tbody tr:nth-child(even){
+    background: #0f172a;
+}
+
+.modern-table td{
+    padding: 14px;
+    color: #e2e8f0;
+}
+
+/* =====================================
+   ENGINEERING NOTE
+===================================== */
+
+.engineering-note{
+    background: rgba(241,196,15,0.12);
+    border-left: 5px solid #f1c40f;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fef3c7;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+    .explain-modern{
+        padding: 20px;
+    }
+
+    .explain-modern h3{
+        font-size: 1.5rem;
+    }
+
+    .explain-modern h4{
+        font-size: 1.1rem;
+    }
+
+    .modern-table{
+        display:block;
+        overflow-x:auto;
+        white-space: nowrap;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">DAS Course Level1 Course</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Compressor course in Well Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h2>Data Acquisition System (DAS)</h2>
+                
+                    <h3>1. Introduction</h3>
+                    <p>
+                        A Data Acquisition System (DAS) is used during well testing operations to
+                        collect and record real-time production data from the well and test equipment.
+                        The system continuously monitors important parameters such as wellhead pressure,
+                        temperature, annulus pressure, re-injection pressure, oil flow rate, water flow
+                        rate, gas pressure, differential pressure, and flowing temperatures.
+                    </p>
+                
+                    <p>
+                        DAS provides accurate and continuous measurements while testing production wells
+                        using three-phase or four-phase horizontal test separators.
+                    </p>
+                
+                    <h3>2. Purpose</h3>
+                    <p>
+                        This procedure provides guidelines for the proper installation, operation,
+                        and maintenance of DAS sensors and instruments. It ensures safe and reliable
+                        collection of production data from oil and gas wells without causing harm to
+                        personnel, equipment, or the environment, while complying with HSEQ requirements.
+                    </p>
+                
+                    <h3>3. Policy</h3>
+                    <p>
+                        This procedure applies to all DAS sensors and monitoring instruments used in
+                        surface well testing operations, including:
+                    </p>
+                
+                    <ul>
+                        <li>Onshore well testing operations.</li>
+                        <li>Offshore well testing operations.</li>
+                        <li>Rig-based well testing activities.</li>
+                        <li>Rigless well testing activities.</li>
+                    </ul>
+                
+                    <h3>Key Parameters Monitored by DAS</h3>
+                
+                    <ul>
+                        <li><strong>WHSIP:</strong> Well Head Shut-In Pressure</li>
+                        <li><strong>WHFP:</strong> Well Head Flowing Pressure</li>
+                        <li><strong>WHSIT:</strong> Well Head Shut-In Temperature</li>
+                        <li><strong>WHFT:</strong> Well Head Flowing Temperature</li>
+                        <li><strong>Annulus Pressure:</strong> Pressure between tubing and casing</li>
+                        <li><strong>Re-Injection Pressure:</strong> Pressure used for fluid re-injection</li>
+                        <li><strong>Oil Flow Rate:</strong> Produced oil volume per unit time</li>
+                        <li><strong>Water Flow Rate:</strong> Produced water volume per unit time</li>
+                        <li><strong>Gas Static Pressure:</strong> Gas pressure under static conditions</li>
+                        <li><strong>Differential Pressure:</strong> Pressure difference across flow measuring devices</li>
+                        <li><strong>Flowing Temperature:</strong> Oil and gas production temperature</li>
+                    </ul>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Air Compressor Operational Course Profile Diagram">
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>📡 DAS Operating Procedure (Data Acquisition System)</h3>
+                    
+                    <p>
+                    The <strong>Data Acquisition System (DAS)</strong> is used during Well Testing to collect, monitor, and record real-time data such as pressure, temperature, differential pressure, and flow rates from field instruments. The system transmits this information to the data logger and computer for continuous monitoring and reporting.
+                    </p>
+                    
+                    <hr>
+                    
+                    <h3>4.1 Start-Up Procedure</h3>
+                    
+                    <p>
+                    Before installing the DAS equipment on location, perform the following inspections to ensure that all components are in good working condition.
+                    </p>
+                    
+                    <h4>1. Cap Inspection</h4>
+                    
+                    <p>
+                    Inspect the protective cap of each sensor and check for:
+                    </p>
+                    
+                    <ul>
+                    <li>Cracks</li>
+                    <li>Cuts</li>
+                    <li>Stains</li>
+                    <li>Scratches</li>
+                    </ul>
+                    
+                    <p>
+                    A damaged cap may allow dirt or moisture to enter the sensor and affect its performance.
+                    </p>
+                    
+                    <h4>2. Sensor Display</h4>
+                    
+                    <p>
+                    Ensure that the sensor display is clean, readable, and functioning correctly.
+                    </p>
+                    
+                    <h4>3. Serial Number & Equipment ID</h4>
+                    
+                    <p>
+                    Verify that the serial number and equipment identification tag are clearly visible. This confirms the correct instrument is being used and allows proper traceability.
+                    </p>
+                    
+                    <h4>4. Buttons Check</h4>
+                    
+                    <p>
+                    Inspect the <strong>Next</strong> and <strong>Enter</strong> buttons and ensure they operate correctly. Turn the equipment on to verify functionality.
+                    </p>
+                    
+                    <h4>5. Fibox Magnet (Fibox Design Only)</h4>
+                    
+                    <p>
+                    Check that the Fibox magnet is securely attached to the sensor housing.
+                    </p>
+                    
+                    <h4>6. Fibox Antenna (Fibox Design Only)</h4>
+                    
+                    <p>
+                    Ensure the antenna is installed, undamaged, and capable of providing reliable wireless communication.
+                    </p>
+                    
+                    <h4>7. Process Connection</h4>
+                    
+                    <p>
+                    Inspect all process connections, including:
+                    </p>
+                    
+                    <ul>
+                    <li>Threads</li>
+                    <li>Thermowell</li>
+                    <li>Differential Pressure (DP) fittings</li>
+                    <li>Flow totalizer connectors and cables</li>
+                    </ul>
+                    
+                    <p>
+                    All connections should be clean and free from damage.
+                    </p>
+                    
+                    <h4>8. Logger Accessories</h4>
+                    
+                    <p>
+                    Verify that all required accessories are available:
+                    </p>
+                    
+                    <ul>
+                    <li>Power Adapter</li>
+                    <li>Antenna and Extension Cable</li>
+                    <li>USB Cable</li>
+                    <li>Memory Card</li>
+                    </ul>
+                    
+                    <h4>9. Logger Case Inspection</h4>
+                    
+                    <p>
+                    Inspect the logger housing for cracks, cuts, stains, or other physical damage.
+                    </p>
+                    
+                    <h4>10. Function Test</h4>
+                    
+                    <p>
+                    Before testing, clean the equipment using a soft brush and a damp cloth. Then perform a complete functional test.
+                    </p>
+                    
+                    <h4>11. Power ON</h4>
+                    
+                    <p>
+                    Turn on the Data Logger by pressing both buttons simultaneously for approximately <strong>5 seconds</strong>.
+                    </p>
+                    
+                    <h4>12. Sensor Communication Test</h4>
+                    
+                    <p>
+                    Verify that every sensor is successfully communicating with the Data Logger.
+                    </p>
+                    
+                    <h4>13. Logger to Computer Communication</h4>
+                    
+                    <p>
+                    Using the <strong>MODBUS</strong> communication protocol, verify that live data is being transmitted correctly to the monitoring software.
+                    </p>
+                    
+                    <h4>14. Battery Check</h4>
+                    
+                    <p>
+                    Check the battery voltage of each wireless sensor, especially when operating at higher communication frequencies.
+                    </p>
+                    
+                    <h4>15. Signal Strength Test</h4>
+                    
+                    <p>
+                    Perform a wireless Link Test between the sensors and the Data Logger.
+                    </p>
+                    
+                    <p>
+                    When sensors are close to the logger, the signal quality should display:
+                    </p>
+                    
+                    <p><strong>⭐⭐⭐⭐⭐ (5 Stars)</strong></p>
+                    
+                    <p>
+                    A five-star signal indicates excellent communication quality.
+                    </p>
+                    
+                    <hr>
+                    
+                    <h3>4.2 Installation Procedure</h3>
+                    
+                    <p>
+                    Only authorized personnel such as a <strong>DAS Engineer</strong>, <strong>DAS Technician</strong>, or an approved DAS Operator are permitted to install, remove, or maintain DAS equipment.
+                    </p>
+                    
+                    <h4>Install the Following Instruments</h4>
+                    
+                    <ul>
+                    
+                    <li>
+                    <h4>Pressure Transmitter (Upstream of Choke Manifold)</h4><br>
+                    Measures wellhead pressure before the choke.
+                    </li>
+                    
+                    <li>
+                    <h4>Temperature Transmitter with Thermowell (Upstream)</h4><br>
+                    Measures fluid temperature before pressure reduction.
+                    </li>
+                    
+                    <li>
+                    <h4>Pressure Transmitter (Downstream of Choke)</h4><br>
+                    Installed only if required by the customer or contract.
+                    </li>
+                    
+                    <li>
+                    <h4>Annulus Pressure Transmitter</h4><br>
+                    Measures annulus pressure when specified.
+                    </li>
+                    
+                    <li>
+                    <h4>Re-Injection Line Pressure Transmitter</h4><br>
+                    Measures pressure in the reinjection line if required.
+                    </li>
+                    
+                    <li>
+                    <h4>Temperature Transmitter (Downstream)</h4><br>
+                    Measures fluid temperature after the choke.
+                    </li>
+                    
+                    <li>
+                    <h4>Pressure Transmitter After Senior Daniel Gas Meter</h4><br>
+                    Measures gas pressure leaving the gas meter.
+                    </li>
+                    
+                    <li>
+                    <h4>Temperature Transmitter After Gas Meter</h4><br>
+                    Measures gas temperature after metering.
+                    </li>
+                    
+                    <li>
+                    <h4>Differential Pressure Transmitter</h4><br>
+                    Installed across the Senior Daniel Gas Meter to calculate gas flow.
+                    </li>
+                    
+                    <li>
+                    <h4>Magnetic Pick-Up & Flow Totalizer (Oil Meter)</h4><br>
+                    Installed on the Nuflo Turbine Oil Meter to measure oil flow.
+                    </li>
+                    
+                    <li>
+                    <h4>Magnetic Pick-Up & Flow Totalizer (Water Meter)</h4><br>
+                    Installed on the Nuflo Turbine Water Meter to measure water flow.
+                    </li>
+                    
+                    </ul>
+                    
+                    <h4>Data Logger Setup</h4>
+                    
+                    <p>
+                    Install the Data Logger inside the <strong>Well Test Safety Caravan</strong> where it is protected from weather and field hazards.
+                    </p>
+                    
+                    <h4>Power ON the Logger</h4>
+                    
+                    <p>
+                    Switch on the Data Logger by pressing both buttons simultaneously for 5 seconds.
+                    </p>
+                    
+                    <h4>Verify Sensor Communication</h4>
+                    
+                    <p>
+                    Confirm that every installed sensor is successfully transmitting data to the Data Logger.
+                    </p>
+                    
+                    <h4>Verify Computer Communication</h4>
+                    
+                    <p>
+                    Confirm that the monitoring software is receiving real-time data through the MODBUS communication system.
+                    </p>
+                    
+                    <h4>Start the Well Test</h4>
+                    
+                    <p>
+                    Once all sensors are communicating properly and live data is displayed on the software, the DAS system is fully operational and the well test can begin.
+                    </p>
+                    
+                    <hr>
+                    
+                    <h3>✅ Summary</h3>
+                    
+                    <p>
+                    The DAS system is responsible for collecting and recording all important well testing parameters in real time. Before operation, every sensor, cable, and communication link must be inspected and tested. During installation, pressure, temperature, differential pressure, and flow instruments are installed at designated locations. Once communication between sensors, the data logger, and the computer is verified, the well testing operation can safely begin.
+                    </p>
+                    
+                    </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Ingersoll Rand Integrated Instrument Display Panel Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>🛡️ 5. Safety Precautions</h3>
+                    
+                    <p>
+                    Before performing any installation, maintenance, or inspection on the <strong>Data Acquisition System (DAS)</strong>, safety must always be the highest priority. Every technician should understand the potential hazards and follow all HSEQ requirements to ensure safe working conditions.
+                    </p>
+                    
+                    <h4>1. Review Risk Assessment</h4>
+                    
+                    <p>
+                    Before starting the job, carefully review the relevant <strong>Risk Assessment (RA)</strong> and <strong>Manual Handling Assessment</strong>. These documents identify potential hazards associated with the task and describe the control measures required to reduce or eliminate risks.
+                    </p>
+                    
+                    <p>
+                    Examples of hazards include:
+                    </p>
+                    
+                    <ul>
+                    <li>High-pressure equipment.</li>
+                    <li>Hot process lines.</li>
+                    <li>Hydrocarbon exposure.</li>
+                    <li>Heavy lifting.</li>
+                    <li>Electrical hazards.</li>
+                    </ul>
+                    
+                    <h4>2. Wear Personal Protective Equipment (PPE)</h4>
+                    
+                    <p>
+                    Always wear the required PPE before beginning any operation, including:
+                    </p>
+                    
+                    <ul>
+                    <li>Safety Helmet</li>
+                    <li>Safety Glasses</li>
+                    <li>Flame Resistant (FR) Coveralls</li>
+                    <li>Safety Gloves</li>
+                    <li>Safety Boots</li>
+                    <li>H₂S Personal Gas Detector (when required)</li>
+                    </ul>
+                    
+                    <p>
+                    Proper PPE protects personnel from mechanical injuries, chemical exposure, and hazardous environments.
+                    </p>
+                    
+                    <hr>
+                    
+                    <h3>🧹 6. Cleaning External and Internal Parts</h3>
+                    
+                    <p>
+                    Cleaning the DAS equipment before installation helps improve sensor accuracy and prevents dirt or debris from affecting measurements.
+                    </p>
+                    
+                    <h4>1. Clean External Surfaces</h4>
+                    
+                    <p>
+                    Use a <strong>soft brush</strong> and a <strong>damp cloth</strong> to remove dust, mud, grease, and dirt from the external surfaces of the sensors and data logger.
+                    </p>
+                    
+                    <h4>2. Flush the Sensor</h4>
+                    
+                    <p>
+                    Flush the sensor using <strong>WD-40</strong> to remove moisture, corrosion, or any accumulated contaminants inside the sensing area. This helps maintain proper sensor performance and extends equipment life.
+                    </p>
+                    
+                    <hr>
+                    
+                    <h3>👀 7. Visual Inspection</h3>
+                    
+                    <p>
+                    A complete visual inspection should be performed before every installation to ensure that the equipment is in safe working condition.
+                    </p>
+                    
+                    <h3>7.1 External Inspection</h3>
+                    
+                    <h4>1. Inspect Process Threads</h4>
+                    
+                    <p>
+                    Carefully inspect all <strong>NPT</strong> or <strong>Autoclave</strong> threaded connections for:
+                    </p>
+                    
+                    <ul>
+                    <li>Cracks</li>
+                    <li>Corrosion</li>
+                    <li>Damaged threads</li>
+                    <li>Excessive wear</li>
+                    </ul>
+                    
+                    <p>
+                    Use a <strong>Thread Gauge</strong> to verify that the threads are within acceptable wear limits.
+                    </p>
+                    
+                    <h4>2. Check for Physical Damage</h4>
+                    
+                    <p>
+                    Inspect the entire sensor body for any signs of damage that may have occurred during transportation or previous field operations.
+                    </p>
+                    
+                    <h4>3. Inspect Housing</h4>
+                    
+                    <p>
+                    Check the sensor housing for:
+                    </p>
+                    
+                    <ul>
+                    <li>Distortion</li>
+                    <li>Dents</li>
+                    <li>Corrosion</li>
+                    <li>Deterioration</li>
+                    </ul>
+                    
+                    <p>
+                    The housing must remain mechanically strong to protect the internal electronics.
+                    </p>
+                    
+                    <h4>4. Inspect the Sensor Cap</h4>
+                    
+                    <p>
+                    Ensure that the protective cap is free from cracks, cuts, or damage that could allow dirt or moisture to enter the sensor.
+                    </p>
+                    
+                    <h4>5. Check the Display</h4>
+                    
+                    <p>
+                    Verify that the display is clean, readable, and free from scratches or broken pixels.
+                    </p>
+                    
+                    <h4>6. Verify Serial Number & Equipment ID</h4>
+                    
+                    <p>
+                    Confirm that the serial number and equipment identification label are clearly visible for equipment traceability and maintenance records.
+                    </p>
+                    
+                    <h4>7. Test Push Buttons</h4>
+                    
+                    <p>
+                    Ensure all push buttons operate smoothly without sticking or damage.
+                    </p>
+                    
+                    <h4>8. Inspect the Antenna</h4>
+                    
+                    <p>
+                    If the sensor is equipped with a wireless antenna, verify that it is securely installed and not damaged.
+                    </p>
+                    
+                    <h4>9. Inspect Process Threads Again</h4>
+                    
+                    <p>
+                    Make a final inspection of all threaded process connections to ensure they are clean and ready for installation.
+                    </p>
+                    
+                    <hr>
+                    
+                    <h3>7.2 Internal Inspection</h3>
+                    
+                    <h4>1. Clean Internal Sensor Components</h4>
+                    
+                    <p>
+                    Flush and clean the sensor to remove any accumulated sand, dirt, or sediment left from previous well testing operations.
+                    </p>
+                    
+                    <h4>2. Clean Electronic Housing</h4>
+                    
+                    <p>
+                    Using a clean, dry cloth, carefully remove any traces of oil, dust, or contamination from inside the electronic housing without damaging the circuit boards.
+                    </p>
+                    
+                    <h4>3. Clean the Thermowell</h4>
+                    
+                    <p>
+                    Remove any sand, scale, or debris accumulated inside the thermowell to ensure accurate temperature measurement.
+                    </p>
+                    
+                    <h4>4. Report Any Damage</h4>
+                    
+                    <p>
+                    If any damage caused by shipping, erosion, corrosion, or mechanical impact is discovered, immediately inform the responsible supervisor.
+                    </p>
+                    
+                    <p>
+                    The equipment should not be placed into service until it has been inspected and approved. In some cases, a third-party inspection may be required before the equipment can be returned to operation.
+                    </p>
+                    
+                    <hr>
+                    
+                    <h3>✅ Summary</h3>
+                    
+                    <p>
+                    Proper safety precautions, thorough cleaning, and detailed visual inspections are essential before installing any DAS equipment. These steps help ensure reliable measurements, prevent equipment failures, reduce safety risks, and maintain accurate real-time data during well testing operations.
+                    </p>
+                    
+                    </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Atlas Copco Unit Integration Systems Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+
+                    <h3>Pressure Sensors</h3>
+                
+                    <p>
+                        Pressure Sensors are responsible for measuring the operating pressure throughout the well testing process.
+                        Because pressure is one of the most critical measurements, every sensor must be inspected,
+                        calibrated, and certified before being used in the field.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Battery Inspection</h4>
+                        <p>
+                            Check the field unit battery voltage indoors before deployment.
+                            Replace the battery if its voltage is below the acceptable operating limit.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Calibration Certificate</h4>
+                        <p>
+                            Verify that the pressure sensor has a valid annual calibration certificate.
+                            During calibration, the sensor is tested at a minimum of eight pressure points
+                            across its measuring range to ensure measurement accuracy.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>3. Certification Verification</h4>
+                        <p>
+                            Check the attached tag or EMMS record to confirm that the sensor certification
+                            is still valid. If the certificate has expired or the sensor accuracy is outside
+                            ±1% of full scale, the sensor must be removed from service and recalibrated.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>4. Sensor Recalibration</h4>
+                        <p>
+                            Pressure sensors requiring maintenance are sent to the workshop where they are
+                            tested using a certified Master Dead Weight Tester and the manufacturer's
+                            calibration software (Data Port Manager). After passing the calibration test,
+                            the sensor ID is stamped and a new calibration certificate is issued.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>5. Pressure Testing</h4>
+                        <p>
+                            When checking the sensor, connect it securely to the Dead Weight Tester and
+                            compare the sensor reading with the reference pressure generated by the tester.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>Temperature Sensors</h3>
+                
+                    <p>
+                        Temperature Sensors continuously monitor process temperature and must also be
+                        inspected and calibrated regularly to guarantee accurate measurements.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Battery Check</h4>
+                        <p>
+                            Inspect and replace the battery if necessary before the sensor is sent to the field.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Thermowell Inspection</h4>
+                        <p>
+                            Inspect the thermowell for erosion, corrosion, or mechanical damage because
+                            any defect can affect temperature measurement accuracy.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>3. Annual Calibration</h4>
+                        <p>
+                            Ensure the temperature sensor has a valid yearly calibration certificate.
+                            Calibration should be performed at multiple temperature points to verify accuracy.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>4. Certification Check</h4>
+                        <p>
+                            Verify the calibration tag or EMMS record. If the sensor exceeds the allowable
+                            ±1% Full Scale accuracy or the certificate has expired, send it for recalibration.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>5. Recalibration Process</h4>
+                        <p>
+                            Calibration is performed using a certified Master Temperature Tester together
+                            with the manufacturer's calibration software. A new approved certificate is
+                            issued after successful testing.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>Differential Pressure Sensors (DP Sensors)</h3>
+                
+                    <p>
+                        Differential Pressure Sensors measure the pressure difference between two points.
+                        These sensors are commonly used with orifice gas meters to calculate gas flow rate.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Battery Inspection</h4>
+                        <p>
+                            Inspect the battery condition before installation and replace it if required.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Calibration Verification</h4>
+                        <p>
+                            Confirm that the sensor has a valid annual calibration certificate and has been
+                            calibrated over its operating range.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>3. Accuracy Check</h4>
+                        <p>
+                            Sensors with expired certificates or accuracy outside ±1% Full Scale must be
+                            removed from service and recalibrated before reuse.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>4. Maintenance & Calibration</h4>
+                        <p>
+                            Maintenance is carried out using a certified Dead Weight Tester and Data Port
+                            Manager software. After successful calibration, the certification is renewed.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>5. High Side Connection</h4>
+                        <p>
+                            During testing, connect the calibration equipment to the High Pressure side of
+                            the differential pressure sensor to verify measurement accuracy.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>Flow Totalizer</h3>
+                
+                    <p>
+                        The Flow Totalizer records and accumulates the total volume of oil, water, or gas
+                        flowing through the process during the well test.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Battery Check</h4>
+                        <p>
+                            Verify the battery voltage and replace it whenever necessary to prevent data loss.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Visual Inspection</h4>
+                        <p>
+                            Inspect the Flow Totalizer for any physical damage such as cracks, broken
+                            connectors, damaged display, loose wiring, or corrosion before installation.
+                        </p>
+                    </div>
+                
+                    <div class="summary-box">
+                        <h4>Summary</h4>
+                        <p>
+                            All DAS sensors—including Pressure, Temperature, Differential Pressure, and
+                            Flow Totalizers—must be inspected, cleaned, calibrated, and certified before
+                            field installation. Proper maintenance ensures measurement accuracy, reliable
+                            data acquisition, and safe well testing operations.
+                        </p>
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Operational Metrics Summary Cover Block">
+                </div>
+                
+                <div class="explain-modern">
+
+                    <h3>Data Logger</h3>
+                
+                    <p>
+                        The <strong>Data Logger</strong> is the central unit of the Data Acquisition System (DAS).
+                        It acts as the <strong>brain of the wireless network</strong>, receiving measurements from all
+                        field sensors (Pressure, Temperature, Differential Pressure, and Flow Totalizers),
+                        storing the data, and transmitting it to the monitoring computer in real time.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Wireless Communication</h4>
+                        <p>
+                            The logger communicates with all deployed wireless field units using a
+                            <strong>Star Network</strong>. Every sensor sends its measurements directly to the logger,
+                            making it the communication hub for the entire DAS system.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Data Storage</h4>
+                        <p>
+                            All collected measurements are stored inside a
+                            <strong>hot-swappable SDRAM memory card</strong>, allowing the memory card to be replaced
+                            without shutting down the system.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>3. System Interface</h4>
+                        <p>
+                            The Data Logger can operate as a standalone data recorder or communicate directly
+                            with the Well Testing control computer through communication protocols such as
+                            <strong>MODBUS</strong>.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.1 Visual Inspection</h3>
+                
+                    <p>
+                        Before using the Data Logger, perform a complete visual inspection to verify that the
+                        equipment is ready for operation.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Verify Serial Number</h4>
+                        <p>
+                            Check that the logger serial number is clearly visible and matches the equipment
+                            records for proper identification and traceability.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. General Condition</h4>
+                        <p>
+                            Ensure the logger has been serviced, cleaned, and is free from physical damage,
+                            loose connectors, or cracked housing.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>3. Power On Test</h4>
+                        <p>
+                            Turn the logger ON by pressing the <strong>ON/OFF</strong> button and verify that the
+                            display starts correctly without error messages.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>4. Battery Charging</h4>
+                        <p>
+                            Recharge the logger using the specified
+                            <strong>220 VAC / 50 Hz</strong> power supply to ensure continuous operation
+                            throughout the well test.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.2 Logger Checks & Calibration</h3>
+                
+                    <p>
+                        Before field deployment, the logger configuration must match the installed sensors.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Sensor Offset Curve</h4>
+                        <p>
+                            Using the <strong>Data Port Manager</strong> software, enter the
+                            <strong>22-point Sensor Offset Curve</strong> for each field sensor.
+                            This correction curve compensates for small measurement deviations and improves
+                            overall accuracy.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Configure the Logger</h4>
+                        <p>
+                            Open the logger configuration menu, select the
+                            <strong>Sensor Offset</strong> tab, and verify that all calibration values
+                            have been entered correctly before starting the test.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.3 Function Test</h3>
+                
+                    <p>
+                        Perform a complete functional test before mobilizing the equipment.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Test All Sensors</h4>
+                        <p>
+                            Verify the operation of all Pressure and Temperature sensors using certified
+                            reference equipment such as a <strong>Dead Weight Tester (DWT)</strong> or
+                            <strong>Master Temperature Calibrator</strong>.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Verify Accuracy</h4>
+                        <p>
+                            Ensure that every sensor meets the required measurement accuracy of
+                            <strong>±1% Full Scale</strong>. Sensors outside this limit must be recalibrated.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.4 Clean the Unit</h3>
+                
+                    <div class="explain-item">
+                        <h4>1. Clean the Equipment</h4>
+                        <p>
+                            Thoroughly clean the logger and inspect its overall condition before transportation
+                            to the field.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Inspect the Case</h4>
+                        <p>
+                            Ensure the logger case is free from cracks, dents, or other physical damage that
+                            could affect operation in harsh field environments.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.5 Mobilization</h3>
+                
+                    <p>
+                        Before transporting the DAS equipment to the location, ensure that all components
+                        are protected against damage.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Protect Threaded Connections</h4>
+                        <p>
+                            Cover all exposed threaded connections with plastic thread protectors to prevent
+                            damage during transportation.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Prepare Pressure Sensors</h4>
+                        <p>
+                            Verify that every pressure sensor is supplied with the correct coupling and nipple
+                            required for field installation.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>3. Prepare Temperature Sensors</h4>
+                        <p>
+                            Ensure every temperature sensor is supplied with the appropriate thermowell before
+                            mobilization.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.6 Field Unit Battery Replacement</h3>
+                
+                    <p>
+                        Wireless field unit batteries are safety-critical components and must be replaced only
+                        under safe workshop conditions.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Replace Low Batteries</h4>
+                        <p>
+                            Replace the battery within one month after the
+                            <strong>"LOW BAT"</strong> warning message appears.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Safe Replacement Location</h4>
+                        <p>
+                            Battery replacement must always be performed indoors.
+                            Never open the wireless field unit in a hazardous oil and gas area.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>3. Approved Battery Type</h4>
+                        <p>
+                            Use only the approved
+                            <strong>TADIRAN™ Lithium Inorganic Battery</strong>,
+                            Size <strong>C</strong>, 3.6 V, Model <strong>TL-2200/S</strong>.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item warning">
+                        <h4>⚠ Safety Warning</h4>
+                        <p>
+                            Never remove the instrument cover while the unit is powered or located in a
+                            hazardous explosive atmosphere. Always isolate the equipment and move it to a
+                            safe indoor location before opening the housing.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item warning">
+                        <h4>⚠ Flex Cable Warning</h4>
+                        <p>
+                            Do not bend, twist, or pull the green flexible ribbon cable when opening the
+                            housing. Damage to this cable may reduce wireless communication range or
+                            permanently damage the electronics.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item warning">
+                        <h4>⚠ Battery Polarity</h4>
+                        <p>
+                            Install the new battery with the correct polarity.
+                            The positive terminal is connected to the red wire.
+                            Reversing the battery polarity can permanently damage the field unit.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>Battery Replacement Procedure</h4>
+                        <p>
+                            Shut down the field unit using the password, remove the housing screws, carefully
+                            lift the cover without stressing the ribbon cable, disconnect the battery connector,
+                            remove the old battery pack and cable ties, install the new battery pack with new
+                            cable ties, reconnect the battery connector, and finally reassemble the housing
+                            carefully without damaging the gasket or ribbon cable.
+                        </p>
+                    </div>
+                
+                    <div class="summary-box">
+                        <h4>Summary</h4>
+                        <p>
+                            The Data Logger is the heart of the DAS system. Before every well test it must be
+                            inspected, configured, calibrated, function-tested, cleaned, and fully charged.
+                            During maintenance, batteries should only be replaced indoors using approved
+                            lithium batteries while following all safety precautions to protect personnel,
+                            equipment, and data integrity.
+                        </p>
+                    </div>
+                
+                </div>
+                
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+
+                    <h3>Data Logger</h3>
+                
+                    <p>
+                        The <strong>Data Logger</strong> is the central unit of the Data Acquisition System (DAS).
+                        It acts as the <strong>brain of the entire wireless monitoring system</strong>, receiving
+                        measurements from all field sensors, storing the data, and transmitting it to the Well
+                        Testing software for real-time monitoring and recording.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>What is the Data Logger?</h4>
+                        <p>
+                            The Data Logger communicates with all wireless field units such as Pressure Sensors,
+                            Temperature Sensors, Differential Pressure Sensors, and Flow Totalizers through a
+                            wireless star network. It records all measurements onto an internal SDRAM memory card
+                            and can also interface directly with the Well Testing computer using MODBUS
+                            communication.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.1 Visual Inspection</h3>
+                
+                    <p>
+                        Before installing or operating the Data Logger, perform a complete visual inspection to
+                        ensure that the equipment is ready for service.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Verify Serial Number</h4>
+                        <p>
+                            Confirm that the logger serial number is clearly visible and matches the equipment
+                            records. This provides proper identification and traceability for maintenance,
+                            calibration, and certification history.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. General Condition</h4>
+                        <p>
+                            Inspect the Data Logger to ensure it is clean, serviced, and free from cracks,
+                            damaged connectors, loose buttons, or any physical defects that could affect
+                            operation.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>3. Power On</h4>
+                        <p>
+                            Turn the Data Logger ON using the power button and verify that the display starts
+                            correctly and no error messages appear during startup.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>4. Recharge the Logger</h4>
+                        <p>
+                            Recharge the internal battery using the specified
+                            <strong>220 VAC / 50 Hz</strong> power supply before every job to ensure continuous
+                            operation during well testing.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.2 Logger Checks & Calibration</h3>
+                
+                    <p>
+                        Before field deployment, the logger must be configured and calibrated so that it records
+                        accurate measurements from every sensor.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Enter Sensor Offset Curve</h4>
+                        <p>
+                            Using the <strong>Data Port Manager</strong> software, enter the
+                            <strong>22-point Sensor Offset Curve</strong> for each wireless field unit. These
+                            correction values compensate for small measurement deviations and improve overall
+                            measurement accuracy.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Configure the Logger</h4>
+                        <p>
+                            Open the Configuration menu, select the <strong>Sensor Offset</strong> tab, and verify
+                            that all calibration values have been loaded correctly before the system is placed
+                            into service.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.3 Function Test</h3>
+                
+                    <p>
+                        A complete functional test must be performed before mobilizing the DAS equipment.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Test the Sensors</h4>
+                        <p>
+                            Verify the operation of all Pressure and Temperature Sensors using certified
+                            reference equipment such as a
+                            <strong>Dead Weight Tester (DWT)</strong> or a
+                            <strong>Master Temperature Calibrator</strong>.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Verify Accuracy</h4>
+                        <p>
+                            Confirm that every sensor measures within the required accuracy of
+                            <strong>±1% Full Scale</strong>. Any sensor outside this tolerance must be removed and
+                            recalibrated before use.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.4 Clean the Unit</h3>
+                
+                    <div class="explain-item">
+                        <h4>1. Clean the Equipment</h4>
+                        <p>
+                            Thoroughly clean the Data Logger before storage or transportation. Remove dust,
+                            moisture, and oil contamination from the housing.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Inspect the Case</h4>
+                        <p>
+                            Ensure that the logger case is in good condition with no cracks, broken latches,
+                            damaged display, or loose connectors that could affect field operation.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.5 Mobilization</h3>
+                
+                    <p>
+                        Before transporting the DAS equipment to the wellsite, prepare all instruments to prevent
+                        mechanical damage during handling and transportation.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Protect Threaded Connections</h4>
+                        <p>
+                            Cover all exposed threaded connections with plastic thread protectors to prevent
+                            thread damage and contamination.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Prepare Pressure Sensors</h4>
+                        <p>
+                            Verify that each Pressure Sensor is supplied with its required coupling and nipple so
+                            it is ready for installation.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>3. Prepare Temperature Sensors</h4>
+                        <p>
+                            Ensure every Temperature Sensor is fitted with the correct thermowell before
+                            mobilization.
+                        </p>
+                    </div>
+                
+                    <hr>
+                
+                    <h3>12.6 Field Unit Battery Replacement</h3>
+                
+                    <p>
+                        Wireless field unit batteries are safety-critical components. Battery replacement must
+                        always be carried out in a safe indoor environment following the approved procedure.
+                    </p>
+                
+                    <div class="explain-item">
+                        <h4>1. Replace Low Batteries</h4>
+                        <p>
+                            Replace the battery within one month after the
+                            <strong>"LOW BAT"</strong> warning appears on the display.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>2. Approved Battery Type</h4>
+                        <p>
+                            Use only the approved
+                            <strong>TADIRAN™ Lithium Inorganic Battery</strong>
+                            (Size C, 3.6 V, Model TL-2200/S). Using any other battery may damage the equipment
+                            and invalidate certification.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item warning">
+                        <h4>⚠ Safety Warning</h4>
+                        <p>
+                            Never open the field unit in a hazardous oil and gas area while it is powered ON.
+                            Always remove the unit to a safe indoor location before replacing the battery to avoid
+                            ignition of explosive gases.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item warning">
+                        <h4>⚠ Handle the Ribbon Cable Carefully</h4>
+                        <p>
+                            When removing the cover, do not twist, bend, or pull the green flexible ribbon cable.
+                            Damage to this cable can reduce wireless communication performance or permanently
+                            damage the electronic circuitry.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item warning">
+                        <h4>⚠ Battery Polarity</h4>
+                        <p>
+                            Install the battery with the correct polarity. The positive terminal is connected to
+                            the red wire. Reversed polarity may permanently damage the field unit electronics.
+                        </p>
+                    </div>
+                
+                    <div class="explain-item">
+                        <h4>Battery Replacement Procedure</h4>
+                        <p>
+                            Shut down the field unit, enter the password (factory default: 0000), remove the
+                            housing screws, carefully lift the cover without stressing the ribbon cable, disconnect
+                            the battery connector, remove the old battery pack, install the new battery using new
+                            cable ties, reconnect the battery, and carefully reassemble the housing while ensuring
+                            the gasket is correctly seated.
+                        </p>
+                    </div>
+                
+                    <div class="summary-box">
+                        <h4>Summary</h4>
+                        <p>
+                            The Data Logger is the heart of the DAS system. Before every well test it must be
+                            visually inspected, configured, calibrated, function-tested, cleaned, fully charged,
+                            and prepared for field deployment. Battery replacement must only be performed indoors
+                            using approved batteries and following all safety precautions to ensure reliable
+                            operation and personnel safety.
+                        </p>
+                    </div>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="explain-modern">
+
+                    <h3>After Job Inspection (DAS) - Easy Explanation</h3>
+                
+                    <p>
+                        After finishing a well test job, the Data Acquisition System (DAS) must be fully inspected
+                        to make sure all equipment is safe, complete, and ready for storage or maintenance.
+                    </p>
+                
+                    <ul>
+                        <li><strong>Inspect Sensors:</strong> Check sensor caps, displays, buttons, and housings for any damage, cracks, or contamination.</li>
+                
+                        <li><strong>Check Identification:</strong> Make sure serial numbers and equipment ID tags are available and updated in the system.</li>
+                
+                        <li><strong>Fibox Components:</strong> Verify Fibox magnet and antenna (if used) are still in good condition.</li>
+                
+                        <li><strong>Process Connections:</strong> Check threads, thermowells, DP fittings, and all connectors for any damage or wear.</li>
+                
+                        <li><strong>Logger Accessories:</strong> Ensure all accessories are available (power adapter, antenna, extension cable, USB cable, memory card).</li>
+                
+                        <li><strong>Logger Condition:</strong> Inspect the logger case for cracks, cuts, scratches, or any physical damage.</li>
+                
+                        <li><strong>Function Test:</strong> Clean equipment and perform a quick test to confirm it is still working properly.</li>
+                
+                        <li><strong>Power Check:</strong> Verify the logger can be powered on and off correctly using the buttons.</li>
+                
+                        <li><strong>Communication Check:</strong> Ensure all sensors are communicating with the logger without any signal loss.</li>
+                
+                        <li><strong>MODBUS Check:</strong> Confirm real-time data is successfully transmitted from logger to computer software.</li>
+                
+                        <li><strong>Battery Check:</strong> Verify sensor battery voltage is healthy, especially for high-frequency data transmission.</li>
+                
+                        <li><strong>Signal Test:</strong> Perform a link test between sensors and logger. Close distance should give 5-star signal strength.</li>
+                
+                        <li><strong>Report:</strong> Fill out the inspection report form after completing all checks.</li>
+                
+                        <li><strong>Maintenance:</strong> Send any faulty or damaged equipment to town for service or repair if required.</li>
+                    </ul>
+                
+                    <h3>DAS Engineer Role - Easy Explanation</h3>
+                
+                    <ul>
+                        <li><strong>Configuration:</strong> Set up pressure, temperature, flow, and differential pressure transmitters.</li>
+                
+                        <li><strong>Monitoring:</strong> Continuously monitor live data and report any abnormal readings to the supervisor.</li>
+                
+                        <li><strong>Data Quality:</strong> Check data accuracy before final reporting.</li>
+                
+                        <li><strong>Coordination:</strong> Work with operators and track all job activities and events.</li>
+                
+                        <li><strong>Reporting:</strong> Submit final reports to the client representative.</li>
+                
+                        <li><strong>Communication:</strong> Maintain continuous communication throughout the job.</li>
+                    </ul>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab8')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab8">
+                <div class="explain-modern">
+
+                    <h2>Indirect Fired Heaters – Q&A (Well Testing)</h2>
+                
+                    <p>
+                        This section covers common questions and answers for understanding indirect fired heaters
+                        used in oil & gas well testing operations.
+                    </p>
+                
+                    <h3>Q1: What is an indirect fired heater?</h3>
+                    <p>
+                        It is a heating system where combustion heat is transferred to a water/glycol bath,
+                        which then heats a high-pressure coil carrying the process fluid without direct flame contact.
+                    </p>
+                
+                    <h3>Q2: Why do we use indirect fired heaters in well testing?</h3>
+                    <p>
+                        To safely heat oil and gas streams for improving flow, preventing hydrates, reducing wax,
+                        breaking emulsions, and improving separator performance.
+                    </p>
+                
+                    <h3>Q3: What is inside the heater shell?</h3>
+                    <p>
+                        A mixture of fresh water and glycol that acts as a heat transfer medium surrounding the coil system.
+                    </p>
+                
+                    <h3>Q4: What is the function of the coil?</h3>
+                    <p>
+                        The coil carries high-pressure production fluids and absorbs heat from the surrounding hot water bath.
+                    </p>
+                
+                    <h3>Q5: Why do we use glycol in the shell?</h3>
+                    <p>
+                        Glycol prevents freezing in cold environments and improves heat transfer stability.
+                    </p>
+                
+                    <h3>Q6: What is the purpose of the burner?</h3>
+                    <p>
+                        The burner generates controlled heat using gas or diesel fuel to heat the water/glycol bath.
+                    </p>
+                
+                    <h3>Q7: What is the safe operating temperature?</h3>
+                    <p>
+                        Typically around 180°F, with a high temperature shutdown set below the boiling point of water (212°F).
+                    </p>
+                
+                    <h3>Q8: What is the role of the bypass line?</h3>
+                    <p>
+                        It allows fluid to bypass the heater during startup, shutdown, or pressure stabilization to avoid overheating or overpressure.
+                    </p>
+                
+                    <h3>Q9: What is the purpose of pressure testing?</h3>
+                    <p>
+                        To ensure the coil and manifold can safely handle design pressure (up to 5K–10K psi depending on specification)
+                        without leaks or failure.
+                    </p>
+                
+                    <h3>Q10: What is the difference between gas-fired and diesel-fired heaters?</h3>
+                    <p>
+                        Gas-fired heaters use natural gas as fuel, while diesel-fired heaters use liquid diesel.
+                        Both perform the same heating function but differ in burner system and fuel handling.
+                    </p>
+                
+                    <h3>Q11: What happens if water level drops in the shell?</h3>
+                    <p>
+                        It reduces heat transfer efficiency and may cause overheating and damage to the coil system.
+                    </p>
+                
+                    <h3>Q12: Why is air/fuel ratio important?</h3>
+                    <p>
+                        It ensures clean combustion, prevents smoke formation, improves efficiency, and protects burner components.
+                    </p>
+                
+                    <h3>Q13: What is the function of the ESD system?</h3>
+                    <p>
+                        Emergency Shutdown (ESD) system automatically shuts down the heater in unsafe conditions such as high temperature,
+                        fire risk, or abnormal pressure.
+                    </p>
+                
+                    <h3>Q14: Why do we purge before ignition?</h3>
+                    <p>
+                        To remove any accumulated gas from the firebox and prevent explosion during ignition.
+                    </p>
+                
+                    <h3>Q15: What is the main safety rule during operation?</h3>
+                    <p>
+                        Never operate the heater without proper water level, functional ESD system, and controlled pressure in the coil.
+                    </p>
+                
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab7')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab9')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab9">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 9; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

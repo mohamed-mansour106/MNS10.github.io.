@@ -1,0 +1,2236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Operate Emergency ShutDown Panel | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">How to Operate Emergency ShutDown Panel</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Compressor course in Well Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>1- Emergency Shut Down (ESD) Control Panel</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    What is an ESD Control Panel?
+                                </b>
+                
+                                <p>
+                                    The Emergency Shut Down (ESD) Control Panel is a safety system designed
+                                    to protect personnel, equipment, and the environment by automatically
+                                    or manually shutting in the well during emergency situations.
+                                </p>
+                
+                                <p>
+                                    It controls several hydraulic safety valves installed on the Wellhead
+                                    and Christmas Tree (X-Mas Tree).
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Main Components of the ESD Panel
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li><mark>Hydraulic Oil Reservoir</mark> – Stores hydraulic oil used to operate safety valves.</li>
+                                    <li><mark>Pneumatic High-Pressure Pump</mark> – Converts air pressure into hydraulic pressure.</li>
+                                    <li><mark>Instrument Air Regulator</mark> – Controls and regulates instrument air pressure.</li>
+                                    <li><mark>Hydraulic Interface Valves</mark> – Direct hydraulic pressure to the required valves.</li>
+                                    <li><mark>Hydraulic Regulators</mark> – Maintain stable hydraulic operating pressure.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Valves Controlled by the ESD Panel
+                                </b>
+                
+                                <p>
+                                    The ESD Panel supplies hydraulic pressure to keep safety valves open
+                                    during normal operation.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li><mark>SCSSSV</mark> – Surface Controlled Sub-Surface Safety Valve</li>
+                                    <li><mark>MV</mark> – Master Valve</li>
+                                    <li><mark>WV</mark> – Wing Valve</li>
+                                    <li><mark>SSV</mark> – Surface Safety Valve</li>
+                                    <li><mark>ESDV</mark> – Emergency Shut Down Valve</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    How the ESD System Works
+                                </b>
+                
+                                <p>
+                                    During normal operation, hydraulic pressure is supplied to the safety
+                                    valves, keeping them in the open position and allowing production flow.
+                                </p>
+                
+                                <p>
+                                    If an emergency occurs, the ESD system trips and removes hydraulic
+                                    pressure from the valves, causing them to automatically close and shut
+                                    in the well.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Emergency Shutdown (Trip)
+                                </b>
+                
+                                <p>
+                                    The ESD Panel can be activated from remote pneumatic ESD stations
+                                    installed around the location.
+                                </p>
+                
+                                <p>
+                                    When an ESD station is activated:
+                                </p>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>The trip signal is sent to the ESD Panel.</li>
+                                    <li>Hydraulic pressure is released.</li>
+                                    <li>Safety valves automatically close.</li>
+                                    <li>The well is safely shut in.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Purpose of the ESD Panel
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Protect personnel from hazardous situations.</li>
+                                    <li>Protect equipment from damage.</li>
+                                    <li>Prevent uncontrolled well flow.</li>
+                                    <li>Reduce environmental risks.</li>
+                                    <li>Provide rapid emergency shutdown capability.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Key Learning Points
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>The ESD Panel is a critical well safety system.</li>
+                                    <li>It uses hydraulic pressure to keep safety valves open.</li>
+                                    <li>Loss of hydraulic pressure causes automatic valve closure.</li>
+                                    <li>It controls SCSSSV, MV, WV, SSV, and ESDV.</li>
+                                    <li>It can be tripped manually or remotely through ESD stations.</li>
+                                    <li>Its primary function is to safely shut in the well during emergencies.</li>
+                                </ul>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Air Compressor Operational Course Profile Diagram">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>1.2 Control Line Pressure (SCSSSV)</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    What is Control Line Pressure?
+                                </b>
+                
+                                <p>
+                                    The <mark>SCSSSV (Surface Controlled Sub-Surface Safety Valve)</mark>
+                                    is a downhole safety valve that remains open only when hydraulic
+                                    pressure is applied through a control line.
+                                </p>
+                
+                                <p>
+                                    This hydraulic pressure is generated by an
+                                    <mark>air-driven diaphragm pump</mark> with a working pressure
+                                    of <mark>10,000 psi</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Hydraulic Pressure Supply
+                                </b>
+                
+                                <p>
+                                    The diaphragm pump uses compressed air or nitrogen to generate
+                                    hydraulic pressure and send it through the control line to keep
+                                    the SCSSSV in the open position.
+                                </p>
+                
+                                <p>
+                                    As long as hydraulic pressure is maintained, the safety valve
+                                    remains open and well production can continue.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Manual Override / Isolation Valve
+                                </b>
+                
+                                <p>
+                                    The system includes a manual override and isolation valve.
+                                </p>
+                
+                                <p>
+                                    This valve allows operators to manually isolate or control the
+                                    hydraulic system if the air or nitrogen supply is lost.
+                                </p>
+                
+                                <p>
+                                    It provides additional operational flexibility during maintenance
+                                    or emergency situations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Automatic ESD Trip Function
+                                </b>
+                
+                                <p>
+                                    The ESD system continuously monitors the pilot line pressure.
+                                </p>
+                
+                                <p>
+                                    If the pilot pressure falls below <mark>40 psi</mark>, the ESD
+                                    panel automatically trips.
+                                </p>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Hydraulic pressure is dumped.</li>
+                                    <li>Control line pressure drops to zero.</li>
+                                    <li>SCSSSV closes automatically.</li>
+                                    <li>Other hydraulic safety valves close.</li>
+                                    <li>The well is safely shut in.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Emergency Push Button
+                                </b>
+                
+                                <p>
+                                    The ESD Control Panel is equipped with an Emergency Push Button
+                                    located on the front panel.
+                                </p>
+                
+                                <p>
+                                    When the button is pressed:
+                                </p>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Hydraulic pressure is immediately released.</li>
+                                    <li>The control line pressure is dumped.</li>
+                                    <li>The SCSSSV closes.</li>
+                                    <li>All connected hydraulic safety valves close.</li>
+                                    <li>The well is shut in safely.</li>
+                                </ol>
+                
+                                <p>
+                                    This provides a quick manual method for emergency well shutdown.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Key Learning Points
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>SCSSSV is held open by hydraulic control line pressure.</li>
+                                    <li>Hydraulic pressure is supplied by an air-driven diaphragm pump.</li>
+                                    <li>The pump has a working pressure of 10,000 psi.</li>
+                                    <li>A manual override/isolation valve is provided.</li>
+                                    <li>Pilot line pressure must remain above 40 psi.</li>
+                                    <li>If pilot pressure drops below 40 psi, the ESD panel trips automatically.</li>
+                                    <li>Loss of hydraulic pressure causes the SCSSSV to close.</li>
+                                    <li>The Emergency Push Button can manually shut in the well at any time.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Quick Review Question
+                                </b>
+                
+                                <p>
+                                    <b>Q:</b> What happens if the pilot line pressure falls below 40 psi?
+                                </p>
+                
+                                <p>
+                                    <b>A:</b> The ESD panel trips, hydraulic pressure is dumped,
+                                    the SCSSSV closes, other safety valves close, and the well is
+                                    automatically shut in.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Ingersoll Rand Integrated Instrument Display Panel Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>1.3 Safety Features of the ESD Panel</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Purpose of Safety Features
+                                </b>
+                
+                                <p>
+                                    The ESD Control Panel is equipped with several safety devices to
+                                    protect the hydraulic system, safety valves, and associated equipment
+                                    from excessive pressure.
+                                </p>
+                
+                                <p>
+                                    These safety features prevent damage to the hydraulic components and
+                                    ensure safe operation of the well control system.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Hydraulic Relief Valve
+                                </b>
+                
+                                <p>
+                                    A <mark>Relief Valve</mark> is installed on the hydraulic pump output line.
+                                </p>
+                
+                                <p>
+                                    Its purpose is to limit the hydraulic pressure to a predetermined
+                                    maximum value, typically <mark>6,000 psi</mark>.
+                                </p>
+                
+                                <p>
+                                    If the hydraulic pressure rises above the set limit, the relief valve
+                                    automatically opens and releases excess pressure back to the system,
+                                    protecting equipment from overpressure damage.
+                                </p>
+                
+                                <p>
+                                    <b>Example:</b> If the pump attempts to generate 6,500 psi, the relief
+                                    valve opens and maintains the system pressure near 6,000 psi.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Air Relief Valve
+                                </b>
+                
+                                <p>
+                                    An <mark>Air Relief Valve</mark> is installed in the airline before
+                                    the air-driven diaphragm pump.
+                                </p>
+                
+                                <p>
+                                    This valve limits the amount of air pressure supplied to the pump and
+                                    prevents the pump from generating excessive hydraulic pressure.
+                                </p>
+                
+                                <p>
+                                    The air relief valve ensures that the pump output pressure does not
+                                    exceed approximately <mark>7,000 psi</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Why Are These Safety Devices Important?
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Prevent hydraulic system overpressure.</li>
+                                    <li>Protect SCSSSV and other safety valves.</li>
+                                    <li>Protect hydraulic hoses, fittings, and tubing.</li>
+                                    <li>Reduce the risk of equipment failure.</li>
+                                    <li>Improve personnel and operational safety.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    How the Protection System Works
+                                </b>
+                
+                                <p>
+                                    The air relief valve acts as the first level of protection by limiting
+                                    air pressure supplied to the pump.
+                                </p>
+                
+                                <p>
+                                    The hydraulic relief valve acts as the second level of protection by
+                                    limiting hydraulic pressure within the control system.
+                                </p>
+                
+                                <p>
+                                    Together, these devices prevent dangerous pressure build-up inside the
+                                    ESD control panel.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Key Learning Points
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>The hydraulic relief valve is installed on the pump discharge line.</li>
+                                    <li>Its typical pressure setting is 6,000 psi.</li>
+                                    <li>The air relief valve is installed before the air-driven pump.</li>
+                                    <li>It prevents pump output pressure from exceeding 7,000 psi.</li>
+                                    <li>Both valves protect the hydraulic control system from overpressure.</li>
+                                    <li>These safety features improve equipment reliability and operational safety.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Quick Review Question
+                                </b>
+                
+                                <p>
+                                    <b>Q:</b> What is the purpose of the hydraulic relief valve?
+                                </p>
+                
+                                <p>
+                                    <b>A:</b> To limit hydraulic pressure (typically to 6,000 psi) and
+                                    protect the ESD hydraulic system from overpressure damage.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Atlas Copco Unit Integration Systems Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>1.4 ESD System Check</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Purpose of ESD System Check
+                                </b>
+                
+                                <p>
+                                    The Emergency Shut Down (ESD) System must be tested and verified
+                                    before use and throughout the well test operation to ensure it is
+                                    fully functional and capable of responding during an emergency.
+                                </p>
+                
+                                <p>
+                                    The ESD system is one of the most critical safety systems on the
+                                    well site, protecting personnel, equipment, and the environment.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    When Should the ESD System Be Checked?
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Before starting any well testing operation.</li>
+                                    <li>Before offshore operations.</li>
+                                    <li>Before onshore operations.</li>
+                                    <li>At regular intervals throughout the well test.</li>
+                                    <li>After maintenance or repairs to the system.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    What Should Be Verified?
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Hydraulic system pressure is within operating limits.</li>
+                                    <li>Air or nitrogen supply is available.</li>
+                                    <li>Control line pressure is maintained.</li>
+                                    <li>Pilot line pressure is above the required limit.</li>
+                                    <li>Emergency push buttons are operational.</li>
+                                    <li>Safety valves respond correctly during testing.</li>
+                                    <li>No hydraulic or pneumatic leaks are present.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Importance of Regular Testing
+                                </b>
+                
+                                <p>
+                                    Regular ESD testing ensures that the safety system will perform
+                                    correctly if an emergency occurs during the well test.
+                                </p>
+                
+                                <p>
+                                    A non-functional ESD system could prevent proper well shutdown and
+                                    increase the risk of injury, equipment damage, or environmental incidents.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Safety Objective
+                                </b>
+                
+                                <p>
+                                    The main objective of the ESD System Check is to confirm that the
+                                    emergency shutdown system is fully operational and capable of safely
+                                    shutting in the well whenever required.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Key Learning Points
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>ESD checks must be completed before using the system.</li>
+                                    <li>Checks are required for both offshore and onshore operations.</li>
+                                    <li>The system must be tested regularly throughout the well test.</li>
+                                    <li>The purpose is to verify emergency shutdown functionality.</li>
+                                    <li>A properly functioning ESD system improves safety and well control.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Quick Review Question
+                                </b>
+                
+                                <p>
+                                    <b>Q:</b> Why must the ESD system be checked before and during a well test?
+                                </p>
+                
+                                <p>
+                                    <b>A:</b> To ensure the emergency shutdown system remains fully operational
+                                    and capable of safely shutting in the well during an emergency.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Operational Metrics Summary Cover Block">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>2- Closing a Hydraulic Actuator Safety Valve</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Purpose
+                                </b>
+                
+                                <p>
+                                    Hydraulic actuator safety valves are designed to automatically close
+                                    whenever hydraulic pressure is removed. This provides a fail-safe
+                                    mechanism to protect personnel, equipment, and the well during
+                                    emergency situations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Manual Closure Procedure
+                                </b>
+                
+                                <p>
+                                    To close a hydraulic actuator safety valve, the operator pushes the
+                                    handle knob of the <mark>three-way pneumatic relay valve</mark> located
+                                    on the ESD control panel.
+                                </p>
+                
+                                <p>
+                                    This action causes the air or nitrogen pressure acting on the
+                                    diaphragm of the three-way hydraulic valve to be released.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    What Happens Internally?
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Air/Nitrogen pressure is exhausted from the relay valve diaphragm.</li>
+                                    <li>The hydraulic valve changes position.</li>
+                                    <li>Pump output pressure is blocked.</li>
+                                    <li>Hydraulic pressure to the safety valves is released.</li>
+                                    <li>Hydraulic oil returns to the reservoir.</li>
+                                    <li>The safety valves automatically close.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Automatic Shutdown Through ESD Stations
+                                </b>
+                
+                                <p>
+                                    Any pilot station or remote ESD station connected to the pilot line
+                                    can trigger the same shutdown sequence.
+                                </p>
+                
+                                <p>
+                                    When activated, the ESD station sends a trip signal that causes the
+                                    hydraulic pressure to be dumped and the safety valves to close.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Fail-Safe Design
+                                </b>
+                
+                                <p>
+                                    The system is designed according to a fail-safe principle.
+                                </p>
+                
+                                <p>
+                                    Any of the following conditions will automatically close the safety valves:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Activation of an ESD station.</li>
+                                    <li>Activation of a pilot device.</li>
+                                    <li>Loss of hydraulic pressure.</li>
+                                    <li>Loss of air supply pressure.</li>
+                                    <li>Loss of nitrogen supply pressure.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Why Is This Important?
+                                </b>
+                
+                                <p>
+                                    The safety valves are designed to remain open only when hydraulic
+                                    pressure is present.
+                                </p>
+                
+                                <p>
+                                    If control pressure is lost for any reason, the valves automatically
+                                    move to the closed position, shutting in the well and preventing
+                                    uncontrolled flow.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Sequence of Events
+                                </b>
+                
+                                <p>
+                                    <mark>Push ESD Handle / Activate ESD Station</mark>
+                                </p>
+                
+                                <p>
+                                    ↓
+                                </p>
+                
+                                <p>
+                                    Air/Nitrogen Pressure Released
+                                </p>
+                
+                                <p>
+                                    ↓
+                                </p>
+                
+                                <p>
+                                    Hydraulic Pressure Dumped
+                                </p>
+                
+                                <p>
+                                    ↓
+                                </p>
+                
+                                <p>
+                                    Hydraulic Oil Returns to Reservoir
+                                </p>
+                
+                                <p>
+                                    ↓
+                                </p>
+                
+                                <p>
+                                    Safety Valves Close
+                                </p>
+                
+                                <p>
+                                    ↓
+                                </p>
+                
+                                <p>
+                                    Well Shut In
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Key Learning Points
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Safety valves are hydraulically held open.</li>
+                                    <li>The three-way pneumatic relay valve controls hydraulic pressure.</li>
+                                    <li>Pushing the relay valve handle initiates shutdown.</li>
+                                    <li>Hydraulic pressure is released back to the oil reservoir.</li>
+                                    <li>Remote ESD stations perform the same function.</li>
+                                    <li>Loss of air, nitrogen, or hydraulic pressure automatically closes the safety valves.</li>
+                                    <li>The system is designed to be fail-safe.</li>
+                                </ul>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+                    <h3>3- Opening Hydraulic Actuator Safety Valves</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Purpose
+                                </b>
+                
+                                <p>
+                                    Hydraulic actuator safety valves such as
+                                    <mark>MV, WV, SSV, ESDV, and SCSSSV</mark>
+                                    require hydraulic pressure to open and remain in service.
+                                </p>
+                
+                                <p>
+                                    The ESD Control Panel provides the hydraulic and pneumatic pressure
+                                    necessary to operate these safety valves safely.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 1 – Open Air Supply
+                                </b>
+                
+                                <p>
+                                    Open the air or nitrogen supply valve to the ESD manifold and verify
+                                    that sufficient supply pressure is available on the pressure gauge.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 2 – Isolate Hydraulic Flow
+                                </b>
+                
+                                <p>
+                                    Turn the hydraulic regulator fully
+                                    <mark>anticlockwise</mark> to prevent hydraulic oil from passing
+                                    through the regulator during system preparation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 3 – Build Air Pressure
+                                </b>
+                
+                                <p>
+                                    Turn the pump air regulator
+                                    <mark>clockwise</mark> to gradually increase air pressure to the
+                                    air-driven hydraulic pump.
+                                </p>
+                
+                                <p>
+                                    Monitor the pump supply pressure gauge while increasing pressure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 4 – Build Hydraulic Pressure
+                                </b>
+                
+                                <p>
+                                    Continue increasing the pump air supply pressure until the desired
+                                    hydraulic output pressure is achieved.
+                                </p>
+                
+                                <p>
+                                    The hydraulic pressure can be monitored on the pump output pressure gauge.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 5 – Open Hydraulic Regulator
+                                </b>
+                
+                                <p>
+                                    Turn the hydraulic regulator
+                                    <mark>clockwise</mark> to allow hydraulic oil to flow to the selected
+                                    safety valve.
+                                </p>
+                
+                                <p>
+                                    This may include:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Master Valve (MV)</li>
+                                    <li>Wing Valve (WV)</li>
+                                    <li>Surface Safety Valve (SSV)</li>
+                                    <li>Emergency Shutdown Valve (ESDV)</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 6 – Open the Safety Valves
+                                </b>
+                
+                                <p>
+                                    Continue increasing hydraulic pressure until approximately
+                                    <mark>3000 psi</mark> is reached.
+                                </p>
+                
+                                <p>
+                                    Observe the valve stem movement and ensure that it travels fully to
+                                    the open position, indicating that the valve is completely open.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Opening the SCSSSV
+                                </b>
+                
+                                <p>
+                                    In most installations, the
+                                    <mark>Surface Controlled Sub-Surface Safety Valve (SCSSSV)</mark>
+                                    is connected directly to the pump output pressure and does not pass
+                                    through a hydraulic regulator.
+                                </p>
+                
+                                <p>
+                                    Therefore, opening the selected SCSSSV line allows the valve to
+                                    receive full pump output pressure.
+                                </p>
+                
+                                <p>
+                                    In some installations, a hydraulic regulator may be fitted to protect
+                                    the well liner and downhole equipment from excessive hydraulic pressure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Step 7 – Establish Pilot Pressure
+                                </b>
+                
+                                <p>
+                                    Turn the pilot line air regulator clockwise to build pilot system pressure.
+                                </p>
+                
+                                <p>
+                                    The pilot supply pressure should be adjusted between:
+                                </p>
+                
+                                <p>
+                                    <mark>50 – 80 psi</mark>
+                                </p>
+                
+                                <p>
+                                    This pressure can be monitored on the gauge marked
+                                    <mark>"Pilot Supply Pressure"</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Step 8 – Reset the ESD System
+                                </b>
+                
+                                <p>
+                                    Pull the pneumatic relay valve handle marked:
+                                </p>
+                
+                                <p>
+                                    <mark>"Push to Close – Pull to Reset"</mark>
+                                </p>
+                
+                                <p>
+                                    Hold the handle in the OUT position until the pilot line pressure
+                                    reaches at least <mark>40 psi</mark>.
+                                </p>
+                
+                                <p>
+                                    This action supplies pneumatic pressure to the diaphragm of the
+                                    hydraulic control valve, allowing hydraulic pressure to reach the
+                                    safety valves and begin opening them.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Step 9 – Verify Pilot Line Pressure
+                                </b>
+                
+                                <p>
+                                    Once the safety valves are fully open and all pilots are active,
+                                    pilot pressure should build on the pilot line gauge.
+                                </p>
+                
+                                <p>
+                                    When the pilot line pressure exceeds
+                                    <mark>40 psi</mark>, the relay valve lock pin can be released.
+                                </p>
+                
+                                <p>
+                                    The relay handle should remain in the OUT position automatically.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Important Note
+                                </b>
+                
+                                <p>
+                                    The safety system is NOT considered operational while the manual
+                                    override is engaged.
+                                </p>
+                
+                                <p>
+                                    After pilot pressure is established, pull the relay valve handle to
+                                    the OUT position and release the override lock pin.
+                                </p>
+                
+                                <p>
+                                    Only then is the ESD safety system fully active and in service.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Key Operating Values
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Safety Valve Opening Pressure ≈ <mark>3000 psi</mark></li>
+                                    <li>Pilot Supply Pressure = <mark>50 – 80 psi</mark></li>
+                                    <li>Minimum Pilot Holding Pressure = <mark>40 psi</mark></li>
+                                    <li>Pump Working Pressure = <mark>10,000 psi</mark></li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Quick Review Question
+                                </b>
+                
+                                <p>
+                                    <b>Q:</b> What pilot line pressure must be achieved before releasing
+                                    the relay valve lock pin?
+                                </p>
+                
+                                <p>
+                                    <b>A:</b> The pilot line pressure must be above
+                                    <mark>40 psi</mark>.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Next Module &rarr;</button>
+                </div>
+            </div>
+            
+            
+            <!-- MODULE TAB SECTION seven: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="explain-modern">
+                    <h3>3.1 & 3.2 Hydraulic Actuator Valves (Close / Open Procedure)</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Closing Hydraulic Actuator Valves
+                                </b>
+                
+                                <p>
+                                    Hydraulic actuator valves such as
+                                    <mark>MV, WV, SSV, ESDV, and SCSSSV</mark>
+                                    can be closed either by initiating a complete Emergency Shutdown (ESD)
+                                    or by selectively isolating a specific valve without shutting down the
+                                    entire safety system.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Method 1 – Emergency Shutdown (ESD)
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Push the <mark>RED Emergency Stop Button</mark> on the ESD panel front.</li>
+                                    <li>Twist the button to activate the shutdown function.</li>
+                                    <li>The pilot pressure will be released.</li>
+                                    <li>The hydraulic pressure will dump back to the oil reservoir.</li>
+                                    <li>All hydraulic safety valves will automatically close.</li>
+                                    <li>The well will be safely shut in.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Method 2 – Close a Selected Valve Only
+                                </b>
+                
+                                <p>
+                                    If it is necessary to close a specific valve without tripping the
+                                    entire ESD system, the manual service valve can be used.
+                                </p>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Identify the selected valve (MV, WV, SSV, ESDV, or SCSSSV).</li>
+                                    <li>Locate the manual ball valve and verify the pointer is in the <mark>SERVICE</mark> position.</li>
+                                    <li>Turn the manual ball valve to the opposite direction.</li>
+                                    <li>Hydraulic oil pressure will bleed back to the panel oil reservoir.</li>
+                                    <li>The actuator valve will begin closing.</li>
+                                    <li>Observe the valve stem extending outward.</li>
+                                    <li>Ensure full stem travel to confirm the valve is completely closed.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Closing the SCSSSV
+                                </b>
+                
+                                <p>
+                                    The Surface Controlled Sub-Surface Safety Valve (SCSSSV) may be closed:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Manually using its service valve.</li>
+                                    <li>Automatically during an Emergency Shutdown (ESD).</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Opening Hydraulic Actuator Valves
+                                </b>
+                
+                                <p>
+                                    After an ESD trip or maintenance activity, the hydraulic actuator
+                                    valves must be reopened and the ESD system reset.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 1 – Release Emergency Shutdown
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Twist the RED Emergency Stop Button until it releases.</li>
+                                    <li>Unlock the lock pin.</li>
+                                    <li>Verify all remote ESD stations have been reset.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 2 – Charge the Pilot System
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Press and hold the <mark>System Start / Reset Button</mark>.</li>
+                                    <li>Allow pilot air pressure to build up in the system.</li>
+                                    <li>The main air control valve will open.</li>
+                                    <li>The hydraulic dump valve will close.</li>
+                                </ol>
+                
+                                <p>
+                                    The startup pressure is factory preset approximately
+                                    <mark>5 psi higher</mark> than the minimum pressure required to open
+                                    the main air control valve.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 3 – Build Hydraulic Pressure
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Turn the pump air regulator slowly clockwise.</li>
+                                    <li>Increase air supply pressure gradually.</li>
+                                    <li>Monitor the pump output pressure gauge.</li>
+                                    <li>The pump will begin stroking automatically to maintain system pressure.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Step 4 – Open Hydraulic Valves
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Increase hydraulic pressure until the desired value is achieved.</li>
+                                    <li>Turn the hydraulic regulator clockwise.</li>
+                                    <li>Allow hydraulic oil to flow to the selected valve.</li>
+                                    <li>Continue increasing pressure until approximately <mark>3000 psi</mark>.</li>
+                                    <li>Observe the valve stem movement.</li>
+                                    <li>Ensure full stem travel indicating the valve is fully open.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Opening the SCSSSV
+                                </b>
+                
+                                <p>
+                                    In most installations, the SCSSSV is connected directly to the pump
+                                    output pressure and does not require a hydraulic regulator.
+                                </p>
+                
+                                <p>
+                                    Opening the SCSSSV line allows the valve to receive full pump output
+                                    pressure and open accordingly.
+                                </p>
+                
+                                <p>
+                                    Some systems may include a hydraulic regulator to protect the well
+                                    liner and downhole equipment from excessive hydraulic pressure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Step 5 – Establish Pilot Pressure
+                                </b>
+                
+                                <p>
+                                    Turn the pilot line regulator clockwise and build pilot pressure.
+                                </p>
+                
+                                <p>
+                                    Pilot Supply Pressure should be adjusted between:
+                                </p>
+                
+                                <p>
+                                    <mark>50 – 80 psi</mark>
+                                </p>
+                
+                                <p>
+                                    Monitor the pressure on the gauge labeled
+                                    <mark>"Pilot Supply Pressure"</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    System Ready for Service
+                                </b>
+                
+                                <p>
+                                    Once pilot pressure is established and all selected hydraulic valves
+                                    are opened, the ESD system becomes fully operational.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>SCSSSV Open</li>
+                                    <li>MV Open</li>
+                                    <li>WV Open</li>
+                                    <li>SSV Open</li>
+                                    <li>ESDV Open</li>
+                                    <li>Remote ESD Stations Armed</li>
+                                    <li>Safety System Active</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Automatic Shutdown Features
+                                </b>
+                
+                                <p>
+                                    High Pressure (HP) and Low Pressure (LP) pilots may be installed on
+                                    process pressure lines and connected to the ESD air loop.
+                                </p>
+                
+                                <p>
+                                    These pilots automatically activate the ESD system whenever abnormal
+                                    pressure conditions are detected.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Key Operating Values
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Valve Opening Pressure ≈ <mark>3000 psi</mark></li>
+                                    <li>Pilot Supply Pressure = <mark>50 – 80 psi</mark></li>
+                                    <li>Automatic Shutdown via HP/LP Pilots</li>
+                                    <li>Pump Working Pressure = <mark>10,000 psi</mark></li>
+                                </ul>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab8')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+            
+            
+            <!-- MODULE TAB SECTION seven: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab8">
+                <div class="explain-modern">
+                    <h3>ESD Panel Course Summary</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    What is an ESD Panel?
+                                </b>
+                
+                                <p>
+                                    The Emergency Shut Down (ESD) Panel is a critical well control and
+                                    safety system used to operate hydraulic safety valves on the wellhead
+                                    and Christmas Tree. It uses hydraulic pressure, pneumatic controls,
+                                    and pilot systems to open, monitor, and automatically close safety
+                                    valves during emergency situations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Main Components
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Hydraulic Oil Reservoir</li>
+                                    <li>Air Driven Hydraulic Pump</li>
+                                    <li>Instrument Air Regulator</li>
+                                    <li>Hydraulic Regulators</li>
+                                    <li>Three-Way Pneumatic Relay Valve</li>
+                                    <li>Pilot Line System</li>
+                                    <li>Remote ESD Stations</li>
+                                    <li>Pressure Gauges</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Safety Valves Controlled by the ESD Panel
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>SCSSSV – Surface Controlled Sub-Surface Safety Valve</li>
+                                    <li>MV – Master Valve</li>
+                                    <li>WV – Wing Valve</li>
+                                    <li>SSV – Surface Safety Valve</li>
+                                    <li>ESDV – Emergency Shut Down Valve</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    How the System Works
+                                </b>
+                
+                                <p>
+                                    Hydraulic pressure is generated by an air-driven pump and supplied to
+                                    the safety valves. The valves remain open only while hydraulic pressure
+                                    and pilot pressure are available.
+                                </p>
+                
+                                <p>
+                                    If hydraulic pressure, air supply pressure, nitrogen supply pressure,
+                                    or pilot pressure is lost, the system automatically closes the safety
+                                    valves and shuts in the well.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Control Line Pressure (SCSSSV)
+                                </b>
+                
+                                <p>
+                                    The SCSSSV control line receives hydraulic pressure from an air-driven
+                                    diaphragm pump rated to 10,000 psi.
+                                </p>
+                
+                                <p>
+                                    If pilot pressure falls below <mark>40 psi</mark>, the hydraulic
+                                    pressure is automatically dumped and the SCSSSV closes.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Safety Features
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Hydraulic Relief Valve limits hydraulic pressure (typically 6000 psi).</li>
+                                    <li>Air Relief Valve prevents pump output pressure from exceeding 7000 psi.</li>
+                                    <li>Remote ESD Stations provide emergency shutdown capability.</li>
+                                    <li>Automatic shutdown occurs during abnormal pressure conditions.</li>
+                                    <li>Fail-safe design ensures valves close when control pressure is lost.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    ESD System Checks
+                                </b>
+                
+                                <p>
+                                    The ESD system must be tested before offshore or onshore operations
+                                    and periodically during well testing to ensure emergency shutdown
+                                    functionality remains available at all times.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Opening Hydraulic Safety Valves
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Open air supply to the panel.</li>
+                                    <li>Build hydraulic pressure using the air-driven pump.</li>
+                                    <li>Adjust the hydraulic regulator.</li>
+                                    <li>Open selected safety valves.</li>
+                                    <li>Increase pressure to approximately <mark>3000 psi</mark>.</li>
+                                    <li>Build pilot pressure between <mark>50–80 psi</mark>.</li>
+                                    <li>Pull the relay valve handle to RESET.</li>
+                                    <li>Maintain pilot pressure above <mark>40 psi</mark>.</li>
+                                    <li>Release the lock pin and place the system in service.</li>
+                                </ol>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Closing Hydraulic Safety Valves
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Press the RED Emergency Stop Button to trip the ESD system.</li>
+                                    <li>Hydraulic pressure is dumped to the oil reservoir.</li>
+                                    <li>All safety valves automatically close.</li>
+                                    <li>The well is safely shut in.</li>
+                                    <li>Individual valves may also be manually isolated and closed.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Emergency Shutdown Logic
+                                </b>
+                
+                                <p>
+                                    Any of the following conditions will automatically initiate a shutdown:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Activation of a local ESD station.</li>
+                                    <li>Activation of a remote ESD station.</li>
+                                    <li>Loss of pilot pressure below 40 psi.</li>
+                                    <li>Loss of hydraulic pressure.</li>
+                                    <li>Loss of air supply pressure.</li>
+                                    <li>Loss of nitrogen supply pressure.</li>
+                                    <li>High-pressure pilot trip.</li>
+                                    <li>Low-pressure pilot trip.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Key Operating Values
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>SCSSSV Pump Working Pressure = <mark>10,000 psi</mark></li>
+                                    <li>Hydraulic Relief Valve Setting ≈ <mark>6,000 psi</mark></li>
+                                    <li>Air Relief Valve Limit ≈ <mark>7,000 psi</mark></li>
+                                    <li>Valve Opening Pressure ≈ <mark>3,000 psi</mark></li>
+                                    <li>Pilot Supply Pressure = <mark>50–80 psi</mark></li>
+                                    <li>Minimum Pilot Holding Pressure = <mark>40 psi</mark></li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #06b6d4; font-size: 1.1rem;">
+                                    Key Takeaway
+                                </b>
+                
+                                <p>
+                                    The ESD Panel is a fail-safe hydraulic and pneumatic safety system
+                                    designed to control, monitor, and automatically shut in a well by
+                                    operating SCSSSV, MV, WV, SSV, and ESDV valves. Its primary purpose
+                                    is to protect personnel, equipment, and the environment during
+                                    well testing and production operations.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab7')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab9')">Next Module &rarr;</button>
+                </div>
+            </div>
+            
+            
+            <!-- MODULE TAB SECTION seven: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab9">
+                <div class="explain-modern">
+                    <h3>Course Operational Mindmap Breakdown</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                        <img src="img/mindmap1.png" alt="Air Compressor Structural Knowledge Mindmap Architecture" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/summary1.png" alt="Process Workflow Operations Sequential Summary Map" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab8')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab10')">Next Module &rarr;</button>
+                </div>
+            </div>
+            
+            
+            <!-- MODULE TAB SECTION seven: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab10">
+                <div class="explain-modern">
+                    <h3>ESD Panel – Questions & Answers (Q&A)</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q1: What is the main purpose of the ESD Panel?</b>
+                                <p>
+                                    To control and operate hydraulic safety valves on the wellhead and Christmas Tree,
+                                    and to automatically shut down the well during emergency situations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q2: What are the main components of an ESD Panel?</b>
+                                <p>
+                                    Hydraulic oil reservoir, pneumatic high-pressure pump, instrument air regulator,
+                                    hydraulic interface valves, hydraulic regulators, pilot system, and ESD stations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q3: Which safety valves are controlled by the ESD Panel?</b>
+                                <p>
+                                    SCSSSV, MV, WV, SSV, and ESDV.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q4: What does SCSSSV stand for?</b>
+                                <p>
+                                    Surface Controlled Sub-Surface Safety Valve.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q5: What is the working pressure of the SCSSSV control line pump?</b>
+                                <p>
+                                    10,000 psi.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q6: What happens if pilot line pressure falls below 40 psi?</b>
+                                <p>
+                                    Hydraulic pressure is dumped, the ESD panel trips, and all safety valves close automatically.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q7: How can the operator manually trip the ESD Panel?</b>
+                                <p>
+                                    By pressing the Emergency Push Button on the front of the panel.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q8: What is the purpose of the hydraulic relief valve?</b>
+                                <p>
+                                    To limit hydraulic pressure to a safe value, typically around 6,000 psi.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q9: What is the purpose of the air relief valve?</b>
+                                <p>
+                                    To prevent pump output pressure from exceeding 7,000 psi.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q10: Why must the ESD system be checked regularly?</b>
+                                <p>
+                                    To ensure the safety system is fully operational in case of an emergency.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q11: What happens when the pneumatic relay valve is pushed?</b>
+                                <p>
+                                    Air is exhausted from the hydraulic control valve, hydraulic pressure is released,
+                                    and the safety valves begin to close.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q12: What can cause automatic closure of safety valves?</b>
+                                <p>
+                                    Activation of ESD stations, loss of pilot pressure, loss of hydraulic pressure,
+                                    or loss of air/nitrogen supply.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q13: What is the first step when opening hydraulic actuator valves?</b>
+                                <p>
+                                    Open the air supply valve and verify adequate air supply pressure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q14: Why is the hydraulic regulator initially turned anticlockwise?</b>
+                                <p>
+                                    To prevent hydraulic oil from passing through during system preparation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q15: At approximately what pressure are hydraulic valves fully opened?</b>
+                                <p>
+                                    Around 3,000 psi.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q16: What indicates that a hydraulic valve is fully open?</b>
+                                <p>
+                                    Full movement of the actuator stem.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q17: What is the normal pilot supply pressure range?</b>
+                                <p>
+                                    Between 50 and 80 psi.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q18: What pressure must be achieved before releasing the relay valve lock pin?</b>
+                                <p>
+                                    More than 40 psi on the pilot line gauge.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q19: What does the relay valve label "Push to Close – Pull to Reset" mean?</b>
+                                <p>
+                                    Pushing the handle shuts down the system, while pulling it resets and reactivates the ESD system.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q20: How is the SCSSSV normally opened?</b>
+                                <p>
+                                    By opening its selected hydraulic line and allowing pump output pressure to reach it.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q21: Why might a hydraulic regulator be installed on an SCSSSV line?</b>
+                                <p>
+                                    To protect the well liner from excessive hydraulic pressure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q22: How is the entire ESD system shut down in an emergency?</b>
+                                <p>
+                                    By pressing the RED Emergency Stop Button on the panel.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q23: How can an individual valve such as MV be closed without tripping the whole panel?</b>
+                                <p>
+                                    By operating the manual ball valve from SERVICE position to bleed hydraulic pressure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q24: What indicates that a hydraulic valve is fully closed?</b>
+                                <p>
+                                    The actuator stem is fully extended outward.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q25: What must be done before restarting the ESD system after a shutdown?</b>
+                                <p>
+                                    Release the RED emergency button and reset any activated remote ESD stations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q26: What is the purpose of the System Start/Reset button?</b>
+                                <p>
+                                    To charge the pilot air system and prepare the ESD panel for operation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q27: What happens when the pump air regulator is increased?</b>
+                                <p>
+                                    Hydraulic pressure increases and the pump starts stroking to maintain the selected pressure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q28: When is the ESD panel considered fully active?</b>
+                                <p>
+                                    When all selected hydraulic valves are open, pilot pressure is established,
+                                    and all ESD stations are ready for shutdown activation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q29: What are Hi/Lo Pressure Pilots used for?</b>
+                                <p>
+                                    They automatically initiate shutdown when abnormal high or low process pressures occur.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow);">Q30: What is the primary function of the ESD Panel?</b>
+                                <p>
+                                    To provide a fail-safe system that protects personnel, equipment, and the environment by shutting in the well during abnormal or emergency conditions.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab9')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab11')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION Eight: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab11">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab10')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 7; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

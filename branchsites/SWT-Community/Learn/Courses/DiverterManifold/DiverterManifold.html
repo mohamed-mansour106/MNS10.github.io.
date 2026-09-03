@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Diverter Manifold | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">How to Operate Diverter Manifold</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Compressor course in Well Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>1- Diverter Manifold</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    What is a Diverter Manifold?
+                                </b>
+                
+                                <p>
+                                    A Diverter Manifold is a flow-control assembly designed to direct fluid
+                                    from a single inlet to one of two different outlet lines.
+                                </p>
+                
+                                <p>
+                                    It allows operators to safely divert flow between process equipment,
+                                    storage tanks, flare systems, or other operational destinations without
+                                    disconnecting pipework.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Basic Configuration
+                                </b>
+                
+                                <p>
+                                    A standard Diverter Manifold consists of:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>One Inlet Connection.</li>
+                                    <li>Two Outlet Connections.</li>
+                                    <li>Minimum of Two Ball Valves.</li>
+                                </ul>
+                
+                                <p>
+                                    The manifold is typically configured in a <mark>"T"</mark> shape,
+                                    allowing flow from one inlet to be diverted to either outlet line.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Valve Arrangement
+                                </b>
+                
+                                <p>
+                                    The ball valves are used to control and direct the flow path.
+                                </p>
+                
+                                <p>
+                                    By opening one outlet valve and closing the other, the operator can
+                                    safely route fluid to the required destination while maintaining
+                                    system integrity.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Connection Types
+                                </b>
+                
+                                <p>
+                                    Diverter Manifolds may be supplied with various connection types
+                                    depending on operational requirements:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Threaded inlet connections.</li>
+                                    <li>Hammer Union Figure 602 outlet connections.</li>
+                                    <li>Greylock hub connections.</li>
+                                    <li>Raised Face Flange connections.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Hammer Union Connections
+                                </b>
+                
+                                <p>
+                                    Outlet connections are commonly equipped with
+                                    <mark>Figure 602 Hammer Unions</mark>.
+                                </p>
+                
+                                <p>
+                                    Typical sizes include:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>3-inch Figure 602.</li>
+                                    <li>4-inch Figure 602.</li>
+                                </ul>
+                
+                                <p>
+                                    These connections are generally manufactured using
+                                    <mark>Schedule 80 (SCH 80)</mark> or
+                                    <mark>Schedule 160 (SCH 160)</mark> pipe materials.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Greylock Connections
+                                </b>
+                
+                                <p>
+                                    Some Diverter Manifolds are fitted with Greylock connections on the
+                                    inlet and outlet sides.
+                                </p>
+                
+                                <p>
+                                    Greylock systems provide:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Quick installation and removal.</li>
+                                    <li>High-integrity sealing.</li>
+                                    <li>Reliable performance in high-pressure applications.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Flange Ratings
+                                </b>
+                
+                                <p>
+                                    Diverter Manifolds may also be supplied with raised-face flanges
+                                    suitable for various pressure classes:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>CL 600</li>
+                                    <li>CL 900</li>
+                                    <li>CL 2500</li>
+                                </ul>
+                
+                                <p>
+                                    The selected flange class depends on the system operating pressure
+                                    and service requirements.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Working Pressure
+                                </b>
+                
+                                <p>
+                                    Diverter Manifolds are commonly designed with a Cold Working Pressure (CWP)
+                                    ranging from:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li><mark>2,000 psig</mark></li>
+                                    <li><mark>3,000 psig</mark></li>
+                                </ul>
+                
+                                <p>
+                                    The maximum allowable pressure depends on the manifold design,
+                                    materials, connection type, and pressure rating.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Typical Applications
+                                </b>
+                
+                                <p>
+                                    Diverter Manifolds are widely used in Surface Well Testing (SWT)
+                                    and production operations to direct flow between different process systems.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Storage Tanks.</li>
+                                    <li>Surge Tanks.</li>
+                                    <li>Flare Systems.</li>
+                                    <li>Loading Trucks.</li>
+                                    <li>Calibration Tanks.</li>
+                                    <li>Production Facilities.</li>
+                                </ul>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION TWO: PRE-START FIELD MECHANICAL CHECKS -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Air Compressor Operational Course Profile Diagram">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>2- Utilization of Diverter Manifold</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Flow Diversion to Flare Booms
+                                </b>
+                
+                                <p>
+                                    The 3", 4", and 6" Gas and Oil Diverter Manifolds are designed to
+                                    safely divert process flow to one of two flare booms when dual burner
+                                    systems are installed.
+                                </p>
+                
+                                <p>
+                                    The selection of the flare boom is normally based on the prevailing
+                                    wind direction to ensure safe flaring operations and minimize heat,
+                                    smoke, and gas exposure to personnel and equipment.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Production Test Separator Applications
+                                </b>
+                
+                                <p>
+                                    Diverter Manifolds can be installed on the outlet lines of a Production
+                                    Test Separator to direct fluids to different destinations as required.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Water Outlet Line.</li>
+                                    <li>Oil Outlet Line.</li>
+                                    <li>Gas Outlet Line.</li>
+                                </ul>
+                
+                                <p>
+                                    This provides operational flexibility and allows safe routing of
+                                    process fluids during well testing operations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Meter Calibration Operations
+                                </b>
+                
+                                <p>
+                                    Diverter Manifolds may be used to direct fluid flow to a Surge Tank
+                                    or Calibration Tank during meter testing and calibration activities.
+                                </p>
+                
+                                <p>
+                                    This enables accurate verification, testing, and calibration of flow
+                                    measurement equipment.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Storage Tank Transfer Operations
+                                </b>
+                
+                                <p>
+                                    Diverter Manifolds can be installed between oil storage tanks and water
+                                    storage tanks to facilitate fluid transfer and operational flexibility.
+                                </p>
+                
+                                <p>
+                                    Typical applications include:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Tank-to-tank transfer.</li>
+                                    <li>Tank isolation.</li>
+                                    <li>Tank changeover operations.</li>
+                                    <li>Temporary routing of process fluids.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    High-Pressure Pump Suction Service
+                                </b>
+                
+                                <p>
+                                    A Diverter Manifold may be installed on the suction side of a
+                                    High-Pressure (HP) Pump.
+                                </p>
+                
+                                <p>
+                                    This arrangement allows operators to select and divert flow from
+                                    different fluid sources before entering the pump suction.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Important Limitation
+                                </b>
+                
+                                <p>
+                                    A Diverter Manifold <mark>must never be installed on the discharge side
+                                    of a High-Pressure Pump</mark>.
+                                </p>
+                
+                                <p>
+                                    High discharge pressure may damage the manifold or its connections,
+                                    potentially causing equipment failure, process disruption, environmental
+                                    impact, and serious safety hazards.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Engineering and Design Assurance
+                                </b>
+                
+                                <p>
+                                    All equipment is engineered by qualified engineering teams
+                                    and manufactured in accordance with approved industry standards.
+                                </p>
+                
+                                <p>
+                                    Engineering documentation typically includes:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li><mark>P&ID (Piping and Instrumentation Diagram)</mark></li>
+                                    <li><mark>Equipment Layout Drawings</mark></li>
+                                    <li><mark>Cause and Effect Diagrams</mark></li>
+                                    <li><mark>HAZOP (Hazard and Operability Studies)</mark></li>
+                                </ul>
+                
+                                <p>
+                                    Equipment fabrication is performed by approved ASME Section VIII
+                                    fabricators to ensure quality, safety, and compliance with design
+                                    requirements.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION THREE: INGERSOLL RAND PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <img src="img/compressorPanel.jpeg" alt="Ingersoll Rand Integrated Instrument Display Panel Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>3- Operating Guidelines for Diverter Manifold</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    1. Verify Ball Valve Operation Before Opening the Well
+                                </b>
+                
+                                <p>
+                                    Before allowing well flow into the system, both ball valves on the
+                                    diverter manifold must be checked for smooth and unrestricted movement.
+                                </p>
+                
+                                <p>
+                                    Cycle each valve from the fully closed position to the fully open
+                                    position and verify that the valve indicator correctly reflects the
+                                    flow path.
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li><mark>Indicator in line with flow direction = OPEN</mark></li>
+                                    <li><mark>Indicator crossing flow direction = CLOSED</mark></li>
+                                </ul>
+                
+                                <p>
+                                    This check ensures proper valve functionality and prevents operational
+                                    problems during flow diversion.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    2. Maintain Interlocking Handles in Position
+                                </b>
+                
+                                <p>
+                                    The interlocking handle system supplied with the diverter manifold
+                                    must remain installed at all times during operation.
+                                </p>
+                
+                                <p>
+                                    The interlock mechanism ensures that:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>One ball valve remains open.</li>
+                                    <li>The opposite ball valve remains closed.</li>
+                                    <li>Both valves cannot be closed simultaneously.</li>
+                                </ul>
+                
+                                <p>
+                                    This design prevents back pressure from building up toward the
+                                    separator and eliminates the risk of human error during operation.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Important Operational Note
+                                </b>
+                
+                                <p>
+                                    Before directing flow to a flare boom, operators must verify that
+                                    the propane or diesel pilot system is activated and that a stable
+                                    flame is present at the selected burner.
+                                </p>
+                
+                                <p>
+                                    Once the pilot flame is confirmed, the appropriate diverter manifold
+                                    valve can be selected to route the process flow to the desired flare
+                                    boom safely.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    3. Emergency Well Shut-In Procedure
+                                </b>
+                
+                                <p>
+                                    In an emergency requiring immediate well shut-in, the well must be
+                                    isolated using the designated well control equipment.
+                                </p>
+                
+                                <p>
+                                    Acceptable shut-in devices include:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Choke Manifold.</li>
+                                    <li>Sand Management System.</li>
+                                    <li>Emergency Shutdown Valves (ESD).</li>
+                                    <li>X-Mas Tree Valves.</li>
+                                </ul>
+                
+                                <p>
+                                    These devices are specifically designed to safely stop well flow
+                                    under pressure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #ef4444; font-size: 1.1rem;">
+                                    WARNING – Never Use the Diverter Manifold to Shut In a Well
+                                </b>
+                
+                                <p>
+                                    Operators must never attempt to stop well flow by closing the
+                                    diverter manifold valves.
+                                </p>
+                
+                                <p>
+                                    The diverter manifold is designed for flow diversion only and is
+                                    not intended to function as a primary well control barrier.
+                                </p>
+                
+                                <p>
+                                    Closing both valves against high-pressure well flow may result in:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Equipment damage.</li>
+                                    <li>Excessive pressure build-up.</li>
+                                    <li>Process failure.</li>
+                                    <li>Serious safety incidents.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #ef4444; font-size: 1.1rem;">
+                                    WARNING – Proper Valve Operation
+                                </b>
+                
+                                <p>
+                                    Never use a <mark>Pipe Wrench</mark> or <mark>Cheater Bar (Chita Bar)</mark>
+                                    to operate diverter manifold ball valve hand wheels.
+                                </p>
+                
+                                <p>
+                                    Excessive force may damage the valve stem, gearbox, hand wheel,
+                                    or sealing components.
+                                </p>
+                
+                                <p>
+                                    All hand wheels must be operated manually by hand only, in accordance
+                                    with the manufacturer's operating requirements.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FOUR: ATLAS COPCO PLATFORM INTERFACE -->
+            <div class="big-div tab-content" id="tab4">
+                <div class="video-container-modern">
+                    <img src="img/AltasCopcoCompressor.jpeg" alt="Atlas Copco Unit Integration Systems Layout">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>Diverter Manifold - Evaluation Questions & Answers</h3>
+                
+                    <ul>
+                        <li>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q1: What is the main purpose of a Diverter Manifold?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> To divert fluid flow from one inlet to two different outlet
+                                    directions safely and efficiently.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q2: What is the minimum number of ball valves installed in a Diverter Manifold?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> A minimum of two ball valves.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q3: What shape does a typical Diverter Manifold form?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> A "T" shape consisting of one inlet and two outlets.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q4: What hammer union type is commonly used on Diverter Manifolds?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> Figure 602 Hammer Union.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q5: What are the common pipe schedules used in Diverter Manifolds?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> Schedule 80 (SCH 80) and Schedule 160 (SCH 160).
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q6: What alternative connection type can be used instead of Hammer Unions?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> Greylock connections.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q7: What flange pressure classes may be used on Diverter Manifolds?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> CL600, CL900, and CL2500.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q8: What is the typical cold working pressure (CWP) of a Diverter Manifold?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> Between 2,000 psig and 3,000 psig.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q9: Why are two flare booms sometimes installed?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> To allow flow diversion based on wind direction and improve safety during flaring operations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q10: What determines the selection of the flare boom?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> The prevailing wind direction.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q11: Where can Diverter Manifolds be installed on a Test Separator?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> On the water outlet, oil outlet, and gas outlet lines.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q12: Why is a Diverter Manifold used during meter calibration?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> To divert flow to a surge tank or calibration tank for meter testing and verification.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q13: Can a Diverter Manifold be installed between storage tanks?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> Yes, it can be installed between oil storage tanks or water storage tanks for transfer operations.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q14: Can a Diverter Manifold be installed on the suction side of an HP Pump?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> Yes, it can be safely installed on the suction side of a High-Pressure Pump.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Q15: Why should a Diverter Manifold never be installed on the discharge side of an HP Pump?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> Because high discharge pressure may damage the manifold, cause equipment failure, environmental impact, and safety hazards if the manifold is sheared off.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q16: What does "sheared off" mean?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> Broken, torn, or completely separated from its original position due to excessive force or pressure.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q17: What should be checked before opening the well?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> The free movement of both ball valves by cycling them from fully closed to fully open positions.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q18: How can you identify an open ball valve?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> The valve indicator is aligned with the direction of flow.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q19: How can you identify a closed ball valve?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> The valve indicator is perpendicular (crossing) the direction of flow.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q20: What is the purpose of the interlocking handle system?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> To ensure one valve remains open while the other remains closed, preventing back pressure and operator error.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q21: Why must the interlocking handles remain installed at all times?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> To prevent both valves from being closed simultaneously and causing back pressure to the separator.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #fbbf24; font-size: 1.1rem;">
+                                    Q22: What must be confirmed before diverting flow to a flare boom?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> The propane or diesel pilot flame must be activated and burning properly.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Q23: Can a Diverter Manifold be used to shut in a well during an emergency?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> No. A Diverter Manifold is only a flow diversion device and must never be used for well shut-in.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q24: What equipment should be used to shut in a well?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> Choke Manifold, Sand Management System, Emergency Shutdown Valves (ESD), or the X-Mas Tree.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Q25: Why should a pipe wrench or cheater bar never be used on valve hand wheels?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> Because excessive force can damage the valve stem, hand wheel, seals, and other valve components.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Q26: How should Diverter Manifold hand wheels be operated?
+                                </b>
+                
+                                <p>
+                                    <b>Answer:</b> By hand only, following the manufacturer's operating requirements.
+                                </p>
+                            </div>
+                
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION FIVE: COMPREHENSIVE PERFORMANCE RECAP -->
+            <div class="big-div tab-content" id="tab5">
+                <div class="video-container-modern">
+                    <img src="img/AirCompressorCourse.png" alt="Operational Metrics Summary Cover Block">
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>Course Summary – Diverter Manifold</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    What is a Diverter Manifold?
+                                </b>
+                
+                                <p>
+                                    A Diverter Manifold is a flow-routing device used in Surface Well Testing
+                                    and production operations to divert fluid flow from one inlet to two
+                                    different outlet directions.
+                                </p>
+                
+                                <p>
+                                    It typically consists of a minimum of <mark>two ball valves</mark>,
+                                    one inlet, and two outlets forming a <mark>T-shaped configuration</mark>.
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Design & Construction
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Minimum of two Ball Valves.</li>
+                                    <li>T-Shape design with one inlet and two outlets.</li>
+                                    <li>Figure 602 Hammer Union connections.</li>
+                                    <li>SCH 80 and SCH 160 pipe schedules.</li>
+                                    <li>Optional Greylock connections.</li>
+                                    <li>Raised Flanges: CL600, CL900, and CL2500.</li>
+                                    <li>Cold Working Pressure (CWP): 2000–3000 psig.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Main Applications
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Diverting flow between two flare booms.</li>
+                                    <li>Production Test Separator oil outlet lines.</li>
+                                    <li>Production Test Separator water outlet lines.</li>
+                                    <li>Production Test Separator gas outlet lines.</li>
+                                    <li>Meter calibration systems and surge tanks.</li>
+                                    <li>Oil storage tank transfer operations.</li>
+                                    <li>Water storage tank transfer operations.</li>
+                                    <li>High Pressure Pump suction lines.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">
+                                    Important Safety Rules
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Always check free movement of both ball valves before opening the well.</li>
+                                    <li>Valve indicator aligned with flow = OPEN.</li>
+                                    <li>Valve indicator crossing flow = CLOSED.</li>
+                                    <li>Keep the interlocking handles installed at all times.</li>
+                                    <li>Ensure one valve remains open while the other remains closed.</li>
+                                    <li>Confirm propane/diesel pilot flame is active before directing flow to a flare boom.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">
+                                    Critical Warnings
+                                </b>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Never install a Diverter Manifold on the discharge side of an HP Pump.</li>
+                                    <li>Never use a Diverter Manifold as a well shut-in device.</li>
+                                    <li>Never close both valves against high-pressure well flow.</li>
+                                    <li>Never use a Pipe Wrench or Cheater Bar on valve hand wheels.</li>
+                                    <li>Operate hand wheels by hand only.</li>
+                                </ul>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Emergency Response
+                                </b>
+                
+                                <p>
+                                    In emergency situations, the well must be shut in using approved
+                                    well-control equipment only:
+                                </p>
+                
+                                <ul style="margin-top: 15px;">
+                                    <li>Choke Manifold.</li>
+                                    <li>Sand Management System.</li>
+                                    <li>Emergency Shutdown Valves (ESD).</li>
+                                    <li>X-Mas Tree Valves.</li>
+                                </ul>
+                
+                                <p>
+                                    <mark>Never attempt to stop well flow by closing the Diverter Manifold.</mark>
+                                </p>
+                            </div>
+                
+                            <div class="content-card">
+                                <b style="color: #22c55e; font-size: 1.1rem;">
+                                    Key Learning Points
+                                </b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Diverter Manifolds are used for flow diversion, not pressure control.</li>
+                                    <li>One valve must always remain open during operation.</li>
+                                    <li>Flare boom selection depends on wind direction.</li>
+                                    <li>HP Pump suction installation is acceptable; discharge installation is prohibited.</li>
+                                    <li>Interlocking handles are critical safety devices.</li>
+                                    <li>Well shut-in must always be performed using dedicated well-control equipment.</li>
+                                </ol>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+                    <h3>Course Operational Mindmap Breakdown</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                        <img src="img/mindmap1.png" alt="Air Compressor Structural Knowledge Mindmap Architecture" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/summary1.png" alt="Process Workflow Operations Sequential Summary Map" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab7">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 7; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

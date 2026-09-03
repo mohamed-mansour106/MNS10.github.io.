@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Operate Diesel Tank | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">How to Operate Diesel Tank</h1>
+        
+        <div class="tabs-container">
+                    
+            <!-- MODULE TAB SECTION ONE: STARTUP & SHUTDOWN METHODS -->
+            <div class="big-div tab-content active" id="tab1">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/mophKMWJk3A" title="Compressor course in Well Testing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3>1- Diesel Tank Air Driven Pump (Diaphragm Pump) Operation Procedure</h3>
+                
+                    <ul>
+                        <li>
+                            <div class="content-card">
+                                <b style="color: var(--primary-glow); font-size: 1.1rem;">Startup Procedure:</b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Verify that the pump is properly rigged up and connected to the required suction and discharge lines.</li>
+                
+                                    <li>Inspect all hoses, fittings, clamps, and connections for damage, looseness, or leakage.</li>
+                
+                                    <li>Ensure the compressed air supply is available and the air hose is securely connected to the pump air inlet.</li>
+                
+                                    <li>Confirm that the suction line is submerged in the liquid and free from restrictions.</li>
+                
+                                    <li>Ensure the discharge line is routed to the correct destination and all required valves are correctly lined up.</li>
+                
+                                    <li>Slowly <mark>open the air inlet valve</mark> to allow compressed air to enter the pump.</li>
+                
+                                    <li>Allow the pump to cycle at approximately <mark>30–60 cycles per minute</mark> to establish priming and initiate liquid transfer.</li>
+                
+                                    <li>Observe the pump operation and verify that liquid is being discharged normally.</li>
+                
+                                    <li>After pumping starts, gradually <mark>adjust the air inlet valve</mark> to achieve the desired flow rate and transfer capacity.</li>
+                
+                                    <li>Monitor the pump for smooth cycling, stable flow, and proper performance throughout the operation.</li>
+                
+                                    <li>Inspect all suction and discharge connections for any signs of leakage.</li>
+                
+                                    <li>Monitor the air exhaust area for moisture build-up or icing under high humidity or high discharge pressure conditions.</li>
+                
+                                    <li>If air exhaust freezing affects pump performance, apply a suitable <mark>non-sticky anti-freeze lubricant</mark> through the air line lubricator as required.</li>
+                
+                                    <li>Continue monitoring liquid transfer, pump cycling rate, and overall system performance until the operation is completed.</li>
+                                </ol>
+                            </div>
+                        </li>
+                
+                        <li>
+                            <div class="content-card">
+                                <b style="color: #f87171; font-size: 1.1rem;">Shutdown Procedure:</b>
+                
+                                <ol style="margin-top: 15px;">
+                                    <li>Gradually reduce the pump operating rate by decreasing the compressed air supply if required.</li>
+                
+                                    <li>Close the <mark>air inlet valve</mark> to stop the compressed air supply to the pump.</li>
+                
+                                    <li>Verify that the pump has completely stopped cycling and liquid transfer has ceased.</li>
+                
+                                    <li>Inspect the pump and connected pipework for any leakage or abnormal conditions.</li>
+                
+                                    <li>Depressurize and isolate the air supply system if maintenance or disconnection is required.</li>
+                
+                                    <li>Secure the pump and associated equipment in accordance with site safety procedures.</li>
+                                </ol>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            
+            
+
+            <!-- MODULE TAB SECTION SIX: VISUAL KNOWLEDGE ARCHITECTURE -->
+            <div class="big-div tab-content" id="tab2">
+                <div class="explain-modern">
+                    <h3>Course Operational Mindmap Breakdown</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                        <img src="img/mindmap1.png" alt="Air Compressor Structural Knowledge Mindmap Architecture" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                        <img src="img/summary1.png" alt="Process Workflow Operations Sequential Summary Map" style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; border: 1px solid var(--border-glass);">
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Proceed to Final Exam &rarr;</button>
+                </div>
+            </div>
+
+            <!-- MODULE TAB SECTION SEVEN: CREDENTIALING FIELD EXAM PORTAL -->
+            <div class="big-div tab-content" id="tab3">
+                <div class="video-container-modern">
+                    <iframe src="https://www.youtube.com/embed/KOJlRpmb5k0" title="Course Assessment Review Video Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                                    
+                <div class="explain-modern">
+                    <h3 style="border-left-color: #FF013C;">Course Qualification Exam Portal</h3>
+                    <div class="content-card">
+                        <span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Important Operational Examination Advisory Notice Rules:</span>
+                        <ol>
+                            <li>Maintain a distraction-free verification workspace atmosphere before launching exam processing.</li>
+                            <li>Confirm network hardware parameters display steady connectivity limits to ensure seamless execution.</li>
+                            <li>Do not navigate away from the validation page view array or refresh active framing arrays during timers tracking.</li>
+                        </ol>
+
+                        <div style="text-align: center; margin: 40px 0 20px 0;">
+                            <a href="Quiz/Quiz.html" style="text-decoration: none;">
+                                <button class="button-49"><b>START FINAL EXAMINATION</b></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Return to Mindmap</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 3; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

@@ -877,7 +877,7 @@ const questions =  [
   {
     question: 'How much PSI does the SSV need to open?',
     options: ["6:30 Psi", "100:500 Psi", "1000:2000 Psi", "1500:3000 Psi"],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'Surface Safety Valve (SSV) requires hydraulic control pressure in the 1500 to 3000 PSI range to actuate and fully open.'
   },
   {

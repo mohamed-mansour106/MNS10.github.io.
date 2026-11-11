@@ -849,6 +849,528 @@ const questions =  [
     options: ["To increase pressure", "To prevent air from entering and to manage small gas vapors", "To store chemicals", "To trap sand"],
     correctIndex: 1,
     explanation: "It acts as a low-pressure barrier to keep the tank environment controlled."
+  },
+  {
+    question: "After changing the Bean size for the Choke, how many turns should you turn? the handwheel before opening.",
+    options: ["0 Turns", "3 Turns", "6 Turns", "10 Turns"],
+    correctIndex: 2,
+    explanation: "This standard 6-turn rotation ensures the stem is properly unseated and positioned to allow clear fluid passage without binding or causing sudden pressure shocks against the orifice/seat components during startup."
+  },
+  {
+    question: "When does the pressure Safety Low activate?.",
+    options: ["Pressure rises above Set Point and closes SDV", "Pressure drops below Set Point and closes BDV only", "Pressure drops below Set Point and Closes BDV only", "Pressure drops below Set Point and closes SDV"],
+    correctIndex: 3,
+    explanation: "A Pressure Safety Low (PSL) sensor activates when system or line pressure drops below its predetermined set point, triggering the closure of the Shutdown Valve (SDV) to stop the flow and isolate the system."
+  },
+  {
+    question: 'You have Fig 1502 line with 2" Class 600 flange, how much max working pressure ',
+    options: ["15000 Psi", "10000 Psi", "2160 Psi", "1440 Psi"],
+    correctIndex: 3,
+    explanation: 'In high-pressure piping and well-testing systems, the maximum working pressure of a connection is always limited by its weakest rated component. ​Fig 1502 Hammer Union: Rated for 15,000 psi max working pressure.​2" Class 600 Flange (ANSI/ASME B16.5): Rated for 1,440 psi max working pressure at ambient temperature. ​Because the system is connected using a Class 600 flange, the entire lines maximum working pressure drops to the flanges limit.'
+  },
+  {
+    question: 'Maximum Gas Supply Pressure for Ranarex',
+    options: ["3 Psi", "6 Psi", "15 Psi", "30 Psi"],
+    correctIndex: 2,
+    explanation: 'According to the user manual and operating instructions for the AMETEK / Chandler Engineering Ranarex Gas Gravitometer, when connecting sample gas through the pressure regulator to the instrument, the regulator delivery pressure must be set to a maximum of 15 PSIG.'
+  },
+  {
+    question: 'How much PSI does the SSV need to open?',
+    options: ["6:30 Psi", "100:500 Psi", "1000:2000 Psi", "1500:3000 Psi"],
+    correctIndex: 2,
+    explanation: 'Surface Safety Valve (SSV) requires hydraulic control pressure in the 1500 to 3000 PSI range to actuate and fully open.'
+  },
+  {
+    question: 'How much PSI does the Air Supply in the ESD Panel need to operate the Hydraulic Pump?',
+    options: ["3:50 Psi", "80:120 Psi", "500:1000 Psi", "1500:3000 Psi"],
+    correctIndex: 1,
+    explanation: 'the air/gas supply driving the air-driven hydraulic pump in an Emergency Shutdown (ESD) control panel operates within a standard pneumatic range of 80 to 120 PSI.'
+  },
+  {
+    question: 'What is the definition of Critical Flow?',
+    options: ["Sonic at Choke, Flow affected", "Sonic at Flow & Choke, unaffected", "Sonic at Choke, Flow unaffected", "None of them"],
+    correctIndex: 2,
+    explanation: 'Critical flow (also known as choked flow) occurs when the fluid velocity reaches the speed of sound (sonic velocity) at the constriction or choke throat. Once this condition is reached, the mass flow rate becomes independent of downstream pressure fluctuations, meaning the flow rate is unaffected by changes downstream.'
+  },
+  {
+    question: 'What is the name of the Screw located behind the DPU?',
+    options: ["Zero Screw", "Vent Screw", "Pulsation Dampener", "Torque Tube Screw"],
+    correctIndex: 2,
+    explanation: 'In instrumentation and well-testing equipment (such as Barton Differential Pressure Units), the adjustable needle valve screw used to dampen pressure fluctuations and shock waves is integrated directly into the DPU housing.'
+  },
+  {
+    question: 'What is the function of the Lo-Pilot?',
+    options: ["To protect against high pressure in thr flowline", "To protect low Pressure Equipment", "To protect against a line rupture", "all of the above"],
+    correctIndex: 2,
+    explanation: 'In standard surface well-testing and ESD configurations, the Lo-Pilot is installed upstream of the choke manifold (between the Surface Safety Valve and the choke). Because of this specific positioning, a sudden drop in line pressure indicates a major leak or line rupture, causing the pilot to exhaust control pressure and safely close the SSV.'
+  },
+  {
+    question: 'What is the pump located beside Chrismass Tree and used for Chemical Injecting?',
+    options: ["Texsteam pump", "Diaphragm pump", "Submersible pump", "Centrifugal pump"],
+    correctIndex: 0,
+    explanation: 'Texsteam pump is a small pump located on well heat tower and is used to inject many types of chemical'
+  },
+  {
+    question: 'What is the function of the Fusible Plug of the ESDV?',
+    options: ["Opens on sensing high pressure to close ", "Opens on sensing low pressure to close ", "Freezes on low temperature to close the valve automatically", "Melts in case of fire to close the valve automatically"],
+    correctIndex: 3,
+    explanation: 'In an Emergency Shutdown (ESD) system, fusible plugs contain a low-melting-point alloy designed to melt when exposed to high heat from a fire. When the plug melts, it vents the control line pressure, causing the Emergency Shutdown Valve (ESDV) to close automatically and safely isolate the system.'
+  },
+  {
+    question: 'Which of the following causes an incorrect reading for Gas Meter? (one answer is incorrect',
+    options: ["The orifice plate size is incorrect or eroded", "Orifice ID smaller than Pipe ID", "Liquid Carry Over inside the gas line", "The Differential Pressure  is above  the range"],
+    correctIndex: 1,
+    explanation: 'this type of question is not direct so need to read it carefully, it is normal that the Orifice ID to b smaller than Pipe ID '
+  },
+  {
+    question: 'What are the signs of Hydrate in the Choke? (one answer is incorrect',
+    options: ["Temperature drops (Choke sharply at the choke", "Upstream Pressure increases", "Downstream Pressure increases", "Flow rate increase by itself"],
+    correctIndex: 3,
+    explanation: 'any increase in downstream or upstream causes hydrates also temperature drops suddenly looks sign of hydrates but increasing or decreasing of flow rate is not a sign of hydrate'
+  },
+  {
+    question: 'What do you do in case of a leak? (one answer is incorrect',
+    options: ["Reporting immediately", "Isolate the leak source if safely possible", "Checking the leak location with a lighter", "Wearing appropriate PPE"],
+    correctIndex: 2,
+    explanation: 'All correct except checking the leak location with a lighter'
+  },
+  {
+    question: 'What is H2S 8-Hours limit',
+    options: ["10 PPM", "20 PPM", "100 PPM", "200 PPM"],
+    correctIndex: 0,
+    explanation: '10 PPM for 8-hrs'
+  },
+  {
+    question: 'How to use fire Extinguisher? (One answer is wrong) ',
+    options: ["Pull safety pin", "Aim nozzle at base of fire", "Pointing Extinguisher at your Colleague", "Squeeze handle and sweep"],
+    correctIndex: 2,
+    explanation: 'Never pointing Extinguisher at your colleage'
+  },
+  {
+    question: 'What to do during H2S Leak? (One answer is wrong) ',
+    options: ["Go to low-lying area", "Go to assembly point", "Escape upwind / crosswind ", "Wear breathing apparatus if trained"],
+    correctIndex: 2,
+    explanation: 'H2S is heavier than Air so Do not Go to low-lying area'
+  },
+  {
+    question: 'Fisher Level Trol is... ',
+    options: ["Direct Acting", "Reverse Acting", "Not Acting ", "I don not know"],
+    correctIndex: 1,
+    explanation: 'Fisher Level Trol is reverse acting while Fisher Gas Trol is Direct acting'
+  },
+  {
+    question: 'What is Flare KO Drum? ',
+    options: ["Separate Gas from Liquid Before Flare to prevent pressure increase", "Separate Carbon after Flare to prevent pollution", "Mix Liquid With Gas before Flare to increase effiency", "Separate Liquid from Gas before Flare to prevent burning liquid"],
+    correctIndex: 3,
+    explanation: 'A Flare Knock-Out (KO) Drum is a vertical or horizontal separation vessel installed upstream of a flare stack. Its primary purpose is to remove any entrained liquid hydrocarbons and water droplets from the waste gas stream before it reaches the flare tip, preventing unburned liquids from being expelled or causing dangerous liquid "rain" and incomplete combustion.'
+  },
+  {
+    question: 'What are the Properties of H2S gas? (One answer is wrong) ',
+    options: ["Very toxic and lethal gas", "Safe to inhale in small anounts", "Has rotten egg smell", "heavier than air, accumulatrs in low area"],
+    correctIndex: 1,
+    explanation: 'H2S Properties'
+  },
+  {
+    question: 'Gross = 1736 BPD , WC = 39.4% ',
+    options: ["Net= 683.9 BPD & Water= 1052 BPD", "Net= 1696.6 BPD & Water= 39.4 BPD", "Net= 1052 BPD & Water= 684 BPD", "Net= 1052 BPD & Water= 39.4 BPD"],
+    correctIndex: 2,
+    explanation: 'Water= Gross X (WC/100) = 1736 X 0.394 = 683.98 BPD. Net Oil = Gross - Water = 1736 - 683.98 = 1052'
+  },
+  {
+    question: 'Which is Fiscal Reference for Oil Rate',
+    options: ["Separator Rate after shrinkage & BS&W", "MPFM rate with Meter Factor", "Choke rate via Gilbert correction", "Surge tank level uncorrected"],
+    correctIndex: 0,
+    explanation: 'Separator rate after shrinkage & BS&W is a fiscal refrence for standard condition ( Net Stock Tank Rate)'
+  },
+  {
+    question: 'Unstable DPU pen, zigzag reading, which screw to adjust?',
+    options: ["Open Zero Screw 1 turn", "Close Vent Screw", "Close Dampener then 1/2 open", "Replace Bellows", "It cannot be adjusted"],
+    correctIndex: 2,
+    explanation: 'The Pulsation Dampener Screw is used to absorb the big fluctuations happens when the well behavoiur chabges suddenly to protect the DPU and to et stable reading'
+  },
+  {
+    question: 'During Wireline pulling plug, whic valves open on Surface Test Tree?',
+    options: ["Swab Valve Closed + Master Valve Open + Lower Master Valve Open / Wing Open", "Swab Valve Open + Master Valve Closed + Lower Master Valve Open / Wing Closed", "Swab Valve Open + Master Valve Open + Lower Master Valve Open / Wing Closed", "Swab Valve Open + Master Valve Open + Lower Master Valve Closed / Wing Open"],
+    correctIndex: 2,
+    explanation: 'To Run in Hole or Pull Out of Hole should be Upper and lower master open and Swab open but for the wing it is not neccessary to keep it open or close '
+  },
+  {
+    question: 'What type of fuel would you use on an indirect heater?',
+    options: ["Condensate", "Crude Oil", "Diesel", "Demulsifier"],
+    correctIndex: 2,
+    explanation: 'Diesel is the fuel used on an inderect heater'
+  },
+  {
+    question: 'Basic Sediment in BS&W is?',
+    options: ["Free water produced with oil", "Solid impurities like sand & scale", "Dissolved gas in crude oil", "Chemical additive for treatment"],
+    correctIndex: 2,
+    explanation: 'Basic Sediment is Solid impurities like Sand & Scale'
+  },
+  {
+    question: 'What does Z-factor represent?',
+    options: ["Gas Compressibility factor to correct ideal gas Law", "Oil Viscosity factor to correct Liquid flow", "Surge tank volume factor to correct volume measurement", "Choke type factor to correct flow control"],
+    correctIndex: 0,
+    explanation: 'Z-Factor is Gas Compressibility factor to correct ideal gas Law'
+  },
+  {
+    question: 'What is Joule-Thomson Effect after Choke?',
+    options: ["Temperature drop due to oil viscosity increase", "Temperature drop due to sudden gas expansion", "Temperature rise due to sevre fluid friction ", "Temperature rise due to gas molecules compression"],
+    correctIndex: 1,
+    explanation: 'Joule-Thomson Effect is a Dynamic ThermoEffect occurs when Gas/Liquid Expands in area that has high pressure to area that has low pressure through Choke without exchanging the temperature with the arounded place. When the gas or the liquid pass through the choke the high pressure will be low pressure so the Gas molecules expands and becomes not near to each oters that means drops in temperature which makes Hydrates '
+  },
+  {
+    question: 'When changing the Choke Bean, is the Best Practice to have another person to verify the size?',
+    options: ["Rigt", "Wrong" ],
+    correctIndex: 0,
+    explanation: 'Double check is the golden rule for every thing'
+  },
+  {
+    question: 'What is the primary function of the Data Header in an SWT layout?',
+    options: ["Separating water from crude oil initially", "Providing access points and chemical injection","Burning excess ases safety in the air","Storing produced oil temporarily to measure its volume" ],
+    correctIndex: 1,
+    explanation: 'Data Header primary Function is to provide points for chemical injection, getting samples, and for getting checking pressure and temperature'
+  },
+  {
+    question: 'What does Multi-Rate Test mean?',
+    options: ["measure temperature at depths", "using multiple separators","testing multiple surface pumps","producing well at different flow rates" ],
+    correctIndex: 3,
+    explanation: ' Multi-Rate Test means to produce the well at different flow rates '
+  },
+  {
+    question: 'Among the procedures that must be followed before changing the Choke Size?',
+    options: ["maximum separator operating pressure", "Remove orifice plate","increase demulsifier injection rate","close separator gas outlet valve" ],
+    correctIndex: 1,
+    explanation: ' if you will change the choke size remove orifice plate '
+  },
+  {
+    question: 'in case of Carry Under, isolate the Barton immediately to prevent oil from entering it.',
+    options: ["Right", "Wrong"],
+    correctIndex: 1,
+    explanation: ' Not Carry down , it is Carry Over '
+  },
+  {
+    question: 'A32/64" Choke Bean produces 1000 BPD, How much rate will be produced from 64/64" Choke Bean .',
+    options: ["1000 BPD", "2000 BPD", "3000 BPD", "4000 BPD"],
+    correctIndex: 3,
+    explanation: ' The relation between the Flow rate & Choke Size is Q ∝ D^2 So Q_2  = (A_2/A_1 )^2  × Q_1 = (64/32)^2 × 1000 = 4 × 1000 = 4000 BPD  '
+  },
+  {
+    question: 'What is the Function of the Vacuum Relief Valve? .',
+    options: ["Let air to Equalize pressure", "Block air entry to keep pressure", "Control liquid flow, stop pump bubbles", "Stabilize pressure, Stop level Fluctuation"],
+    correctIndex: 0,
+    explanation: ' Vacuum Relief Valve Function is to let atmospheric air enter to equalize pressure to prevent any collapse '
+  },
+  {
+    question: 'What is the 1" Meter Range? .',
+    options: ["130:1300", "170:1700", "170:1300", "130:1700"],
+    correctIndex: 2,
+    explanation: ' 1" meter range is 170:1300 BPD, while 2" meter range is 1300:13000 BPD'
+  },
+  {
+    question: 'What is the 2" Meter Range? .',
+    options: ["1300:13000", "340:3400", "170:1300", "1300:17000"],
+    correctIndex: 2,
+    explanation: ' 1" meter range is 170:1300 BPD, while 2" meter range is 1300:13000 BPD'
+  },
+  {
+    question: 'A28/64" Choke Bean produces 700 BPD, How much rate will be produced from 36/64" Choke Bean .',
+    options: ["1000 BPD", "1157 BPD", "1400 BPD", "700 BPD"],
+    correctIndex: 3,
+    explanation: ' The relation between the Flow rate & Choke Size is Q ∝ D^2 So Q_2  = (A_2/A_1 )^2  × Q_1 = (36/28)^2 × 700 = 1.654 × 700 = 1157.8 BPD  '
+  },
+  {
+    question: 'A 26/64" Choke Bean produces 720 BPD, How much rate will be produced from 38/64" Choke Bean .',
+    options: ["1383 BPD", "1539 BPD", "1734 BPD", "1939 BPD"],
+    correctIndex: 1,
+    explanation: ' The relation between the Flow rate & Choke Size is Q ∝ D^2 So Q_2  = (A_2/A_1 )^2  × Q_1 = (38/26)^2 × 720 = 1538.9 BPD  '
+  },
+  {
+    question: 'Oil = 1100 STBOPD,  GOR = 2500 SCF/STB. HOW MUCH GAS RATE .',
+    options: ["2.75 MMSCFD", "2.41 MMSCFD", "5.27 MMSCFD", "7.52 MMSCFD"],
+    correctIndex: 0,
+    explanation: ' Gas Rate = (Oil Rate x GOR) / 10^6 = (1100 x 2500) / 10^6 = 2750000 / 10^6 = 2.75 MMSCFD'
+  },
+  {
+    question: 'Gas = 4.5 MMSCFD,  GOR = 3000 SCF/STB. HOW MUCH Oil RATE .',
+    options: ["1490 STBOPD", "1500 STBOPD", "1510 STBOPD", "1495 STBOPD"],
+    correctIndex: 1,
+    explanation: ' Oil Rate = (Gas Rate x 10^6) / GOR = (4.6 x 10^6) / 3000 = 1500 STBOPD'
+  },
+  {
+    question: 'Gas = 1.7 MMSCFD,  Oil Rate = 850 STBPD. HOW MUCH GOR .',
+    options: ["1980 SCF/STB", "1990 SCF/STB", "2000 SCF/STB", "2020 SCF/STB"],
+    correctIndex: 2,
+    explanation: ' GOR = (Gas Rate x 10^6) / Oil Rate = (1.7 x 10^6) / 850 = 2000 SCF/STB'
+  },
+  {
+    question: 'A 28/64" Choke Bean produces 313.6 BPD & pressure = 400 psi, How much rate will be produced from 56/64" Choke Bean & pressure = 400 psi.',
+    options: ["627.2 BPD", "940.8 BPD", "1254.4 BPD", "2508.8 BPD"],
+    correctIndex: 1,
+    explanation: ' The relation between the Flow rate & Choke Size is Q ∝ D^2 So Q_2  = (A_2/A_1 )^2  × Q_1 = (56/28)^2 × 313.6 = 1254.4 BPD  '
+  },
+  {
+    question: ' On what type of heater would you find a PSV fitted ',
+    options: ["Indirect heater", "Steam coil", "Direct heater", "Nothing"],
+    correctIndex: 2,
+    explanation: ' •	We install PSV on indirect heater but on direct heater there is no PSV '
+  },
+  {
+    question: ' What does Drawdown mean? ',
+    options: ["Difference Reservoir - Flowing WHP", "Difference Static - Flowing BHP", "Difference Reservoir - Flowing BHP", "Difference Initial - Current Pressure"],
+    correctIndex: 2,
+    explanation: ' Drawdown means Difference Reservoir - Flowing BHP  '
+  },
+  {
+    question: ' Pr = 3800 psi, Pwf = 3000 psi, Pwh = 1200 psi How much Drawdown pressure? ',
+    options: ["800 Psi", "1800 Psi", "2600 Psi", "3000 Psi"],
+    correctIndex: 0,
+    explanation: ' Drawdown = Pr - Pwf  '
+  },
+  {
+    question: ' Oil Rate = 850 bbl/day, water = 150 bbl/day How much watercut (WC) ',
+    options: ["15%", "15.5%", "17.5%", "17.6%"],
+    correctIndex: 0,
+    explanation: ' Water Cut (WC) = Water Rate / (Water rate + Oil Rate)  '
+  },
+  {
+    question: ' THP = 1000 psi & CHP = 1000 psi ',
+    options: ["Well normal", "Choke closed", "Separator Faulty", "Tubing Leak"],
+    correctIndex: 3,
+    explanation: ' THP = CHP means there is communication between the tubing and the annulus CHP   '
+  },
+  {
+    question: ' You opened the choke a little, WHP decreased and oil rate increased ',
+    options: ["Well will stop", "Totally normal, continue", "Not normal, shut-in immediately", "Declaration of a state emergency"],
+    correctIndex: 1,
+    explanation: ' It is normal   '
+  },
+  {
+    question: ' Measured Gas Rate = 3,874,512 SCFD & Gas lift Injection = 1,468,937 SCFD. What is the True Produced Gas? ',
+    options: ["2,405,575 SCFD", "5,343,449 SCFD", "2,415,575 SCFD", "1,468,937 SCFD"],
+    correctIndex: 0,
+    explanation: ' True Produced Gas = Measured Gas Rate - Gas Lift Injection = 3,874,512 - 1,468,937 = 2,405,575 SCFD  '
+  },
+  {
+    question: ' Oil Specific Gravity = 0.8721 How much API Gravity? ',
+    options: ["19.2 API", "25.0 API", "30.7 API", "41.5 API"],
+    correctIndex: 2,
+    explanation: ' API = (141.5 / SG) - 131.5 = 30.7 '
+  },
+  {
+    question: ' Separator pressure 180 psi, Well Heead pressure = 900 psi ',
+    options: ["Sub-Critical", "Critical", "Neither", "Well shut-in"],
+    correctIndex: 1,
+    explanation: ' Critical Flow means Ratio = downstream/upstream =< 0.5 or 0.55 , for that example the ratio is 180/900 = 0.2 < 0.5 so flow is critical (0.5 is the Sonic Velocity السرعة الحرجة) '
+  },
+  {
+    question: ' Shut in well after test and monitored pressure increasing, What is name of this test? ',
+    options: ["Drawdown test", "Production Test", "Multirate Test", "Buildup Test"],
+    correctIndex: 3,
+    explanation: ' Build up test is a monitoring the WHSIP building up after test '
+  },
+  {
+    question: ' A Well water cut is 0%, and the BS&W is 10%, is this possible or impossible? ',
+    options: ["Impossible", "Possible"],
+    correctIndex: 3,
+    explanation: ' Build up test is a monitoring the WHSIP building up after test '
+  },
+  {
+    question: ' Total Liquid (Gross) = 1200 bbl/day, BS&W = 25% How much Net Oil Rate ? ',
+    options: ["300 bbl", "900 bbl", "1200 bbl", "1500 bbl"],
+    correctIndex: 1,
+    explanation: ' Net Oil Rate = Gross - (Gross * 0.25 ) = Gross * 0.75 =  '
+  },
+  {
+    question: ' What happens if the choke size is reduced from 32/64 to 16/64 ? ',
+    options: ["Oil Rate increases and WHP increases", "Oil Rate decreases and WHP increases", "Oil Rate decreases and WHP Decreases", "Oil Rate increases and WHP decreases"],
+    correctIndex: 1,
+    explanation: ' Choke Size ∝ Flow Rate , while Choke Size ∝ (1/WHP)  '
+  },
+  {
+    question: ' the WHP of the well was 1200 psi, then the choke was opened more, so WHP become 800 psi, and the oil rate increased, is this normal ',
+    options: ["No the pressure should have increased ", "No the production should have decreased", "No, the WHP is constant and has nothing to do with", "Yes, this is normal pressure decreased and production increased"],
+    correctIndex: 3,
+    explanation: ' Choke Size ∝ Flow Rate , while Choke Size ∝ (1/WHP)  '
+  },
+  {
+    question: ' What is the main danger of H2S ? ',
+    options: [ " Harmless Gas ", " Toxic and lethal even at low concentration ", " Gas increases production ", " Gas cools equipment " ],
+    correctIndex: 1,
+    explanation: ' H2S is a Toxic Gas, a silent killer  '
+  },
+  {
+    question: ' Why do we use Glycol ? ',
+    options: [ " To cool Engine ", " To prevent hydrate formstion ", " To increase oil ", " To prevent foaming formation " ],
+    correctIndex: 1,
+    explanation: ' Glycol and Methanol are used to prevent hydration  '
+  },
+  {
+    question: ' Compressor down, air failing, gas line ready, Carry Under occured, Can gas replace air, or  not possible because gas went to oil ? ',
+    options: [ " Yes ", " No " ],
+    correctIndex: 0,
+    explanation: ' Yes we can use the gas line instead of the air because the Carry Under occured only affecting oil line  '
+  },
+  {
+    question: ' Why is the Pad Eye painted in a different color every few monthes ? ',
+    options: [ " To prevent it from Corrosion and rust ", " To indicate the inspection and in Certified period can be used for lifting  ", " Identify the Maximum lifting capacity  ", " To show the manufacturer of the equipment " ],
+    correctIndex: 1,
+    explanation: ' Color Coding for Pad Eye is after Inspection and Certified for lifting and it is colored every 3 months  (White, Orange, Green, Yellow)  '
+  },
+  {
+    question: ' Wy do we use Wash Tank in process plants ? ',
+    options: [ " Separate free Gas from oil by pressure ", " Equipment dust washing ", " Heat oil to prevent Hydrate formation  ", " Wash oil to dissolve salt and break Emulsion" ],
+    correctIndex: 3,
+    explanation: ' in plant wash oil to dissolve salt and break Emulsion  '
+  },
+  {
+    question: ' What is the unit for Salt in Crude oil ? ',
+    options: [ " PSI ", " PPM ", " PTB  ", " BBL " ],
+    correctIndex: 2,
+    explanation: ' the unit for Salt in Crude Oil is PTB = Pound per Thousand Barrels  '
+  },
+  {
+    question: ' Air Supply is 120 Psi, but Fisher supply gauge is 0 psi, what is the first component to check ? ',
+    options: [ " Comperrsor ", " Bourdon Tube ", " Regulator  ", " Actuator " ],
+    correctIndex: 2,
+    explanation: ' Air supply already 120 psi, so Compressor is working properly, Bourdon Tube is not the first thing to ckeck, Actuator is recieving the action from the fissher so it is not affectting the gauge output pressure, So the Regulator is the first thing to check becaue also that the air supply coming from the compressor with 120 psi and going to the regulator then the Gauge '
+  },
+  {
+    question: ' What is the function of the Weir plate in Separator ? ',
+    options: [ " Holds Oil, passes water to Oil outlet ", " Holds Water, passes Oil to oil outlet ", " Holds water, passes oil to water outlet  ", " Holds oil, passes water to water outlet " ],
+    correctIndex: 1,
+    explanation: ' Weir plate is a plate separate water compartment from oil compartment, it is holds water which be below oil by density of the liquid and passes oil which be above water to go to oil compartment '
+  },
+  {
+    question: ' What does PTB stand for ? ',
+    options: [ " Production Per Thousand Barrels ", " Pound Per Tank Barrel ", " Pressure per Thousand Barrel  ", " Pound per Thousand Barrel " ],
+    correctIndex: 3,
+    explanation: ' PTB measure the salinity of water in Crude oil Stands for Pound per Thousand Barrel '
+  },
+  {
+    question: ' What is the difference between Carry Over and Carry Under ? ',
+    options: [ " First is Water down, Second is Oil Up ", " First Liquid with Gas, Second is Gas with Liquid ", " Both are Gas down with Oil  ", " Both are Oil up with Gas " ],
+    correctIndex: 1,
+    explanation: ' Carry Over is when the liquid level is 0 and Gas start to pass through Oil line, While Carry Under is when Liquid Level is 100% and Oil starts to pass through Gas line  '
+  },
+  {
+    question: ' What is before te PCV, if closed the controller will not sense and PCV stays as it is ? ',
+    options: [ " Positioner air supply ", " Positioner Regulator ", " Straightrning vanes  ", " Sensing Root Valve " ],
+    correctIndex: 3,
+    explanation: ' Sensing Root Valve is the isloation Valve from Separator body (Sep.Press.) to PCV controller the Fisher '
+  },
+  {
+    question: ' If you had to connect a gas supply, when do we use Gas instead of Air for Instruments ? ',
+    options: [ " Dry Gas & Sour ", " Wet Gas & Sweet Gas ", " Dry Gas & Sweet Gas  ", " Wet Gas & Sour Gas " ],
+    correctIndex: 2,
+    explanation: ' Shoud be Dry Gas without any liquid in the Gas line, and Sour Gas has H2S, while Sweet Gas has no H2s '
+  },
+  {
+    question: ' What is Wet Gas ? ',
+    options: [ " Gas produces liquid in separator ", " Gas produces no liquid ", " Gas with High H2S  ", " Oil with dissolved Gas " ],
+    correctIndex: 0,
+    explanation: ' Wet Gas is Gas is wet with oil '
+  },
+  {
+    question: ' What is Gas Condensate ? ',
+    options: [ " Completely Dry Gas ", " Heavy Oil ", " Gas in Reservoir, Liquid at surface  ", " Liquid in reservoir, Gas at surface " ],
+    correctIndex: 2,
+    explanation: ' Gas Condensate is Gas in reservoir Liquid at surface '
+  },
+  {
+    question: ' Why Dry Gas form no liquid at separator ? ',
+    options: [ " Dew point below separator condition ", " Dew point above separator condition ", " Reservoir pressure is too high  ", " separator pressure is too low " ],
+    correctIndex: 0,
+    explanation: ' The Hydrocarbon Dew Point is the temperature and pressure which the first drop of liquid begins to condense from a gas '
+  },
+  {
+    question: ' What happens at Dew Point ? ',
+    options: [ " Gas becomes fully liquid ", " First drop of liquid condenses ", " liquid becomes fully gas ", " No chage happens " ],
+    correctIndex: 1,
+    explanation: ' The Hydrocarbon Dew Point is the temperature and pressure which the first drop of liquid begins to condense from a gas '
+  },
+  {
+    question: ' What is the meaning of Buildup Period in well testing? ',
+    options: [ " Rigging up and preparing surface test equipment ", " Gradually increasing gas rate to boost production ", " Separating water from oil inside the separator ", " Shut-in well to build pressure and monitor reservoir " ],
+    correctIndex: 3,
+    explanation: ' Buildup Period is shutting the well after flowing it for long time to let the WHSIP increasing  '
+  },
+  {
+    question: ' How many gallons in a Barrel? ',
+    options: [ " 159 Gallon ", " 42  Gallon ", " 163 Gallon ", " 40 Gallon " ],
+    correctIndex: 1,
+    explanation: ' Barrel = 42 Gallon  '
+  },
+  {
+    question: ' What is the pitting Corrosion? ',
+    options: [ " Corrosion as small pits in surface ", " Corrosion as lare pits in surface ", " Corrosion as lon lines in surfce ", " Corrosion as full lines in surface " ],
+    correctIndex: 0,
+    explanation: ' Pitting Corrosion is Corrosion as small pits in surface  '
+  },
+  {
+    question: ' How to determine the best location for thickness checks ? ',
+    options: [ " At elbows and Flanges where Flow direction changes ", " At Elbows and reducers where flow direction canges ", " At Elbows and Tees where flow direction changes ", " At Tees and bends where flow direction changes " ],
+    correctIndex: 2,
+    explanation: ' Corrosion affest the most point is ar Elbows and Tees not Flanges or reducers  '
+  },
+  {
+    question: ' When transferring from a stock tank to another tank, what is the best pump choice ? ',
+    options: [ " Screw Pump ", " Centrifugal Pump ", " Triplex Pump ", " Diaphragm Pump " ],
+    correctIndex: 1,
+    explanation: ' Centrifugal Pump is pumping with low pressure and high rate  '
+  },
+  {
+    question: ' What is associated gas ? ',
+    options: [ " Gas formed after oil separator ", " Gas injection into reservoir for pressure ", " Gas produced with water from reservoir  ", " Gas produced with oil from reservoir " ],
+    correctIndex: 3,
+    explanation: ' Gas and oil is produced from the well  '
+  },
+  {
+    question: ' What valve must be installed between transfer pump and oil manifold to prevent back flow to Transfer pump ? ',
+    options: [ " Ball Valve ", " Check Valve ", " Gate Valve  ", " Globe Valve " ],
+    correctIndex: 1,
+    explanation: ' Check Valve is only one way to prevent back flow   '
+  },
+  {
+    question: ' What is the best valve to install on the Tank for use in Drain to drain water only gradually ? ',
+    options: [ " Ball Valve ", " Check Valve ", " Gate Valve  ", " Globe Valve " ],
+    correctIndex: 3,
+    explanation: ' Globe Valve is opening gradually    '
+  },
+  {
+    question: ' Net Oil = 2200 BOPD, Shrinkage = 0.75 what is STO (Stock Tank Oil) ? ',
+    options: [ " 165 STOBPD ", " 1650 STOBPD ", " 2933 STOBPD  ", " 2200 STOBPD " ],
+    correctIndex: 1,
+    explanation: ' Stock Tank Oil = Net Oil x Shrinkage = 2200 x 0.75 = 1650 STOBPD   '
+  },
+  {
+    question: ' Gross = 2400 BPD, WC = 25%, Net Oil + Water =? ',
+    options: [ " Net 1800 BPD & Water 600 BPD ", " Net 600 BPD & Water 1800 BPD ", " Net 2375 BPD & Water 25 BPD  ", " Net 2400 BPD & Water 25 BPD " ],
+    correctIndex: 0,
+    explanation: ' Water = (WC/100) x Gross = 0.25 x 2400 =  600 BPD & Net oil = Gross - Water = 2400 - 600 = 1800 BPD '
+  },
+  {
+    question: ' Where is the Gas Boot installed ? ',
+    options: [ " Inlet Separator ", " Gas Outlet ", " Oil Outlet ", " Water Outlet " ],
+    correctIndex: 2,
+    explanation: ' The gas boot helps to: Remove entrained free gas from produced oil,  Prevent gas from entering the oil outlet line, Improve oil discharge stability, Reduce gas carry-under into the water outlet system. '
+  },
+  {
+    question: ' Why is the Gas Boot installed on Oil Outlet ? ',
+    options: [ " To separate remaining Gas from oil befpre Tank ", " To separate remaining oil from Gas before Tank ", " To separate remaining Gas from oil after tank ", " To separate free Gas from oil inside Tank " ],
+    correctIndex: 0,
+    explanation: ' The gas boot helps to: Remove entrained free gas from produced oil before tank,  Prevent gas from entering the oil outlet line, Improve oil discharge stability, Reduce gas carry-under into the water outlet system. '
+  },
+  {
+    question: ' A sign next to equipment says do not stand more than 5 minutes what is the reason? Due to the presence of:…? ',
+    options: [ " H2S ", " CO2 ", " NORM ", " HT " ],
+    correctIndex: 2,
+    explanation: ' NORM (Naturally Occurring Radioactive Material) can accumulate in oilfield equipment, such as separators, flowlines, and production vessels. Prolonged exposure to radiation may increase health risks. '
+  },
+  {
+    question: ' Which definition is most accurate for Dry Gas ? ',
+    options: [ " Stays gas from Reservoir to separator, Dew Point<Separator ", " Stays gas from Reservoir to separator, Dew Point < reservoir ", " Stays gas from Reservoir to separator, Dew Point = Separator ", " Stays gas from Reservoir to surface, Dew Point < Separator " ],
+    correctIndex: 2,
+    explanation: ' Dry Gas is Gas coming from reservoir to separator and its Dew Point Equal Separator pressure '
   }
 ];
 

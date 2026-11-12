@@ -1371,6 +1371,30 @@ const questions =  [
     options: [ " Stays gas from Reservoir to separator, Dew Point<Separator ", " Stays gas from Reservoir to separator, Dew Point < reservoir ", " Stays gas from Reservoir to separator, Dew Point = Separator ", " Stays gas from Reservoir to surface, Dew Point < Separator " ],
     correctIndex: 2,
     explanation: ' Dry Gas is Gas coming from reservoir to separator and its Dew Point Equal Separator pressure '
+  },
+  {
+    question: ' Which is the most definition accurate for Sweet Gas ? ',
+    options: [ " Has High H2s and high CO2 needs treatment ", " has low H2S and high Co2, needs tretment ", " has high H2S and low CO2, needs treatment ", " has low H2S and low CO2, no treatment needed " ],
+    correctIndex: 3,
+    explanation: ' Sour gas has high H2S & high CO2 while Sweet gas has low H2S & low CO2 '
+  },
+  {
+    question: ' Why is NORM comsidered more dangerous than H2S kills in seconds ? ',
+    options: [ " Because it causes immediately burning in the eyes and noses ", " Because it has no smell and no immediate symbtoms ", " Because it causs suffocation ", " Because it is explosive " ],
+    correctIndex: 1,
+    explanation: ' H2S is burning eyes & noses, has smell for short time, causes suffocation, and is explosive. while NORM is not explosive, not burning eyes and noses and has no smell and no immediate symbtoms '
+  },
+  {
+    question: ' What is the difference between Dew Point and Bubble point ? ',
+    options: [ " Dew point: liquid from Gas, Bubble point: gas from oil ", " Dew point: Gas from liquid, Bubble point: oil from gas  ", " Both for gas wells only ", " Both for oil wells only " ],
+    correctIndex: 0,
+    explanation: ' Dew Point is liquid from Gas while Bubble point is gas from liquid and Both for oil and gas wells  '
+  },
+  {
+    question: ' What is the main benefit of using a Senior Orifice Fitting in SWT system ? ',
+    options: [ " Prevent separator Emulsion ", " Boost Oil Transfer pump efficiency  ", " Automatic Choke size control ", " Change Orifice under flow without stopping production " ],
+    correctIndex: 3,
+    explanation: ' Senior Orifice Daniel Box has Upper & Lower compartments and fitting to get the possibility to change orifice under flow without stopping production '
   }
 ];
 
@@ -1392,9 +1416,9 @@ let finalScorePercent = 0;
 let isQuizFinished = false;
 
 const EMAILJS_CONFIG = {
-  publicKey: "di944TOUgjjctowQk",
-  serviceId: "service_txzx4kc",
-  templateId: "template_miqixp9"
+  publicKey: "DRPB-9Kz19QM5arDb",
+  serviceId: "service_s491sl4",
+  templateId: "template_8x7uyry"
 };
 
 /* ===== Elements ===== */

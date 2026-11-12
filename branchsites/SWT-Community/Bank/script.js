@@ -1401,6 +1401,12 @@ const questions =  [
 console.log("Total Questions: " + questions.length);
 
 
+/* ===== Signed-in Student ===== */
+let signedInUser = null;
+let signedInUserName = "Student";
+let authReady = false;
+
+
 /* ===== State ===== */
 let state = {
   currentIndex: 0,
@@ -1683,24 +1689,63 @@ function showCertificate() {
   certificateSection.classList.remove("hidden");
 }
 
+
 function getSignedInUserName() {
-  const typedName = (certNameInput.value || "").trim();
-  return typedName || "Student";
+  return signedInUserName;
 }
 
-function startAfterAuth() {
-  certNameInput.value = "";
+
+
+async function startAfterAuth() {
+  if (!signedInUser || !authReady) return;
+
+  // Get the student's registered name
+  let studentName = signedInUser.displayName || "";
+
+  // Fallback: Get the name from Firestore
+  if (!studentName && db) {
+    try {
+      const userDoc = await db.collection("users")
+        .doc(signedInUser.uid)
+        .get();
+
+      if (userDoc.exists) {
+        studentName = userDoc.data().name || "";
+      }
+    } catch (error) {
+      console.error("Could not retrieve student name:", error);
+    }
+  }
+
+  // Final fallback: Use email username
+  signedInUserName =
+    studentName.trim() ||
+    signedInUser.email?.split("@")[0] ||
+    "Student";
+
+  // No manual name entry required
+  if (certNameInput) {
+    certNameInput.value = signedInUserName;
+  }
 
   const saved = loadProgress();
+
   if (saved) {
     resumeModal.classList.remove("hidden");
   } else {
     initQuiz();
   }
 
+  const studentDisplayName = document.getElementById("studentDisplayName");
+
+  if (studentDisplayName) {
+    studentDisplayName.textContent = signedInUserName;
+  }
+
   const best = localStorage.getItem("highScore") || 0;
   highScore.textContent = `${best}%`;
 }
+
 
 function sendQuizResultEmail({ userName, userEmail, scorePercent, scoreRaw, courseName }) {
   if (!window.emailjs || !emailjs.init || !emailjs.send) {
@@ -1846,11 +1891,40 @@ backToResultsBtn.addEventListener("click", () => {
 });
 
 /* ===== Load ===== */
+
 window.addEventListener("load", () => {
+
   darkMode = localStorage.getItem("darkMode") === "1";
   soundEnabled = localStorage.getItem("soundEnabled") !== "0";
+
   applyTheme();
   applySound();
 
-  startAfterAuth();
+  // Wait until Firebase identifies the student
+  if (typeof auth === "undefined" || !auth) {
+    alert("Authentication service unavailable. Please try again.");
+    return;
+  }
+
+  auth.onAuthStateChanged(async (user) => {
+
+    if (!user) {
+      const redirect = window.location.pathname + window.location.search;
+
+      window.location.href =
+        "login.html?redirect=" + encodeURIComponent(redirect);
+
+      return;
+    }
+
+    if (authReady) return;
+
+    signedInUser = user;
+    authReady = true;
+
+    await startAfterAuth();
+
+  });
+
 });
+

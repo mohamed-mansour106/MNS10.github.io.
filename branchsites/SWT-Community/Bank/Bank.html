@@ -86,10 +86,10 @@
               <div class="score-desc">
                 High Score: <span id="highScore">0%</span>
               </div>
-              <label class="field">
-                <span>Full Name (from signed-in account)</span>
-                <input id="certName" type="text" placeholder="Enter your name for certificate" autocomplete="name" />
-              </label>
+              <div class="field">
+                <span>Student</span>
+                <strong id="studentDisplayName">Loading...</strong>
+              </div>
               <button id="showCertBtn" class="btn primary">View Certificate</button>
               <button id="restartBtn" class="btn primary">Start Over</button>
             </div>
@@ -162,7 +162,20 @@
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+    
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<!-- Your existing Firebase authentication -->
+<script src="../../../../js/auth.js"></script>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<!-- Exam JavaScript -->
+<script src="script.js"></script>
+</body>
 </html>
+

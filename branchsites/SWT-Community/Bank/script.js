@@ -1395,6 +1395,12 @@ const questions =  [
     options: [ " Prevent separator Emulsion ", " Boost Oil Transfer pump efficiency  ", " Automatic Choke size control ", " Change Orifice under flow without stopping production " ],
     correctIndex: 3,
     explanation: ' Senior Orifice Daniel Box has Upper & Lower compartments and fitting to get the possibility to change orifice under flow without stopping production '
+  },
+  {
+    question: ' What happens in the metering line when an orifice Plate with a very small Bore is installed compared to the Gas flow rate ? ',
+    options: [ " Drop Separator Pressure ", " Accumulate Surge BS&W  ", " Form Choke Hydrates ", " Over-range Delta P " ],
+    correctIndex: 3,
+    explanation: ' The differential pressure between upstream & downstream of the Daniel Box related inverse with the Orifice Plate Bore Size  '
   }
 ];
 
@@ -1908,6 +1914,7 @@ window.addEventListener("load", () => {
 
   auth.onAuthStateChanged(async (user) => {
 
+    /********
     if (!user) {
       const redirect = window.location.pathname + window.location.search;
 
@@ -1916,6 +1923,23 @@ window.addEventListener("load", () => {
 
       return;
     }
+    *****/
+   
+    if (!user) {
+      const currentPage =
+          window.location.pathname + window.location.search;
+  
+      const loginURL = new URL(
+          "../login.html",
+          
+          window.location.href
+      );
+  
+      loginURL.searchParams.set("redirect", currentPage);
+  
+      window.location.replace(loginURL.href);
+      return;
+  }
 
     if (authReady) return;
 

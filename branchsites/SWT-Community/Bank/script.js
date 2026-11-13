@@ -1401,7 +1401,2182 @@ const questions =  [
     options: [ " Drop Separator Pressure ", " Accumulate Surge BS&W  ", " Form Choke Hydrates ", " Over-range Delta P " ],
     correctIndex: 3,
     explanation: ' The differential pressure between upstream & downstream of the Daniel Box related inverse with the Orifice Plate Bore Size  '
-  }
+  },
+  {
+      question: 'What does AOF stand for in petroleum engineering?',
+      options: [
+          "Absolute Open Flow",
+          "Annular Oil Flow",
+          "Available Oil Formation",
+          "Average Operating Flow"
+      ],
+      correctIndex: 0,
+      explanation: 'AOF (Absolute Open Flow) is the theoretical maximum flow rate a well could produce against zero bottom-hole flowing pressure.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure measured at the wellhead while the well is flowing?',
+      options: [
+          "SITHP",
+          "FWHP",
+          "SICP",
+          "SBHP"
+      ],
+      correctIndex: 1,
+      explanation: 'FWHP stands for Flowing Well Head Pressure, which is the pressure measured at the wellhead during production.'
+  },
+  {
+      question: 'What does BS&W represent in surface well testing?',
+      options: [
+          "Basic Separator & Water",
+          "Bottom Sediment & Waste",
+          "Basic Sediment & Water",
+          "Barrel Sediment & Water"
+      ],
+      correctIndex: 2,
+      explanation: 'BS&W stands for Basic Sediment & Water and represents the sediment and water content in produced crude oil.'
+  },
+  {
+      question: 'What does AGA stand for?',
+      options: ["American Gas Association", "American Geological Association", "American General Authority", "American Gas Administration"],
+      correctIndex: 0,
+      explanation: 'AGA stands for American Gas Association, an organization involved in natural gas industry standards and practices.'
+  },
+  {
+      question: 'What does AOF represent in well testing?',
+      options: ["Average Oil Flow", "Absolute Open Flow", "Available Operating Flow", "Actual Oil Formation"],
+      correctIndex: 1,
+      explanation: 'AOF stands for Absolute Open Flow, representing the theoretical maximum well flow rate at zero bottom-hole flowing pressure.'
+  },
+  {
+      question: 'What does Ann represent in oilfield terminology?',
+      options: ["Annual Production", "Annular Pressure", "Annulus", "Annual Report"],
+      correctIndex: 2,
+      explanation: 'Ann stands for Annulus, the space between two concentric tubular strings or between a tubular and the wellbore.'
+  },
+  {
+      question: 'What does ANSI stand for?',
+      options: ["American National Safety Institute", "American Network Standards Institution", "American National System Inspection", "American National Standards Institute"],
+      correctIndex: 3,
+      explanation: 'ANSI stands for American National Standards Institute, which coordinates and oversees voluntary standards in the United States.'
+  },
+  {
+      question: 'What does ASA stand for?',
+      options: ["American Standards Association", "American Safety Association", "American System Authority", "American Society of Automation"],
+      correctIndex: 0,
+      explanation: 'ASA stands for American Standards Association, the former name of the organization that preceded ANSI.'
+  },
+  {
+      question: 'What does API stand for in the oil and gas industry?',
+      options: ["American Petroleum Inspection", "American Petroleum Institute", "Association of Petroleum Industries", "American Production Institute"],
+      correctIndex: 1,
+      explanation: 'API stands for American Petroleum Institute, which develops standards and recommended practices for the petroleum industry.'
+  },
+  {
+      question: 'What does ASME stand for?',
+      options: ["American Standard Mechanical Equipment", "Association of Safety Mechanical Engineers", "American Society of Mechanical Engineers", "American System of Manufacturing Engineering"],
+      correctIndex: 2,
+      explanation: 'ASME stands for American Society of Mechanical Engineers, which develops engineering codes and standards.'
+  },
+  {
+      question: 'What does Bean refer to in well testing?',
+      options: ["Bottom Hole Assembly", "Basic Equipment Arrangement", "Barrel Equivalent Number", "Choke Bean Size"],
+      correctIndex: 3,
+      explanation: 'Bean refers to the choke bean size, which determines the restriction through which well fluids flow.'
+  },
+  {
+      question: 'What does BHA stand for?',
+      options: ["Bottom Hole Assembly", "Bottom Head Arrangement", "Basic Hydraulic Assembly", "Bore Hole Analysis"],
+      correctIndex: 0,
+      explanation: 'BHA stands for Bottom Hole Assembly, the components assembled at the lower end of the drill string.'
+  },
+  {
+      question: 'What does BHT stand for?',
+      options: ["Bottom Head Temperature", "Bottom Hole Temperature", "Basic Heating Temperature", "Bore Hole Testing"],
+      correctIndex: 1,
+      explanation: 'BHT stands for Bottom Hole Temperature, the temperature measured or estimated at the bottom of a well.'
+  },
+  {
+      question: 'What does BHP stand for?',
+      options: ["Basic Hydraulic Pressure", "Bottom Head Pressure", "Bottom Hole Pressure", "Bore Hole Performance"],
+      correctIndex: 2,
+      explanation: 'BHP stands for Bottom Hole Pressure, the pressure measured or calculated at the bottom of a well.'
+  },
+  {
+      question: 'What does BLPD stand for?',
+      options: ["Barrel Liquid Per Depth", "Basic Liquid Production Daily", "Barrel Lift Per Day", "Barrel Liquid Per Day"],
+      correctIndex: 3,
+      explanation: 'BLPD means Barrels of Liquid Per Day, a production rate unit for total liquid production.'
+  },
+  {
+      question: 'What does BFPD stand for?',
+      options: ["Barrels of Fluid Per Day", "Barrels of Formation Per Depth", "Basic Flow Production Daily", "Barrels of Fuel Per Day"],
+      correctIndex: 0,
+      explanation: 'BFPD means Barrels of Fluid Per Day, representing the combined oil and water production rate.'
+  },
+  {
+      question: 'What does Bg represent in reservoir engineering?',
+      options: ["Gas Gravity", "Gas Formation Volume Factor", "Gas Flow Rate", "Gas Saturation"],
+      correctIndex: 1,
+      explanation: 'Bg is the gas formation volume factor, relating gas volume at reservoir conditions to its volume at standard conditions.'
+  },
+  {
+      question: 'What does Bo represent?',
+      options: ["Oil Saturation", "Oil Gravity", "Oil Formation Volume Factor", "Oil Flow Rate"],
+      correctIndex: 2,
+      explanation: 'Bo is the oil formation volume factor, relating oil volume at reservoir conditions to its stock tank volume.'
+  },
+  {
+      question: 'What does BOP stand for?',
+      options: ["Basic Operating Pressure", "Blow Out Pressure", "Bottom Oil Production", "Blowout Preventer"],
+      correctIndex: 3,
+      explanation: 'BOP stands for Blowout Preventer, a safety device used to control pressure and prevent uncontrolled well flow.'
+  },
+  {
+      question: 'What does BOPD stand for?',
+      options: ["Barrels of Oil Per Day", "Barrels of Output Per Depth", "Basic Oil Production Daily", "Barrels of Pressure Per Day"],
+      correctIndex: 0,
+      explanation: 'BOPD means Barrels of Oil Per Day, a unit used to express daily oil production.'
+  },
+  {
+      question: 'What does BPD stand for?',
+      options: ["Basic Pressure Difference", "Barrels Per Day", "Barrels Per Depth", "Bottom Production Data"],
+      correctIndex: 1,
+      explanation: 'BPD means Barrels Per Day, a common unit for liquid production rates.'
+  },
+  {
+      question: 'What does BPV stand for?',
+      options: ["Back Pressure Valve", "Bottom Pressure Vessel", "Basic Production Valve", "Backflow Prevention Vessel"],
+      correctIndex: 0,
+      explanation: 'BPV stands for Back Pressure Valve, a valve used to control or maintain pressure within a system.'
+  },
+  {
+      question: 'What does BS&W stand for?',
+      options: ["Basic Separator and Water", "Bottom Sediment and Waste", "Basic Sediment and Water", "Barrel Sediment and Water"],
+      correctIndex: 2,
+      explanation: 'BS&W stands for Basic Sediment and Water, representing the water and sediment content in crude oil.'
+  },
+  {
+      question: 'What does BWPD stand for?',
+      options: ["Barrels of Well Production Daily", "Basic Water Pressure Difference", "Barrels of Water Per Depth", "Barrels of Water Per Day"],
+      correctIndex: 3,
+      explanation: 'BWPD means Barrels of Water Per Day, the daily water production rate.'
+  },
+  {
+      question: 'What does CGR stand for?',
+      options: ["Condensate to Gas Ratio", "Crude Gas Rate", "Combined Gas Recovery", "Condensate Gravity Reading"],
+      correctIndex: 0,
+      explanation: 'CGR stands for Condensate to Gas Ratio, expressing the volume of produced condensate relative to gas production.'
+  },
+  {
+      question: 'What does CHP stand for?',
+      options: ["Choke Hydraulic Pressure", "Casing Head Pressure", "Casing Hydraulic Performance", "Closed Hole Pressure"],
+      correctIndex: 1,
+      explanation: 'CHP stands for Casing Head Pressure, the pressure measured at the casing head.'
+  },
+  {
+      question: 'What does CITHP stand for?',
+      options: ["Casing Internal Test Pressure", "Closed-In Tubing Hydraulic Pressure", "Closed-In Tubing Head Pressure", "Casing Inlet Tubing Head Pressure"],
+      correctIndex: 2,
+      explanation: 'CITHP means Closed-In Tubing Head Pressure, measured at the tubing head when the well is shut in.'
+  },
+  {
+      question: 'What does CM stand for in surface well testing?',
+      options: ["Casing Measurement", "Control Meter", "Combined Manifold", "Choke Manifold"],
+      correctIndex: 3,
+      explanation: 'CM stands for Choke Manifold, an assembly used to control and direct well flow through chokes and valves.'
+  },
+  {
+      question: 'What does CMF stand for?',
+      options: ["Combined Meter Factor", "Calculated Mass Flow", "Choke Measurement Frequency", "Combined Manifold Flow"],
+      correctIndex: 0,
+      explanation: 'CMF stands for Combined Meter Factor, a factor used in calculating corrected metered production.'
+  },
+  {
+      question: 'What does CMSF stand for?',
+      options: ["Combined Meter Safety Factor", "Combined Meter Shrinkage Factor", "Calculated Mass Shrinkage Flow", "Combined Measurement System Factor"],
+      correctIndex: 1,
+      explanation: 'CMSF stands for Combined Meter Shrinkage Factor, used when accounting for shrinkage in production calculations.'
+  },
+  {
+      question: 'What does CO2 represent?',
+      options: ["Carbon Monoxide", "Calcium Oxide", "Carbon Dioxide", "Cobalt Oxide"],
+      correctIndex: 2,
+      explanation: 'CO2 is Carbon Dioxide, a naturally occurring gas that can be present in produced fluids.'
+  },
+  {
+      question: 'What does Csg stand for?',
+      options: ["Control System", "Casing Gas", "Closed Section", "Casing"],
+      correctIndex: 3,
+      explanation: 'Csg is an abbreviation for Casing, the pipe installed in a wellbore to provide structural support.'
+  },
+  {
+      question: 'What does CTU stand for?',
+      options: ["Coiled Tubing Unit", "Control Testing Unit", "Casing Treatment Utility", "Continuous Testing Unit"],
+      correctIndex: 0,
+      explanation: 'CTU stands for Coiled Tubing Unit, equipment used to deploy continuous tubing into a well.'
+  },
+  {
+      question: 'What does DHSV stand for?',
+      options: ["Down Hole Surface Valve", "Downhole Safety Valve", "Dynamic Hydraulic Safety Valve", "Drilling Head Safety Valve"],
+      correctIndex: 1,
+      explanation: 'DHSV stands for Downhole Safety Valve, a safety device installed downhole to shut in the well.'
+  },
+  {
+      question: 'What does DF stand for?',
+      options: ["Drilling Fluid", "Differential Flow", "Derrick Floor", "Dynamic Formation"],
+      correctIndex: 2,
+      explanation: 'DF stands for Derrick Floor, the working floor area of a drilling rig.'
+  },
+  {
+      question: 'What does DFL stand for?',
+      options: ["Dynamic Flow Line", "Downhole Fluid Loss", "Differential Flow Level", "Dynamic Fluid Level"],
+      correctIndex: 3,
+      explanation: 'DFL stands for Dynamic Fluid Level, the fluid level in a well while it is producing or operating.'
+  },
+  {
+      question: 'What does DPR stand for?',
+      options: ["Daily Performance Report", "Daily Pressure Reading", "Drilling Production Rate", "Dynamic Pressure Record"],
+      correctIndex: 0,
+      explanation: 'DPR stands for Daily Performance Report, a report documenting daily operational and production performance.'
+  },
+  {
+      question: 'What does DST stand for?',
+      options: ["Downhole Safety Test", "Drill Stem Test", "Dynamic Surface Testing", "Drilling System Temperature"],
+      correctIndex: 1,
+      explanation: 'DST stands for Drill Stem Test, a formation testing method used to evaluate reservoir fluids and pressure.'
+  },
+  {
+      question: 'What does DWT stand for?',
+      options: ["Dynamic Weight Testing", "Drilling Well Temperature", "Dead Weight Tester", "Differential Water Test"],
+      correctIndex: 2,
+      explanation: 'DWT stands for Dead Weight Tester, a pressure calibration instrument that uses known weights and piston area.'
+  },
+  {
+      question: 'What does ECD stand for?',
+      options: ["Equivalent Choke Diameter", "Effective Circulating Data", "Estimated Column Density", "Equivalent Circulating Density"],
+      correctIndex: 3,
+      explanation: 'ECD stands for Equivalent Circulating Density, the effective mud density when accounting for annular pressure losses during circulation.'
+  },
+  {
+      question: 'What does ESD stand for?',
+      options: ["Emergency Shutdown", "Emergency Safety Device", "External Shut-in Detection", "Electronic System Design"],
+      correctIndex: 0,
+      explanation: 'ESD stands for Emergency Shutdown, a safety function that shuts down equipment or isolates flow during an emergency.'
+  },
+  {
+      question: 'What does ESP stand for?',
+      options: ["Emergency Safety Pressure", "Electrical Submersible Pump", "External Separator Pressure", "Electronic Surface Production"],
+      correctIndex: 1,
+      explanation: 'ESP stands for Electrical Submersible Pump, an artificial lift system using a downhole electric pump.'
+  },
+  {
+      question: 'What does FBHT stand for?',
+      options: ["Formation Bottom Hole Test", "Flowing Borehole Hydraulic Temperature", "Flowing Bottom Hole Temperature", "Formation Based Heating Time"],
+      correctIndex: 2,
+      explanation: 'FBHT stands for Flowing Bottom Hole Temperature, the temperature at the bottom of the well while flowing.'
+  },
+  {
+      question: 'What does FBHP stand for?',
+      options: ["Formation Bottom Hole Pressure", "Flowing Borehole Hydraulic Pressure", "Flowing Back Pressure", "Flowing Bottom Hole Pressure"],
+      correctIndex: 3,
+      explanation: 'FBHP stands for Flowing Bottom Hole Pressure, the pressure at the bottom of the well during production.'
+  },
+  {
+      question: 'What does FCP stand for?',
+      options: ["Flowing Casing Pressure", "Formation Control Pressure", "Flowing Choke Pressure", "Fluid Column Pressure"],
+      correctIndex: 0,
+      explanation: 'FCP stands for Flowing Casing Pressure, the casing pressure measured while the well is flowing.'
+  },
+  {
+      question: 'What does FIT stand for?',
+      options: ["Flow Integrity Test", "Formation Integrity Test", "Fluid Inspection Test", "Formation Injection Test"],
+      correctIndex: 1,
+      explanation: 'FIT stands for Formation Integrity Test, which checks the ability of the formation to withstand a specified pressure.'
+  },
+  {
+      question: 'What does FLP stand for?',
+      options: ["Formation Lift Pressure", "Flowing Liquid Pressure", "Flow Line Pressure", "Fluid Level Pressure"],
+      correctIndex: 2,
+      explanation: 'FLP stands for Flow Line Pressure, the pressure measured in the flowline.'
+  },
+  {
+      question: 'What does Frac stand for?',
+      options: ["Fluid Recovery Analysis", "Formation Rate Assessment", "Flow Restriction Assembly", "Hydraulic Fracturing"],
+      correctIndex: 3,
+      explanation: 'Frac is short for Hydraulic Fracturing, a stimulation technique that creates fractures in the formation to improve flow.'
+  },
+  {
+      question: 'What does FTHP stand for?',
+      options: ["Flowing Tubing Head Pressure", "Formation Tubing Hydraulic Pressure", "Flowing Test Head Pressure", "Fluid Temperature Holding Pressure"],
+      correctIndex: 0,
+      explanation: 'FTHP stands for Flowing Tubing Head Pressure, measured at the tubing head while the well is flowing.'
+  },
+  {
+      question: 'What does FH stand for in surface well testing?',
+      options: ["Flow Header", "Fired Heater", "Flow Hydrate", "Formation Heating"],
+      correctIndex: 1,
+      explanation: 'FH stands for Fired Heater, equipment used to heat produced fluids using a combustion heat source.'
+  },
+  {
+      question: 'What does FTHT stand for?',
+      options: ["Flow Test Hydraulic Temperature", "Formation Tubing Head Temperature", "Flowing Tubing Head Temperature", "Fluid Test Heating Time"],
+      correctIndex: 2,
+      explanation: 'FTHT stands for Flowing Tubing Head Temperature, the temperature measured at the tubing head while flowing.'
+  },
+  {
+      question: 'What does FWHP stand for?',
+      options: ["Flowing Well Hydraulic Pressure", "Formation Well Head Pressure", "Flowing Water Head Pressure", "Flowing Wellhead Pressure"],
+      correctIndex: 3,
+      explanation: 'FWHP stands for Flowing Wellhead Pressure, the pressure measured at the wellhead while the well is flowing.'
+  },
+  {
+      question: 'What does FWV stand for?',
+      options: ["Flowing Wing Valve", "Flowing Water Valve", "Formation Wing Vessel", "Flowline Water Vent"],
+      correctIndex: 0,
+      explanation: 'FWV stands for Flowing Wing Valve, the wing valve used to control the flowing production path.'
+  },
+  {
+      question: 'What does GIIP stand for?',
+      options: ["Gas Injection Into Production", "Gas Initially In Place", "Gas Inlet Inspection Point", "Gross Initial Injection Pressure"],
+      correctIndex: 1,
+      explanation: 'GIIP stands for Gas Initially In Place, the estimated original quantity of gas in a reservoir before production.'
+  },
+  {
+      question: 'What does GLR stand for?',
+      options: ["Gas Lift Recovery", "Gas Line Rate", "Gas Liquid Ratio", "Gas Level Reading"],
+      correctIndex: 2,
+      explanation: 'GLR stands for Gas Liquid Ratio, the ratio of produced gas volume to total produced liquid volume.'
+  },
+  {
+      question: 'What does GL stand for?',
+      options: ["Gas Lift", "Gas Level", "Ground Line", "Ground Level"],
+      correctIndex: 3,
+      explanation: 'GL stands for Ground Level, the elevation of the ground surface used as a reference point.'
+  },
+  {
+      question: 'What does GOC stand for?',
+      options: ["Gas Oil Contact", "Gas Operating Condition", "Gas Output Capacity", "Gravity Oil Calculation"],
+      correctIndex: 0,
+      explanation: 'GOC stands for Gas Oil Contact, the interface between the gas and oil zones in a reservoir.'
+  },
+  {
+      question: 'What does GOR stand for?',
+      options: ["Gas Output Rate", "Gas Oil Ratio", "Gas Operating Recovery", "Gross Oil Recovery"],
+      correctIndex: 1,
+      explanation: 'GOR stands for Gas Oil Ratio, the volume of produced gas divided by the volume of produced oil.'
+  },
+  {
+      question: 'What does GVF stand for?',
+      options: ["Gas Volume Factor", "Gas Velocity Flow", "Gas Volume Fraction", "Gas Viscosity Factor"],
+      correctIndex: 2,
+      explanation: 'GVF stands for Gas Volume Fraction, the proportion of gas in a multiphase fluid stream by volume.'
+  },
+  {
+      question: 'What does GWC stand for?',
+      options: ["Gas Well Condition", "Gas Water Content", "Ground Water Contact", "Gas Water Contact"],
+      correctIndex: 3,
+      explanation: 'GWC stands for Gas Water Contact, the interface between the gas and water zones in a reservoir.'
+  },
+  {
+      question: 'What does H2S stand for?',
+      options: ["Hydrogen Sulphide", "Hydraulic Sulphur System", "Heavy Hydrocarbon Sulphide", "Hydrogen Sulphate"],
+      correctIndex: 0,
+      explanation: 'H2S stands for Hydrogen Sulphide, a highly toxic and flammable gas that requires strict safety precautions.'
+  },
+  {
+      question: 'What does HAZOP stand for?',
+      options: ["Hazardous Zone Operation", "Hazard and Operability", "High Alert Zone Operating Procedure", "Hazard Assessment of Production"],
+      correctIndex: 1,
+      explanation: 'HAZOP stands for Hazard and Operability Study, a systematic method for identifying process hazards and operational problems.'
+  },
+  {
+      question: 'What does HCR stand for?',
+      options: ["High Capacity Regulator", "Hydraulic Control Rating", "High Closing Ratio Valve", "High Circulation Rate"],
+      correctIndex: 2,
+      explanation: 'HCR stands for High Closing Ratio Valve, commonly used in hydraulic safety and control systems.'
+  },
+  {
+      question: 'What does HIPPS stand for?',
+      options: ["High Injection Pressure Protection System", "Hydraulic Integrated Production Pressure System", "High Integrity Process Safety", "High Integrity Pressure Protection System"],
+      correctIndex: 3,
+      explanation: 'HIPPS stands for High Integrity Pressure Protection System, an instrumented safety system designed to prevent overpressure.'
+  },
+  {
+      question: 'What does HPHT stand for?',
+      options: ["High Pressure High Temperature", "High Production Hydraulic Testing", "High Pressure Heating Technology", "Hydraulic Pressure Holding Test"],
+      correctIndex: 0,
+      explanation: 'HPHT stands for High Pressure High Temperature, describing well conditions that require specialized equipment and procedures.'
+  },
+  {
+      question: 'What does ID stand for?',
+      options: ["Internal Depth", "Inner Diameter", "Inside Density", "Instrument Design"],
+      correctIndex: 1,
+      explanation: 'ID stands for Inner Diameter, the internal diameter of a pipe or tubular component.'
+  },
+  {
+      question: 'What does InH2O represent?',
+      options: ["Inlet Hydrogen Pressure", "Internal Height of Water", "Inches of Water", "Inches of Hydraulic Oil"],
+      correctIndex: 2,
+      explanation: 'InH2O means Inches of Water, a pressure unit commonly used for low differential pressures in gas measurement.'
+  },
+  {
+      question: 'What does IPR stand for?',
+      options: ["Internal Pressure Reading", "Injection Performance Rate", "Inflow Pressure Resistance", "Inflow Performance Relationship"],
+      correctIndex: 3,
+      explanation: 'IPR stands for Inflow Performance Relationship, describing the relationship between reservoir pressure and well production rate.'
+  },
+  {
+      question: 'What does J represent in reservoir engineering?',
+      options: ["Productivity Index", "Joule Pressure", "Gas Saturation", "Injection Factor"],
+      correctIndex: 0,
+      explanation: 'J represents the Productivity Index, which describes the ability of a well to produce fluids for a given pressure drawdown.'
+  },
+  {
+      question: 'What does K represent in reservoir engineering?',
+      options: ["Formation Pressure", "Permeability", "Oil Saturation", "Gas Compressibility"],
+      correctIndex: 1,
+      explanation: 'K represents Permeability, the ability of a porous rock to transmit fluids.'
+  },
+  {
+      question: 'What does KB stand for?',
+      options: ["Kelly Base", "Key Bore", "Kelly Bushing", "Known Bottom"],
+      correctIndex: 2,
+      explanation: 'KB stands for Kelly Bushing, a reference elevation used in drilling and well measurements.'
+  },
+  {
+      question: 'What does KBPD stand for?',
+      options: ["Kilobarrel Per Depth", "Known Barrels Per Day", "Kilobytes Per Day", "Thousand Barrels Per Day"],
+      correctIndex: 3,
+      explanation: 'KBPD means Thousand Barrels Per Day, a unit used to express large production rates.'
+  },
+  {
+      question: 'What does kPa stand for?',
+      options: ["Kilopascal", "Kilopressure Area", "Kinetic Pressure Analysis", "Known Pascal"],
+      correctIndex: 0,
+      explanation: 'kPa stands for Kilopascal, a pressure unit equal to 1,000 pascals.'
+  },
+  {
+      question: 'What does kpsi represent?',
+      options: ["Kilopascal Per Square Inch", "Thousand Pounds Per Square Inch", "Kilo Pressure System Indicator", "Thousand Kilopascals"],
+      correctIndex: 1,
+      explanation: 'kpsi means thousand pounds per square inch. One kpsi equals 1,000 psi.'
+  },
+  {
+      question: 'What does Kr stand for?',
+      options: ["Reservoir Permeability", "Relative Pressure", "Relative Permeability", "Rock Porosity"],
+      correctIndex: 2,
+      explanation: 'Kr represents Relative Permeability, describing the effective permeability of a fluid relative to the absolute permeability of the rock.'
+  },
+  {
+      question: 'What does Kro represent?',
+      options: ["Oil Recovery", "Oil Formation Factor", "Oil Flow Rate", "Relative Permeability to Oil"],
+      correctIndex: 3,
+      explanation: 'Kro represents Relative Permeability to Oil, indicating how easily oil flows through the porous rock in the presence of other fluids.'
+  },
+  {
+      question: 'What does Krg represent?',
+      options: ["Relative Permeability to Gas", "Gas Recovery Factor", "Gas Formation Volume Factor", "Gas Saturation"],
+      correctIndex: 0,
+      explanation: 'Krg represents Relative Permeability to Gas, describing the ability of gas to flow through the reservoir rock.'
+  },
+  {
+      question: 'What does Krw represent?',
+      options: ["Water Recovery Factor", "Relative Permeability to Water", "Water Formation Volume Factor", "Water Cut"],
+      correctIndex: 1,
+      explanation: 'Krw represents Relative Permeability to Water, describing the ability of water to flow through the reservoir rock.'
+  },
+  {
+      question: 'What does KWV stand for?',
+      options: ["Known Water Volume", "Kill Water Vessel", "Kill Wing Valve", "Key Well Valve"],
+      correctIndex: 2,
+      explanation: 'KWV stands for Kill Wing Valve, a valve on the wellhead used for well intervention and kill operations.'
+  },
+  {
+      question: 'What does LCM stand for?',
+      options: ["Liquid Control Manifold", "Low Circulation Measurement", "Lost Control Mechanism", "Lost Circulation Material"],
+      correctIndex: 3,
+      explanation: 'LCM stands for Lost Circulation Material, material added to drilling fluid to reduce or stop fluid losses into the formation.'
+  },
+  {
+      question: 'What does LCV stand for?',
+      options: ["Level Control Valve", "Liquid Check Valve", "Low Capacity Vessel", "Line Control Volume"],
+      correctIndex: 0,
+      explanation: 'LCV stands for Level Control Valve, a control valve used to regulate liquid level in equipment such as separators.'
+  },
+  {
+      question: 'What does LMV stand for?',
+      options: ["Liquid Master Valve", "Lower Master Valve", "Line Measurement Valve", "Low-pressure Main Valve"],
+      correctIndex: 1,
+      explanation: 'LMV stands for Lower Master Valve, the lower master valve in a wellhead valve arrangement.'
+  },
+  {
+      question: 'What does LOTO stand for?',
+      options: ["Line Operation and Testing Order", "Low Output Temperature Operation", "Lock Out Tag Out", "Liquid Output Transfer Operation"],
+      correctIndex: 2,
+      explanation: 'LOTO stands for Lock Out Tag Out, a safety procedure used to isolate hazardous energy before maintenance.'
+  },
+  {
+      question: 'What does LFM stand for?',
+      options: ["Liquid Flow Measurement", "Low Frequency Meter", "Line Flow Monitor", "Liquid Flow Meter"],
+      correctIndex: 3,
+      explanation: 'LFM stands for Liquid Flow Meter, an instrument used to measure liquid flow rate.'
+  },
+  {
+      question: 'What does LOT stand for?',
+      options: ["Leak Off Test", "Liquid Output Test", "Line Operating Temperature", "Loss of Tubing"],
+      correctIndex: 0,
+      explanation: 'LOT stands for Leak Off Test, used to determine the pressure at which the formation begins to accept fluid.'
+  },
+  {
+      question: 'What does LVF stand for?',
+      options: ["Liquid Volume Factor", "Level Volume Fraction", "Low Velocity Flow", "Liquid Vapor Fraction"],
+      correctIndex: 1,
+      explanation: 'LVF stands for Level Volume Fraction, describing the fraction of volume occupied by liquid at a particular level or measurement.'
+  },
+  {
+      question: 'What does LWD stand for?',
+      options: ["Logging Well Depth", "Low Weight Drilling", "Logging While Drilling", "Liquid While Drilling"],
+      correctIndex: 2,
+      explanation: 'LWD stands for Logging While Drilling, a method of acquiring formation measurements while drilling.'
+  },
+  {
+      question: 'What does MBPD stand for?',
+      options: ["Million Barrels Per Depth", "Meter Barrels Per Day", "Maximum Barrels Per Day", "Million Barrels Per Day"],
+      correctIndex: 3,
+      explanation: 'MBPD means Million Barrels Per Day, a unit for expressing very large liquid production rates.'
+  },
+  {
+      question: 'What does MDT stand for?',
+      options: ["Modular Formation Dynamic Tester", "Measurement Drilling Tool", "Maximum Downhole Temperature", "Multi-Directional Testing"],
+      correctIndex: 0,
+      explanation: 'MDT stands for Modular Formation Dynamics Tester, a wireline formation testing tool used to obtain pressure and fluid samples.'
+  },
+  {
+      question: 'What does MF stand for in metering?',
+      options: ["Mass Flow", "Meter Factor", "Measurement Frequency", "Maximum Flow"],
+      correctIndex: 1,
+      explanation: 'MF stands for Meter Factor, a correction factor used to adjust measured meter output to the actual volume.'
+  },
+  {
+      question: 'What does MSCFD stand for?',
+      options: ["Million Standard Cubic Feet Daily", "Meter Standard Cubic Flow Data", "Thousand Standard Cubic Feet per Day", "Maximum Standard Cubic Flow Density"],
+      correctIndex: 2,
+      explanation: 'MSCFD means Thousand Standard Cubic Feet per Day, a unit used for gas production rates.'
+  },
+  {
+      question: 'What does MMSCFD stand for?',
+      options: ["Metered Mass Standard Cubic Feet Daily", "Maximum Million Standard Cubic Flow Data", "Million Meter Standard Cubic Feet Daily", "Million Standard Cubic Feet per Day"],
+      correctIndex: 3,
+      explanation: 'MMSCFD means Million Standard Cubic Feet per Day, a unit for large gas production rates.'
+  },
+  {
+      question: 'What does MPFM stand for?',
+      options: ["Multi-Phase Flow Meter", "Maximum Pressure Flow Monitor", "Metered Production Fluid Measurement", "Multi-Pressure Formation Meter"],
+      correctIndex: 0,
+      explanation: 'MPFM stands for Multi-Phase Flow Meter, an instrument that measures oil, gas, and water flow rates without necessarily separating the phases.'
+  },
+  {
+      question: 'What does MPI stand for in inspection?',
+      options: ["Mechanical Pressure Inspection", "Magnetic Particle Inspection", "Maximum Performance Indicator", "Material Pressure Integrity"],
+      correctIndex: 1,
+      explanation: 'MPI stands for Magnetic Particle Inspection, a non-destructive testing method used to detect surface and near-surface defects in ferromagnetic materials.'
+  },
+  {
+      question: 'What does MSL stand for?',
+      options: ["Maximum Safety Level", "Mean Surface Location", "Mean Sea Level", "Measured Static Level"],
+      correctIndex: 2,
+      explanation: 'MSL stands for Mean Sea Level, a vertical reference datum used for elevation measurements.'
+  },
+  {
+      question: 'What does MW stand for in drilling?',
+      options: ["Mechanical Work", "Maximum Weight", "Mud Water", "Mud Weight"],
+      correctIndex: 3,
+      explanation: 'MW stands for Mud Weight, the density of drilling fluid, commonly expressed in ppg or kg/m³.'
+  },
+  {
+      question: 'What does MWD stand for?',
+      options: ["Measurement While Drilling", "Monitoring Well Depth", "Mechanical Weight Drilling", "Mud Weight Detection"],
+      correctIndex: 0,
+      explanation: 'MWD stands for Measurement While Drilling, a system that provides drilling and directional measurements while drilling.'
+  },
+  {
+      question: 'What does MWV stand for?',
+      options: ["Main Water Valve", "Master Wing Valve", "Mechanical Well Valve", "Maximum Working Volume"],
+      correctIndex: 1,
+      explanation: 'MWV stands for Master Wing Valve, a wellhead valve used to control flow through the wing outlet.'
+  },
+  {
+      question: 'What does NACE stand for?',
+      options: ["National Association of Chemical Engineers", "National Authority for Corrosion Evaluation", "National Association of Corrosion Engineers", "North American Chemical Equipment"],
+      correctIndex: 2,
+      explanation: 'NACE stands for National Association of Corrosion Engineers, historically associated with corrosion control standards and practices.'
+  },
+  {
+      question: 'What does NaCl stand for?',
+      options: ["Nitrogen Chloride", "Natural Calcium Liquid", "Sodium Carbonate", "Sodium Chloride"],
+      correctIndex: 3,
+      explanation: 'NaCl is Sodium Chloride, commonly known as salt, and is an important component of produced water and brines.'
+  },
+  {
+      question: 'What does NPT stand for?',
+      options: ["National Pipe Thread", "Nominal Pressure Test", "Non-Pressure Tubing", "National Production Tool"],
+      correctIndex: 0,
+      explanation: 'NPT stands for National Pipe Thread, a tapered thread standard used for pipe connections.'
+  },
+  {
+      question: 'What does NWA stand for according to the supplied dictionary?',
+      options: ["Natural Well Analysis", "Natural Work Area", "Normal Working Arrangement", "National Water Association"],
+      correctIndex: 1,
+      explanation: 'NWA is listed in the supplied dictionary as Natural Work Area.'
+  },
+  {
+      question: 'What does OD stand for?',
+      options: ["Operating Depth", "Oil Density", "Outer Diameter", "Open Discharge"],
+      correctIndex: 2,
+      explanation: 'OD stands for Outer Diameter, the external diameter of a pipe or tubular component.'
+  },
+  {
+      question: 'What does OGR stand for?',
+      options: ["Oil Gas Recovery", "Operating Gas Ratio", "Oil Gravity Reading", "Oil Gas Ratio"],
+      correctIndex: 3,
+      explanation: 'OGR stands for Oil Gas Ratio, expressing the ratio of oil volume to gas volume.'
+  },
+  {
+      question: 'What does OGIP stand for?',
+      options: ["Original Gas In Place", "Oil Gas Injection Pressure", "Original Gas Injection Point", "Operating Gas In Production"],
+      correctIndex: 0,
+      explanation: 'OGIP stands for Original Gas In Place, the original volume of gas contained in a reservoir before production.'
+  },
+  {
+      question: 'What does OLR stand for?',
+      options: ["Oil Recovery Level", "Oil Liquid Ratio", "Operating Liquid Rate", "Oil Lift Recovery"],
+      correctIndex: 1,
+      explanation: 'OLR stands for Oil Liquid Ratio, the ratio of oil production to total liquid production.'
+  },
+  {
+      question: 'What does OLP stand for?',
+      options: ["Oil Line Pressure", "Operating Lift Pressure", "Oil Lift Performance", "Oil Liquid Production"],
+      correctIndex: 2,
+      explanation: 'OLP stands for Oil Lift Performance, describing the performance relationship of an oil lift system.'
+  },
+  {
+      question: 'What does OOIP stand for?',
+      options: ["Oil Output In Production", "Original Oil Injection Pressure", "Operating Oil In Place", "Original Oil In Place"],
+      correctIndex: 3,
+      explanation: 'OOIP stands for Original Oil In Place, the original quantity of oil present in a reservoir before production.'
+  },
+  {
+      question: 'What does OWC stand for?',
+      options: ["Oil Water Contact", "Oil Well Condition", "Operating Water Cut", "Oil Water Content"],
+      correctIndex: 0,
+      explanation: 'OWC stands for Oil Water Contact, the interface between the oil and water zones in a reservoir.'
+  },
+  {
+      question: 'What does P&ID stand for?',
+      options: ["Production and Inspection Diagram", "Piping and Instrumentation Diagram", "Pressure and Injection Design", "Process and Installation Data"],
+      correctIndex: 1,
+      explanation: 'P&ID stands for Piping and Instrumentation Diagram, showing process equipment, piping, instruments, and control systems.'
+  },
+  {
+      question: 'What does Pc represent in reservoir engineering?',
+      options: ["Production Capacity", "Critical Pressure", "Capillary Pressure", "Casing Pressure"],
+      correctIndex: 2,
+      explanation: 'Pc represents Capillary Pressure, the pressure difference across the interface between two immiscible fluids in porous media.'
+  },
+  {
+      question: 'What does PCP stand for?',
+      options: ["Pressure Control Pump", "Production Circulation Pump", "Primary Casing Pressure", "Progressive Cavity Pump"],
+      correctIndex: 3,
+      explanation: 'PCP stands for Progressive Cavity Pump, an artificial lift pump commonly used for viscous fluids and sand production.'
+  },
+  {
+      question: 'What does PCV stand for?',
+      options: ["Pressure Control Valve", "Production Check Valve", "Pressure Circulation Vessel", "Primary Control Volume"],
+      correctIndex: 0,
+      explanation: 'PCV stands for Pressure Control Valve, a valve that regulates system pressure.'
+  },
+  {
+      question: 'What does Pe represent?',
+      options: ["Production Efficiency", "External Boundary Pressure", "Effective Permeability", "Entry Pressure"],
+      correctIndex: 1,
+      explanation: 'Pe represents External Boundary Pressure in the supplied reservoir engineering terminology.'
+  },
+  {
+      question: 'What does Perf stand for?',
+      options: ["Performance Factor", "Pressure Formation", "Perforation", "Permeability Factor"],
+      correctIndex: 2,
+      explanation: 'Perf is short for Perforation, an opening made through casing and cement to establish communication with the formation.'
+  },
+  {
+      question: 'What does PI stand for?',
+      options: ["Pressure Indicator", "Production Injection", "Permeability Index", "Productivity Index"],
+      correctIndex: 3,
+      explanation: 'PI stands for Productivity Index, a measure of well productivity based on production rate divided by pressure drawdown.'
+  },
+  {
+      question: 'What does PII stand for?',
+      options: ["Process Improvement Initiatives", "Pressure Injection Indicator", "Production Integrity Inspection", "Petroleum Industry Institute"],
+      correctIndex: 0,
+      explanation: 'PII stands for Process Improvement Initiatives, referring to activities designed to improve operational processes.'
+  },
+  {
+      question: 'What does Pkr stand for?',
+      options: ["Pressure Keeper", "Packer", "Production Key Rate", "Permeability Ratio"],
+      correctIndex: 1,
+      explanation: 'Pkr is an abbreviation for Packer, a downhole device used to isolate sections of the wellbore.'
+  },
+  {
+      question: 'What does psi stand for?',
+      options: ["Pressure System Indicator", "Pounds per Square Inch Gauge", "Pound per Square Inch", "Pressure Standard International"],
+      correctIndex: 2,
+      explanation: 'psi stands for Pound per Square Inch, a unit of pressure.'
+  },
+  {
+      question: 'What does PSIA stand for?',
+      options: ["Pressure Standard Internal Area", "Pounds per Square Inch Applied", "Pressure System Inch Absolute", "Pounds per Square Inch Absolute"],
+      correctIndex: 3,
+      explanation: 'PSIA stands for Pounds per Square Inch Absolute, pressure measured relative to a perfect vacuum.'
+  },
+  {
+      question: 'What does PSIG stand for?',
+      options: ["Pounds per Square Inch Gauge", "Pounds per Square Inch Gravity", "Pressure System Indicator Gauge", "Pounds per Square Inch General"],
+      correctIndex: 0,
+      explanation: 'PSIG stands for Pounds per Square Inch Gauge, pressure measured relative to atmospheric pressure.'
+  },
+  {
+      question: 'What does PSL stand for?',
+      options: ["Pressure Safety Limit", "Product Service Line", "Production System Level", "Pressure Setting Location"],
+      correctIndex: 1,
+      explanation: 'PSL stands for Product Service Line, a classification used in oilfield service and equipment product lines.'
+  },
+  {
+      question: 'What does PSV stand for?',
+      options: ["Pressure Setting Valve", "Production Safety Vessel", "Pressure Safety Valve", "Primary Shutoff Valve"],
+      correctIndex: 2,
+      explanation: 'PSV stands for Pressure Safety Valve, a protective device designed to relieve excess pressure.'
+  },
+  {
+      question: 'What does POOH stand for?',
+      options: ["Pressure Out of Hole", "Production Operation on Hold", "Pulling Oil Out of Hole", "Pull Out of Hole"],
+      correctIndex: 3,
+      explanation: 'POOH means Pull Out of Hole, the operation of removing the drill string or tubular equipment from the well.'
+  },
+  {
+      question: 'What does PPE stand for?',
+      options: ["Personal Protective Equipment", "Pressure Protection Equipment", "Petroleum Production Engineering", "Process Prevention Equipment"],
+      correctIndex: 0,
+      explanation: 'PPE stands for Personal Protective Equipment, such as helmets, gloves, safety glasses, and protective clothing.'
+  },
+  {
+      question: 'What does PPM stand for?',
+      options: ["Pressure Per Meter", "Parts Per Million", "Production Per Month", "Pounds Per Minute"],
+      correctIndex: 1,
+      explanation: 'PPM stands for Parts Per Million, a unit expressing the concentration of a substance.'
+  },
+  {
+      question: 'What does PRV stand for?',
+      options: ["Pressure Regulation Vessel", "Production Relief Valve", "Pressure Relief Valve", "Primary Return Valve"],
+      correctIndex: 2,
+      explanation: 'PRV stands for Pressure Relief Valve, a device that releases excess pressure to protect equipment.'
+  },
+  {
+      question: 'What does Pr represent?',
+      options: ["Production Rate", "Pressure Ratio", "Relative Permeability", "Reservoir Pressure"],
+      correctIndex: 3,
+      explanation: 'Pr represents Reservoir Pressure, the pressure of fluids within the reservoir.'
+  },
+  {
+      question: 'What does PVT stand for?',
+      options: ["Pressure Volume Temperature", "Production Valve Testing", "Pressure Velocity Time", "Petroleum Volume Transfer"],
+      correctIndex: 0,
+      explanation: 'PVT stands for Pressure Volume Temperature, describing the behavior and properties of reservoir fluids under different conditions.'
+  },
+  {
+      question: 'What does Pwf stand for?',
+      options: ["Pressure Well Formation", "Flowing Bottom Hole Pressure", "Production Water Factor", "Pressure While Flowing"],
+      correctIndex: 1,
+      explanation: 'Pwf represents Flowing Bottom Hole Pressure, the pressure at the bottom of a producing well.'
+  },
+  {
+      question: 'What does Pwh represent?',
+      options: ["Pressure While Holding", "Production Well Height", "Wellhead Pressure", "Pressure Water Head"],
+      correctIndex: 2,
+      explanation: 'Pwh represents Wellhead Pressure, the pressure measured at the wellhead. WHP is another common abbreviation.'
+  },
+  {
+      question: 'Which abbreviation represents Gas Flow Rate?',
+      options: ["Qo", "Qw", "Qf", "Qg"],
+      correctIndex: 3,
+      explanation: 'Qg represents Gas Flow Rate, while Qo represents oil flow rate and Qw represents water flow rate.'
+  },
+  {
+      question: 'Which abbreviation represents Oil Flow Rate?',
+      options: ["Qo", "Qg", "Qw", "Qp"],
+      correctIndex: 0,
+      explanation: 'Qo represents Oil Flow Rate, commonly expressed in barrels per day.'
+  },
+  {
+      question: 'Which abbreviation represents Water Flow Rate?',
+      options: ["Qg", "Qw", "Qo", "Qf"],
+      correctIndex: 1,
+      explanation: 'Qw represents Water Flow Rate, commonly expressed in barrels per day.'
+  },
+  {
+      question: 'What does RC stand for?',
+      options: ["Recovery Capacity", "Reservoir Condition Pressure", "Reservoir Condition", "Relative Concentration"],
+      correctIndex: 2,
+      explanation: 'RC stands for Reservoir Condition, referring to the pressure and temperature conditions of the reservoir.'
+  },
+  {
+      question: 'What does RF stand for?',
+      options: ["Reservoir Flow", "Relative Formation", "Recovery Formation", "Recovery Factor"],
+      correctIndex: 3,
+      explanation: 'RF stands for Recovery Factor, the fraction of original hydrocarbons in place that can be recovered.'
+  },
+  {
+      question: 'What does RFT stand for?',
+      options: ["Repeat Formation Tester", "Reservoir Flow Temperature", "Rotary Formation Test", "Relative Flow Testing"],
+      correctIndex: 0,
+      explanation: 'RFT stands for Repeat Formation Tester, a wireline tool used to measure formation pressure and obtain fluid samples.'
+  },
+  {
+      question: 'What does RKB stand for?',
+      options: ["Reservoir Kelly Base", "Rotary Kelly Bushing Elevation", "Rotary Key Bore", "Reference Kickoff Base"],
+      correctIndex: 1,
+      explanation: 'RKB stands for Rotary Kelly Bushing Elevation, a drilling reference elevation used in well measurements.'
+  },
+  {
+      question: 'What does RIH stand for?',
+      options: ["Reservoir Inspection Hole", "Rotary Injection Head", "Run In Hole", "Return Into Hydraulic"],
+      correctIndex: 2,
+      explanation: 'RIH means Run In Hole, the operation of lowering equipment into the well.'
+  },
+  {
+      question: 'What does RT stand for in drilling?',
+      options: ["Reservoir Temperature", "Return Time", "Rotating Tubing", "Rotary Table"],
+      correctIndex: 3,
+      explanation: 'RT stands for Rotary Table, equipment used to rotate the drill string on a drilling rig.'
+  },
+  {
+      question: 'What does RTTS stand for?',
+      options: ["Retrieve Test Treat Squeeze Packer", "Rotary Tubing Testing System", "Reservoir Temperature Testing Service", "Retrievable Tubing Safety System"],
+      correctIndex: 0,
+      explanation: 'RTTS stands for Retrieve Test Treat Squeeze Packer, a retrievable packer used for testing, treating, and squeeze operations.'
+  },
+  {
+      question: 'What does SBHT stand for?',
+      options: ["Static Borehole Hydraulic Temperature", "Static Bottom Hole Temperature", "Surface Bottom Hole Test", "Shut-in Borehole Temperature"],
+      correctIndex: 1,
+      explanation: 'SBHT stands for Static Bottom Hole Temperature, the bottom-hole temperature under static or shut-in conditions.'
+  },
+  {
+      question: 'What does SBHP stand for?',
+      options: ["Surface Bottom Hole Pressure", "Static Borehole Hydraulic Pressure", "Static Bottom Hole Pressure", "Shut-in Back Pressure"],
+      correctIndex: 2,
+      explanation: 'SBHP stands for Static Bottom Hole Pressure, the bottom-hole pressure under static or shut-in conditions.'
+  },
+  {
+      question: 'What does SC stand for in production calculations?',
+      options: ["Safety Condition", "Surface Casing", "Standard Capacity", "Separator Condition"],
+      correctIndex: 3,
+      explanation: 'SC stands for Separator Condition, referring to the pressure and temperature conditions inside the separator.'
+  },
+  {
+      question: 'What does SCABA stand for?',
+      options: ["Self-Contained Breathing Apparatus", "Safety Control Air Breathing Assembly", "Surface Controlled Air Breathing Apparatus", "Standard Compressed Air Breathing Arrangement"],
+      correctIndex: 0,
+      explanation: 'SCABA stands for Self-Contained Breathing Apparatus, respiratory protection equipment used in hazardous atmospheres.'
+  },
+  {
+      question: 'What does SCF stand for?',
+      options: ["Standard Cubic Flow", "Standard Cubic Feet", "Surface Condition Factor", "Standard Compression Factor"],
+      correctIndex: 1,
+      explanation: 'SCF stands for Standard Cubic Feet, a unit of gas volume measured at defined standard conditions.'
+  },
+  {
+      question: 'What does SCSSV stand for?',
+      options: ["Surface Controlled Safety System Valve", "Subsea Controlled Safety Shut Valve", "Surface Controlled Subsurface Safety Valve", "Standard Casing Safety Shutoff Valve"],
+      correctIndex: 2,
+      explanation: 'SCSSV stands for Surface Controlled Subsurface Safety Valve, a downhole safety valve operated from the surface.'
+  },
+  {
+      question: 'What does Sg represent?',
+      options: ["Gas Flow Rate", "Gas Gravity", "Gas Formation Factor", "Gas Saturation"],
+      correctIndex: 3,
+      explanation: 'Sg represents Gas Saturation, the fraction of pore space occupied by gas.'
+  },
+  {
+      question: 'What does SG stand for?',
+      options: ["Specific Gravity", "Standard Gas", "Surface Gradient", "Separator Gauge"],
+      correctIndex: 0,
+      explanation: 'SG stands for Specific Gravity, the ratio of a substance density to a reference density.'
+  },
+  {
+      question: 'What does Sep. P stand for?',
+      options: ["Separation Performance", "Separator Pressure", "Separator Production", "Separation Point"],
+      correctIndex: 1,
+      explanation: 'Sep. P stands for Separator Pressure, the operating pressure inside the separator.'
+  },
+  {
+      question: 'What does Sep. T stand for?',
+      options: ["Separator Testing", "Separation Time", "Separator Temperature", "Separator Thickness"],
+      correctIndex: 2,
+      explanation: 'Sep. T stands for Separator Temperature, the operating temperature inside the separator.'
+  },
+  {
+      question: 'What does SFL stand for?',
+      options: ["Surface Flow Line", "Static Formation Level", "Shut-in Fluid Loss", "Static Fluid Level"],
+      correctIndex: 3,
+      explanation: 'SFL stands for Static Fluid Level, the fluid level in a well under static conditions.'
+  },
+  {
+      question: 'What does SIBHP stand for?',
+      options: ["Shut-In Bottom Hole Pressure", "Static Inlet Back Pressure", "Surface Injection Bottom Hole Pressure", "Shut-in Borehole Hydraulic Pressure"],
+      correctIndex: 0,
+      explanation: 'SIBHP stands for Shut-In Bottom Hole Pressure, measured at the bottom of a well when it is shut in.'
+  },
+  {
+      question: 'What does SITHP stand for?',
+      options: ["Surface Injection Tubing Head Pressure", "Shut-In Tubing Head Pressure", "Static Inlet Tubing Hydraulic Pressure", "Shut-In Test Hydraulic Pressure"],
+      correctIndex: 1,
+      explanation: 'SITHP stands for Shut-In Tubing Head Pressure, the pressure measured at the tubing head when the well is shut in.'
+  },
+  {
+      question: 'What does SICP stand for?',
+      options: ["Surface Injection Control Pressure", "Static Internal Casing Pressure", "Shut-In Casing Pressure", "Safety Inlet Control Pressure"],
+      correctIndex: 2,
+      explanation: 'SICP stands for Shut-In Casing Pressure, the casing pressure measured while the well is shut in.'
+  },
+  {
+      question: 'What does So represent?',
+      options: ["Oil Flow Rate", "Oil Gravity", "Oil Formation Factor", "Oil Saturation"],
+      correctIndex: 3,
+      explanation: 'So represents Oil Saturation, the fraction of pore space occupied by oil.'
+  },
+  {
+      question: 'What does Sor represent?',
+      options: ["Residual Oil Saturation", "Relative Oil Saturation", "Reservoir Oil Rate", "Remaining Oil Recovery"],
+      correctIndex: 0,
+      explanation: 'Sor stands for Residual Oil Saturation, the oil saturation remaining after displacement by another fluid.'
+  },
+  {
+      question: 'What does SOP stand for?',
+      options: ["Safety Operating Pressure", "Standard Operating Procedures", "Surface Operation Plan", "System Operating Performance"],
+      correctIndex: 1,
+      explanation: 'SOP stands for Standard Operating Procedures, documented instructions for performing operations safely and consistently.'
+  },
+  {
+      question: 'What does SRP stand for?',
+      options: ["Surface Recovery Pump", "Subsurface Rotary Pump", "Sucker Rod Pump", "Standard Reservoir Pressure"],
+      correctIndex: 2,
+      explanation: 'SRP stands for Sucker Rod Pump, an artificial lift system that uses reciprocating sucker rods to operate a downhole pump.'
+  },
+  {
+      question: 'What does SS stand for in offshore terminology?',
+      options: ["Safety System", "Surface Separator", "Shut-in Status", "Sub Sea"],
+      correctIndex: 3,
+      explanation: 'SS stands for Sub Sea, referring to equipment or operations located below the sea surface.'
+  },
+  {
+      question: 'What does SSSV stand for?',
+      options: ["Sub-Surface Safety Valve", "Surface Safety Shutoff Valve", "Subsea System Safety Valve", "Standard Surface Shut Valve"],
+      correctIndex: 0,
+      explanation: 'SSSV stands for Sub-Surface Safety Valve, a safety valve installed below the surface in a well.'
+  },
+  {
+      question: 'What does SSV stand for?',
+      options: ["Subsurface Safety Valve", "Surface Safety Valve", "Shut-in Service Valve", "Standard Separator Valve"],
+      correctIndex: 1,
+      explanation: 'SSV stands for Surface Safety Valve, a surface-installed valve that automatically shuts down flow during unsafe conditions.'
+  },
+  {
+      question: 'What does STB stand for?',
+      options: ["Separator Test Barrel", "Standard Tubing Bore", "Stock Tank Barrel", "Surface Test Block"],
+      correctIndex: 2,
+      explanation: 'STB stands for Stock Tank Barrel, the oil volume measured at stock tank conditions.'
+  },
+  {
+      question: 'What does STC stand for?',
+      options: ["Surface Testing Condition", "Standard Temperature Calculation", "Separator Test Condition", "Stock Tank Condition"],
+      correctIndex: 3,
+      explanation: 'STC stands for Stock Tank Condition, the reference conditions used for measuring stock tank oil.'
+  },
+  {
+      question: 'What does STOIIP stand for?',
+      options: ["Stock Tank Oil Initially In Place", "Standard Tank Oil Injection Pressure", "Surface Tank Oil In Production", "Stock Tank Original Injection In Place"],
+      correctIndex: 0,
+      explanation: 'STOIIP stands for Stock Tank Oil Initially In Place, the original oil volume in the reservoir expressed at stock tank conditions.'
+  },
+  {
+      question: 'What does STT stand for?',
+      options: ["Standard Test Tubing", "Surface Test Tree", "Subsurface Tubing Tool", "Safety Testing Terminal"],
+      correctIndex: 1,
+      explanation: 'STT stands for Surface Test Tree, equipment installed on the wellhead to control and monitor well flow during testing.'
+  },
+  {
+      question: 'What does Sw represent?',
+      options: ["Water Flow Rate", "Water Cut", "Water Saturation", "Water Gravity"],
+      correctIndex: 2,
+      explanation: 'Sw represents Water Saturation, the fraction of pore space occupied by water.'
+  },
+  {
+      question: 'What does Swi represent?',
+      options: ["Water Injection Rate", "Water Initial Flow", "Water Saturation Index", "Initial Water Saturation"],
+      correctIndex: 3,
+      explanation: 'Swi stands for Initial Water Saturation, the water saturation present before hydrocarbon production.'
+  },
+  {
+      question: 'What does SWT stand for?',
+      options: ["Surface Well Testing", "Subsurface Water Treatment", "Standard Well Temperature", "Surface Water Transfer"],
+      correctIndex: 0,
+      explanation: 'SWT stands for Surface Well Testing, the process of measuring and evaluating produced fluids at the surface.'
+  },
+  {
+      question: 'What does S&W stand for?',
+      options: ["Safety and Wellhead", "Sediment and Water", "Separator and Water", "Surface and Waste"],
+      correctIndex: 1,
+      explanation: 'S&W stands for Sediment and Water, referring to the non-hydrocarbon material present in produced oil.'
+  },
+  {
+      question: 'What does Tbg stand for?',
+      options: ["Testing Background", "Tubing Gas", "Tubing", "Temperature Below Ground"],
+      correctIndex: 2,
+      explanation: 'Tbg is an abbreviation for Tubing, the pipe through which produced fluids are transported to the surface.'
+  },
+  {
+      question: 'What does TCP stand for?',
+      options: ["Tubing Control Pressure", "Test Casing Pressure", "Tubular Connection Point", "Tubing Conveyed Perforation"],
+      correctIndex: 3,
+      explanation: 'TCP stands for Tubing Conveyed Perforation, a perforating method in which the gun is conveyed into the well using tubing.'
+  },
+  {
+      question: 'What does TD stand for?',
+      options: ["Total Depth", "Tubing Diameter", "Temperature Difference", "Test Depth"],
+      correctIndex: 0,
+      explanation: 'TD stands for Total Depth, the final measured depth reached by the well.'
+  },
+  {
+      question: 'What does THD stand for according to the supplied dictionary?',
+      options: ["Tubing Head Pressure", "Tubing Head Density", "Total Hydraulic Depth", "Tubular Hydraulic Diameter"],
+      correctIndex: 1,
+      explanation: 'THD is listed in the supplied dictionary as Tubing Head Density.'
+  },
+  {
+      question: 'What does THP stand for?',
+      options: ["Total Hydraulic Pressure", "Tubing Hydraulic Performance", "Tubing Head Pressure", "Test Header Pressure"],
+      correctIndex: 2,
+      explanation: 'THP stands for Tubing Head Pressure, the pressure measured at the tubing head.'
+  },
+  {
+      question: 'What does THSP stand for?',
+      options: ["Tubing Hydraulic Safety Pressure", "Total Head Shut-in Pressure", "Tubing High Surface Pressure", "Tubing Head Shut-in Pressure"],
+      correctIndex: 3,
+      explanation: 'THSP stands for Tubing Head Shut-in Pressure, measured at the tubing head when the well is shut in.'
+  },
+  {
+      question: 'What does TMU stand for?',
+      options: ["Trailer Mounted Unit", "Tubing Measurement Unit", "Testing Manifold Utility", "Transport Mechanical Unit"],
+      correctIndex: 0,
+      explanation: 'TMU stands for Trailer Mounted Unit, equipment installed on a trailer for transport and field operations.'
+  },
+  {
+      question: 'What does TPR stand for?',
+      options: ["Tubing Pressure Reading", "Tubing Performance Relationship", "Total Production Rate", "Tubing Pressure Resistance"],
+      correctIndex: 1,
+      explanation: 'TPR stands for Tubing Performance Relationship, describing the pressure and flow relationship through the tubing.'
+  },
+  {
+      question: 'What does TVD stand for?',
+      options: ["Total Vertical Distance", "Tubing Vertical Depth", "True Vertical Depth", "Tested Vertical Distance"],
+      correctIndex: 2,
+      explanation: 'TVD stands for True Vertical Depth, the vertical distance from a reference point to a point in the well.'
+  },
+  {
+      question: 'What does UBD stand for?',
+      options: ["Upper Balanced Drilling", "Underbalanced Density", "Unified Borehole Design", "Underbalanced Drilling"],
+      correctIndex: 3,
+      explanation: 'UBD stands for Underbalanced Drilling, a drilling technique in which wellbore pressure is maintained below formation pressure.'
+  },
+  {
+      question: 'What does UMV stand for?',
+      options: ["Upper Master Valve", "Underwater Main Valve", "Upper Manifold Vent", "Universal Master Vessel"],
+      correctIndex: 0,
+      explanation: 'UMV stands for Upper Master Valve, the upper master valve in a wellhead valve arrangement.'
+  },
+  {
+      question: 'What does VLP stand for?',
+      options: ["Vertical Line Pressure", "Vertical Lift Performance", "Valve Lift Pressure", "Variable Liquid Production"],
+      correctIndex: 1,
+      explanation: 'VLP stands for Vertical Lift Performance, describing the pressure requirements for lifting fluids from the bottom of a well to the surface.'
+  },
+  {
+      question: 'What does WC stand for?',
+      options: ["Well Condition", "Water Contact", "Water Cut", "Water Capacity"],
+      correctIndex: 2,
+      explanation: 'WC stands for Water Cut, the percentage of water in the total produced liquid volume.'
+  },
+  {
+      question: 'What does WGR stand for?',
+      options: ["Well Gas Recovery", "Water Gas Recovery", "Water Gravity Ratio", "Water Gas Ratio"],
+      correctIndex: 3,
+      explanation: 'WGR stands for Water Gas Ratio, the volume of produced water relative to produced gas.'
+  },
+  {
+      question: 'What does WHCT stand for?',
+      options: ["Wellhead Choke Temperature", "Wellhead Control Testing", "Wellhead Casing Temperature", "Wing Head Control Temperature"],
+      correctIndex: 0,
+      explanation: 'WHCT stands for Wellhead Choke Temperature, the temperature measured at or around the wellhead choke.'
+  },
+  {
+      question: 'What does WHCP stand for?',
+      options: ["Wellhead Casing Pressure", "Wellhead Choke Pressure", "Wellhead Control Panel", "Wing Head Control Pressure"],
+      correctIndex: 1,
+      explanation: 'WHCP stands for Wellhead Choke Pressure, the pressure measured at the choke on the wellhead.'
+  },
+  {
+      question: 'What does WHFT stand for?',
+      options: ["Wellhead Flow Test", "Wellhead Formation Temperature", "Wellhead Flowing Temperature", "Wellhead Fluid Transfer"],
+      correctIndex: 2,
+      explanation: 'WHFT stands for Wellhead Flowing Temperature, the temperature measured at the wellhead while the well is flowing.'
+  },
+  {
+      question: 'What does WHFP stand for?',
+      options: ["Wellhead Formation Pressure", "Wellhead Flow Pressure", "Wellhead Fluid Performance", "Wellhead Flowing Pressure"],
+      correctIndex: 3,
+      explanation: 'WHFP stands for Wellhead Flowing Pressure, the pressure measured at the wellhead while the well is flowing.'
+  },
+  {
+      question: 'What does WHT stand for?',
+      options: ["Wellhead Temperature", "Wellhead Testing", "Water Holding Temperature", "Well Hydraulic Test"],
+      correctIndex: 0,
+      explanation: 'WHT stands for Wellhead Temperature, the temperature measured at the wellhead.'
+  },
+  {
+      question: 'What does WHP stand for?',
+      options: ["Well Hydraulic Performance", "Wellhead Pressure", "Well Holding Pressure", "Water Head Pressure"],
+      correctIndex: 1,
+      explanation: 'WHP stands for Wellhead Pressure, the pressure measured at the wellhead.'
+  },
+  {
+      question: 'What does WLR stand for?',
+      options: ["Well Liquid Recovery", "Water Lift Rate", "Water Liquid Ratio", "Well Level Reading"],
+      correctIndex: 2,
+      explanation: 'WLR stands for Water Liquid Ratio, the ratio of produced water volume to total produced liquid volume.'
+  },
+  {
+      question: 'What does WHSIP stand for?',
+      options: ["Wellhead High Surface Injection Pressure", "Wellhead Hydraulic Shut-in Pressure", "Wellhead Safety Inspection Point", "Wellhead Shut-In Pressure"],
+      correctIndex: 3,
+      explanation: 'WHSIP stands for Wellhead Shut-In Pressure, the pressure measured at the wellhead when the well is shut in.'
+  },
+  {
+      question: 'What does WHSIT stand for?',
+      options: ["Wellhead Shut-In Temperature", "Wellhead Surface Inspection Test", "Wellhead Safety Isolation Time", "Wellhead Static Injection Temperature"],
+      correctIndex: 0,
+      explanation: 'WHSIT stands for Wellhead Shut-In Temperature, the temperature measured at the wellhead under shut-in conditions.'
+  },
+  {
+      question: 'What does WSV stand for?',
+      options: ["Well Surface Vessel", "Wing Safety Valve", "Water Shutoff Valve", "Well Service Vent"],
+      correctIndex: 1,
+      explanation: 'WSV stands for Wing Safety Valve, a safety valve installed on the wing outlet of the wellhead.'
+  },
+  {
+      question: 'What does WOC stand for?',
+      options: ["Well Operating Condition", "Water Oil Content", "Water Oil Contact", "Well Output Capacity"],
+      correctIndex: 2,
+      explanation: 'WOC stands for Water Oil Contact, the interface between water and oil zones in a reservoir.'
+  },
+  {
+      question: 'What does WOR stand for?',
+      options: ["Well Operating Rate", "Water Output Recovery", "Water Oil Recovery", "Water Oil Ratio"],
+      correctIndex: 3,
+      explanation: 'WOR stands for Water Oil Ratio, the volume of produced water divided by the volume of produced oil.'
+  },
+  {
+      question: 'What does WP stand for?',
+      options: ["Working Pressure", "Well Performance", "Water Production", "Working Point"],
+      correctIndex: 0,
+      explanation: 'WP stands for Working Pressure, the pressure at which equipment is intended to operate.'
+  },
+  {
+      question: 'What does XLOT stand for?',
+      options: ["Extended Logging Operation Test", "Extended Leak Off Test", "External Line Operating Temperature", "Extra Low Operating Test"],
+      correctIndex: 1,
+      explanation: 'XLOT stands for Extended Leak Off Test, a formation pressure test used to obtain additional information about formation stress and fracture behavior.'
+  },
+  {
+      question: 'What does XO stand for?',
+      options: ["External Outlet", "Extra Opening", "CrossOver", "Expansion Outlet"],
+      correctIndex: 2,
+      explanation: 'XO stands for CrossOver, a connector used to join components with different connection types or sizes.'
+  },
+  {
+      question: 'What does the Greek symbol φ represent in reservoir engineering?',
+      options: ["Permeability", "Pressure", "Fluid Density", "Porosity"],
+      correctIndex: 3,
+      explanation: 'φ (phi) represents Porosity, the fraction of the total rock volume occupied by pore spaces.'
+  },
+  {
+      question: 'What does the symbol ∅ represent in the supplied well testing dictionary?',
+      options: ["Orifice Plate Size", "Porosity", "Pipe Pressure", "Flow Rate"],
+      correctIndex: 0,
+      explanation: '∅ represents Orifice Plate Size, referring to the diameter of the orifice opening.'
+  },
+  {
+      question: 'Which pressure measurement is referenced to atmospheric pressure?',
+      options: ["PSIA", "PSIG", "BHP", "SBHP"],
+      correctIndex: 1,
+      explanation: 'PSIG is gauge pressure, measured relative to atmospheric pressure. PSIA is absolute pressure, measured relative to a perfect vacuum.'
+  },
+  {
+      question: 'Which pressure measurement is referenced to a perfect vacuum?',
+      options: ["PSIG", "THP", "PSIA", "FLP"],
+      correctIndex: 2,
+      explanation: 'PSIA is absolute pressure, measured from a perfect vacuum. It includes atmospheric pressure.'
+  },
+  {
+      question: 'Which abbreviation describes the percentage of water in the total produced liquid?',
+      options: ["WOR", "WGR", "GLR", "WC"],
+      correctIndex: 3,
+      explanation: 'WC (Water Cut) is the percentage of water in the total produced liquid volume.'
+  },
+  {
+      question: 'Which ratio compares produced gas volume with produced oil volume?',
+      options: ["GOR", "WOR", "GLR", "CGR"],
+      correctIndex: 0,
+      explanation: 'GOR (Gas Oil Ratio) is the ratio of produced gas volume to produced oil volume.'
+  },
+  {
+      question: 'Which ratio compares produced water volume with produced oil volume?',
+      options: ["GLR", "WOR", "GOR", "CGR"],
+      correctIndex: 1,
+      explanation: 'WOR (Water Oil Ratio) is the volume of produced water divided by the volume of produced oil.'
+  },
+  {
+      question: 'Which equipment measures oil, gas, and water flow without requiring conventional phase separation?',
+      options: ["LFM", "DWT", "MPFM", "PCV"],
+      correctIndex: 2,
+      explanation: 'An MPFM (Multi-Phase Flow Meter) measures the flow rates of multiple phases in a flowing stream.'
+  },
+  {
+      question: 'Which equipment is used to control liquid level in a separator?',
+      options: ["PCV", "PSV", "FWV", "LCV"],
+      correctIndex: 3,
+      explanation: 'LCV (Level Control Valve) regulates liquid discharge to maintain the required separator liquid level.'
+  },
+  {
+      question: 'Which device protects a pressurized system by releasing excess pressure?',
+      options: ["PSV", "PCV", "LCV", "BPV"],
+      correctIndex: 0,
+      explanation: 'PSV (Pressure Safety Valve) protects equipment against overpressure by opening at a predetermined pressure.'
+  },
+  {
+      question: 'Which device is used to calibrate pressure instruments using known weights?',
+      options: ["MPFM", "Dead Weight Tester", "DWT Flow Meter", "RTTS Packer"],
+      correctIndex: 1,
+      explanation: 'A Dead Weight Tester uses calibrated masses and a known piston area to generate accurate reference pressure.'
+  },
+  {
+      question: 'Which parameter describes the ability of reservoir rock to allow fluids to pass through it?',
+      options: ["Porosity", "Saturation", "Permeability", "Specific Gravity"],
+      correctIndex: 2,
+      explanation: 'Permeability describes the ability of porous rock to transmit fluids, while porosity describes the amount of pore space.'
+  },
+  {
+      question: 'Which parameter represents the fraction of rock volume occupied by pore spaces?',
+      options: ["Relative Permeability", "Recovery Factor", "Oil Saturation", "Porosity"],
+      correctIndex: 3,
+      explanation: 'Porosity is the ratio of pore volume to total bulk rock volume.'
+  },
+  {
+      question: 'What is the difference between FBHP and SBHP?',
+      options: ["FBHP is measured during flow, while SBHP is measured under static or shut-in conditions.", "FBHP is casing pressure, while SBHP is separator pressure.", "FBHP is surface pressure, while SBHP is atmospheric pressure.", "There is no difference."],
+      correctIndex: 0,
+      explanation: 'FBHP is Flowing Bottom Hole Pressure during production. SBHP is Static Bottom Hole Pressure under static or shut-in conditions.'
+  },
+  {
+      question: 'What is the difference between SITHP and FTHP?',
+      options: ["Both represent separator pressure.", "SITHP is tubing head pressure when shut in, while FTHP is tubing head pressure while flowing.", "SITHP is casing pressure, while FTHP is bottom-hole pressure.", "Both represent flowing bottom-hole pressure."],
+      correctIndex: 1,
+      explanation: 'SITHP is measured at the tubing head under shut-in conditions, whereas FTHP is measured at the tubing head during flowing conditions.'
+  },
+  {
+      question: 'Which two parameters are used to describe the pressure and temperature inside a separator?',
+      options: ["WHP and WHT", "FBHP and FBHT", "Sep. P and Sep. T", "SITHP and SICP"],
+      correctIndex: 2,
+      explanation: 'Sep. P represents Separator Pressure and Sep. T represents Separator Temperature.'
+  },
+  {
+      question: 'What is the main difference between ID and OD?',
+      options: ["ID is pipe length, OD is pipe weight.", "ID is pipe thickness, OD is pipe pressure.", "ID is outside diameter, OD is inside diameter.", "ID is inner diameter, OD is outer diameter."],
+      correctIndex: 3,
+      explanation: 'ID measures the internal diameter of a pipe, while OD measures its external diameter.'
+  },
+  {
+      question: 'Which abbreviation represents the original oil volume in a reservoir expressed at stock tank conditions?',
+      options: ["STOIIP", "GIIP", "OGIP", "RF"],
+      correctIndex: 0,
+      explanation: 'STOIIP means Stock Tank Oil Initially In Place, representing original oil in place at stock tank conditions.'
+  },
+  {
+      question: 'Which abbreviation represents the original gas volume in a reservoir before production?',
+      options: ["GOR", "OGIP", "GLR", "GVF"],
+      correctIndex: 1,
+      explanation: 'OGIP means Original Gas In Place, the original quantity of gas contained in the reservoir.'
+  },
+  {
+      question: 'Which abbreviation represents the operation of lowering equipment into a well?',
+      options: ["POOH", "DST", "RIH", "LWD"],
+      correctIndex: 2,
+      explanation: 'RIH means Run In Hole, while POOH means Pull Out of Hole.'
+  },
+  {
+      question: 'Which abbreviation represents the operation of removing equipment from a well?',
+      options: ["RIH", "TCP", "DST", "POOH"],
+      correctIndex: 3,
+      explanation: 'POOH means Pull Out of Hole, the operation of retrieving equipment from the well.'
+  },
+  {
+      question: 'Which device is installed downhole to shut in the well during an emergency?',
+      options: ["DHSV", "PCV", "LCV", "MPFM"],
+      correctIndex: 0,
+      explanation: 'DHSV stands for Downhole Safety Valve, which provides a means of shutting in the well below the surface.'
+  },
+  {
+      question: 'Which valve is installed on the surface wellhead to provide emergency flow isolation?',
+      options: ["KWV", "SSV", "BPV", "LCV"],
+      correctIndex: 1,
+      explanation: 'SSV stands for Surface Safety Valve, a surface safety device that can shut down production.'
+  },
+  {
+      question: 'Which abbreviation represents a safety valve controlled from the surface but installed downhole?',
+      options: ["SSV", "WSV", "SCSSV", "FWV"],
+      correctIndex: 2,
+      explanation: 'SCSSV stands for Surface Controlled Subsurface Safety Valve. It is installed downhole and operated from the surface.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure measured at the casing head?',
+      options: ["THP", "WHP", "FTHP", "CHP"],
+      correctIndex: 3,
+      explanation: 'CHP stands for Casing Head Pressure, measured at the casing head.'
+  },
+  {
+      question: 'Which abbreviation represents pressure measured at the wellhead while the well is shut in?',
+      options: ["WHSIP", "WHFP", "FWHP", "FLP"],
+      correctIndex: 0,
+      explanation: 'WHSIP represents Wellhead Shut-In Pressure, measured when the well is closed in.'
+  },
+  {
+      question: 'Which abbreviation represents temperature measured at the wellhead while the well is shut in?',
+      options: ["WHFT", "WHSIT", "WHCT", "FTHT"],
+      correctIndex: 1,
+      explanation: 'WHSIT represents Wellhead Shut-In Temperature, while WHFT represents Wellhead Flowing Temperature.'
+  },
+  {
+      question: 'Which abbreviation represents the temperature at the tubing head during flowing conditions?',
+      options: ["WHT", "WHCT", "FTHT", "FBHT"],
+      correctIndex: 2,
+      explanation: 'FTHT stands for Flowing Tubing Head Temperature.'
+  },
+  {
+      question: 'Which abbreviation represents the temperature at the bottom of a well during flowing conditions?',
+      options: ["SBHT", "WHT", "FTHT", "FBHT"],
+      correctIndex: 3,
+      explanation: 'FBHT stands for Flowing Bottom Hole Temperature, while SBHT represents Static Bottom Hole Temperature.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure at the bottom of a well under shut-in conditions?',
+      options: ["SBHP", "FBHP", "FCP", "SICP"],
+      correctIndex: 0,
+      explanation: 'SBHP stands for Static Bottom Hole Pressure. FBHP is measured under flowing conditions.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure at the bottom of a well during flowing conditions?',
+      options: ["SBHP", "FBHP", "SIBHP", "SITHP"],
+      correctIndex: 1,
+      explanation: 'FBHP stands for Flowing Bottom Hole Pressure.'
+  },
+  {
+      question: 'Which test determines the pressure at which a formation starts accepting fluid?',
+      options: ["DST", "FIT", "LOT", "MPI"],
+      correctIndex: 2,
+      explanation: 'LOT (Leak Off Test) determines the pressure at which fluid begins to leak into the formation.'
+  },
+  {
+      question: 'Which test is used to assess formation integrity against a specified pressure?',
+      options: ["XLOT", "DWT", "RFT", "FIT"],
+      correctIndex: 3,
+      explanation: 'FIT (Formation Integrity Test) checks whether the formation can withstand a specified pressure without failure.'
+  },
+  {
+      question: 'Which test provides additional information about formation stress and fracture behavior?',
+      options: ["XLOT", "FIT", "DWT", "DST"],
+      correctIndex: 0,
+      explanation: 'XLOT stands for Extended Leak Off Test and is used to obtain additional information about formation stress and fracture pressure.'
+  },
+  {
+      question: 'Which abbreviation represents an instrument used to measure liquid flow?',
+      options: ["DWT", "LFM", "PSV", "LCV"],
+      correctIndex: 1,
+      explanation: 'LFM stands for Liquid Flow Meter, an instrument used to measure liquid flow rate.'
+  },
+  {
+      question: 'Which abbreviation represents the factor used to correct a meter reading?',
+      options: ["CMSF", "CGR", "MF", "GVF"],
+      correctIndex: 2,
+      explanation: 'MF stands for Meter Factor, a correction factor applied to the indicated meter reading.'
+  },
+  {
+      question: 'Which abbreviation represents the ratio of condensate volume to gas volume?',
+      options: ["GOR", "WGR", "GLR", "CGR"],
+      correctIndex: 3,
+      explanation: 'CGR stands for Condensate to Gas Ratio, expressing condensate production relative to gas production.'
+  },
+  {
+      question: 'Which parameter represents the fraction of pore space occupied by gas?',
+      options: ["Sg", "So", "Sw", "Sor"],
+      correctIndex: 0,
+      explanation: 'Sg represents Gas Saturation. So represents Oil Saturation and Sw represents Water Saturation.'
+  },
+  {
+      question: 'Which parameter represents the fraction of pore space occupied by water?',
+      options: ["So", "Sw", "Sg", "Swi"],
+      correctIndex: 1,
+      explanation: 'Sw represents Water Saturation, while Swi represents Initial Water Saturation.'
+  },
+  {
+      question: 'Which parameter represents the fraction of pore space occupied by oil?',
+      options: ["Sg", "Sor", "So", "Sw"],
+      correctIndex: 2,
+      explanation: 'So represents Oil Saturation, the fraction of pore space occupied by oil.'
+  },
+  {
+      question: 'Which parameter represents the oil remaining after displacement by another fluid?',
+      options: ["Swi", "So", "Sg", "Sor"],
+      correctIndex: 3,
+      explanation: 'Sor represents Residual Oil Saturation, the oil that remains trapped in the pore spaces after displacement.'
+  },
+  {
+      question: 'Which unit represents a gas flow rate of one million standard cubic feet per day?',
+      options: ["MMSCFD", "MSCFD", "SCF", "MBPD"],
+      correctIndex: 0,
+      explanation: 'MMSCFD means Million Standard Cubic Feet per Day, a common unit for high gas production rates.'
+  },
+  {
+      question: 'Which unit represents a gas flow rate of one thousand standard cubic feet per day?',
+      options: ["MMSCFD", "MSCFD", "MBPD", "KBPD"],
+      correctIndex: 1,
+      explanation: 'MSCFD means Thousand Standard Cubic Feet per Day.'
+  },
+  {
+      question: 'Which unit represents one thousand barrels per day?',
+      options: ["MBPD", "BOPD", "KBPD", "BPD"],
+      correctIndex: 2,
+      explanation: 'KBPD represents Thousand Barrels Per Day.'
+  },
+  {
+      question: 'Which unit represents one million barrels per day?',
+      options: ["KBPD", "BPD", "BOPD", "MBPD"],
+      correctIndex: 3,
+      explanation: 'MBPD represents Million Barrels Per Day.'
+  },
+  {
+      question: 'Which abbreviation represents a valve used to control the production flow through the wing outlet?',
+      options: ["FWV", "LCV", "PCV", "PSV"],
+      correctIndex: 0,
+      explanation: 'FWV stands for Flowing Wing Valve, which controls the flowing production path at the wellhead.'
+  },
+  {
+      question: 'Which abbreviation represents the upper master valve?',
+      options: ["LMV", "UMV", "MWV", "KWV"],
+      correctIndex: 1,
+      explanation: 'UMV stands for Upper Master Valve, whereas LMV stands for Lower Master Valve.'
+  },
+  {
+      question: 'Which abbreviation represents the lower master valve?',
+      options: ["UMV", "MWV", "LMV", "WSV"],
+      correctIndex: 2,
+      explanation: 'LMV stands for Lower Master Valve, located below the upper master valve in the wellhead arrangement.'
+  },
+  {
+      question: 'Which abbreviation represents the master wing valve?',
+      options: ["FWV", "KWV", "WSV", "MWV"],
+      correctIndex: 3,
+      explanation: 'MWV stands for Master Wing Valve, a wellhead valve on the wing outlet.'
+  },
+  {
+      question: 'Which abbreviation represents the kill wing valve?',
+      options: ["KWV", "FWV", "MWV", "UMV"],
+      correctIndex: 0,
+      explanation: 'KWV stands for Kill Wing Valve, used for well intervention and kill operations.'
+  },
+  {
+      question: 'Which abbreviation represents the wing safety valve?',
+      options: ["SSSV", "WSV", "FWV", "DHSV"],
+      correctIndex: 1,
+      explanation: 'WSV stands for Wing Safety Valve, a safety valve installed on the wellhead wing outlet.'
+  },
+  {
+      question: 'Which abbreviation represents the equipment used to prevent uncontrolled well flow during drilling?',
+      options: ["PSV", "SSV", "BOP", "PCV"],
+      correctIndex: 2,
+      explanation: 'BOP stands for Blowout Preventer, a critical well-control device used to prevent uncontrolled flow.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure at the tubing head when the well is shut in?',
+      options: ["FTHP", "THP", "FWHP", "SITHP"],
+      correctIndex: 3,
+      explanation: 'SITHP stands for Shut-In Tubing Head Pressure.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure at the casing head when the well is shut in?',
+      options: ["SICP", "CHP", "FCP", "SITHP"],
+      correctIndex: 0,
+      explanation: 'SICP stands for Shut-In Casing Pressure.'
+  },
+  {
+      question: 'Which abbreviation represents the wellhead pressure while flowing?',
+      options: ["SITHP", "FWHP", "SBHP", "SICP"],
+      correctIndex: 1,
+      explanation: 'FWHP stands for Flowing Wellhead Pressure.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure in the flowline?',
+      options: ["FCP", "CHP", "FLP", "FTHP"],
+      correctIndex: 2,
+      explanation: 'FLP stands for Flow Line Pressure, measured in the flowline carrying produced fluids.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure in the flowing casing?',
+      options: ["SICP", "FTHP", "FWHP", "FCP"],
+      correctIndex: 3,
+      explanation: 'FCP stands for Flowing Casing Pressure, the casing pressure measured during flowing conditions.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure at the flowing tubing head?',
+      options: ["FTHP", "SITHP", "SBHP", "CHP"],
+      correctIndex: 0,
+      explanation: 'FTHP stands for Flowing Tubing Head Pressure.'
+  },
+  {
+      question: 'Which abbreviation represents the relationship between reservoir pressure and well production rate?',
+      options: ["TPR", "IPR", "VLP", "GOR"],
+      correctIndex: 1,
+      explanation: 'IPR stands for Inflow Performance Relationship, which describes the inflow behavior from the reservoir into the well.'
+  },
+  {
+      question: 'Which abbreviation represents the performance relationship of fluid flowing through the tubing?',
+      options: ["IPR", "OLP", "TPR", "WOR"],
+      correctIndex: 2,
+      explanation: 'TPR stands for Tubing Performance Relationship, which describes pressure losses and flow behavior in the tubing.'
+  },
+  {
+      question: 'Which abbreviation represents the performance of vertical fluid lifting?',
+      options: ["IPR", "TPR", "OLP", "VLP"],
+      correctIndex: 3,
+      explanation: 'VLP stands for Vertical Lift Performance, describing the pressure required to lift fluids from the bottom of the well to the surface.'
+  },
+  {
+      question: 'Which abbreviation represents the ratio of gas volume to total liquid volume?',
+      options: ["GLR", "GOR", "WOR", "CGR"],
+      correctIndex: 0,
+      explanation: 'GLR stands for Gas Liquid Ratio, the volume of gas produced relative to the total liquid volume.'
+  },
+  {
+      question: 'Which abbreviation represents the ratio of water volume to gas volume?',
+      options: ["WOR", "WGR", "GOR", "GLR"],
+      correctIndex: 1,
+      explanation: 'WGR stands for Water Gas Ratio, comparing produced water volume with produced gas volume.'
+  },
+  {
+      question: 'Which abbreviation represents the ratio of water volume to total liquid volume?',
+      options: ["WOR", "WGR", "WLR", "WC"],
+      correctIndex: 2,
+      explanation: 'WLR stands for Water Liquid Ratio, comparing water production with total liquid production.'
+  },
+  {
+      question: 'Which abbreviation represents the ratio of oil volume to total liquid volume?',
+      options: ["GOR", "CGR", "WLR", "OLR"],
+      correctIndex: 3,
+      explanation: 'OLR stands for Oil Liquid Ratio, comparing oil production with total liquid production.'
+  },
+  {
+      question: 'Which abbreviation represents the ratio of oil volume to gas volume?',
+      options: ["OGR", "GOR", "GLR", "CGR"],
+      correctIndex: 0,
+      explanation: 'OGR stands for Oil Gas Ratio, comparing oil volume with gas volume. GOR is the inverse ratio.'
+  },
+  {
+      question: 'Which abbreviation represents a test used to evaluate a formation through the drill string?',
+      options: ["FIT", "DST", "LOT", "MPI"],
+      correctIndex: 1,
+      explanation: 'DST stands for Drill Stem Test, used to evaluate formation pressure, permeability, and fluid production potential.'
+  },
+  {
+      question: 'Which abbreviation represents a tool used to measure formation pressure and obtain fluid samples through wireline?',
+      options: ["DWT", "MDT", "RFT", "MPFM"],
+      correctIndex: 2,
+      explanation: 'RFT stands for Repeat Formation Tester, a wireline tool used to measure formation pressure and collect formation fluid samples.'
+  },
+  {
+      question: 'Which abbreviation represents a modular formation testing tool?',
+      options: ["RFT", "DST", "DWT", "MDT"],
+      correctIndex: 3,
+      explanation: 'MDT stands for Modular Formation Dynamics Tester, a modular wireline formation testing tool.'
+  },
+  {
+      question: 'Which abbreviation represents the equipment used to test, treat, and squeeze a well through a retrievable packer?',
+      options: ["RTTS", "TCP", "CTU", "BHA"],
+      correctIndex: 0,
+      explanation: 'RTTS stands for Retrieve Test Treat Squeeze Packer, used in well testing and treatment operations.'
+  },
+  {
+      question: 'Which abbreviation represents a method of perforating using tubing to convey the guns?',
+      options: ["RIH", "TCP", "DST", "LWD"],
+      correctIndex: 1,
+      explanation: 'TCP stands for Tubing Conveyed Perforation, where perforating guns are conveyed into the well on tubing.'
+  },
+  {
+      question: 'Which abbreviation represents continuous tubing used for well intervention?',
+      options: ["BHA", "TMU", "CTU", "STT"],
+      correctIndex: 2,
+      explanation: 'CTU stands for Coiled Tubing Unit, used to deploy coiled tubing into a well for intervention and other operations.'
+  },
+  {
+      question: 'Which abbreviation represents the assembly located at the bottom of the drill string?',
+      options: ["RT", "KB", "TD", "BHA"],
+      correctIndex: 3,
+      explanation: 'BHA stands for Bottom Hole Assembly, the collection of tools and components at the bottom of the drill string.'
+  },
+  {
+      question: 'Which abbreviation represents logging measurements acquired while drilling?',
+      options: ["LWD", "MWD", "RFT", "MDT"],
+      correctIndex: 0,
+      explanation: 'LWD stands for Logging While Drilling, while MWD stands for Measurement While Drilling.'
+  },
+  {
+      question: 'Which abbreviation represents drilling measurements acquired during drilling operations?',
+      options: ["LWD", "MWD", "MDT", "RFT"],
+      correctIndex: 1,
+      explanation: 'MWD stands for Measurement While Drilling, providing real-time drilling and directional measurements.'
+  },
+  {
+      question: 'Which abbreviation represents the density of drilling mud?',
+      options: ["ECD", "SG", "MW", "K"],
+      correctIndex: 2,
+      explanation: 'MW stands for Mud Weight, which is the density of drilling fluid.'
+  },
+  {
+      question: 'Which parameter accounts for annular pressure losses when calculating equivalent circulating mud density?',
+      options: ["MW", "SG", "BHT", "ECD"],
+      correctIndex: 3,
+      explanation: 'ECD stands for Equivalent Circulating Density, accounting for the effect of circulating pressure losses.'
+  },
+  {
+      question: 'Which abbreviation represents the material added to drilling fluid to reduce losses into the formation?',
+      options: ["LCM", "LOTO", "LOT", "NPT"],
+      correctIndex: 0,
+      explanation: 'LCM stands for Lost Circulation Material, used to reduce or stop drilling fluid losses.'
+  },
+  {
+      question: 'Which abbreviation represents a procedure that isolates hazardous energy before maintenance?',
+      options: ["HAZOP", "LOTO", "PPE", "ESD"],
+      correctIndex: 1,
+      explanation: 'LOTO stands for Lock Out Tag Out, used to prevent accidental energization or release of stored energy.'
+  },
+  {
+      question: 'Which abbreviation represents a systematic study to identify process hazards and operability problems?',
+      options: ["SOP", "LOTO", "HAZOP", "P&ID"],
+      correctIndex: 2,
+      explanation: 'HAZOP stands for Hazard and Operability Study, a structured process safety assessment.'
+  },
+  {
+      question: 'Which abbreviation represents equipment worn to protect workers from workplace hazards?',
+      options: ["ESD", "SCABA", "HIPPS", "PPE"],
+      correctIndex: 3,
+      explanation: 'PPE stands for Personal Protective Equipment, including helmets, gloves, safety glasses, and protective clothing.'
+  },
+  {
+      question: 'Which equipment provides respiratory protection in an atmosphere that may contain H2S?',
+      options: ["SCABA", "LCV", "MPFM", "DWT"],
+      correctIndex: 0,
+      explanation: 'SCABA stands for Self-Contained Breathing Apparatus, providing breathing air independent of the surrounding atmosphere.'
+  },
+  {
+      question: 'Which gas is represented by H2S and requires special precautions because of its toxicity?',
+      options: ["Carbon Dioxide", "Hydrogen Sulphide", "Carbon Monoxide", "Methane"],
+      correctIndex: 1,
+      explanation: 'H2S is Hydrogen Sulphide, a highly toxic gas that can cause rapid loss of consciousness and death at high concentrations.'
+  },
+  {
+      question: 'Which chemical formula represents Carbon Dioxide?',
+      options: ["H2S", "NaCl", "CO2", "O2"],
+      correctIndex: 2,
+      explanation: 'CO2 represents Carbon Dioxide, which may be present in produced gas and can contribute to corrosion in the presence of water.'
+  },
+  {
+      question: 'Which chemical formula represents Sodium Chloride?',
+      options: ["CO2", "H2S", "CaCO3", "NaCl"],
+      correctIndex: 3,
+      explanation: 'NaCl represents Sodium Chloride, commonly known as salt.'
+  },
+  {
+      question: 'Which abbreviation represents the standard unit of pressure equal to 1,000 pascals?',
+      options: ["kPa", "kpsi", "psi", "InH2O"],
+      correctIndex: 0,
+      explanation: 'kPa stands for Kilopascal. One kilopascal equals 1,000 pascals.'
+  },
+  {
+      question: 'Which unit is commonly used to express low differential pressure in gas metering?',
+      options: ["kpsi", "InH2O", "MBPD", "BPD"],
+      correctIndex: 1,
+      explanation: 'InH2O (Inches of Water) is commonly used for low differential pressure measurements, including orifice metering.'
+  },
+  {
+      question: 'Which unit represents pressure in pounds per square inch?',
+      options: ["kPa", "SCF", "psi", "BPD"],
+      correctIndex: 2,
+      explanation: 'psi stands for Pound per Square Inch, a common pressure measurement unit in the oilfield.'
+  },
+  {
+      question: 'Which unit represents one thousand pounds per square inch?',
+      options: ["psi", "kPa", "InH2O", "kpsi"],
+      correctIndex: 3,
+      explanation: 'kpsi represents thousand pounds per square inch. One kpsi equals 1,000 psi.'
+  },
+  {
+      question: 'Which term describes the amount of gas present in a reservoir before production?',
+      options: ["GIIP", "GOR", "GLR", "GVF"],
+      correctIndex: 0,
+      explanation: 'GIIP stands for Gas Initially In Place, the initial volume of gas in a reservoir.'
+  },
+  {
+      question: 'Which term describes the original gas in place using the abbreviation OGIP?',
+      options: ["Gas Oil Ratio", "Original Gas In Place", "Gas Initially In Place", "Gas Volume Fraction"],
+      correctIndex: 1,
+      explanation: 'OGIP means Original Gas In Place, representing the original quantity of gas contained in the reservoir.'
+  },
+  {
+      question: 'Which term describes the original oil in place?',
+      options: ["Oil Liquid Ratio", "Oil Gas Ratio", "OOIP", "OLP"],
+      correctIndex: 2,
+      explanation: 'OOIP stands for Original Oil In Place, the original oil quantity in a reservoir.'
+  },
+  {
+      question: 'Which abbreviation represents stock tank oil initially in place?',
+      options: ["OOIP", "OGIP", "STB", "STOIIP"],
+      correctIndex: 3,
+      explanation: 'STOIIP stands for Stock Tank Oil Initially In Place, the original oil quantity expressed at stock tank conditions.'
+  },
+  {
+      question: 'Which abbreviation represents the fraction of hydrocarbons in place that is recovered?',
+      options: ["RF", "PI", "IPR", "Pr"],
+      correctIndex: 0,
+      explanation: 'RF stands for Recovery Factor, the proportion of original hydrocarbons in place that has been or can be recovered.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure of fluids within the reservoir?',
+      options: ["Pr", "Pwf", "FCP", "WHP"],
+      correctIndex: 0,
+      explanation: 'Pr represents Reservoir Pressure. Pwf represents Flowing Bottom Hole Pressure.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure at the bottom of the well during production?',
+      options: ["Pr", "Pwf", "Pwh", "SITHP"],
+      correctIndex: 1,
+      explanation: 'Pwf represents Flowing Bottom Hole Pressure, while Pwh represents Wellhead Pressure.'
+  },
+  {
+      question: 'Which abbreviation represents the wellhead pressure?',
+      options: ["Pwf", "Pr", "Pwh", "Pc"],
+      correctIndex: 2,
+      explanation: 'Pwh represents Wellhead Pressure, also commonly written as WHP.'
+  },
+  {
+      question: 'Which abbreviation represents capillary pressure?',
+      options: ["Pe", "Pr", "Pc", "Pwf"],
+      correctIndex: 2,
+      explanation: 'Pc represents Capillary Pressure, the pressure difference between two immiscible fluids across a curved interface.'
+  },
+  {
+      question: 'Which abbreviation represents external boundary pressure in the supplied dictionary?',
+      options: ["Pc", "Pr", "Pwf", "Pe"],
+      correctIndex: 3,
+      explanation: 'Pe represents External Boundary Pressure in the supplied dictionary.'
+  },
+  {
+      question: 'Which Greek symbol represents porosity?',
+      options: ["φ", "∅", "π", "Δ"],
+      correctIndex: 0,
+      explanation: 'φ (phi) is the symbol commonly used for porosity in reservoir engineering.'
+  },
+  {
+      question: 'Which symbol represents the orifice plate opening size in the supplied dictionary?',
+      options: ["φ", "∅", "ΔP", "π"],
+      correctIndex: 1,
+      explanation: '∅ represents the orifice plate diameter or bore size in the supplied dictionary.'
+  },
+  {
+      question: 'Which abbreviation represents the pressure relief device used to protect a system against overpressure?',
+      options: ["PCV", "LCV", "PSV", "FWV"],
+      correctIndex: 2,
+      explanation: 'PSV stands for Pressure Safety Valve, a protective device designed to relieve excessive pressure.'
+  },
+  {
+      question: 'Which abbreviation represents a valve used to regulate system pressure?',
+      options: ["LCV", "FWV", "PSV", "PCV"],
+      correctIndex: 3,
+      explanation: 'PCV stands for Pressure Control Valve, which regulates pressure in a process system.'
+  },
+  {
+      question: 'Which abbreviation represents the pipe used to transport produced fluids from the wellhead to surface equipment?',
+      options: ["FLP", "Csg", "Tbg", "BHA"],
+      correctIndex: 0,
+      explanation: 'FLP represents Flow Line Pressure, while flowline is the pipe that transports fluids from the wellhead to surface equipment.'
+  },
+  {
+      question: 'Which abbreviation represents the elevation reference at the rotary Kelly bushing?',
+      options: ["GL", "RKB", "MSL", "TD"],
+      correctIndex: 1,
+      explanation: 'RKB stands for Rotary Kelly Bushing Elevation, an important reference datum in drilling.'
+  },
+  {
+      question: 'Which abbreviation represents ground elevation?',
+      options: ["MSL", "RKB", "GL", "TVD"],
+      correctIndex: 2,
+      explanation: 'GL stands for Ground Level, the elevation of the ground surface.'
+  },
+  {
+      question: 'Which abbreviation represents mean sea level?',
+      options: ["GL", "RKB", "TD", "MSL"],
+      correctIndex: 3,
+      explanation: 'MSL stands for Mean Sea Level, a common vertical reference datum.'
+  },
+  {
+      question: 'Which abbreviation represents the vertical distance from a reference point to a point in the well?',
+      options: ["TVD", "TD", "MD", "RKB"],
+      correctIndex: 0,
+      explanation: 'TVD stands for True Vertical Depth, which measures vertical distance rather than the length along the wellbore.'
+  },
+  {
+      question: 'Which abbreviation represents the final depth reached by a well?',
+      options: ["TVD", "TD", "MD", "KB"],
+      correctIndex: 1,
+      explanation: 'TD stands for Total Depth, the final measured depth of the well.'
+  },
+  {
+      question: 'Which abbreviation represents the pipe used to convey produced fluids to the surface?',
+      options: ["Csg", "BHA", "Tbg", "CTU"],
+      correctIndex: 2,
+      explanation: 'Tbg stands for Tubing, the production conduit installed inside the casing.'
+  },
+  {
+      question: 'Which abbreviation represents the pipe installed in a wellbore to support the well structure?',
+      options: ["Tbg", "CTU", "BHA", "Csg"],
+      correctIndex: 3,
+      explanation: 'Csg stands for Casing, the pipe installed in the wellbore to provide structural support and isolation.'
+  },
+  {
+      question: 'Which abbreviation represents the diameter of a pipe measured from its external surface?',
+      options: ["OD", "ID", "TVD", "TD"],
+      correctIndex: 0,
+      explanation: 'OD stands for Outer Diameter, the external measurement of a pipe.'
+  },
+  {
+      question: 'Which abbreviation represents the diameter measured inside a pipe?',
+      options: ["OD", "ID", "KB", "XO"],
+      correctIndex: 1,
+      explanation: 'ID stands for Inner Diameter, the internal measurement of a pipe.'
+  },
+  {
+      question: 'Which abbreviation represents a connection used to join components with different sizes or thread types?',
+      options: ["NPT", "BHA", "XO", "LCM"],
+      correctIndex: 2,
+      explanation: 'XO stands for CrossOver, a connection adapter used between components with different connection specifications.'
+  },
+  {
+      question: 'Which abbreviation represents a tapered pipe thread standard?',
+      options: ["ASME", "ANSI", "API", "NPT"],
+      correctIndex: 3,
+      explanation: 'NPT stands for National Pipe Thread, a standard tapered pipe thread.'
+  },
+  {
+      question: 'Which organization develops standards for the petroleum industry?',
+      options: ["API", "AGA", "ANSI", "ASME"],
+      correctIndex: 0,
+      explanation: 'API stands for American Petroleum Institute, an organization that develops petroleum industry standards and recommended practices.'
+  },
+  {
+      question: 'Which organization develops standards for mechanical engineering?',
+      options: ["API", "ASME", "AGA", "NACE"],
+      correctIndex: 1,
+      explanation: 'ASME stands for American Society of Mechanical Engineers, which publishes engineering codes and standards.'
+  },
+  {
+      question: 'Which organization coordinates voluntary standards in the United States?',
+      options: ["API", "AGA", "ANSI", "NACE"],
+      correctIndex: 2,
+      explanation: 'ANSI stands for American National Standards Institute, which coordinates voluntary consensus standards in the United States.'
+  },
+  {
+      question: 'Which organization is associated with natural gas industry standards?',
+      options: ["API", "ASME", "NACE", "AGA"],
+      correctIndex: 3,
+      explanation: 'AGA stands for American Gas Association, which supports standards and technical practices in the natural gas industry.'
+  },
+  {
+      question: 'Which organization is associated with corrosion engineering?',
+      options: ["NACE", "ANSI", "AGA", "ASME"],
+      correctIndex: 0,
+      explanation: 'NACE stands for National Association of Corrosion Engineers, historically associated with corrosion prevention and control.'
+  },
+  {
+      question: 'Which abbreviation represents Magnetic Particle Inspection?',
+      options: ["HAZOP", "MPI", "P&ID", "DWT"],
+      correctIndex: 1,
+      explanation: 'MPI is a non-destructive testing technique used to identify surface and near-surface discontinuities in ferromagnetic materials.'
+  },
+  {
+      question: 'Which abbreviation represents a report documenting daily operational performance?',
+      options: ["SOP", "P&ID", "DPR", "HAZOP"],
+      correctIndex: 2,
+      explanation: 'DPR stands for Daily Performance Report, used to document daily operational and production activities.'
+  },
+  {
+      question: 'Which abbreviation represents standard procedures for carrying out an operation?',
+      options: ["DPR", "HAZOP", "P&ID", "SOP"],
+      correctIndex: 3,
+      explanation: 'SOP stands for Standard Operating Procedures, providing instructions for safe and consistent operations.'
+  },
+  {
+      question: 'Which abbreviation represents an emergency system that shuts down equipment or isolates a process?',
+      options: ["ESD", "HIPPS", "HAZOP", "LOTO"],
+      correctIndex: 0,
+      explanation: 'ESD stands for Emergency Shutdown, a safety function that brings equipment or a process to a safe state.'
+  },
+  {
+      question: 'Which system provides high-integrity protection against process overpressure?',
+      options: ["ESD", "HIPPS", "PCV", "LCV"],
+      correctIndex: 1,
+      explanation: 'HIPPS stands for High Integrity Pressure Protection System, an instrumented safety system used to prevent overpressure.'
+  },
+  {
+      question: 'Which abbreviation represents high-pressure and high-temperature well conditions?',
+      options: ["ECD", "BHT", "HPHT", "HAZOP"],
+      correctIndex: 2,
+      explanation: 'HPHT stands for High Pressure High Temperature, describing challenging well conditions requiring specialized equipment.'
+  },
+  {
+      question: 'Which abbreviation represents an electrical pump installed downhole for artificial lift?',
+      options: ["PCP", "SRP", "CTU", "ESP"],
+      correctIndex: 3,
+      explanation: 'ESP stands for Electrical Submersible Pump, a downhole artificial lift system powered by an electric motor.'
+  },
+  {
+      question: 'Which artificial lift system uses a rotating helical rotor and stator?',
+      options: ["PCP", "ESP", "SRP", "BOP"],
+      correctIndex: 0,
+      explanation: 'PCP stands for Progressive Cavity Pump, which uses a rotor and stator to move fluid.'
+  },
+  {
+      question: 'Which artificial lift system uses reciprocating sucker rods?',
+      options: ["ESP", "SRP", "PCP", "MPFM"],
+      correctIndex: 1,
+      explanation: 'SRP stands for Sucker Rod Pump, which uses reciprocating rod movement to operate a downhole pump.'
+  },
+  {
+      question: 'Which equipment is used to heat produced fluids using a combustion heat source?',
+      options: ["Heat Exchanger", "Steam Exchanger", "Fired Heater", "MPFM"],
+      correctIndex: 2,
+      explanation: 'FH stands for Fired Heater, a heater that uses combustion to supply heat to the process.'
+  },
+  {
+      question: 'Which abbreviation represents the total pressure and temperature conditions of a reservoir fluid study?',
+      options: ["SC", "STC", "SG", "PVT"],
+      correctIndex: 3,
+      explanation: 'PVT stands for Pressure Volume Temperature, describing fluid properties under changing pressure and temperature conditions.'
+  },
+  {
+      question: 'Which abbreviation represents the reference volume of gas measured at standard conditions?',
+      options: ["SCF", "SC", "STB", "BPD"],
+      correctIndex: 0,
+      explanation: 'SCF stands for Standard Cubic Feet, a unit of gas volume at defined standard conditions.'
+  },
+  {
+      question: 'Which abbreviation represents the oil volume measured at stock tank conditions?',
+      options: ["SCF", "STB", "BPD", "MSCFD"],
+      correctIndex: 1,
+      explanation: 'STB stands for Stock Tank Barrel, representing oil volume measured at stock tank conditions.'
+  },
+  {
+      question: 'Which abbreviation represents the conditions inside the separator?',
+      options: ["STC", "RC", "SC", "MSL"],
+      correctIndex: 2,
+      explanation: 'SC stands for Separator Condition, referring to the separator pressure and temperature.'
+  },
+  {
+      question: 'Which abbreviation represents the conditions at the stock tank?',
+      options: ["SC", "RC", "HPHT", "STC"],
+      correctIndex: 3,
+      explanation: 'STC stands for Stock Tank Condition, the reference conditions for stock tank oil volume.'
+  },
+  {
+      question: 'Which abbreviation represents the specific gravity of a gas?',
+      options: ["SG", "Sg", "So", "Sw"],
+      correctIndex: 0,
+      explanation: 'SG stands for Specific Gravity. Sg, with a lowercase g, represents Gas Saturation in reservoir engineering.'
+  },
+  {
+      question: 'Which abbreviation represents gas saturation rather than gas specific gravity?',
+      options: ["SG", "Sg", "Krg", "Bg"],
+      correctIndex: 1,
+      explanation: 'Sg represents Gas Saturation, while SG represents Specific Gravity.'
+  },
+  {
+      question: 'Which abbreviation represents relative permeability to gas?',
+      options: ["Kro", "Krw", "Krg", "Kr"],
+      correctIndex: 2,
+      explanation: 'Krg represents Relative Permeability to Gas.'
+  },
+  {
+      question: 'Which abbreviation represents relative permeability to oil?',
+      options: ["Krg", "Krw", "Kr", "Kro"],
+      correctIndex: 3,
+      explanation: 'Kro represents Relative Permeability to Oil.'
+  },
+  {
+      question: 'Which abbreviation represents relative permeability to water?',
+      options: ["Krw", "Kro", "Krg", "Kr"],
+      correctIndex: 0,
+      explanation: 'Krw represents Relative Permeability to Water.'
+  },
+  {
+      question: 'Which abbreviation represents the general relative permeability parameter?',
+      options: ["K", "Kr", "Kro", "Krg"],
+      correctIndex: 1,
+      explanation: 'Kr represents Relative Permeability, while K represents absolute permeability.'
+  },
+  {
+      question: 'Which abbreviation represents absolute permeability?',
+      options: ["Kr", "Kro", "K", "Krw"],
+      correctIndex: 2,
+      explanation: 'K represents Permeability, commonly used for absolute permeability of the rock.'
+  },
+  {
+      question: 'Which abbreviation represents a formation volume factor for oil?',
+      options: ["Bg", "Bo", "Kro", "So"],
+      correctIndex: 1,
+      explanation: 'Bo represents Oil Formation Volume Factor, while Bg represents Gas Formation Volume Factor.'
+  },
+  {
+      question: 'Which abbreviation represents a formation volume factor for gas?',
+      options: ["Bo", "Bg", "GVF", "GLR"],
+      correctIndex: 1,
+      explanation: 'Bg represents Gas Formation Volume Factor, relating reservoir gas volume to standard gas volume.'
+  },
+  {
+      question: 'Which abbreviation represents the percentage of gas in a multiphase stream by volume?',
+      options: ["GOR", "GLR", "GVF", "CGR"],
+      correctIndex: 2,
+      explanation: 'GVF stands for Gas Volume Fraction, the fraction of the flowing mixture volume occupied by gas.'
+  },
+  {
+      question: 'Which abbreviation represents the interface between gas and oil in a reservoir?',
+      options: ["GWC", "OWC", "WOC", "GOC"],
+      correctIndex: 3,
+      explanation: 'GOC stands for Gas Oil Contact, the interface between gas and oil zones.'
+  },
+  {
+      question: 'Which abbreviation represents the interface between gas and water?',
+      options: ["GWC", "GOC", "OWC", "WOC"],
+      correctIndex: 0,
+      explanation: 'GWC stands for Gas Water Contact, the interface between gas and water zones.'
+  },
+  {
+      question: 'Which abbreviation represents the interface between oil and water?',
+      options: ["GOC", "OWC", "GWC", "WGR"],
+      correctIndex: 1,
+      explanation: 'OWC stands for Oil Water Contact, the interface between oil and water zones.'
+  },
+  {
+      question: 'Which abbreviation represents water-oil contact using the reverse word order?',
+      options: ["GWC", "GOC", "WOC", "OWC"],
+      correctIndex: 2,
+      explanation: 'WOC stands for Water Oil Contact, the interface between water and oil zones.'
+  },
+  {
+      question: 'Which abbreviation represents the working pressure of equipment?',
+      options: ["PSIA", "PSIG", "Pr", "WP"],
+      correctIndex: 3,
+      explanation: 'WP stands for Working Pressure, the pressure at which equipment is designed or intended to operate.'
+  },
+  {
+      question: 'Which abbreviation represents the operating pressure at the separator?',
+      options: ["Sep. P", "Sep. T", "FLP", "WHP"],
+      correctIndex: 0,
+      explanation: 'Sep. P stands for Separator Pressure, the pressure inside the separator.'
+  },
+  {
+      question: 'Which abbreviation represents the operating temperature at the separator?',
+      options: ["Sep. P", "Sep. T", "WHT", "BHT"],
+      correctIndex: 1,
+      explanation: 'Sep. T stands for Separator Temperature, the temperature inside the separator.'
+  },
+  {
+      question: 'Which abbreviation represents the liquid level inside a separator?',
+      options: ["LCM", "LVF", "DFL", "LCV"],
+      correctIndex: 3,
+      explanation: 'LCV is the Level Control Valve used to regulate liquid level. DFL represents Dynamic Fluid Level.'
+  },
+  {
+      question: 'Which abbreviation represents the fluid level in a well while it is producing?',
+      options: ["DFL", "SFL", "WLR", "GVF"],
+      correctIndex: 0,
+      explanation: 'DFL stands for Dynamic Fluid Level, the fluid level under operating or producing conditions.'
+  },
+  {
+      question: 'Which abbreviation represents the fluid level in a well under static conditions?',
+      options: ["DFL", "SFL", "FLP", "WHP"],
+      correctIndex: 1,
+      explanation: 'SFL stands for Static Fluid Level, the fluid level under static conditions.'
+  },
+  {
+      question: 'Which abbreviation represents the valve used to maintain pressure in a system?',
+      options: ["LCV", "FWV", "BPV", "WSV"],
+      correctIndex: 2,
+      explanation: 'BPV stands for Back Pressure Valve, used to maintain or control back pressure.'
+  },
+  {
+      question: 'Which abbreviation represents the process of hydraulic fracturing?',
+      options: ["FIT", "LOT", "DST", "Frac"],
+      correctIndex: 3,
+      explanation: 'Frac is short for Hydraulic Fracturing, a stimulation technique used to improve formation conductivity.'
+  },
+  {
+      question: 'Which abbreviation represents the process of isolating a wellbore section using a downhole sealing device?',
+      options: ["Pkr", "BHA", "XO", "CTU"],
+      correctIndex: 0,
+      explanation: 'Pkr stands for Packer, a downhole device used to isolate sections of the wellbore.'
+  },
+  {
+      question: 'Which abbreviation represents a valve that controls pressure automatically?',
+      options: ["PSV", "PCV", "SSV", "WSV"],
+      correctIndex: 1,
+      explanation: 'PCV stands for Pressure Control Valve, used to maintain a desired process pressure.'
+  },
+  {
+      question: 'Which abbreviation represents the pipe connection thread standard?',
+      options: ["ASME", "API", "NPT", "ANSI"],
+      correctIndex: 2,
+      explanation: 'NPT stands for National Pipe Thread, a tapered pipe thread standard.'
+  },
+  {
+      question: 'Which abbreviation represents the inspection technique that uses magnetic fields and particles?',
+      options: ["HAZOP", "DWT", "FIT", "MPI"],
+      correctIndex: 3,
+      explanation: 'MPI stands for Magnetic Particle Inspection, a non-destructive testing technique for ferromagnetic materials.'
+  },
 ];
 
 console.log("Total Questions: " + questions.length);

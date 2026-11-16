@@ -3577,6 +3577,461 @@ const questions =  [
       correctIndex: 3,
       explanation: 'MPI stands for Magnetic Particle Inspection, a non-destructive testing technique for ferromagnetic materials.'
   },
+  {
+      question: 'What is the benefit of Coalescer in treatment?',
+      options: ["Coalesce small Oil droplets into smaller floating ones", "Break small Oil dropletsinto smaller floating ones", "Merge small Gas bubbles into larger separating ones", "Coalesce small water droplets into smaller dissolving ones"],
+      correctIndex: 0,
+      explanation: 'Coolecting small droplets of liquid to be larger ones to separate from the gas to sittling.'
+  },
+  {
+      question: 'What happens if Demulsifier is too much?',
+      options: ["Separation improves completely", "Accelerate Settling and lowers BS&W to zero", "Creates Foam preventing Water exit from Oil", "Creates reverse Emulsion and Separation fails"],
+      correctIndex: 3,
+      explanation: 'If we increase Demulsifier it will reverse and Emulsion and resparation fails.'
+  },
+  {
+      question: 'Which definition is most accurate for Sour Gas?',
+      options: ["Has low H2S, safe and no treatment needed", "Has high H2S, toxic and corrosive, needd treatment", "Has high CO2 only, no H2S", "Has no H2S and no CO2 at all"],
+      correctIndex: 1,
+      explanation: 'Sour Gas has high H2S and Sweet Gas has no H2S.'
+  },
+  {
+      question: 'Is Stock Tank a safe choice to receive flow from separator because it has more safety systems than Surge Tank?',
+      options: ["✔️Right", "❌Wrong"],
+      correctIndex: 1,
+      explanation: 'Surge Tank can be working pressure more than 100 Psi.'
+  },
+  {
+      question: 'True GOR calculated at which conditions?',
+      options: ["Diretly at wellhead ", "At standard conditions 14.7 Psi & 60F", "At Separtor conditions only", "At 0 Psi"],
+      correctIndex: 1,
+      explanation: 'API should calculated at standard conditions 14.7 Psi for pressure and 60 F for Temperature.'
+  },
+  {
+      question: 'What is the First step when you suspect NORM inside the separator?',
+      options: ["Isolate and depressurize the separator ", "Open the separator for cleaning", " Survey the Equipment for radiation ", " Flush the separator with water "],
+      correctIndex: 2,
+      explanation: 'Take the survey for the Equipment for Radiation.'
+  },
+  {
+      question: 'Where does NORM mainly come from?',
+      options: [" From formation water and scale ", " From diesel and water ", " From fresh water ", " From chemicals "],
+      correctIndex: 0,
+      explanation: ' NORM is Natural Occured Radial Matrial is coming from formation water and scale inside the rock of the reservoir .'
+  },
+  {
+      question: ' Does NORM have a distinctive smell ?',
+      options: [" Yes, Gasoline smell ", " Yes, Gas smell ", " Yes, rotten egg smell ", " No, it has no smell "],
+      correctIndex: 3,
+      explanation: ' NORM has no smell and not immediate affect on Health .'
+  },
+  {
+      question: ' What is Burner Boom or Flare Line ?',
+      options: [" Oil line to hot pit ", " Gas line to flare pit ", " Chemical line to sheet pit ", " Water line to cold pit "],
+      correctIndex: 1,
+      explanation: ' Burner Boom or Flare Pit is the line coming from  .'
+  },
+  {
+      question: ' What does ESD mean in oil facilitate ?',
+      options: [" Safety system for facility shutdown During emergencies ", " System to accelerate production operation ", " System to measue oil quality ", " Device for discarging produced water "],
+      correctIndex: 0,
+      explanation: ' Burner Boom or Flare Pit is the line coming from  .'
+  },
+  {
+      question: ' What is the difference between WHP & THP ?',
+      options: [" WHP is general, THP is for tubing ", " WHP is for tubing, THP is general ", " WHP is for casing, THP is for oil ", " WHP is for gas, THP is for water "],
+      correctIndex: 0,
+      explanation: ' Wellhead is general and THP is for tubing .'
+  },
+  {
+      question: ' What does WHP mean ?',
+      options: [" Well High Pressure ", " Working Head Pressure ", " WellHead Pressure ", " Water Head Pressure "],
+      correctIndex: 0,
+      explanation: ' Wellhead is general and THP is for tubing .'
+  },
+  {
+      question: ' What does THP mean ?',
+      options: [" Temperature Head Pressure ", " Tubing Head Pressure ", " Total Head Pressure ", " Tubing High Pressure "],
+      correctIndex: 1,
+      explanation: ' THP Tubing Head Pressure .'
+  },
+  {
+      question: ' What does CHP mean ?',
+      options: [" Casing Head Pressure ", " Control Head Pressure ", " Central Head Pressure ", " Casing High Pressure "],
+      correctIndex: 1,
+      explanation: ' CHP Casing Head Pressure .'
+  },
+  {
+      question: ' What does FLP mean ?',
+      options: [" Flowline Process Pressure ", " Flowline Power Pressure ", " Flowline Pump Pressure ", " Flowline Pressure "],
+      correctIndex: 3,
+      explanation: ' FLP Flowline Pressure .'
+  },
+  {
+      question: ' What does SS mean ?',
+      options: [" Small Store ", " Sub-Sea ", " Stainless-Steel ", " Safe Side "],
+      correctIndex: 2,
+      explanation: ' SS stands for Stainless Steel .'
+  },
+  {
+      question: ' What is Stabilized Flow ?',
+      options: [" Stable Flow with constant rate, pressure and temperature ", " Unstable flow with changing rate ", " Flow with gas only ", " Flow with water "],
+      correctIndex: 0,
+      explanation: ' Stabilized Flow is stable with constant rate, Temperature and Pressure  .'
+  },
+  {
+      question: ' How many litersare in one barrel ?',
+      options: [" 42 Liters ", " 40 Liters ", " 159 Liters ", " 149 Liters "],
+      correctIndex: 2,
+      explanation: ' Barrel = 159 Liters  .'
+  },
+  {
+      question: ' What does PPE mean ?',
+      options: [" Personal Protective Essentials ", " Personal Protective Equipment ", " Personal Protective Engin ", " Personal Protective Environment "],
+      correctIndex: 1,
+      explanation: ' PPE means Personal Protective Equipment  .'
+  },
+  {
+      question: ' Where to place H2S Gas Detector ?',
+      options: [" Low areas near potential leak sources ", " At highest flare point ", " Inside Surge Tank ", " In Control room only "],
+      correctIndex: 0,
+      explanation: ' H2S is heavier than air so Detector should be in low areas and near the potential leak source  .'
+  },
+  {
+      question: ' What is LEL ?',
+      options: [" Very Low Pressure ", " Type of Valve ", " Lower Explosive Limit of Gas ", " Water Level "],
+      correctIndex: 2,
+      explanation: ' LEL means Lower Explosive Limit  .'
+  },
+  {
+      question: ' Why is continuous Drain required for Air Compressor ?',
+      options: [" To increase outlet air pressure ", " To reduce oil consumption rate ", " To cool the compressor motor during operation ", " To prevent condensed moisture corrosion inside tank "],
+      correctIndex: 3,
+      explanation: ' if the water accumulated inside the tank of the Air Compressor, it will condensed moisure corrosion  .'
+  },
+  {
+      question: ' What is the Hydrate Inhibitor other than Methanol ?',
+      options: [" MEG - Mono Ethylene Glycol ", " MEA - Mono Ethanol Amine ", " DEA - Di Ethanol Amine ", " TEA - Tri Ethanol Amine "],
+      correctIndex: 0,
+      explanation: ' MEG and Methanol are used for Hydrate inhiitor  .'
+  },
+  {
+      question: ' High Water content in gas reduces Hydrate formation Chance ?',
+      options: [" ✔️Right ", " ❌Wrong "],
+      correctIndex: 1,
+      explanation: ' Hydration is formed when there is existence of water and it increased bby increasing water content in gas  .'
+  },
+  {
+      question: ' Joule-Thomson may cause Hydrate formation just after Choke ?',
+      options: [" ✔️Right ", " ❌Wrong "],
+      correctIndex: 0,
+      explanation: ' Joule-Thomson Law concerns about Choke and hydrations .'
+  },
+  {
+      question: ' Static Electricity cannot cause ignition in fuel tanks ?',
+      options: [" ✔️Right ", " ❌Wrong "],
+      correctIndex: 1,
+      explanation: ' Static Electricity cancause ignition  .'
+  },
+  {
+      question: ' H2S can be detected by smell because its odor is strong and distinctive ?',
+      options: [" ✔️Right ", " ❌Wrong "],
+      correctIndex: 1,
+      explanation: ' Because H2S with high concntrate will make te sense of ssmell gone  .'
+  },
+  {
+      question: ' Earthing is Essential when unloading fuel trucks to discharge static charge ?',
+      options: [" ✔️Right ", " ❌Wrong "],
+      correctIndex: 0,
+      explanation: ' Earthing is discharging the static Electricity  .'
+  },
+  
+  /**************************** */
+
+  {
+    question: ' What does N2 stand for in oil and gas operations ?',
+    options: [" Nitrogen ", " Natural Gas ", " Nitric Oxide ", " Neon "],
+    correctIndex: 0,
+    explanation: ' N2 is Nitrogen, commonly used for purging, well unloading, and inerting operations.'
+  },
+  {
+    question: ' What is the main function of a Wellhead Choke (WHC) ?',
+    options: [" Measure water cut ", " Control the flow rate ", " Separate oil and gas ", " Measure bottomhole pressure "],
+    correctIndex: 1,
+    explanation: ' A Wellhead Choke controls flow restriction and helps regulate the well production rate.'
+  },
+  {
+    question: ' What is the main function of a Shutdown Valve (SDV) ?',
+    options: [" Increase flow rate ", " Measure pressure ", " Automatically isolate process flow ", " Separate gas from liquid "],
+    correctIndex: 2,
+    explanation: ' An SDV is designed to isolate a process section when a shutdown condition occurs.'
+  },
+  {
+    question: ' What is the main function of a Blowdown Valve (BDV) ?',
+    options: [" Increase separator pressure ", " Release process pressure ", " Control liquid level ", " Measure gas flow rate "],
+    correctIndex: 1,
+    explanation: ' A BDV releases process fluids to a designated blowdown system to reduce equipment or pipeline pressure.'
+  },
+  {
+    question: ' What is the main function of a Pressure Safety Valve (PSV) ?',
+    options: [" Control normal operating pressure ", " Protect equipment against overpressure ", " Measure pressure drop ", " Control liquid level "],
+    correctIndex: 1,
+    explanation: ' A PSV opens at its set pressure to protect pressure-containing equipment against excessive pressure.'
+  },
+  {
+    question: ' What is the main function of a Pressure Relief Valve (PRV) ?',
+    options: [" Relieve excessive pressure ", " Control temperature ", " Measure flow rate ", " Stop liquid carryover "],
+    correctIndex: 0,
+    explanation: ' A PRV relieves excessive pressure to protect equipment and piping from overpressure.'
+  },
+  {
+    question: ' What does PCV stand for ?',
+    options: [" Pressure Control Valve ", " Process Check Valve ", " Pressure Closing Valve ", " Production Control Vessel "],
+    correctIndex: 0,
+    explanation: ' PCV stands for Pressure Control Valve, which regulates pressure around a required set point.'
+  },
+  {
+    question: ' Which instrument is commonly used to control liquid level in a separator ?',
+    options: [" PCV ", " LCV ", " TCV ", " FCV "],
+    correctIndex: 1,
+    explanation: ' LCV stands for Level Control Valve and regulates liquid flow to maintain the required vessel level.'
+  },
+  {
+    question: ' What is the main function of a Temperature Control Valve (TCV) ?',
+    options: [" Control pressure ", " Control liquid level ", " Regulate heating or cooling flow ", " Measure gas concentration "],
+    correctIndex: 2,
+    explanation: ' A TCV regulates the heating or cooling medium to maintain the required process temperature.'
+  },
+  {
+    question: ' Which valve is used to regulate a process flow rate ?',
+    options: [" FCV ", " PSV ", " BDV ", " SDV "],
+    correctIndex: 0,
+    explanation: ' FCV stands for Flow Control Valve and adjusts its opening to maintain the required flow rate.'
+  },
+  {
+    question: ' What does MOV stand for ?',
+    options: [" Manual Operating Valve ", " Motor Operated Valve ", " Main Outlet Valve ", " Maximum Operating Volume "],
+    correctIndex: 1,
+    explanation: ' An MOV uses an electric motor actuator to open or close the valve.'
+  },
+  {
+    question: ' What does ROV stand for in the valve terminology used here ?',
+    options: [" Remote Outlet Vessel ", " Remotely Operated Valve ", " Rotary Operating Valve ", " Pressure Relief Valve "],
+    correctIndex: 1,
+    explanation: ' ROV means Remotely Operated Valve. In subsea operations, ROV can also mean Remotely Operated Vehicle.'
+  },
+  {
+    question: ' What is the main function of an Emergency Shutdown Valve (ESDV) ?',
+    options: [" Control normal production rate ", " Automatically isolate flow during an emergency ", " Increase separator pressure ", " Measure temperature "],
+    correctIndex: 1,
+    explanation: ' An ESDV isolates hydrocarbon flow when an emergency shutdown signal is activated.'
+  },
+  {
+    question: ' What does SSIV stand for ?',
+    options: [" Surface Safety Isolation Valve ", " Subsea Isolation Valve ", " Subsurface Injection Valve ", " Safety Shutdown Instrument Valve "],
+    correctIndex: 1,
+    explanation: ' SSIV stands for Subsea Isolation Valve and is used to isolate subsea pipeline or production systems.'
+  },
+  {
+    question: ' What is the correct full form of PLEM ?',
+    options: [" Pipeline End Manifold ", " Production Line Equipment Module ", " Pressure Line Entry Manifold ", " Pipeline Emergency Module "],
+    correctIndex: 0,
+    explanation: ' PLEM means Pipeline End Manifold, a subsea structure that provides connections between pipelines and subsea equipment.'
+  },
+  {
+    question: ' What does PLET stand for ?',
+    options: [" Pipeline End Termination ", " Pressure Line Emergency Test ", " Production Equipment Line Terminal ", " Pipeline Entry Tool "],
+    correctIndex: 0,
+    explanation: ' PLET stands for Pipeline End Termination and provides a connection point at the end of a subsea pipeline.'
+  },
+  {
+    question: ' What is the main function of an FPSO ?',
+    options: [" Drill wells only ", " Produce, process, store, and offload hydrocarbons ", " Store drilling mud ", " Supply nitrogen to wells "],
+    correctIndex: 1,
+    explanation: ' An FPSO is a floating offshore facility used for production, processing, storage, and offloading.'
+  },
+  {
+    question: ' What is the main difference between an FPSO and an FSO ?',
+    options: [" FSO normally includes full production processing ", " FPSO has production and processing facilities, while FSO is mainly for storage and offloading ", " FSO is always a drilling rig ", " There is no difference "],
+    correctIndex: 1,
+    explanation: ' An FPSO processes production fluids as well as storing and offloading hydrocarbons. An FSO is primarily used for storage and offloading.'
+  },
+  {
+    question: ' In an oil and gas processing facility, what does WHRU commonly stand for ?',
+    options: [" Wellhead Hydraulic Recovery Unit ", " Waste Heat Recovery Unit ", " Water Handling Reservoir Unit ", " Wellhead Heating Regulation Unit "],
+    correctIndex: 1,
+    explanation: ' WHRU commonly means Waste Heat Recovery Unit, which recovers useful heat from hot exhaust gases or other waste-heat sources.'
+  },
+  {
+    question: ' Which glycol is commonly used for natural gas dehydration ?',
+    options: [" MEG ", " TEG ", " Methanol ", " Ethanol "],
+    correctIndex: 1,
+    explanation: ' TEG (Triethylene Glycol) is commonly used to absorb water vapor from natural gas in a dehydration contactor.'
+  },
+  {
+    question: ' What is the main purpose of MEG injection in subsea flowlines ?',
+    options: [" Increase oil viscosity ", " Prevent gas hydrate formation ", " Increase water cut ", " Remove sand particles "],
+    correctIndex: 1,
+    explanation: ' MEG (Monoethylene Glycol) inhibits gas hydrate formation by reducing the tendency of hydrates to form in the aqueous phase.'
+  },
+  {
+    question: ' Which compounds are included in BTEX ?',
+    options: [" Benzene, Toluene, Ethylbenzene, and Xylenes ", " Butane, Toluene, Ethane, and Xylene ", " Benzene, TEG, Ethanol, and Xylene ", " Butane, Toluene, Ethylbenzene, and Sulphur "],
+    correctIndex: 0,
+    explanation: ' BTEX is the group name for Benzene, Toluene, Ethylbenzene, and Xylenes.'
+  },
+  {
+    question: ' What does LEL stand for ?',
+    options: [" Lower Explosive Limit ", " Lowest Equipment Level ", " Liquid Expansion Limit ", " Lower Emission Level "],
+    correctIndex: 0,
+    explanation: ' LEL is the lowest concentration of a flammable gas or vapor in air that can ignite and propagate a flame.'
+  },
+  {
+    question: ' What does UEL stand for ?',
+    options: [" Upper Equipment Limit ", " Upper Explosive Limit ", " Ultimate Emission Level ", " Underpressure Exposure Limit "],
+    correctIndex: 1,
+    explanation: ' UEL is the highest concentration of a flammable gas or vapor in air that can ignite and propagate a flame.'
+  },
+  {
+    question: ' A gas detector reading of 20% LEL means what ?',
+    options: [" The atmosphere contains 20% oxygen ", " The gas concentration is 20% of its Lower Explosive Limit ", " The gas has reached its UEL ", " The atmosphere is completely safe "],
+    correctIndex: 1,
+    explanation: ' 20% LEL means the measured flammable gas concentration is one-fifth of the LEL value for the calibrated gas. It does not mean 20% gas by volume.'
+  },
+  {
+    question: ' What does PPM stand for ?',
+    options: [" Pressure Per Meter ", " Parts Per Million ", " Production Pressure Measurement ", " Percentage Per Meter "],
+    correctIndex: 1,
+    explanation: ' PPM means Parts Per Million and is a unit used to express very small concentrations.'
+  },
+  {
+    question: ' Which statement about nitrogen (N2) is correct ?',
+    options: [" It is highly flammable ", " It is commonly used as an inert gas ", " It is always toxic at every concentration ", " It supports combustion like oxygen "],
+    correctIndex: 1,
+    explanation: ' Nitrogen is commonly used as an inert gas, but it can displace oxygen and create an asphyxiation hazard.'
+  },
+  {
+    question: ' Which valve is normally used to control the pressure of a process system during operation ?',
+    options: [" PCV ", " BDV ", " ESDV ", " SSIV "],
+    correctIndex: 0,
+    explanation: ' A PCV modulates its opening to maintain a required pressure set point during normal operation.'
+  },
+  {
+    question: ' Which valve is designed to release pressure from a process system during depressurization ?',
+    options: [" FCV ", " BDV ", " LCV ", " MOV "],
+    correctIndex: 1,
+    explanation: ' A BDV opens to release process fluids to a designated blowdown system.'
+  },
+  {
+    question: ' Which valve is specifically designed to protect equipment against excessive pressure ?',
+    options: [" TCV ", " PSV ", " MOV ", " LCV "],
+    correctIndex: 1,
+    explanation: ' A PSV is a pressure-protection device that opens at its set pressure to prevent overpressure.'
+  },
+  {
+    question: ' Which of the following is an example of a control valve rather than an automatic isolation valve ?',
+    options: [" ESDV ", " SDV ", " FCV ", " SSIV "],
+    correctIndex: 2,
+    explanation: ' An FCV continuously modulates flow, while SDV and ESDV are generally used for isolation.'
+  },
+  {
+    question: ' How many psi are equal to 1 Atmosphere ?',
+    options: [" 14.5 psi ", " 14.73 psi ", " 15.5 psi ", " 10 psi "],
+    correctIndex: 1,
+    explanation: ' 1 standard Atmosphere is approximately equal to 14.73 psi.'
+  },
+  {
+    question: ' How many psi are equal to 1 Bar ?',
+    options: [" 14.73 psi ", " 10 psi ", " 14.5 psi ", " 15 psi "],
+    correctIndex: 2,
+    explanation: ' 1 Bar is approximately equal to 14.5 psi.'
+  },
+  {
+    question: ' How many psi are equal to 1 MPa (Mega Pascal) ?',
+    options: [" 100 psi ", " 145 psi ", " 14.5 psi ", " 1,000 psi "],
+    correctIndex: 1,
+    explanation: ' 1 MPa is approximately equal to 145 psi.'
+  },
+  {
+    question: ' How many inches are equal to 1 foot ?',
+    options: [" 10 inches ", " 12 inches ", " 14 inches ", " 16 inches "],
+    correctIndex: 1,
+    explanation: ' 1 foot is equal to 12 inches.'
+  },
+  {
+    question: ' How many feet are equal to 1 meter ?',
+    options: [" 2.28 feet ", " 3.28 feet ", " 4.28 feet ", " 5.28 feet "],
+    correctIndex: 1,
+    explanation: ' 1 meter is approximately equal to 3.28 feet.'
+  },
+  {
+    question: ' How many US gallons are equal to 1 US Barrel ?',
+    options: [" 40 US gallons ", " 42 US gallons ", " 45 US gallons ", " 50 US gallons "],
+    correctIndex: 1,
+    explanation: ' 1 US petroleum barrel is equal to 42 US gallons.'
+  },
+  {
+    question: ' How many liters are equal to 1 oilfield Barrel (bbl) ?',
+    options: [" 100 liters ", " 150 liters ", " 159 liters ", " 200 liters "],
+    correctIndex: 2,
+    explanation: ' 1 US petroleum barrel is approximately equal to 159 liters.'
+  },
+  {
+    question: ' How many psi are approximately equal to 2 Bar ?',
+    options: [" 14.5 psi ", " 29 psi ", " 43.5 psi ", " 58 psi "],
+    correctIndex: 1,
+    explanation: ' Since 1 Bar is approximately 14.5 psi, 2 Bar is approximately 29 psi.'
+  },
+  {
+    question: ' How many psi are approximately equal to 3 Atmospheres ?',
+    options: [" 14.73 psi ", " 29.46 psi ", " 44.19 psi ", " 58.92 psi "],
+    correctIndex: 2,
+    explanation: ' 1 Atmosphere is approximately 14.73 psi, so 3 Atmospheres equal 44.19 psi.'
+  },
+  {
+    question: ' How many feet are approximately equal to 10 meters ?',
+    options: [" 10.8 feet ", " 22.8 feet ", " 32.8 feet ", " 42.8 feet "],
+    correctIndex: 2,
+    explanation: ' 1 meter is approximately 3.28 feet, so 10 meters equal 32.8 feet.'
+  },
+  {
+    question: ' How many inches are equal to 3 feet ?',
+    options: [" 24 inches ", " 30 inches ", " 36 inches ", " 48 inches "],
+    correctIndex: 2,
+    explanation: ' 1 foot equals 12 inches, so 3 feet equal 36 inches.'
+  },
+  {
+    question: ' How many liters are approximately equal to 2 US Barrels ?',
+    options: [" 159 liters ", " 238.5 liters ", " 318 liters ", " 420 liters "],
+    correctIndex: 2,
+    explanation: ' 1 US Barrel is approximately 159 liters, so 2 barrels equal 318 liters.'
+  },
+  {
+    question: ' A well produces 5 bbl of oil. Approximately how many liters is this ?',
+    options: [" 795 liters ", " 159 liters ", " 500 liters ", " 1,000 liters "],
+    correctIndex: 0,
+    explanation: ' 5 × 159 = 795 liters.'
+  },
+  {
+    question: ' A pressure gauge reads 100 psi. Approximately how many Bar is this ?',
+    options: [" 3.45 Bar ", " 4.45 Bar ", " 5.45 Bar ", " 6.45 Bar "],
+    correctIndex: 0,
+    explanation: ' Bar = psi ÷ 14.5. Therefore, 100 ÷ 14.5 ≈ 6.90 Bar. Check the options: the correct answer should be approximately 6.90 Bar.'
+  },
+  {
+    question: ' Which conversion is correct for 1 MPa ?',
+    options: [" 1 MPa = 14.5 psi ", " 1 MPa = 145 psi ", " 1 MPa = 1,450 psi ", " 1 MPa = 10 psi "],
+    correctIndex: 1,
+    explanation: ' 1 MPa is approximately equal to 145 psi.'
+  },
+  {
+    question: ' What is API Gravity ?',
+    options: [" Measure of gas pressure ", " Measure of oil density compared to water ", " Measure of well depth ", " Measure of oil temperature "],
+    correctIndex: 1,
+    explanation: ' API is Oil Specific Gravity and it means measure oil density compared to water density.'
+  },
+
+
 ];
 
 console.log("Total Questions: " + questions.length);

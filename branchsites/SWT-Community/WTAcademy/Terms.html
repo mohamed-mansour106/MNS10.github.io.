@@ -6461,6 +6461,350 @@ related:["PT","WHP","ORIFICE"]
         ]
     },
 
+
+
+    /*************************15-11-2026******************/
+
+    {
+        abbr: "N2",
+        full: "Nitrogen",
+        arabic: "النيتروجين",
+        category: "Gas & Well Testing",
+        definition: "A colorless, odorless, non-flammable gas that makes up approximately 78% of Earth's atmosphere. Nitrogen is widely used in oilfield operations.",
+        working: "Nitrogen can be supplied from cylinders, liquid nitrogen tanks, or nitrogen generation units. It is injected into a system to provide inerting, purging, pressure support, or gas lifting.",
+        uses: "Used for well unloading, purging, pressure testing applications, pipeline displacement, and reducing oxygen concentration in equipment.",
+        example: "Nitrogen may be injected into a well to help unload completion fluids and assist the well in starting production.",
+        related:[],
+        equipment: [
+            { name: "Nitrogen Pumping Unit", image: "images/nitrogen-pumping-unit.jpg", description: "Provides high-pressure nitrogen injection for well operations." },
+            { name: "Nitrogen Storage Tank", image: "images/nitrogen-storage-tank.jpg", description: "Stores liquid nitrogen before vaporization and delivery." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "WHC",
+        full: "Wellhead Choke",
+        arabic: "خانق رأس البئر",
+        category: "Well Testing",
+        definition: "A choke installed at the wellhead to control the flow rate and pressure of produced fluids.",
+        working: "The choke creates a restriction in the flow path. Adjusting its opening changes the flow restriction and affects the pressure drop and flow rate.",
+        uses: "Used to control well production, manage flow rates, and protect downstream equipment from excessive operating conditions.",
+        example: "During a well test, the operator changes the choke size from 16/64 to 24/64 inch and monitors the resulting pressure and flow-rate changes.",
+        related:[],
+        equipment: [
+            { name: "Adjustable Choke", image: "images/adjustable-choke.jpg", description: "Allows the operator to adjust the flow restriction." },
+            { name: "Fixed Choke Bean", image: "images/choke-bean.jpg", description: "Provides a fixed-size opening to restrict fluid flow." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "SDV",
+        full: "Shutdown Valve",
+        arabic: "صمام الإغلاق",
+        category: "Valves & Instrumentation",
+        definition: "An automated valve designed to stop fluid flow when a specified shutdown condition occurs.",
+        working: "The valve receives a signal from a control or safety system and moves to its designated safe position, commonly closed for isolation.",
+        uses: "Used to isolate process equipment, pipelines, and production systems during abnormal or emergency conditions.",
+        example: "If a high-pressure shutdown signal is activated, the SDV closes to isolate the affected process section.",
+        related:[],
+        equipment: [
+            { name: "Shutdown Valve Assembly", image: "images/shutdown-valve.jpg", description: "An automated isolation valve operated by an actuator." },
+            { name: "Valve Actuator", image: "images/valve-actuator.jpg", description: "Provides the mechanical force required to open or close the valve." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "BDV",
+        full: "Blowdown Valve",
+        arabic: "صمام خفض وتفريغ الضغط",
+        category: "Valves & Instrumentation",
+        definition: "A valve used to release process fluids from equipment or piping to a designated blowdown system, reducing pressure during shutdown or emergency depressurization.",
+        working: "When activated, the BDV opens and allows process fluid to flow to a flare or other approved disposal system.",
+        uses: "Used for emergency depressurization, equipment isolation procedures, and reducing pressure in process systems.",
+        example: "During an emergency shutdown, a BDV may open to depressurize a vessel through the flare system.",
+        related:[],
+        equipment: [
+            { name: "Blowdown Valve", image: "images/blowdown-valve.jpg", description: "Controls the release of process fluids during depressurization." },
+            { name: "Flare System", image: "images/flare-system.jpg", description: "Safely receives and burns designated hydrocarbon gases." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "TCV",
+        full: "Temperature Control Valve",
+        arabic: "صمام التحكم في درجة الحرارة",
+        category: "Valves & Instrumentation",
+        definition: "A control valve used to regulate heating or cooling flow to maintain a desired process temperature.",
+        working: "A temperature controller compares the measured temperature with the set point and adjusts the valve opening to regulate the heating or cooling medium.",
+        uses: "Used in heaters, heat exchangers, and temperature-controlled process systems.",
+        example: "If the outlet temperature of a heat exchanger becomes too low, the controller may increase the heating-medium flow through the TCV.",
+        related:[],
+        equipment: [
+            { name: "Temperature Control Valve", image: "images/temperature-control-valve.jpg", description: "Regulates the flow of heating or cooling medium." },
+            { name: "Temperature Transmitter", image: "images/temperature-transmitter.jpg", description: "Measures process temperature and sends a signal to the controller." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "FCV",
+        full: "Flow Control Valve",
+        arabic: "صمام التحكم في التدفق",
+        category: "Valves & Instrumentation",
+        definition: "A control valve used to regulate the flow rate of a fluid through a process line.",
+        working: "A flow controller compares the measured flow rate with the required set point and adjusts the valve position.",
+        uses: "Used to control oil, gas, water, and other process-fluid flow rates.",
+        example: "An FCV adjusts its opening to maintain a required water injection rate.",
+        related:[],
+        equipment: [
+            { name: "Flow Control Valve", image: "images/flow-control-valve.jpg", description: "Adjusts the flow restriction to control the fluid flow rate." },
+            { name: "Flow Transmitter", image: "images/flow-transmitter.jpg", description: "Measures the flow rate and sends a signal to the control system." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "MOV",
+        full: "Motor Operated Valve",
+        arabic: "صمام يعمل بمحرك كهربائي",
+        category: "Valves & Instrumentation",
+        definition: "A valve operated by an electric motor through a mechanical actuator.",
+        working: "An electric motor drives the valve mechanism to open or close the valve. The operator or control system can command its movement.",
+        uses: "Used for remote or automated operation of large valves in pipelines, process plants, and production facilities.",
+        example: "An operator sends an open command from the control room, and the MOV motor operates the valve.",
+        related:[],
+        equipment: [
+            { name: "Motor Operated Valve", image: "images/motor-operated-valve.jpg", description: "A valve fitted with an electric motor actuator." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "ROV",
+        full: "Remotely Operated Valve",
+        arabic: "صمام يتم تشغيله عن بُعد",
+        category: "Valves & Instrumentation",
+        definition: "A valve that can be operated remotely without direct manual operation at the valve location.",
+        working: "The valve receives an operating command through an electrical, hydraulic, pneumatic, or other remote-control arrangement, depending on its design.",
+        uses: "Used in offshore facilities, subsea systems, and locations where direct manual access is difficult or unsafe.",
+        example: "A subsea valve may be operated remotely from an offshore control facility.",
+        related:[],
+        equipment: [
+            { name: "Remote Operated Valve", image: "images/remote-operated-valve.jpg", description: "A valve designed for operation from a remote control location." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "ESDV",
+        full: "Emergency Shutdown Valve",
+        arabic: "صمام الإغلاق في حالات الطوارئ",
+        category: "Safety Systems",
+        definition: "An automated safety valve designed to isolate a process or equipment section during an emergency shutdown.",
+        working: "The Emergency Shutdown System sends a signal to the valve actuator when a defined emergency condition is detected. The valve moves to its specified safe position.",
+        uses: "Used to isolate hydrocarbon flow during emergencies such as fire, gas detection, high pressure, or other defined shutdown conditions.",
+        example: "When a confirmed fire-and-gas shutdown condition occurs, the ESDV closes to isolate the hydrocarbon supply.",
+        related:[],
+        equipment: [
+            { name: "ESDV Assembly", image: "images/esdv.jpg", description: "An automated emergency isolation valve with an actuator." },
+            { name: "Emergency Shutdown Panel", image: "images/esd-panel.jpg", description: "Monitors safety inputs and initiates predefined shutdown actions." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "SSIV",
+        full: "Subsea Isolation Valve",
+        arabic: "صمام عزل تحت سطح البحر",
+        category: "Subsea Equipment",
+        definition: "A valve installed in a subsea pipeline or production system to provide isolation of the subsea flow path.",
+        working: "The valve is operated through a subsea control system or another designed actuation arrangement to isolate the pipeline or connected equipment.",
+        uses: "Used for subsea pipeline isolation, protection of offshore facilities, and emergency isolation.",
+        example: "An SSIV can isolate a subsea pipeline from the offshore production facility when required by the safety system.",
+        related:[],
+        equipment: [
+            { name: "Subsea Isolation Valve", image: "images/subsea-isolation-valve.jpg", description: "A pressure-rated isolation valve installed in a subsea system." },
+            { name: "Subsea Control Module", image: "images/subsea-control-module.jpg", description: "Provides control functions for subsea equipment." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "PLEM",
+        full: "Pipeline End Manifold",
+        arabic: "مجمع نهاية خط الأنابيب",
+        category: "Subsea Equipment",
+        definition: "A subsea manifold installed at the end of a pipeline system to provide connections between pipelines, flowlines, and other subsea components.",
+        working: "The PLEM provides a subsea connection and distribution point for fluids between connected pipeline or flowline systems.",
+        uses: "Used in offshore oil and gas developments to connect subsea pipelines, risers, and production or export systems.",
+        example: "A PLEM may connect an offshore pipeline to a subsea production flowline.",
+        related:[],
+        equipment: [
+            { name: "Pipeline End Manifold", image: "images/plem.jpg", description: "A subsea manifold assembly used to connect pipeline systems." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "PLET",
+        full: "Pipeline End Termination",
+        arabic: "نهاية خط الأنابيب تحت سطح البحر",
+        category: "Subsea Equipment",
+        definition: "A subsea structure installed at the end of a pipeline to provide a connection point for other subsea equipment.",
+        working: "The PLET provides the mechanical and pipeline interface required to connect the pipeline to a manifold, jumper, or another subsea component.",
+        uses: "Used in subsea pipeline installation, connection, and offshore production infrastructure.",
+        example: "A PLET may be installed at the end of an export pipeline to connect it to a subsea manifold.",
+        related:[],
+        equipment: [
+            { name: "Pipeline End Termination", image: "images/plet.jpg", description: "A subsea pipeline termination structure with connection interfaces." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "FPSO",
+        full: "Floating Production Storage and Offloading",
+        arabic: "وحدة عائمة للإنتاج والتخزين والتفريغ",
+        category: "Offshore Facilities",
+        definition: "A floating offshore vessel used to receive, process, store, and offload produced hydrocarbons.",
+        working: "Produced fluids arrive from subsea wells or offshore platforms. The FPSO processes the fluids, stores the stabilized oil, and transfers it to shuttle tankers or export systems.",
+        uses: "Used for offshore oil and gas production, particularly in deepwater fields where fixed platforms may be unsuitable.",
+        example: "An FPSO receives production from several subsea wells, separates oil, gas, and water, and stores the oil before offloading.",
+        related:[],
+        equipment: [
+            { name: "FPSO Vessel", image: "images/fpso.jpg", description: "A floating production facility with processing and storage systems." },
+            { name: "Process Separation System", image: "images/offshore-separator.jpg", description: "Separates produced fluids into oil, gas, and water." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "FSO",
+        full: "Floating Storage and Offloading",
+        arabic: "وحدة عائمة للتخزين والتفريغ",
+        category: "Offshore Facilities",
+        definition: "A floating offshore vessel used mainly to store and offload hydrocarbons, usually oil received from another production facility.",
+        working: "Oil is transferred to the FSO through pipelines or other transfer systems. The vessel stores the oil until it is offloaded to a tanker.",
+        uses: "Used for offshore crude oil storage and transfer where additional storage capacity is required.",
+        example: "An offshore production platform sends stabilized crude oil to an FSO for storage before tanker loading.",
+        related:[],
+        equipment: [
+            { name: "FSO Vessel", image: "images/fso.jpg", description: "A floating vessel designed primarily for oil storage and offloading." },
+            { name: "Offloading System", image: "images/offloading-system.jpg", description: "Transfers stored oil from the FSO to a tanker." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "WHRU",
+        full: "Waste Heat Recovery Unit",
+        arabic: "وحدة استعادة الحرارة المهدرة",
+        category: "Process Equipment",
+        definition: "A system that captures heat from hot exhaust gases or another waste-heat source and uses it for a useful heating duty.",
+        working: "Hot exhaust gases transfer heat to a working fluid or process stream through a heat exchanger, reducing energy losses and improving overall efficiency.",
+        uses: "Used in offshore production facilities, gas processing plants, turbines, and industrial heating systems.",
+        example: "A gas turbine exhaust stream may provide heat to a WHRU, which then supplies hot water or another heating medium.",
+        related:[],
+        equipment: [
+            { name: "Waste Heat Recovery Unit", image: "images/waste-heat-recovery-unit.jpg", description: "Recovers useful thermal energy from a waste-heat source." },
+            { name: "Heat Exchanger", image: "images/heat-exchanger.jpg", description: "Transfers heat between two fluids without necessarily mixing them." }
+        ],
+        equations: [
+            {
+                title: "Heat Transfer",
+                formula: "Q = \\dot{m} C_p \\Delta T",
+                description: "A simplified equation for the heat transferred to or from a flowing fluid.",
+                variables: [
+                    "Q = Heat transfer rate",
+                    "ṁ = Mass flow rate",
+                    "Cp = Specific heat capacity",
+                    "ΔT = Temperature change"
+                ],
+                note: "Use consistent units. Actual WHRU performance depends on heat losses, heat-transfer efficiency, and equipment design."
+            }
+        ]
+    },
+    {
+        abbr: "TEG",
+        full: "Triethylene Glycol",
+        arabic: "ثلاثي إيثيلين جلايكول",
+        category: "Gas Processing",
+        definition: "A liquid desiccant commonly used to remove water vapor from natural gas.",
+        working: "Wet natural gas contacts lean TEG in a contactor. The glycol absorbs water vapor, producing dry gas and water-rich glycol. The rich glycol is then regenerated by heating and reused.",
+        uses: "Used for natural gas dehydration to reduce water content and minimize hydrate formation and corrosion risks.",
+        related:[],
+        example: "Wet gas passes through a TEG contactor, where water vapor is absorbed by the glycol before the dry gas leaves the system.",
+        equipment: [
+            { name: "TEG Contactor", image: "images/teg-contactor.jpg", description: "Provides contact between wet natural gas and lean glycol." },
+            { name: "Glycol Regeneration Unit", image: "images/teg-regeneration-unit.jpg", description: "Removes absorbed water from rich glycol so it can be reused." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "MEG",
+        full: "Monoethylene Glycol",
+        arabic: "أحادي إيثيلين جلايكول",
+        category: "Gas Processing",
+        definition: "A chemical commonly injected into oil and gas production systems to inhibit hydrate formation by reducing the freezing point of the aqueous phase.",
+        working: "MEG mixes with produced water and reduces its tendency to form gas hydrates under low-temperature and high-pressure conditions. The glycol can be recovered and regenerated in suitable systems.",
+        uses: "Used in subsea flowlines, offshore production systems, and gas transportation to prevent hydrate formation.",
+        example: "MEG is injected into a subsea flowline to reduce the risk of hydrate blockage during cold operating conditions.",
+        related:[],
+        equipment: [
+            { name: "MEG Injection Pump", image: "images/meg-injection-pump.jpg", description: "Injects MEG into the production or pipeline system." },
+            { name: "MEG Recovery Unit", image: "images/meg-recovery-unit.jpg", description: "Recovers and treats MEG for reuse in suitable process systems." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "BTEX",
+        full: "Benzene, Toluene, Ethylbenzene, and Xylenes",
+        arabic: "البنزين والتولوين والإيثيل بنزين والزيلينات",
+        category: "Chemistry & HSE",
+        definition: "A group of four aromatic hydrocarbon compounds commonly found in crude oil, natural gas condensate, and petroleum-related streams.",
+        working: "BTEX compounds can enter the vapor or liquid phase depending on composition, temperature, and pressure. They may be present in process equipment, produced fluids, and hydrocarbon vapors.",
+        uses: "Used as a group of compounds in environmental monitoring, exposure assessment, process analysis, and contamination studies.",
+        example: "A gas processing facility may monitor BTEX concentrations in process streams and workplace air.",
+        related:[],
+        equipment: [
+            { name: "Gas Detector", image: "images/gas-detector.jpg", description: "Selected instruments can detect specific hydrocarbons or volatile organic compounds." },
+            { name: "Sampling System", image: "images/gas-sampling-system.jpg", description: "Collects representative samples for laboratory BTEX analysis." }
+        ],
+        equations: [],
+    },
+    {
+        abbr: "LEL",
+        full: "Lower Explosive Limit",
+        arabic: "الحد الأدنى للانفجار",
+        category: "HSE & Gas Detection",
+        definition: "The lowest concentration of a flammable gas or vapor in air that can ignite and propagate a flame when an ignition source is present.",
+        working: "Gas detectors measure flammable gas concentration and may display the result as a percentage of the LEL. A reading of 100% LEL represents the lower explosive limit for the calibrated gas.",
+        uses: "Used in gas monitoring, confined-space entry, hydrocarbon facilities, and fire-and-gas safety systems.",
+        example: "A gas detector reading of 10% LEL indicates that the measured flammable gas concentration is 10% of its lower explosive limit.",
+        related:[],
+        equipment: [
+            { name: "Portable Gas Detector", image: "images/portable-gas-detector.jpg", description: "Monitors flammable gas concentration and may display readings in %LEL." },
+            { name: "Fixed Gas Detector", image: "images/fixed-gas-detector.jpg", description: "Continuously monitors flammable gas concentration in designated areas." }
+        ],
+        equations: [
+            {
+                title: "Percentage of LEL",
+                formula: "\\%LEL = \\frac{C_{gas}}{LEL} \\times 100",
+                description: "Expresses the gas concentration as a percentage of its lower explosive limit.",
+                variables: [
+                    "Cgas = Measured gas concentration",
+                    "LEL = Lower explosive limit concentration"
+                ],
+                note: "This is a simplified concentration relationship. Detector readings depend on calibration gas, sensor type, and correction factors."
+            }
+        ]
+    },
+    {
+        abbr: "UEL",
+        full: "Upper Explosive Limit",
+        arabic: "الحد الأعلى للانفجار",
+        category: "HSE & Gas Detection",
+        definition: "The highest concentration of a flammable gas or vapor in air that can ignite and propagate a flame under specified conditions.",
+        working: "A flammable mixture can ignite when its concentration lies between the LEL and UEL. Above the UEL, the mixture is generally too rich in fuel to burn because there is insufficient oxygen.",
+        uses: "Used in fire and gas safety, hazard assessment, ventilation planning, and evaluation of flammable atmospheres.",
+        example: "A hydrocarbon-air mixture above its UEL may be too fuel-rich to ignite, but it can become flammable if diluted with air.",
+        related:[],
+        equipment: [
+            { name: "Gas Detector", image: "images/gas-detector.jpg", description: "Measures flammable gas concentrations to help identify hazardous atmospheres." }
+        ],
+        equations: [],
+    },
+
 ];
 
 

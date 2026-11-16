@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Well Testing Academy // Technical Knowledge Library</title>
+  <!-- Link to the main industrial dark-theme stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- STICKY TOP NAVIGATION BAR                  -->
+  <!-- ========================================== -->
+  <header>
+    <div class="container header-inner">
+      <!-- Brand Logo and Title -->
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 3" stroke-linecap="round" />
+            <path d="M3 12h2M19 12h2M12 3v2M12 19v2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div style="min-width:0;">
+          <div class="brand-title-row">
+            <span class="brand-title">Well Testing Academy</span>
+            <span class="badge badge-amber hide-mobile">// TECHNICAL LIBRARY</span>
+          </div>
+          <p class="brand-sub font-mono">SURFACE WELL TESTING &amp; SAFETY SYSTEMS REPOSITORY</p>
+        </div>
+      </div>
+
+      <!-- Header Action Buttons & Progress Counter -->
+      <div class="header-actions">
+        <!-- Quick scroll trigger to calculator section -->
+        <button onclick="scrollToCalculator()" class="btn font-mono text-amber hide-mobile">
+          <span class="dot dot-amber animate-telemetry"></span>
+          POM Rule Checker
+        </button>
+
+        <!-- Global Academy Completion Progress Tracker -->
+        <div class="progress-box">
+          <div style="text-align:right;">
+            <div class="progress-label font-mono">Academy Progress</div>
+            <div id="header-progress-text" class="progress-val font-mono">0% Complete</div>
+          </div>
+          <div class="progress-track">
+            <div id="header-progress-bar" class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- MAIN CONTENT CONTAINER                     -->
+  <!-- ========================================== -->
+  <main class="container">
+
+    <!-- 1. HERO & REAL-TIME SEARCH SECTION -->
+    <section class="card-panel">
+      <div style="max-width: 780px;">
+        <div class="badge badge-pill">
+          <span class="dot dot-emerald animate-telemetry"></span>
+          <span>CURRICULUM EDITION 2026 // OFFLINE FIELD EDITION</span>
+        </div>
+        <h1 class="hero-title">
+          Well Testing Academy <span class="text-amber">Technical Knowledge Library</span>
+        </h1>
+        <p class="text-muted" style="font-size: 0.95rem;">
+          Interactive field manuals, P&amp;ID schematics, fail-safe barrier matrices, and surface well testing equipment modules engineered for field specialists and well test supervisors.
+        </p>
+      </div>
+
+      <!-- Search Bar & Bookmark Filter Controls -->
+      <div class="search-bar-wrap">
+        <div class="search-row">
+          <div class="search-input-box">
+            <svg class="search-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" stroke-linecap="round" />
+            </svg>
+            <input
+              id="library-search"
+              type="text"
+              placeholder="Search modules, pressures (e.g. 6000 psi, H2S, Hi-Pilot, SSV, POM, Separator)..."
+            />
+            <button id="clear-search-btn" onclick="clearSearch()" class="clear-btn font-mono hidden">ESC</button>
+          </div>
+
+          <!-- Bookmark Toggle Filter Button -->
+          <button id="bookmark-filter-btn" onclick="toggleBookmarkFilter()" class="btn font-mono">
+            <svg width="15" height="15" class="text-amber" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
+            </svg>
+            <span>Bookmarked (<span id="bookmark-count">0</span>)</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Category Pills Row (Populated by app.js) -->
+        <div id="category-pills" class="pills-row"></div>
+      </div>
+    </section>
+
+    <!-- 2. FEATURED MODULE 01 SPOTLIGHT -->
+    <section class="featured-banner">
+      <div class="featured-flex">
+        <div style="max-width: 740px;">
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.85rem;">
+            <span class="badge badge-pill badge-emerald">
+              <span class="dot dot-emerald animate-telemetry"></span>
+              AVAILABLE NOW // FULL 16-SLIDE DECK
+            </span>
+            <span class="badge text-amber">MODULE 01 // SAFETY &amp; ESD</span>
+            <span id="mod01-progress-badge" class="badge">0 / 16 SLIDES COMPLETED</span>
+          </div>
+
+          <h2 style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-bottom: 0.65rem;">
+            01 — Emergency Shut Down (ESD) System
+          </h2>
+
+          <p class="text-muted" style="font-size: 0.92rem;">
+            Comprehensive technical reference covering fail-safe hydraulic actuator mechanics, pneumatic/hydraulic circuit architecture (<span class="font-mono text-amber">6000 psi</span> hydraulic / <span class="font-mono text-amber">30 psi</span> pilot loop), remote ESD stations, Hi &amp; Lo Pilot spring principles, ESD-BB control panel gauges/valves, and the mandatory <span class="font-mono text-emerald">POM Rule</span> barrier matrix.
+          </p>
+
+          <!-- Module Specifications Quick Grid -->
+          <div class="specs-grid">
+            <div class="spec-box">
+              <div class="spec-label">CLOSURE TIME</div>
+              <div class="spec-val text-emerald">&lt; 10 Seconds</div>
+            </div>
+            <div class="spec-box">
+              <div class="spec-label">MAX HYDRAULIC</div>
+              <div class="spec-val text-amber">6,000 psi</div>
+            </div>
+            <div class="spec-box">
+              <div class="spec-label">OPERATING HYD.</div>
+              <div class="spec-val">1,500–3,000 psi</div>
+            </div>
+            <div class="spec-box">
+              <div class="spec-label">PILOT / ESD LOOP</div>
+              <div class="spec-val text-sky">~30 psi Air</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spotlight Call-to-Action Buttons -->
+        <div class="cta-col">
+          <button onclick="openModuleModal('mod-01', 0)" class="btn btn-primary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+              <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>Open Interactive Study Deck</span>
+          </button>
+
+          <button onclick="openModuleModal('mod-01', 6)" class="btn font-mono">
+            <span>Jump to Slide 07: POM Matrix</span>
+            <span>&rarr;</span>
+          </button>
+
+          <button onclick="openModuleModal('mod-01', 15)" class="btn btn-emerald font-mono">
+            <span>Slide 16: ESD Knowledge Quiz</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CURRICULUM CATALOG GRID SECTION -->
+    <section>
+      <div class="section-header">
+        <div>
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff;">Academy Curriculum Modules</h2>
+          <p class="font-mono text-muted" style="font-size: 0.72rem;">SELECT ANY MODULE TO LAUNCH THE STUDY DECK OR SYLLABUS SPECIFICATION</p>
+        </div>
+        <div id="results-counter" class="badge">Showing 8 of 8 modules</div>
+      </div>
+
+      <!-- Dynamically Rendered Curriculum Modules Grid -->
+      <div id="modules-grid" class="modules-grid"></div>
+
+      <!-- Empty Search Result Fallback State -->
+      <div id="empty-search-state" class="card-panel hidden" style="text-align:center; padding: 2.5rem;">
+        <div class="badge badge-amber" style="margin-bottom:0.75rem;">0 RESULTS</div>
+        <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.4rem;">No matching technical modules found</h3>
+        <p class="text-muted" style="font-size:0.85rem; margin-bottom:1rem;">
+          Try clearing your search query or switching back to "All Modules" to inspect the complete Well Testing Academy catalog.
+        </p>
+        <button onclick="clearSearch()" class="btn btn-primary" style="padding:0.55rem 1rem; font-size:0.8rem;">Reset Filters</button>
+      </div>
+    </section>
+
+    <!-- 4. INTERACTIVE POM RULE & ESD REQUIREMENT CALCULATOR -->
+    <section id="pom-calculator-section" class="card-panel" style="display:flex; flex-direction:column; gap:1.5rem;">
+      <div class="section-header" style="border-bottom:1px solid var(--borderline); padding-bottom:1.25rem; margin-bottom:0;">
+        <div>
+          <div class="font-mono text-amber" style="font-size:0.72rem; margin-bottom:0.25rem;">
+            ● INTERACTIVE ENGINEERING TOOL // SLIDES 07 &amp; 08 REFERENCE
+          </div>
+          <h2 style="font-size:1.35rem; font-weight:800; color:#fff;">POM Rule &amp; ESD Requirement Calculator</h2>
+          <p class="text-muted" style="font-size:0.85rem; margin-top:0.25rem;">
+            Evaluate mandatory wellhead barrier configuration (<span class="font-mono" style="color:#e2e8f0;">S2, S3+ESD, SS0/SS1/SS2, SCSSV, D0/D1/D2</span>) based on Shut-in Wellhead Pressure, Fluid Nature, and Flowrates.
+          </p>
+        </div>
+        <button onclick="resetCalculator()" class="btn font-mono">Reset Parameters</button>
+      </div>
+
+      <!-- Calculator Layout (Inputs & Live Results Output) -->
+      <div class="calc-layout">
+        <!-- Input Parameters Form Controls -->
+        <div class="calc-inputs">
+          <!-- Fluid Selection Input -->
+          <div class="input-card">
+            <label for="calc-fluid" class="font-mono text-muted" style="font-size:0.72rem;">1. NATURE OF FLUID</label>
+            <select id="calc-fluid" onchange="evaluatePOMRule()">
+              <option value="oil">Sweet Oil (No H2S)</option>
+              <option value="gas">Sweet Gas (No H2S)</option>
+              <option value="oil_h2s">Sour Oil (H2S Present)</option>
+              <option value="gas_h2s">Sour Gas (H2S Present)</option>
+            </select>
+            <p class="text-muted" style="font-size:0.7rem;">H2S presence triggers mandatory ESD &amp; D2 containment tier.</p>
+          </div>
+
+          <!-- Wellhead Pressure (WHP) Number & Range Inputs -->
+          <div class="input-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="calc-whp" class="font-mono text-muted" style="font-size:0.72rem;">2. SHUT-IN WHP (PSI)</label>
+              <span id="calc-whp-badge" class="font-mono text-amber" style="font-size:0.75rem; font-weight:700;">4,200 psi</span>
+            </div>
+            <input id="calc-whp" type="number" min="0" max="25000" step="100" value="4200" oninput="evaluatePOMRule()" class="font-mono" />
+            <input id="calc-whp-slider" type="range" min="0" max="18000" step="250" value="4200" oninput="syncWhpSlider(this.value)" />
+          </div>
+
+          <!-- Gas Flow Rate Input -->
+          <div class="input-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="calc-gas" class="font-mono text-muted" style="font-size:0.72rem;">3. GAS RATE (MMSCF/D)</label>
+              <span class="font-mono text-muted" style="font-size:0.68rem;">Threshold: &ge; 30</span>
+            </div>
+            <input id="calc-gas" type="number" min="0" max="200" step="1" value="12" oninput="evaluatePOMRule()" class="font-mono" />
+            <p class="text-muted" style="font-size:0.7rem;">High Flow Rate threshold: &ge; 30 MMSCF/D.</p>
+          </div>
+
+          <!-- Liquid Flow Rate Input -->
+          <div class="input-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="calc-oil" class="font-mono text-muted" style="font-size:0.72rem;">4. LIQUID RATE (BPD)</label>
+              <span class="font-mono text-muted" style="font-size:0.68rem;">Threshold: &ge; 8,000</span>
+            </div>
+            <input id="calc-oil" type="number" min="0" max="50000" step="250" value="3500" oninput="evaluatePOMRule()" class="font-mono" />
+            <p class="text-muted" style="font-size:0.7rem;">High Flow Rate threshold: &ge; 8,000 bpd.</p>
+          </div>
+        </div>
+
+        <!-- Evaluation Results Display Panel -->
+        <div class="calc-output">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--borderline); padding-bottom:0.75rem;">
+            <span class="font-mono text-muted" style="font-size:0.72rem;">POM ASSESSMENT OUTPUT</span>
+            <span id="calc-esd-status-pill" class="badge badge-pill badge-amber">ESD RECOMMENDED</span>
+          </div>
+
+          <div class="codes-3col">
+            <div class="code-tile">
+              <div class="font-mono text-muted" style="font-size:0.62rem;">SURFACE TREE</div>
+              <div id="calc-surface-code" class="font-mono" style="font-size:1rem; font-weight:800; color:#fff; margin-top:0.2rem;">S2</div>
+            </div>
+            <div class="code-tile">
+              <div class="font-mono text-muted" style="font-size:0.62rem;">SUBSURFACE</div>
+              <div id="calc-subsurface-code" class="font-mono text-amber" style="font-size:1rem; font-weight:800; margin-top:0.2rem;">SS0</div>
+            </div>
+            <div class="code-tile">
+              <div class="font-mono text-muted" style="font-size:0.62rem;">CONTAINMENT</div>
+              <div id="calc-containment-code" class="font-mono text-sky" style="font-size:1rem; font-weight:800; margin-top:0.2rem;">D1</div>
+            </div>
+          </div>
+
+          <div class="inner-box" style="background:var(--panel); font-size:0.78rem;">
+            <div id="calc-regime-title" class="font-mono" style="font-weight:700; color:#fff; margin-bottom:0.35rem;">
+              Regime: 3,000 &lt; WHP &lt; 5,000 psi (Standard Rate)
+            </div>
+            <p id="calc-equipment-desc" class="text-muted">
+              Requires Master Valve + Flowline Valve (S2). ESD is recommended on all well test operations even when not strictly mandatory.
+            </p>
+          </div>
+
+          <!-- Dynamic Trigger Badges Container -->
+          <div id="calc-trigger-reasons" style="display:flex; flex-wrap:wrap; gap:0.4rem;"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- PAGE FOOTER SECTION                        -->
+  <!-- ========================================== -->
+  <footer>
+    <div class="container" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.75rem;">
+      <div>WELL TESTING ACADEMY // TECHNICAL KNOWLEDGE LIBRARY</div>
+      <div>OFFLINE SELF-CONTAINED EDITION // ALL RIGHTS RESERVED</div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- INTERACTIVE STUDY DECK MODAL WINDOW        -->
+  <!-- ========================================== -->
+  <div id="module-modal" class="modal-backdrop hidden">
+    <div class="modal-window">
+      <!-- Modal Header Bar -->
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:0.75rem; min-width:0;">
+          <span id="modal-module-badge" class="badge badge-amber">MODULE 01</span>
+          <h3 id="modal-module-title" style="font-size:1rem; font-weight:700; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+            Emergency Shut Down (ESD) System
+          </h3>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.5rem; flex-shrink:0;">
+          <button onclick="toggleCurrentModalBookmark()" class="btn" style="padding:0.45rem 0.6rem;" title="Bookmark Module">
+            <svg id="modal-bookmark-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
+            </svg>
+          </button>
+          <button onclick="closeModuleModal()" class="btn btn-danger-hover font-mono">CLOSE [ESC]</button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Sidebar Index + Main Content Display) -->
+      <div class="modal-body">
+        <!-- Slide Navigation Sidebar -->
+        <aside id="modal-slide-sidebar" class="modal-sidebar">
+          <div style="padding:0.65rem 0.9rem; border-bottom:1px solid var(--borderline); display:flex; justify-content:space-between; align-items:center;">
+            <span class="font-mono text-muted" style="font-size:0.68rem; font-weight:700;">SLIDE INDEX (16)</span>
+            <span id="sidebar-completion-count" class="font-mono text-emerald" style="font-size:0.68rem;">0/16 Done</span>
+          </div>
+          <div id="slide-index-list" class="slide-list"></div>
+        </aside>
+
+        <!-- Main Slide Presentation Area -->
+        <div class="modal-main">
+          <div id="modal-content-scroll" class="modal-scroll"></div>
+
+          <!-- Slide Navigation Footer Controls -->
+          <div id="modal-slide-footer" class="modal-footer">
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <button id="prev-slide-btn" onclick="changeSlide(-1)" class="btn font-mono">&larr; Prev Slide</button>
+              <span id="slide-counter-pill" class="badge text-amber" style="padding:0.55rem 0.85rem;">Slide 01 / 16</span>
+              <button id="next-slide-btn" onclick="changeSlide(1)" class="btn font-mono">Next Slide &rarr;</button>
+            </div>
+
+            <button id="mark-slide-complete-btn" onclick="toggleCurrentSlideComplete()" class="btn btn-emerald font-mono">
+              <span id="mark-complete-icon">&#9744;</span>
+              <span id="mark-complete-label">Mark Slide Completed</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- TOAST NOTIFICATION BANNER                  -->
+  <!-- ========================================== -->
+  <div id="toast-banner" class="toast hidden">
+    <span class="dot dot-amber"></span>
+    <span id="toast-message">Notification</span>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT DEPENDENCY SCRIPTS              -->
+  <!-- ========================================== -->
+  <!-- Load storage wrappers and offline helpers first -->
+  <script src="safe-storage.js"></script>
+  <script src="library-data.js"></script>
+  <script src="slide-deck-01.js"></script>
+  <script src="slide-deck-04.js"></script>
+  <script src="slide-deck-06.js"></script>
+  <script src="slide-deck-08.js"></script>
+
+  <!-- Load core application event logic last -->
+  <script src="app.js"></script>
+
+  <script>
+    /* Custom inline script sandbox if needed */
+  </script>
+</body>
+</html>

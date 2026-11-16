@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OTIS Hydraulic Control Panel V4 | Well Testing Academy</title>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./libs/three.module.js",
+    "three/addons/": "./libs/"
+  }
+}
+</script>
+
+  <link rel="stylesheet" href="style.css">
+
+<style>
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <h1>OTIS HYDRAULIC CONTROL PANEL — V4</h1>
+    <small>WELL TESTING ACADEMY | INTERACTIVE 3D TRAINING MODEL</small>
+  </div>
+  <div class="status on" id="systemStatus">SYSTEM READY</div>
+</header>
+
+<div class="container">
+
+<div class="layout">
+
+<main>
+
+  <div class="viewer">
+    <canvas id="scene"></canvas>
+
+    <div class="overlay">
+      <b>3D MODEL / V4</b><br>
+      Drag: rotate · Wheel/pinch: zoom<br>
+      Right-drag: pan · Click: inspect<br>
+      <span id="viewMode">Normal view</span>
+    </div>
+  </div>
+
+
+  <div class="legend">
+    <span><i class="dot" style="background:#009eff"></i>HP circuit</span>
+    <span><i class="dot" style="background:#00c982"></i>MP circuit</span>
+    <span><i class="dot" style="background:#ffa12d"></i>LP circuit</span>
+    <span><i class="dot" style="background:#b0bdca"></i>Return</span>
+  </div>
+
+  <div class="dashboard">
+    <div class="metric">
+      <span>HIGH PRESSURE</span>
+      <strong id="hpValue">0 <small>psi*</small></strong>
+    </div>
+
+    <div class="metric">
+      <span>MEDIUM PRESSURE</span>
+      <strong id="mpValue">0 <small>psi*</small></strong>
+    </div>
+
+    <div class="metric">
+      <span>LOW PRESSURE</span>
+      <strong id="lpValue">0 <small>psi*</small></strong>
+    </div>
+
+    <div class="metric">
+      <span>WELLHEAD PRODUCTION FLOW</span>
+      <strong id="wellFlowValue">STOPPED</strong>
+    </div>
+
+    <div class="metric">
+      <span>FLOWLINE PRESSURE</span>
+      <strong id="lineMetric">0 <small>psi*</small></strong>
+    </div>
+  </div>
+
+</main>
+
+<aside class="controls">
+
+  <div class="section">
+    <h3>HYDRAULIC POWER UNIT</h3>
+
+    <div class="status-row">
+      Power unit
+      <span class="status off" id="powerStatus">OFF</span>
+    </div>
+
+    <button class="full" id="powerBtn">START POWER UNIT</button>
+
+    <div class="status-row">
+      Hydraulic pumps
+      <span class="status off" id="pumpStatus">OFF</span>
+    </div>
+
+    <button class="full" id="pumpBtn">START PUMPS</button>
+
+    <div class="status-row">
+      Hydraulic flow
+      <span class="status off" id="flowStatus">STOPPED</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>CIRCUIT CONTROLS</h3>
+
+    <div class="status-row">
+      HP circuit
+      <span class="status off" id="hpStatus">CLOSED</span>
+    </div>
+    <div class="meter"><div id="hpMeter"></div></div>
+    <button class="full" id="hpBtn">OPEN HP CIRCUIT</button>
+
+    <div class="status-row">
+      MP circuit
+      <span class="status off" id="mpStatus">CLOSED</span>
+    </div>
+    <div class="meter"><div id="mpMeter"></div></div>
+    <button class="full" id="mpBtn">OPEN MP CIRCUIT</button>
+
+    <div class="status-row">
+      LP circuit
+      <span class="status off" id="lpStatus">CLOSED</span>
+    </div>
+    <div class="meter"><div id="lpMeter"></div></div>
+    <button class="full" id="lpBtn">OPEN LP CIRCUIT</button>
+  </div>
+
+  <div class="section">
+    <h3>WELLHEAD CHOKE &amp; PILOTS</h3>
+
+    <div class="status-row">
+      Choke opening
+      <span class="status on" id="chokeValue">50%</span>
+    </div>
+    <input type="range" id="chokeSlider" min="0" max="100" step="1" value="50">
+
+    <div class="status-row">
+      Flowline pressure
+      <span class="status" id="linePressureValue">0 psi*</span>
+    </div>
+
+    <div class="status-row">
+      High pilot (2500 psi)
+      <span class="status on" id="highPilotStatus">NORMAL</span>
+    </div>
+
+    <div class="status-row">
+      Low pilot (250 psi)
+      <span class="status on" id="lowPilotStatus">NORMAL</span>
+    </div>
+
+    <button class="full" id="pilotResetBtn">RESET PILOTS</button>
+  </div>
+
+  <div class="section">
+    <h3>TRAINING SEQUENCE</h3>
+
+    <button class="full" id="demoBtn">▶ RUN DEMONSTRATION</button>
+    <button class="full" id="pauseBtn">Ⅱ PAUSE</button>
+    <button class="full danger" id="esdBtn">EMERGENCY SHUTDOWN</button>
+    <button class="full" id="resetBtn">RESET SYSTEM</button>
+  </div>
+
+  <div class="section">
+    <h3>3D DISPLAY</h3>
+
+    <div class="btn-grid" id="displayGrid">
+      <button id="xrayBtn">X-RAY VIEW</button>
+      <button id="labelsBtn">HIDE LABELS</button>
+      <button id="flowBtn">HIDE FLOW</button>
+      <button id="homeBtn">RESET CAMERA</button>
+      <button id="explodeBtn">EXPLODE VIEW</button>
+      <button id="frontBtn">FRONT VIEW</button>
+      <button id="rearBtn">REAR VIEW</button>
+      <button id="tankViewBtn">HYDRAULIC TANK VIEW</button>
+    </div>
+  </div>
+
+  <div>
+    <h3>COMPONENT INSPECTOR</h3>
+
+    <div class="info" id="infoBox">
+      <strong>OTIS V4 READY</strong><br>
+      Select a gauge, selector, valve, tube or cabinet component.
+    </div>
+
+    <p class="hint">
+      Illustrative training model only. Not an OTIS manufacturer drawing,
+      verified hydraulic schematic, or operating procedure.
+    </p>
+  </div>
+
+</aside>
+</div>
+
+<div class="footer">
+  WELL TESTING ACADEMY | OTIS HYDRAULIC CONTROL TRAINING<br>
+  *Illustrative simulated pressure only. Values and circuit logic are not actual OTIS specifications.
+</div>
+
+</div>
+
+
+
+<script type="module" src="main.js"></script>
+
+</body>
+</html>

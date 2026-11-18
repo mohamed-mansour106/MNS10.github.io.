@@ -1,0 +1,2214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>OilField University | Virtual Courses Room</title>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./libs/three.module.js"
+  }
+}
+</script>
+
+<style>
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#101820;
+  color:white;
+  font-family:Arial,Helvetica,sans-serif;
+  touch-action:none;
+}
+
+canvas{
+  display:block;
+  touch-action:none;
+}
+
+button{
+  cursor:pointer;
+  font-family:inherit;
+}
+
+#hud{
+  position:fixed;
+  inset:0;
+  z-index:5;
+  pointer-events:none;
+}
+
+#brand{
+  position:absolute;
+  top:14px;
+  left:14px;
+  padding:11px 15px;
+  background:rgba(5,17,27,.9);
+  border:1px solid #3c9eb8;
+  border-radius:8px;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+#brand strong{
+  display:block;
+  color:#6be3ff;
+  font-size:15px;
+  margin-bottom:4px;
+}
+
+#status{
+  position:absolute;
+  top:14px;
+  right:14px;
+  max-width:45%;
+  background:rgba(5,17,27,.9);
+  border:1px solid #3c9eb8;
+  border-radius:7px;
+  padding:10px 13px;
+  font-size:11px;
+  color:#b9dce8;
+}
+
+#hint{
+  position:absolute;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:11px 17px;
+  background:rgba(0,0,0,.82);
+  border:1px solid #3c9eb8;
+  border-radius:8px;
+  font-size:13px;
+  text-align:center;
+  max-width:90%;
+}
+
+#crosshair{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:8px;
+  height:8px;
+  border:1px solid white;
+  border-radius:50%;
+  opacity:.7;
+}
+
+#back{
+  position:fixed;
+  z-index:8;
+  top:75px;
+  left:14px;
+  background:rgba(5,26,39,.92);
+  border:1px solid #3c9eb8;
+  color:#c8f3ff;
+  padding:9px 13px;
+  border-radius:7px;
+  pointer-events:auto;
+  font-size:11px;
+}
+
+#mobilePad{
+  position:absolute;
+  left:18px;
+  bottom:20px;
+  width:140px;
+  height:140px;
+  display:none;
+  pointer-events:auto;
+  z-index:10;
+}
+
+.move{
+  position:absolute;
+  width:46px;
+  height:46px;
+  border-radius:10px;
+  background:rgba(8,35,49,.94);
+  border:1px solid #5bd8f3;
+  color:white;
+  font-size:20px;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+#up{left:47px;top:0}
+#down{left:47px;bottom:0}
+#left{left:0;top:47px}
+#right{right:0;top:47px}
+
+#interact{
+  position:absolute;
+  right:22px;
+  bottom:32px;
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:#087da8;
+  color:white;
+  border:2px solid #71e9ff;
+  font-weight:bold;
+  font-size:11px;
+  pointer-events:auto;
+  display:none;
+  z-index:11;
+  touch-action:none;
+}
+
+#panel{
+  position:fixed;
+  z-index:20;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(650px,92vw);
+  max-height:82vh;
+  overflow:auto;
+  padding:23px;
+  background:linear-gradient(145deg,#102634,#07131d);
+  border:1px solid #48c6e5;
+  border-radius:14px;
+  box-shadow:0 15px 70px #000;
+  display:none;
+  pointer-events:auto;
+}
+
+#panel h2{
+  color:#63e3ff;
+  margin:0 0 12px;
+  font-size:21px;
+}
+
+#panel h3{
+  color:#a9eaff;
+  font-size:14px;
+  margin:18px 0 7px;
+}
+
+#panel p,#panel li{
+  color:#d4e4e9;
+  font-size:13px;
+  line-height:1.7;
+}
+
+#panel ul{padding-left:20px}
+
+#close{
+  float:right;
+  position:sticky;
+  top:0;
+  background:#087da8;
+  border:0;
+  color:white;
+  padding:9px 14px;
+  border-radius:7px;
+}
+
+#panel small{
+  display:block;
+  color:#78cce1;
+  border-top:1px solid #285164;
+  padding-top:12px;
+  margin-top:18px;
+}
+
+#exitSeat{
+  position:fixed;
+  z-index:25;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:13px 22px;
+  border:1px solid #71e9ff;
+  border-radius:9px;
+  background:#075b82;
+  color:white;
+  font-weight:bold;
+  display:none;
+  pointer-events:auto;
+}
+
+/* =====================================
+   LIVE COURSE VIEWER
+===================================== */
+
+#courseViewer{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  flex-direction:column;
+  background:#07131d;
+  padding:12px;
+  pointer-events:auto;
+}
+
+#courseViewerHeader{
+  min-height:48px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:0 15px;
+  background:#0b3045;
+  border:1px solid #36a9ca;
+  border-bottom:0;
+  border-radius:9px 9px 0 0;
+}
+
+#courseViewerTitle{
+  color:#66e4ff;
+  font-size:13px;
+  font-weight:bold;
+  letter-spacing:1px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+#courseViewerActions{
+  display:flex;
+  gap:8px;
+  flex-shrink:0;
+}
+
+.viewerButton{
+  padding:9px 13px;
+  border:1px solid #63dff8;
+  border-radius:6px;
+  color:white;
+  background:#087da8;
+  font-weight:bold;
+  font-size:11px;
+}
+
+#courseFrame{
+  flex:1;
+  width:100%;
+  min-height:0;
+  border:1px solid #36a9ca;
+  border-radius:0 0 9px 9px;
+  background:white;
+}
+
+#courseLoading{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+  padding:14px 20px;
+  border-radius:8px;
+  background:#0b3045;
+  color:#9cecff;
+  font-size:13px;
+  pointer-events:none;
+}
+
+@media(pointer:coarse),(max-width:900px){
+
+  #mobilePad{display:block}
+  #interact{display:block}
+
+  #hint{bottom:174px}
+
+  .move{
+    width:48px;
+    height:48px;
+    font-size:21px;
+  }
+
+  #brand{
+    top:10px;
+    left:10px;
+    padding:8px 10px;
+    font-size:9px;
+  }
+
+  #brand strong{font-size:12px}
+
+  #status{
+    top:10px;
+    right:10px;
+    font-size:9px;
+    padding:8px;
+  }
+
+  #back{
+    top:72px;
+    left:10px;
+  }
+
+  #courseViewer{
+    padding:5px;
+  }
+
+  #courseViewerHeader{
+    min-height:44px;
+    padding:0 8px;
+  }
+
+  #courseViewerTitle{
+    font-size:10px;
+  }
+
+  .viewerButton{
+    padding:8px;
+    font-size:10px;
+  }
+
+  #exitSeat{display:none!important}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="hud">
+
+  <div id="brand">
+    <strong>OILFIELD UNIVERSITY</strong>
+    PROFESSIONAL TRAINING CLASSROOM
+  </div>
+
+  <div id="status">CLASSROOM READY</div>
+
+  <div id="crosshair"></div>
+
+  <div id="hint">Explore the classroom</div>
+
+  <div id="mobilePad">
+    <button class="move" id="up">▲</button>
+    <button class="move" id="down">▼</button>
+    <button class="move" id="left">◀</button>
+    <button class="move" id="right">▶</button>
+  </div>
+
+  <button id="interact">INTERACT</button>
+
+</div>
+
+<button id="back">← MAIN HALL</button>
+<button id="exitSeat">EXIT WORKSTATION</button>
+
+<!-- REAL COURSE PAGE VIEWER -->
+<div id="courseViewer">
+
+  <div id="courseViewerHeader">
+
+    <span id="courseViewerTitle">
+      OILFIELD UNIVERSITY
+    </span>
+
+    <div id="courseViewerActions">
+
+      <button class="viewerButton" id="reloadCourse">
+        RELOAD
+      </button>
+
+      <button class="viewerButton" id="closeCourseViewer">
+        EXIT ✕
+      </button>
+
+    </div>
+
+  </div>
+
+  <div id="courseLoading">Loading OFU course...</div>
+
+  <iframe
+    id="courseFrame"
+    title="OilField University Course"
+    src="about:blank"
+    allowfullscreen>
+  </iframe>
+
+</div>
+
+<!-- INFORMATION PANEL -->
+<div id="panel">
+
+  <button id="close">CLOSE ✕</button>
+
+  <h2 id="panelTitle"></h2>
+
+  <div id="panelBody"></div>
+
+  <small>OILFIELD UNIVERSITY · LEARN · PRACTICE · MASTER</small>
+
+</div>
+
+<script type="module">
+import * as THREE from "three";
+
+/* =====================================================
+   01. CONFIGURATION
+===================================================== */
+
+const W=32;
+const D=28;
+const H=7.5;
+
+const HALF_W=W/2;
+const HALF_D=D/2;
+
+let scene,camera,renderer,clock;
+let player;
+
+let yaw=-Math.PI/2;
+let pitch=0;
+
+let mouseDown=false;
+let lastX=0;
+let lastY=0;
+
+let activePanel=false;
+let exiting=false;
+let target=null;
+
+const keys={};
+const mobile={};
+
+const interactables=[];
+
+let seatedAt=null;
+let sitting=false;
+
+let savedPlayerPosition=new THREE.Vector3();
+let savedYaw=0;
+
+const isMobile=
+  matchMedia("(pointer:coarse)").matches ||
+  matchMedia("(max-width:900px)").matches ||
+  navigator.maxTouchPoints>0;
+
+const hint=document.getElementById("hint");
+const panel=document.getElementById("panel");
+const panelTitle=document.getElementById("panelTitle");
+const panelBody=document.getElementById("panelBody");
+
+const courseViewer=document.getElementById("courseViewer");
+const courseFrame=document.getElementById("courseFrame");
+const courseViewerTitle=document.getElementById("courseViewerTitle");
+const courseLoading=document.getElementById("courseLoading");
+
+/* =====================================================
+   02. REAL OFU COURSE DIRECTORY
+
+   Edit these paths to match your actual folders.
+
+   coursesroom.html is inside:
+   Virtual University/
+
+   Courses folder is one level above:
+   ../Courses/
+===================================================== */
+
+const OFU_COURSE_PAGES=[
+
+  {
+    title:"COMPRESSOR",
+    subtitle:"COMPRESSOR TRAINING",
+    url:"../Air_Compressor/Air_Compressor.html"
+  },
+
+  {
+    title:"BASIC OILFIELD CALCULATIONS",
+    subtitle:"OILFIELD CALCULATIONS",
+    url:"../Courses/Basic_OilField_Calculations/Basic_OilField_Calculations.html"
+  },
+
+  {
+    title:"WELL TESTING CRASH COURSE",
+    subtitle:"WELL TESTING TRAINING",
+    url:"../Courses/Well_Testing_crash_course/Well_Testing_crash_course.html"
+  },
+
+  {
+    title:"FIELD SPECIALIST LEVEL 1",
+    subtitle:"FIELD SPECIALIST TRAINING",
+    url:"../Courses/Field_Specialist_L1/Field_Specialist_L1.html"
+  },
+
+  {
+    title:"K FACTOR",
+    subtitle:"K FACTOR TRAINING",
+    url:"../Courses/K_Factor/K_Factor.html"
+  }
+
+];
+
+/* =====================================================
+   03. MATERIALS
+===================================================== */
+
+const material=(color,roughness=.7,metalness=0)=>
+  new THREE.MeshStandardMaterial({
+    color,
+    roughness,
+    metalness
+  });
+
+const M={
+
+  floor:material(0x54595c,.85),
+  wall:material(0xd4d8d8,.9),
+  wall2:material(0x7f8b91,.85),
+  ceiling:material(0xb5bdc0,.9),
+
+  wood:material(0x684b35,.65),
+  woodTop:material(0x98704c,.55),
+
+  black:material(0x151b20,.5,.25),
+  metal:material(0x8d999e,.35,.75),
+  metalDark:material(0x344047,.45,.65),
+
+  blue:material(0x075b82,.4,.45),
+  blueLight:material(0x1599c5,.35,.4),
+
+  chair:material(0x202d35,.75),
+  white:material(0xe9eeee,.7),
+
+  glass:new THREE.MeshPhysicalMaterial({
+    color:0xbce6ed,
+    transparent:true,
+    opacity:.22,
+    roughness:.08,
+    transmission:.5
+  }),
+
+  green:material(0x317c55,.7),
+  red:material(0xb52b28,.6),
+  yellow:material(0xd3ad43,.65)
+
+};
+
+/* =====================================================
+   04. HELPERS
+===================================================== */
+
+function box(parent,w,h,d,mat,x,y,z){
+
+  const mesh=new THREE.Mesh(
+    new THREE.BoxGeometry(w,h,d),
+    mat
+  );
+
+  mesh.position.set(x,y,z);
+  mesh.castShadow=true;
+  mesh.receiveShadow=true;
+
+  parent.add(mesh);
+
+  return mesh;
+}
+
+function cylinder(parent,r1,r2,h,mat,x,y,z,segments=24){
+
+  const mesh=new THREE.Mesh(
+    new THREE.CylinderGeometry(r1,r2,h,segments),
+    mat
+  );
+
+  mesh.position.set(x,y,z);
+  mesh.castShadow=true;
+  mesh.receiveShadow=true;
+
+  parent.add(mesh);
+
+  return mesh;
+}
+
+function sphere(parent,r,mat,x,y,z){
+
+  const mesh=new THREE.Mesh(
+    new THREE.SphereGeometry(r,20,16),
+    mat
+  );
+
+  mesh.position.set(x,y,z);
+  mesh.castShadow=true;
+
+  parent.add(mesh);
+
+  return mesh;
+}
+
+function makeTextTexture(title,subtitle){
+
+  const c=document.createElement("canvas");
+  c.width=1024;
+  c.height=256;
+
+  const ctx=c.getContext("2d");
+
+  ctx.fillStyle="#101d25";
+  ctx.fillRect(0,0,1024,256);
+
+  ctx.strokeStyle="#5ce4ff";
+  ctx.lineWidth=8;
+  ctx.strokeRect(8,8,1008,240);
+
+  ctx.fillStyle="#5ce4ff";
+  ctx.font="bold 64px Arial";
+  ctx.fillText(title,35,105);
+
+  ctx.fillStyle="#e2edf0";
+  ctx.font="30px Arial";
+  ctx.fillText(subtitle,38,170);
+
+  const tex=new THREE.CanvasTexture(c);
+  tex.colorSpace=THREE.SRGBColorSpace;
+
+  return tex;
+}
+
+function sign(parent,title,subtitle,x,y,z,w=5){
+
+  const mesh=new THREE.Mesh(
+    new THREE.BoxGeometry(w,1.1,.12),
+    new THREE.MeshStandardMaterial({
+      map:makeTextTexture(title,subtitle),
+      roughness:.6
+    })
+  );
+
+  mesh.position.set(x,y,z);
+  parent.add(mesh);
+
+  return mesh;
+}
+
+/* =====================================================
+   05. INITIALIZE
+===================================================== */
+
+function init(){
+
+  scene=new THREE.Scene();
+
+  scene.background=new THREE.Color(0xaab9bd);
+  scene.fog=new THREE.Fog(0xaab9bd,30,65);
+
+  camera=new THREE.PerspectiveCamera(
+    65,
+    innerWidth/innerHeight,
+    .1,
+    150
+  );
+
+  renderer=new THREE.WebGLRenderer({
+    antialias:true,
+    powerPreference:"high-performance"
+  });
+
+  renderer.setSize(innerWidth,innerHeight);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));
+
+  renderer.shadowMap.enabled=true;
+  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.12;
+
+  document.body.appendChild(renderer.domElement);
+
+  clock=new THREE.Clock();
+
+  scene.add(
+    new THREE.HemisphereLight(0xe9f7ff,0x41464b,2)
+  );
+
+  const sun=new THREE.DirectionalLight(0xffffff,2);
+
+  sun.position.set(-8,13,-9);
+  sun.castShadow=true;
+  sun.shadow.mapSize.set(2048,2048);
+
+  scene.add(sun);
+
+  buildRoom();
+  buildLights();
+  buildFrontTeachingWall();
+  buildInstructorArea();
+  buildStudentRows();
+  buildSideFurniture();
+  buildPlayer();
+
+  setupControls();
+  setupInterface();
+
+  addEventListener("resize",resize);
+
+  animate();
+
+}
+
+/* =====================================================
+   06. ROOM ARCHITECTURE
+===================================================== */
+
+function buildRoom(){
+
+  box(scene,W,.3,D,M.floor,0,-.17,0);
+
+  const joint=material(0x72797b,.9);
+
+  for(let x=-15;x<=15;x+=2){
+    box(scene,.018,.008,D,joint,x,-.01,0);
+  }
+
+  for(let z=-13;z<=13;z+=2){
+    box(scene,W,.008,.018,joint,0,-.009,z);
+  }
+
+  // Rear wall
+  box(scene,W,H,.3,M.wall,0,H/2,-14);
+
+  // Front wall
+  box(scene,W,H,.3,M.wall,0,H/2,14);
+
+  // Right wall
+  box(scene,.3,H,D,M.wall,16,H/2,0);
+
+  // Left wall with doorway
+  const opening=6.5;
+  const segment=(D-opening)/2;
+
+  box(
+    scene,.3,H,segment,M.wall,
+    -16,H/2,-(opening/2+segment/2)
+  );
+
+  box(
+    scene,.3,H,segment,M.wall,
+    -16,H/2,(opening/2+segment/2)
+  );
+
+  box(
+    scene,.3,1.6,opening,M.wall,
+    -16,6.7,0
+  );
+
+  // Door frame
+  box(scene,.22,4.3,.25,M.blue,-15.78,2.15,-3.25);
+  box(scene,.22,4.3,.25,M.blue,-15.78,2.15,3.25);
+  box(scene,.25,.25,6.7,M.blue,-15.78,4.3,0);
+
+  sign(
+    scene,
+    "MAIN HALL",
+    "ENTRANCE / EXIT",
+    -15.55,5.15,0,4.5
+  );
+
+  // Ceiling
+  box(scene,W,.25,D,M.ceiling,0,7.5,0);
+
+  // Baseboards
+  box(scene,W,.18,.15,M.wall2,0,.08,-13.82);
+  box(scene,W,.18,.15,M.wall2,0,.08,13.82);
+
+  box(scene,.15,.18,D,M.wall2,15.82,.08,0);
+  box(scene,.15,.18,D,M.wall2,-15.82,.08,0);
+
+  // Wall details
+  for(let x=-13;x<=13;x+=2.2){
+    box(scene,.07,3,.08,M.wall2,x,3.2,-13.78);
+  }
+
+  // Carpet
+  box(
+    scene,21,.025,8,
+    material(0x34454d,.95),
+    0,.005,7
+  );
+
+}
+
+/* =====================================================
+   07. LIGHTING
+===================================================== */
+
+function buildLights(){
+
+  for(let z=-9;z<=9;z+=6){
+
+    for(let x=-10;x<=10;x+=7){
+
+      box(scene,2.8,.1,.55,M.metalDark,x,7.3,z);
+      box(scene,2.5,.04,.38,M.white,x,7.22,z);
+
+      const light=new THREE.PointLight(
+        0xf1f8ff,
+        1.0,
+        11
+      );
+
+      light.position.set(x,6.7,z);
+      scene.add(light);
+
+    }
+
+  }
+
+  // Projector
+  box(scene,.8,.15,.7,M.metalDark,0,6.7,4.4);
+  box(scene,.48,.24,.42,M.white,0,6.5,4.4);
+
+}
+
+/* =====================================================
+   08. TEACHING SCREEN
+===================================================== */
+
+const slides=[
+
+  {
+    title:"WELL TESTING FUNDAMENTALS",
+    subtitle:"OILFIELD UNIVERSITY",
+    points:[
+      "Surface Well Testing Overview",
+      "Pressure and Temperature Monitoring",
+      "Flow Measurement",
+      "Sampling and Fluid Analysis",
+      "Data Acquisition"
+    ]
+  },
+
+  {
+    title:"SURFACE WELL TESTING",
+    subtitle:"TRAINING MODULE",
+    points:[
+      "Understand the test objectives",
+      "Identify measurement channels",
+      "Monitor operating conditions",
+      "Record and validate field data",
+      "Prepare accurate test reports"
+    ]
+  },
+
+  {
+    title:"DATA ACQUISITION",
+    subtitle:"DAQ TRAINING",
+    points:[
+      "Sensor and transmitter signals",
+      "Pressure and temperature channels",
+      "Live trends and data recording",
+      "Data quality and validation",
+      "Operational reporting"
+    ]
+  },
+
+  {
+    title:"SAMPLING & FLUID ANALYSIS",
+    subtitle:"LABORATORY TRAINING",
+    points:[
+      "BS&W",
+      "API Gravity",
+      "Gas Specific Gravity",
+      "Water Specific Gravity",
+      "Shrinkage and gas detection"
+    ]
+  }
+
+];
+
+let boardCanvas;
+let boardTexture;
+let boardContext;
+let slideIndex=0;
+
+function buildFrontTeachingWall(){
+
+  box(
+    scene,12,5.5,.32,
+    M.black,
+    0,4.1,-13.55
+  );
+
+  boardCanvas=document.createElement("canvas");
+  boardCanvas.width=1600;
+  boardCanvas.height=900;
+
+  boardContext=boardCanvas.getContext("2d");
+
+  boardTexture=new THREE.CanvasTexture(boardCanvas);
+  boardTexture.colorSpace=THREE.SRGBColorSpace;
+
+  const display=new THREE.Mesh(
+    new THREE.PlaneGeometry(11.6,5.15),
+    new THREE.MeshBasicMaterial({map:boardTexture})
+  );
+
+  display.position.set(0,4.1,-13.36);
+  scene.add(display);
+
+  // Whiteboard
+  box(scene,2.8,2,.18,M.metalDark,-8,3.7,-13.55);
+  box(scene,2.55,1.75,.035,M.white,-8,3.7,-13.43);
+
+  for(let i=0;i<4;i++){
+    box(
+      scene,1.8,.025,.012,
+      material(0x247da0),
+      -8,4.25-i*.35,-13.39
+    );
+  }
+
+  box(scene,2.5,.08,.2,M.metal,-8,2.65,-13.35);
+
+  interactables.push({
+
+    title:"INTERACTIVE TEACHING SCREEN",
+
+    position:new THREE.Vector3(0,4,-11.8),
+
+    description:
+      "The classroom teaching screen is used to present training lessons and course material.",
+
+    details:[
+      "Well Testing Fundamentals",
+      "Surface Well Testing",
+      "Data Acquisition",
+      "Sampling and Fluid Analysis"
+    ],
+
+    action:"slides"
+
+  });
+
+  drawSlide();
+
+}
+
+function drawSlide(){
+
+  const ctx=boardContext;
+  const s=slides[slideIndex];
+
+  ctx.fillStyle="#071a27";
+  ctx.fillRect(0,0,1600,900);
+
+  ctx.fillStyle="#0d354b";
+  ctx.fillRect(0,0,1600,150);
+
+  ctx.fillStyle="#5ce3ff";
+  ctx.font="bold 56px Arial";
+  ctx.fillText("OILFIELD UNIVERSITY",65,75);
+
+  ctx.fillStyle="#b7dbe7";
+  ctx.font="26px Arial";
+  ctx.fillText("PROFESSIONAL OILFIELD TRAINING",68,118);
+
+  ctx.fillStyle="#ffffff";
+  ctx.font="bold 60px Arial";
+  ctx.fillText(s.title,70,260);
+
+  ctx.fillStyle="#5ce3ff";
+  ctx.font="30px Arial";
+  ctx.fillText(s.subtitle,75,315);
+
+  ctx.fillStyle="#2e829d";
+  ctx.fillRect(75,350,1450,5);
+
+  s.points.forEach((point,i)=>{
+
+    const y=440+i*83;
+
+    ctx.fillStyle="#42c8ed";
+    ctx.beginPath();
+    ctx.arc(105,y-10,10,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle="#e2edf4";
+    ctx.font="36px Arial";
+    ctx.fillText(point,145,y);
+
+  });
+
+  ctx.fillStyle="#0d354b";
+  ctx.fillRect(0,825,1600,75);
+
+  ctx.fillStyle="#a8d3e2";
+  ctx.font="24px Arial";
+  ctx.fillText("LEARN | PRACTICE | MASTER",65,870);
+
+  ctx.fillStyle="#5ce3ff";
+  ctx.fillText(
+    "SLIDE "+(slideIndex+1)+" / "+slides.length,
+    1320,870
+  );
+
+  boardTexture.needsUpdate=true;
+
+}
+
+/* =====================================================
+   09. INSTRUCTOR AREA
+===================================================== */
+
+function buildInstructorArea(){
+
+  box(scene,10,.3,3.2,M.wood,0,.15,-9.5);
+
+  // Instructor desk
+  box(scene,4,.18,1.4,M.woodTop,0,1.05,-8.8);
+  box(scene,3.8,.9,.15,M.wood,0,.55,-8.15);
+
+  box(scene,.15,.9,1.2,M.wood,-1.9,.55,-8.8);
+  box(scene,.15,.9,1.2,M.wood,1.9,.55,-8.8);
+
+  // Monitor
+  box(scene,1.3,.85,.12,M.black,0,1.75,-9.1);
+  box(scene,1.15,.7,.025,M.blue,0,1.75,-9.02);
+  box(scene,.12,.45,.12,M.metalDark,0,1.25,-9.1);
+
+  // Keyboard and mouse
+  box(scene,.9,.045,.35,M.black,-.85,1.17,-8.65);
+  sphere(scene,.08,M.black,.8,1.17,-8.65);
+
+  chair(0,0,-7.2);
+
+  // Podium
+  box(scene,1.2,1.35,.85,M.wood,5,.68,-8.7);
+  box(scene,1.35,.12,.95,M.woodTop,5,1.38,-8.7);
+  box(scene,.85,.08,.45,M.black,5,1.49,-8.7);
+
+  cylinder(scene,.025,.025,.65,M.metal,5.4,1.8,-8.7);
+  sphere(scene,.07,M.black,5.4,2.12,-8.7);
+
+  interactables.push({
+
+    title:"INSTRUCTOR STATION",
+
+    position:new THREE.Vector3(0,1.4,-7.5),
+
+    description:
+      "The instructor station is used to control presentations, explain course material and guide classroom activities.",
+
+    details:[
+      "Instructor computer and teaching display.",
+      "Presentation control and lesson navigation.",
+      "Course demonstrations and practical examples.",
+      "Student questions and classroom discussion."
+    ]
+
+  });
+
+}
+
+/* =====================================================
+   10. CHAIRS
+===================================================== */
+
+function chair(x,y,z){
+
+  const g=new THREE.Group();
+
+  g.position.set(x,y,z);
+  scene.add(g);
+
+  box(g,.95,.16,.85,M.chair,0,1.0,0);
+  box(g,.95,1.05,.15,M.chair,0,1.55,-.34);
+
+  for(const px of [-.37,.37]){
+    for(const pz of [-.27,.27]){
+      box(g,.07,.85,.07,M.metalDark,px,.43,pz);
+    }
+  }
+
+  for(const px of [-.48,.48]){
+    box(g,.07,.55,.07,M.black,px,1.35,0);
+    box(g,.12,.08,.65,M.black,px,1.62,-.02);
+  }
+
+  return g;
+
+}
+
+/* =====================================================
+   11. WORKSTATION MONITORS
+===================================================== */
+
+function drawWorkstationScreen(canvas,course,index){
+
+  canvas.width=1024;
+  canvas.height=640;
+
+  const ctx=canvas.getContext("2d");
+
+  ctx.fillStyle="#061521";
+  ctx.fillRect(0,0,1024,640);
+
+  ctx.fillStyle="#0b3b55";
+  ctx.fillRect(0,0,1024,115);
+
+  ctx.fillStyle="#60e4ff";
+  ctx.font="bold 34px Arial";
+  ctx.fillText("OILFIELD UNIVERSITY",40,48);
+
+  ctx.fillStyle="#d6edf5";
+  ctx.font="20px Arial";
+  ctx.fillText("STUDENT WORKSTATION",42,83);
+
+  ctx.fillStyle="#5ce3ff";
+  ctx.font="bold 24px Arial";
+  ctx.fillText(course.subtitle,45,165);
+
+  ctx.fillStyle="#ffffff";
+  ctx.font="bold 34px Arial";
+  ctx.fillText(course.title,45,230);
+
+  ctx.fillStyle="#287f9d";
+  ctx.fillRect(45,260,930,3);
+
+  ctx.fillStyle="#e4f1f5";
+  ctx.font="25px Arial";
+  ctx.fillText("Sit down to open the complete course.",45,340);
+
+  ctx.fillStyle="#60e4ff";
+  ctx.font="22px Arial";
+  ctx.fillText("INTERACTIVE HTML COURSE",45,410);
+
+  ctx.fillStyle="#0b3b55";
+  ctx.fillRect(0,580,1024,60);
+
+  ctx.fillStyle="#b8e7f2";
+  ctx.font="20px Arial";
+  ctx.fillText("LEARN | PRACTICE | MASTER",40,618);
+
+  ctx.fillStyle="#60e4ff";
+  ctx.fillText(
+    "STATION "+String(index).padStart(2,"0"),
+    820,618
+  );
+
+}
+
+function studentDesk(x,z,index){
+
+  const g=new THREE.Group();
+
+  g.position.set(x,0,z);
+  scene.add(g);
+
+  // Desk top
+  box(g,2.3,.13,1.15,M.woodTop,0,1.05,0);
+
+  // Desk apron
+  box(g,2.0,.25,.1,M.wood,0,.86,-.45);
+
+  // Legs
+  for(const px of [-1,1]){
+    for(const pz of [-.43,.43]){
+      box(g,.07,.95,.07,M.metalDark,px,.48,pz);
+    }
+  }
+
+  // Keyboard and mouse
+  box(g,.8,.045,.3,M.black,0,1.15,.22);
+  sphere(g,.07,M.black,.62,1.15,.2);
+
+  // Monitor frame
+  box(g,1.35,.92,.12,M.black,0,1.72,-.39);
+
+  // Monitor stand
+  box(g,.12,.35,.12,M.metalDark,0,1.25,-.39);
+  box(g,.5,.06,.3,M.metalDark,0,1.17,-.39);
+
+  const course=
+    OFU_COURSE_PAGES[(index-1)%OFU_COURSE_PAGES.length];
+
+  // Placeholder display texture.
+  const canvas=document.createElement("canvas");
+
+  canvas.width=1024;
+  canvas.height=640;
+
+  drawWorkstationScreen(canvas,course,index);
+
+  const texture=new THREE.CanvasTexture(canvas);
+
+  texture.colorSpace=THREE.SRGBColorSpace;
+  texture.anisotropy=renderer.capabilities.getMaxAnisotropy();
+
+  const screen=new THREE.Mesh(
+    new THREE.PlaneGeometry(1.25,.82),
+    new THREE.MeshBasicMaterial({
+      map:texture,
+      toneMapped:false,
+      side:THREE.DoubleSide
+    })
+  );
+
+  // Screen is in front of monitor frame.
+  screen.position.set(0,1.72,-.285);
+  g.add(screen);
+
+  // Monitor LED
+  box(g,.12,.025,.025,M.blueLight,.5,1.3,-.32);
+
+  // Student chair
+  chair(x,0,z+1.05);
+
+  // Station number plate
+  box(g,.35,.15,.025,M.blue,0,1.16,-.56);
+
+  interactables.push({
+
+    title:"WORKSTATION "+String(index).padStart(2,"0"),
+
+    position:new THREE.Vector3(x,0,z+1.05),
+
+    description:
+      "Access the official OilField University training course.",
+
+    details:[
+      course.title,
+      course.subtitle,
+      "Interactive HTML course",
+      "Live course content"
+    ],
+
+    action:"workstation",
+
+    course:course,
+    courseURL:course.url,
+
+    screen:screen,
+    texture:texture,
+
+    seatPosition:new THREE.Vector3(x,0,z+1.05),
+
+    stationIndex:index
+
+  });
+
+}
+
+/* =====================================================
+   12. STUDENT ROWS
+===================================================== */
+
+function buildStudentRows(){
+
+  const rows=[-4.5,-1.2,2.1,5.4];
+  const cols=[-8,-2.7,2.7,8];
+
+  let n=1;
+
+  rows.forEach(z=>{
+    cols.forEach(x=>{
+      studentDesk(x,z,n++);
+    });
+  });
+
+}
+
+/* =====================================================
+   13. SIDE FURNITURE
+===================================================== */
+
+function buildSideFurniture(){
+
+  // Windows, avoiding entrance opening.
+  for(const z of [-9,9]){
+
+    box(scene,.08,2.2,3.8,M.metalDark,-15.78,4.4,z);
+    box(scene,.035,2,3.6,M.glass,-15.7,4.4,z);
+    box(scene,.08,2.2,.08,M.metal,-15.65,4.4,z);
+
+  }
+
+  // Right-side cabinets
+  for(let z=-10;z<=8;z+=3){
+
+    box(scene,1.3,1.7,2.3,M.wood,14.9,.85,z);
+    box(scene,.05,1.5,.04,M.metal,14.2,.85,z);
+    box(scene,.08,.08,.08,M.metal,14.15,1.2,z);
+
+  }
+
+  // Bookshelves
+  for(let y=2;y<=4.5;y+=1.2){
+    box(scene,2.6,.08,.4,M.woodTop,13.8,y,-12.5);
+  }
+
+  const bookColors=[
+    0x145a7c,
+    0x9b392c,
+    0x427b57,
+    0x9b7838,
+    0x514a87
+  ];
+
+  for(let i=0;i<10;i++){
+
+    const b=box(
+      scene,.18,.75,.28,
+      material(bookColors[i%bookColors.length],.85),
+      12.7+i*.23,2.45,-12.5
+    );
+
+    b.rotation.z=(i%2===0?.04:-.04);
+
+  }
+
+  sign(
+    scene,
+    "COURSE LIBRARY",
+    "REFERENCE MATERIALS",
+    12.7,5.5,-13.45,5.8
+  );
+
+  // Clock
+  cylinder(scene,.55,.55,.08,M.white,14.8,6.1,6,32);
+  cylinder(scene,.43,.43,.09,M.black,14.8,6.1,6.05,32);
+
+  box(scene,.025,.35,.025,M.white,14.8,6.25,6.12);
+  box(scene,.28,.025,.025,M.white,14.9,6.1,6.12);
+
+  // Notice board
+  box(scene,3.5,1.7,.15,M.wood,14.8,4.2,10);
+
+  box(
+    scene,3.25,1.45,.04,
+    material(0x28596a),
+    14.8,4.2,9.9
+  );
+
+  for(let i=0;i<3;i++){
+    box(scene,.8,.55,.03,M.white,13.7+i*1.1,4.25,9.85);
+  }
+
+  sign(
+    scene,
+    "CLASSROOM",
+    "TRAINING SCHEDULE",
+    14.5,5.5,9.8,4.5
+  );
+
+}
+
+/* =====================================================
+   14. PLAYER
+===================================================== */
+
+let playerParts={};
+
+function buildPlayer(){
+
+  player=new THREE.Group();
+  scene.add(player);
+
+  const bodyMat=material(0x17618b,.8);
+  const skin=material(0xc99a76,.85);
+  const pants=material(0x26333b,.9);
+  const boots=material(0x171b1e,.8);
+
+  const body=new THREE.Mesh(
+    new THREE.CapsuleGeometry(.32,.65,4,8),
+    bodyMat
+  );
+
+  body.position.y=1.15;
+  player.add(body);
+
+  const head=sphere(player,.22,skin,0,1.8,0);
+
+  const hat=cylinder(player,.26,.26,.12,M.yellow,0,2.02,0,24);
+  const hatTop=sphere(player,.25,M.yellow,0,2.04,0);
+
+  const legL=box(player,.22,.7,.25,pants,-.17,.48,0);
+  const legR=box(player,.22,.7,.25,pants,.17,.48,0);
+
+  const bootL=box(player,.27,.18,.4,boots,-.17,.09,-.05);
+  const bootR=box(player,.27,.18,.4,boots,.17,.09,-.05);
+
+  const armL=box(player,.18,.7,.2,bodyMat,-.4,1.2,0);
+  const armR=box(player,.18,.7,.2,bodyMat,.4,1.2,0);
+
+  const belt=box(player,.65,.06,.34,M.yellow,0,1.35,.17);
+
+  playerParts={
+    body,head,hat,hatTop,
+    legL,legR,bootL,bootR,
+    armL,armR,belt
+  };
+
+  player.position.set(-13,0,0);
+  yaw=-Math.PI/2;
+
+}
+
+function setPlayerSitting(value){
+
+  const p=playerParts;
+
+  if(value){
+
+    p.body.position.set(0,1.15,0);
+    p.body.rotation.x=-.12;
+
+    p.head.position.set(0,1.78,-.04);
+    p.hat.position.set(0,2.0,-.04);
+    p.hatTop.position.set(0,2.02,-.04);
+
+    p.legL.position.set(-.17,.62,-.32);
+    p.legR.position.set(.17,.62,-.32);
+
+    p.legL.rotation.x=-Math.PI/2;
+    p.legR.rotation.x=-Math.PI/2;
+
+    p.bootL.position.set(-.17,.55,-.75);
+    p.bootR.position.set(.17,.55,-.75);
+
+    p.armL.position.set(-.38,1.05,-.38);
+    p.armR.position.set(.38,1.05,-.38);
+
+    p.armL.rotation.x=-.9;
+    p.armR.rotation.x=-.9;
+
+    p.belt.position.set(0,1.0,.05);
+
+  }else{
+
+    p.body.position.set(0,1.15,0);
+    p.body.rotation.set(0,0,0);
+
+    p.head.position.set(0,1.8,0);
+    p.hat.position.set(0,2.02,0);
+    p.hatTop.position.set(0,2.04,0);
+
+    p.legL.position.set(-.17,.48,0);
+    p.legR.position.set(.17,.48,0);
+
+    p.legL.rotation.set(0,0,0);
+    p.legR.rotation.set(0,0,0);
+
+    p.bootL.position.set(-.17,.09,-.05);
+    p.bootR.position.set(.17,.09,-.05);
+
+    p.armL.position.set(-.4,1.2,0);
+    p.armR.position.set(.4,1.2,0);
+
+    p.armL.rotation.set(0,0,0);
+    p.armR.rotation.set(0,0,0);
+
+    p.belt.position.set(0,1.35,.17);
+
+  }
+
+}
+
+/* =====================================================
+   15. USER INTERFACE
+===================================================== */
+
+function setupInterface(){
+
+  document.getElementById("back").onclick=returnToMainHall;
+
+  document.getElementById("interact").onclick=interact;
+
+  document.getElementById("close").onclick=closePanel;
+
+  document.getElementById("exitSeat").onclick=leaveWorkstation;
+
+  document.getElementById("closeCourseViewer").onclick=leaveWorkstation;
+
+  document.getElementById("reloadCourse").onclick=()=>{
+
+    if(sitting && seatedAt){
+      courseLoading.style.display="block";
+      courseFrame.src=seatedAt.courseURL;
+    }
+
+  };
+
+  courseFrame.addEventListener("load",()=>{
+
+    courseLoading.style.display="none";
+
+  });
+
+}
+
+/* =====================================================
+   16. CONTROLS
+===================================================== */
+
+function setupControls(){
+
+  addEventListener("keydown",e=>{
+
+    const key=e.key.toLowerCase();
+
+    keys[key]=true;
+
+    if(key==="e"){
+
+      if(sitting){
+        leaveWorkstation();
+      }else{
+        interact();
+      }
+
+    }
+
+    if(e.key==="Escape"){
+
+      if(sitting){
+        leaveWorkstation();
+      }else{
+        closePanel();
+      }
+
+    }
+
+    if([
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowLeft",
+      "ArrowRight"
+    ].includes(e.key)){
+      e.preventDefault();
+    }
+
+  });
+
+  addEventListener("keyup",e=>{
+    keys[e.key.toLowerCase()]=false;
+  });
+
+  // Desktop mouse look
+  renderer.domElement.addEventListener("mousedown",e=>{
+
+    if(activePanel || sitting)return;
+
+    mouseDown=true;
+    lastX=e.clientX;
+    lastY=e.clientY;
+
+  });
+
+  addEventListener("mouseup",()=>{
+    mouseDown=false;
+  });
+
+  addEventListener("mousemove",e=>{
+
+    if(!mouseDown || activePanel || sitting)return;
+
+    const dx=e.clientX-lastX;
+    const dy=e.clientY-lastY;
+
+    yaw-=dx*.004;
+
+    pitch=Math.max(
+      -.4,
+      Math.min(.35,pitch-dy*.003)
+    );
+
+    lastX=e.clientX;
+    lastY=e.clientY;
+
+  });
+
+  // Mobile camera swipe on right side
+  renderer.domElement.addEventListener("touchstart",e=>{
+
+    if(activePanel || sitting)return;
+
+    const t=e.changedTouches[0];
+
+    if(t.clientX>innerWidth*.4){
+
+      mouseDown=true;
+      lastX=t.clientX;
+      lastY=t.clientY;
+
+    }
+
+  },{passive:true});
+
+  renderer.domElement.addEventListener("touchmove",e=>{
+
+    if(!mouseDown || activePanel || sitting)return;
+
+    for(const t of e.changedTouches){
+
+      if(t.clientX<innerWidth*.4)continue;
+
+      const dx=t.clientX-lastX;
+      const dy=t.clientY-lastY;
+
+      yaw-=dx*.006;
+
+      pitch=Math.max(
+        -.4,
+        Math.min(.35,pitch-dy*.004)
+      );
+
+      lastX=t.clientX;
+      lastY=t.clientY;
+
+      break;
+
+    }
+
+  },{passive:true});
+
+  renderer.domElement.addEventListener("touchend",()=>{
+    mouseDown=false;
+  });
+
+  renderer.domElement.addEventListener("touchcancel",()=>{
+    mouseDown=false;
+  });
+
+  // Mobile D-pad
+  const bindings={
+    up:"w",
+    down:"s",
+    left:"a",
+    right:"d"
+  };
+
+  Object.entries(bindings).forEach(([id,key])=>{
+
+    const b=document.getElementById(id);
+
+    b.addEventListener("pointerdown",e=>{
+
+      e.preventDefault();
+
+      mobile[key]=true;
+
+      b.setPointerCapture?.(e.pointerId);
+
+    });
+
+    b.addEventListener("pointerup",e=>{
+
+      e.preventDefault();
+
+      mobile[key]=false;
+
+    });
+
+    b.addEventListener("pointercancel",()=>{
+      mobile[key]=false;
+    });
+
+    b.addEventListener("lostpointercapture",()=>{
+      mobile[key]=false;
+    });
+
+  });
+
+}
+
+/* =====================================================
+   17. PLAYER MOVEMENT
+===================================================== */
+
+function updateMovement(dt){
+
+  if(activePanel || exiting || sitting)return;
+
+  const f=(keys.w||keys.arrowup||mobile.w)?1:0;
+  const b=(keys.s||keys.arrowdown||mobile.s)?1:0;
+  const l=(keys.a||keys.arrowleft||mobile.a)?1:0;
+  const r=(keys.d||keys.arrowright||mobile.d)?1:0;
+
+  let mx=r-l;
+  let mz=b-f;
+
+  if(mx===0 && mz===0)return;
+
+  const length=Math.hypot(mx,mz);
+
+  mx/=length;
+  mz/=length;
+
+  const speed=(keys.shift?7.5:4.8)*dt;
+
+  const fx=-Math.sin(yaw);
+  const fz=-Math.cos(yaw);
+
+  const rx=Math.cos(yaw);
+  const rz=-Math.sin(yaw);
+
+  const dx=(fx*mz+rx*mx)*speed;
+  const dz=(fz*mz+rz*mx)*speed;
+
+  let nx=player.position.x+dx;
+  let nz=player.position.z+dz;
+
+  if(nx>-14.7 && nx<14.7){
+    player.position.x=nx;
+  }
+
+  if(nz>-12.7 && nz<12.7){
+    player.position.z=nz;
+  }
+
+  if(
+    player.position.x<-14.4 &&
+    Math.abs(player.position.z)>2.8
+  ){
+    player.position.x=-14.4;
+  }
+
+  if(dx!==0 || dz!==0){
+    player.rotation.y=Math.atan2(-dx,-dz);
+  }
+
+}
+
+/* =====================================================
+   18. CAMERA
+===================================================== */
+
+function updateCamera(){
+
+  if(sitting && seatedAt){
+
+    // Camera is fixed while the real course viewer is open.
+    camera.position.set(
+      seatedAt.seatPosition.x,
+      2.05,
+      seatedAt.seatPosition.z+.35
+    );
+
+    camera.lookAt(
+      seatedAt.seatPosition.x,
+      1.72,
+      seatedAt.seatPosition.z-1.365
+    );
+
+    return;
+
+  }
+
+  const distance=5.2;
+
+  const targetPosition=new THREE.Vector3(
+    player.position.x+Math.sin(yaw)*distance,
+    player.position.y+2.8,
+    player.position.z+Math.cos(yaw)*distance
+  );
+
+  camera.position.lerp(targetPosition,.12);
+
+  camera.lookAt(
+    player.position.x,
+    player.position.y+1.55+pitch*4,
+    player.position.z
+  );
+
+}
+
+/* =====================================================
+   19. OPEN REAL COURSE PAGE
+===================================================== */
+
+function openRealCourse(item){
+
+  if(!item || !item.courseURL)return;
+
+  courseViewerTitle.textContent=
+    "OFU COURSE · "+item.course.title;
+
+  courseLoading.style.display="block";
+
+  courseViewer.style.display="flex";
+
+  // Load the actual course HTML page.
+  courseFrame.src=item.courseURL;
+
+}
+
+/* =====================================================
+   20. SIT AT WORKSTATION
+===================================================== */
+
+function sitAtWorkstation(item){
+
+  if(sitting || !item.seatPosition)return;
+
+  seatedAt=item;
+
+  savedPlayerPosition.copy(player.position);
+  savedYaw=yaw;
+
+  player.position.copy(item.seatPosition);
+
+  yaw=0;
+  player.rotation.y=0;
+
+  setPlayerSitting(true);
+
+  sitting=true;
+  activePanel=false;
+
+  panel.style.display="none";
+
+  // Hide the character to prevent obstruction.
+  player.visible=false;
+
+  // Open the actual course page.
+  openRealCourse(item);
+
+  document.getElementById("exitSeat").style.display="block";
+
+  if(isMobile){
+
+    document.getElementById("mobilePad").style.display="none";
+    document.getElementById("interact").style.display="none";
+
+  }
+
+  hint.textContent="STUDYING: "+item.course.title;
+
+  document.getElementById("status").textContent=
+    "STATION "+
+    String(item.stationIndex).padStart(2,"0")+
+    " · "+
+    item.course.title;
+
+  camera.position.set(
+    item.seatPosition.x,
+    2.05,
+    item.seatPosition.z+.35
+  );
+
+  camera.lookAt(
+    item.seatPosition.x,
+    1.72,
+    item.seatPosition.z-1.365
+  );
+
+}
+
+/* =====================================================
+   21. EXIT WORKSTATION
+===================================================== */
+
+function leaveWorkstation(){
+
+  if(!sitting)return;
+
+  sitting=false;
+
+  // Close and unload the course page.
+  courseViewer.style.display="none";
+  courseFrame.src="about:blank";
+
+  courseLoading.style.display="block";
+
+  player.position.copy(savedPlayerPosition);
+  yaw=savedYaw;
+
+  setPlayerSitting(false);
+
+  player.rotation.y=yaw;
+  player.visible=true;
+
+  seatedAt=null;
+
+  document.getElementById("exitSeat").style.display="none";
+
+  if(isMobile){
+
+    document.getElementById("mobilePad").style.display="block";
+
+    const interactButton=document.getElementById("interact");
+
+    interactButton.style.display="block";
+    interactButton.textContent="INTERACT";
+    interactButton.style.background="#087da8";
+
+  }
+
+  document.getElementById("status").textContent="CLASSROOM READY";
+
+  hint.textContent="Explore the classroom";
+
+}
+
+/* =====================================================
+   22. INTERACTION TARGET
+===================================================== */
+
+function updateTarget(){
+
+  if(sitting){
+
+    hint.textContent="STUDYING: "+seatedAt.course.title;
+    return;
+
+  }
+
+  target=null;
+
+  let closest=Infinity;
+
+  for(const item of interactables){
+
+    const d=player.position.distanceTo(item.position);
+
+    if(d<3.4 && d<closest){
+
+      closest=d;
+      target=item;
+
+    }
+
+  }
+
+  if(target){
+
+    if(target.action==="workstation"){
+
+      hint.textContent=
+        "E / INTERACT · OPEN "+target.course.title;
+
+    }else{
+
+      hint.textContent="E / INTERACT · "+target.title;
+
+    }
+
+  }else if(isNearDoor()){
+
+    hint.textContent="E / INTERACT · RETURN TO MAIN HALL";
+
+  }else if(!activePanel){
+
+    hint.textContent="Explore the classroom";
+
+  }
+
+}
+
+/* =====================================================
+   23. INTERACT
+===================================================== */
+
+function interact(){
+
+  if(sitting){
+    leaveWorkstation();
+    return;
+  }
+
+  if(activePanel){
+    closePanel();
+    return;
+  }
+
+  if(target){
+
+    if(target.action==="workstation"){
+
+      sitAtWorkstation(target);
+
+    }else{
+
+      openPanel(target);
+
+    }
+
+  }else if(isNearDoor()){
+
+    returnToMainHall();
+
+  }
+
+}
+
+/* =====================================================
+   24. INFORMATION PANEL
+===================================================== */
+
+function openPanel(item){
+
+  activePanel=true;
+
+  panelTitle.textContent=item.title;
+
+  let html=`<p>${item.description}</p>`;
+
+  if(item.details){
+
+    html+="<h3>CLASSROOM INFORMATION</h3><ul>";
+
+    item.details.forEach(t=>{
+      html+=`<li>${t}</li>`;
+    });
+
+    html+="</ul>";
+
+  }
+
+  if(item.action==="slides"){
+
+    html+=`
+
+      <h3>TEACHING SCREEN CONTROLS</h3>
+
+      <p>Current slide: ${slideIndex+1} of ${slides.length}</p>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px">
+
+        <button id="previousSlide"
+          style="padding:12px;background:#087da8;color:white;border:0;border-radius:7px">
+          ← PREVIOUS
+        </button>
+
+        <button id="nextSlide"
+          style="padding:12px;background:#087da8;color:white;border:0;border-radius:7px">
+          NEXT →
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+  panelBody.innerHTML=html;
+  panel.style.display="block";
+
+  const next=document.getElementById("nextSlide");
+  const previous=document.getElementById("previousSlide");
+
+  if(next){
+
+    next.onclick=()=>{
+
+      slideIndex=(slideIndex+1)%slides.length;
+
+      drawSlide();
+      openPanel(item);
+
+    };
+
+  }
+
+  if(previous){
+
+    previous.onclick=()=>{
+
+      slideIndex=
+        (slideIndex-1+slides.length)%slides.length;
+
+      drawSlide();
+      openPanel(item);
+
+    };
+
+  }
+
+  hint.textContent="Close the panel to continue";
+
+}
+
+function closePanel(){
+
+  activePanel=false;
+  panel.style.display="none";
+
+}
+
+/* =====================================================
+   25. MAIN HALL CONNECTION
+===================================================== */
+
+function isNearDoor(){
+
+  return (
+    player.position.x<-14.2 &&
+    Math.abs(player.position.z)<2.8
+  );
+
+}
+
+function returnToMainHall(){
+
+  if(exiting)return;
+
+  exiting=true;
+
+  hint.textContent="Returning to Main Hall...";
+
+  setTimeout(()=>{
+
+    sessionStorage.setItem("mainHallEntry","coursesroom");
+    sessionStorage.setItem("coursesRoomEntry","mainhall");
+
+    location.href="mainhall.html?entry=coursesroom";
+
+  },500);
+
+}
+
+/* =====================================================
+   26. ANIMATION
+===================================================== */
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  const dt=Math.min(clock.getDelta(),.04);
+
+  updateMovement(dt);
+  updateCamera();
+  updateTarget();
+
+  renderer.render(scene,camera);
+
+}
+
+/* =====================================================
+   27. RESIZE
+===================================================== */
+
+function resize(){
+
+  camera.aspect=innerWidth/innerHeight;
+
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(innerWidth,innerHeight);
+
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));
+
+}
+
+/* =====================================================
+   28. START
+===================================================== */
+
+init();
+
+</script>
+</body>
+</html>

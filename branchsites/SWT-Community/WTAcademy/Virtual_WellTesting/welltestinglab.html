@@ -1,0 +1,1809 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Well Testing Academy | Sampling & DAQ Laboratory</title>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./libs/three.module.js"
+  }
+}
+</script>
+
+<style>
+:root {
+  --blue:#087da8;
+  --cyan:#42d9f5;
+  --panel:rgba(5,17,27,.94);
+  --line:rgba(66,217,245,.35);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#080e14;
+  font-family:Arial,Helvetica,sans-serif;
+  color:white;
+  touch-action:none;
+}
+
+canvas{display:block}
+
+#hud{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:5;
+}
+
+#topbar{
+  position:absolute;
+  top:14px;
+  left:14px;
+  padding:10px 15px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:rgba(3,13,21,.82);
+  font-size:12px;
+  letter-spacing:1px;
+  box-shadow:0 0 20px rgba(0,190,255,.1);
+}
+
+#topbar strong{
+  display:block;
+  color:var(--cyan);
+  font-size:14px;
+  margin-bottom:4px;
+}
+
+#status{
+  position:absolute;
+  top:14px;
+  right:14px;
+  padding:9px 13px;
+  border-radius:7px;
+  background:rgba(3,13,21,.8);
+  border:1px solid var(--line);
+  font-size:11px;
+  color:#b9d7e2;
+}
+
+#crosshair{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:7px;
+  height:7px;
+  transform:translate(-50%,-50%);
+  border:1px solid white;
+  border-radius:50%;
+  opacity:.65;
+}
+
+#hint{
+  position:absolute;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,.78);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:11px 18px;
+  font-size:13px;
+  text-align:center;
+  min-width:210px;
+  max-width:90%;
+  color:#d9f6ff;
+}
+
+#interaction{
+  position:absolute;
+  right:24px;
+  bottom:35px;
+  pointer-events:auto;
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  background:rgba(4,113,151,.88);
+  color:white;
+  border:2px solid #71e9ff;
+  font-weight:bold;
+  font-size:12px;
+  box-shadow:0 0 22px rgba(0,200,255,.25);
+  display:none;
+}
+
+#controls{
+  position:absolute;
+  left:18px;
+  bottom:24px;
+  display:none;
+  pointer-events:auto;
+  width:145px;
+  height:145px;
+}
+
+.move{
+  position:absolute;
+  width:43px;
+  height:43px;
+  border-radius:10px;
+  background:rgba(8,35,49,.8);
+  border:1px solid #5bd8f3;
+  color:white;
+  font-size:20px;
+  touch-action:none;
+}
+
+#up{left:51px;top:0}
+#down{left:51px;bottom:0}
+#left{left:0;top:51px}
+#right{right:0;top:51px}
+
+#infoPanel{
+  position:fixed;
+  z-index:20;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(620px,92vw);
+  max-height:82vh;
+  overflow:auto;
+  background:linear-gradient(145deg,#102634,#07131d);
+  border:1px solid #3dbbdc;
+  border-radius:14px;
+  padding:22px;
+  box-shadow:0 15px 70px #000;
+  display:none;
+}
+
+#infoPanel h2{
+  color:#59ddf6;
+  margin:0 0 8px;
+  font-size:21px;
+}
+
+#infoPanel h3{
+  color:#a8eaff;
+  font-size:14px;
+  margin:20px 0 7px;
+}
+
+#infoPanel p,#infoPanel li{
+  color:#d1e2e9;
+  font-size:13px;
+  line-height:1.65;
+}
+
+#infoPanel ul{padding-left:20px}
+
+#closePanel{
+  position:sticky;
+  top:0;
+  float:right;
+  background:#087da8;
+  color:white;
+  border:0;
+  border-radius:7px;
+  padding:9px 14px;
+  cursor:pointer;
+}
+
+#panelFooter{
+  color:#77cde3;
+  font-size:11px;
+  border-top:1px solid #285164;
+  padding-top:12px;
+  margin-top:18px;
+}
+
+#backButton{
+  position:fixed;
+  z-index:8;
+  top:75px;
+  left:14px;
+  pointer-events:auto;
+  background:rgba(5,26,39,.88);
+  border:1px solid #38b9d9;
+  color:#b9f3ff;
+  padding:9px 13px;
+  border-radius:7px;
+  font-size:11px;
+}
+
+@media(pointer:coarse){
+  #controls{display:block}
+  #interaction{display:block}
+  #hint{bottom:180px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="hud">
+  <div id="topbar">
+    <strong>WELL TESTING ACADEMY</strong>
+    SAMPLING & DATA ACQUISITION LAB
+  </div>
+
+  <div id="status">LABORATORY SYSTEM ONLINE</div>
+  <div id="crosshair"></div>
+  <div id="hint">Explore the laboratory</div>
+
+  <div id="controls">
+    <button class="move" id="up">▲</button>
+    <button class="move" id="down">▼</button>
+    <button class="move" id="left">◀</button>
+    <button class="move" id="right">▶</button>
+  </div>
+
+  <button id="interaction">INTERACT</button>
+</div>
+
+<button id="backButton">← MAIN HALL</button>
+
+<div id="infoPanel">
+  <button id="closePanel">CLOSE ✕</button>
+  <h2 id="panelTitle"></h2>
+  <div id="panelContent"></div>
+  <div id="panelFooter">WELL TESTING ACADEMY · TRAINING LABORATORY</div>
+</div>
+
+<script type="module">
+import * as THREE from "three";
+
+/* =====================================================
+   CONFIGURATION
+===================================================== */
+
+const ROOM = {
+  width:36,
+  depth:30,
+  height:8,
+  halfW:18,
+  halfD:15
+};
+
+const PLAYER_HEIGHT=1.75;
+const MOVE_SPEED=5;
+const RUN_SPEED=8;
+
+let scene,camera,renderer,clock;
+let player,playerGroup;
+let yaw=-Math.PI/2;
+let pitch=0;
+let currentTarget=null;
+let activePanel=false;
+let exiting=false;
+
+const keys={};
+const interactables=[];
+const animatedObjects=[];
+
+const hint=document.getElementById("hint");
+const panel=document.getElementById("infoPanel");
+const panelTitle=document.getElementById("panelTitle");
+const panelContent=document.getElementById("panelContent");
+
+const isMobile=window.matchMedia("(pointer:coarse)").matches;
+
+/* =====================================================
+   MATERIALS
+===================================================== */
+
+const mat=(color,roughness=.7,metalness=0)=>{
+  return new THREE.MeshStandardMaterial({
+    color,roughness,metalness
+  });
+};
+
+const M={
+  floor:mat(0x343d42,.88),
+  wall:mat(0xc1c7c8,.9),
+  wallDark:mat(0x68757b,.9),
+  ceiling:mat(0x899398,.9),
+  steel:mat(0x8a969a,.35,.8),
+  steelDark:mat(0x303a40,.45,.7),
+  stainless:mat(0xb7c2c4,.23,.85),
+  black:mat(0x11191e,.45,.5),
+  rubber:mat(0x20272a,.9),
+  blue:mat(0x075a83,.4,.55),
+  blueLight:mat(0x1495c6,.3,.5),
+  yellow:mat(0xd5a72a,.65,.1),
+  red:mat(0xb72b27,.5,.1),
+  white:mat(0xe8eceb,.55),
+  glass:new THREE.MeshPhysicalMaterial({
+    color:0xc6e9ed,
+    transparent:true,
+    opacity:.24,
+    roughness:.08,
+    metalness:0,
+    transmission:.5,
+    thickness:.2
+  }),
+  liquid:mat(0x9b6a2e,.25,.1),
+  water:mat(0x5b9fbd,.15,.1)
+};
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function box(parent,w,h,d,material,x,y,z){
+  const mesh=new THREE.Mesh(
+    new THREE.BoxGeometry(w,h,d),
+    material
+  );
+  mesh.position.set(x,y,z);
+  mesh.castShadow=true;
+  mesh.receiveShadow=true;
+  parent.add(mesh);
+  return mesh;
+}
+
+function cylinder(parent,r1,r2,h,material,x,y,z,segments=24){
+  const mesh=new THREE.Mesh(
+    new THREE.CylinderGeometry(r1,r2,h,segments),
+    material
+  );
+  mesh.position.set(x,y,z);
+  mesh.castShadow=true;
+  mesh.receiveShadow=true;
+  parent.add(mesh);
+  return mesh;
+}
+
+function sphere(parent,r,material,x,y,z){
+  const mesh=new THREE.Mesh(
+    new THREE.SphereGeometry(r,20,16),
+    material
+  );
+  mesh.position.set(x,y,z);
+  mesh.castShadow=true;
+  parent.add(mesh);
+  return mesh;
+}
+
+function textTexture(title,subtitle,color="#5ce4ff"){
+  const canvas=document.createElement("canvas");
+  canvas.width=1024;
+  canvas.height=256;
+  const ctx=canvas.getContext("2d");
+
+  ctx.fillStyle="#101d25";
+  ctx.fillRect(0,0,1024,256);
+
+  ctx.strokeStyle=color;
+  ctx.lineWidth=8;
+  ctx.strokeRect(8,8,1008,240);
+
+  ctx.fillStyle=color;
+  ctx.font="bold 65px Arial";
+  ctx.fillText(title,35,105);
+
+  ctx.fillStyle="#d4e4e9";
+  ctx.font="32px Arial";
+  ctx.fillText(subtitle,38,170);
+
+  const texture=new THREE.CanvasTexture(canvas);
+  texture.colorSpace=THREE.SRGBColorSpace;
+  return texture;
+}
+
+function addSign(parent,title,subtitle,x,y,z,w=4){
+  const material=new THREE.MeshStandardMaterial({
+    map:textTexture(title,subtitle),
+    roughness:.6,
+    emissive:0x06303c,
+    emissiveIntensity:.3
+  });
+
+  const sign=box(parent,w,1.1,.12,material,x,y,z);
+  return sign;
+}
+
+function addPointLight(x,y,z,color=0x83dfff,intensity=1.2,distance=7){
+  const light=new THREE.PointLight(color,intensity,distance);
+  light.position.set(x,y,z);
+  scene.add(light);
+  return light;
+}
+
+/* =====================================================
+   SCENE
+===================================================== */
+
+function init(){
+
+  scene=new THREE.Scene();
+  scene.background=new THREE.Color(0x9baeb5);
+  scene.fog=new THREE.Fog(0x9baeb5,28,65);
+
+  camera=new THREE.PerspectiveCamera(
+    65,window.innerWidth/window.innerHeight,.1,150
+  );
+
+  renderer=new THREE.WebGLRenderer({
+    antialias:true,
+    powerPreference:"high-performance"
+  });
+
+  renderer.setSize(window.innerWidth,window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.7));
+  renderer.shadowMap.enabled=true;
+  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.15;
+
+  document.body.appendChild(renderer.domElement);
+
+  clock=new THREE.Clock();
+
+  scene.add(new THREE.HemisphereLight(0xe5f5ff,0x42464a,2));
+
+  const mainLight=new THREE.DirectionalLight(0xffffff,2.2);
+  mainLight.position.set(-7,12,-8);
+  mainLight.castShadow=true;
+  mainLight.shadow.mapSize.set(2048,2048);
+  mainLight.shadow.camera.left=-25;
+  mainLight.shadow.camera.right=25;
+  mainLight.shadow.camera.top=25;
+  mainLight.shadow.camera.bottom=-25;
+  scene.add(mainLight);
+
+  buildRoom();
+  buildLighting();
+  buildSamplingDepartment();
+  buildDAQDepartment();
+  buildSafetyStation();
+  buildPlayer();
+  setupControls();
+  setupInteraction();
+  setupNavigation();
+
+  window.addEventListener("resize",onResize);
+
+  animate();
+}
+
+/* =====================================================
+   ROOM
+===================================================== */
+
+function buildRoom(){
+
+  box(scene,ROOM.width,.35,ROOM.depth,M.floor,0,-.2,0);
+
+  // Floor tile lines
+  const tileMat=mat(0x566066,.9);
+  for(let x=-17;x<=17;x+=2){
+    box(scene,.018,.008,ROOM.depth,tileMat,x,-.015,0);
+  }
+  for(let z=-14;z<=14;z+=2){
+    box(scene,ROOM.width,.008,.018,tileMat,0,-.014,z);
+  }
+
+  // Back wall
+  box(scene,ROOM.width,ROOM.height,.35,M.wall,0,4,-15);
+
+  // Right wall
+  box(scene,.35,ROOM.height,ROOM.depth,M.wall,18,4,0);
+
+  // Front wall
+  box(scene,ROOM.width,ROOM.height,.35,M.wall,0,4,15);
+
+  // Left wall with doorway opening
+  // Opening centered at z=0, matching Main Hall side entrance
+  const doorWidth=7;
+
+  box(scene,.35,ROOM.height,(ROOM.depth-doorWidth)/2,
+      M.wall,-18,4,-(doorWidth/2+ROOM.depth/2)/2);
+
+  box(scene,.35,ROOM.height,(ROOM.depth-doorWidth)/2,
+      M.wall,-18,4,(doorWidth/2+ROOM.depth/2)/2);
+
+  box(scene,.35,2.1,doorWidth,M.wall,-18,6.95,0);
+
+  // Door frame
+  box(scene,.25,4.3,.3,M.blue,-17.78,2.15,-3.5);
+  box(scene,.25,4.3,.3,M.blue,-17.78,2.15,3.5);
+  box(scene,.3,.3,7.2,M.blue,-17.78,4.3,0);
+
+  addSign(scene,"MAIN HALL","EXIT / RETURN",-17.55,5.2,0,4.5);
+
+  // Ceiling
+  box(scene,ROOM.width,.25,ROOM.depth,M.ceiling,0,8,0);
+
+  // Wall base trims
+  box(scene,ROOM.width,.22,.18,M.wallDark,0,.12,-14.78);
+  box(scene,ROOM.width,.22,.18,M.wallDark,0,.12,14.78);
+  box(scene,.18,.22,ROOM.depth,M.wallDark,17.78,.12,0);
+  box(scene,.18,.22,ROOM.depth,M.wallDark,-17.78,.12,0);
+
+  // Laboratory floor markings
+  const line=mat(0xe3c34c,.7);
+  box(scene,15,.025,.055,line,7,.005,-2);
+  box(scene,15,.025,.055,line,7,.005,13);
+
+  // Department divider
+  box(scene,.12,2.7,22,M.wallDark,0,1.35,-1);
+  box(scene,1.2,.08,22,M.blue,0,2.75,-1);
+
+  // Wide passage through divider
+  // Two separate divider segments are built below instead.
+  scene.remove(scene.children[scene.children.length-1]);
+}
+
+/* =====================================================
+   LIGHTING
+===================================================== */
+
+function buildLighting(){
+
+  for(let z=-10;z<=10;z+=5){
+    for(let x=-12;x<=12;x+=8){
+
+      const housing=box(scene,2.5,.12,.65,M.steelDark,x,7.75,z);
+      box(scene,2.25,.045,.43,M.white,x,7.66,z);
+
+      const light=new THREE.PointLight(0xe6f5ff,1.1,10);
+      light.position.set(x,7.1,z);
+      scene.add(light);
+    }
+  }
+
+  addPointLight(-10,3,-5,0x48cfff,.7,8);
+  addPointLight(10,3,5,0x48cfff,.7,8);
+}
+
+/* =====================================================
+   SAMPLING DEPARTMENT
+===================================================== */
+
+function buildSamplingDepartment(){
+
+  // Department sign
+  addSign(scene,"SAMPLING LAB","FLUID ANALYSIS SECTION",-9,6.6,-14.55,9);
+
+  // Workbench
+  const benchX=-9;
+  const benchZ=-2;
+
+  box(scene,12,.18,2.1,M.stainless,benchX,1.05,benchZ);
+  box(scene,12,.12,2.1,M.steelDark,benchX,.88,benchZ);
+
+  for(let x=-14.5;x<=-3.5;x+=5.5){
+    for(let z of [benchZ-.75,benchZ+.75]){
+      box(scene,.18,.9,.18,M.steelDark,x,.45,z);
+    }
+  }
+
+  // Rear backsplash
+  box(scene,12,.8,.12,M.wallDark,benchX,1.55,benchZ-1.05);
+
+  // Storage cabinets
+  for(let x=-14;x<=-4;x+=2.5){
+    box(scene,1.9,1.2,.85,M.blue,x,.6,-4.9);
+    box(scene,1.75,.05,.04,M.steel,x,.6,-4.43);
+    box(scene,.08,.08,.08,M.stainless,x,.65,-4.38);
+  }
+
+  // Stations
+  buildBSWStation(-13.2,-2);
+  buildRanarexStation(-9.2,-2);
+  buildAPIStation(-5.2,-2);
+
+  buildWaterSGStation(-13.2,2.5);
+  buildShrinkageStation(-9.2,2.5);
+  buildPBTStation(-5.2,2.5);
+  buildDragerStation(-9.2,7);
+
+  // Workbench secondary section
+  box(scene,12,.16,1.6,M.stainless,-9,1.05,7);
+  box(scene,12,.12,1.6,M.steelDark,-9,.9,7);
+
+  for(let x=-14.5;x<=-3.5;x+=5.5){
+    box(scene,.18,.9,.18,M.steelDark,x,.45,7);
+  }
+
+  // Sampling shelves
+  for(let y=2.3;y<=4.1;y+=.9){
+    box(scene,10,.09,.45,M.stainless,-9,y,-12.4);
+  }
+
+  // Sample bottles on shelves
+  for(let x=-13.3;x<=-4.7;x+=1.1){
+    bottle(scene,x,2.65,-12.4,0x9b7a42);
+    bottle(scene,x,3.55,-12.4,0x6c9baf);
+  }
+
+  // Department labels
+  addSign(scene,"SAMPLE PREPARATION","LABEL / STORE / ANALYZE",-9,5.4,-12.8,8);
+}
+
+/* =====================================================
+   SAMPLE BOTTLES
+===================================================== */
+
+function bottle(parent,x,y,z,color=0x9b7a42){
+
+  const group=new THREE.Group();
+  group.position.set(x,y,z);
+  parent.add(group);
+
+  cylinder(group,.12,.12,.42,M.glass,0,0,0);
+  cylinder(group,.045,.045,.12,M.blue,0,.26,0);
+  cylinder(group,.105,.105,.2,mat(color,.2),0,-.1,0);
+
+  box(group,.19,.1,.015,M.white,0,.02,.125);
+
+  return group;
+}
+
+/* =====================================================
+   SAMPLING INSTRUMENTS
+===================================================== */
+
+function addStation(title,subtitle,x,z,description,details){
+
+  const group=new THREE.Group();
+  group.position.set(x,0,z);
+  scene.add(group);
+
+  // Instrument base
+  box(group,1.65,.15,1.35,M.steelDark,0,1.18,0);
+
+  // Station identification plate
+  const plate=new THREE.Mesh(
+    new THREE.BoxGeometry(1.55,.32,.035),
+    new THREE.MeshStandardMaterial({
+      map:textTexture(title,subtitle),
+      roughness:.65
+    })
+  );
+  plate.position.set(0,2.1,.7);
+  group.add(plate);
+
+  interactables.push({
+    object:group,
+    title,
+    description,
+    details,
+    position:new THREE.Vector3(x,1.4,z)
+  });
+
+  return group;
+}
+
+/* BS&W */
+
+function buildBSWStation(x,z){
+
+  const g=addStation(
+    "BS&W ANALYSIS",
+    "CENTRIFUGE TEST",
+    x,z,
+    "Basic Sediment and Water (BS&W) testing determines the volume percentage of water and sediment contained in a crude oil sample.",
+    [
+      "Equipment: laboratory centrifuge, calibrated centrifuge tubes, solvent and sample containers.",
+      "Fill the centrifuge tubes according to the applicable test procedure.",
+      "Balance the tubes and place them opposite each other in the centrifuge.",
+      "After the prescribed centrifuging cycle, read the separated water and sediment volume.",
+      "Report the result as a volume percentage.",
+      "Always follow the applicable ASTM/API procedure and laboratory safety requirements."
+    ]
+  );
+
+  // Centrifuge body
+  cylinder(g,.55,.55,.45,M.blue,0,1.55,0,40);
+  cylinder(g,.48,.48,.12,M.steel,0,1.82,0,40);
+  cylinder(g,.22,.22,.12,M.steelDark,0,1.93,0,32);
+
+  // Transparent cover
+  cylinder(g,.43,.43,.08,M.glass,0,2.05,0,32);
+
+  // Control panel
+  box(g,.55,.35,.15,M.black,0,1.65,.53);
+  box(g,.28,.13,.02,M.blueLight,0,1.72,.62);
+  sphere(g,.045,M.red,.2,1.56,.63);
+  sphere(g,.045,M.yellow,-.2,1.56,.63);
+
+  // Centrifuge tubes
+  for(let i=0;i<4;i++){
+    const angle=i*Math.PI/2;
+    const tx=Math.cos(angle)*.29;
+    const tz=Math.sin(angle)*.29;
+
+    cylinder(g,.07,.035,.65,M.glass,tx,2.25,tz,16);
+    cylinder(g,.065,.035,.19,M.liquid,tx,2.04,tz,16);
+  }
+
+  addPointLight(x,3,z,0x66c9ff,.25,3);
+}
+
+/* RANAREX */
+
+function buildRanarexStation(x,z){
+
+  const g=addStation(
+    "RANAREX",
+    "GAS SPECIFIC GRAVITY",
+    x,z,
+    "The Ranarex instrument is used to determine gas specific gravity by comparing the gas density with the density of air under defined test conditions.",
+    [
+      "Connect the gas sample according to the instrument operating procedure.",
+      "Ensure the sample system is clean and properly purged.",
+      "Check the instrument calibration and reference conditions.",
+      "Introduce the gas sample and allow the reading to stabilize.",
+      "Record gas specific gravity and the test conditions.",
+      "Gas specific gravity is dimensionless and is referenced to air."
+    ]
+  );
+
+  // Analyzer cabinet
+  box(g,1.2,1.15,.8,M.steelDark,0,1.75,0);
+  box(g,1.05,.85,.08,M.blue,0,1.82,.43);
+
+  // Display
+  box(g,.72,.36,.035,M.black,0,2.03,.49);
+  box(g,.62,.25,.015,M.blueLight,0,2.04,.515);
+
+  // Display text simulated
+  const screen=makeInstrumentScreen("GAS SG","0.625");
+  const screenMesh=new THREE.Mesh(
+    new THREE.PlaneGeometry(.6,.22),
+    new THREE.MeshBasicMaterial({map:screen})
+  );
+  screenMesh.position.set(0,2.04,.53);
+  g.add(screenMesh);
+
+  // Gas inlet and outlet
+  cylinder(g,.07,.07,.6,M.steel, -.4,1.55,-.4);
+  cylinder(g,.07,.07,.6,M.steel, .4,1.55,-.4);
+
+  // Tubing
+  cylinder(g,.025,.025,.55,M.yellow,-.4,2.2,-.4);
+  cylinder(g,.025,.025,.55,M.yellow,.4,2.2,-.4);
+
+  // Valves
+  for(let px of [-.4,.4]){
+    cylinder(g,.11,.11,.08,M.red,px,1.9,-.4);
+    box(g,.3,.04,.04,M.black,px,1.98,-.4);
+  }
+}
+
+/* API */
+
+function buildAPIStation(x,z){
+
+  const g=addStation(
+    "API GRAVITY",
+    "CRUDE OIL DENSITY",
+    x,z,
+    "API gravity is a petroleum industry measure of how heavy or light a petroleum liquid is compared with water.",
+    [
+      "Equipment: API hydrometer, transparent hydrometer cylinder and temperature measuring instrument.",
+      "Fill the clean cylinder with the representative oil sample.",
+      "Gently lower the hydrometer into the sample.",
+      "Allow the hydrometer to float freely without touching the cylinder walls.",
+      "Read the scale at the correct meniscus position.",
+      "Measure temperature and apply the required correction to the reference temperature.",
+      "API gravity = (141.5 / specific gravity at 60°F) - 131.5."
+    ]
+  );
+
+  // Glass cylinder
+  cylinder(g,.29,.29,1.2,M.glass,0,2.1,0,32);
+  cylinder(g,.25,.25,.45,M.liquid,0,1.75,0,32);
+
+  // Hydrometer stem
+  cylinder(g,.025,.025,.9,M.white,0,2.45,0,16);
+  sphere(g,.09,M.steel,0,2.0,0);
+
+  // Scale marks
+  for(let i=0;i<8;i++){
+    box(g,.12,.012,.018,M.black,.12,2.15+i*.09,.02);
+  }
+
+  // Sample bottle
+  bottle(g,-.55,1.8,.25,0x9b6a2e);
+}
+
+/* WATER SG */
+
+function buildWaterSGStation(x,z){
+
+  const g=addStation(
+    "WATER SG",
+    "WATER SPECIFIC GRAVITY",
+    x,z,
+    "Water specific gravity compares the density of the produced water sample with the density of reference water at a specified temperature.",
+    [
+      "Collect a representative produced-water sample.",
+      "Use a suitable calibrated hydrometer or density measuring instrument.",
+      "Measure the sample temperature.",
+      "Take the reading after the instrument stabilizes.",
+      "Apply temperature correction where required.",
+      "Record the specific gravity and test temperature."
+    ]
+  );
+
+  cylinder(g,.28,.28,1.25,M.glass,0,2.1,0,32);
+  cylinder(g,.245,.245,.55,M.water,0,1.8,0,32);
+
+  cylinder(g,.025,.025,.9,M.white,0,2.5,0,16);
+  sphere(g,.085,M.steel,0,2.0,0);
+
+  for(let i=0;i<8;i++){
+    box(g,.12,.012,.018,M.black,.12,2.2+i*.08,.02);
+  }
+
+  bottle(g,-.55,1.8,.25,0x5b9fbd);
+}
+
+/* SHRINKAGE */
+
+function buildShrinkageStation(x,z){
+
+  const g=addStation(
+    "SHRINKAGE TEST",
+    "OIL VOLUME FACTOR",
+    x,z,
+    "Shrinkage testing evaluates the reduction in liquid volume when a pressurized hydrocarbon liquid is brought to atmospheric pressure and the liberated gas separates.",
+    [
+      "Obtain a representative pressurized liquid sample.",
+      "Measure the liquid volume under the specified test conditions.",
+      "Transfer or release the sample according to the approved test procedure.",
+      "Allow gas separation and stabilize the liquid at the reference conditions.",
+      "Measure the remaining stock-tank liquid volume.",
+      "Shrinkage can be expressed as the reduction in liquid volume percentage.",
+      "Use the applicable laboratory method and defined pressure and temperature conditions."
+    ]
+  );
+
+  // Graduated glass vessel
+  cylinder(g,.3,.3,1.35,M.glass,0,2.1,0,32);
+  cylinder(g,.26,.26,.55,M.liquid,0,1.75,0,32);
+
+  // Graduations
+  for(let i=0;i<10;i++){
+    box(g,.16,.012,.02,M.black,.12,1.65+i*.09,.02);
+  }
+
+  // Pressure sample cylinder
+  cylinder(g,.19,.19,1.0,M.stainless,-.55,2.1,.1,24);
+  cylinder(g,.22,.22,.08,M.steelDark,-.55,2.63,.1);
+  cylinder(g,.22,.22,.08,M.steelDark,-.55,1.57,.1);
+
+  // Valve
+  cylinder(g,.09,.09,.15,M.red,-.55,2.75,.1);
+  box(g,.28,.04,.04,M.black,-.55,2.84,.1);
+}
+
+/* PBT */
+
+function buildPBTStation(x,z){
+
+  const g=addStation(
+    "PBT",
+    "PRODUCED WATER TESTING",
+    x,z,
+    "PBT is used here as the produced-water testing station. It represents laboratory checks used to evaluate produced-water sample properties and contamination indicators.",
+    [
+      "Collect a representative produced-water sample in a clean, labeled container.",
+      "Inspect the sample for visible oil, solids and other contamination.",
+      "Carry out the specific produced-water test required by the site procedure.",
+      "Record the test method, sample identification, result and units.",
+      "The exact meaning and test method of PBT can vary between company procedures. Follow your approved field or laboratory method."
+    ]
+  );
+
+  // Bench analyzer
+  box(g,1.15,.75,.75,M.steelDark,0,1.65,0);
+  box(g,.9,.45,.06,M.white,0,1.75,.4);
+
+  // Digital display
+  const tex=makeInstrumentScreen("PBT ANALYZER","READY");
+  const screen=new THREE.Mesh(
+    new THREE.PlaneGeometry(.7,.32),
+    new THREE.MeshBasicMaterial({map:tex})
+  );
+  screen.position.set(0,1.78,.44);
+  g.add(screen);
+
+  // Sample containers
+  for(let xPos of [-.45,0,.45]){
+    bottle(g,xPos,2.2,-.3,0x5b9fbd);
+  }
+}
+
+/* DRAGER */
+
+function buildDragerStation(x,z){
+
+  const g=addStation(
+    "DRÄGER TEST",
+    "H2S / CO2 DETECTION",
+    x,z,
+    "Dräger detector tubes are used with a compatible manual or automatic pump to measure specific gases in a sample of air.",
+    [
+      "Select the correct Dräger tube for the target gas and expected measuring range.",
+      "Check the tube expiry date and operating instructions.",
+      "Break both tube ends using the correct tube opener.",
+      "Insert the tube in the correct direction into the compatible pump.",
+      "Take the prescribed number of pump strokes.",
+      "Read the color change according to the tube scale and correction instructions.",
+      "Use suitable personal protective equipment and approved gas testing procedures.",
+      "Never use a detector tube as a substitute for a required personal gas monitor."
+    ]
+  );
+
+  // Drager pump
+  box(g,.85,.48,.42,M.black,0,1.65,0);
+  cylinder(g,.14,.14,.55,M.steel,0,1.95,0,24);
+  sphere(g,.12,M.yellow,0,2.25,0);
+
+  // Pump handle
+  cylinder(g,.055,.055,.45,M.black,.48,1.9,0,16);
+
+  // Drager tubes
+  for(let i=0;i<4;i++){
+    const tx=-.45+i*.3;
+
+    cylinder(g,.035,.035,.95,M.glass,tx,2.25,.35,12);
+    cylinder(g,.032,.032,.25,
+      i%2===0?M.yellow:M.red,
+      tx,2.12,.35,12);
+
+    box(g,.11,.12,.02,M.white,tx,2.65,.39);
+  }
+
+  // Storage box
+  box(g,1,.25,.55,M.blue,0,1.35,-.45);
+}
+
+/* INSTRUMENT SCREENS */
+
+function makeInstrumentScreen(title,value){
+
+  const canvas=document.createElement("canvas");
+  canvas.width=512;
+  canvas.height=256;
+
+  const ctx=canvas.getContext("2d");
+  ctx.fillStyle="#071b23";
+  ctx.fillRect(0,0,512,256);
+
+  ctx.fillStyle="#4ce4ff";
+  ctx.font="bold 30px Arial";
+  ctx.fillText(title,25,55);
+
+  ctx.fillStyle="#ffffff";
+  ctx.font="bold 65px monospace";
+  ctx.fillText(value,25,150);
+
+  ctx.fillStyle="#5cd49b";
+  ctx.font="20px Arial";
+  ctx.fillText("INSTRUMENT READY",25,215);
+
+  const tex=new THREE.CanvasTexture(canvas);
+  tex.colorSpace=THREE.SRGBColorSpace;
+  return tex;
+}
+
+/* =====================================================
+   DAQ DEPARTMENT
+===================================================== */
+
+let daqScreenTexture;
+let daqCanvas;
+let daqContext;
+let daqScreenMaterial;
+
+let daqValues={
+  pressure:2450,
+  temperature:82.5,
+  dp:125,
+  flow:850,
+  frequency:1
+};
+
+function buildDAQDepartment(){
+
+  // DAQ section sign
+  addSign(scene,"DATA ACQUISITION","REAL-TIME MONITORING SYSTEM",9,6.6,-14.55,10);
+
+  // DAQ workstation desk
+  box(scene,10,.18,2.1,M.steelDark,9,1.05,-8);
+  box(scene,10,.08,2.1,M.stainless,9,1.17,-8);
+
+  for(let x of [5,13]){
+    for(let z of [-8.7,-7.3]){
+      box(scene,.18,1,.18,M.steelDark,x,.5,z);
+    }
+  }
+
+  // Main computer tower
+  box(scene,.75,1.55,.75,M.black,13,1.95,-8);
+  box(scene,.65,.1,.04,M.blue,13,2.2,-7.61);
+  sphere(scene,.045,M.blueLight,13,1.55,-7.59);
+
+  // Ventilation slots
+  for(let i=0;i<7;i++){
+    box(scene,.45,.025,.015,M.steel,13,1.55+i*.08,-7.61);
+  }
+
+  // Keyboard
+  box(scene,1.5,.08,.55,M.black,8,1.3,-7.1);
+
+  for(let i=0;i<12;i++){
+    box(scene,.08,.025,.07,M.white,7.4+(i%6)*.2,1.35,-7.25+Math.floor(i/6)*.18);
+  }
+
+  // Mouse
+  sphere(scene,.1,M.black,9.1,1.35,-7.1);
+
+  // Monitor stand
+  box(scene,.15,.65,.15,M.steelDark,9,1.5,-8.7);
+  box(scene,.9,.08,.5,M.steelDark,9,1.25,-8.7);
+
+  // Monitor frame
+  box(scene,5.8,3.5,.22,M.black,9,3.35,-8.8);
+
+  // Main screen display
+  daqCanvas=document.createElement("canvas");
+  daqCanvas.width=1600;
+  daqCanvas.height=950;
+  daqContext=daqCanvas.getContext("2d");
+
+  daqScreenTexture=new THREE.CanvasTexture(daqCanvas);
+  daqScreenTexture.colorSpace=THREE.SRGBColorSpace;
+
+  daqScreenMaterial=new THREE.MeshBasicMaterial({
+    map:daqScreenTexture
+  });
+
+  const display=new THREE.Mesh(
+    new THREE.PlaneGeometry(5.5,3.2),
+    daqScreenMaterial
+  );
+
+  display.position.set(9,3.4,-8.675);
+  scene.add(display);
+
+  // Screen interaction target
+  interactables.push({
+    object:display,
+    title:"DATA ACQUISITION SYSTEM",
+    description:"This workstation represents a Well Testing Data Acquisition System. It receives field instrument signals, displays live measurements, trends and records operational data.",
+    details:[
+      "PRESSURE: simulated wellhead or separator pressure channel.",
+      "TEMPERATURE: simulated process temperature channel.",
+      "DIFFERENTIAL PRESSURE: simulated DP transmitter channel.",
+      "FLOW: simulated flow measurement channel.",
+      "TREND VIEW: scrolling real-time data curves.",
+      "CHANNEL STATUS: shows the simulated connection status of each channel.",
+      "RECORDING: simulated data recording status.",
+      "This is an educational simulation, not a live connection to field instruments."
+    ],
+    position:new THREE.Vector3(9,3.3,-8.5)
+  });
+
+  // Secondary monitor
+  box(scene,3.3,2.2,.18,M.black,4.7,3.05,-8.8);
+
+  const secondary=makeInstrumentScreen("CHANNEL STATUS","ONLINE");
+
+  const secondaryMesh=new THREE.Mesh(
+    new THREE.PlaneGeometry(3.05,1.95),
+    new THREE.MeshBasicMaterial({map:secondary})
+  );
+  secondaryMesh.position.set(4.7,3.05,-8.68);
+  scene.add(secondaryMesh);
+
+  // Desk drawers
+  for(let x of [6,12]){
+    box(scene,1.3,.5,.8,M.blue,x,.65,-8);
+    box(scene,1,.035,.04,M.steel,x,.7,-7.58);
+  }
+
+  // DAQ rack / signal interface
+  buildDAQRack(14,1.8,-2);
+
+  // Office chair
+  buildChair(9,0,-5.4);
+
+  // Wall display panel
+  addSign(scene,"FIELD DATA MONITORING","PRESSURE / TEMPERATURE / FLOW",9,5.6,-12.4,8);
+
+  drawDAQScreen();
+}
+
+/* =====================================================
+   DAQ SCREEN UI
+===================================================== */
+
+function drawDAQScreen(){
+
+  const ctx=daqContext;
+  const w=daqCanvas.width;
+  const h=daqCanvas.height;
+
+  ctx.fillStyle="#07131b";
+  ctx.fillRect(0,0,w,h);
+
+  // Header
+  ctx.fillStyle="#102c3a";
+  ctx.fillRect(0,0,w,80);
+
+  ctx.fillStyle="#62e5ff";
+  ctx.font="bold 36px Arial";
+  ctx.fillText("WELL TESTING DATA ACQUISITION SYSTEM",35,48);
+
+  ctx.fillStyle="#75e2a7";
+  ctx.font="22px Arial";
+  ctx.fillText("SYSTEM ONLINE  |  TRAINING SIMULATION",1050,48);
+
+  // Menu
+  ctx.fillStyle="#173847";
+  ctx.fillRect(0,80,w,55);
+
+  ctx.fillStyle="#d8edf5";
+  ctx.font="22px Arial";
+  ctx.fillText("OVERVIEW     LIVE DATA     TRENDS     CHANNELS     REPORTS",35,116);
+
+  // Left panel
+  ctx.fillStyle="#10222c";
+  ctx.fillRect(20,155,380,745);
+
+  ctx.fillStyle="#5bdcf7";
+  ctx.font="bold 28px Arial";
+  ctx.fillText("CHANNELS",45,200);
+
+  const channels=[
+    ["CH-01","PRESSURE","bar"],
+    ["CH-02","TEMPERATURE","°C"],
+    ["CH-03","DIFFERENTIAL PRESSURE","mbar"],
+    ["CH-04","FLOW RATE","bbl/day"]
+  ];
+
+  channels.forEach((c,i)=>{
+    const y=250+i*125;
+
+    ctx.fillStyle="#183b4a";
+    ctx.fillRect(40,y,340,100);
+
+    ctx.fillStyle="#67dfff";
+    ctx.font="bold 20px Arial";
+    ctx.fillText(c[0],55,y+28);
+
+    ctx.fillStyle="#dbe9ef";
+    ctx.font="19px Arial";
+    ctx.fillText(c[1],55,y+60);
+
+    ctx.fillStyle="#63e7a7";
+    ctx.font="17px Arial";
+    ctx.fillText("CONNECTED",55,y+84);
+  });
+
+  // Main values
+  const cards=[
+    ["PRESSURE",daqValues.pressure.toFixed(1),"bar"],
+    ["TEMPERATURE",daqValues.temperature.toFixed(1),"°C"],
+    ["DIFFERENTIAL PRESSURE",daqValues.dp.toFixed(1),"mbar"],
+    ["FLOW RATE",daqValues.flow.toFixed(1),"bbl/day"]
+  ];
+
+  cards.forEach((c,i)=>{
+    const x=440+(i%2)*550;
+    const y=165+Math.floor(i/2)*180;
+
+    ctx.fillStyle="#102b37";
+    ctx.fillRect(x,y,510,145);
+
+    ctx.strokeStyle="#23627b";
+    ctx.lineWidth=3;
+    ctx.strokeRect(x,y,510,145);
+
+    ctx.fillStyle="#69dff8";
+    ctx.font="bold 23px Arial";
+    ctx.fillText(c[0],x+25,y+40);
+
+    ctx.fillStyle="#ffffff";
+    ctx.font="bold 54px monospace";
+    ctx.fillText(c[1],x+25,y+105);
+
+    ctx.fillStyle="#7ea9ba";
+    ctx.font="20px Arial";
+    ctx.fillText(c[2],x+400,y+105);
+  });
+
+  // Trend area
+  const tx=440,ty=545,tw=1060,th=310;
+
+  ctx.fillStyle="#0c202b";
+  ctx.fillRect(tx,ty,tw,th);
+
+  ctx.strokeStyle="#294654";
+  ctx.lineWidth=1;
+
+  for(let i=0;i<7;i++){
+    const y=ty+i*th/6;
+    ctx.beginPath();
+    ctx.moveTo(tx,y);
+    ctx.lineTo(tx+tw,y);
+    ctx.stroke();
+  }
+
+  for(let i=0;i<11;i++){
+    const x=tx+i*tw/10;
+    ctx.beginPath();
+    ctx.moveTo(x,ty);
+    ctx.lineTo(x,ty+th);
+    ctx.stroke();
+  }
+
+  ctx.fillStyle="#dcebf0";
+  ctx.font="22px Arial";
+  ctx.fillText("LIVE PROCESS TREND",tx+20,ty-15);
+
+  drawTrend(ctx,tx,ty,tw,th,0x48d7ff,0);
+  drawTrend(ctx,tx,ty,tw,th,0x75e6a5,1);
+  drawTrend(ctx,tx,ty,tw,th,0xf2c35b,2);
+
+  // Footer
+  ctx.fillStyle="#173744";
+  ctx.fillRect(20,875,1480,40);
+
+  ctx.fillStyle="#b9d8e2";
+  ctx.font="18px Arial";
+  ctx.fillText("RECORDING: ACTIVE     SAMPLE RATE: 1 Hz     DATA FILE: WT_LAB_TRAINING_001",40,902);
+
+  daqScreenTexture.needsUpdate=true;
+}
+
+function drawTrend(ctx,x,y,w,h,color,offset){
+
+  const colors=["#48d7ff","#75e6a5","#f2c35b"];
+
+  ctx.beginPath();
+  ctx.strokeStyle=colors[offset];
+  ctx.lineWidth=4;
+
+  for(let i=0;i<150;i++){
+    const px=x+(i/149)*w;
+    const wave=Math.sin((i+daqValues.frequency*8)*.11+offset)*25;
+    const wave2=Math.sin((i+offset*20)*.045)*14;
+    const py=y+h*.5+wave+wave2+offset*35;
+
+    if(i===0)ctx.moveTo(px,py);
+    else ctx.lineTo(px,py);
+  }
+
+  ctx.stroke();
+}
+
+/* =====================================================
+   DAQ RACK
+===================================================== */
+
+function buildDAQRack(x,y,z){
+
+  const g=new THREE.Group();
+  g.position.set(x,y,z);
+  scene.add(g);
+
+  box(g,2.2,3.5,1.1,M.steelDark,0,1.75,0);
+
+  box(g,2.05,3.25,.08,M.black,0,1.75,.57);
+
+  // Rack modules
+  for(let i=0;i<5;i++){
+    const yy=.55+i*.58;
+
+    box(g,1.8,.45,.08,M.blue,0,yy,.64);
+
+    for(let j=0;j<6;j++){
+      sphere(g,.035,
+        j===0?M.green||M.blueLight:M.steel,
+        -.72+j*.27,yy,.72
+      );
+    }
+
+    box(g,.25,.12,.025,M.black,.65,yy,.72);
+  }
+
+  // Cable connections
+  for(let i=0;i<5;i++){
+    cylinder(g,.035,.035,.8,M.yellow,-.7+i*.3,.2,-.3,10);
+  }
+
+  // Label
+  addSign(g,"DAQ I/O","SIGNAL MODULES",0,4,0,2);
+}
+
+/* =====================================================
+   CHAIR
+===================================================== */
+
+function buildChair(x,y,z){
+
+  const g=new THREE.Group();
+  g.position.set(x,y,z);
+  scene.add(g);
+
+  cylinder(g,.55,.55,.15,M.black,0,1.0,0);
+  box(g,.8,.16,.7,M.black,0,1.35,0);
+  box(g,.8,.85,.18,M.black,0,1.85,-.3);
+
+  cylinder(g,.08,.08,.8,M.steelDark,0,.5,0);
+
+  for(let i=0;i<5;i++){
+    const a=i*Math.PI*2/5;
+    const wheel=box(g,.55,.07,.1,M.black,Math.cos(a)*.28,.12,Math.sin(a)*.28);
+    wheel.rotation.y=a;
+  }
+}
+
+/* =====================================================
+   SAFETY STATION
+===================================================== */
+
+function buildSafetyStation(){
+
+  // Safety station on rear right wall
+  box(scene,2.8,2.4,.35,M.red,15,1.7,10);
+
+  addSign(scene,"LAB SAFETY","PPE / EMERGENCY",-15,3.3,9,4);
+
+  // PPE cabinet
+  box(scene,1.3,1.7,.5,M.white,15,1.2,10);
+  box(scene,1.15,.1,.04,M.red,15,1.7,9.73);
+
+  // Emergency stop
+  cylinder(scene,.17,.17,.12,M.red,14,2.7,9.7);
+  sphere(scene,.1,M.red,14,2.85,9.7);
+
+  // Fire extinguisher
+  cylinder(scene,.18,.18,.85,M.red,16.2,.55,10);
+  cylinder(scene,.08,.08,.2,M.black,16.2,1.08,10);
+
+  // First aid cabinet
+  box(scene,1,.8,.15,M.white,13.5,2.7,10);
+  box(scene,.15,.55,.03,M.red,13.5,2.7,9.9);
+  box(scene,.55,.15,.03,M.red,13.5,2.7,9.9);
+}
+
+/* =====================================================
+   PLAYER
+===================================================== */
+
+function buildPlayer(){
+
+  playerGroup=new THREE.Group();
+  scene.add(playerGroup);
+
+  const bodyMat=mat(0x17618b,.8);
+  const skin=mat(0xc99a76,.85);
+  const pants=mat(0x26333b,.9);
+  const boots=mat(0x171b1e,.8);
+
+  // Body
+  const body=new THREE.Mesh(
+    new THREE.CapsuleGeometry(.32,.65,4,8),
+    bodyMat
+  );
+  body.position.y=1.15;
+  playerGroup.add(body);
+
+  // Head
+  sphere(playerGroup,.22,skin,0,1.8,0);
+
+  // Helmet
+  cylinder(playerGroup,.26,.26,.12,M.yellow,0,2.02,0,24);
+  sphere(playerGroup,.25,M.yellow,0,2.04,0);
+
+  // Legs
+  box(playerGroup,.22,.7,.25,pants,-.17,.48,0);
+  box(playerGroup,.22,.7,.25,pants,.17,.48,0);
+
+  // Boots
+  box(playerGroup,.27,.18,.4,boots,-.17,.09,-.05);
+  box(playerGroup,.27,.18,.4,boots,.17,.09,-.05);
+
+  // Arms
+  box(playerGroup,.18,.7,.2,bodyMat,-.4,1.2,0);
+  box(playerGroup,.18,.7,.2,bodyMat,.4,1.2,0);
+
+  // Reflective vest strips
+  box(playerGroup,.65,.06,.34,M.yellow,0,1.35,.17);
+
+  playerGroup.position.set(-13,0,0);
+
+  player=playerGroup;
+}
+
+/* =====================================================
+   CONTROLS
+===================================================== */
+
+let mouseDown=false;
+let lastX=0;
+let lastY=0;
+let mobileMove={};
+
+function setupControls(){
+
+  window.addEventListener("keydown",e=>{
+    keys[e.key.toLowerCase()]=true;
+
+    if(e.key.toLowerCase()==="e")interact();
+    if(e.key==="Escape")closePanel();
+  });
+
+  window.addEventListener("keyup",e=>{
+    keys[e.key.toLowerCase()]=false;
+  });
+
+  renderer.domElement.addEventListener("mousedown",e=>{
+    if(activePanel)return;
+    mouseDown=true;
+    lastX=e.clientX;
+    lastY=e.clientY;
+  });
+
+  window.addEventListener("mouseup",()=>mouseDown=false);
+
+  window.addEventListener("mousemove",e=>{
+    if(!mouseDown||activePanel)return;
+
+    const dx=e.clientX-lastX;
+    const dy=e.clientY-lastY;
+
+    yaw-=dx*.004;
+    pitch=Math.max(-.45,Math.min(.35,pitch-dy*.003));
+
+    lastX=e.clientX;
+    lastY=e.clientY;
+  });
+
+  // Mobile touch look: swipe on right half
+  renderer.domElement.addEventListener("touchstart",e=>{
+    if(activePanel)return;
+
+    const t=e.touches[0];
+    if(t.clientX>window.innerWidth*.4){
+      lastX=t.clientX;
+      lastY=t.clientY;
+      mouseDown=true;
+    }
+  },{passive:true});
+
+  renderer.domElement.addEventListener("touchmove",e=>{
+    if(!mouseDown||activePanel)return;
+
+    const t=e.touches[0];
+    if(t.clientX<window.innerWidth*.4)return;
+
+    const dx=t.clientX-lastX;
+    const dy=t.clientY-lastY;
+
+    yaw-=dx*.006;
+    pitch=Math.max(-.45,Math.min(.35,pitch-dy*.004));
+
+    lastX=t.clientX;
+    lastY=t.clientY;
+  },{passive:true});
+
+  renderer.domElement.addEventListener("touchend",()=>{
+    mouseDown=false;
+  });
+
+  // Mobile movement buttons
+  const buttons={
+    up:"w",
+    down:"s",
+    left:"a",
+    right:"d"
+  };
+
+  Object.entries(buttons).forEach(([id,key])=>{
+    const btn=document.getElementById(id);
+
+    btn.addEventListener("touchstart",e=>{
+      e.preventDefault();
+      mobileMove[key]=true;
+    });
+
+    btn.addEventListener("touchend",e=>{
+      e.preventDefault();
+      mobileMove[key]=false;
+    });
+
+    btn.addEventListener("touchcancel",()=>{
+      mobileMove[key]=false;
+    });
+  });
+
+  document.getElementById("interaction").addEventListener("click",interact);
+
+  document.getElementById("closePanel").addEventListener("click",closePanel);
+}
+
+/* =====================================================
+   PLAYER MOVEMENT
+===================================================== */
+
+function updateMovement(delta){
+
+  if(activePanel||exiting)return;
+
+  const forward=(keys.w||keys.arrowup||mobileMove.w)?1:0;
+  const backward=(keys.s||keys.arrowdown||mobileMove.s)?1:0;
+  const left=(keys.a||keys.arrowleft||mobileMove.a)?1:0;
+  const right=(keys.d||keys.arrowright||mobileMove.d)?1:0;
+
+  let mx=right-left;
+  let mz=backward-forward;
+
+  if(mx!==0||mz!==0){
+
+    const length=Math.hypot(mx,mz);
+    mx/=length;
+    mz/=length;
+
+    const speed=(keys.shift?RUN_SPEED:MOVE_SPEED)*delta;
+
+    const forwardX=-Math.sin(yaw);
+    const forwardZ=-Math.cos(yaw);
+
+    const rightX=Math.cos(yaw);
+    const rightZ=-Math.sin(yaw);
+
+    const dx=(forwardX*mz+rightX*mx)*speed;
+    const dz=(forwardZ*mz+rightZ*mx)*speed;
+
+    const nx=player.position.x+dx;
+    const nz=player.position.z+dz;
+
+    // Room boundaries
+    if(nx>-16.7&&nx<16.7)player.position.x=nx;
+    if(nz>-13.7&&nz<13.7)player.position.z=nz;
+
+    // Keep player inside the doorway opening when exiting
+    if(player.position.x<-15.2){
+      if(Math.abs(player.position.z)>3.0){
+        player.position.x=-15.2;
+      }
+    }
+
+    // Character facing movement direction
+    player.rotation.y=Math.atan2(-dx,-dz);
+  }
+
+}
+
+/* =====================================================
+   CAMERA
+===================================================== */
+
+function updateCamera(){
+
+  const distance=5.3;
+  const height=2.8;
+
+  const offsetX=Math.sin(yaw)*distance;
+  const offsetZ=Math.cos(yaw)*distance;
+
+  const target=new THREE.Vector3(
+    player.position.x+offsetX,
+    player.position.y+height,
+    player.position.z+offsetZ
+  );
+
+  camera.position.lerp(target,.12);
+
+  const look=new THREE.Vector3(
+    player.position.x,
+    player.position.y+1.55+pitch*4,
+    player.position.z
+  );
+
+  camera.lookAt(look);
+}
+
+/* =====================================================
+   INTERACTION
+===================================================== */
+
+function setupInteraction(){
+  document.getElementById("interaction").addEventListener("click",interact);
+}
+
+function interact(){
+
+  if(activePanel){
+    closePanel();
+    return;
+  }
+
+  if(!currentTarget){
+    if(isNearExit()){
+      returnToMainHall();
+    }
+    return;
+  }
+
+  openPanel(currentTarget);
+}
+
+function openPanel(item){
+
+  activePanel=true;
+  panelTitle.textContent=item.title;
+
+  let html=`<p>${item.description}</p>`;
+
+  html+="<h3>PROCEDURE / SYSTEM DETAILS</h3><ul>";
+
+  item.details.forEach(detail=>{
+    html+=`<li>${detail}</li>`;
+  });
+
+  html+="</ul>";
+
+  panelContent.innerHTML=html;
+  panel.style.display="block";
+  hint.textContent="Press ESC or CLOSE to return to the laboratory";
+}
+
+function closePanel(){
+
+  activePanel=false;
+  panel.style.display="none";
+  hint.textContent="Explore the laboratory and approach an instrument";
+}
+
+/* =====================================================
+   TARGET DETECTION
+===================================================== */
+
+function updateTargets(){
+
+  currentTarget=null;
+  let nearest=Infinity;
+
+  for(const item of interactables){
+
+    const p=item.position;
+    const dx=p.x-player.position.x;
+    const dz=p.z-player.position.z;
+
+    const distance=Math.sqrt(dx*dx+dz*dz);
+
+    if(distance<3.4&&distance<nearest){
+      nearest=distance;
+      currentTarget=item;
+    }
+  }
+
+  if(currentTarget){
+    hint.textContent="Press E / INTERACT  ·  "+currentTarget.title;
+  }
+  else if(isNearExit()){
+    hint.textContent="Press E / INTERACT to return to Main Hall";
+  }
+  else if(!activePanel){
+    hint.textContent="Explore the laboratory";
+  }
+}
+
+function isNearExit(){
+  return player.position.x<-15.1&&Math.abs(player.position.z)<3.0;
+}
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function setupNavigation(){
+
+  document.getElementById("backButton").addEventListener("click",()=>{
+    returnToMainHall();
+  });
+}
+
+function returnToMainHall(){
+
+  if(exiting)return;
+
+  exiting=true;
+  hint.textContent="Returning to Main Hall...";
+
+  setTimeout(()=>{
+    sessionStorage.setItem("mainHallEntry","welltestinglab");
+    sessionStorage.setItem("wellTestingLabEntry","mainhall");
+
+    location.href="mainhall.html?entry=welltestinglab";
+  },500);
+}
+
+/* =====================================================
+   DAQ SIMULATION
+===================================================== */
+
+let daqTimer=0;
+
+function updateDAQ(delta){
+
+  daqTimer+=delta;
+
+  if(daqTimer>.5){
+
+    daqTimer=0;
+
+    daqValues.frequency+=1;
+
+    daqValues.pressure+=Math.sin(daqValues.frequency*.5)*3;
+    daqValues.temperature+=Math.sin(daqValues.frequency*.12)*.12;
+    daqValues.dp+=Math.sin(daqValues.frequency*.32)*1.8;
+    daqValues.flow+=Math.sin(daqValues.frequency*.23)*5;
+
+    daqValues.pressure=Math.max(2400,Math.min(2500,daqValues.pressure));
+    daqValues.temperature=Math.max(78,Math.min(88,daqValues.temperature));
+    daqValues.dp=Math.max(110,Math.min(140,daqValues.dp));
+    daqValues.flow=Math.max(820,Math.min(880,daqValues.flow));
+
+    drawDAQScreen();
+  }
+}
+
+/* =====================================================
+   ANIMATION LOOP
+===================================================== */
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  const delta=Math.min(clock.getDelta(),.04);
+
+  updateMovement(delta);
+  updateCamera();
+  updateTargets();
+  updateDAQ(delta);
+
+  renderer.render(scene,camera);
+}
+
+/* =====================================================
+   RESIZE
+===================================================== */
+
+function onResize(){
+
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth,window.innerHeight);
+}
+
+/* =====================================================
+   START
+===================================================== */
+
+init();
+
+</script>
+</body>
+</html>

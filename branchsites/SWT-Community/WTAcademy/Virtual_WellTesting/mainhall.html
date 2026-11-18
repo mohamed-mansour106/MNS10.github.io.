@@ -1,0 +1,1041 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Virtual University | Main Hall</title>
+
+<style>
+*{box-sizing:border-box}
+html,body{
+  margin:0;width:100%;height:100%;overflow:hidden;
+  background:#111923;color:white;font-family:Arial,sans-serif
+}
+#scene{position:fixed;inset:0;touch-action:none}
+canvas{display:block}
+#topbar{
+  position:fixed;top:14px;left:14px;right:14px;
+  display:flex;justify-content:space-between;
+  pointer-events:none;z-index:5
+}
+.brand,.hint{
+  background:#0b1726d9;border:1px solid #ffffff25;
+  border-radius:12px;padding:11px 15px;
+  backdrop-filter:blur(12px)
+}
+.brand strong{color:#e7bd72;letter-spacing:2px}
+.brand small{display:block;color:#bdc9d5;margin-top:4px}
+.hint{font-size:12px;text-align:right;line-height:1.7}
+#message{
+  position:fixed;left:50%;bottom:115px;
+  transform:translateX(-50%);
+  background:#101d2de8;border:1px solid #e7bd72;
+  padding:13px 20px;border-radius:12px;
+  font-size:13px;text-align:center;
+  display:none;white-space:nowrap;z-index:10
+}
+#mobileControls{
+  display:none;position:fixed;left:14px;right:14px;
+  bottom:16px;justify-content:space-between;
+  align-items:end;pointer-events:none;z-index:10
+}
+.pad{
+  display:grid;grid-template-columns:repeat(3,48px);
+  grid-template-rows:repeat(2,44px);gap:5px;
+  pointer-events:auto
+}
+button{
+  background:#0b1726d9;color:white;
+  border:1px solid #ffffff40;border-radius:12px;
+  font-size:17px;touch-action:none
+}
+.pad button:nth-child(1){grid-column:2}
+.pad button:nth-child(2){grid-column:1;grid-row:2}
+.pad button:nth-child(3){grid-column:2;grid-row:2}
+.pad button:nth-child(4){grid-column:3;grid-row:2}
+#fadeScreen{
+  position:fixed;inset:0;background:#000;
+  opacity:0;pointer-events:none;z-index:30;
+  transition:opacity .7s
+}
+@media(pointer:coarse){
+  #mobileControls{display:flex}
+  .hint{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<div id="scene"></div>
+
+<div id="topbar">
+  <div class="brand">
+    <strong>VIRTUAL UNIVERSITY</strong>
+    <small>MAIN HALL</small>
+  </div>
+  <div class="hint">
+    W A S D — Move<br>
+    Mouse — Look | SHIFT — Run
+  </div>
+</div>
+
+<div id="message"></div>
+
+<div id="mobileControls">
+  <div class="pad">
+    <button data-key="w">▲</button>
+    <button data-key="a">◀</button>
+    <button data-key="s">▼</button>
+    <button data-key="d">▶</button>
+  </div>
+</div>
+
+<div id="fadeScreen"></div>
+
+<script type="importmap">
+{
+  "imports":{
+    "three":"./libs/three.module.js"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+/* =========================================
+   SCENE SETUP
+========================================= */
+
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x182332);
+scene.fog=new THREE.Fog(0x182332,35,100);
+
+const camera=new THREE.PerspectiveCamera(
+  65,innerWidth/innerHeight,.1,150
+);
+
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+
+document.getElementById('scene').appendChild(renderer.domElement);
+
+scene.add(new THREE.HemisphereLight(0xd8e8ff,0x403020,1.8));
+
+const sunlight=new THREE.DirectionalLight(0xffdfb0,2.2);
+sunlight.position.set(-10,18,8);
+sunlight.castShadow=true;
+sunlight.shadow.mapSize.set(2048,2048);
+scene.add(sunlight);
+
+const mat=(color,roughness=.75)=>new THREE.MeshStandardMaterial({
+  color,roughness
+});
+
+const marble=mat(0x8e887e,.3);
+const wall=mat(0xddd2bd);
+const darkWood=mat(0x513321);
+const gold=mat(0xd4ad65,.35);
+const ceilingMat=mat(0x263648);
+const labBlue=mat(0x16384b,.4);
+const labMetal=mat(0x738894,.4);
+
+const courseBlue=mat(0x075b82,.4);
+const courseLight=mat(0x1599c5,.35);
+
+function box(w,h,d,material,x,y,z){
+  const m=new THREE.Mesh(
+    new THREE.BoxGeometry(w,h,d),material
+  );
+  m.position.set(x,y,z);
+  m.castShadow=true;
+  m.receiveShadow=true;
+  scene.add(m);
+  return m;
+}
+
+/* =========================================
+   SIGN CREATION HELPER
+========================================= */
+
+function createSign(text,width,height,options={}){
+
+  const canvas=document.createElement('canvas');
+  canvas.width=1024;
+  canvas.height=256;
+
+  const ctx=canvas.getContext('2d');
+
+  ctx.fillStyle=options.background||'#172638';
+  ctx.fillRect(0,0,1024,256);
+
+  ctx.strokeStyle=options.border||'#d4ad65';
+  ctx.lineWidth=7;
+  ctx.strokeRect(5,5,1014,246);
+
+  ctx.fillStyle=options.color||'#e7bd72';
+  ctx.font='bold 75px Georgia';
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  ctx.fillText(text,512,128,950);
+
+  const texture=new THREE.CanvasTexture(canvas);
+  texture.colorSpace=THREE.SRGBColorSpace;
+
+  return new THREE.Mesh(
+    new THREE.PlaneGeometry(width,height),
+    new THREE.MeshBasicMaterial({
+      map:texture,
+      side:THREE.DoubleSide
+    })
+  );
+}
+
+/* =========================================
+   MAIN HALL ARCHITECTURE
+========================================= */
+
+const HALL_W=28;
+const HALL_D=38;
+const HALF_W=HALL_W/2;
+const HALF_D=HALL_D/2;
+
+const floor=new THREE.Mesh(
+  new THREE.PlaneGeometry(HALL_W,HALL_D),
+  marble
+);
+floor.rotation.x=-Math.PI/2;
+floor.receiveShadow=true;
+scene.add(floor);
+
+// Decorative floor lines
+const lineMat=mat(0xc3aa80);
+
+for(let x=-12;x<=12;x+=4){
+  box(.035,.012,HALL_D,lineMat,x,.015,0);
+}
+
+/* =========================================
+   SIDE WALLS
+   LEFT: WELL TESTING LAB
+   RIGHT: COURSES ROOM
+========================================= */
+
+// Door dimensions
+const LAB_DOOR_WIDTH=7;
+const COURSE_DOOR_WIDTH=7;
+
+// LEFT WALL — split around Lab entrance
+const labWallSection=(HALL_D-LAB_DOOR_WIDTH)/2;
+
+box(
+  .5,10,labWallSection,wall,
+  -HALF_W,5,-(LAB_DOOR_WIDTH/2+labWallSection/2)
+);
+
+box(
+  .5,10,labWallSection,wall,
+  -HALF_W,5,(LAB_DOOR_WIDTH/2+labWallSection/2)
+);
+
+// RIGHT WALL — split around Courses Room entrance
+const courseWallSection=(HALL_D-COURSE_DOOR_WIDTH)/2;
+
+box(
+  .5,10,courseWallSection,wall,
+  HALF_W,5,-(COURSE_DOOR_WIDTH/2+courseWallSection/2)
+);
+
+box(
+  .5,10,courseWallSection,wall,
+  HALF_W,5,(COURSE_DOOR_WIDTH/2+courseWallSection/2)
+);
+
+// Wall above Courses Room doorway
+box(
+  .5,4,COURSE_DOOR_WIDTH,wall,
+  HALF_W,8,0
+);
+
+// Front wall
+box(HALL_W,10,.5,wall,0,5,-HALF_D);
+
+// Back wall with central opening
+const EXIT_W=8;
+const EXIT_H=6;
+const wallSide=(HALL_W-EXIT_W)/2;
+
+box(
+  wallSide,10,.5,wall,
+  -(EXIT_W/2+wallSide/2),5,HALF_D
+);
+
+box(
+  wallSide,10,.5,wall,
+  EXIT_W/2+wallSide/2,5,HALF_D
+);
+
+box(
+  EXIT_W,10-EXIT_H,.5,wall,
+  0,EXIT_H+(10-EXIT_H)/2,HALF_D
+);
+
+// Ceiling
+box(HALL_W,.35,HALL_D,ceilingMat,0,10,0);
+
+/* =========================================
+   ARCHITECTURAL COLUMNS
+========================================= */
+
+for(const x of [-11,11]){
+  for(const z of [-12,-4,4,12]){
+
+    const column=new THREE.Mesh(
+      new THREE.CylinderGeometry(.48,.58,8.8,16),
+      wall
+    );
+
+    column.position.set(x,4.4,z);
+    column.castShadow=true;
+    column.receiveShadow=true;
+    scene.add(column);
+
+    const base=new THREE.Mesh(
+      new THREE.CylinderGeometry(.72,.72,.35,16),
+      gold
+    );
+    base.position.set(x,.18,z);
+    scene.add(base);
+
+    const cap=new THREE.Mesh(
+      new THREE.CylinderGeometry(.7,.55,.3,16),
+      gold
+    );
+    cap.position.set(x,8.8,z);
+    scene.add(cap);
+  }
+}
+
+/* =========================================
+   CEILING LAMPS
+========================================= */
+
+for(const x of [-9,0,9]){
+  for(const z of [-12,0,12]){
+
+    box(2.5,.12,1.1,gold,x,9.3,z);
+
+    const light=new THREE.PointLight(0xffd9a0,65,25,2);
+    light.position.set(x,8.7,z);
+    scene.add(light);
+  }
+}
+
+/* =========================================
+   RECEPTION DESK
+========================================= */
+
+box(9,1.4,2,darkWood,0,.8,-12);
+box(9.2,.15,2.2,gold,0,1.55,-12);
+box(7,.9,.15,mat(0x26384a),0,2.1,-13);
+
+const receptionSign=createSign('WELCOME',6,1.5,{
+  background:'#172638',
+  color:'#e7bd72'
+});
+receptionSign.position.set(0,2.1,-12.89);
+scene.add(receptionSign);
+
+/* =========================================
+   LIBRARY ENTRANCE
+   REAR / +Z SIDE
+========================================= */
+
+const DOOR_Z=14;
+const DOOR_WIDTH=8;
+
+// Door frame
+box(.3,6,.45,gold,-4,3,DOOR_Z);
+box(.3,6,.45,gold,4,3,DOOR_Z);
+box(8.3,.35,.45,gold,0,6,DOOR_Z);
+
+// Decorative open door panels
+box(.15,5.7,.35,darkWood,-3.85,2.85,DOOR_Z);
+box(.15,5.7,.35,darkWood,3.85,2.85,DOOR_Z);
+
+// Door handles
+for(const x of [-3.55,3.55]){
+  const handle=new THREE.Mesh(
+    new THREE.SphereGeometry(.09,16,12),gold
+  );
+  handle.position.set(x,2,DOOR_Z-.22);
+  scene.add(handle);
+}
+
+// Library entrance sign
+const librarySign=createSign('THE LIBRARY',6,1.5);
+librarySign.position.set(0,7,DOOR_Z-.3);
+scene.add(librarySign);
+
+// Library entrance lights
+for(const x of [-5,5]){
+  const light=new THREE.PointLight(0xffd59a,35,12);
+  light.position.set(x,4,DOOR_Z);
+  scene.add(light);
+}
+
+/* =========================================
+   WELL TESTING LAB ENTRANCE
+   LEFT SIDE / -X
+========================================= */
+
+const LAB_DOOR_X=-13.72;
+const LAB_DOOR_Z=0;
+
+// Vertical gold frames
+box(.45,6,.3,gold,LAB_DOOR_X,3,-3.5);
+box(.45,6,.3,gold,LAB_DOOR_X,3,3.5);
+
+// Upper frame
+box(.45,.35,7.3,gold,LAB_DOOR_X,6,0);
+
+// Decorative side door panels
+box(.22,5.7,.12,darkWood,-13.48,2.85,-3.25);
+box(.22,5.7,.12,darkWood,-13.48,2.85,3.25);
+
+// Door handles
+for(const z of [-.35,.35]){
+  const handle=new THREE.Mesh(
+    new THREE.SphereGeometry(.09,16,12),
+    gold
+  );
+
+  handle.position.set(-13.25,2,z);
+  scene.add(handle);
+}
+
+// Well Testing Lab sign
+const labSign=createSign('WELL TESTING LAB',7,1.5,{
+  background:'#102b3c',
+  color:'#69d5f0',
+  border:'#45c8ed'
+});
+
+labSign.rotation.y=Math.PI/2;
+labSign.position.set(-13.55,7,0);
+scene.add(labSign);
+
+// Blue entrance lights
+for(const z of [-4.5,4.5]){
+  const light=new THREE.PointLight(0x45c8ed,40,12);
+  light.position.set(-12.5,4,z);
+  scene.add(light);
+}
+
+// Small blue floor markers
+for(const z of [-2.8,-1.8,1.8,2.8]){
+  box(.08,.025,.8,labMetal,-12.8,.025,z);
+}
+
+/* =========================================
+   COURSES ROOM ENTRANCE
+   RIGHT SIDE / +X
+========================================= */
+
+const COURSE_DOOR_X=13.72;
+const COURSE_DOOR_Z=0;
+
+// Vertical gold frames
+box(
+  .45,6,.3,gold,
+  COURSE_DOOR_X,3,-3.5
+);
+
+box(
+  .45,6,.3,gold,
+  COURSE_DOOR_X,3,3.5
+);
+
+// Upper gold frame
+box(
+  .45,.35,7.3,gold,
+  COURSE_DOOR_X,6,0
+);
+
+// Decorative wooden door-side panels
+box(
+  .22,5.7,.12,darkWood,
+  13.48,2.85,-3.25
+);
+
+box(
+  .22,5.7,.12,darkWood,
+  13.48,2.85,3.25
+);
+
+// Door handles
+for(const z of [-.35,.35]){
+  const handle=new THREE.Mesh(
+    new THREE.SphereGeometry(.09,16,12),
+    gold
+  );
+
+  handle.position.set(13.25,2,z);
+  scene.add(handle);
+}
+
+// Courses Room sign
+const coursesSign=createSign('COURSES ROOM',7,1.5,{
+  background:'#102b3c',
+  color:'#69d5f0',
+  border:'#45c8ed'
+});
+
+// Face the sign toward the center of the Main Hall
+coursesSign.rotation.y=-Math.PI/2;
+coursesSign.position.set(13.55,7,0);
+scene.add(coursesSign);
+
+// Blue entrance lights
+for(const z of [-4.5,4.5]){
+  const light=new THREE.PointLight(0x45c8ed,40,12);
+  light.position.set(12.5,4,z);
+  scene.add(light);
+}
+
+// Blue floor entrance markers
+for(const z of [-2.8,-1.8,1.8,2.8]){
+  box(.8,.025,.08,courseLight,12.8,.025,z);
+}
+
+/* =========================================
+   PLAYER CHARACTER
+========================================= */
+
+const player=new THREE.Group();
+scene.add(player);
+
+const skin=mat(0xc88f69);
+const shirt=mat(0x245f78);
+const trousers=mat(0x26364b);
+const shoes=mat(0x171b22);
+const hair=mat(0x241a16);
+
+function mesh(parent,geometry,material,x,y,z){
+  const m=new THREE.Mesh(geometry,material);
+  m.position.set(x,y,z);
+  m.castShadow=true;
+  m.receiveShadow=true;
+  parent.add(m);
+  return m;
+}
+
+const body=new THREE.Group();
+player.add(body);
+
+// Torso
+mesh(body,new THREE.CapsuleGeometry(.34,.65,5,12),
+  shirt,0,1.35,0);
+
+// Neck
+mesh(body,new THREE.CylinderGeometry(.1,.12,.2,16),
+  skin,0,1.85,0);
+
+// Head
+const head=new THREE.Group();
+head.position.set(0,2.15,0);
+body.add(head);
+
+mesh(head,new THREE.SphereGeometry(.25,24,20),
+  skin,0,0,0);
+
+mesh(head,new THREE.SphereGeometry(
+  .255,24,16,0,Math.PI*2,0,Math.PI*.55
+),hair,0,.07,0);
+
+// Face
+const eyes=mat(0x211c19);
+
+mesh(head,new THREE.SphereGeometry(.025,12,12),
+  eyes,-.08,.035,-.22);
+
+mesh(head,new THREE.SphereGeometry(.025,12,12),
+  eyes,.08,.035,-.22);
+
+// Arms
+const shoulderL=new THREE.Group();
+const shoulderR=new THREE.Group();
+
+shoulderL.position.set(-.4,1.65,0);
+shoulderR.position.set(.4,1.65,0);
+
+body.add(shoulderL,shoulderR);
+
+for(const arm of [shoulderL,shoulderR]){
+  mesh(arm,new THREE.CapsuleGeometry(.11,.4,5,10),
+    shirt,0,-.3,0);
+
+  mesh(arm,new THREE.CapsuleGeometry(.085,.35,5,10),
+    skin,0,-.72,0);
+
+  mesh(arm,new THREE.SphereGeometry(.1,12,12),
+    skin,0,-.98,0);
+}
+
+// Legs
+const hipL=new THREE.Group();
+const hipR=new THREE.Group();
+
+hipL.position.set(-.18,.9,0);
+hipR.position.set(.18,.9,0);
+
+body.add(hipL,hipR);
+
+for(const hip of [hipL,hipR]){
+  mesh(hip,new THREE.CapsuleGeometry(.14,.5,5,10),
+    trousers,0,-.35,0);
+
+  mesh(hip,new THREE.CapsuleGeometry(.105,.4,5,10),
+    trousers,0,-.8,-.02);
+
+  mesh(hip,new THREE.BoxGeometry(.23,.15,.4),
+    shoes,0,-1.05,-.08);
+}
+
+/* =========================================
+   PLAYER SPAWN / RETURN SYSTEM
+========================================= */
+
+const params=new URLSearchParams(location.search);
+const entry=params.get('entry');
+
+const savedEntry=sessionStorage.getItem('mainHallEntry');
+
+const returningFromLibrary =
+  entry==='library' || savedEntry==='library';
+
+const returningFromLab =
+  entry==='welltestinglab' || savedEntry==='welltestinglab';
+
+const returningFromCourses =
+  entry==='coursesroom' || savedEntry==='coursesroom';
+
+let yaw=0;
+let pitch=.12;
+
+if(returningFromLibrary){
+
+  // Spawn outside Library
+  player.position.set(0,0,10.5);
+
+  yaw=0;
+  pitch=.12;
+
+  sessionStorage.removeItem('mainHallEntry');
+
+}else if(returningFromLab){
+
+  // Spawn beside Lab entrance
+  player.position.set(-10.5,0,0);
+
+  // Face the center of the Main Hall
+  yaw=-Math.PI/2;
+  pitch=.12;
+
+  sessionStorage.removeItem('mainHallEntry');
+
+}else if(returningFromCourses){
+
+  // Spawn beside Courses Room entrance
+  player.position.set(10.5,0,0);
+
+  // Face the center of the Main Hall
+  yaw=Math.PI/2;
+  pitch=.12;
+
+  sessionStorage.removeItem('mainHallEntry');
+
+}else{
+
+  // First visit
+  player.position.set(0,0,5);
+
+  // Face the Library entrance
+  yaw=Math.PI;
+  pitch=.12;
+}
+
+/* =========================================
+   MOVEMENT AND CAMERA
+========================================= */
+
+const keys={};
+
+let moveSpeed=4;
+let isMoving=false;
+let transitioning=false;
+
+function onKey(e,down){
+
+  const k=e.key.toLowerCase();
+  keys[k]=down;
+
+  if(['w','a','s','d',' '].includes(k)){
+    e.preventDefault();
+  }
+
+  if(k==='shift'){
+    moveSpeed=down?7:4;
+  }
+}
+
+addEventListener('keydown',e=>onKey(e,true));
+addEventListener('keyup',e=>onKey(e,false));
+
+// Mouse camera
+let dragging=false;
+let lastX=0;
+let lastY=0;
+
+renderer.domElement.addEventListener('pointerdown',e=>{
+
+  if(e.pointerType==='touch')return;
+
+  dragging=true;
+  lastX=e.clientX;
+  lastY=e.clientY;
+});
+
+addEventListener('pointerup',()=>dragging=false);
+addEventListener('pointercancel',()=>dragging=false);
+
+addEventListener('pointermove',e=>{
+
+  if(!dragging || e.pointerType==='touch')return;
+
+  const dx=e.clientX-lastX;
+  const dy=e.clientY-lastY;
+
+  lastX=e.clientX;
+  lastY=e.clientY;
+
+  yaw-=dx*.006;
+
+  pitch=THREE.MathUtils.clamp(
+    pitch+dy*.004,-.18,.65
+  );
+});
+
+/* =========================================
+   MOBILE CAMERA SWIPE
+========================================= */
+
+let lookId=null;
+let lastTouchX=0;
+let lastTouchY=0;
+
+document.addEventListener('touchstart',e=>{
+
+  if(lookId!==null)return;
+
+  for(const t of e.changedTouches){
+
+    if(t.clientX>innerWidth/2){
+
+      lookId=t.identifier;
+      lastTouchX=t.clientX;
+      lastTouchY=t.clientY;
+      break;
+    }
+  }
+
+},{passive:true});
+
+document.addEventListener('touchmove',e=>{
+
+  if(lookId===null)return;
+
+  for(const t of e.changedTouches){
+
+    if(t.identifier!==lookId)continue;
+
+    const dx=t.clientX-lastTouchX;
+    const dy=t.clientY-lastTouchY;
+
+    lastTouchX=t.clientX;
+    lastTouchY=t.clientY;
+
+    yaw-=dx*.006;
+
+    pitch=THREE.MathUtils.clamp(
+      pitch+dy*.004,-.18,.65
+    );
+
+    e.preventDefault();
+  }
+
+},{passive:false});
+
+function endTouch(e){
+
+  for(const t of e.changedTouches){
+    if(t.identifier===lookId){
+      lookId=null;
+    }
+  }
+}
+
+document.addEventListener('touchend',endTouch);
+document.addEventListener('touchcancel',endTouch);
+
+/* =========================================
+   MOBILE MOVEMENT BUTTONS
+========================================= */
+
+document.querySelectorAll('[data-key]').forEach(btn=>{
+
+  const k=btn.dataset.key;
+
+  btn.addEventListener('pointerdown',e=>{
+    e.preventDefault();
+    keys[k]=true;
+    btn.setPointerCapture(e.pointerId);
+  });
+
+  ['pointerup','pointerleave','pointercancel'].forEach(ev=>{
+    btn.addEventListener(ev,()=>{
+      keys[k]=false;
+    });
+  });
+});
+
+/* =========================================
+   ROOM TRANSITIONS
+========================================= */
+
+const message=document.getElementById('message');
+const fade=document.getElementById('fadeScreen');
+
+function stopMovement(){
+  Object.keys(keys).forEach(k=>keys[k]=false);
+  isMoving=false;
+}
+
+function transitionTo(url,entryName,messageText){
+
+  if(transitioning)return;
+
+  transitioning=true;
+  stopMovement();
+
+  message.style.display='block';
+  message.textContent=messageText;
+
+  // The destination room reads this value
+  sessionStorage.setItem(entryName,'mainhall');
+
+  fade.style.opacity='1';
+
+  setTimeout(()=>{
+    window.location.href=url;
+  },750);
+}
+
+function enterLibrary(){
+
+  transitionTo(
+    'library.html?entry=mainhall',
+    'libraryEntry',
+    'Entering Virtual Library...'
+  );
+}
+
+function enterWellTestingLab(){
+
+  transitionTo(
+    'welltestinglab.html?entry=mainhall',
+    'wellTestingLabEntry',
+    'Entering Well Testing Lab...'
+  );
+}
+
+function enterCoursesRoom(){
+
+  transitionTo(
+    'coursesroom.html?entry=mainhall',
+    'coursesRoomEntry',
+    'Entering Courses Room...'
+  );
+}
+
+/* =========================================
+   GAME LOOP
+========================================= */
+
+const clock=new THREE.Clock();
+const cameraTarget=new THREE.Vector3();
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  const dt=Math.min(clock.getDelta(),.04);
+
+  if(!transitioning){
+
+    const forward=(keys.w?1:0)-(keys.s?1:0);
+    const side=(keys.d?1:0)-(keys.a?1:0);
+
+    const len=Math.hypot(forward,side);
+    isMoving=len>0;
+
+    if(isMoving){
+
+      const fwd=new THREE.Vector3(
+        -Math.sin(yaw),0,-Math.cos(yaw)
+      );
+
+      const right=new THREE.Vector3(
+        Math.cos(yaw),0,-Math.sin(yaw)
+      );
+
+      const delta=fwd.multiplyScalar(forward/len)
+        .add(right.multiplyScalar(side/len))
+        .multiplyScalar(moveSpeed*dt);
+
+      const nx=player.position.x+delta.x;
+      const nz=player.position.z+delta.z;
+
+      // Hall boundaries.
+      // Keep the player inside the hall, but allow reaching
+      // the portal trigger on either side.
+      if(Math.abs(nx)<HALF_W-1){
+        player.position.x=nx;
+      }
+
+      if(nz>-HALF_D+1 && nz<HALF_D-1){
+        player.position.z=nz;
+      }
+
+      player.rotation.y=yaw;
+    }
+
+    // Walking animation
+    const gait=isMoving?
+      Math.sin(performance.now()*.012):0;
+
+    hipL.rotation.x=gait*.55;
+    hipR.rotation.x=-gait*.55;
+
+    shoulderL.rotation.x=-gait*.4;
+    shoulderR.rotation.x=gait*.4;
+
+    body.position.y=isMoving?
+      Math.abs(Math.sin(performance.now()*.014))*.035:0;
+
+    /* =====================================
+       LIBRARY ENTRANCE DETECTION
+    ===================================== */
+
+    const nearLibrary =
+      Math.abs(player.position.x)<DOOR_WIDTH/2-.6 &&
+      player.position.z>DOOR_Z-1.4;
+
+    /* =====================================
+       WELL TESTING LAB ENTRANCE DETECTION
+    ===================================== */
+
+    const nearLab =
+      player.position.x < -12.0 &&
+      Math.abs(player.position.z) < LAB_DOOR_WIDTH/2-.6;
+
+    /* =====================================
+       COURSES ROOM ENTRANCE DETECTION
+    ===================================== */
+
+    const nearCoursesRoom =
+      player.position.x > 12.0 &&
+      Math.abs(player.position.z) < COURSE_DOOR_WIDTH/2-.6;
+
+    /* =====================================
+       PORTAL ACTIVATION
+    ===================================== */
+
+    if(nearLibrary){
+
+      message.style.display='block';
+      message.textContent='Entering Virtual Library...';
+
+      enterLibrary();
+
+    }else if(nearLab){
+
+      message.style.display='block';
+      message.textContent='Entering Well Testing Lab...';
+
+      enterWellTestingLab();
+
+    }else if(nearCoursesRoom){
+
+      message.style.display='block';
+      message.textContent='Entering Courses Room...';
+
+      enterCoursesRoom();
+
+    }else{
+
+      message.style.display='none';
+    }
+  }
+
+  /* =====================================
+     THIRD-PERSON CAMERA
+  ===================================== */
+
+  const behind=new THREE.Vector3(
+    Math.sin(yaw)*5.5,
+    3,
+    Math.cos(yaw)*5.5
+  );
+
+  const desired=player.position.clone().add(behind);
+  desired.y+=pitch*3;
+
+  camera.position.lerp(
+    desired,1-Math.pow(.001,dt)
+  );
+
+  cameraTarget.set(
+    player.position.x,
+    1.35,
+    player.position.z
+  );
+
+  camera.lookAt(cameraTarget);
+
+  renderer.render(scene,camera);
+}
+
+animate();
+
+/* =========================================
+   RESIZE
+========================================= */
+
+addEventListener('resize',()=>{
+
+  camera.aspect=innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(innerWidth,innerHeight);
+});
+
+</script>
+</body>
+</html>

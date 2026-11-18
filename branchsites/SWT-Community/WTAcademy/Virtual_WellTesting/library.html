@@ -1,0 +1,1988 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Virtual Library | V6 - Realistic Interactive Library</title>
+
+<style>
+:root{
+  --glass:rgba(10,20,35,.9);
+  --line:rgba(255,255,255,.16);
+  --gold:#e7bd72;
+  --text:#f4f0e8;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;width:100%;height:100%;
+  overflow:hidden;background:#111923;
+  color:var(--text);font-family:Arial,sans-serif
+}
+#scene{position:fixed;inset:0;touch-action:none}
+canvas{display:block;touch-action:none}
+
+#topbar{
+  position:fixed;top:14px;left:14px;right:14px;
+  display:flex;justify-content:space-between;
+  align-items:center;gap:12px;pointer-events:none;
+  z-index:2
+}
+.brand,.hint{
+  background:var(--glass);
+  border:1px solid var(--line);
+  backdrop-filter:blur(12px);
+  border-radius:14px;padding:10px 14px;
+  box-shadow:0 8px 28px #0005
+}
+.brand strong{letter-spacing:1.5px;color:var(--gold)}
+.brand small{display:block;color:#b9c5d2;margin-top:3px}
+.hint{font-size:12px;color:#dbe4ed;text-align:right}
+
+#crosshair{
+  position:fixed;left:50%;top:50%;
+  width:8px;height:8px;border:1px solid #fff9;
+  border-radius:50%;transform:translate(-50%,-50%);
+  pointer-events:none
+}
+#prompt{
+  position:fixed;left:50%;bottom:105px;
+  transform:translateX(-50%);
+  background:var(--glass);border:1px solid var(--line);
+  border-radius:12px;padding:10px 16px;
+  font-size:14px;display:none;white-space:nowrap;
+  z-index:3
+}
+#prompt b{color:var(--gold)}
+
+#panel{
+  position:fixed;right:18px;top:82px;
+  width:min(300px,calc(100vw - 36px));
+  background:var(--glass);border:1px solid var(--line);
+  border-radius:16px;padding:16px;
+  backdrop-filter:blur(14px);z-index:3
+}
+#panel h3{
+  margin:0 0 10px;color:var(--gold);
+  font-size:14px;letter-spacing:1px
+}
+#panel p{
+  margin:6px 0;color:#c5d0dc;
+  font-size:12px;line-height:1.5
+}
+#catalogSearch,#categoryFilter{
+  width:100%;margin:6px 0;padding:9px 10px;
+  border:1px solid var(--line);border-radius:9px;
+  background:#101d2c;color:#f4f0e8;outline:none
+}
+#catalogResults{
+  max-height:145px;overflow:auto;margin-top:5px
+}
+.catalogRow{
+  display:grid;grid-template-columns:1fr auto;
+  gap:5px;align-items:center;margin:4px 0
+}
+.catalogItem{
+  width:100%;min-width:0;text-align:left;
+  display:block;padding:8px;margin:0;
+  background:#ffffff0b;border:1px solid #ffffff12;
+  border-radius:8px;color:#e7edf5;font-size:11px;
+  cursor:pointer
+}
+.catalogItem:hover{
+  border-color:var(--gold);background:#e7bd7218
+}
+.coverUpload{
+  border:1px solid #d9b875;background:#4b3a22;
+  color:#ffe6b4;border-radius:7px;
+  padding:7px 8px;font-size:10px;
+  cursor:pointer;white-space:nowrap
+}
+.uploadHelp{
+  font-size:11px!important;color:#aebdca!important;
+  line-height:1.5
+}
+.stat{
+  display:flex;justify-content:space-between;
+  border-top:1px solid var(--line);
+  padding-top:9px;margin-top:9px;font-size:12px
+}
+
+#bookModal{
+  position:fixed;inset:0;background:#02060bd9;
+  display:none;align-items:center;justify-content:center;
+  padding:18px;z-index:10
+}
+.bookCard{
+  width:min(720px,100%);max-height:88vh;
+  overflow:auto;background:#f2ead9;color:#29251f;
+  border-radius:16px;padding:clamp(20px,4vw,38px);
+  box-shadow:0 20px 80px #0009;position:relative
+}
+.bookCard h1{
+  font-family:Georgia,serif;margin:8px 0 12px;
+  font-size:clamp(25px,5vw,38px)
+}
+.bookCard .author{
+  color:#79694f;font-style:italic;margin-bottom:22px
+}
+.bookCard p{line-height:1.8;font-family:Georgia,serif}
+#closeBook{
+  position:absolute;right:14px;top:12px;
+  border:0;background:#29251f;color:white;
+  border-radius:8px;padding:8px 12px;cursor:pointer
+}
+.bookSpread{
+  display:grid;grid-template-columns:1fr 1fr;
+  background:#d9cfb9;border-radius:9px;overflow:hidden;
+  perspective:900px
+}
+.bookPage{
+  min-height:210px;padding:18px 17px;
+  background:linear-gradient(90deg,#eee5d3,#fff9ed 12%,#f7efdf);
+  font:14px/1.7 Georgia,serif;color:#393126
+}
+.bookPage:first-child{
+  border-right:1px solid #c8b99d;
+  box-shadow:inset -8px 0 12px #7b684018
+}
+.bookPage h4{
+  font:bold 15px Georgia,serif;
+  color:#765c36;margin:0 0 10px
+}
+.pageFlip{animation:pageFlip .55s ease}
+@keyframes pageFlip{
+  0%{transform:rotateY(-75deg);opacity:.2}
+  100%{transform:rotateY(0);opacity:1}
+}
+#bookActions{
+  display:flex;gap:8px;margin-top:22px;flex-wrap:wrap
+}
+#bookActions button{
+  border:1px solid #ffffff30;background:#26384b;
+  color:white;border-radius:10px;padding:10px 14px;
+  cursor:pointer
+}
+
+#mobileControls{
+  display:none;position:fixed;left:14px;bottom:16px;
+  right:14px;justify-content:space-between;
+  align-items:end;pointer-events:none;z-index:4
+}
+.pad{
+  display:grid;grid-template-columns:repeat(3,48px);
+  grid-template-rows:repeat(2,44px);gap:5px;
+  pointer-events:auto
+}
+.pad button{
+  background:#0b1726c9;border:1px solid #ffffff38;
+  color:white;border-radius:12px;font-size:17px;
+  touch-action:none
+}
+.pad button:nth-child(1){grid-column:2}
+.pad button:nth-child(2){grid-column:1;grid-row:2}
+.pad button:nth-child(3){grid-column:2;grid-row:2}
+.pad button:nth-child(4){grid-column:3;grid-row:2}
+.mobileRight{
+  display:flex;flex-direction:column;gap:8px;
+  pointer-events:auto
+}
+.pickBtn{
+  width:92px;height:92px;border-radius:50%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:2px;
+  background:#0b1726cc;border:2px solid #ffffff40;
+  color:#fff;font-family:Arial,sans-serif;
+  opacity:.5;touch-action:none;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;transition:.2s
+}
+.pickBtn .pickIcon{font-size:28px;line-height:1}
+.pickBtn .pickText{
+  font-size:11px;font-weight:bold;letter-spacing:1px
+}
+.pickBtn.ready{
+  opacity:1;border-color:var(--gold);
+  background:#4b3a22ee;color:#ffe6b4;
+  animation:pickPulse 1.3s infinite
+}
+.pickBtn:active{transform:scale(.92)}
+@keyframes pickPulse{
+  0%{box-shadow:0 0 0 0 #e7bd7299}
+  70%{box-shadow:0 0 0 16px #e7bd7200}
+  100%{box-shadow:0 0 0 0 #e7bd7200}
+}
+
+#toast{
+  position:fixed;left:50%;top:76px;
+  transform:translateX(-50%);
+  background:#111d2ddd;border:1px solid var(--line);
+  padding:9px 14px;border-radius:10px;
+  font-size:12px;display:none;z-index:15;
+  max-width:90%;text-align:center
+}
+#exitScreen{
+  position:fixed;inset:0;z-index:20;
+  background:#080e18;display:none;
+  align-items:center;justify-content:center;
+  flex-direction:column;color:var(--gold);
+  font-family:Arial,sans-serif;letter-spacing:2px
+}
+#exitScreen p{color:#c5d0dc;font-size:13px}
+
+@media(max-width:700px){
+  #panel{
+    top:auto;bottom:160px;right:12px;
+    width:175px;padding:11px
+  }
+  #panel p{font-size:11px}
+  #topbar{top:9px;left:9px;right:9px}
+  .hint{display:none}
+  #mobileControls{display:flex}
+  #prompt{bottom:120px}
+}
+@media(max-width:560px){
+  .bookSpread{grid-template-columns:1fr}
+  .bookPage{min-height:130px}
+  .bookPage:first-child{
+    border-right:0;border-bottom:1px solid #c8b99d
+  }
+}
+@media(pointer:coarse){
+  #mobileControls{display:flex}
+  .hint{display:none}
+  #panel{pointer-events:none}
+  #panel input,#panel select,#panel button,
+  #catalogResults{pointer-events:auto}
+  #prompt{bottom:120px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="scene"></div>
+
+<div id="topbar">
+  <div class="brand">
+    <strong>VIRTUAL LIBRARY</strong>
+    <small>V6 • Realistic Books & Custom Covers</small>
+  </div>
+  <div class="hint">
+    W A S D — Move | Mouse — Look<br>
+    SHIFT — Run | E — Read | ESC — Close
+  </div>
+</div>
+
+<div id="crosshair"></div>
+<div id="prompt">Press <b>E</b> to pick up this book</div>
+
+<div id="panel">
+  <h3>LIBRARY GUIDE</h3>
+  <p id="guideText">
+    Explore the themed shelves. Approach a book and press E to pick it up and read it.
+  </p>
+
+  <input id="catalogSearch" type="search"
+    placeholder="Search title or author...">
+
+  <select id="categoryFilter">
+    <option value="All">All collections</option>
+    <option value="Engineering">Engineering</option>
+    <option value="Technology">Technology</option>
+    <option value="Science">Science</option>
+    <option value="Knowledge">Knowledge</option>
+    <option value="Reference">Reference</option>
+  </select>
+
+  <div id="catalogResults"></div>
+
+  <div class="stat">
+    <span>Books in this collection</span>
+    <b id="bookCount">0</b>
+  </div>
+
+  <div class="stat">
+    <span>Custom covers saved</span>
+    <b id="coverCount">0</b>
+  </div>
+
+  <p class="uploadHelp">
+    Choose <b>Add cover</b> or <b>Change cover</b> beside a title.
+    Covers are saved on this device for offline use.
+  </p>
+
+  <div class="stat">
+    <span>Character</span><b>Explorer</b>
+  </div>
+  <div class="stat">
+    <span>Mode</span><b>Offline V6</b>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<div id="mobileControls">
+  <div class="pad">
+    <button data-key="w">▲</button>
+    <button data-key="a">◀</button>
+    <button data-key="s">▼</button>
+    <button data-key="d">▶</button>
+  </div>
+
+  <div class="mobileRight">
+    <button id="mobileInteract" class="pickBtn">
+      <span class="pickIcon">📖</span>
+      <span class="pickText">PICK UP</span>
+    </button>
+  </div>
+</div>
+
+<div id="bookModal">
+  <div class="bookCard">
+    <button id="closeBook">Close ✕</button>
+
+    <div style="font-size:11px;letter-spacing:2px;color:#987d4d">
+      VIRTUAL LIBRARY COLLECTION
+    </div>
+
+    <h1 id="bookTitle">Book title</h1>
+    <div class="author" id="bookAuthor">Author</div>
+
+    <div class="bookSpread" id="bookSpread">
+      <div class="bookPage" id="leftPage">
+        <h4>From the library</h4>
+        <div>Choose a title and begin exploring.</div>
+      </div>
+
+      <div class="bookPage" id="rightPage">
+        <h4>Reading preview</h4>
+        <div id="bookContent"></div>
+      </div>
+    </div>
+
+    <div id="bookActions">
+      <button id="prevBook">Previous book</button>
+      <button id="nextBook">Next book</button>
+    </div>
+  </div>
+</div>
+
+<div id="exitScreen">
+  <h2>RETURNING TO MAIN HALL</h2>
+  <p>Opening the library door...</p>
+</div>
+
+<script type="importmap">
+{
+  "imports":{
+    "three":"./libs/three.module.js"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+/* =========================================================
+   1. SCENE SETUP
+========================================================= */
+
+const sceneHost=document.getElementById('scene');
+
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x182433);
+scene.fog=new THREE.Fog(0x182433,25,75);
+
+const camera=new THREE.PerspectiveCamera(
+  65,innerWidth/innerHeight,.1,120
+);
+
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+sceneHost.appendChild(renderer.domElement);
+
+scene.add(new THREE.HemisphereLight(
+  0xc9ddff,0x403020,1.45
+));
+
+const mainLight=new THREE.DirectionalLight(0xffdfb0,2.1);
+mainLight.position.set(-8,14,7);
+mainLight.castShadow=true;
+mainLight.shadow.mapSize.set(2048,2048);
+mainLight.shadow.camera.left=-36;
+mainLight.shadow.camera.right=36;
+mainLight.shadow.camera.top=25;
+mainLight.shadow.camera.bottom=-25;
+scene.add(mainLight);
+
+const mat=(color,roughness=.8)=>new THREE.MeshStandardMaterial({
+  color,roughness
+});
+
+const floorMat=mat(0x5a4634);
+const wallMat=mat(0x26384a);
+const wood=mat(0x593b27);
+const woodLight=mat(0x805b3b);
+
+const bookMats=[
+  0x9f3f35,0x315b72,0x47734f,0xc18b43,
+  0x59476e,0x9a684b,0x31504b,0xb5a16b
+].map(c=>mat(c,.65));
+
+function box(w,h,d,material,x,y,z,parent=scene){
+  const m=new THREE.Mesh(
+    new THREE.BoxGeometry(w,h,d),material
+  );
+  m.position.set(x,y,z);
+  m.castShadow=true;
+  m.receiveShadow=true;
+  parent.add(m);
+  return m;
+}
+
+/* =========================================================
+   2. LIBRARY ROOM
+========================================================= */
+
+const ROOM_HALF_X=32;
+const ROOM_HALF_Z=22;
+const WALL_HEIGHT=9;
+
+const doorWidth=4.2;
+const doorHeight=4.5;
+
+// Main floor - defined only once
+const floor=new THREE.Mesh(
+  new THREE.PlaneGeometry(ROOM_HALF_X*2,ROOM_HALF_Z*2),
+  floorMat
+);
+floor.rotation.x=-Math.PI/2;
+floor.receiveShadow=true;
+scene.add(floor);
+
+// Side walls
+box(.5,WALL_HEIGHT,ROOM_HALF_Z*2,
+  wallMat,-ROOM_HALF_X,WALL_HEIGHT/2,0);
+
+box(.5,WALL_HEIGHT,ROOM_HALF_Z*2,
+  wallMat,ROOM_HALF_X,WALL_HEIGHT/2,0);
+
+// Front wall
+box(ROOM_HALF_X*2+1,WALL_HEIGHT,.5,
+  wallMat,0,WALL_HEIGHT/2,-ROOM_HALF_Z);
+
+// Rear wall with central doorway
+const sideWidth=(ROOM_HALF_X*2-doorWidth)/2;
+
+box(sideWidth,WALL_HEIGHT,.5,
+  wallMat,-(doorWidth/2+sideWidth/2),
+  WALL_HEIGHT/2,ROOM_HALF_Z);
+
+box(sideWidth,WALL_HEIGHT,.5,
+  wallMat,(doorWidth/2+sideWidth/2),
+  WALL_HEIGHT/2,ROOM_HALF_Z);
+
+// Top of doorway
+box(doorWidth,WALL_HEIGHT-doorHeight,.5,
+  wallMat,0,
+  doorHeight+(WALL_HEIGHT-doorHeight)/2,
+  ROOM_HALF_Z);
+
+// Ceiling - defined only once
+const ceiling=box(
+  ROOM_HALF_X*2,.25,ROOM_HALF_Z*2,
+  mat(0x1c2a39),0,WALL_HEIGHT,0
+);
+ceiling.receiveShadow=false;
+
+// Library ceiling lights
+for(let x=-24;x<=24;x+=8){
+  for(let z=-12;z<=12;z+=12){
+
+    box(2.4,.08,.5,mat(0xf6dca5),
+      x,WALL_HEIGHT-.2,z);
+
+    const light=new THREE.PointLight(
+      0xffd79a,35,17,2
+    );
+    light.position.set(x,WALL_HEIGHT-1,z);
+    scene.add(light);
+  }
+}
+
+/* =========================================================
+   3. MAIN HALL OUTSIDE THE LIBRARY
+========================================================= */
+
+const hallFloor=new THREE.Mesh(
+  new THREE.PlaneGeometry(22,30),
+  mat(0x70604d)
+);
+
+hallFloor.rotation.x=-Math.PI/2;
+hallFloor.position.set(0,.01,ROOM_HALF_Z+15);
+hallFloor.receiveShadow=true;
+scene.add(hallFloor);
+
+// Outside hall side walls
+box(.4,9,30,wallMat,-11,4.5,ROOM_HALF_Z+15);
+box(.4,9,30,wallMat,11,4.5,ROOM_HALF_Z+15);
+
+const hallLight=new THREE.PointLight(0xffdfb5,45,24,2);
+hallLight.position.set(0,7,ROOM_HALF_Z+13);
+scene.add(hallLight);
+
+/* =========================================================
+   4. LIBRARY DOOR FRAME AND HINGED DOORS
+========================================================= */
+
+const frameMat=mat(0x3b2518);
+const doorMat=mat(0x65432c);
+const handleMat=mat(0xd5ad64,.3);
+
+// Door frame
+box(.22,doorHeight,.28,frameMat,
+  -doorWidth/2,doorHeight/2,ROOM_HALF_Z-.25);
+
+box(.22,doorHeight,.28,frameMat,
+  doorWidth/2,doorHeight/2,ROOM_HALF_Z-.25);
+
+box(doorWidth+.4,.25,.3,frameMat,
+  0,doorHeight,ROOM_HALF_Z-.25);
+
+// Hinges
+const doorPanelWidth=doorWidth/2-.08;
+
+const leftHinge=new THREE.Group();
+leftHinge.position.set(-doorWidth/2,0,ROOM_HALF_Z-.4);
+scene.add(leftHinge);
+
+const rightHinge=new THREE.Group();
+rightHinge.position.set(doorWidth/2,0,ROOM_HALF_Z-.4);
+scene.add(rightHinge);
+
+// Left door leaf
+box(
+  doorPanelWidth,doorHeight-.2,.18,
+  doorMat,doorPanelWidth/2,doorHeight/2,0,leftHinge
+);
+
+// Right door leaf
+box(
+  doorPanelWidth,doorHeight-.2,.18,
+  doorMat,-doorPanelWidth/2,doorHeight/2,0,rightHinge
+);
+
+// Door handles
+for(const [parent,x] of [
+  [leftHinge,doorPanelWidth-.25],
+  [rightHinge,-doorPanelWidth+.25]
+]){
+  const handle=new THREE.Mesh(
+    new THREE.SphereGeometry(.07,16,12),
+    handleMat
+  );
+  handle.position.set(x,1.2,-.13);
+  parent.add(handle);
+}
+
+// Library sign
+const signCanvas=document.createElement('canvas');
+signCanvas.width=1024;
+signCanvas.height=256;
+
+const signCtx=signCanvas.getContext('2d');
+signCtx.fillStyle='#172638';
+signCtx.fillRect(0,0,1024,256);
+signCtx.fillStyle='#e7bd72';
+signCtx.font='bold 75px Georgia';
+signCtx.textAlign='center';
+signCtx.fillText('THE LIBRARY',512,155);
+
+const signTexture=new THREE.CanvasTexture(signCanvas);
+signTexture.colorSpace=THREE.SRGBColorSpace;
+
+const entranceSign=new THREE.Mesh(
+  new THREE.PlaneGeometry(5,1.25),
+  new THREE.MeshBasicMaterial({map:signTexture})
+);
+entranceSign.position.set(0,5.3,ROOM_HALF_Z-.48);
+scene.add(entranceSign);
+
+// Door animation state
+let doorOpening=false;
+let doorOpenProgress=0;
+let exitingLibrary=false;
+let exitHintShown=false;
+
+/* =========================================================
+   5. BOOK COVER DATABASE
+========================================================= */
+
+const books=[];
+const COVER_DB="VirtualLibraryCoversV5";
+const COVER_STORE="covers";
+
+let savedCovers={};
+
+function openCoverDB(){
+  return new Promise((resolve,reject)=>{
+    const req=indexedDB.open(COVER_DB,1);
+
+    req.onupgradeneeded=()=>{
+      if(!req.result.objectStoreNames.contains(COVER_STORE)){
+        req.result.createObjectStore(COVER_STORE);
+      }
+    };
+
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+
+async function loadSavedCovers(){
+  try{
+    const db=await openCoverDB();
+
+    const values=await new Promise((resolve,reject)=>{
+      const tx=db.transaction(COVER_STORE,"readonly");
+      const req=tx.objectStore(COVER_STORE).getAll();
+      req.onsuccess=()=>resolve(req.result||[]);
+      req.onerror=()=>reject(req.error);
+    });
+
+    const keys=await new Promise((resolve,reject)=>{
+      const tx=db.transaction(COVER_STORE,"readonly");
+      const req=tx.objectStore(COVER_STORE).getAllKeys();
+      req.onsuccess=()=>resolve(req.result||[]);
+      req.onerror=()=>reject(req.error);
+    });
+
+    keys.forEach((key,i)=>{
+      savedCovers[key]=values[i];
+    });
+
+    books.forEach(book=>{
+      const id=book.userData.book.id;
+      if(savedCovers[id]){
+        applyCover(book,savedCovers[id]);
+      }
+    });
+
+    updateCoverCount();
+    renderCatalog();
+    db.close();
+
+  }catch(err){
+    console.warn("Could not load saved covers",err);
+  }
+}
+
+async function saveCover(id,dataURL){
+  const db=await openCoverDB();
+
+  await new Promise((resolve,reject)=>{
+    const tx=db.transaction(COVER_STORE,"readwrite");
+    tx.objectStore(COVER_STORE).put(dataURL,String(id));
+    tx.oncomplete=resolve;
+    tx.onerror=()=>reject(tx.error);
+  });
+
+  db.close();
+  savedCovers[id]=dataURL;
+  updateCoverCount();
+}
+
+function applyCover(book,dataURL){
+  const image=new Image();
+
+  image.onload=()=>{
+    const texture=new THREE.Texture(image);
+    texture.colorSpace=THREE.SRGBColorSpace;
+    texture.needsUpdate=true;
+
+    // Front cover faces the aisle (+Z)
+    const faceMat=book.material[4];
+
+    if(faceMat.map){
+      faceMat.map.dispose();
+    }
+
+    faceMat.map=texture;
+    faceMat.color.set(0xffffff);
+    faceMat.needsUpdate=true;
+
+    book.userData.coverImage=dataURL;
+  };
+
+  image.src=dataURL;
+}
+
+function updateCoverCount(){
+  const el=document.getElementById("coverCount");
+  if(el){
+    el.textContent=Object.keys(savedCovers).length;
+  }
+}
+
+function chooseCover(book){
+  const picker=document.createElement("input");
+  picker.type="file";
+  picker.accept="image/png,image/jpeg,image/webp";
+
+  picker.onchange=async()=>{
+    const file=picker.files&&picker.files[0];
+    if(!file)return;
+
+    if(file.size>8*1024*1024){
+      toast("Please choose an image smaller than 8 MB.");
+      return;
+    }
+
+    const reader=new FileReader();
+
+    reader.onload=async()=>{
+      try{
+        applyCover(book,reader.result);
+        await saveCover(book.userData.book.id,reader.result);
+        toast("Cover saved: "+book.userData.book.title);
+      }catch(err){
+        toast("Could not save cover. Check device storage.");
+        console.error(err);
+      }
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  picker.click();
+}
+
+/* =========================================================
+   6. BOOK SHELVES AND BOOK GENERATION
+========================================================= */
+
+const shelfRows=[-9,-3,3,9];
+
+const bookTitles=[
+  [
+    "Introduction to Petroleum Engineering",
+    "Fundamentals of Well Testing",
+    "Production Operations",
+    "Reservoir Engineering Basics",
+    "Drilling Engineering",
+    "Oilfield Equipment Handbook"
+  ],
+  [
+    "JavaScript for Beginners",
+    "HTML & CSS Essentials",
+    "Practical Data Analysis",
+    "Introduction to Artificial Intelligence",
+    "Computer Networks",
+    "Database Design"
+  ],
+  [
+    "Physics: The Fundamentals",
+    "Chemistry Made Simple",
+    "Applied Mathematics",
+    "Energy and the Environment",
+    "Fluid Mechanics",
+    "Thermodynamics"
+  ],
+  [
+    "World History",
+    "The Art of Learning",
+    "Creative Thinking",
+    "Business Fundamentals",
+    "Project Management",
+    "Technical Communication"
+  ]
+];
+
+const authors=[
+  "A. R. Morgan","J. Williams","M. Carter",
+  "S. Ahmed","L. Bennett","R. Thomas"
+];
+
+let bookIndex=0;
+
+function createCoverCanvas(title,category,author,colorIndex){
+  const canvas=document.createElement("canvas");
+  canvas.width=512;
+  canvas.height=768;
+
+  const ctx=canvas.getContext("2d");
+
+  const palette=[
+    "#24465a","#315d4b","#76533d",
+    "#59466e","#8a493b","#9a7540"
+  ];
+
+  const gradient=ctx.createLinearGradient(0,0,512,768);
+  gradient.addColorStop(0,palette[colorIndex%palette.length]);
+  gradient.addColorStop(1,"#151d2b");
+
+  ctx.fillStyle=gradient;
+  ctx.fillRect(0,0,512,768);
+
+  ctx.strokeStyle="#e8c98b";
+  ctx.lineWidth=9;
+  ctx.strokeRect(24,24,464,720);
+
+  ctx.strokeStyle="#e8c98b88";
+  ctx.lineWidth=2;
+  ctx.strokeRect(42,42,428,684);
+
+  ctx.fillStyle="#e8c98b";
+  ctx.textAlign="center";
+  ctx.font="bold 22px Arial";
+  ctx.fillText(category.toUpperCase(),256,115);
+
+  ctx.font="bold 42px Georgia";
+
+  const words=title.split(" ");
+  const lines=[];
+  let line="";
+
+  for(const word of words){
+    const test=line?line+" "+word:word;
+
+    if(ctx.measureText(test).width>390){
+      lines.push(line);
+      line=word;
+    }else{
+      line=test;
+    }
+  }
+
+  if(line)lines.push(line);
+
+  let ty=310-(lines.length-1)*25;
+
+  lines.forEach(t=>{
+    ctx.fillText(t,256,ty);
+    ty+=55;
+  });
+
+  ctx.fillStyle="#f4e5c5";
+  ctx.font="italic 25px Georgia";
+  ctx.fillText(author,256,650);
+
+  return canvas;
+}
+
+function createShelf(z,rowIndex){
+
+  const group=new THREE.Group();
+  group.position.set(0,0,z);
+  scene.add(group);
+
+  // Shelf back and sides
+  box(9.2,5.4,.25,wood,0,2.7,0,group);
+  box(.22,5.5,.8,woodLight,-4.5,2.75,.15,group);
+  box(.22,5.5,.8,woodLight,4.5,2.75,.15,group);
+
+  for(let level=0;level<4;level++){
+
+    const y=.75+level*1.35;
+
+    box(9.15,.14,.9,woodLight,0,y,.18,group);
+
+    for(let i=0;i<6;i++){
+
+      const title=bookTitles[rowIndex][i];
+      const height=.78+(i%3)*.12;
+
+      const category=[
+        "Engineering","Technology","Science","Knowledge"
+      ][rowIndex];
+
+      const author=authors[(i+level)%authors.length];
+
+      const coverCanvas=createCoverCanvas(
+        title,category,author,i+level+rowIndex
+      );
+
+      const coverTexture=new THREE.CanvasTexture(coverCanvas);
+      coverTexture.colorSpace=THREE.SRGBColorSpace;
+
+      const baseMat=bookMats[
+        (i+level+rowIndex)%bookMats.length
+      ];
+
+      const coverMat=new THREE.MeshStandardMaterial({
+        map:coverTexture,roughness:.8
+      });
+
+      const materials=[
+        baseMat,baseMat,baseMat,baseMat,
+        coverMat,baseMat
+      ];
+
+      const b=box(
+        .43,height,.62,
+        materials,
+        -3.85+i*1.42,
+        y+.07+height/2,
+        .03,
+        group
+      );
+
+      // Ivory page block
+      const pageMat=new THREE.MeshStandardMaterial({
+        color:0xe9dfc9,roughness:1
+      });
+
+      const pageBlock=new THREE.Mesh(
+        new THREE.BoxGeometry(.385,height-.045,.535),
+        pageMat
+      );
+
+      pageBlock.position.set(.012,0,-.018);
+      pageBlock.castShadow=true;
+      pageBlock.receiveShadow=true;
+      b.add(pageBlock);
+
+      // Page edge detail
+      const pageLines=new THREE.Mesh(
+        new THREE.BoxGeometry(.003,height-.075,.50),
+        new THREE.MeshStandardMaterial({
+          color:0xb7a98f,roughness:1
+        })
+      );
+
+      pageLines.position.set(.207,0,-.02);
+      b.add(pageLines);
+
+      b.rotation.z=(i%2?-.025:.025);
+
+      b.userData.book={
+        id:bookIndex++,
+        title,
+        author,
+        category,
+        description:
+          `${title} is part of the ${category} collection.`,
+        content:
+          `<p><b>Welcome to ${title}.</b></p>
+           <p>This is a sample reading preview.</p>
+           <p>Upload a custom cover using the catalog controls.
+           You can connect your own chapters, illustrations,
+           equations or learning material to this book.</p>`
+      };
+
+      books.push(b);
+    }
+  }
+
+  // Shelf top
+  box(9.5,.2,1,woodLight,0,5.5,.15,group);
+
+  // Shelf category sign
+  const signCanvas=document.createElement("canvas");
+  signCanvas.width=512;
+  signCanvas.height=128;
+
+  const sc=signCanvas.getContext("2d");
+  sc.fillStyle="#21180f";
+  sc.fillRect(0,0,512,128);
+  sc.strokeStyle="#d6b77c";
+  sc.lineWidth=5;
+  sc.strokeRect(8,8,496,112);
+  sc.fillStyle="#f2d49b";
+  sc.font="bold 42px Georgia";
+  sc.textAlign="center";
+
+  sc.fillText([
+    "ENGINEERING","TECHNOLOGY","SCIENCE","KNOWLEDGE"
+  ][rowIndex],256,80);
+
+  const signTex=new THREE.CanvasTexture(signCanvas);
+  signTex.colorSpace=THREE.SRGBColorSpace;
+
+  const shelfSign=new THREE.Mesh(
+    new THREE.PlaneGeometry(3.1,.78),
+    new THREE.MeshBasicMaterial({map:signTex})
+  );
+
+  shelfSign.position.set(0,5.98,.68);
+  group.add(shelfSign);
+}
+
+// Four central shelves
+shelfRows.forEach((z,i)=>createShelf(z,i));
+
+// Side display shelves
+for(const side of [-1,1]){
+
+  const group=new THREE.Group();
+  group.position.set(side*21,0,0);
+  scene.add(group);
+
+  box(.7,4,13,wood,0,2,0,group);
+
+  for(let j=0;j<3;j++){
+
+    box(.9,.15,13,woodLight,
+      side*.15,.8+j*1.35,0,group);
+
+    for(let k=0;k<8;k++){
+
+      const b=box(
+        .45,.82,.48,
+        bookMats[(j+k)%bookMats.length],
+        side*.15,.9+j*1.35,-5.5+k*1.55,
+        group
+      );
+
+      b.userData.book={
+        id:bookIndex++,
+        title:`Library Collection ${j*8+k+1}`,
+        author:"Library Archive",
+        category:"Reference",
+        description:"A sample reference book.",
+        content:
+          "<p>This is a sample library reference entry. Add your own local book content here.</p>"
+      };
+
+      books.push(b);
+    }
+  }
+}
+
+document.getElementById("bookCount").textContent=books.length;
+
+/* =========================================================
+   7. PLAYER CHARACTER
+========================================================= */
+
+const player=new THREE.Group();
+scene.add(player);
+
+const skin=mat(0xc88f69,.78);
+const shirt=mat(0x245f78,.72);
+const trousers=mat(0x26364b,.82);
+const shoes=mat(0x171b22,.7);
+const hair=mat(0x241a16,.9);
+
+const eyeMat=new THREE.MeshStandardMaterial({
+  color:0x211c19,roughness:.45
+});
+
+const beltMat=mat(0x171d25,.55);
+
+function addMesh(parent,geometry,material,x,y,z){
+  const m=new THREE.Mesh(geometry,material);
+  m.position.set(x,y,z);
+  m.castShadow=true;
+  m.receiveShadow=true;
+  parent.add(m);
+  return m;
+}
+
+function capsuleMesh(parent,radius,length,material,x,y,z){
+  return addMesh(
+    parent,
+    new THREE.CapsuleGeometry(radius,length,5,10),
+    material,x,y,z
+  );
+}
+
+function limbPivot(parent,x,y,z){
+  const p=new THREE.Group();
+  p.position.set(x,y,z);
+  parent.add(p);
+  return p;
+}
+
+const body=new THREE.Group();
+player.add(body);
+
+// Torso
+capsuleMesh(body,.34,.63,shirt,0,1.34,0);
+
+const chest=addMesh(
+  body,new THREE.SphereGeometry(.345,20,16),
+  shirt,0,1.52,-.015
+);
+chest.scale.set(1,.9,.72);
+
+// Neck and head
+capsuleMesh(body,.105,.13,skin,0,1.82,0);
+
+const headGroup=new THREE.Group();
+headGroup.position.set(0,2.12,0);
+body.add(headGroup);
+
+const head=addMesh(
+  headGroup,new THREE.SphereGeometry(.255,24,18),
+  skin,0,0,0
+);
+head.scale.set(.9,1.08,.92);
+
+addMesh(
+  headGroup,
+  new THREE.SphereGeometry(.26,20,12,0,Math.PI*2,0,Math.PI*.56),
+  hair,0,.07,0
+);
+
+// Face looks toward local -Z
+addMesh(headGroup,new THREE.SphereGeometry(.025,10,8),
+  eyeMat,-.085,.035,-.224);
+
+addMesh(headGroup,new THREE.SphereGeometry(.025,10,8),
+  eyeMat,.085,.035,-.224);
+
+const nose=addMesh(
+  headGroup,new THREE.ConeGeometry(.045,.11,8),
+  skin,0,-.025,-.245
+);
+nose.rotation.x=-Math.PI/2;
+
+addMesh(
+  headGroup,new THREE.BoxGeometry(.075,.012,.012),
+  mat(0x754a3b),0,-.105,-.221
+);
+
+// Belt
+const belt=addMesh(
+  body,new THREE.CylinderGeometry(.29,.29,.09,16),
+  beltMat,0,.91,0
+);
+belt.scale.z=.72;
+
+// Arms
+const shoulderL=limbPivot(body,-.39,1.62,0);
+const shoulderR=limbPivot(body,.39,1.62,0);
+
+capsuleMesh(shoulderL,.105,.38,shirt,0,-.28,0);
+capsuleMesh(shoulderR,.105,.38,shirt,0,-.28,0);
+
+capsuleMesh(shoulderL,.085,.32,skin,0,-.67,-.005);
+capsuleMesh(shoulderR,.085,.32,skin,0,-.67,-.005);
+
+addMesh(shoulderL,new THREE.SphereGeometry(.105,14,12),
+  skin,0,-.91,-.015);
+
+addMesh(shoulderR,new THREE.SphereGeometry(.105,14,12),
+  skin,0,-.91,-.015);
+
+// Legs
+const hipL=limbPivot(body,-.18,.87,0);
+const hipR=limbPivot(body,.18,.87,0);
+
+capsuleMesh(hipL,.135,.48,trousers,0,-.36,0);
+capsuleMesh(hipR,.135,.48,trousers,0,-.36,0);
+
+capsuleMesh(hipL,.105,.37,trousers,0,-.77,-.015);
+capsuleMesh(hipR,.105,.37,trousers,0,-.77,-.015);
+
+const footL=addMesh(
+  hipL,new THREE.BoxGeometry(.23,.14,.39),
+  shoes,0,-1.02,-.075
+);
+
+const footR=addMesh(
+  hipR,new THREE.BoxGeometry(.23,.14,.39),
+  shoes,0,-1.02,-.075
+);
+
+/* =========================================================
+   8. PLAYER ENTRY POSITION
+========================================================= */
+
+const entryFromHall=
+  new URLSearchParams(location.search).get("entry")==="mainhall" ||
+  sessionStorage.getItem("libraryEntry")==="mainhall";
+
+let yaw=0;
+let pitch=.12;
+
+if(entryFromHall){
+
+  // Enter from Main Hall and spawn inside the library
+  player.position.set(0,0,ROOM_HALF_Z-9);
+
+  // Face the library shelves
+  yaw=0;
+  pitch=.12;
+
+  sessionStorage.removeItem("libraryEntry");
+
+}else{
+
+  // Stand inside the library
+  player.position.set(0,0,12);
+  yaw=0;
+  pitch=.12;
+}
+
+/* =========================================================
+   9. BOOK PICKUP AND READING
+========================================================= */
+
+let heldBook=null;
+let pickupState="none";
+let pickupClock=0;
+let pickupOriginal=null;
+let selected=null;
+let currentReadingBook=null;
+let modalOpen=false;
+
+function makeHeldBook(source){
+
+  const prop=new THREE.Group();
+
+  addMesh(
+    prop,new THREE.BoxGeometry(.34,.48,.055),
+    source.material[4]||bookMats[0],0,0,0
+  );
+
+  addMesh(
+    prop,new THREE.BoxGeometry(.315,.455,.045),
+    mat(0xe7ddc7),0,0,.033
+  );
+
+  addMesh(
+    prop,new THREE.BoxGeometry(.008,.425,.038),
+    mat(0xb8a98c),.157,0,.033
+  );
+
+  prop.scale.set(.72,.72,.72);
+  return prop;
+}
+
+function beginPickup(){
+
+  if(!selected || pickupState!=="none" || exitingLibrary){
+    return;
+  }
+
+  pickupOriginal=selected;
+  pickupOriginal.visible=false;
+
+  heldBook=makeHeldBook(pickupOriginal);
+  shoulderR.add(heldBook);
+
+  heldBook.position.set(0,-.88,-.12);
+  heldBook.rotation.set(-.2,0,0);
+
+  pickupState="lifting";
+  pickupClock=0;
+
+  toast("Picking up: "+pickupOriginal.userData.book.title);
+}
+
+function returnHeldBook(){
+
+  if(heldBook){
+    shoulderR.remove(heldBook);
+    heldBook=null;
+  }
+
+  if(pickupOriginal){
+    pickupOriginal.visible=true;
+  }
+
+  pickupOriginal=null;
+  pickupState="none";
+  pickupClock=0;
+
+  shoulderR.rotation.set(0,0,0);
+}
+
+function displayBook(bookMesh){
+
+  if(!bookMesh)return;
+
+  currentReadingBook=bookMesh;
+  modalOpen=true;
+  pickupState="reading";
+
+  const data=bookMesh.userData.book;
+
+  document.getElementById("bookTitle").textContent=data.title;
+
+  document.getElementById("bookAuthor").textContent=
+    data.author+" • "+data.category;
+
+  document.getElementById("leftPage").innerHTML=`
+    <h4>${data.category} collection</h4>
+    <p><b>${data.title}</b></p>
+    <p>By ${data.author}</p>
+    <p style="margin-top:30px;color:#8a7656">
+      Virtual Library • Local edition
+    </p>
+  `;
+
+  document.getElementById("bookContent").innerHTML=data.content;
+
+  document.getElementById("bookModal").style.display="flex";
+
+  const spread=document.getElementById("bookSpread");
+  spread.classList.remove("pageFlip");
+  void spread.offsetWidth;
+  spread.classList.add("pageFlip");
+}
+
+function openBookRecord(bookMesh){
+  displayBook(bookMesh);
+}
+
+function closeBook(){
+
+  modalOpen=false;
+  document.getElementById("bookModal").style.display="none";
+
+  returnHeldBook();
+}
+
+function stepBook(direction){
+
+  const base=currentReadingBook||selected;
+  if(!base)return;
+
+  const idx=books.indexOf(base);
+  const next=books[(idx+direction+books.length)%books.length];
+
+  displayBook(next);
+}
+
+document.getElementById("closeBook").onclick=closeBook;
+document.getElementById("prevBook").onclick=()=>stepBook(-1);
+document.getElementById("nextBook").onclick=()=>stepBook(1);
+
+/* =========================================================
+   10. CONTROLS
+========================================================= */
+
+const keys={};
+let moveSpeed=4;
+let isMoving=false;
+
+function onKey(e,down){
+
+  const k=e.key.toLowerCase();
+  keys[k]=down;
+
+  if(["w","a","s","d"," "].includes(k)){
+    e.preventDefault();
+  }
+
+  if(down && k==="e"){
+    if(modalOpen){
+      closeBook();
+    }else{
+      beginPickup();
+    }
+  }
+
+  if(down && k==="escape"){
+    closeBook();
+  }
+
+  if(down && k==="shift"){
+    moveSpeed=7;
+  }
+
+  if(!down && k==="shift"){
+    moveSpeed=4;
+  }
+}
+
+addEventListener("keydown",e=>onKey(e,true));
+addEventListener("keyup",e=>onKey(e,false));
+
+// Mouse look
+let dragging=false;
+let lastX=0;
+let lastY=0;
+
+renderer.domElement.addEventListener("pointerdown",e=>{
+
+  if(e.pointerType==="touch")return;
+
+  dragging=true;
+  lastX=e.clientX;
+  lastY=e.clientY;
+});
+
+addEventListener("pointerup",()=>dragging=false);
+addEventListener("pointercancel",()=>dragging=false);
+
+addEventListener("pointermove",e=>{
+
+  if(e.pointerType==="touch")return;
+  if(!dragging || modalOpen)return;
+
+  const dx=e.clientX-lastX;
+  const dy=e.clientY-lastY;
+
+  lastX=e.clientX;
+  lastY=e.clientY;
+
+  yaw-=dx*.006;
+
+  pitch=THREE.MathUtils.clamp(
+    pitch+dy*.004,-.18,.65
+  );
+});
+
+// Mobile camera swipe anywhere on right half
+let lookTouchId=null;
+let touchLastX=0;
+let touchLastY=0;
+
+const LOOK_IGNORE=
+  "button,input,select,textarea,#bookModal,#catalogResults";
+
+document.addEventListener("touchstart",e=>{
+
+  if(modalOpen || lookTouchId!==null)return;
+
+  for(const t of e.changedTouches){
+
+    if(
+      t.clientX>innerWidth/2 &&
+      !(t.target.closest&&t.target.closest(LOOK_IGNORE))
+    ){
+      lookTouchId=t.identifier;
+      touchLastX=t.clientX;
+      touchLastY=t.clientY;
+      break;
+    }
+  }
+
+},{passive:true});
+
+document.addEventListener("touchmove",e=>{
+
+  if(lookTouchId===null)return;
+
+  for(const t of e.changedTouches){
+
+    if(t.identifier!==lookTouchId)continue;
+
+    const dx=t.clientX-touchLastX;
+    const dy=t.clientY-touchLastY;
+
+    touchLastX=t.clientX;
+    touchLastY=t.clientY;
+
+    yaw-=dx*.006;
+
+    pitch=THREE.MathUtils.clamp(
+      pitch+dy*.004,-.18,.65
+    );
+
+    e.preventDefault();
+  }
+
+},{passive:false});
+
+function endLookTouch(e){
+
+  for(const t of e.changedTouches){
+    if(t.identifier===lookTouchId){
+      lookTouchId=null;
+    }
+  }
+}
+
+document.addEventListener("touchend",endLookTouch);
+document.addEventListener("touchcancel",endLookTouch);
+
+// Mobile movement buttons
+document.querySelectorAll("[data-key]").forEach(btn=>{
+
+  const k=btn.dataset.key;
+
+  btn.addEventListener("pointerdown",e=>{
+    e.preventDefault();
+    keys[k]=true;
+    btn.setPointerCapture(e.pointerId);
+  });
+
+  ["pointerup","pointerleave","pointercancel"].forEach(ev=>{
+    btn.addEventListener(ev,()=>{
+      keys[k]=false;
+    });
+  });
+});
+
+// Mobile pickup button
+const pickBtn=document.getElementById("mobileInteract");
+
+pickBtn.addEventListener("pointerdown",e=>{
+
+  e.preventDefault();
+
+  if(modalOpen || exitingLibrary)return;
+
+  if(selected && pickupState==="none"){
+    beginPickup();
+  }else if(!selected){
+    toast("Walk closer to a book");
+  }
+});
+
+pickBtn.addEventListener("contextmenu",e=>e.preventDefault());
+
+/* =========================================================
+   11. TOAST NOTIFICATIONS
+========================================================= */
+
+function toast(message){
+
+  const el=document.getElementById("toast");
+  el.textContent=message;
+  el.style.display="block";
+
+  clearTimeout(toast.timer);
+
+  toast.timer=setTimeout(()=>{
+    el.style.display="none";
+  },2000);
+}
+
+/* =========================================================
+   12. EXIT LIBRARY
+========================================================= */
+
+function exitLibrary(){
+
+  if(exitingLibrary)return;
+
+  exitingLibrary=true;
+  doorOpening=true;
+  doorOpenProgress=0;
+
+  Object.keys(keys).forEach(k=>keys[k]=false);
+
+  modalOpen=false;
+  document.getElementById("bookModal").style.display="none";
+
+  // Save return destination for Main Hall
+  sessionStorage.setItem("mainHallEntry","library");
+
+  document.getElementById("exitScreen").style.display="flex";
+
+  setTimeout(()=>{
+    window.location.href="mainhall.html?entry=library";
+  },900);
+}
+
+/* =========================================================
+   13. BOOK COLLISION
+========================================================= */
+
+const blockers=[
+  {x:0,z:-9,w:9.4,d:1.1},
+  {x:0,z:-3,w:9.4,d:1.1},
+  {x:0,z:3,w:9.4,d:1.1},
+  {x:0,z:9,w:9.4,d:1.1}
+];
+
+function canMove(x,z){
+
+  // Library side boundaries
+  if(Math.abs(x)>ROOM_HALF_X-1.2){
+    return false;
+  }
+
+  // Rear wall: central doorway only
+  if(z>ROOM_HALF_Z-.8){
+
+    if(Math.abs(x)>doorWidth/2-.35){
+      return false;
+    }
+
+    // Outside hall boundary
+    if(z>ROOM_HALF_Z+8){
+      return false;
+    }
+  }
+
+  // Front wall
+  if(z<-ROOM_HALF_Z+1.2){
+    return false;
+  }
+
+  // Shelf collision
+  for(const b of blockers){
+
+    if(
+      Math.abs(x-b.x)<b.w/2+.42 &&
+      Math.abs(z-b.z)<b.d/2+.42
+    ){
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/* =========================================================
+   14. CATALOG AND SEARCH
+========================================================= */
+
+const searchInput=document.getElementById("catalogSearch");
+const categoryFilter=document.getElementById("categoryFilter");
+const catalogResults=document.getElementById("catalogResults");
+
+function renderCatalog(){
+
+  const q=searchInput.value.trim().toLowerCase();
+  const category=categoryFilter.value;
+
+  const matches=books.filter(book=>{
+
+    const d=book.userData.book;
+
+    return (
+      (category==="All" || d.category===category) &&
+      (
+        d.title.toLowerCase().includes(q) ||
+        d.author.toLowerCase().includes(q)
+      )
+    );
+
+  }).slice(0,30);
+
+  catalogResults.innerHTML="";
+
+  if(!matches.length){
+
+    catalogResults.innerHTML=
+      '<p style="font-size:11px;color:#aeb9c7">No matching books.</p>';
+
+    return;
+  }
+
+  matches.forEach(book=>{
+
+    const d=book.userData.book;
+
+    const row=document.createElement("div");
+    row.className="catalogRow";
+
+    const selectButton=document.createElement("button");
+    selectButton.className="catalogItem";
+    selectButton.textContent=d.title+" · "+d.category;
+
+    selectButton.addEventListener("click",()=>{
+
+      if(modalOpen || exitingLibrary)return;
+
+      if(pickupState!=="none"){
+        returnHeldBook();
+      }
+
+      selected=book;
+      beginPickup();
+    });
+
+    const coverButton=document.createElement("button");
+    coverButton.className="coverUpload";
+
+    coverButton.textContent=
+      savedCovers[d.id]?"Change cover":"Add cover";
+
+    coverButton.addEventListener("click",()=>{
+      chooseCover(book);
+    });
+
+    row.append(selectButton,coverButton);
+    catalogResults.appendChild(row);
+  });
+}
+
+searchInput.addEventListener("input",renderCatalog);
+categoryFilter.addEventListener("change",renderCatalog);
+
+renderCatalog();
+loadSavedCovers();
+
+/* =========================================================
+   15. GAME LOOP
+========================================================= */
+
+const clock=new THREE.Clock();
+const cameraTarget=new THREE.Vector3();
+
+const prompt=document.getElementById("prompt");
+const isTouch=matchMedia("(pointer:coarse)").matches;
+
+if(isTouch){
+  prompt.innerHTML='Tap <b>PICK UP</b> to read this book';
+}
+
+const pickHint=isTouch?"tap PICK UP.":"press E to pick up.";
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  const dt=Math.min(clock.getDelta(),.04);
+
+  /* -----------------------------------------
+     Door opening animation
+  ----------------------------------------- */
+
+  if(doorOpening){
+
+    doorOpenProgress=Math.min(
+      doorOpenProgress+dt*2.5,1
+    );
+
+    const angle=(Math.PI/2)*doorOpenProgress;
+
+    leftHinge.rotation.y=-angle;
+    rightHinge.rotation.y=angle;
+  }
+
+  /* -----------------------------------------
+     Player movement
+  ----------------------------------------- */
+
+  if(!modalOpen && !exitingLibrary){
+
+    const forward=(keys.w?1:0)-(keys.s?1:0);
+    const side=(keys.d?1:0)-(keys.a?1:0);
+
+    const len=Math.hypot(forward,side);
+    isMoving=len>0;
+
+    if(isMoving){
+
+      const fwd=new THREE.Vector3(
+        -Math.sin(yaw),0,-Math.cos(yaw)
+      );
+
+      const right=new THREE.Vector3(
+        Math.cos(yaw),0,-Math.sin(yaw)
+      );
+
+      const delta=fwd.multiplyScalar(forward/len)
+        .add(right.multiplyScalar(side/len))
+        .multiplyScalar(moveSpeed*dt);
+
+      const nx=player.position.x+delta.x;
+      const nz=player.position.z+delta.z;
+
+      if(canMove(nx,player.position.z)){
+        player.position.x=nx;
+      }
+
+      if(canMove(player.position.x,nz)){
+        player.position.z=nz;
+      }
+
+      player.rotation.y=yaw;
+    }
+
+    /* ---------------------------------------
+       Walking animation
+    --------------------------------------- */
+
+    const gait=isMoving?
+      Math.sin(performance.now()*
+        (moveSpeed>5?.014:.010)):0;
+
+    hipL.rotation.x=gait*.62;
+    hipR.rotation.x=-gait*.62;
+
+    shoulderL.rotation.x=-gait*.48;
+    shoulderR.rotation.x=gait*.48;
+
+    body.position.y=isMoving?
+      Math.abs(Math.sin(performance.now()*.014))*.045:0;
+
+    body.rotation.z=isMoving?
+      Math.sin(performance.now()*.007)*.018:0;
+
+    headGroup.rotation.y=
+      Math.sin(performance.now()*.0007)*.045;
+
+    /* ---------------------------------------
+       Book pickup animation
+    --------------------------------------- */
+
+    if(pickupState==="lifting"){
+
+      pickupClock+=dt;
+
+      const t=Math.min(pickupClock/.5,1);
+
+      shoulderR.rotation.x=THREE.MathUtils.lerp(
+        shoulderR.rotation.x,-1.05,t
+      );
+
+      shoulderR.rotation.z=THREE.MathUtils.lerp(
+        shoulderR.rotation.z,-.22,t
+      );
+
+      if(heldBook){
+
+        heldBook.rotation.x=THREE.MathUtils.lerp(
+          -.2,-.85,t
+        );
+
+        heldBook.rotation.y=THREE.MathUtils.lerp(
+          0,-.18,t
+        );
+      }
+
+      if(t>=1){
+
+        pickupState="reading";
+
+        if(pickupOriginal){
+          displayBook(pickupOriginal);
+        }
+      }
+
+    }else if(pickupState==="reading"){
+
+      shoulderR.rotation.x=-.9;
+      shoulderR.rotation.z=-.18;
+
+    }else{
+
+      shoulderR.rotation.z=0;
+    }
+
+    /* ---------------------------------------
+       Find nearest book
+    --------------------------------------- */
+
+    let nearest=null;
+    let minDistance=2.0;
+
+    const playerPoint=new THREE.Vector3(
+      player.position.x,1.1,player.position.z
+    );
+
+    for(const book of books){
+
+      if(!book.visible)continue;
+
+      const worldPosition=new THREE.Vector3();
+      book.getWorldPosition(worldPosition);
+
+      const distance=playerPoint.distanceTo(worldPosition);
+
+      if(distance<minDistance){
+        minDistance=distance;
+        nearest=book;
+      }
+    }
+
+    if(pickupState==="none"){
+      selected=nearest;
+    }
+
+    prompt.style.display=selected?"block":"none";
+
+    pickBtn.classList.toggle(
+      "ready",
+      !!selected && pickupState==="none"
+    );
+
+    const guide=document.getElementById("guideText");
+
+    if(selected){
+
+      guide.textContent=
+        "Nearby: "+selected.userData.book.title+
+        " — "+pickHint;
+
+    }else{
+
+      guide.textContent=
+        "Walk toward a bookshelf. When a book is within reach, its title will appear here.";
+    }
+
+    /* ---------------------------------------
+       Exit door detection
+    --------------------------------------- */
+
+    const nearExit=
+      player.position.z>ROOM_HALF_Z-3 &&
+      Math.abs(player.position.x)<doorWidth/2-.4;
+
+    if(nearExit && !exitHintShown){
+
+      toast("Main Hall exit ahead. Walk toward the doorway.");
+      exitHintShown=true;
+    }
+
+    if(!nearExit){
+      exitHintShown=false;
+    }
+
+    // Start opening the door when the player reaches it
+    if(
+      player.position.z>ROOM_HALF_Z-1.7 &&
+      Math.abs(player.position.x)<doorWidth/2-.35
+    ){
+      exitLibrary();
+    }
+  }
+
+  /* -----------------------------------------
+     Smooth third-person camera
+  ----------------------------------------- */
+
+  const behind=new THREE.Vector3(
+    Math.sin(yaw)*4.5,
+    2.8,
+    Math.cos(yaw)*4.5
+  );
+
+  const desired=player.position.clone().add(behind);
+  desired.y+=pitch*3;
+
+  camera.position.lerp(
+    desired,1-Math.pow(.001,dt)
+  );
+
+  cameraTarget.set(
+    player.position.x,
+    1.35,
+    player.position.z
+  );
+
+  camera.lookAt(cameraTarget);
+
+  renderer.render(scene,camera);
+}
+
+animate();
+
+/* =========================================================
+   16. RESIZE
+========================================================= */
+
+addEventListener("resize",()=>{
+
+  camera.aspect=innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(innerWidth,innerHeight);
+});
+
+toast(
+  isTouch
+  ?"Welcome! Use the pad to move and swipe the right side to look."
+  :"Welcome! Explore the library with WASD."
+);
+
+</script>
+</body>
+</html>

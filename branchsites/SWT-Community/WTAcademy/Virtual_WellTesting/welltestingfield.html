@@ -1,0 +1,1234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Well Testing Lab | Well Testing Academy</title>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./libs/three.module.js"
+  }
+}
+</script>
+
+<style>
+:root {
+  --bg: #07111c;
+  --panel: rgba(8,20,33,.94);
+  --border: rgba(91,178,220,.3);
+  --cyan: #45c8ed;
+  --green: #4cda9a;
+  --text: #e9f5fc;
+  --muted: #91a8b9;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  touch-action: none;
+}
+#scene {
+  position: fixed;
+  inset: 0;
+}
+canvas { display: block; }
+
+#topbar {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 5;
+  pointer-events: none;
+}
+.brand, .status {
+  background: rgba(5,17,29,.85);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 13px;
+  backdrop-filter: blur(10px);
+}
+.brand strong {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--cyan);
+}
+.brand span, .status {
+  font-size: 11px;
+  color: var(--muted);
+}
+.status { text-align: right; }
+
+#hint {
+  position: fixed;
+  top: 82px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 9px 14px;
+  border-radius: 20px;
+  background: rgba(4,14,24,.8);
+  border: 1px solid var(--border);
+  color: #d9f4ff;
+  font-size: 12px;
+  z-index: 4;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+#interaction {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 8;
+  border: 1px solid rgba(69,200,237,.6);
+  border-radius: 12px;
+  padding: 12px 20px;
+  background: rgba(5,22,36,.94);
+  color: white;
+  font-weight: bold;
+  display: none;
+  cursor: pointer;
+}
+#interaction:active { background: #12516a; }
+
+#infoPanel {
+  position: fixed;
+  right: 16px;
+  top: 100px;
+  width: min(340px, calc(100vw - 32px));
+  max-height: 65vh;
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 15px 45px #0009;
+  touch-action: pan-y;
+}
+#infoPanel h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  color: var(--cyan);
+}
+#infoPanel p {
+  color: #c2d4df;
+  font-size: 13px;
+  line-height: 1.6;
+}
+#infoPanel .tag {
+  display: inline-block;
+  color: var(--green);
+  border: 1px solid #4cda9a55;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  margin: 4px 0 8px;
+}
+#closeInfo {
+  float: right;
+  border: 0;
+  background: #17364a;
+  color: white;
+  border-radius: 8px;
+  padding: 7px 11px;
+}
+
+#controls {
+  position: fixed;
+  bottom: 20px;
+  left: 18px;
+  z-index: 7;
+  display: none;
+  grid-template-columns: repeat(3, 48px);
+  grid-template-rows: repeat(2, 48px);
+  gap: 5px;
+}
+.moveBtn {
+  border: 1px solid #7bcbe866;
+  border-radius: 12px;
+  background: rgba(5,22,36,.8);
+  color: white;
+  font-size: 20px;
+  touch-action: none;
+}
+#forward { grid-column: 2; grid-row: 1; }
+#left { grid-column: 1; grid-row: 2; }
+#back { grid-column: 2; grid-row: 2; }
+#right { grid-column: 3; grid-row: 2; }
+
+#mobileLook {
+  position: fixed;
+  right: 0;
+  top: 25%;
+  width: 48%;
+  height: 65%;
+  z-index: 2;
+  display: none;
+  touch-action: none;
+}
+#exitBtn {
+  position: fixed;
+  top: 70px;
+  right: 12px;
+  z-index: 6;
+  border: 1px solid #e3a05b77;
+  border-radius: 9px;
+  background: rgba(40,25,12,.85);
+  color: #ffd6a3;
+  padding: 9px 12px;
+  font-size: 12px;
+}
+#footer {
+  position: fixed;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: #9cb0bf;
+  z-index: 3;
+  pointer-events: none;
+  white-space: nowrap;
+}
+@media (pointer: coarse) {
+  #controls, #mobileLook { display: block; }
+  #hint { top: 118px; font-size: 11px; }
+  #footer { display: none; }
+  #exitBtn { top: 70px; }
+}
+</style>
+</head>
+
+<body>
+<div id="scene"></div>
+
+<div id="topbar">
+  <div class="brand">
+    <strong>WELL TESTING ACADEMY</strong>
+    <span>VIRTUAL WELL TESTING LAB</span>
+  </div>
+  <div class="status">
+    <div>LAB STATUS: <span style="color:#4cda9a">ONLINE</span></div>
+    <div id="positionText">ZONE: MAIN LAB</div>
+  </div>
+</div>
+
+<div id="hint">Explore the laboratory • Approach equipment and press E to inspect</div>
+
+<button id="exitBtn">← Return to Main Hall</button>
+
+<div id="infoPanel">
+  <button id="closeInfo">✕</button>
+  <div id="infoContent"></div>
+</div>
+
+<button id="interaction">E — INSPECT EQUIPMENT</button>
+
+<div id="controls">
+  <button class="moveBtn" id="forward">▲</button>
+  <button class="moveBtn" id="left">◀</button>
+  <button class="moveBtn" id="back">▼</button>
+  <button class="moveBtn" id="right">▶</button>
+</div>
+<div id="mobileLook"></div>
+<div id="footer">WASD / Arrow Keys: Move • Mouse Drag: Look • E: Inspect • ESC: Close</div>
+
+<script type="module">
+import * as THREE from "three";
+
+/* =========================================
+   CONFIGURATION
+========================================= */
+
+const ROOM = {
+  halfWidth: 18,
+  halfDepth: 15,
+  height: 8,
+  doorWidth: 4.2,
+  doorHeight: 4.2
+};
+
+const PLAYER = {
+  height: 1.7,
+  speed: 5.0,
+  radius: 0.45
+};
+
+const sceneContainer = document.getElementById("scene");
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x091521);
+scene.fog = new THREE.Fog(0x091521, 25, 65);
+
+const camera = new THREE.PerspectiveCamera(
+  70,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  150
+);
+
+const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  powerPreference: "high-performance"
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+sceneContainer.appendChild(renderer.domElement);
+
+/* =========================================
+   LIGHTING
+========================================= */
+
+scene.add(new THREE.HemisphereLight(0xb9dcf4, 0x26313a, 1.7));
+
+const mainLight = new THREE.DirectionalLight(0xffffff, 2.2);
+mainLight.position.set(-8, 15, -5);
+mainLight.castShadow = true;
+mainLight.shadow.mapSize.set(2048, 2048);
+scene.add(mainLight);
+
+function addCeilingLight(x, z) {
+  const light = new THREE.PointLight(0xd9efff, 75, 15);
+  light.position.set(x, 7.3, z);
+  scene.add(light);
+
+  const fixture = new THREE.Mesh(
+    new THREE.BoxGeometry(3.0, 0.12, 0.45),
+    new THREE.MeshStandardMaterial({
+      color: 0xd8e8ef,
+      emissive: 0x9edfff,
+      emissiveIntensity: 1.1
+    })
+  );
+  fixture.position.set(x, 7.75, z);
+  scene.add(fixture);
+}
+
+[-10, 0, 10].forEach(x => {
+  [-8, 0, 8].forEach(z => addCeilingLight(x, z));
+});
+
+/* =========================================
+   MATERIALS AND HELPERS
+========================================= */
+
+const mat = (color, roughness = 0.65, metalness = 0.1) =>
+  new THREE.MeshStandardMaterial({ color, roughness, metalness });
+
+const materials = {
+  floor: mat(0x35434b, 0.8),
+  wall: mat(0x52616a),
+  darkWall: mat(0x25343d),
+  metal: mat(0x8999a2, 0.3, 0.75),
+  steel: mat(0x566873, 0.3, 0.8),
+  yellow: mat(0xe4ad25, 0.55),
+  red: mat(0xb93632),
+  blue: mat(0x246b9c),
+  green: mat(0x237d57),
+  black: mat(0x151c20),
+  glass: new THREE.MeshStandardMaterial({
+    color: 0x7fc8d9,
+    transparent: true,
+    opacity: 0.25,
+    metalness: 0.2,
+    roughness: 0.1
+  })
+};
+
+function box(parent, x, y, z, sx, sy, sz, material, cast = true) {
+  const mesh = new THREE.Mesh(
+    new THREE.BoxGeometry(sx, sy, sz),
+    material
+  );
+  mesh.position.set(x, y, z);
+  mesh.castShadow = cast;
+  mesh.receiveShadow = true;
+  parent.add(mesh);
+  return mesh;
+}
+
+function cylinder(parent, x, y, z, radiusTop, radiusBottom, height, material, segments = 24) {
+  const mesh = new THREE.Mesh(
+    new THREE.CylinderGeometry(radiusTop, radiusBottom, height, segments),
+    material
+  );
+  mesh.position.set(x, y, z);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  parent.add(mesh);
+  return mesh;
+}
+
+function pipe(parent, points, radius = 0.12, material = materials.yellow) {
+  const curve = new THREE.CatmullRomCurve3(
+    points.map(p => new THREE.Vector3(p[0], p[1], p[2]))
+  );
+  const mesh = new THREE.Mesh(
+    new THREE.TubeGeometry(curve, 32, radius, 10, false),
+    material
+  );
+  mesh.castShadow = true;
+  parent.add(mesh);
+  return mesh;
+}
+
+function label(text, x, y, z, options = {}) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 128;
+  const ctx = canvas.getContext("2d");
+
+  ctx.fillStyle = options.bg || "#102432";
+  ctx.fillRect(0, 0, 512, 128);
+  ctx.strokeStyle = options.border || "#45c8ed";
+  ctx.lineWidth = 5;
+  ctx.strokeRect(4, 4, 504, 120);
+
+  ctx.fillStyle = options.color || "#eaf7ff";
+  ctx.font = "bold 37px Arial";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(text, 256, 64, 470);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+
+  const mesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(options.width || 3.2, options.height || 0.8),
+    new THREE.MeshBasicMaterial({ map: texture, transparent: true, side: THREE.DoubleSide })
+  );
+  mesh.position.set(x, y, z);
+  scene.add(mesh);
+  return mesh;
+}
+
+/* =========================================
+   ROOM STRUCTURE
+   Rear wall has central Main Hall doorway.
+========================================= */
+
+box(scene, 0, -0.25, 0, 36, 0.5, 30, materials.floor);
+
+const floorGrid = new THREE.GridHelper(36, 36, 0x607783, 0x465761);
+floorGrid.position.y = 0.012;
+scene.add(floorGrid);
+
+// Side walls
+box(scene, -18, 4, 0, 0.5, 8, 30, materials.wall);
+box(scene, 18, 4, 0, 0.5, 8, 30, materials.wall);
+
+// Front wall
+box(scene, 0, 4, -15, 36, 8, 0.5, materials.wall);
+
+// Rear wall split around doorway
+const sideWidth = (36 - ROOM.doorWidth) / 2;
+box(scene, -(ROOM.doorWidth / 2 + sideWidth / 2), 4, 15,
+  sideWidth, 8, 0.5, materials.wall);
+box(scene, (ROOM.doorWidth / 2 + sideWidth / 2), 4, 15,
+  sideWidth, 8, 0.5, materials.wall);
+
+// Door lintel
+box(scene, 0, 6.25, 15, ROOM.doorWidth, 3.5, 0.5, materials.wall);
+
+// Ceiling
+box(scene, 0, 8.15, 0, 36, 0.3, 30, materials.darkWall, false);
+
+// Wall panels
+for (let x = -15; x <= 15; x += 5) {
+  box(scene, x, 3.8, -14.72, 3.8, 5.8, 0.08, materials.darkWall, false);
+}
+
+// Safety stripes on walls
+for (let x = -16; x <= 16; x += 2) {
+  box(scene, x, 0.5, -14.68, 1.0, 0.18, 0.08, materials.yellow, false);
+}
+
+/* =========================================
+   MAIN HALL EXIT DOORS
+========================================= */
+
+const leftHinge = new THREE.Group();
+leftHinge.position.set(-ROOM.doorWidth / 2, 0, 14.65);
+scene.add(leftHinge);
+
+const rightHinge = new THREE.Group();
+rightHinge.position.set(ROOM.doorWidth / 2, 0, 14.65);
+scene.add(rightHinge);
+
+const doorMat = mat(0x243d4b, 0.45, 0.55);
+
+box(leftHinge, ROOM.doorWidth / 4, 2.1, 0, ROOM.doorWidth / 2, 4.2, 0.18, doorMat);
+box(rightHinge, -ROOM.doorWidth / 4, 2.1, 0, ROOM.doorWidth / 2, 4.2, 0.18, doorMat);
+
+box(leftHinge, ROOM.doorWidth / 4, 2.1, 0.12, 0.12, 3.8, 0.05, materials.yellow);
+box(rightHinge, -ROOM.doorWidth / 4, 2.1, 0.12, 0.12, 3.8, 0.05, materials.yellow);
+
+const doorFrameMat = materials.yellow;
+box(scene, -2.2, 2.1, 14.55, 0.18, 4.4, 0.3, doorFrameMat);
+box(scene, 2.2, 2.1, 14.55, 0.18, 4.4, 0.3, doorFrameMat);
+
+/* =========================================
+   EQUIPMENT INTERACTION SYSTEM
+========================================= */
+
+const equipment = [];
+
+function registerEquipment(group, title, category, description, operation, position) {
+  group.position.set(position[0], position[1] || 0, position[2]);
+  scene.add(group);
+
+  equipment.push({
+    group,
+    title,
+    category,
+    description,
+    operation,
+    position: new THREE.Vector3(position[0], 0, position[2])
+  });
+}
+
+/* =========================================
+   1. TEST SEPARATOR
+========================================= */
+
+function createSeparator() {
+  const g = new THREE.Group();
+
+  // Horizontal vessel
+  const vessel = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.15, 1.15, 5.5, 32),
+    materials.metal
+  );
+  vessel.rotation.z = Math.PI / 2;
+  vessel.position.y = 2.3;
+  vessel.castShadow = true;
+  g.add(vessel);
+
+  // Heads
+  cylinder(g, -2.75, 2.3, 0, 1.15, 1.15, 0.18, materials.steel);
+  cylinder(g, 2.75, 2.3, 0, 1.15, 1.15, 0.18, materials.steel);
+
+  // Saddles
+  box(g, -1.7, 0.85, 0, 0.65, 1.6, 1.6, materials.steel);
+  box(g, 1.7, 0.85, 0, 0.65, 1.6, 1.6, materials.steel);
+
+  // Top nozzles
+  cylinder(g, -1.5, 3.5, 0, 0.22, 0.22, 1.0, materials.steel);
+  cylinder(g, 1.4, 3.5, 0, 0.22, 0.22, 1.0, materials.steel);
+
+  // Pressure gauge
+  cylinder(g, 0, 4.15, 0, 0.45, 0.45, 0.16, materials.black);
+  const gaugeFace = new THREE.Mesh(
+    new THREE.CircleGeometry(0.37, 32),
+    mat(0xe7edf0)
+  );
+  gaugeFace.position.set(0, 4.24, 0);
+  g.add(gaugeFace);
+
+  // Legs and supports
+  for (const x of [-2.4, 2.4]) {
+    box(g, x, 0.3, 0, 0.25, 0.6, 0.25, materials.black);
+  }
+
+  // Outlet piping
+  pipe(g, [[2.7,2.3,0],[3.2,2.3,0],[3.2,1.2,0],[4.1,1.2,0]], 0.12, materials.yellow);
+
+  return g;
+}
+
+const separator = createSeparator();
+registerEquipment(
+  separator,
+  "Three-Phase Test Separator",
+  "PRODUCTION SEPARATION",
+  "The test separator separates produced well fluids into oil, gas, and water phases. It provides controlled measurement of individual phase rates during a well test. Operators monitor pressure, temperature, liquid levels, and differential pressure while maintaining stable operating conditions.",
+  "Typical checks: vessel pressure, temperature, oil level, water level, gas outlet condition, drain valves, and safety relief devices. Always follow the approved operating procedure.",
+  [-8, 0, -6]
+);
+
+/* =========================================
+   2. CHOKE MANIFOLD
+========================================= */
+
+function createChokeManifold() {
+  const g = new THREE.Group();
+
+  // Base skid
+  box(g, 0, 0.25, 0, 6, 0.5, 2.8, materials.black);
+
+  // Main horizontal pipe
+  pipe(g, [[-2.5,1.5,0],[2.5,1.5,0]], 0.18, materials.yellow);
+
+  // Vertical branches and valves
+  for (const x of [-1.8, -0.6, 0.6, 1.8]) {
+    pipe(g, [[x,1.5,0],[x,2.6,0]], 0.16, materials.yellow);
+
+    cylinder(g, x, 2.6, 0, 0.3, 0.3, 0.35, materials.red);
+    cylinder(g, x, 3.0, 0, 0.08, 0.08, 0.55, materials.black);
+
+    const wheel = new THREE.Mesh(
+      new THREE.TorusGeometry(0.32, 0.07, 8, 24),
+      materials.red
+    );
+    wheel.position.set(x, 3.35, 0);
+    g.add(wheel);
+  }
+
+  // Inlet and outlet
+  pipe(g, [[-3.3,1.5,0],[-2.5,1.5,0]], 0.2, materials.yellow);
+  pipe(g, [[2.5,1.5,0],[3.3,1.5,0]], 0.2, materials.yellow);
+
+  // Instrument panel
+  box(g, 0, 2.0, -1.35, 2.2, 1.5, 0.15, materials.darkWall);
+
+  for (const x of [-0.7, 0, 0.7]) {
+    cylinder(g, x, 2.25, -1.23, 0.22, 0.22, 0.12, materials.black);
+  }
+
+  return g;
+}
+
+const choke = createChokeManifold();
+registerEquipment(
+  choke,
+  "Adjustable Choke Manifold",
+  "FLOW CONTROL",
+  "The choke manifold controls and adjusts the flow rate from the well. Adjustable chokes create a controlled pressure drop and help maintain the required test conditions. Multiple valves and flow paths can provide operational flexibility.",
+  "Inspect the choke body, valve position, pressure gauges, connections, and downstream piping. Never change choke settings without authorization and an approved pressure-control procedure.",
+  [1, 0, -7]
+);
+
+/* =========================================
+   3. SAND TRAP
+========================================= */
+
+function createSandTrap() {
+  const g = new THREE.Group();
+
+  // Vertical vessel
+  cylinder(g, 0, 2.2, 0, 0.85, 0.85, 3.6, materials.steel, 32);
+  cylinder(g, 0, 4.05, 0, 0.85, 0.85, 0.2, materials.metal);
+  cylinder(g, 0, 0.35, 0, 0.85, 0.85, 0.2, materials.metal);
+
+  // Top connections
+  cylinder(g, 0, 4.7, 0, 0.22, 0.22, 1.1, materials.yellow);
+  pipe(g, [[0,5.25,0],[1.0,5.25,0],[1.0,4.5,0]], 0.12, materials.yellow);
+
+  // Drain line
+  pipe(g, [[0,0.2,0],[0,-0.1,0],[1.0,-0.1,0]], 0.13, materials.yellow);
+
+  // Support
+  for (const x of [-0.55, 0.55]) {
+    box(g, x, 0.15, 0, 0.2, 0.3, 0.2, materials.black);
+  }
+
+  return g;
+}
+
+const sandTrap = createSandTrap();
+registerEquipment(
+  sandTrap,
+  "Sand Trap",
+  "SOLIDS MANAGEMENT",
+  "A sand trap captures sand and other solid particles carried by produced fluids. Removing solids protects downstream equipment, reduces erosion, and helps prevent blockages in flowlines and measurement systems.",
+  "Monitor differential pressure and collected solids. Isolate, depressurize, and follow the approved cleaning procedure before opening any pressure-containing equipment.",
+  [10, 0, -6]
+);
+
+/* =========================================
+   4. HEATER
+========================================= */
+
+function createHeater() {
+  const g = new THREE.Group();
+
+  // Heater body
+  box(g, 0, 1.8, 0, 4.2, 3.4, 2.8, materials.yellow);
+
+  // Front access panel
+  box(g, 0, 1.8, 1.43, 3.5, 2.7, 0.08, materials.darkWall);
+
+  // Burner housing
+  box(g, 0, 0.75, 1.52, 1.5, 0.8, 0.2, materials.black);
+
+  // Exhaust stack
+  cylinder(g, 1.4, 3.9, 0, 0.3, 0.3, 1.3, materials.steel);
+
+  // Pipes
+  pipe(g, [[-2.2,2.6,0],[-3.0,2.6,0],[-3.0,3.2,0]], 0.15, materials.yellow);
+  pipe(g, [[2.2,2.2,0],[3.0,2.2,0],[3.0,1.5,0]], 0.15, materials.yellow);
+
+  // Legs
+  for (const x of [-1.7, 1.7]) {
+    for (const z of [-1, 1]) {
+      box(g, x, 0.3, z, 0.25, 0.6, 0.25, materials.black);
+    }
+  }
+
+  return g;
+}
+
+const heater = createHeater();
+registerEquipment(
+  heater,
+  "Indirect Fired Heater",
+  "TEMPERATURE CONTROL",
+  "The heater raises the temperature of produced fluids when required by the well-test process. Temperature control can help maintain stable fluid properties and support accurate measurement under the specified operating conditions.",
+  "Check temperature instruments, burner management system, fuel supply, flame detection, ventilation, and emergency shutdown arrangements. Heater operation requires trained personnel and approved procedures.",
+  [-8, 0, 5]
+);
+
+/* =========================================
+   5. FLOWLINES
+========================================= */
+
+function createFlowlineRack() {
+  const g = new THREE.Group();
+
+  // Pipe rack supports
+  for (const z of [-1.2, 0, 1.2]) {
+    box(g, 0, 1.0, z, 6.5, 0.2, 0.18, materials.black);
+    box(g, -2.8, 0.5, z, 0.2, 1.0, 0.2, materials.steel);
+    box(g, 2.8, 0.5, z, 0.2, 1.0, 0.2, materials.steel);
+  }
+
+  // Three parallel lines
+  pipe(g, [[-3,1.4,-1.2],[3,1.4,-1.2]], 0.12, materials.yellow);
+  pipe(g, [[-3,1.4,0],[3,1.4,0]], 0.12, materials.red);
+  pipe(g, [[-3,1.4,1.2],[3,1.4,1.2]], 0.12, materials.blue);
+
+  // Flanges
+  for (const x of [-1.8, 1.8]) {
+    for (const z of [-1.2, 0, 1.2]) {
+      cylinder(g, x, 1.4, z, 0.23, 0.23, 0.12, materials.metal);
+    }
+  }
+
+  return g;
+}
+
+const flowlines = createFlowlineRack();
+registerEquipment(
+  flowlines,
+  "Production Flowline Rack",
+  "FLOWLINE SYSTEM",
+  "Flowlines transport well fluids between the wellhead, choke manifold, sand trap, heater, and separator. Different line configurations may be used depending on the well-test program and equipment arrangement.",
+  "Inspect line identification, pressure rating, supports, flange connections, restraints, and potential leak points. Verify the pressure rating and approved lineup before operation.",
+  [2, 0, 5]
+);
+
+/* =========================================
+   6. DAQ CONTROL CABINET
+========================================= */
+
+function createDAQCabinet() {
+  const g = new THREE.Group();
+
+  box(g, 0, 1.5, 0, 2.6, 3.0, 1.1, materials.darkWall);
+  box(g, 0, 1.5, 0.58, 2.3, 2.7, 0.08, materials.steel);
+
+  // Display screen
+  box(g, 0, 2.1, 0.65, 1.8, 0.9, 0.08, materials.black);
+  box(g, 0, 2.1, 0.70, 1.65, 0.72, mat(0x123b46));
+
+  // Screen lines
+  for (let i = 0; i < 4; i++) {
+    box(g, 0, 2.35 - i * 0.15, 0.75, 1.35, 0.025, 0.01, materials.green, false);
+  }
+
+  // Buttons
+  for (let i = 0; i < 3; i++) {
+    cylinder(g, -0.55 + i * 0.55, 1.15, 0.72, 0.1, 0.1, 0.08,
+      i === 0 ? materials.green : i === 1 ? materials.yellow : materials.red);
+  }
+
+  // Cabinet feet
+  box(g, -0.9, -0.15, 0, 0.2, 0.3, 0.2, materials.black);
+  box(g, 0.9, -0.15, 0, 0.2, 0.3, 0.2, materials.black);
+
+  return g;
+}
+
+const daq = createDAQCabinet();
+registerEquipment(
+  daq,
+  "Data Acquisition System",
+  "DAQ & INSTRUMENTATION",
+  "The Data Acquisition System collects and records field measurements from connected instruments. Typical channels include pressure, temperature, differential pressure, flow rate, and other process variables. Data can be monitored live and stored for reporting and analysis.",
+  "Verify sensor configuration, channel mapping, units, calibration status, signal quality, timestamps, and data logging. Always compare critical readings with approved field instruments.",
+  [11, 0, 5]
+);
+
+/* =========================================
+   7. PRESSURE GAUGE STATION
+========================================= */
+
+function createGaugeStation() {
+  const g = new THREE.Group();
+
+  box(g, 0, 0.8, 0, 3.4, 1.6, 0.6, materials.steel);
+
+  for (let i = 0; i < 3; i++) {
+    const x = -1.0 + i * 1.0;
+
+    cylinder(g, x, 2.0, 0, 0.42, 0.42, 0.18, materials.black);
+
+    const face = new THREE.Mesh(
+      new THREE.CircleGeometry(0.34, 32),
+      mat(0xe9f1f4)
+    );
+    face.position.set(x, 2.1, 0.1);
+    g.add(face);
+
+    // Gauge pointer
+    const pointer = box(g, x + 0.04, 2.1, 0.19, 0.025, 0.27, 0.025, materials.red);
+    pointer.rotation.z = -0.5;
+  }
+
+  pipe(g, [[-1,0.2,0],[1,0.2,0]], 0.1, materials.yellow);
+
+  return g;
+}
+
+const gauges = createGaugeStation();
+registerEquipment(
+  gauges,
+  "Pressure & Temperature Instruments",
+  "FIELD INSTRUMENTATION",
+  "Pressure gauges and temperature instruments provide essential measurements during well testing. These readings help operators understand the condition of the well and verify that equipment is operating within approved limits.",
+  "Check instrument range, calibration, readability, connection integrity, and suitability for the expected operating conditions. Do not rely on a single instrument for critical decisions.",
+  [-1, 0, 10]
+);
+
+/* =========================================
+   8. HSE EQUIPMENT
+========================================= */
+
+function createSafetyStation() {
+  const g = new THREE.Group();
+
+  // Safety cabinet
+  box(g, 0, 1.3, 0, 2.4, 2.6, 0.6, materials.red);
+  box(g, 0, 1.3, 0.33, 2.2, 2.4, 0.08, materials.darkWall);
+
+  // White cross
+  box(g, 0, 1.55, 0.4, 0.85, 0.2, 0.04, mat(0xffffff));
+  box(g, 0, 1.55, 0.4, 0.2, 0.85, 0.04, mat(0xffffff));
+
+  // Fire extinguisher
+  cylinder(g, 1.8, 0.8, 0, 0.28, 0.28, 1.4, materials.red);
+  cylinder(g, 1.8, 1.55, 0, 0.12, 0.12, 0.18, materials.black);
+  pipe(g, [[1.8,1.65,0],[2.2,1.8,0],[2.3,1.5,0]], 0.04, materials.black);
+
+  return g;
+}
+
+const safety = createSafetyStation();
+registerEquipment(
+  safety,
+  "HSE & Emergency Station",
+  "HEALTH, SAFETY & ENVIRONMENT",
+  "The HSE station represents emergency and safety resources used in well-testing operations. These include fire extinguishers, first-aid equipment, emergency communication, and safety information.",
+  "Know the emergency response plan, muster point, alarm signals, escape routes, fire equipment locations, and site-specific H2S procedures before starting work.",
+  [14, 0, 10]
+);
+
+/* =========================================
+   EQUIPMENT LABELS
+========================================= */
+
+label("TEST SEPARATOR", -8, 5.4, -6);
+label("CHOKE MANIFOLD", 1, 4.2, -7);
+label("SAND TRAP", 10, 6.0, -6);
+label("INDIRECT HEATER", -8, 4.3, 5);
+label("FLOWLINE RACK", 2, 3.1, 5);
+label("DAQ SYSTEM", 11, 4.0, 5);
+label("INSTRUMENTS", -1, 3.2, 10);
+label("HSE STATION", 14, 3.2, 10);
+
+/* =========================================
+   ROOM SIGNS AND DETAILS
+========================================= */
+
+// Back wall sign
+label("WELL TESTING LAB", 0, 6.5, -14.65, {
+  width: 6,
+  height: 1.1,
+  bg: "#0b2636",
+  border: "#45c8ed"
+});
+
+// Floor safety zones
+for (let x = -14; x <= 14; x += 4) {
+  box(scene, x, 0.015, 0, 0.06, 0.025, 25, materials.yellow, false);
+}
+
+// Main entrance sign
+label("MAIN HALL", 0, 5.0, 14.3, {
+  width: 3.5,
+  height: 0.8,
+  bg: "#172b36"
+});
+
+/* =========================================
+   PLAYER AND CAMERA
+========================================= */
+
+const player = {
+  x: 0,
+  z: 10,
+  yaw: 0,
+  pitch: 0,
+  moveForward: false,
+  moveBack: false,
+  moveLeft: false,
+  moveRight: false
+};
+
+const entryFromHall =
+  new URLSearchParams(location.search).get("entry") === "mainhall" ||
+  sessionStorage.getItem("wellTestingLabEntry") === "mainhall";
+
+if (entryFromHall) {
+  player.x = 0;
+  player.z = 10;
+  player.yaw = 0;
+}
+
+camera.position.set(player.x, PLAYER.height, player.z);
+
+function updateCamera() {
+  camera.position.set(player.x, PLAYER.height, player.z);
+
+  const direction = new THREE.Vector3(
+    Math.sin(player.yaw) * Math.cos(player.pitch),
+    Math.sin(player.pitch),
+    -Math.cos(player.yaw) * Math.cos(player.pitch)
+  );
+
+  camera.lookAt(
+    camera.position.x + direction.x,
+    camera.position.y + direction.y,
+    camera.position.z + direction.z
+  );
+}
+updateCamera();
+
+/* =========================================
+   COLLISION
+========================================= */
+
+function canMove(x, z) {
+  const r = PLAYER.radius;
+
+  if (x < -17.2 || x > 17.2) return false;
+  if (z < -14.2) return false;
+
+  // Rear wall with central doorway
+  if (z > 14.2) {
+    if (Math.abs(x) > ROOM.doorWidth / 2 - r) return false;
+    return z < 18;
+  }
+
+  return true;
+}
+
+/* =========================================
+   INTERACTION
+========================================= */
+
+let selectedEquipment = null;
+let doorOpen = false;
+let exiting = false;
+
+const interactionButton = document.getElementById("interaction");
+const infoPanel = document.getElementById("infoPanel");
+const infoContent = document.getElementById("infoContent");
+
+function getNearestEquipment() {
+  let nearest = null;
+  let bestDistance = 3.5;
+
+  for (const item of equipment) {
+    const dx = player.x - item.position.x;
+    const dz = player.z - item.position.z;
+    const distance = Math.sqrt(dx * dx + dz * dz);
+
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      nearest = item;
+    }
+  }
+  return nearest;
+}
+
+function inspectEquipment(item) {
+  if (!item) return;
+
+  selectedEquipment = item;
+
+  infoContent.innerHTML = `
+    <div class="tag">${item.category}</div>
+    <h2>${item.title}</h2>
+    <p>${item.description}</p>
+    <h3 style="color:#4cda9a;font-size:13px">Operational learning points</h3>
+    <p>${item.operation}</p>
+    <p style="font-size:11px;color:#8199a9">
+      Educational simulation only. Actual field operations must follow
+      approved procedures, equipment manuals, and site safety requirements.
+    </p>
+  `;
+
+  infoPanel.style.display = "block";
+  interactionButton.style.display = "none";
+}
+
+document.getElementById("closeInfo").addEventListener("click", () => {
+  infoPanel.style.display = "none";
+  selectedEquipment = null;
+});
+
+interactionButton.addEventListener("click", () => {
+  inspectEquipment(getNearestEquipment());
+});
+
+function openDoors() {
+  if (doorOpen) return;
+  doorOpen = true;
+  leftHinge.rotation.y = -Math.PI / 2;
+  rightHinge.rotation.y = Math.PI / 2;
+}
+
+function returnToMainHall() {
+  if (exiting) return;
+  exiting = true;
+  openDoors();
+
+  document.getElementById("hint").textContent = "Returning to Main Hall...";
+
+  setTimeout(() => {
+    sessionStorage.setItem("mainHallEntry", "welltestinglab");
+    sessionStorage.setItem("wellTestingLabEntry", "mainhall");
+    location.href = "mainhall.html?entry=welltestinglab";
+  }, 900);
+}
+
+document.getElementById("exitBtn").addEventListener("click", returnToMainHall);
+
+/* =========================================
+   KEYBOARD CONTROLS
+========================================= */
+
+const keys = {};
+
+window.addEventListener("keydown", e => {
+  keys[e.key.toLowerCase()] = true;
+
+  if (e.key.toLowerCase() === "e") {
+    const nearest = getNearestEquipment();
+    if (nearest) inspectEquipment(nearest);
+  }
+
+  if (e.key === "Escape") {
+    infoPanel.style.display = "none";
+    selectedEquipment = null;
+  }
+});
+
+window.addEventListener("keyup", e => {
+  keys[e.key.toLowerCase()] = false;
+});
+
+/* =========================================
+   MOUSE CAMERA CONTROL
+========================================= */
+
+let dragging = false;
+let lastMouseX = 0;
+let lastMouseY = 0;
+
+renderer.domElement.addEventListener("pointerdown", e => {
+  if (e.pointerType === "mouse" && e.button === 0) {
+    dragging = true;
+    lastMouseX = e.clientX;
+    lastMouseY = e.clientY;
+  }
+});
+
+window.addEventListener("pointerup", () => dragging = false);
+
+window.addEventListener("pointermove", e => {
+  if (!dragging) return;
+
+  const dx = e.clientX - lastMouseX;
+  const dy = e.clientY - lastMouseY;
+
+  player.yaw -= dx * 0.004;
+  player.pitch -= dy * 0.003;
+  player.pitch = THREE.MathUtils.clamp(player.pitch, -1.1, 1.1);
+
+  lastMouseX = e.clientX;
+  lastMouseY = e.clientY;
+});
+
+/* =========================================
+   MOBILE CAMERA SWIPE
+   Swipe anywhere on right half.
+========================================= */
+
+const mobileLook = document.getElementById("mobileLook");
+let touchLooking = false;
+let touchX = 0;
+let touchY = 0;
+
+mobileLook.addEventListener("touchstart", e => {
+  const t = e.touches[0];
+  touchLooking = true;
+  touchX = t.clientX;
+  touchY = t.clientY;
+}, { passive: false });
+
+mobileLook.addEventListener("touchmove", e => {
+  if (!touchLooking) return;
+  e.preventDefault();
+
+  const t = e.touches[0];
+  const dx = t.clientX - touchX;
+  const dy = t.clientY - touchY;
+
+  player.yaw -= dx * 0.006;
+  player.pitch -= dy * 0.004;
+  player.pitch = THREE.MathUtils.clamp(player.pitch, -1.1, 1.1);
+
+  touchX = t.clientX;
+  touchY = t.clientY;
+}, { passive: false });
+
+mobileLook.addEventListener("touchend", () => {
+  touchLooking = false;
+});
+
+/* =========================================
+   MOBILE MOVEMENT BUTTONS
+========================================= */
+
+function bindMoveButton(id, key) {
+  const button = document.getElementById(id);
+
+  button.addEventListener("pointerdown", e => {
+    e.preventDefault();
+    keys[key] = true;
+  });
+
+  ["pointerup", "pointerleave", "pointercancel"].forEach(event => {
+    button.addEventListener(event, () => keys[key] = false);
+  });
+}
+
+bindMoveButton("forward", "w");
+bindMoveButton("back", "s");
+bindMoveButton("left", "a");
+bindMoveButton("right", "d");
+
+/* =========================================
+   ANIMATION LOOP
+========================================= */
+
+const clock = new THREE.Clock();
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  const delta = Math.min(clock.getDelta(), 0.05);
+
+  let forward = 0;
+  let sideways = 0;
+
+  if (keys["w"] || keys["arrowup"]) forward += 1;
+  if (keys["s"] || keys["arrowdown"]) forward -= 1;
+  if (keys["a"] || keys["arrowleft"]) sideways -= 1;
+  if (keys["d"] || keys["arrowright"]) sideways += 1;
+
+  const length = Math.hypot(forward, sideways);
+
+  if (length > 0) {
+    forward /= length;
+    sideways /= length;
+
+    const speed = PLAYER.speed * delta;
+
+    const dx =
+      Math.sin(player.yaw) * forward +
+      Math.cos(player.yaw) * sideways;
+
+    const dz =
+      -Math.cos(player.yaw) * forward +
+      Math.sin(player.yaw) * sideways;
+
+    const nextX = player.x + dx * speed;
+    const nextZ = player.z + dz * speed;
+
+    if (canMove(nextX, player.z)) player.x = nextX;
+    if (canMove(player.x, nextZ)) player.z = nextZ;
+  }
+
+  // Automatic return when the player walks through the doorway
+  if (player.z > 15.8 && Math.abs(player.x) < 1.7) {
+    returnToMainHall();
+  }
+
+  // Equipment proximity
+  const nearest = getNearestEquipment();
+
+  if (nearest && infoPanel.style.display !== "block") {
+    interactionButton.style.display = "block";
+    interactionButton.textContent = "E — INSPECT " + nearest.title.toUpperCase();
+  } else {
+    interactionButton.style.display = "none";
+  }
+
+  // Position display
+  document.getElementById("positionText").textContent =
+    player.z > 13 ? "ZONE: EXIT" : "ZONE: MAIN LAB";
+
+  updateCamera();
+  renderer.render(scene, camera);
+}
+
+animate();
+
+/* =========================================
+   RESIZE
+========================================= */
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+});
+
+</script>
+</body>
+</html>

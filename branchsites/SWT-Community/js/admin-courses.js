@@ -1,3 +1,10 @@
+// Date helper used by the admin tabs (admin.html does not load js/app.js)
+function formatDate(timestamp) {
+    if (!timestamp) return '';
+    var date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp.seconds * 1000);
+    return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+}
+
 // Courses moderation (admin only; Firestore rules enforce this too)
 (function () {
     function esc(t) { var d = document.createElement('div'); d.textContent = t || ''; return d.innerHTML; }

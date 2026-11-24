@@ -46,7 +46,17 @@
           <div class="cc-player" id="player" style="display:none"></div>
           <div id="noembed" class="cc-note" style="display:none">This course is hosted on another website and cannot be shown inside this page. Use the button below to open it.</div>
           <p class="cc-desc" id="desc"></p>
-          <p style="color:var(--text-muted);font-size:.85rem;margin-top:12px" id="by"></p>
+          <div class="cc-note" style="margin-top:18px">
+            <strong>Course details</strong>
+            <ul style="margin:8px 0 0 18px;line-height:1.9">
+              <li>Category: <span id="dCat"></span></li>
+              <li>Level: <span id="dLvl"></span></li>
+              <li>Shared by: <span id="dBy"></span></li>
+              <li>Added on: <span id="dDate"></span></li>
+              <li>Source: <span id="dHost"></span></li>
+            </ul>
+          </div>
+          <div id="relBox" style="display:none;margin-top:28px"><h3 style="margin-bottom:10px">More in this category</h3><div id="rel" style="display:flex;flex-direction:column;gap:8px"></div></div>
           <div class="cc-actions">
             <a class="cc-btn alt" id="orig" target="_blank" rel="nofollow noopener noreferrer ugc">Open on the original site</a>
             <a class="cc-btn" href="add-course.html">+ Add your own course</a>
@@ -76,7 +86,20 @@
         document.title=c.title+' - Community Courses';
         document.getElementById('title').textContent=c.title;
         document.getElementById('desc').textContent=c.description;
-        document.getElementById('by').textContent='Shared by '+(c.authorName||'a community member');
+        document.getElementById('dCat').textContent=c.category||'-';
+        document.getElementById('dLvl').textContent=c.level||'-';
+        document.getElementById('dBy').textContent=c.authorName||'a community member';
+        var dt=c.createdAt&&c.createdAt.toDate?c.createdAt.toDate():null;
+        document.getElementById('dDate').textContent=dt?dt.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'}):'-';
+        var host='-';try{host=new URL(c.link).hostname.replace(/^www\./,'');}catch(e){}
+        document.getElementById('dHost').textContent=host;
+        db.collection('courses').where('status','==','approved').get().then(function(s2){
+          var rel=s2.docs.filter(function(x){return x.id!==id&&x.data().category===c.category;}).slice(0,4);
+          if(!rel.length)return;
+          var box=document.getElementById('rel');
+          rel.forEach(function(x){var a=document.createElement('a');a.href='course-view.html?id='+encodeURIComponent(x.id);a.textContent=x.data().title;box.appendChild(a);});
+          document.getElementById('relBox').style.display='block';
+        }).catch(function(){});
         var pills=document.getElementById('pills');
         [c.category,c.level].forEach(function(t){if(!t)return;var s=document.createElement('span');s.className='cc-pill';s.textContent=t;pills.appendChild(s);});
         var emb=CourseUtil.embedUrl(c.link);

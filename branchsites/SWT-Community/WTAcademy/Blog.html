@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Well Testing blog</title>
+    <title>Well Testing Blog: Field Notes on Drawdown, Buildup, Horner and Derivative Analysis</title>
+    <meta name="description" content="Short well testing field notes: drawdown, buildup, Horner, MDH, pressure derivative, wellbore storage and skin, and average reservoir pressure.">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="AcademyStyle.css">
 </head>
@@ -71,79 +72,38 @@
 
 
 
-      <section class="section notes ">
-        <h2 class="section-title"> Field Notes {Our Blog}</h2>
-        <p class="section-subtitle">Quick-reference engineering notes organized by topic.</p>
-       
-          <style>
-            .note-item {
-              cursor: pointer;
-            }
-            .note-list {
-              height: 50dvh;
-              overflow-y: auto;
-            }
-            .note-list::-webkit-scrollbar {
-              width: 8px;
-              height: 8px;
-            }
-            .note-list::-webkit-scrollbar-track {
-              background: #1e293b;
-              border-radius: 10px;
-            }
-            .note-list::-webkit-scrollbar-thumb {
-              background: linear-gradient(180deg, #3b82f6, #2563eb);
-              border-radius: 10px;
-              transition: 0.3s;
-            }
-            .note-list::-webkit-scrollbar-thumb:hover {
-              background: #60a5fa;
-            }
-          </style>
-        
-        <div class="note-list tabs">
-          <div class="note-item tab-content" onclick="openTab(event, 'tab1')">📄 Drawdown Testing</div>
-          <div class="note-item tab-content" onclick="openTab(event, 'tab2')">📄 Buildup Testing</div>
-          <div class="note-item tab-content" onclick="openTab(event, 'tab3')">📄 Pressure Derivative</div>
-          <div class="note-item tab-content active" onclick="openTab(event, 'tab4')">📄 Wellbore Storage &amp; Skin</div>
-          <div class="note-item tab-content " onclick="openTab(event, 'tab5')" > 📄 Drawdown Testing</div>
-          <div class="note-item tab-content" onclick="openTab(event, 'tab6')">📄 Drawdown Testing</div>
-          <div class="note-item tab-content" onclick="openTab(event, 'tab7')">📄 Drawdown Testing </div>
-          <div class="note-item tab-content" onclick="openTab(event, 'tab8')">📄 Drawdown Testing</div>
-        </div>
-
-        <div class="note-card tab-content active"  id="tab1">
-          <h4>Horner Method</h4>
-          <p>Plot pressure vs. Horner time to estimate formation pressure. Straight-line extrapolation gives p* for radial flow regimes.</p>
-        </div>
-        <div class="note-card tab-content"  id="tab2">
-          <h4>MDH Method</h4>
-          <p>Use Miller-Dyes-Hutchinson to reduce effect of superposition and stabilize pressure derivative interpretation.</p>
-        </div>
-        <div class="note-card tab-content"  id="tab3">
-          <h4>Average Reservoir Pressure</h4>
-          <p>P* from Horner extrapolation equals Pi only in infinite reservoirs. For bounded systems, MBH correction charts or Dietz shape factors are needed to convert P* to Pavg.</p>
-        </div>
-        <div class="note-card tab-content"  id="tab4">
-          <h4>Average Reservoir Pressure</h4>
-          <p>P* from Horner extrapolation equals Pi only in infinite reservoirs. For bounded systems, MBH correction charts or Dietz shape factors are needed to convert P* to Pavg.</p>
-        </div>
-        <div class="note-card tab-content "  id="tab5">
-          <h4>Horner Method</h4>
-          <p>Plot pressure vs. Horner time to estimate formation pressure. Straight-line extrapolation gives p* for radial flow regimes.</p>
-        </div>
-        <div class="note-card tab-content"  id="tab6">
-          <h4>MDH Method</h4>
-          <p>Use Miller-Dyes-Hutchinson to reduce effect of superposition and stabilize pressure derivative interpretation.</p>
-        </div>
-        <div class="note-card tab-content"  id="tab7">
-          <h4>Average Reservoir Pressure</h4>
-          <p>P* from Horner extrapolation equals Pi only in infinite reservoirs. For bounded systems, MBH correction charts or Dietz shape factors are needed to convert P* to Pavg.</p>
-        </div>
-        <div class="note-card tab-content"  id="tab8">
-          <h4>Average Reservoir Pressure</h4>
-          <p>P* from Horner extrapolation equals Pi only in infinite reservoirs. For bounded systems, MBH correction charts or Dietz shape factors are needed to convert P* to Pavg.</p>
-        </div>
+      <section class="section notes">
+        <h2 class="section-title">Well Testing Blog: Field Notes</h2>
+        <p class="section-subtitle">Short engineering notes on well test design and interpretation. See also the <a href="Equations.html">equations</a>, <a href="Dictionary.html">dictionary</a> and <a href="Terms.html">terms</a> pages.</p>
+        <ul style="line-height:1.9"><li><a href="#drawdown">Drawdown testing</a></li><li><a href="#buildup">Buildup testing</a></li><li><a href="#horner">Horner method</a></li><li><a href="#mdh">MDH method</a></li><li><a href="#derivative">Pressure derivative</a></li><li><a href="#storage-skin">Wellbore storage and skin</a></li><li><a href="#average-pressure">Average reservoir pressure</a></li></ul>
+        <article class="note-card" id="drawdown">
+          <h3><a href="#drawdown" style="color:inherit">Drawdown testing</a></h3>
+          <p>A drawdown test opens a shut-in well at a constant rate and records bottomhole pressure as it falls. Plot pressure against log time: the straight line during radial flow gives permeability from the slope and skin from the intercept. Late-time data can show boundaries and, in a long test, reservoir limits. Keep the rate as steady as possible, because rate changes distort the interpretation.</p>
+        </article>
+        <article class="note-card" id="buildup">
+          <h3><a href="#buildup" style="color:inherit">Buildup testing</a></h3>
+          <p>A buildup test shuts the well in after a flow period and records pressure recovery. It is the most common test because the rate is zero and easier to control. Analyse it with a Horner or superposition plot. Report the flow time before shut-in, since it affects the extrapolation.</p>
+        </article>
+        <article class="note-card" id="horner">
+          <h3><a href="#horner" style="color:inherit">Horner method</a></h3>
+          <p>Plot shut-in pressure against log((tp + dt) / dt), where tp is the flow time before shut-in and dt is the shut-in time. The straight-line slope gives permeability-thickness. Extrapolating to a Horner time ratio of 1 gives p*, which equals the initial pressure only in an infinite-acting reservoir.</p>
+        </article>
+        <article class="note-card" id="mdh">
+          <h3><a href="#mdh" style="color:inherit">MDH method</a></h3>
+          <p>The Miller-Dyes-Hutchinson method plots shut-in pressure against log dt. It is valid when the flow time before shut-in is long compared with the shut-in time, so it suits wells that were produced for a long time. It is simpler than Horner but less accurate for short flow periods.</p>
+        </article>
+        <article class="note-card" id="derivative">
+          <h3><a href="#derivative" style="color:inherit">Pressure derivative</a></h3>
+          <p>The pressure derivative is the slope of pressure versus the natural log of time, usually plotted on log-log axes with the pressure change. It shows flow regimes clearly: wellbore storage as a unit slope, radial flow as a flat line, and boundaries as late-time rises or drops. Diagnose the flow regimes first, then choose the model.</p>
+        </article>
+        <article class="note-card" id="storage-skin">
+          <h3><a href="#storage-skin" style="color:inherit">Wellbore storage and skin</a></h3>
+          <p>Wellbore storage hides the reservoir response at early time because fluid in the wellbore expands or compresses. Skin is an extra pressure drop near the well from damage or stimulation: positive skin means damage, negative means stimulation. Use the derivative to see when storage ends before reading skin from the semilog line.</p>
+        </article>
+        <article class="note-card" id="average-pressure">
+          <h3><a href="#average-pressure" style="color:inherit">Average reservoir pressure</a></h3>
+          <p>p* from Horner extrapolation equals the initial pressure only in an infinite reservoir. In a bounded reservoir, use correction methods such as MBH charts or Dietz shape factors to convert p* into the average reservoir pressure.</p>
+        </article>
       </section>
     </main>
 

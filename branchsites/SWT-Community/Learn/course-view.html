@@ -28,8 +28,8 @@
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="../WTAcademy/Academy.html" class="nav-link">Home</a>
-                <a href="learn.html" class="nav-link">Learn</a>
-                <a href="community-courses.html" class="nav-link active">Community Courses</a>
+                <a href="learn.html" class="nav-link">Certifications</a>
+                <a href="community-courses.html" class="nav-link active">Structured Courses</a>
                 <a href="../ask.html" class="nav-link">Ask Question</a>
                 <a href="../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
                 <a href="../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
@@ -84,7 +84,7 @@
         var c=doc.exists?doc.data():null;
         if(!c||c.status!=='approved'){state.textContent='This course is not available.';return;}
         var link=null;try{var u=new URL(c.link);if(u.protocol==='https:'||u.protocol==='http:')link=u.href;}catch(e){}
-        document.title=c.title+' - Community Courses';
+        document.title=c.title+' - Structured Courses';
         document.getElementById('title').textContent=c.title;
         document.getElementById('desc').textContent=c.description;
         document.getElementById('dCat').textContent=c.category||'-';

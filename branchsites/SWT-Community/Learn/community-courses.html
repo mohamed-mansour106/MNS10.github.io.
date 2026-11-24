@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Courses - Well Testing Community</title>
+    <meta name="description" content="Free well testing, drilling and oilfield courses and learning resources shared and approved by the Well Testing Community. Browse by category and level.">
+    <link rel="canonical" href="https://mohamed-mansour106.github.io/MNS10.github.io./branchsites/SWT-Community/Learn/community-courses.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+      .cc-wrap{max-width:1000px;margin:0 auto;padding:24px 0}
+      .cc-top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:18px}
+      .cc-filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+      .cc-filters input,.cc-filters select{background:var(--darker-bg);color:var(--text-primary);border:1px solid var(--border-color);border-radius:8px;padding:10px 12px;font:inherit;max-width:100%}
+      .cc-filters input{flex:1;min-width:180px}
+      .cc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+      .cc-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
+      .cc-card h3{font-size:1.05rem;color:var(--text-primary)}
+      .cc-card p{color:var(--text-secondary);font-size:.92rem;line-height:1.5;word-break:break-word}
+      .cc-pill{display:inline-block;font-size:.75rem;padding:2px 9px;border-radius:99px;background:var(--hover-bg);color:var(--text-secondary);margin-right:6px}
+      .cc-meta{font-size:.8rem;color:var(--text-muted);margin-top:auto}
+      .cc-btn{display:inline-block;background:var(--primary-color);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:inherit;cursor:pointer;text-decoration:none;text-align:center}
+      .cc-btn:hover{background:var(--primary-dark)}
+      .cc-note{background:var(--card-bg);border:1px solid var(--border-color);border-radius:10px;padding:14px;color:var(--text-secondary);margin-bottom:16px}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="learn.html" class="nav-link">Learn</a>
+                <a href="community-courses.html" class="nav-link active">Community Courses</a>
+                <a href="../ask.html" class="nav-link">Ask Question</a>
+                <a href="../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+    <main class="container main-content">
+      <div class="cc-wrap">
+        <div class="cc-top">
+          <div>
+            <h1 class="page-title">Community Courses</h1>
+            <p class="page-subtitle">Courses and learning resources shared by community members. Every course is reviewed before it appears here.</p>
+          </div>
+          <a class="cc-btn" href="add-course.html">+ Add a course</a>
+        </div>
+        <div class="cc-filters">
+          <input id="q" type="search" placeholder="Search courses..." aria-label="Search courses">
+          <select id="cat" aria-label="Category"><option value="">All categories</option></select>
+          <select id="lvl" aria-label="Level"><option value="">All levels</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select>
+        </div>
+        <div id="state" class="cc-note">Loading courses...</div>
+        <div id="grid" class="cc-grid"></div>
+        <noscript><div class="cc-note">This page needs JavaScript. Meanwhile, see the built-in courses on the <a href="learn.html">Learn page</a>.</div></noscript>
+      </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+    (function(){
+      var CATS=["Well Testing","Drilling","Production","Reservoir","HSE / Safety","Software & Tools","English & Soft Skills","Other"];
+      var all=[];
+      var grid=document.getElementById('grid'),state=document.getElementById('state');
+      var qEl=document.getElementById('q'),cEl=document.getElementById('cat'),lEl=document.getElementById('lvl');
+      CATS.forEach(function(c){var o=document.createElement('option');o.textContent=c;cEl.appendChild(o);});
+      function safeUrl(u){try{var x=new URL(u);return (x.protocol==='https:'||x.protocol==='http:')?x.href:null;}catch(e){return null;}}
+      function render(){
+        var q=qEl.value.trim().toLowerCase(),c=cEl.value,l=lEl.value;
+        var list=all.filter(function(d){
+          return (!c||d.category===c)&&(!l||d.level===l)&&(!q||((d.title||'')+' '+(d.description||'')).toLowerCase().indexOf(q)>-1);
+        });
+        grid.textContent='';
+        if(!list.length){state.style.display='block';state.textContent=all.length?'No courses match your search.':'No courses yet. Be the first to add one!';return;}
+        state.style.display='none';
+        list.forEach(function(d){
+          var url=safeUrl(d.link);if(!url)return;
+          var card=document.createElement('div');card.className='cc-card';
+          var h=document.createElement('h3');h.textContent=d.title;
+          var p=document.createElement('p');p.textContent=d.description;
+          var pills=document.createElement('div');
+          [d.category,d.level].forEach(function(t){if(!t)return;var s=document.createElement('span');s.className='cc-pill';s.textContent=t;pills.appendChild(s);});
+          var a=document.createElement('a');a.className='cc-btn';a.textContent='Open course';a.href=url;a.target='_blank';a.rel='nofollow noopener noreferrer ugc';
+          var m=document.createElement('div');m.className='cc-meta';m.textContent='Shared by '+(d.authorName||'a community member');
+          card.appendChild(h);card.appendChild(pills);card.appendChild(p);card.appendChild(a);card.appendChild(m);
+          grid.appendChild(card);
+        });
+      }
+      [qEl,cEl,lEl].forEach(function(e){e.addEventListener('input',render);});
+      db.collection('courses').where('status','==','approved').get().then(function(snap){
+        all=snap.docs.map(function(x){return x.data();});
+        all.sort(function(a,b){return ((b.createdAt&&b.createdAt.seconds)||0)-((a.createdAt&&a.createdAt.seconds)||0);});
+        render();
+      }).catch(function(e){
+        console.error(e);
+        state.textContent=(e&&e.code==='permission-denied')?'Community courses are not open yet. Check back soon.':'Could not load courses. Please try again later.';
+      });
+    })();
+    </script>
+</body>
+</html>

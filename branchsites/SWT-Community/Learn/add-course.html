@@ -48,6 +48,7 @@
           <label>Course title<input id="title" maxlength="100" required placeholder="e.g. Introduction to Well Testing"><small>3 to 100 characters</small></label>
           <label>Short description<textarea id="desc" rows="4" maxlength="600" required placeholder="What will someone learn? Who is it for?"></textarea><small>10 to 600 characters</small></label>
           <label>Course link<input id="link" type="url" maxlength="300" required placeholder="https://..."><small>Must start with https:// or http://</small></label>
+          <label>Cover image link (optional)<input id="cover" type="url" maxlength="300" placeholder="https://... .jpg"><small>For YouTube videos the cover is taken automatically. Must start with https://</small></label>
           <label>Category<select id="cat"></select></label>
           <label>Level<select id="lvl"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
           <div><button type="submit" id="go" class="cc-btn">Submit for approval</button></div>
@@ -88,15 +89,19 @@
         if(title.length<3||title.length>100){show('Title must be 3 to 100 characters.','err');return;}
         if(desc.length<10||desc.length>600){show('Description must be 10 to 600 characters.','err');return;}
         if(!/^https?:\/\/[^\s]+$/.test(link)||link.length>300){show('Enter a valid link starting with https://','err');return;}
+        var cover=document.getElementById('cover').value.trim();
+        if(cover&&(!/^https:\/\/[^\s]+$/.test(cover)||cover.length>300)){show('Cover link must start with https://','err');return;}
         go.disabled=true;show('Submitting...','ok');
         db.collection('courses').where('authorId','==',user.uid).where('status','==','pending').get().then(function(s){
           if(s.size>=3){throw {code:'too-many'};}
-          return db.collection('courses').add({
+          var data={
             title:title,description:desc,link:link,
             category:cat.value,level:document.getElementById('lvl').value,
             authorId:user.uid,authorName:(user.displayName||'Community member').slice(0,60),
             status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()
-          });
+          };
+          if(cover)data.cover=cover;
+          return db.collection('courses').add(data);
         }).then(function(){
           f.reset();show('Thank you! Your course was submitted and will appear after approval.','ok');go.disabled=false;
         }).catch(function(e){

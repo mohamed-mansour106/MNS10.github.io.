@@ -68,6 +68,7 @@
 
     <!-- Main Content -->
     <main class="container main-content" style="width: 95%;">
+      <p style="margin:14px 0"><a href="Academy.html">&larr; Back to Well Testing Academy</a></p>
       <section class="section notes">
         <h2 class="section-title">Talk English</h2>
         <p class="section-subtitle">Practical English for oilfield and well testing engineers. Short phrases you can use on shift, in reports and in meetings.</p>
@@ -102,7 +103,32 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+            <p><a href="Academy.html">Well Testing Academy</a> | <a href="../../College/OFU.html">OilField University</a> | <a href="Blog.html">Blog</a> | <a href="TalkEnglish.html">Talk English</a> | <a href="WhoAreWe.html">Who Are We</a></p>
         </div>
     </footer>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/firestore.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      firebase.auth().onAuthStateChanged(function (user) {
+        var s = function (id, v) { var e = document.getElementById(id); if (e) e.style.display = v; };
+        s("loginNavLink", user ? "none" : "inline-block");
+        s("logoutNavBtn", user ? "inline-block" : "none");
+        s("profileNavLink", user ? "inline-block" : "none");
+        s("mobileLoginLink", user ? "none" : "block");
+        s("mobileLogoutBtn", user ? "block" : "none");
+        s("mobileProfileLink", user ? "block" : "none");
+      });
+      document.getElementById("logoutNavBtn").addEventListener("click", async function () {
+        await firebase.auth().signOut();
+        window.location.href = "../login.html";
+      });
+      document.getElementById("mobileMenuBtn").addEventListener("click", function () { document.getElementById("mobileMenuOverlay").classList.add("active"); });
+      document.getElementById("closeMobileMenu").addEventListener("click", function () { document.getElementById("mobileMenuOverlay").classList.remove("active"); });
+    </script>
 </body>
 </html>

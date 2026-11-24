@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Feed</title>
+    <title>Share Posts | Well Testing Community</title>
+    <meta name="description" content="Share a short thought with the Well Testing community. Anyone can read the posts.">
     <link rel="stylesheet" href="css/subfiles.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="shortcut icon" href="../../../../../img/logo/favicon.ico">
@@ -74,7 +75,7 @@
             <section class="comment-section" style="width: 80%;" id="answerForm">
 
             <h2>Share your Thinking 🤔💭 </h2>
-            <p> </p>
+            <p>Short thoughts from the community. Anyone can read them. Add a title and a message to share yours.</p>
 
             <form id="commentForm">
                 <input 
@@ -220,6 +221,7 @@
     form.reset();
   });
 
+  const esc=(s)=>String(s==null?"":s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
   function loadComments() {
     const q = query(
       collection(db, "comments"),
@@ -227,13 +229,13 @@
     );
 
     onSnapshot(q, (snapshot) => {
-      container.innerHTML = "";
+      container.innerHTML = snapshot.empty ? '<p style="opacity:.7;text-align:center">No posts yet. Be the first to share.</p>' : "";
       snapshot.forEach((docSnap) => {
         const data = docSnap.data();
         container.innerHTML += `
           <div class="comment">
-            <strong>${data.name}</strong>
-            <p>${data.comment}</p>
+            <strong>${esc(data.name)}</strong>
+            <p>${esc(data.comment)}</p>
             <button onclick="likeComment('${docSnap.id}')">
               ❤️ ${data.likes || 0}
             </button>

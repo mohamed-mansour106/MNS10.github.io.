@@ -1,0 +1,103 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+    function realUser() {
+      return request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get('role', '') == 'admin';
+    }
+
+    // Users: private. Only the owner or an admin can read. Nobody can make themselves admin.
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid) && !('role' in request.resource.data);
+      allow update: if isAdmin()
+        || (isOwner(uid) && request.resource.data.get('role', '') == resource.data.get('role', ''));
+      allow delete: if isAdmin();
+    }
+
+    // Q&A
+    match /questions/{id} {
+      allow read: if true;
+      allow create: if signedIn() && request.resource.data.authorId == request.auth.uid;
+      allow update: if isAdmin()
+        || isOwner(resource.data.authorId)
+        || (signedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['answerCount']));
+      allow delete: if isAdmin() || isOwner(resource.data.authorId);
+    }
+    match /answers/{id} {
+      allow read: if true;
+      allow create: if signedIn() && request.resource.data.authorId == request.auth.uid;
+      allow update: if isAdmin()
+        || isOwner(resource.data.authorId)
+        || (signedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes', 'likedBy']));
+      allow delete: if isAdmin() || isOwner(resource.data.authorId);
+    }
+
+    // News posts (same as today: signed-in users only)
+    match /posts/{postId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.authorId == request.auth.uid;
+      allow update: if isAdmin()
+        || isOwner(resource.data.authorId)
+        || (signedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes', 'likedBy', 'commentCount']));
+      allow delete: if isAdmin() || isOwner(resource.data.authorId);
+
+      match /comments/{commentId} {
+        allow read: if signedIn();
+        allow create: if signedIn() && request.resource.data.authorId == request.auth.uid;
+        allow update: if isOwner(resource.data.authorId);
+        allow delete: if isAdmin()
+          || isOwner(resource.data.authorId)
+          || isOwner(get(/databases/$(database)/documents/posts/$(postId)).data.authorId);
+      }
+    }
+
+    // Top-level comments used by News.html
+    match /comments/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn();
+      allow update: if signedIn() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes']);
+      allow delete: if isAdmin();
+    }
+
+    // Community courses: everyone reads approved ones. New ones are always pending.
+    match /courses/{id} {
+      allow read: if resource.data.status == 'approved'
+        || (signedIn() && resource.data.authorId == request.auth.uid)
+        || isAdmin();
+      allow create: if realUser()
+        && request.resource.data.keys().hasOnly(['title', 'description', 'link', 'category', 'level', 'authorId', 'authorName', 'status', 'createdAt'])
+        && request.resource.data.status == 'pending'
+        && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.title is string
+        && request.resource.data.title.size() >= 3 && request.resource.data.title.size() <= 100
+        && request.resource.data.description is string
+        && request.resource.data.description.size() >= 10 && request.resource.data.description.size() <= 600
+        && request.resource.data.link is string
+        && request.resource.data.link.size() <= 300
+        && request.resource.data.link.matches('^https?://[^ ]+$')
+        && request.resource.data.category is string && request.resource.data.category.size() <= 40
+        && request.resource.data.level is string && request.resource.data.level.size() <= 20
+        && request.resource.data.authorName is string && request.resource.data.authorName.size() <= 60;
+      allow update: if isAdmin();
+      allow delete: if isAdmin() || (signedIn() && resource.data.authorId == request.auth.uid);
+    }
+
+    // Anything else: closed
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

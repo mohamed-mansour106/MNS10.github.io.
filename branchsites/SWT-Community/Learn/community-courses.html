@@ -14,6 +14,7 @@
       .cc-filters input,.cc-filters select{background:var(--darker-bg);color:var(--text-primary);border:1px solid var(--border-color);border-radius:8px;padding:10px 12px;font:inherit;max-width:100%}
       .cc-filters input{flex:1;min-width:180px}
       .cc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+      .cc-cover{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;display:block;background:var(--darker-bg)}
       .cc-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
       .cc-card h3{font-size:1.05rem;color:var(--text-primary)}
       .cc-card p{color:var(--text-secondary);font-size:.92rem;line-height:1.5;word-break:break-word}
@@ -70,6 +71,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="../js/auth.js"></script>
+    <script src="../js/courses-common.js"></script>
     <script>
     (function(){
       var CATS=["Well Testing","Drilling","Production","Reservoir","HSE / Safety","Software & Tools","English & Soft Skills","Other"];
@@ -89,11 +91,13 @@
         list.forEach(function(d){
           var url=safeUrl(d.link);if(!url)return;
           var card=document.createElement('div');card.className='cc-card';
+          var img=document.createElement('img');img.className='cc-cover';img.loading='lazy';img.alt=d.title||'Course cover';img.src=CourseUtil.cover(d);
+          var ia=document.createElement('a');ia.href='course-view.html?id='+encodeURIComponent(d.id);ia.appendChild(img);card.appendChild(ia);
           var h=document.createElement('h3');h.textContent=d.title;
           var p=document.createElement('p');p.textContent=d.description;
           var pills=document.createElement('div');
           [d.category,d.level].forEach(function(t){if(!t)return;var s=document.createElement('span');s.className='cc-pill';s.textContent=t;pills.appendChild(s);});
-          var a=document.createElement('a');a.className='cc-btn';a.textContent='Open course';a.href=url;a.target='_blank';a.rel='nofollow noopener noreferrer ugc';
+          var a=document.createElement('a');a.className='cc-btn';a.textContent='Open course';a.href='course-view.html?id='+encodeURIComponent(d.id);
           var m=document.createElement('div');m.className='cc-meta';m.textContent='Shared by '+(d.authorName||'a community member');
           card.appendChild(h);card.appendChild(pills);card.appendChild(p);card.appendChild(a);card.appendChild(m);
           grid.appendChild(card);
@@ -101,7 +105,7 @@
       }
       [qEl,cEl,lEl].forEach(function(e){e.addEventListener('input',render);});
       db.collection('courses').where('status','==','approved').get().then(function(snap){
-        all=snap.docs.map(function(x){return x.data();});
+        all=snap.docs.map(function(x){var d=x.data();d.id=x.id;return d;});
         all.sort(function(a,b){return ((b.createdAt&&b.createdAt.seconds)||0)-((a.createdAt&&a.createdAt.seconds)||0);});
         render();
       }).catch(function(e){

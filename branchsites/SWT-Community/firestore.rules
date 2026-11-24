@@ -77,7 +77,7 @@ service cloud.firestore {
         || (signedIn() && resource.data.authorId == request.auth.uid)
         || isAdmin();
       allow create: if realUser()
-        && request.resource.data.keys().hasOnly(['title', 'description', 'link', 'category', 'level', 'authorId', 'authorName', 'status', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['title', 'description', 'link', 'cover', 'category', 'level', 'authorId', 'authorName', 'status', 'createdAt'])
         && request.resource.data.status == 'pending'
         && request.resource.data.authorId == request.auth.uid
         && request.resource.data.createdAt == request.time
@@ -88,6 +88,7 @@ service cloud.firestore {
         && request.resource.data.link is string
         && request.resource.data.link.size() <= 300
         && request.resource.data.link.matches('^https?://[^ ]+$')
+        && (!('cover' in request.resource.data) || (request.resource.data.cover is string && request.resource.data.cover.size() <= 300 && request.resource.data.cover.matches('^https://[^ ]+$')))
         && request.resource.data.category is string && request.resource.data.category.size() <= 40
         && request.resource.data.level is string && request.resource.data.level.size() <= 20
         && request.resource.data.authorName is string && request.resource.data.authorName.size() <= 60;

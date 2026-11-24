@@ -58,5 +58,5 @@
         if (y && y.id) return 'https://i.ytimg.com/vi/' + y.id + '/hqdefault.jpg';
         return placeholder(c && c.category);
     }
-    w.CourseUtil = { embedUrl: embedUrl, cover: cover, placeholder: placeholder };
+    w.CourseUtil = { yt: youtube, embedUrl: embedUrl, cover: cover, placeholder: placeholder };
 })(window);

@@ -35,7 +35,7 @@ function formatDate(timestamp) {
             '<strong>' + esc(c.title) + '</strong> <span style="color:var(--text-muted)">(' + esc(c.category) + ' / ' + esc(c.level) + ')</span>' +
             '<p style="margin:6px 0;">' + esc(c.description) + '</p>' +
             '<p style="margin:6px 0;word-break:break-all;"><a href="' + esc(link) + '" target="_blank" rel="noopener noreferrer nofollow">' + esc(c.link) + '</a></p>' +
-            '<small>By ' + esc(c.authorName) + '</small><div style="margin-top:8px;display:flex;gap:8px;">' +
+            (c.cover ? '<p style="margin:6px 0;word-break:break-all;">Cover: ' + esc(c.cover) + '</p>' : '') + '<small>By ' + esc(c.authorName) + '</small><div style="margin-top:8px;display:flex;gap:8px;">' +
             (pending ? '<button class="btn btn-primary" onclick="courseSetStatus(\'' + id + '\')">Approve</button>' : '') +
             '<button class="btn btn-danger" onclick="courseDelete(\'' + id + '\')">Delete</button></div></div>';
     }
@@ -66,3 +66,4 @@ function formatDate(timestamp) {
         if (r.success && r.userData.role === 'admin') loadCourses();
     });
 })();
+

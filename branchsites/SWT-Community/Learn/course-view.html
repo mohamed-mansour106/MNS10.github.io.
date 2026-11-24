@@ -58,7 +58,7 @@
           </div>
           <div id="relBox" style="display:none;margin-top:28px"><h3 style="margin-bottom:10px">More in this category</h3><div id="rel" style="display:flex;flex-direction:column;gap:8px"></div></div>
           <div class="cc-actions">
-            <a class="cc-btn alt" id="orig" target="_blank" rel="nofollow noopener noreferrer ugc">Open on the original site</a>
+            <a class="cc-btn alt" id="orig" target="_blank" rel="nofollow noopener noreferrer ugc">Watch / open on the original site</a>
             <a class="cc-btn" href="add-course.html">+ Add your own course</a>
           </div>
         </div>
@@ -102,14 +102,44 @@
         }).catch(function(){});
         var pills=document.getElementById('pills');
         [c.category,c.level].forEach(function(t){if(!t)return;var s=document.createElement('span');s.className='cc-pill';s.textContent=t;pills.appendChild(s);});
-        var emb=CourseUtil.embedUrl(c.link);
-        if(emb){
-          var f=document.createElement('iframe');f.src=emb;f.title=c.title;f.allowFullscreen=true;
-          f.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-          f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
-          var p=document.getElementById('player');p.appendChild(f);p.style.display='block';
+        var yt=CourseUtil.yt(c.link);
+        var pl=document.getElementById('player');
+        function fallback(){
+          if(pl.getAttribute('data-fb'))return;pl.setAttribute('data-fb','1');
+          pl.textContent='';pl.style.display='flex';pl.style.alignItems='center';pl.style.justifyContent='center';
+          pl.style.background='linear-gradient(135deg,#1e3a8a,#0f172a)';
+          var box=document.createElement('div');box.style.cssText='text-align:center;padding:16px';
+          var im=document.createElement('img');im.alt='';im.style.cssText='max-width:60%;border-radius:8px;margin-bottom:12px;display:none';
+          if(yt&&yt.id){im.src='https://i.ytimg.com/vi/'+yt.id+'/hqdefault.jpg';im.style.display='inline-block';}
+          var a=document.createElement('a');a.className='cc-btn';a.style.cssText='display:block;font-size:1.1rem;padding:14px 20px';a.textContent='Watch on YouTube';
+          a.target='_blank';a.rel='noopener noreferrer';a.href=link||'#';
+          var t=document.createElement('div');t.style.cssText='color:#cbd5e1;margin-bottom:10px;font-size:.9rem';t.textContent='The video could not be shown here.';
+          box.appendChild(t);box.appendChild(im);box.appendChild(a);pl.appendChild(box);
+        }
+        if(yt){
+          pl.style.display='block';
+          var holder=document.createElement('div');holder.id='ytholder';pl.appendChild(holder);
+          var done=false;
+          var timer=setTimeout(function(){if(!done)fallback();},9000);
+          window.onYouTubeIframeAPIReady=function(){
+            var vars={rel:0,playsinline:1};
+            var opt={width:'100%',height:'100%',playerVars:vars,events:{
+              onReady:function(){done=true;clearTimeout(timer);},
+              onError:function(){fallback();}}};
+            if(yt.id){opt.videoId=yt.id;if(yt.list)vars.list=yt.list;}
+            else{vars.listType='playlist';vars.list=yt.list;}
+            try{new YT.Player('ytholder',opt);}catch(e){fallback();}
+          };
+          var sc=document.createElement('script');sc.src='https://www.youtube.com/iframe_api';
+          sc.onerror=function(){fallback();};
+          document.head.appendChild(sc);
         } else {
-          document.getElementById('noembed').style.display='block';
+          var vm=CourseUtil.embedUrl(c.link);
+          if(vm){
+            var f=document.createElement('iframe');f.src=vm;f.title=c.title;f.allowFullscreen=true;
+            f.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
+            pl.appendChild(f);pl.style.display='block';
+          } else {document.getElementById('noembed').style.display='block';}
         }
         var o=document.getElementById('orig');
         if(link)o.href=link;else o.style.display='none';

@@ -58,7 +58,7 @@
           </div>
           <div id="relBox" style="display:none;margin-top:28px"><h3 style="margin-bottom:10px">More in this category</h3><div id="rel" style="display:flex;flex-direction:column;gap:8px"></div></div>
           <div class="cc-actions">
-            <a class="cc-btn alt" id="orig" target="_blank" rel="nofollow noopener noreferrer ugc">Watch / open on the original site</a>
+            <a class="cc-btn alt" id="orig" target="_blank" rel="nofollow noopener noreferrer ugc">Open on the original site</a>
             <a class="cc-btn" href="add-course.html">+ Add your own course</a>
           </div>
         </div>
@@ -109,12 +109,8 @@
           pl.textContent='';pl.style.display='flex';pl.style.alignItems='center';pl.style.justifyContent='center';
           pl.style.background='linear-gradient(135deg,#1e3a8a,#0f172a)';
           var box=document.createElement('div');box.style.cssText='text-align:center;padding:16px';
-          var im=document.createElement('img');im.alt='';im.style.cssText='max-width:60%;border-radius:8px;margin-bottom:12px;display:none';
-          if(yt&&yt.id){im.src='https://i.ytimg.com/vi/'+yt.id+'/hqdefault.jpg';im.style.display='inline-block';}
-          var a=document.createElement('a');a.className='cc-btn';a.style.cssText='display:block;font-size:1.1rem;padding:14px 20px';a.textContent='Watch on YouTube';
-          a.target='_blank';a.rel='noopener noreferrer';a.href=link||'#';
-          var t=document.createElement('div');t.style.cssText='color:#cbd5e1;margin-bottom:10px;font-size:.9rem';t.textContent='The video could not be shown here.';
-          box.appendChild(t);box.appendChild(im);box.appendChild(a);pl.appendChild(box);
+          var t=document.createElement('div');t.style.cssText='color:#cbd5e1;font-size:.95rem';t.textContent='The video could not be loaded here. Use the "Open on the original site" button below.';
+          box.appendChild(t);pl.appendChild(box);
         }
         if(yt){
           pl.style.display='block';

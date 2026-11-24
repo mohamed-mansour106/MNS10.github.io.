@@ -89,6 +89,7 @@
           <button class="pill" data-filter="Fundamental">Fundamental</button>
           <button class="pill" data-filter="lecture">Lecture Notes</button>
           <button class="pill" data-filter="papers">Technical Papers</button>
+          <button class="pill" data-filter="Community">Community</button>
         </div>
 
         <div id="library-list" class="library-list" style="display: grid;">
@@ -895,7 +896,7 @@
 
       function filterLibrary() {
         const query = librarySearch.value.toLowerCase();
-        libraryCards.forEach((card) => {
+        document.querySelectorAll(".library-card").forEach((card) => {
           const matchesFilter = currentFilter === "all" || card.dataset.type === currentFilter;
           const text = `${card.dataset.title} ${card.dataset.author}`.toLowerCase();
           const matchesSearch = text.includes(query);
@@ -917,5 +918,8 @@
     </script>
 
 
+    <script src="../js/auth.js"></script>
+    <script src="../js/courses-common.js"></script>
+    <script src="../js/learn-community.js"></script>
 </body>
 </html>

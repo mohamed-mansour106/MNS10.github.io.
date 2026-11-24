@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Course - Well Testing Community</title>
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+      .cc-wrap{max-width:1000px;margin:0 auto;padding:24px 0}
+      .cc-form{display:flex;flex-direction:column;gap:14px;max-width:640px}
+      .cc-form label{font-size:.9rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:6px}
+      .cc-form input,.cc-form select,.cc-form textarea{background:var(--darker-bg);color:var(--text-primary);border:1px solid var(--border-color);border-radius:8px;padding:10px 12px;font:inherit;max-width:100%}
+      .cc-form small{color:var(--text-muted)}
+      .cc-btn{display:inline-block;background:var(--primary-color);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:inherit;cursor:pointer}
+      .cc-btn:hover{background:var(--primary-dark)}
+      .cc-btn:disabled{opacity:.6;cursor:default}
+      .cc-note{background:var(--card-bg);border:1px solid var(--border-color);border-radius:10px;padding:14px;color:var(--text-secondary);margin-bottom:16px}
+      .cc-msg{padding:12px;border-radius:8px;display:none}
+      .cc-msg.ok{display:block;background:rgba(16,185,129,.15);color:var(--success-color)}
+      .cc-msg.err{display:block;background:rgba(239,68,68,.15);color:var(--danger-color)}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="learn.html" class="nav-link">Learn</a>
+                <a href="community-courses.html" class="nav-link">Community Courses</a>
+                <a href="../ask.html" class="nav-link">Ask Question</a>
+                <a href="../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+    <main class="container main-content">
+      <div class="cc-wrap">
+        <h1 class="page-title">Add a course</h1>
+        <p class="page-subtitle">Share a useful course or learning resource. It will appear on the Community Courses page after it is approved.</p>
+        <div id="needLogin" class="cc-note" style="display:none">You need to log in to add a course. <a id="loginLink" href="../login.html">Log in or create an account</a></div>
+        <form id="f" class="cc-form" style="display:none" novalidate>
+          <label>Course title<input id="title" maxlength="100" required placeholder="e.g. Introduction to Well Testing"><small>3 to 100 characters</small></label>
+          <label>Short description<textarea id="desc" rows="4" maxlength="600" required placeholder="What will someone learn? Who is it for?"></textarea><small>10 to 600 characters</small></label>
+          <label>Course link<input id="link" type="url" maxlength="300" required placeholder="https://..."><small>Must start with https:// or http://</small></label>
+          <label>Category<select id="cat"></select></label>
+          <label>Level<select id="lvl"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
+          <div><button type="submit" id="go" class="cc-btn">Submit for approval</button></div>
+          <div id="msg" class="cc-msg"></div>
+        </form>
+      </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+    (function(){
+      var CATS=["Well Testing","Drilling","Production","Reservoir","HSE / Safety","Software & Tools","English & Soft Skills","Other"];
+      var cat=document.getElementById('cat');
+      CATS.forEach(function(c){var o=document.createElement('option');o.textContent=c;cat.appendChild(o);});
+      var f=document.getElementById('f'),need=document.getElementById('needLogin'),msg=document.getElementById('msg'),go=document.getElementById('go');
+      document.getElementById('loginLink').href='../login.html?redirect='+encodeURIComponent(location.pathname);
+      function show(t,cls){msg.className='cc-msg '+cls;msg.textContent=t;}
+      var user=null;
+      auth.onAuthStateChanged(function(u){
+        user=u;
+        var ok=!!u&&!u.isAnonymous;
+        f.style.display=ok?'flex':'none';
+        need.style.display=ok?'none':'block';
+      });
+      f.addEventListener('submit',function(ev){
+        ev.preventDefault();
+        if(!user||user.isAnonymous){return;}
+        var title=document.getElementById('title').value.trim();
+        var desc=document.getElementById('desc').value.trim();
+        var link=document.getElementById('link').value.trim();
+        if(title.length<3||title.length>100){show('Title must be 3 to 100 characters.','err');return;}
+        if(desc.length<10||desc.length>600){show('Description must be 10 to 600 characters.','err');return;}
+        if(!/^https?:\/\/[^\s]+$/.test(link)||link.length>300){show('Enter a valid link starting with https://','err');return;}
+        go.disabled=true;show('Submitting...','ok');
+        db.collection('courses').where('authorId','==',user.uid).where('status','==','pending').get().then(function(s){
+          if(s.size>=3){throw {code:'too-many'};}
+          return db.collection('courses').add({
+            title:title,description:desc,link:link,
+            category:cat.value,level:document.getElementById('lvl').value,
+            authorId:user.uid,authorName:(user.displayName||'Community member').slice(0,60),
+            status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()
+          });
+        }).then(function(){
+          f.reset();show('Thank you! Your course was submitted and will appear after approval.','ok');go.disabled=false;
+        }).catch(function(e){
+          go.disabled=false;
+          if(e&&e.code==='too-many')show('You already have 3 courses waiting for approval. Please wait for them to be reviewed.','err');
+          else if(e&&e.code==='permission-denied')show('Adding courses is not open yet. Please try again later.','err');
+          else show('Could not submit. Please try again.','err');
+        });
+      });
+    })();
+    </script>
+</body>
+</html>

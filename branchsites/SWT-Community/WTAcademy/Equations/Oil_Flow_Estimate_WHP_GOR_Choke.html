@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil Flow Estimate from WHP, GOR and Choke Size | OilField University</title>
+    <meta name="description" content="Quick field estimate of oil flow rate from wellhead pressure, gas-oil ratio and choke size. Free well testing calculator from OilField University.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .calc-select-inline {
+            background: #0d1624;
+            color: #f3f4f6;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            margin-top: 6px;
+            width: 100%;
+        }
+        .calc-note {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        .validation-msg {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            min-height: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link">Learn</a>
+                <a href="../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu" aria-label="Close Menu">&times;</button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../ask.html" class="mobile-menu-item">Ask</a>
+            <a href="../../Learn/learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container main-content" style="width: 95%;">
+
+        <header class="hero1-card">
+            <div class="badge">Live Engineering Dashboard</div>
+            <h1>Well Testing Toolbox</h1>
+            <div id="gauge_div"></div>
+        </header>
+
+        <!-- AUTH MESSAGES -->
+        <div id="answerAuthWarning" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #eab308; background: rgba(234, 179, 8, 0.12); color: #fde047;">
+            Log in to save your session and access full community features.
+        </div>
+        <div id="answerForm" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #334155; background: rgba(16, 27, 46, 0.9); color: #e2e8f0;">
+            Interactive engineering toolbox ready.
+        </div>
+
+        <section class="section tools">
+            <h2 class="section-title">Interactive Tools</h2>
+            <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+            <!-- Oil Flow Estimates from WHP, GOR & Choke Size (D) -->
+            <section class="section" style="background: #101b2e; border: 1px solid #10b981; margin-top: 30px; border-radius: 12px;">
+                <h2 class="section-title" style="color: #34d399; border-left: 4px solid #10b981; padding-left: 15px;">
+                    Oil Flow Estimates &ndash; WHP, GOR &amp; Choke Size (\(D\))
+                </h2>
+                <p style="color: var(--muted); margin-bottom: 20px;">
+                    Quick field estimate of oil flow rate (\(Q_{\text{oil}}\)) from Wellhead Pressure (\(\text{WHP}\)), Gas-Oil Ratio (\(\text{GOR}\)), and choke size (\(D\)).
+                </p>
+
+                <div class="converter-grid" style="margin-bottom: 12px;">
+                    <div class="conv-field">
+                        <label for="oil-whp">Wellhead Pressure (\(\text{WHP}\))</label>
+                        <input type="number" id="oil-whp" step="any" min="0" placeholder="e.g. 1200">
+                        <select id="oil-whp-unit" class="calc-select-inline" aria-label="WHP Unit">
+                            <option value="psig" selected>psig</option>
+                            <option value="bar">bar</option>
+                            <option value="kpa">kPa</option>
+                        </select>
+                    </div>
+
+                    <div class="conv-field">
+                        <label for="oil-choke">Choke Size (\(D\))</label>
+                        <input type="number" id="oil-choke" step="any" min="0" placeholder="e.g. 32">
+                        <select id="oil-choke-unit" class="calc-select-inline" aria-label="Choke Size Unit">
+                            <option value="64ths" selected>64ths of an inch (/64&quot;)</option>
+                            <option value="in">Inches (in)</option>
+                        </select>
+                    </div>
+
+                    <div class="conv-field">
+                        <label for="oil-gor">Gas-Oil Ratio (\(\text{GOR}\))</label>
+                        <input type="number" id="oil-gor" step="any" min="0" placeholder="e.g. 800">
+                        <span style="display: block; font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">
+                            Units: <strong>scf/STB</strong>
+                        </span>
+                    </div>
+                </div>
+
+                <div id="oil-validation" class="validation-msg" role="alert"></div>
+
+                <div class="converter-grid" style="margin-top: 12px;">
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #34d399; padding: 15px;">
+                        <h4 style="color: #34d399;">Estimated Oil Rate (STB/d)</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$Q_{\text{oil}} = \frac{\text{WHP} \times D^{1.89}}{435} \times \left(\frac{\text{GOR}}{1}\right)^{0.546}$$
+                        </div>
+                        <label for="res-qoil-stb" style="color: #fff; font-size: 0.8em;">Oil Rate (STB/d)</label>
+                        <input type="text" id="res-qoil-stb" readonly placeholder="0.0" style="background: #1a2a44; color: #34d399; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #38bdf8; padding: 15px;">
+                        <h4 style="color: #38bdf8;">Estimated Oil Rate (m&sup3;/d)</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$1\text{ STB} \approx 0.158987\text{ m}^3$$
+                        </div>
+                        <label for="res-qoil-m3" style="color: #fff; font-size: 0.8em;">Oil Rate (m&sup3;/d)</label>
+                        <input type="text" id="res-qoil-m3" readonly placeholder="0.0" style="background: #1a2a44; color: #38bdf8; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 15px;">
+                        <h4 style="color: #f1c40f;">Associated Gas Rate (MSCFD)</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$Q_{\text{gas}} = \frac{Q_{\text{oil}} \times \text{GOR}}{1{,}000}$$
+                        </div>
+                        <label for="res-qgas-mscf" style="color: #fff; font-size: 0.8em;">Associated Gas (MSCFD)</label>
+                        <input type="text" id="res-qgas-mscf" readonly placeholder="0.0" style="background: #1a2a44; color: #f1c40f; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+                </div>
+
+                <p class="calc-note">
+                    <strong>Field Note:</strong> In oilfield choke correlations, \(D\) is standardly entered in <strong>64ths of an inch</strong> (e.g., <code>32</code> for 32/64&quot; = 1/2&quot;); if you select <strong>Inches (in)</strong>, the calculator converts \(D_{64} = D_{\text{in}} \times 64\). Treat empirical choke estimates as preliminary screening values and verify against separator meter rates.
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/firestore.js"></script>
+    <script src="../../js/app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+            firebase.auth().onAuthStateChanged((user) => {
+                const loginLink = document.getElementById("loginNavLink");
+                const logoutBtn = document.getElementById("logoutNavBtn");
+                const profileLink = document.getElementById("profileNavLink");
+                const mobileLoginLink = document.getElementById("mobileLoginLink");
+                const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
+                const mobileProfileLink = document.getElementById("mobileProfileLink");
+                const answerForm = document.getElementById("answerForm");
+                const answerWarning = document.getElementById("answerAuthWarning");
+
+                if (user) {
+                    if (loginLink) loginLink.style.display = "none";
+                    if (logoutBtn) logoutBtn.style.display = "inline-block";
+                    if (profileLink) profileLink.style.display = "inline-block";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "none";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "inline-block";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "inline-block";
+                    if (answerForm) answerForm.style.display = "block";
+                    if (answerWarning) answerWarning.style.display = "none";
+                } else {
+                    if (loginLink) loginLink.style.display = "inline-block";
+                    if (logoutBtn) logoutBtn.style.display = "none";
+                    if (profileLink) profileLink.style.display = "none";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "inline-block";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "none";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "none";
+                    if (answerForm) answerForm.style.display = "none";
+                    if (answerWarning) answerWarning.style.display = "block";
+                }
+            });
+        }
+
+        const logoutNavBtn = document.getElementById("logoutNavBtn");
+        if (logoutNavBtn && typeof firebase !== 'undefined' && firebase.auth) {
+            logoutNavBtn.addEventListener("click", async () => {
+                await firebase.auth().signOut();
+                window.location.href = "../../login.html";
+            });
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        if (openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+
+        // --- Oil Flow Estimate (WHP, GOR & Choke Size D) Logic ---
+        const PSI_PER_BAR = 14.503773773;
+        const M3_PER_STB = 0.158987294928;
+
+        function whpToPsig(val, unit) {
+            if (unit === 'bar') return val * PSI_PER_BAR;
+            if (unit === 'kpa') return (val / 100) * PSI_PER_BAR;
+            return val;
+        }
+
+        function chokeTo64ths(val, unit) {
+            return unit === 'in' ? val * 64 : val;
+        }
+
+        function clearOilOutputs(msg) {
+            document.getElementById('res-qoil-stb').value = '';
+            document.getElementById('res-qoil-m3').value = '';
+            document.getElementById('res-qgas-mscf').value = '';
+            document.getElementById('oil-validation').textContent = msg || '';
+        }
+
+        function calculateOilFlow() {
+            const rawWhp = parseFloat(document.getElementById('oil-whp').value);
+            const whpUnit = document.getElementById('oil-whp-unit').value;
+            const rawChoke = parseFloat(document.getElementById('oil-choke').value);
+            const chokeUnit = document.getElementById('oil-choke-unit').value;
+            const rawGor = parseFloat(document.getElementById('oil-gor').value);
+
+            if (isNaN(rawWhp) || isNaN(rawChoke) || isNaN(rawGor)) {
+                clearOilOutputs('');
+                return;
+            }
+            if (rawWhp < 0 || rawChoke < 0 || rawGor < 0) {
+                clearOilOutputs('WHP, Choke Size, and GOR must be zero or greater.');
+                return;
+            }
+
+            document.getElementById('oil-validation').textContent = '';
+
+            const whpPsig = whpToPsig(rawWhp, whpUnit);
+            const d64 = chokeTo64ths(rawChoke, chokeUnit);
+
+            // Q_oil = (WHP * D^1.89) / 435 * (GOR / 1)^0.546
+            const qOilStb = ((whpPsig * Math.pow(d64, 1.89)) / 435) * Math.pow(rawGor / 1, 0.546);
+            const qOilM3 = qOilStb * M3_PER_STB;
+            const qGasMscf = (qOilStb * rawGor) / 1000;
+
+            document.getElementById('res-qoil-stb').value = qOilStb.toFixed(1);
+            document.getElementById('res-qoil-m3').value = qOilM3.toFixed(1);
+            document.getElementById('res-qgas-mscf').value = qGasMscf.toFixed(1);
+        }
+
+        ['oil-whp', 'oil-whp-unit', 'oil-choke', 'oil-choke-unit', 'oil-gor'].forEach(id => {
+            const el = document.getElementById(id);
+            el.addEventListener('input', calculateOilFlow);
+            el.addEventListener('change', calculateOilFlow);
+        });
+    </script>
+</body>
+</html>

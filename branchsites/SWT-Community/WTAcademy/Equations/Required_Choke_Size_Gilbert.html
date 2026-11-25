@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Required Choke Size Calculator (Gilbert) | OilField University</title>
+    <meta name="description" content="Calculate the choke size needed for a target oil rate from wellhead pressure and gas-oil ratio using the Gilbert correlation. Free well testing calculator from OilField University.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+    <style>
+        .choke-calculator {
+            background: #101b2e;
+            border: 1px solid #3498db;
+            border-radius: 12px;
+            padding: 22px;
+            margin: 25px auto;
+            max-width: 850px;
+        }
+
+        .choke-calculator h2 {
+            color: #3498db;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+
+        .input-field label {
+            display: block;
+            color: #ddd;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .input-field input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            background: #1a2a44;
+            border: 1px solid #3498db;
+            border-radius: 6px;
+            color: white;
+            font-size: 17px;
+        }
+
+        .input-field input:focus {
+            outline: none;
+            border-color: #2ecc71;
+        }
+
+        .result-card {
+            background: #0d1624;
+            padding: 25px;
+            border-radius: 9px;
+            text-align: center;
+            border-top: 4px solid #2ecc71;
+            margin-top: 25px;
+        }
+
+        .result-card h3 {
+            color: #2ecc71;
+            margin-top: 0;
+        }
+
+        .result-card input {
+            width: 100%;
+            max-width: 350px;
+            box-sizing: border-box;
+            padding: 15px;
+            background: #1a2a44;
+            border: 1px solid #2ecc71;
+            border-radius: 6px;
+            text-align: center;
+            color: #2ecc71;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .unit {
+            color: #aaa;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .formula-box {
+            background: #0d1624;
+            border-radius: 8px;
+            padding: 18px;
+            margin-top: 20px;
+            color: #ccc;
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        .note {
+            background: #1a2a44;
+            border-left: 4px solid #f1c40f;
+            padding: 13px;
+            border-radius: 5px;
+            color: #ddd;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: #ff7675;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .reset-btn {
+            background: #3498db;
+            border: none;
+            border-radius: 6px;
+            padding: 11px 22px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .reset-btn:hover {
+            background: #217dbb;
+        }
+
+        @media(max-width:600px) {
+            .choke-calculator {
+                padding: 14px;
+            }
+
+            .result-card input {
+                font-size: 27px;
+            }
+        }
+    </style>
+
+
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width:95%;">
+
+        <header class="hero1-card">
+    
+            <div class="badge">Well Testing Engineering Tool</div>
+    
+            <h1>Required Choke Size Calculator</h1>
+    
+            <p>Gilbert Method</p>
+    
+        </header>
+    
+    
+        <section class="choke-calculator">
+    
+            <h2>1. Operating Parameters</h2>
+    
+            <p style="color:#aaa;">
+                Enter well operating conditions and target oil production rate.
+            </p>
+    
+            <div class="input-grid">
+    
+                <div class="input-field">
+                    <label>Wellhead Pressure (psia)</label>
+    
+                    <input
+                        type="number"
+                        id="pressure"
+                        value="1100"
+                        min="0"
+                        step="any"
+                    >
+                </div>
+    
+                <div class="input-field">
+                    <label>Target Oil Rate (bbl/d)</label>
+    
+                    <input
+                        type="number"
+                        id="oilRate"
+                        value="1200"
+                        min="0"
+                        step="any"
+                    >
+                </div>
+    
+                <div class="input-field">
+                    <label>Gas/Oil Ratio (scf/bbl)</label>
+    
+                    <input
+                        type="number"
+                        id="gor"
+                        value="787"
+                        min="0"
+                        step="any"
+                    >
+                </div>
+    
+            </div>
+    
+    
+            <h2>2. Gilbert Correlation</h2>
+    
+            <div class="formula-box">
+    
+                <h4 style="color:#3498db;">
+                    Required Choke Size Equation
+                </h4>
+    
+                $$Q_o =
+                \frac{P \times C^{1.89}}
+                {435 \times (GOR/1000)^{0.546}}$$
+    
+                <hr style="border-color:#344b69;margin:18px 0;">
+    
+                $$C =
+                \left[
+                \frac{Q_o \times 435 \times (GOR/1000)^{0.546}}
+                {P}
+                \right]^{1/1.89}$$
+    
+            </div>
+    
+    
+            <div class="result-card">
+    
+                <h3>Required Choke Size</h3>
+    
+                <input
+                    type="text"
+                    id="chokeResult"
+                    readonly
+                    placeholder="0.00"
+                >
+    
+                <div class="unit">
+                    1/64 inch
+                </div>
+    
+            </div>
+    
+    
+            <div id="errorMessage" class="error-message"></div>
+    
+    
+            <button class="reset-btn" onclick="resetCalculator()">
+                Reset Calculator
+            </button>
+    
+    
+            <div class="note">
+    
+                <strong>Engineering Notes</strong>
+    
+                <ul>
+                    <li>Pressure must be entered in psia.</li>
+                    <li>Oil rate must be entered in bbl/day.</li>
+                    <li>GOR must be entered in scf/bbl.</li>
+                    <li>Choke size is expressed in 1/64-inch units.</li>
+                    <li>The result is a theoretical estimate based on the Gilbert equation implemented here.</li>
+                    <li>Verify the correlation's original reference, units and applicable operating range before field application.</li>
+                </ul>
+    
+            </div>
+    
+        </section>
+    
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+
+    <script>
+
+        // =====================================
+        // GILBERT CHOKE SIZE CALCULATOR
+        // =====================================
+        
+        function calculateRequiredChoke() {
+        
+            // Get input values
+        
+            const P = parseFloat(
+                document.getElementById("pressure").value
+            );
+        
+            const Q = parseFloat(
+                document.getElementById("oilRate").value
+            );
+        
+            const GOR = parseFloat(
+                document.getElementById("gor").value
+            );
+        
+        
+            // Output elements
+        
+            const result =
+                document.getElementById("chokeResult");
+        
+            const error =
+                document.getElementById("errorMessage");
+        
+        
+            // Validate inputs
+        
+            if (
+                !Number.isFinite(P) ||
+                !Number.isFinite(Q) ||
+                !Number.isFinite(GOR) ||
+                P <= 0 ||
+                Q <= 0 ||
+                GOR <= 0
+            ) {
+        
+                error.textContent =
+                    "Please enter valid positive values for all parameters.";
+        
+                result.value = "";
+        
+                return;
+            }
+        
+            error.textContent = "";
+        
+        
+            // =================================
+            // GILBERT EQUATION
+            // =================================
+        
+            const chokeSize = Math.pow(
+        
+                (
+                    Q *
+                    435 *
+                    Math.pow(GOR / 1000, 0.546)
+                ) / P,
+        
+                1 / 1.89
+        
+            );
+        
+        
+            // =================================
+            // DISPLAY RESULT
+            // =================================
+        
+            if (!Number.isFinite(chokeSize)) {
+        
+                error.textContent =
+                    "Calculation error. Please check your inputs.";
+        
+                result.value = "";
+        
+                return;
+            }
+        
+            result.value = chokeSize.toFixed(2);
+        
+        }
+        
+        
+        // =====================================
+        // AUTOMATIC CALCULATION
+        // =====================================
+        
+        ["pressure", "oilRate", "gor"].forEach(id => {
+        
+            document.getElementById(id).addEventListener(
+                "input",
+                calculateRequiredChoke
+            );
+        
+        });
+        
+        
+        // =====================================
+        // RESET
+        // =====================================
+        
+        function resetCalculator() {
+        
+            document.getElementById("pressure").value = 1100;
+        
+            document.getElementById("oilRate").value = 1200;
+        
+            document.getElementById("gor").value = 787;
+        
+            calculateRequiredChoke();
+        
+        }
+        
+        
+        // =====================================
+        // INITIAL CALCULATION
+        // =====================================
+        
+        calculateRequiredChoke();
+        
+        </script>
+
+</body>
+</html>

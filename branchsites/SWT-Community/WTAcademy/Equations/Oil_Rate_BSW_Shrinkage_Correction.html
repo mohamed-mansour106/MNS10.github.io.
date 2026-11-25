@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil Rate Calculator (BS&amp;W and Shrinkage Correction) | OilField University</title>
+    <meta name="description" content="Calculate corrected oil production rate from meter readings using either BS&amp;W correction or oil shrinkage correction. Free well testing calculator from OilField University.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+      
+<!-- ==========================================
+     OIL RATE CALCULATION TOOL
+========================================== -->
+
+<section class="section" style="
+background:#101b2e;
+border:1px solid #27ae60;
+margin-top:30px;
+border-radius:12px;
+padding:20px;
+">
+
+<h2 class="section-title" style="
+    color:#27ae60;
+    border-left:4px solid #27ae60;
+    padding-left:15px;
+">
+    Oil Rate Calculation
+</h2>
+
+<p style="color:var(--muted);margin-bottom:20px;">
+    Calculate corrected oil production rate using BS&W
+    or oil shrinkage correction methods.
+</p>
+
+<!-- METHOD SELECTION -->
+
+<div class="conv-field" style="margin-bottom:20px;">
+    <label>Select Calculation Method</label>
+    <select id="oil-method"
+        style="width:100%;padding:12px;background:#1a2a44;
+        color:white;border:1px solid #3498db;border-radius:6px;">
+
+        <option value="bsw">Method 1 - BS&W Correction</option>
+        <option value="shrinkage">Method 2 - Oil Shrinkage</option>
+
+    </select>
+</div>
+
+
+<!-- ======================================
+     METHOD 1 : BS&W
+======================================= -->
+
+<div id="oil-bsw-section">
+
+    <div style="color:#27ae60;font-size:0.9em;margin-bottom:15px;">
+        <strong>Method 1: BS&W Correction</strong>
+    </div>
+
+    <div style="background:#0d1624;padding:15px;border-radius:8px;
+                margin-bottom:20px;text-align:center;overflow-x:auto;">
+
+        <div style="color:#aaa;">
+            $$Q_{Oil}=KF \times MF \times INC \times Int.T$$
+        </div>
+
+        <div style="color:#aaa;">
+            $$\times\left(1-\frac{BS\&W}{100}\right)$$
+        </div>
+
+    </div>
+
+    <div class="converter-grid">
+
+        <div class="conv-field">
+            <label>KF (Volume Correction Factor)</label>
+            <input type="number" id="oil-kf" value="1" step="any">
+        </div>
+
+        <div class="conv-field">
+            <label>MF (Meter Factor)</label>
+            <input type="number" id="oil-mf" value="1" step="any">
+        </div>
+
+        <div class="conv-field">
+            <label>INC (Increment)</label>
+            <input type="number" id="oil-inc" value="1" step="any">
+        </div>
+
+        <div class="conv-field">
+            <label>Int.T (Meter Total Increment)</label>
+            <input type="number" id="oil-int-t" value="0" step="any">
+        </div>
+
+        <div class="conv-field">
+            <label>BS&W (%)</label>
+            <input type="number" id="oil-bsw" value="0"
+                   min="0" max="100" step="any">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================
+     METHOD 2 : SHRINKAGE
+======================================= -->
+
+<div id="oil-shrinkage-section" style="display:none;">
+
+    <div style="color:#3498db;font-size:0.9em;margin-bottom:15px;">
+        <strong>Method 2: Oil Shrinkage Correction</strong>
+    </div>
+
+    <div style="background:#0d1624;padding:15px;border-radius:8px;
+                margin-bottom:20px;text-align:center;overflow-x:auto;">
+
+        <div style="color:#aaa;">
+            $$Q_{Liquid}=Int.T \times MK$$
+        </div>
+
+        <div style="color:#aaa;">
+            $$\times OilShrinkage \times MeterInt_{Oil} \times KF$$
+        </div>
+
+    </div>
+
+    <div class="converter-grid">
+
+        <div class="conv-field">
+            <label>Int.T (Total Increment)</label>
+            <input type="number" id="sh-int-t" value="0" step="any">
+        </div>
+
+        <div class="conv-field">
+            <label>MK</label>
+            <input type="number" id="sh-mk" value="1" step="any">
+        </div>
+
+        <div class="conv-field">
+            <label>Oil Shrinkage Factor</label>
+            <input type="number" id="sh-shrinkage" value="1" step="any">
+        </div>
+
+        <div class="conv-field">
+            <label>Meter Int Oil</label>
+            <input type="number" id="sh-meter-int" value="1" step="any">
+        </div>
+
+        <div class="conv-field">
+            <label>KF (Volume Correction Factor)</label>
+            <input type="number" id="sh-kf" value="1" step="any">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================
+     RESULT
+======================================= -->
+
+<div class="tool-card" style="
+    background:#0d1624;
+    border-top:4px solid #27ae60;
+    padding:20px;
+    margin-top:20px;
+    text-align:center;
+">
+
+    <h3 style="color:#27ae60;margin-bottom:15px;">
+        Calculated Production Rate
+    </h3>
+
+    <div id="oil-result"
+         style="font-size:2em;font-weight:bold;color:#27ae60;">
+        0.000
+    </div>
+
+    <div id="oil-result-label"
+         style="color:#aaa;font-size:0.85em;margin-top:8px;">
+        Oil Rate
+    </div>
+
+    <div id="oil-error"
+         style="color:#e74c3c;font-size:0.85em;margin-top:10px;">
+    </div>
+
+</div>
+
+
+<!-- VARIABLE EXPLANATION -->
+
+<div style="
+    background:#1a2a44;
+    padding:15px;
+    border-radius:8px;
+    margin-top:20px;
+    color:#ccc;
+    font-size:0.85em;
+    line-height:1.8;
+">
+
+    <strong style="color:#3498db;">Calculation Notes</strong>
+
+    <ul style="padding-left:20px;margin-top:10px;">
+        <li><strong>KF:</strong> Volume Correction Factor.</li>
+        <li><strong>MF:</strong> Meter Factor.</li>
+        <li><strong>INC:</strong> Increment multiplier.</li>
+        <li><strong>Int.T:</strong> Meter total increment.</li>
+        <li><strong>BS&W:</strong> Basic Sediment and Water percentage.</li>
+        <li><strong>MK:</strong> Meter constant or multiplier.</li>
+        <li><strong>Oil Shrinkage:</strong> Shrinkage correction factor.</li>
+        <li><strong>Meter Int Oil:</strong> Oil meter increment.</li>
+    </ul>
+
+</div>
+
+</section>
+
+
+                            <!-- ==========================================
+                            OIL RATE JAVASCRIPT
+                            ========================================== -->
+
+                            <script>
+
+                            (function() {
+
+                            const method = document.getElementById("oil-method");
+
+                            const bswSection = document.getElementById("oil-bsw-section");
+                            const shrinkSection = document.getElementById("oil-shrinkage-section");
+
+                            const result = document.getElementById("oil-result");
+                            const resultLabel = document.getElementById("oil-result-label");
+                            const error = document.getElementById("oil-error");
+
+
+                            function getValue(id) {
+                                return parseFloat(document.getElementById(id).value);
+                            }
+
+
+                            function calculateOilRate() {
+
+                                error.textContent = "";
+
+                                let rate = 0;
+
+                                if (method.value === "bsw") {
+
+                                    const KF = getValue("oil-kf");
+                                    const MF = getValue("oil-mf");
+                                    const INC = getValue("oil-inc");
+                                    const IntT = getValue("oil-int-t");
+                                    const BSW = getValue("oil-bsw");
+
+                                    const values = [KF, MF, INC, IntT, BSW];
+
+                                    if (values.some(v => !Number.isFinite(v))) {
+                                        error.textContent = "Please enter valid numbers in all fields.";
+                                        result.textContent = "--";
+                                        return;
+                                    }
+
+                                    if (BSW < 0 || BSW > 100) {
+                                        error.textContent = "BS&W must be between 0 and 100%.";
+                                        result.textContent = "--";
+                                        return;
+                                    }
+
+                                    rate = KF * MF * INC * IntT * (1 - BSW / 100);
+
+                                    resultLabel.textContent = "Calculated Oil Rate";
+
+                                }
+
+                                else {
+
+                                    const IntT = getValue("sh-int-t");
+                                    const MK = getValue("sh-mk");
+                                    const shrinkage = getValue("sh-shrinkage");
+                                    const meterInt = getValue("sh-meter-int");
+                                    const KF = getValue("sh-kf");
+
+                                    const values = [IntT, MK, shrinkage, meterInt, KF];
+
+                                    if (values.some(v => !Number.isFinite(v))) {
+                                        error.textContent = "Please enter valid numbers in all fields.";
+                                        result.textContent = "--";
+                                        return;
+                                    }
+
+                                    rate = IntT * MK * shrinkage * meterInt * KF;
+
+                                    resultLabel.textContent = "Calculated Liquid Rate";
+
+                                }
+
+
+                                if (!Number.isFinite(rate)) {
+                                    error.textContent = "Calculation error.";
+                                    result.textContent = "--";
+                                    return;
+                                }
+
+                                result.textContent = rate.toLocaleString("en-US", {
+                                    minimumFractionDigits: 3,
+                                    maximumFractionDigits: 3
+                                });
+
+                            }
+
+
+                            // Switch calculation method
+
+                            method.addEventListener("change", function() {
+
+                                const isBSW = method.value === "bsw";
+
+                                bswSection.style.display = isBSW ? "block" : "none";
+                                shrinkSection.style.display = isBSW ? "none" : "block";
+
+                                calculateOilRate();
+
+                            });
+
+
+                            // Automatic calculation on input changes
+
+                            document.querySelectorAll(
+                                "#oil-bsw-section input, #oil-shrinkage-section input"
+                            ).forEach(input => {
+
+                                input.addEventListener("input", calculateOilRate);
+
+                            });
+
+
+                            calculateOilRate();
+
+                            })();
+
+                            </script>
+
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+
+// --- 2. Solution GOR Logic ---
+function calculateGOR() {
+    const P = (parseFloat(document.getElementById('gor-p').value) || 0) + 14.7; // Psia
+    const T = parseFloat(document.getElementById('gor-t').value) || 0;
+    const G = parseFloat(document.getElementById('gor-g').value) || 1;
+    const API = parseFloat(document.getElementById('gor-api').value) || 1;
+
+    // A. Standing Correlation
+    const yg = 0.00091 * T - 0.0125 * API;
+    const rsStanding = G * Math.pow((P / (18 * Math.pow(10, yg))), 1.204);
+    document.getElementById('res-standing').value = Math.round(rsStanding);
+
+    // B. Vasquez & Beggs
+    let c1, c2, c3;
+    if (API <= 30) {
+        c1 = 0.0362; c2 = 1.0937; c3 = 25.724;
+    } else {
+        c1 = 0.0178; c2 = 1.1870; c3 = 23.931;
+    }
+    const rsVB = c1 * G * Math.pow(P, c2) * Math.exp((c3 * API) / (T + 460));
+    document.getElementById('res-vb').value = Math.round(rsVB);
+}
+
+// Listeners
+['gor-p', 'gor-t', 'gor-g', 'gor-api'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateGOR);
+});
+
+
+    </script>
+
+
+</body>
+</html>

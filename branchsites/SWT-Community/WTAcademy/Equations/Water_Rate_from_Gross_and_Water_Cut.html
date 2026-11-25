@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Rate from Gross Rate and Water Cut | OilField University</title>
+    <meta name="description" content="Calculate water production rate from gross liquid rate and percentage water cut. Free well testing calculator from OilField University.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .calc-select-inline {
+            background: #0d1624;
+            color: #f3f4f6;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            margin-top: 6px;
+            width: 100%;
+        }
+        .calc-note {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        .validation-msg {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            min-height: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link">Learn</a>
+                <a href="../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu" aria-label="Close Menu">&times;</button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../ask.html" class="mobile-menu-item">Ask</a>
+            <a href="../../Learn/learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container main-content" style="width: 95%;">
+
+        <header class="hero1-card">
+            <div class="badge">Live Engineering Dashboard</div>
+            <h1>Well Testing Toolbox</h1>
+            <div id="gauge_div"></div>
+        </header>
+
+        <!-- AUTH MESSAGES -->
+        <div id="answerAuthWarning" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #eab308; background: rgba(234, 179, 8, 0.12); color: #fde047;">
+            Log in to save your session and access full community features.
+        </div>
+        <div id="answerForm" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #334155; background: rgba(16, 27, 46, 0.9); color: #e2e8f0;">
+            Interactive engineering toolbox ready.
+        </div>
+
+        <section class="section tools">
+            <h2 class="section-title">Interactive Tools</h2>
+            <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+            <!-- Water Rate from Gross & Water Cut (WC) -->
+            <section class="section" style="background: #101b2e; border: 1px solid #38bdf8; margin-top: 30px; border-radius: 12px;">
+                <h2 class="section-title" style="color: #38bdf8; border-left: 4px solid #38bdf8; padding-left: 15px;">
+                    Water Rate from Gross &amp; Water Cut (\(\text{WC}\))
+                </h2>
+                <p style="color: var(--muted); margin-bottom: 20px;">
+                    Calculate water production rate (\(Q_W\)) from gross liquid rate and percentage water cut (\(\text{WC}\)).
+                </p>
+
+                <div class="converter-grid" style="margin-bottom: 12px;">
+                    <div class="conv-field">
+                        <label for="qw-gross">Gross Liquid Rate</label>
+                        <input type="number" id="qw-gross" step="any" min="0" placeholder="e.g. 1200">
+                        <select id="qw-gross-unit" class="calc-select-inline" aria-label="Gross Liquid Rate Unit">
+                            <option value="stb" selected>STB/d (or bbl/d)</option>
+                            <option value="m3">m&sup3;/d</option>
+                        </select>
+                    </div>
+
+                    <div class="conv-field">
+                        <label for="qw-wc">Water Cut (\(\text{WC}\))</label>
+                        <input type="number" id="qw-wc" step="any" min="0" max="100" placeholder="e.g. 25">
+                        <span style="display: block; font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">
+                            Percentage from <strong>0% to 100%</strong>
+                        </span>
+                    </div>
+                </div>
+
+                <div id="qw-validation" class="validation-msg" role="alert"></div>
+
+                <div class="converter-grid" style="margin-top: 12px;">
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #38bdf8; padding: 15px;">
+                        <h4 style="color: #38bdf8;">Water Rate (\(Q_W\))</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$Q_W = \text{Gross} \times \left(\frac{\text{WC}}{100}\right)$$
+                        </div>
+                        <label for="res-qw" style="color: #fff; font-size: 0.8em;">Calculated Water Rate</label>
+                        <input type="text" id="res-qw" readonly placeholder="0.00" style="background: #1a2a44; color: #38bdf8; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #2ecc71; padding: 15px;">
+                        <h4 style="color: #2ecc71;">Net Oil Rate (\(Q_{\text{oil}}\))</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$Q_{\text{oil}} = \text{Gross} - Q_W$$
+                        </div>
+                        <label for="res-qw-oil" style="color: #fff; font-size: 0.8em;">Remaining Oil Rate</label>
+                        <input type="text" id="res-qw-oil" readonly placeholder="0.00" style="background: #1a2a44; color: #2ecc71; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 15px;">
+                        <h4 style="color: #f1c40f;">Oil Cut Share</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{Oil Cut (\%)} = 100 - \text{WC}$$
+                        </div>
+                        <label for="res-qw-oilcut" style="color: #fff; font-size: 0.8em;">Oil Cut (%)</label>
+                        <input type="text" id="res-qw-oilcut" readonly placeholder="0.00%" style="background: #1a2a44; color: #f1c40f; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+                </div>
+
+                <p class="calc-note">
+                    <strong>Field Note:</strong> Divide the percentage water cut by <code>100</code> before multiplying by the gross liquid rate. For example, a gross rate of <code>1,000 STB/d</code> at <code>25% WC</code> gives <code>Q_W = 250.00 STB/d</code> and net oil rate <code>750.00 STB/d</code>.
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/firestore.js"></script>
+    <script src="../../js/app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+            firebase.auth().onAuthStateChanged((user) => {
+                const loginLink = document.getElementById("loginNavLink");
+                const logoutBtn = document.getElementById("logoutNavBtn");
+                const profileLink = document.getElementById("profileNavLink");
+                const mobileLoginLink = document.getElementById("mobileLoginLink");
+                const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
+                const mobileProfileLink = document.getElementById("mobileProfileLink");
+                const answerForm = document.getElementById("answerForm");
+                const answerWarning = document.getElementById("answerAuthWarning");
+
+                if (user) {
+                    if (loginLink) loginLink.style.display = "none";
+                    if (logoutBtn) logoutBtn.style.display = "inline-block";
+                    if (profileLink) profileLink.style.display = "inline-block";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "none";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "inline-block";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "inline-block";
+                    if (answerForm) answerForm.style.display = "block";
+                    if (answerWarning) answerWarning.style.display = "none";
+                } else {
+                    if (loginLink) loginLink.style.display = "inline-block";
+                    if (logoutBtn) logoutBtn.style.display = "none";
+                    if (profileLink) profileLink.style.display = "none";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "inline-block";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "none";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "none";
+                    if (answerForm) answerForm.style.display = "none";
+                    if (answerWarning) answerWarning.style.display = "block";
+                }
+            });
+        }
+
+        const logoutNavBtn = document.getElementById("logoutNavBtn");
+        if (logoutNavBtn && typeof firebase !== 'undefined' && firebase.auth) {
+            logoutNavBtn.addEventListener("click", async () => {
+                await firebase.auth().signOut();
+                window.location.href = "../../login.html";
+            });
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        if (openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+
+        // --- Water Rate from Gross & Water Cut (WC) Logic ---
+        function clearQwOutputs(msg) {
+            document.getElementById('res-qw').value = '';
+            document.getElementById('res-qw-oil').value = '';
+            document.getElementById('res-qw-oilcut').value = '';
+            document.getElementById('qw-validation').textContent = msg || '';
+        }
+
+        function calculateWaterRate() {
+            const gross = parseFloat(document.getElementById('qw-gross').value);
+            const wc = parseFloat(document.getElementById('qw-wc').value);
+            const unit = document.getElementById('qw-gross-unit').value;
+            const unitLabel = unit === 'm3' ? 'm³/d' : 'STB/d';
+
+            if (isNaN(gross) || isNaN(wc)) {
+                clearQwOutputs('');
+                return;
+            }
+            if (gross < 0) {
+                clearQwOutputs('Gross liquid rate must be zero or greater.');
+                return;
+            }
+            if (wc < 0 || wc > 100) {
+                clearQwOutputs('Water Cut (WC) must be between 0% and 100%.');
+                return;
+            }
+
+            document.getElementById('qw-validation').textContent = '';
+
+            // Q_W = Gross * (WC / 100)
+            const qWater = gross * (wc / 100);
+            const qOil = gross - qWater;
+            const oilCut = 100 - wc;
+
+            document.getElementById('res-qw').value = `${qWater.toFixed(2)} ${unitLabel}`;
+            document.getElementById('res-qw-oil').value = `${qOil.toFixed(2)} ${unitLabel}`;
+            document.getElementById('res-qw-oilcut').value = `${oilCut.toFixed(2)}%`;
+        }
+
+        ['qw-gross', 'qw-wc', 'qw-gross-unit'].forEach(id => {
+            const el = document.getElementById(id);
+            el.addEventListener('input', calculateWaterRate);
+            el.addEventListener('change', calculateWaterRate);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil Rate from GOR and Gas Rate (MMSCF/day to BOPD) | OilField University</title>
+    <meta name="description" content="Calculate daily oil rate in BOPD from gas rate in MMSCF/day and gas-oil ratio. Free well testing calculator from OilField University.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+
+
+                
+                <!-- Oil Rate from GOR & Gas Rate Calculator -->
+                <section class="section" id="oil-rate-gor-calculator">
+
+                    <h2>Oil Rate Calculation from GOR</h2>
+
+                    <p>
+                        Calculate the daily oil production rate using Gas Production Rate
+                        and Gas-Oil Ratio (GOR).
+                    </p>
+
+                    <div class="tool-card" style="
+                        background:#101b2e;
+                        border:1px solid #263b59;
+                        border-radius:14px;
+                        padding:22px;
+                        margin-top:20px;
+                    ">
+
+                        <div style="
+                            background:#0d1624;
+                            border-radius:10px;
+                            padding:18px;
+                            text-align:center;
+                            margin-bottom:22px;
+                        ">
+                            <h3 style="color:#fff;margin-top:0;">Oil Rate Equation</h3>
+
+                            <div style="font-size:20px;color:#58c4ff;margin:15px 0;">
+                                \[
+                                Q_{Oil}=\frac{Q_{Gas}\times10^6}{GOR}
+                                \]
+                            </div>
+
+                            <p style="color:#aabbd0;font-size:13px;margin-bottom:0;">
+                                Gas Rate: MMSCF/day | GOR: scf/STB | Oil Rate: BOPD
+                            </p>
+                        </div>
+
+                        <div class="converter-grid">
+
+                            <!-- Gas Rate -->
+                            <div class="conv-field">
+                                <label for="gorOilGasRate">
+                                    Gas Rate (MMSCF/day)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="gorOilGasRate"
+                                    placeholder="Enter Gas Rate"
+                                    min="0"
+                                    step="any"
+                                    value="2"
+                                >
+                            </div>
+
+                            <!-- GOR -->
+                            <div class="conv-field">
+                                <label for="gorOilGOR">
+                                    GOR (scf/STB)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="gorOilGOR"
+                                    placeholder="Enter GOR"
+                                    min="0"
+                                    step="any"
+                                    value="4000"
+                                >
+                            </div>
+
+                        </div>
+
+                        <!-- Calculate Button -->
+                        <button
+                            type="button"
+                            id="gorOilCalculate"
+                            style="
+                                width:100%;
+                                padding:13px;
+                                margin-top:18px;
+                                background:#168bd2;
+                                color:white;
+                                border:none;
+                                border-radius:8px;
+                                font-size:16px;
+                                font-weight:bold;
+                                cursor:pointer;
+                            "
+                        >
+                            Calculate Oil Rate
+                        </button>
+
+                        <!-- Result -->
+                        <div style="
+                            background:#0d1624;
+                            border:1px solid #168bd2;
+                            border-radius:10px;
+                            padding:20px;
+                            margin-top:20px;
+                            text-align:center;
+                        ">
+
+                            <p style="color:#aabbd0;margin:0;">
+                                Calculated Oil Rate
+                            </p>
+
+                            <div
+                                id="gorOilResult"
+                                style="
+                                    color:#58c4ff;
+                                    font-size:32px;
+                                    font-weight:bold;
+                                    margin:10px 0;
+                                "
+                            >
+                                500.00 BOPD
+                            </div>
+
+                            <p
+                                id="gorOilStatus"
+                                style="color:#9aabc0;font-size:13px;margin:0;"
+                            >
+                                Ready to calculate
+                            </p>
+
+                        </div>
+
+                        <!-- Calculation Breakdown -->
+                        <div style="
+                            background:#17263c;
+                            padding:16px;
+                            border-radius:10px;
+                            margin-top:18px;
+                        ">
+
+                            <h4 style="color:#fff;margin-top:0;">
+                                Calculation Breakdown
+                            </h4>
+
+                            <div
+                                id="gorOilSteps"
+                                style="color:#c5d3e4;line-height:1.8;font-size:14px;"
+                            >
+                                Q Oil = (2 × 1,000,000) ÷ 4,000
+                                <br>
+                                Q Oil = 500 BOPD
+                            </div>
+
+                        </div>
+
+                        <p style="
+                            color:#91a4bb;
+                            font-size:12px;
+                            margin-top:18px;
+                        ">
+                            Note: Gas Rate must be entered in MMSCF/day and GOR in scf/STB.
+                            The result is expressed in STB/day (BOPD).
+                        </p>
+
+                    </div>
+                </section>
+
+                <script>
+                (function () {
+
+                    const gasInput = document.getElementById("gorOilGasRate");
+                    const gorInput = document.getElementById("gorOilGOR");
+                    const calculateBtn = document.getElementById("gorOilCalculate");
+
+                    const result = document.getElementById("gorOilResult");
+                    const status = document.getElementById("gorOilStatus");
+                    const steps = document.getElementById("gorOilSteps");
+
+                    function calculateOilRate() {
+
+                        const gasRate = parseFloat(gasInput.value);
+                        const gor = parseFloat(gorInput.value);
+
+                        // Input validation
+                        if (
+                            gasInput.value.trim() === "" ||
+                            gorInput.value.trim() === "" ||
+                            !Number.isFinite(gasRate) ||
+                            !Number.isFinite(gor) ||
+                            gasRate < 0 ||
+                            gor <= 0
+                        ) {
+
+                            result.textContent = "-- BOPD";
+                            status.textContent = "Please enter a valid Gas Rate and GOR.";
+                            steps.innerHTML = "Gas Rate must be zero or greater, and GOR must be greater than zero.";
+                            return;
+                        }
+
+                        // Oil Rate Calculation
+                        const oilRate = (gasRate * 1000000) / gor;
+
+                        // Display result
+                        result.textContent =
+                            oilRate.toLocaleString("en-US", {
+                                maximumFractionDigits: 2,
+                                minimumFractionDigits: 2
+                            }) + " BOPD";
+
+                        status.textContent = "Calculation completed successfully.";
+
+                        // Calculation breakdown
+                        steps.innerHTML =
+                            "Q Oil = (Gas Rate × 1,000,000) ÷ GOR<br>" +
+                            "Q Oil = (" +
+                            gasRate.toLocaleString("en-US") +
+                            " × 1,000,000) ÷ " +
+                            gor.toLocaleString("en-US") +
+                            "<br><strong style='color:#58c4ff;'>Q Oil = " +
+                            oilRate.toLocaleString("en-US", {
+                                maximumFractionDigits: 2
+                            }) +
+                            " BOPD</strong>";
+                    }
+
+                    calculateBtn.addEventListener("click", calculateOilRate);
+
+                    // Live calculation
+                    gasInput.addEventListener("input", calculateOilRate);
+                    gorInput.addEventListener("input", calculateOilRate);
+
+                    // Initial calculation
+                    calculateOilRate();
+
+                })();
+                </script>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+
+// --- 2. Solution GOR Logic ---
+function calculateGOR() {
+    const P = (parseFloat(document.getElementById('gor-p').value) || 0) + 14.7; // Psia
+    const T = parseFloat(document.getElementById('gor-t').value) || 0;
+    const G = parseFloat(document.getElementById('gor-g').value) || 1;
+    const API = parseFloat(document.getElementById('gor-api').value) || 1;
+
+    // A. Standing Correlation
+    const yg = 0.00091 * T - 0.0125 * API;
+    const rsStanding = G * Math.pow((P / (18 * Math.pow(10, yg))), 1.204);
+    document.getElementById('res-standing').value = Math.round(rsStanding);
+
+    // B. Vasquez & Beggs
+    let c1, c2, c3;
+    if (API <= 30) {
+        c1 = 0.0362; c2 = 1.0937; c3 = 25.724;
+    } else {
+        c1 = 0.0178; c2 = 1.1870; c3 = 23.931;
+    }
+    const rsVB = c1 * G * Math.pow(P, c2) * Math.exp((c3 * API) / (T + 460));
+    document.getElementById('res-vb').value = Math.round(rsVB);
+}
+
+// Listeners
+['gor-p', 'gor-t', 'gor-g', 'gor-api'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateGOR);
+});
+
+
+    </script>
+
+
+</body>
+</html>

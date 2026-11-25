@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Tank Oil (STO) from Net Oil and Shrinkage | OilField University</title>
+    <meta name="description" content="Calculate stock tank oil by applying the shrinkage factor at 60F to the net oil rate. Free well testing calculator from OilField University.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .calc-select-inline {
+            background: #0d1624;
+            color: #f3f4f6;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            margin-top: 6px;
+            width: 100%;
+        }
+        .calc-note {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        .validation-msg {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            min-height: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link">Learn</a>
+                <a href="../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu" aria-label="Close Menu">&times;</button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../ask.html" class="mobile-menu-item">Ask</a>
+            <a href="../../Learn/learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container main-content" style="width: 95%;">
+
+        <header class="hero1-card">
+            <div class="badge">Live Engineering Dashboard</div>
+            <h1>Well Testing Toolbox</h1>
+            <div id="gauge_div"></div>
+        </header>
+
+        <!-- AUTH MESSAGES -->
+        <div id="answerAuthWarning" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #eab308; background: rgba(234, 179, 8, 0.12); color: #fde047;">
+            Log in to save your session and access full community features.
+        </div>
+        <div id="answerForm" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #334155; background: rgba(16, 27, 46, 0.9); color: #e2e8f0;">
+            Interactive engineering toolbox ready.
+        </div>
+
+        <section class="section tools">
+            <h2 class="section-title">Interactive Tools</h2>
+            <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+            <!-- Stock Tank Oil (STO) from Net Oil & Shrinkage@60°F -->
+            <section class="section" style="background: #101b2e; border: 1px solid #f59e0b; margin-top: 30px; border-radius: 12px;">
+                <h2 class="section-title" style="color: #fbbf24; border-left: 4px solid #f59e0b; padding-left: 15px;">
+                    Stock Tank Oil (\(\text{STO}\)) from Net Oil &amp; Shrinkage@60&deg;F
+                </h2>
+                <p style="color: var(--muted); margin-bottom: 20px;">
+                    Calculate Stock Tank Oil (\(\text{STO}\)) by applying the shrinkage factor at 60&deg;F to the metered or calculated Net Oil rate.
+                </p>
+
+                <div class="converter-grid" style="margin-bottom: 12px;">
+                    <div class="conv-field">
+                        <label for="sto-net-oil">Net Oil Rate</label>
+                        <input type="number" id="sto-net-oil" step="any" min="0" placeholder="e.g. 1200">
+                        <select id="sto-net-unit" class="calc-select-inline" aria-label="Net Oil Rate Unit">
+                            <option value="bbl" selected>bbl/d (or separator bbl/d)</option>
+                            <option value="m3">m&sup3;/d</option>
+                        </select>
+                    </div>
+
+                    <div class="conv-field">
+                        <label for="sto-shrinkage">Shrinkage@60&deg;F</label>
+                        <input type="number" id="sto-shrinkage" step="any" min="0" placeholder="e.g. 0.92">
+                        <select id="sto-shrinkage-unit" class="calc-select-inline" aria-label="Shrinkage Factor Format">
+                            <option value="factor" selected>Factor (decimal, e.g. 0.92)</option>
+                            <option value="pct">Percentage (%, e.g. 92)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="sto-validation" class="validation-msg" role="alert"></div>
+
+                <div class="converter-grid" style="margin-top: 12px;">
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #fbbf24; padding: 15px;">
+                        <h4 style="color: #fbbf24;">Stock Tank Oil (\(\text{STO}\))</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{STO} = \text{Net Oil} \times \text{Shrinkage}@60^\circ\text{F}$$
+                        </div>
+                        <label for="res-sto-val" style="color: #fff; font-size: 0.8em;">Stock Tank Oil Rate</label>
+                        <input type="text" id="res-sto-val" readonly placeholder="0.00" style="background: #1a2a44; color: #fbbf24; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f87171; padding: 15px;">
+                        <h4 style="color: #f87171;">Shrinkage Volume Loss</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{Loss} = \text{Net Oil} - \text{STO}$$
+                        </div>
+                        <label for="res-sto-loss" style="color: #fff; font-size: 0.8em;">Volume Shrinkage Loss</label>
+                        <input type="text" id="res-sto-loss" readonly placeholder="0.00" style="background: #1a2a44; color: #f87171; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #38bdf8; padding: 15px;">
+                        <h4 style="color: #38bdf8;">Volume Factor (\(1 / \text{Shrinkage}\))</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{Factor} = \frac{1}{\text{Shrinkage}@60^\circ\text{F}}$$
+                        </div>
+                        <label for="res-sto-inv" style="color: #fff; font-size: 0.8em;">Inverse Shrinkage Ratio</label>
+                        <input type="text" id="res-sto-inv" readonly placeholder="0.0000" style="background: #1a2a44; color: #38bdf8; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+                </div>
+
+                <p class="calc-note">
+                    <strong>Field Note:</strong> When shrinkage at 60&deg;F is given as a decimal factor (such as <code>0.92</code>), multiply directly by <strong>Net Oil</strong>. If your lab or PVT sheet provides a percentage (such as <code>92%</code>), switch the format selector to <strong>Percentage (%)</strong> so it divides by <code>100</code> automatically.
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/firestore.js"></script>
+    <script src="../../js/app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+            firebase.auth().onAuthStateChanged((user) => {
+                const loginLink = document.getElementById("loginNavLink");
+                const logoutBtn = document.getElementById("logoutNavBtn");
+                const profileLink = document.getElementById("profileNavLink");
+                const mobileLoginLink = document.getElementById("mobileLoginLink");
+                const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
+                const mobileProfileLink = document.getElementById("mobileProfileLink");
+                const answerForm = document.getElementById("answerForm");
+                const answerWarning = document.getElementById("answerAuthWarning");
+
+                if (user) {
+                    if (loginLink) loginLink.style.display = "none";
+                    if (logoutBtn) logoutBtn.style.display = "inline-block";
+                    if (profileLink) profileLink.style.display = "inline-block";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "none";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "inline-block";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "inline-block";
+                    if (answerForm) answerForm.style.display = "block";
+                    if (answerWarning) answerWarning.style.display = "none";
+                } else {
+                    if (loginLink) loginLink.style.display = "inline-block";
+                    if (logoutBtn) logoutBtn.style.display = "none";
+                    if (profileLink) profileLink.style.display = "none";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "inline-block";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "none";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "none";
+                    if (answerForm) answerForm.style.display = "none";
+                    if (answerWarning) answerWarning.style.display = "block";
+                }
+            });
+        }
+
+        const logoutNavBtn = document.getElementById("logoutNavBtn");
+        if (logoutNavBtn && typeof firebase !== 'undefined' && firebase.auth) {
+            logoutNavBtn.addEventListener("click", async () => {
+                await firebase.auth().signOut();
+                window.location.href = "../../login.html";
+            });
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        if (openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+
+        // --- Stock Tank Oil (STO) from Net Oil & Shrinkage@60°F Logic ---
+        function clearStoOutputs(msg) {
+            document.getElementById('res-sto-val').value = '';
+            document.getElementById('res-sto-loss').value = '';
+            document.getElementById('res-sto-inv').value = '';
+            document.getElementById('sto-validation').textContent = msg || '';
+        }
+
+        function calculateSTO() {
+            const netOil = parseFloat(document.getElementById('sto-net-oil').value);
+            const netUnit = document.getElementById('sto-net-unit').value;
+            const rawShrink = parseFloat(document.getElementById('sto-shrinkage').value);
+            const shrinkUnit = document.getElementById('sto-shrinkage-unit').value;
+            const unitLabel = netUnit === 'm3' ? 'm³/d' : 'STB/d';
+
+            if (isNaN(netOil) || isNaN(rawShrink)) {
+                clearStoOutputs('');
+                return;
+            }
+            if (netOil < 0 || rawShrink < 0) {
+                clearStoOutputs('Net Oil rate and Shrinkage@60°F must be zero or greater.');
+                return;
+            }
+
+            const shrinkFactor = shrinkUnit === 'pct' ? (rawShrink / 100) : rawShrink;
+            if (shrinkFactor <= 0) {
+                clearStoOutputs('Shrinkage@60°F must be greater than zero.');
+                return;
+            }
+
+            document.getElementById('sto-validation').textContent = '';
+
+            // STO = Net Oil * Shrinkage@60°F
+            const sto = netOil * shrinkFactor;
+            const loss = netOil - sto;
+            const invFactor = 1 / shrinkFactor;
+
+            document.getElementById('res-sto-val').value = `${sto.toFixed(2)} ${unitLabel}`;
+            document.getElementById('res-sto-loss').value = `${loss.toFixed(2)} ${unitLabel}`;
+            document.getElementById('res-sto-inv').value = invFactor.toFixed(4);
+        }
+
+        ['sto-net-oil', 'sto-net-unit', 'sto-shrinkage', 'sto-shrinkage-unit'].forEach(id => {
+            const el = document.getElementById(id);
+            el.addEventListener('input', calculateSTO);
+            el.addEventListener('change', calculateSTO);
+        });
+    </script>
+</body>
+</html>

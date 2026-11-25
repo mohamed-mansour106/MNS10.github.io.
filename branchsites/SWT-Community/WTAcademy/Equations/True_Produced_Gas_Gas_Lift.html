@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Produced Gas Calculator (Gas Lift Subtraction) | OilField University</title>
+    <meta name="description" content="Find reservoir-produced gas by subtracting the injected gas-lift rate from the total measured gas rate. Free well testing calculator from OilField University.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .calc-select-inline {
+            background: #0d1624;
+            color: #f3f4f6;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            margin-top: 6px;
+            width: 100%;
+        }
+        .calc-note {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        .validation-msg {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            min-height: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link">Learn</a>
+                <a href="../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu" aria-label="Close Menu">&times;</button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../ask.html" class="mobile-menu-item">Ask</a>
+            <a href="../../Learn/learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container main-content" style="width: 95%;">
+
+        <header class="hero1-card">
+            <div class="badge">Live Engineering Dashboard</div>
+            <h1>Well Testing Toolbox</h1>
+            <div id="gauge_div"></div>
+        </header>
+
+        <!-- AUTH MESSAGES -->
+        <div id="answerAuthWarning" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #eab308; background: rgba(234, 179, 8, 0.12); color: #fde047;">
+            Log in to save your session and access full community features.
+        </div>
+        <div id="answerForm" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #334155; background: rgba(16, 27, 46, 0.9); color: #e2e8f0;">
+            Interactive engineering toolbox ready.
+        </div>
+
+        <section class="section tools">
+            <h2 class="section-title">Interactive Tools</h2>
+            <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+            <!-- True Produced Gas from Gas Lift Injection & Measured Gas Rate -->
+            <section class="section" style="background: #101b2e; border: 1px solid #38bdf8; margin-top: 30px; border-radius: 12px;">
+                <h2 class="section-title" style="color: #38bdf8; border-left: 4px solid #38bdf8; padding-left: 15px;">
+                    True Produced Gas (Gas Lift Subtraction)
+                </h2>
+                <p style="color: var(--muted); margin-bottom: 20px;">
+                    Isolate reservoir-produced gas by subtracting injected gas-lift rate from the total metered/measured gas rate at surface.
+                </p>
+
+                <div class="converter-grid" style="margin-bottom: 12px;">
+                    <div class="conv-field">
+                        <label for="tpg-measured">Measured Gas Rate</label>
+                        <input type="number" id="tpg-measured" step="any" min="0" placeholder="e.g. 4.5">
+                        <select id="tpg-unit" class="calc-select-inline" aria-label="Gas Flow Rate Unit">
+                            <option value="mmscfd" selected>MMSCFD</option>
+                            <option value="mscfd">MSCFD</option>
+                            <option value="scfd">SCFD</option>
+                            <option value="sm3d">Sm&sup3;/d</option>
+                        </select>
+                    </div>
+
+                    <div class="conv-field">
+                        <label for="tpg-lift">Gas Injection Lift Rate</label>
+                        <input type="number" id="tpg-lift" step="any" min="0" placeholder="e.g. 1.8">
+                        <span style="display: block; font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">
+                            Uses the same gas rate unit selected on the left
+                        </span>
+                    </div>
+
+                    <div class="conv-field">
+                        <label for="tpg-qoil">Oil Rate \(Q_{\text{oil}}\) (Optional)</label>
+                        <input type="number" id="tpg-qoil" step="any" min="0" placeholder="e.g. 1500">
+                        <span style="display: block; font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">
+                            STB/d (for True GOR check when unit is SCFD/MSCFD/MMSCFD)
+                        </span>
+                    </div>
+                </div>
+
+                <div id="tpg-validation" class="validation-msg" role="alert"></div>
+
+                <div class="converter-grid" style="margin-top: 12px;">
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #38bdf8; padding: 15px;">
+                        <h4 style="color: #38bdf8;">True Produced Gas</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{True Produced Gas} = \text{Measured} - \text{Lift Gas}$$
+                        </div>
+                        <label for="res-tpg-val" style="color: #fff; font-size: 0.8em;">Formation Gas Rate</label>
+                        <input type="text" id="res-tpg-val" readonly placeholder="0.000" style="background: #1a2a44; color: #38bdf8; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f59e0b; padding: 15px;">
+                        <h4 style="color: #fbbf24;">Lift Gas Share of Measured</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{Lift Share (\%)} = \left(\frac{\text{Lift Gas}}{\text{Measured}}\right) \times 100$$
+                        </div>
+                        <label for="res-tpg-liftpct" style="color: #fff; font-size: 0.8em;">Circulated Lift Portion (%)</label>
+                        <input type="text" id="res-tpg-liftpct" readonly placeholder="0.00%" style="background: #1a2a44; color: #fbbf24; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #2ecc71; padding: 15px;">
+                        <h4 style="color: #2ecc71;">True Producing GOR</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{GOR}_{\text{true}} = \frac{\text{True Gas (scfd)}}{Q_{\text{oil}}\text{ (STB/d)}}$$
+                        </div>
+                        <label for="res-tpg-gor" style="color: #fff; font-size: 0.8em;">True GOR (scf/STB)</label>
+                        <input type="text" id="res-tpg-gor" readonly placeholder="Enter Q_oil" style="background: #1a2a44; color: #2ecc71; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+                </div>
+
+                <p class="calc-note">
+                    <strong>Field Note:</strong> Ensure both <strong>Measured Gas Rate</strong> and <strong>Gas Injection Lift</strong> are normalized to the same base conditions and units before subtracting. If injected lift gas exceeds the measured total gas rate, check lift metering calibration or transient well unloading effects.
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/firestore.js"></script>
+    <script src="../../js/app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+            firebase.auth().onAuthStateChanged((user) => {
+                const loginLink = document.getElementById("loginNavLink");
+                const logoutBtn = document.getElementById("logoutNavBtn");
+                const profileLink = document.getElementById("profileNavLink");
+                const mobileLoginLink = document.getElementById("mobileLoginLink");
+                const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
+                const mobileProfileLink = document.getElementById("mobileProfileLink");
+                const answerForm = document.getElementById("answerForm");
+                const answerWarning = document.getElementById("answerAuthWarning");
+
+                if (user) {
+                    if (loginLink) loginLink.style.display = "none";
+                    if (logoutBtn) logoutBtn.style.display = "inline-block";
+                    if (profileLink) profileLink.style.display = "inline-block";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "none";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "inline-block";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "inline-block";
+                    if (answerForm) answerForm.style.display = "block";
+                    if (answerWarning) answerWarning.style.display = "none";
+                } else {
+                    if (loginLink) loginLink.style.display = "inline-block";
+                    if (logoutBtn) logoutBtn.style.display = "none";
+                    if (profileLink) profileLink.style.display = "none";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "inline-block";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "none";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "none";
+                    if (answerForm) answerForm.style.display = "none";
+                    if (answerWarning) answerWarning.style.display = "block";
+                }
+            });
+        }
+
+        const logoutNavBtn = document.getElementById("logoutNavBtn");
+        if (logoutNavBtn && typeof firebase !== 'undefined' && firebase.auth) {
+            logoutNavBtn.addEventListener("click", async () => {
+                await firebase.auth().signOut();
+                window.location.href = "../../login.html";
+            });
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        if (openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+
+        // --- True Produced Gas (Gas Lift) Logic ---
+        function getGasUnitLabel(unit) {
+            if (unit === 'mscfd') return 'MSCFD';
+            if (unit === 'scfd') return 'SCFD';
+            if (unit === 'sm3d') return 'Sm³/d';
+            return 'MMSCFD';
+        }
+
+        function toScfd(val, unit) {
+            if (unit === 'mmscfd') return val * 1e6;
+            if (unit === 'mscfd') return val * 1e3;
+            if (unit === 'scfd') return val;
+            return null;
+        }
+
+        function clearTpgOutputs(msg) {
+            document.getElementById('res-tpg-val').value = '';
+            document.getElementById('res-tpg-liftpct').value = '';
+            document.getElementById('res-tpg-gor').value = '';
+            document.getElementById('tpg-validation').textContent = msg || '';
+        }
+
+        function calculateTrueProducedGas() {
+            const measured = parseFloat(document.getElementById('tpg-measured').value);
+            const lift = parseFloat(document.getElementById('tpg-lift').value);
+            const rawQoil = document.getElementById('tpg-qoil').value.trim();
+            const unit = document.getElementById('tpg-unit').value;
+            const unitLabel = getGasUnitLabel(unit);
+
+            if (isNaN(measured) || isNaN(lift)) {
+                clearTpgOutputs('');
+                return;
+            }
+            if (measured < 0 || lift < 0) {
+                clearTpgOutputs('Measured gas rate and gas injection lift rate must be zero or greater.');
+                return;
+            }
+            if (lift > measured) {
+                clearTpgOutputs('Gas injection lift rate cannot exceed measured gas rate.');
+                return;
+            }
+
+            let qOil = NaN;
+            if (rawQoil !== '') {
+                qOil = parseFloat(rawQoil);
+                if (isNaN(qOil) || qOil < 0) {
+                    clearTpgOutputs('Oil rate (Q_oil) must be zero or greater.');
+                    return;
+                }
+            }
+
+            document.getElementById('tpg-validation').textContent = '';
+
+            // True Produced Gas = Measured Gas Rate - Gas Injection Lift
+            const trueGas = measured - lift;
+            const liftShare = measured > 0 ? (lift / measured) * 100 : 0;
+            const decimals = unit === 'mmscfd' ? 3 : (unit === 'scfd' ? 0 : 2);
+
+            document.getElementById('res-tpg-val').value = `${trueGas.toFixed(decimals)} ${unitLabel}`;
+            document.getElementById('res-tpg-liftpct').value = `${liftShare.toFixed(2)}%`;
+
+            const trueGasScfd = toScfd(trueGas, unit);
+            if (!isNaN(qOil) && qOil > 0 && trueGasScfd !== null) {
+                const trueGor = trueGasScfd / qOil;
+                document.getElementById('res-tpg-gor').value = `${trueGor.toFixed(1)} scf/STB`;
+            } else if (trueGasScfd === null && !isNaN(qOil)) {
+                document.getElementById('res-tpg-gor').value = 'N/A (Sm³/d)';
+            } else {
+                document.getElementById('res-tpg-gor').value = '';
+            }
+        }
+
+        ['tpg-measured', 'tpg-lift', 'tpg-qoil', 'tpg-unit'].forEach(id => {
+            const el = document.getElementById(id);
+            el.addEventListener('input', calculateTrueProducedGas);
+            el.addEventListener('change', calculateTrueProducedGas);
+        });
+    </script>
+</body>
+</html>

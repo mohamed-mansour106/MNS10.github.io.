@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Oil Rate from Gross and Water Rate | OilField University</title>
+    <meta name="description" content="Calculate net oil production rate by subtracting water rate from gross liquid rate. Free well testing calculator from OilField University.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .calc-select-inline {
+            background: #0d1624;
+            color: #f3f4f6;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            margin-top: 6px;
+            width: 100%;
+        }
+        .calc-note {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        .validation-msg {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            min-height: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link">Learn</a>
+                <a href="../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu" aria-label="Close Menu">&times;</button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../ask.html" class="mobile-menu-item">Ask</a>
+            <a href="../../Learn/learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container main-content" style="width: 95%;">
+
+        <header class="hero1-card">
+            <div class="badge">Live Engineering Dashboard</div>
+            <h1>Well Testing Toolbox</h1>
+            <div id="gauge_div"></div>
+        </header>
+
+        <!-- AUTH MESSAGES -->
+        <div id="answerAuthWarning" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #eab308; background: rgba(234, 179, 8, 0.12); color: #fde047;">
+            Log in to save your session and access full community features.
+        </div>
+        <div id="answerForm" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #334155; background: rgba(16, 27, 46, 0.9); color: #e2e8f0;">
+            Interactive engineering toolbox ready.
+        </div>
+
+        <section class="section tools">
+            <h2 class="section-title">Interactive Tools</h2>
+            <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+            <!-- Net Oil Rate from Gross and Water Rate -->
+            <section class="section" style="background: #101b2e; border: 1px solid #2ecc71; margin-top: 30px; border-radius: 12px;">
+                <h2 class="section-title" style="color: #4ade80; border-left: 4px solid #2ecc71; padding-left: 15px;">
+                    Net Oil Rate from Gross &amp; Water Rate
+                </h2>
+                <p style="color: var(--muted); margin-bottom: 20px;">
+                    Calculate net oil production rate by subtracting water rate from gross liquid rate.
+                </p>
+
+                <div class="converter-grid" style="margin-bottom: 12px;">
+                    <div class="conv-field">
+                        <label for="net-gross">Gross Liquid Rate</label>
+                        <input type="number" id="net-gross" step="any" min="0" placeholder="e.g. 1500">
+                        <select id="net-gross-unit" class="calc-select-inline" aria-label="Gross Liquid Rate Unit">
+                            <option value="stb" selected>STB/d (or bbl/d)</option>
+                            <option value="m3">m&sup3;/d</option>
+                        </select>
+                    </div>
+
+                    <div class="conv-field">
+                        <label for="net-water">Water Rate (\(Q_W\))</label>
+                        <input type="number" id="net-water" step="any" min="0" placeholder="e.g. 300">
+                        <span style="display: block; font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">
+                            Use matching rate unit (<strong>STB/d</strong> or <strong>m&sup3;/d</strong>)
+                        </span>
+                    </div>
+                </div>
+
+                <div id="net-validation" class="validation-msg" role="alert"></div>
+
+                <div class="converter-grid" style="margin-top: 12px;">
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #4ade80; padding: 15px;">
+                        <h4 style="color: #4ade80;">Net Oil Rate (\(Q_{\text{oil}}\))</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{Net Oil Rate} = \text{Gross} - \text{Water Rate}$$
+                        </div>
+                        <label for="res-net-oil" style="color: #fff; font-size: 0.8em;">Calculated Net Oil Rate</label>
+                        <input type="text" id="res-net-oil" readonly placeholder="0.00" style="background: #1a2a44; color: #4ade80; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #38bdf8; padding: 15px;">
+                        <h4 style="color: #38bdf8;">Water Cut (\(\text{WC} \%\))</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{WC (\%)} = \left(\frac{\text{Water Rate}}{\text{Gross}}\right) \times 100$$
+                        </div>
+                        <label for="res-net-wc" style="color: #fff; font-size: 0.8em;">Water Cut (%)</label>
+                        <input type="text" id="res-net-wc" readonly placeholder="0.00%" style="background: #1a2a44; color: #38bdf8; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 15px;">
+                        <h4 style="color: #f1c40f;">Oil Cut Share</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{Oil Cut (\%)} = 100 - \text{WC (\%)}$$
+                        </div>
+                        <label for="res-net-oc" style="color: #fff; font-size: 0.8em;">Oil Cut (%)</label>
+                        <input type="text" id="res-net-oc" readonly placeholder="0.00%" style="background: #1a2a44; color: #f1c40f; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+                </div>
+
+                <p class="calc-note">
+                    <strong>Field Note:</strong> Keep <strong>Gross Liquid Rate</strong> and <strong>Water Rate</strong> in the same unit. For example, a gross liquid rate of <code>1,500 STB/d</code> and water rate of <code>300 STB/d</code> yield a net oil rate of <code>1,200.00 STB/d</code> (<code>20.00% WC</code>).
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/firestore.js"></script>
+    <script src="../../js/app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+            firebase.auth().onAuthStateChanged((user) => {
+                const loginLink = document.getElementById("loginNavLink");
+                const logoutBtn = document.getElementById("logoutNavBtn");
+                const profileLink = document.getElementById("profileNavLink");
+                const mobileLoginLink = document.getElementById("mobileLoginLink");
+                const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
+                const mobileProfileLink = document.getElementById("mobileProfileLink");
+                const answerForm = document.getElementById("answerForm");
+                const answerWarning = document.getElementById("answerAuthWarning");
+
+                if (user) {
+                    if (loginLink) loginLink.style.display = "none";
+                    if (logoutBtn) logoutBtn.style.display = "inline-block";
+                    if (profileLink) profileLink.style.display = "inline-block";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "none";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "inline-block";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "inline-block";
+                    if (answerForm) answerForm.style.display = "block";
+                    if (answerWarning) answerWarning.style.display = "none";
+                } else {
+                    if (loginLink) loginLink.style.display = "inline-block";
+                    if (logoutBtn) logoutBtn.style.display = "none";
+                    if (profileLink) profileLink.style.display = "none";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "inline-block";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "none";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "none";
+                    if (answerForm) answerForm.style.display = "none";
+                    if (answerWarning) answerWarning.style.display = "block";
+                }
+            });
+        }
+
+        const logoutNavBtn = document.getElementById("logoutNavBtn");
+        if (logoutNavBtn && typeof firebase !== 'undefined' && firebase.auth) {
+            logoutNavBtn.addEventListener("click", async () => {
+                await firebase.auth().signOut();
+                window.location.href = "../../login.html";
+            });
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        if (openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+
+        // --- Net Oil Rate from Gross and Water Rate Logic ---
+        function clearNetOutputs(msg) {
+            document.getElementById('res-net-oil').value = '';
+            document.getElementById('res-net-wc').value = '';
+            document.getElementById('res-net-oc').value = '';
+            document.getElementById('net-validation').textContent = msg || '';
+        }
+
+        function calculateNetOilRate() {
+            const gross = parseFloat(document.getElementById('net-gross').value);
+            const water = parseFloat(document.getElementById('net-water').value);
+            const unit = document.getElementById('net-gross-unit').value;
+            const unitLabel = unit === 'm3' ? 'm³/d' : 'STB/d';
+
+            if (isNaN(gross) || isNaN(water)) {
+                clearNetOutputs('');
+                return;
+            }
+            if (gross < 0 || water < 0) {
+                clearNetOutputs('Gross liquid rate and water rate must be zero or greater.');
+                return;
+            }
+            if (water > gross) {
+                clearNetOutputs('Water rate cannot exceed gross liquid rate.');
+                return;
+            }
+
+            document.getElementById('net-validation').textContent = '';
+
+            // Net Oil Rate = Gross - Water Rate
+            const netOil = gross - water;
+            const wcPercent = gross > 0 ? (water / gross) * 100 : 0;
+            const ocPercent = gross > 0 ? (netOil / gross) * 100 : 0;
+
+            document.getElementById('res-net-oil').value = `${netOil.toFixed(2)} ${unitLabel}`;
+            document.getElementById('res-net-wc').value = `${wcPercent.toFixed(2)}%`;
+            document.getElementById('res-net-oc').value = `${ocPercent.toFixed(2)}%`;
+        }
+
+        ['net-gross', 'net-water', 'net-gross-unit'].forEach(id => {
+            const el = document.getElementById(id);
+            el.addEventListener('input', calculateNetOilRate);
+            el.addEventListener('change', calculateNetOilRate);
+        });
+    </script>
+</body>
+</html>

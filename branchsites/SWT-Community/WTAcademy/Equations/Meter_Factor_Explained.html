@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meter Factor Calculator and Explanation | OilField University</title>
+    <meta name="description" content="Meter factor is prover volume divided by meter indicated volume. Enter both volumes to calculate it. Free well testing calculator from OilField University.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link" >Learn</a>
+                <a href="../../News/News.html" class="nav-link" >Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+         <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">Ã—</button>
+        </div>
+
+        
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">
+                Home
+            </a>
+            <a href="../../ask.html" class="mobile-menu-item" >
+                Ask
+            </a>
+            
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">
+                Profile
+            </a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">
+                Login
+            </a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">
+                Sign Out
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+     
+    <main class="container main-content" style="width: 95%;">
+        
+    <header class="hero1-card">
+        <div class="badge">Live Engineering Dashboard</div>
+        <h1>Well Testing Toolbox</h1>
+        <div id="gauge_div"></div>
+    </header>
+      
+
+
+
+      <section class="section tools">
+        <h2 class="section-title">Interactive Tools</h2>
+        <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+
+
+            
+        <!-- METER FACTOR EXPLANATION -->
+
+        <div class="tool-card" style="
+        background:#0d1624;
+        border-top:4px solid #f39c12;
+        padding:20px;
+        margin-top:20px;
+        border-radius:8px;
+        ">
+
+        <h3 style="color:#f39c12;">
+            Meter Factor (MF)
+        </h3>
+
+        <p style="color:#aaa;">
+            Meter Factor is the ratio between the actual measured
+            volume and the volume indicated by the meter.
+        </p>
+
+        <div style="
+            background:#101b2e;
+            padding:15px;
+            text-align:center;
+            border-radius:8px;
+            margin:15px 0;
+            overflow-x:auto;
+        ">
+
+            $$MF=\frac{Prover\ Volume}{Meter\ Indicated\ Volume}$$
+
+            $$MF=\frac{Actual\ Volume}{Meter\ Volume}$$
+
+        </div>
+
+        <div class="converter-grid">
+
+            <div class="conv-field">
+                <label>Prover / Actual Volume (bbl)</label>
+                <input type="number" id="mf-actual"
+                    placeholder="1025" step="any">
+            </div>
+
+            <div class="conv-field">
+                <label>Meter Indicated Volume (bbl)</label>
+                <input type="number" id="mf-indicated"
+                    placeholder="1000" step="any">
+            </div>
+
+        </div>
+
+        <div style="
+            background:#101b2e;
+            padding:15px;
+            text-align:center;
+            margin-top:15px;
+            border-radius:8px;
+        ">
+
+            <div style="color:#aaa;">Calculated Meter Factor</div>
+
+            <div id="mf-result" style="
+                color:#f39c12;
+                font-size:2em;
+                font-weight:bold;
+                margin:10px;
+            ">--</div>
+
+            <div id="mf-status" style="color:#aaa;">
+                Enter volume readings
+            </div>
+
+        </div>
+
+        </div>
+
+        <script>
+        (function(){
+
+        const actual = document.getElementById("mf-actual");
+        const indicated = document.getElementById("mf-indicated");
+        const result = document.getElementById("mf-result");
+        const status = document.getElementById("mf-status");
+
+        function calculateMF(){
+
+            const A = parseFloat(actual.value);
+            const I = parseFloat(indicated.value);
+
+            if(!Number.isFinite(A) ||
+            !Number.isFinite(I) ||
+            A <= 0 || I <= 0){
+
+                result.textContent = "--";
+                status.textContent = "Enter valid positive volumes";
+                return;
+            }
+
+            const MF = A / I;
+
+            result.textContent = MF.toFixed(5);
+
+            if(MF > 1){
+                status.textContent =
+                    "MF > 1: Actual volume exceeds indicated volume.";
+            }
+            else if(MF < 1){
+                status.textContent =
+                    "MF < 1: Actual volume is below indicated volume.";
+            }
+            else{
+                status.textContent =
+                    "MF = 1: Actual and indicated volumes are equal.";
+            }
+
+        }
+
+        actual.addEventListener("input", calculateMF);
+        indicated.addEventListener("input", calculateMF);
+
+        })();
+        </script>
+
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/app.js"></script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    const loginLink = document.getElementById("loginNavLink");
+    const logoutBtn = document.getElementById("logoutNavBtn");
+    const profileLink = document.getElementById("profileNavLink");
+
+    const answerForm = document.getElementById("answerForm");
+    const answerWarning = document.getElementById("answerAuthWarning");
+
+    if (user) {
+      // ✅ Logged in
+      loginLink.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      profileLink.style.display = "inline-block";
+
+      answerForm.style.display = "block";
+      answerWarning.style.display = "none";
+
+      console.log("Logged in as:", user.email);
+    } else {
+      // ❌ Not logged in
+      loginLink.style.display = "inline-block";
+      logoutBtn.style.display = "none";
+      profileLink.style.display = "none";
+
+      answerForm.style.display = "none";
+      answerWarning.style.display = "block";
+    }
+  });
+</script>
+
+    <script>
+  document.getElementById("logoutNavBtn").addEventListener("click", async () => {
+    await firebase.auth().signOut();
+    window.location.href = "login.html";
+  });
+
+
+
+          /*********************************
+ * TOGGLE BUTTON MOBILE MENU OVERLAY
+ *********************************/
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        openBtn.addEventListener("click", function () {
+            overlay.classList.add("active")
+        });
+        closeBtn.addEventListener("click", function () {
+            overlay.classList.remove("active")
+        });
+        
+</script>
+
+
+
+
+
+
+        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <!----------------------------->
+
+    <script>
+ 
+
+// --- 2. Solution GOR Logic ---
+function calculateGOR() {
+    const P = (parseFloat(document.getElementById('gor-p').value) || 0) + 14.7; // Psia
+    const T = parseFloat(document.getElementById('gor-t').value) || 0;
+    const G = parseFloat(document.getElementById('gor-g').value) || 1;
+    const API = parseFloat(document.getElementById('gor-api').value) || 1;
+
+    // A. Standing Correlation
+    const yg = 0.00091 * T - 0.0125 * API;
+    const rsStanding = G * Math.pow((P / (18 * Math.pow(10, yg))), 1.204);
+    document.getElementById('res-standing').value = Math.round(rsStanding);
+
+    // B. Vasquez & Beggs
+    let c1, c2, c3;
+    if (API <= 30) {
+        c1 = 0.0362; c2 = 1.0937; c3 = 25.724;
+    } else {
+        c1 = 0.0178; c2 = 1.1870; c3 = 23.931;
+    }
+    const rsVB = c1 * G * Math.pow(P, c2) * Math.exp((c3 * API) / (T + 460));
+    document.getElementById('res-vb').value = Math.round(rsVB);
+}
+
+// Listeners
+['gor-p', 'gor-t', 'gor-g', 'gor-api'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateGOR);
+});
+
+
+    </script>
+
+
+</body>
+</html>

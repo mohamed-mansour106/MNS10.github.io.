@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Gravity Calculator | OilField University</title>
+    <meta name="description" content="Convert oil specific gravity to API gravity, or API gravity to specific gravity. Free well testing calculator from OilField University.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../AcademyStyle.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .calc-note {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        .validation-msg {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            min-height: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link">Home</a>
+                <a href="../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../Learn/learn.html" class="nav-link">Learn</a>
+                <a href="../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu" aria-label="Close Menu">&times;</button>
+        </div>
+
+        <div class="mobile-menu-content">
+            <a href="../../index.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../ask.html" class="mobile-menu-item">Ask</a>
+            <a href="../../Learn/learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container main-content" style="width: 95%;">
+
+        <header class="hero1-card">
+            <div class="badge">Live Engineering Dashboard</div>
+            <h1>Well Testing Toolbox</h1>
+            <div id="gauge_div"></div>
+        </header>
+
+        <!-- AUTH MESSAGES -->
+        <div id="answerAuthWarning" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #eab308; background: rgba(234, 179, 8, 0.12); color: #fde047;">
+            Log in to save your session and access full community features.
+        </div>
+        <div id="answerForm" style="display: none; padding: 12px 16px; margin-top: 20px; border-radius: 10px; border: 1px solid #334155; background: rgba(16, 27, 46, 0.9); color: #e2e8f0;">
+            Interactive engineering toolbox ready.
+        </div>
+
+        <section class="section tools">
+            <h2 class="section-title">Interactive Tools</h2>
+            <p class="section-subtitle">Engineering calculators and conversion utilities for field work.</p>
+
+            <!-- API Gravity Calculator -->
+            <section class="section" style="background: #101b2e; border: 1px solid #14b8a6; margin-top: 30px; border-radius: 12px;">
+                <h2 class="section-title" style="color: #2dd4bf; border-left: 4px solid #14b8a6; padding-left: 15px;">
+                    API Gravity Equation Calculator
+                </h2>
+                <p style="color: var(--muted); margin-bottom: 20px;">
+                    Convert oil Specific Gravity (\(\text{SG}\) at \(60^\circ\text{F}/60^\circ\text{F}\)) to API Gravity (&deg;API), or enter &deg;API to calculate Specific Gravity.
+                </p>
+
+                <div class="converter-grid" style="margin-bottom: 12px;">
+                    <div class="conv-field">
+                        <label for="api-sg">Specific Gravity (\(\text{SG}\))</label>
+                        <input type="number" id="api-sg" step="any" min="0" placeholder="e.g. 0.8251">
+                        <span style="display: block; font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">
+                            Dimensionless relative to water (&gt; 0)
+                        </span>
+                    </div>
+
+                    <div class="conv-field">
+                        <label for="api-deg">Or Enter API Gravity (&deg;API)</label>
+                        <input type="number" id="api-deg" step="any" placeholder="e.g. 40.0">
+                        <span style="display: block; font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">
+                            Reverse solves \(\text{SG} = \frac{141.5}{^\circ\text{API} + 131.5}\)
+                        </span>
+                    </div>
+                </div>
+
+                <div id="api-validation" class="validation-msg" role="alert"></div>
+
+                <div class="converter-grid" style="margin-top: 12px;">
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #2dd4bf; padding: 15px;">
+                        <h4 style="color: #2dd4bf;">API Gravity (&deg;API)</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$^\circ\text{API} = \frac{141.5}{\text{SG}} - 131.5$$
+                        </div>
+                        <label for="res-api-deg" style="color: #fff; font-size: 0.8em;">API Gravity (&deg;API)</label>
+                        <input type="text" id="res-api-deg" readonly placeholder="0.00 °API" style="background: #1a2a44; color: #2dd4bf; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #38bdf8; padding: 15px;">
+                        <h4 style="color: #38bdf8;">Specific Gravity (\(\text{SG}\))</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$\text{SG} = \frac{141.5}{^\circ\text{API} + 131.5}$$
+                        </div>
+                        <label for="res-api-sg" style="color: #fff; font-size: 0.8em;">Specific Gravity (60&deg;F/60&deg;F)</label>
+                        <input type="text" id="res-api-sg" readonly placeholder="0.0000" style="background: #1a2a44; color: #38bdf8; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+
+                    <div class="tool-card" style="background: #0d1624; border-top: 4px solid #f1c40f; padding: 15px;">
+                        <h4 style="color: #f1c40f;">Crude Classification</h4>
+                        <div style="font-size: 0.85em; color: #aaa; margin: 10px 0;">
+                            $$&gt;31.1\text{ Light} \mid 22.3\text{–}31.1\text{ Medium} \mid \le 22.3\text{ Heavy}$$
+                        </div>
+                        <label for="res-api-class" style="color: #fff; font-size: 0.8em;">Typical Oil Grade</label>
+                        <input type="text" id="res-api-class" readonly placeholder="—" style="background: #1a2a44; color: #f1c40f; font-weight: bold; width: 100%; border: none; padding: 8px; margin-top: 4px; border-radius: 6px;">
+                    </div>
+                </div>
+
+                <p class="calc-note">
+                    <strong>Field Note:</strong> Water has a specific gravity of <code>1.000</code>, which corresponds to <code>10.0 &deg;API</code>. Higher &deg;API values indicate lighter oils with lower specific gravity, while values below <code>10 &deg;API</code> correspond to fluids denser than water (<code>SG &gt; 1.0</code>).
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/firestore.js"></script>
+    <script src="../../js/app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        if (typeof firebase !== 'undefined' && firebase.auth) {
+            firebase.auth().onAuthStateChanged((user) => {
+                const loginLink = document.getElementById("loginNavLink");
+                const logoutBtn = document.getElementById("logoutNavBtn");
+                const profileLink = document.getElementById("profileNavLink");
+                const mobileLoginLink = document.getElementById("mobileLoginLink");
+                const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
+                const mobileProfileLink = document.getElementById("mobileProfileLink");
+                const answerForm = document.getElementById("answerForm");
+                const answerWarning = document.getElementById("answerAuthWarning");
+
+                if (user) {
+                    if (loginLink) loginLink.style.display = "none";
+                    if (logoutBtn) logoutBtn.style.display = "inline-block";
+                    if (profileLink) profileLink.style.display = "inline-block";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "none";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "inline-block";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "inline-block";
+                    if (answerForm) answerForm.style.display = "block";
+                    if (answerWarning) answerWarning.style.display = "none";
+                } else {
+                    if (loginLink) loginLink.style.display = "inline-block";
+                    if (logoutBtn) logoutBtn.style.display = "none";
+                    if (profileLink) profileLink.style.display = "none";
+                    if (mobileLoginLink) mobileLoginLink.style.display = "inline-block";
+                    if (mobileLogoutBtn) mobileLogoutBtn.style.display = "none";
+                    if (mobileProfileLink) mobileProfileLink.style.display = "none";
+                    if (answerForm) answerForm.style.display = "none";
+                    if (answerWarning) answerWarning.style.display = "block";
+                }
+            });
+        }
+
+        const logoutNavBtn = document.getElementById("logoutNavBtn");
+        if (logoutNavBtn && typeof firebase !== 'undefined' && firebase.auth) {
+            logoutNavBtn.addEventListener("click", async () => {
+                await firebase.auth().signOut();
+                window.location.href = "../../login.html";
+            });
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        if (openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+
+        // --- API Gravity Equation Logic ---
+        function classifyApi(api) {
+            if (api > 31.1) return 'Light Crude';
+            if (api >= 22.3) return 'Medium Crude';
+            if (api >= 10.0) return 'Heavy Crude';
+            return 'Extra Heavy / Denser than Water';
+        }
+
+        function clearApiOutputs(msg) {
+            document.getElementById('res-api-deg').value = '';
+            document.getElementById('res-api-sg').value = '';
+            document.getElementById('res-api-class').value = '';
+            document.getElementById('api-validation').textContent = msg || '';
+        }
+
+        function updateApiDisplay(apiVal, sgVal) {
+            document.getElementById('api-validation').textContent = '';
+            document.getElementById('res-api-deg').value = `${apiVal.toFixed(2)} °API`;
+            document.getElementById('res-api-sg').value = sgVal.toFixed(4);
+            document.getElementById('res-api-class').value = classifyApi(apiVal);
+        }
+
+        function calculateFromSG() {
+            const sgInputEl = document.getElementById('api-sg');
+            const apiInputEl = document.getElementById('api-deg');
+            const rawSg = sgInputEl.value.trim();
+
+            if (rawSg === '') {
+                if (apiInputEl.value.trim() === '') clearApiOutputs('');
+                return;
+            }
+
+            const sg = parseFloat(rawSg);
+            if (isNaN(sg) || sg <= 0) {
+                clearApiOutputs('Specific Gravity must be greater than zero.');
+                return;
+            }
+
+            const api = (141.5 / sg) - 131.5;
+            apiInputEl.value = api.toFixed(2);
+            updateApiDisplay(api, sg);
+        }
+
+        function calculateFromAPI() {
+            const apiInputEl = document.getElementById('api-deg');
+            const sgInputEl = document.getElementById('api-sg');
+            const rawApi = apiInputEl.value.trim();
+
+            if (rawApi === '') {
+                if (sgInputEl.value.trim() === '') clearApiOutputs('');
+                return;
+            }
+
+            const api = parseFloat(rawApi);
+            if (isNaN(api) || (api + 131.5) <= 0) {
+                clearApiOutputs('API Gravity must result in a positive denominator (API > -131.5).');
+                return;
+            }
+
+            const sg = 141.5 / (api + 131.5);
+            sgInputEl.value = sg.toFixed(4);
+            updateApiDisplay(api, sg);
+        }
+
+        document.getElementById('api-sg').addEventListener('input', calculateFromSG);
+        document.getElementById('api-deg').addEventListener('input', calculateFromAPI);
+    </script>
+</body>
+</html>

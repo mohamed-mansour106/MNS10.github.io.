@@ -38,6 +38,41 @@
     } catch (e) {}
   }
 
+  // Anonymous answer count. One document per visitor per question (create only).
+  // Stores: question id, chosen option number, right/wrong, random visitor id, server time. No names, no emails.
+  var API_KEY = "AIzaSyC7IVEEzzmV1n-BmQlyqf16DGZbFE4rl5Y";
+  function visitorId() {
+    var v = "";
+    try { v = localStorage.getItem("ofu_vid") || ""; } catch (e) {}
+    if (!/^[a-z0-9]{12}$/.test(v)) {
+      v = "";
+      var abc = "abcdefghijklmnopqrstuvwxyz0123456789";
+      for (var i = 0; i < 12; i++) v += abc.charAt(Math.floor(Math.random() * abc.length));
+      try { localStorage.setItem("ofu_vid", v); } catch (e) {}
+    }
+    return v;
+  }
+  function record(qid, choice, correct) {
+    try {
+      var vid = visitorId();
+      var name = "projects/swt-community/databases/(default)/documents/mcqAnswers/" + qid + "_" + vid;
+      fetch("https://firestore.googleapis.com/v1/projects/swt-community/databases/(default)/documents:commit?key=" + API_KEY, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        keepalive: true,
+        body: JSON.stringify({ writes: [{
+          update: { name: name, fields: {
+            qid: { stringValue: qid },
+            choice: { integerValue: String(choice) },
+            correct: { booleanValue: !!correct },
+            vid: { stringValue: vid }
+          } },
+          updateTransforms: [{ fieldPath: "ts", setToServerValue: "REQUEST_TIME" }]
+        }] })
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   function el(tag, cls, text) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
@@ -98,13 +133,14 @@
           res.appendChild(ex);
         }
         remember();
+        record(String(q.id), i, i === ans);
       });
       btns.push(b);
       box.appendChild(b);
     });
     box.appendChild(res);
     var left = Math.max(1, Math.ceil((expires - Date.now()) / 3600000));
-    box.appendChild(el("div", "ofu-mcq-foot", "Disappears in about " + left + (left === 1 ? " hour" : " hours")));
+    box.appendChild(el("div", "ofu-mcq-foot", "Disappears in about " + left + (left === 1 ? " hour" : " hours") + ". Answers are counted anonymously."));
     wrap.appendChild(box);
 
     function close() {

@@ -1,6 +1,6 @@
 /* OFU service worker: offline support + push notifications.
    Scope: the whole MNS10.github.io. site. */
-const VERSION = "ofu-v1";
+const VERSION = "ofu-v2";
 const BASE = self.registration.scope;
 const PRECACHE = [
   BASE + "branchsites/College/OFU.html",
@@ -34,14 +34,14 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return; // never touch Firebase, fonts, analytics
 
   // Pages: network first so updates show up, cached copy when offline.
-  if (req.mode === "navigate") {
+  if (req.mode === "navigate" || url.pathname.endsWith(".js")) {
     event.respondWith(
       fetch(req).then((res) => {
         const copy = res.clone();
         caches.open(VERSION).then((c) => c.put(req, copy));
         return res;
       }).catch(() =>
-        caches.match(req).then((hit) => hit || caches.match(BASE + "branchsites/College/OFU.html"))
+        caches.match(req).then((hit) => hit || (req.mode === "navigate" ? caches.match(BASE + "branchsites/College/OFU.html") : undefined))
       )
     );
     return;

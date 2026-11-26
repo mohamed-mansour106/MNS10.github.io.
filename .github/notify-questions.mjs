@@ -58,7 +58,8 @@ async function send(title, body, url) {
 const docs = snap.docs;
 for (const d of docs.slice(0, MAX_SEND)) {
   const q = d.data();
-  const name = clip(q.authorName || "Someone", 40);
+  const rawName = String(q.authorName || "").trim();
+  const name = !rawName || rawName.includes("@") ? "a community member" : clip(rawName, 40);
   await send(`New question from ${name}`, clip(q.title, 140), BASE + d.id);
 }
 if (docs.length > MAX_SEND) {

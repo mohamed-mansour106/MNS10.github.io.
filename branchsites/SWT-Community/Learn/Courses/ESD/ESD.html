@@ -6,7 +6,686 @@
     <title>SWT2 - Emergency Shut Down (ESD) | Well Testing Academy</title>
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../style.css">
-    <style></style>
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 10%; /* Dynamically calculated based on Tab 0 of 10 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+
+        /*******************************************/
+        /* =====================================
+   MODERN EXPLAIN SECTION
+===================================== */
+
+.explain-modern{
+    background: linear-gradient(180deg,#0f172a,#111827);
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0;
+    color: #e2e8f0;
+    line-height: 1.8;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+.explain-modern h3{
+    color: #f1c40f;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #f1c40f;
+    padding-left: 15px;
+}
+
+.explain-modern h4{
+    color: #38bdf8;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.explain-modern p{
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.explain-modern ul{
+    margin: 15px 0 20px 25px;
+}
+
+.explain-modern li{
+    margin-bottom: 8px;
+}
+
+.explain-modern hr{
+    border: none;
+    height: 1px;
+    background: #334155;
+    margin: 25px 0;
+}
+
+/* =====================================
+   TIP BOX
+===================================== */
+
+.tip-box{
+    background: rgba(14,165,233,0.12);
+    border-left: 5px solid #0ea5e9;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #dbeafe;
+}
+
+/* =====================================
+   WARNING BOX
+===================================== */
+
+.warning-box{
+    background: rgba(239,68,68,0.12);
+    border-left: 5px solid #ef4444;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fee2e2;
+}
+
+/* =====================================
+   HIGHLIGHT CARD
+===================================== */
+
+.highlight-card{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    border: 1px solid #475569;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #f8fafc;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================================
+   FLOW DIAGRAM
+===================================== */
+
+.flow-diagram{
+    background: #020617;
+    border: 2px dashed #38bdf8;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    font-weight: 700;
+    color: #7dd3fc;
+    line-height: 2;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+/* =====================================
+   FORMULA BOX
+===================================== */
+
+.formula-box{
+    background: #020617;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    overflow-x: auto;
+    margin: 20px 0;
+    color: #f8fafc;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.modern-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.modern-table thead{
+    background: #f1c40f;
+}
+
+.modern-table thead th{
+    color: #000;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.modern-table tbody tr{
+    background: #111827;
+    border-bottom: 1px solid #334155;
+}
+
+.modern-table tbody tr:nth-child(even){
+    background: #0f172a;
+}
+
+.modern-table td{
+    padding: 14px;
+    color: #e2e8f0;
+}
+
+/* =====================================
+   ENGINEERING NOTE
+===================================== */
+
+.engineering-note{
+    background: rgba(241,196,15,0.12);
+    border-left: 5px solid #f1c40f;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fef3c7;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+    .explain-modern{
+        padding: 20px;
+    }
+
+    .explain-modern h3{
+        font-size: 1.5rem;
+    }
+
+    .explain-modern h4{
+        font-size: 1.1rem;
+    }
+
+    .modern-table{
+        display:block;
+        overflow-x:auto;
+        white-space: nowrap;
+    }
+}
+
+/****************فهرس*******************/
+/* COURSE TAB NAVIGATION */
+.course-tab-nav {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 15px 5px;
+    margin: 20px 0;
+    border-bottom: 1px solid var(--border-glass);
+    scrollbar-width: thin;
+}
+
+.course-tab-btn {
+    flex: 0 0 auto;
+    padding: 12px 18px;
+    border: 1px solid var(--border-glass);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    color: #cbd5e1;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition-smooth);
+}
+
+.course-tab-btn:hover {
+    border-color: var(--primary-glow);
+    color: white;
+}
+
+.course-tab-btn.active {
+    background: linear-gradient(135deg,#007bff,#00bcd4);
+    color: white;
+    border-color: var(--primary-glow);
+    box-shadow: 0 0 15px rgba(0,230,246,0.2);
+}
+
+/* COURSE INDEX */
+.course-index {
+    max-width: 1000px;
+    margin: 25px auto;
+}
+
+.index-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px;
+    margin-bottom: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-glass);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.index-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-glow);
+    background: rgba(0,230,246,0.07);
+}
+
+.index-number {
+    min-width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(0,123,255,0.2);
+    color: var(--primary-glow);
+    font-weight: bold;
+}
+
+.index-info h4 {
+    margin: 0 0 6px;
+    color: white;
+}
+
+.index-info p {
+    margin: 0;
+    color: #9ca3af;
+    font-size: 0.9rem;
+}
+
+.index-arrow {
+    margin-left: auto;
+    color: var(--primary-glow);
+    font-size: 22px;
+}
+
+@media(max-width:600px) {
+    .index-card {
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .index-info h4 {
+        font-size: 0.95rem;
+    }
+
+    .index-info p {
+        font-size: 0.8rem;
+    }
+
+    .course-tab-btn {
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+}
+/***********************************/
+
+/**************Go to index page tab0 button*********************/
+.back-to-index {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 25px;
+    padding: 10px 20px;
+    background: rgba(0, 180, 255, 0.12);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.back-to-index:hover {
+    background: #0ea5e9;
+    color: white;
+    transform: translateY(-2px);
+}
+/*********************************/
+    
+/* ofu-table-fit: wide tables scroll inside the card (wrapper from the template) */
+main.main-content{min-width:0;max-width:100%}
+</style>
 <script data-goatcounter="https://ofu-mansour.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -69,268 +748,221 @@
 
 
     <!-- Main Content -->
-    <main class="container main-content">
-        <h1 style="margin-top: -5%; color: white; text-align: center;">SWT2 - Emergency Shut Down (ESD)</h1>
-           
-
-    <div class="big-div">
-
-        <div class="background-color1" 
-            style="background-color: rgb(1, 1, 26);
-                    width: 100%;
-                    height: 500px;
-                    margin-top: 12%;
-                    display: flex;">
-
-
-            <div class="video" 
-                    style="width: 99%;
-                    float: left; 
-                    background-color: brown;
-                    height: 90%;
-                    margin: 1%; border-radius: 5%;">
-                <iframe style="width: 100%; height: 100%; border-radius: 10%;" src="https://www.youtube.com/embed/Gp_hEDZUxvU" title="SWT2 - Emergency Shut Down (ESD)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div >
-
-
-            <script>
-                document.ready(function() {
-                    
-                });
-            </script>
-
-
-        </div>
-        
-
-
-        <h2 style="margin-top: -5%; color: white; text-align: center;">SWT2 - Emergency Shut Down (ESD)</h2>
-
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">SWT2 - Emergency Shut Down (ESD)</h1>
         <div class="tabs-container">
-    <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'tab1')">ESD Summary</button>
-        <button class="tab-button" onclick="openTab(event, 'tab2')">my Summary</button>
-        <button class="tab-button" onclick="openTab(event, 'tab3')">Q&A Summary</button>
-        <button class="tab-button" onclick="openTab(event, 'tab4')">Exam</button>
-
-
-    </div>
-    <div class="tab-content active" id="tab1">
-        <div class="explain">
-            <h3>ESD Summary</h3>
-            <ol>
-                <span>Here’s a summary of the "SWT - Emergency Shut Down (ESD)" video in 8 bullet points with timestamps:</span>
-                <li>
-                    <b><u>(00:00 – 00:46):</u></b>  The Emergency Shutdown (ESD) system controls the flowline valve actuator and possibly a surface safety valve (SSV). It can be triggered from push-button stations at various locations like the separator, steam exchanger, gauge tank, and burner pedestals.
+<div class="big-div tab-content active" id="tab0">
+<div class="video-container-modern"><iframe src="https://www.youtube.com/embed/Gp_hEDZUxvU" title="SWT2 - Emergency Shut Down (ESD)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="explain-modern course-index">
+<h3>SWT2 - Emergency Shut Down (ESD) &ndash; Course Index</h3>
+<h4>Course Modules</h4>
+<div class="index-card" onclick="openTab('tab1')"><div class="index-number">01</div><div class="index-info"><h4>ESD Summary</h4></div><div class="index-arrow">&rarr;</div></div>
+<div class="index-card" onclick="openTab('tab2')"><div class="index-number">02</div><div class="index-info"><h4>my Summary</h4></div><div class="index-arrow">&rarr;</div></div>
+<div class="index-card" onclick="openTab('tab3')"><div class="index-number">03</div><div class="index-info"><h4>Q&amp;A Summary</h4></div><div class="index-arrow">&rarr;</div></div>
+<div class="index-card" onclick="openTab('tab4')"><div class="index-number">04</div><div class="index-info"><h4>Exam</h4></div><div class="index-arrow">&rarr;</div></div>
+</div>
+</div>
+<div class="big-div tab-content" id="tab1">
+<button class="back-to-index" onclick="openTab('tab0')">Back to Course Index</button>
+<div class="explain-modern">
+<h3>ESD Summary</h3>
+<ol>
+<span>Here’s a summary of the "SWT - Emergency Shut Down (ESD)" video in 8 bullet points with timestamps:</span>
+<li>
+<b><u>(00:00 – 00:46):</u></b>  The Emergency Shutdown (ESD) system controls the flowline valve actuator and possibly a surface safety valve (SSV). It can be triggered from push-button stations at various locations like the separator, steam exchanger, gauge tank, and burner pedestals.
                 </li>
-                <li>
-                    <b><u>(01:24 – 02:08):</u></b>   The ESD control skid contains:
+<li>
+<b><u>(01:24 – 02:08):</u></b>   The ESD control skid contains:
                     <ul>
-                        <li>A pump</li>
-                        <li>Hydraulic tank</li>
-                        <li>Air reservoir</li>
-                        <li>Three hose reels (1x 20m high-pressure, 2x 90m low-pressure)
+<li>A pump</li>
+<li>Hydraulic tank</li>
+<li>Air reservoir</li>
+<li>Three hose reels (1x 20m high-pressure, 2x 90m low-pressure)
                             It works with any single-action fail-safe actuator (≤6000 psi).</li>
-                    </ul>
+</ul>
+</li>
+<li>
+<b><u>(02:08 – 02:52):</u></b>  The system allows for remote emergency closure of the flowline valve during events like fire, pipe leaks, or equipment malfunction using a pneumatic console, manual push-pull stations, and pressure pilots.
                 </li>
-                <li>
-                    <b><u>(02:08 – 02:52):</u></b>  The system allows for remote emergency closure of the flowline valve during events like fire, pipe leaks, or equipment malfunction using a pneumatic console, manual push-pull stations, and pressure pilots.
+<li>
+<b><u>(02:52 – 03:24):</u></b>  High-pressure pilot logic: If pressure exceeds a preset level, it vents air, triggering the interface valve to bleed hydraulic pressure, causing the shutdown valve to close.
                 </li>
-                <li>
-                    <b><u>(02:52 – 03:24):</u></b>  High-pressure pilot logic: If pressure exceeds a preset level, it vents air, triggering the interface valve to bleed hydraulic pressure, causing the shutdown valve to close.
+<li>
+<b><u>(03:24 – 04:06):</u></b>  Low-pressure pilot logic: If pressure drops below a preset level, it vents air, prompting the system to close the shutdown valve similarly.
                 </li>
-                <li>
-                    <b><u>(03:24 – 04:06):</u></b>  Low-pressure pilot logic: If pressure drops below a preset level, it vents air, prompting the system to close the shutdown valve similarly.
-                </li>
-                <li>
-                    <b><u>(04:06 – 05:09):</u></b>  The ESD system includes:
+<li>
+<b><u>(04:06 – 05:09):</u></b>  The ESD system includes:
                     <ul>
-                        <li>Hydraulic valves</li>
-                        <li>Flow head actuator</li>
-                        <li>Surface safety valve</li>
-                        <li>High/low pilots (30 psi)</li>
-                        <li>Panel components like hydraulic pump, oil tank, air vessel (150 psi), interface valve, and various control valves.</li>
-                    </ul>
+<li>Hydraulic valves</li>
+<li>Flow head actuator</li>
+<li>Surface safety valve</li>
+<li>High/low pilots (30 psi)</li>
+<li>Panel components like hydraulic pump, oil tank, air vessel (150 psi), interface valve, and various control valves.</li>
+</ul>
+</li>
+<li>
+<b><u>(05:09 – 06:10):</u></b>  ESD stations must be located at the separator, rig floor, escape routes, and near the lab cabin. Pilots should be placed on the flowline, data header, test separator, and steam exchanger to ensure full system coverage.
                 </li>
-                <li>
-                    <b><u>(05:09 – 06:10):</u></b>  ESD stations must be located at the separator, rig floor, escape routes, and near the lab cabin. Pilots should be placed on the flowline, data header, test separator, and steam exchanger to ensure full system coverage.
+</ol>
+</div>
+<div class="navigation-control-panel">
+<button class="nav-btn-modern" onclick="openTab('tab0')">&larr; Course Index</button>
+<button class="nav-btn-modern next" onclick="openTab('tab2')">Next &rarr;</button>
+</div>
+</div>
+<div class="big-div tab-content" id="tab2">
+<button class="back-to-index" onclick="openTab('tab0')">Back to Course Index</button>
+<div class="explain-modern">
+<h3>ESD my Summary</h3>
+<ol>
+<span>Here’s a summary of ESD in oil wells </span>
+<li>
+<b><u>:</u></b> .
                 </li>
-                
-            </ol>
-        </div>
-    </div>
-
-    <!----------------------    second section  -->
-
-    <div class="tab-content" id="tab2">
-        <div class="explain">
-            <h3>ESD my Summary</h3>
-            <ol>
-                <span>Here’s a summary of ESD in oil wells </span>
-                <li>
-                    <b><u>:</u></b> .
+<li>
+<b><u>:</u></b> .
                 </li>
-                <li>
-                    <b><u>:</u></b> .
+<li>
+<b><u>:</u></b> .
                 </li>
-                <li>
-                    <b><u>:</u></b> .
+<li>
+<b><u>:</u></b> .
                 </li>
-                <li>
-                    <b><u>:</u></b> .
+<li>
+<b><u>:</u></b> .
                 </li>
-                <li>
-                    <b><u>:</u></b> .
-                </li>
-            </ol>
-        </div>
-    </div>
-
-    <!----------------------    third section  -->
-
-        <div class="tab-content" id="tab3">
-            <div class="explain">
-                <h3>Q&A Summary</h3>
-                <ol>
-                    <span>Here’s a summary of ESD in oil wells </span>
-                    <li>
-                        <b><u> What is the primary function of the Emergency Shutdown (ESD) system?</u></b> 
-                        <p>
-                            <b style="color: blueviolet;"><u>Answer:</u></b> 
+</ol>
+</div>
+<div class="navigation-control-panel">
+<button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+<button class="nav-btn-modern next" onclick="openTab('tab3')">Next &rarr;</button>
+</div>
+</div>
+<div class="big-div tab-content" id="tab3">
+<button class="back-to-index" onclick="openTab('tab0')">Back to Course Index</button>
+<div class="explain-modern">
+<h3>Q&amp;A Summary</h3>
+<ol>
+<span>Here’s a summary of ESD in oil wells </span>
+<li>
+<b><u> What is the primary function of the Emergency Shutdown (ESD) system?</u></b>
+<p>
+<b style="color: blueviolet;"><u>Answer:</u></b> 
                             The ESD system is designed to **quickly close the well in emergency situations** such as fire, pipe break, or separator malfunction to ensure safety.</p>
-                    </li>
-                    <li>
-                        <b><u> What components does the ESD control skid include?</u></b> 
-                        <p>
-                            <b style="color: blueviolet;"><u>Answer:</u></b> 
+</li>
+<li>
+<b><u> What components does the ESD control skid include?</u></b>
+<p>
+<b style="color: blueviolet;"><u>Answer:</u></b> 
                             It includes a hydraulic pump, hydraulic oil tank, air reservoir, and three hose reels (one high-pressure, two low-pressure).
                         </p>
-                    </li>
-                    <li>
-                        <b><u> What type of actuator does the ESD system support?</u></b> 
-                        <p>
-                            <b style="color: blueviolet;"><u>Answer:</u></b> 
+</li>
+<li>
+<b><u> What type of actuator does the ESD system support?</u></b>
+<p>
+<b style="color: blueviolet;"><u>Answer:</u></b> 
                             It supports single-action fail-safe hydraulic actuators with hydraulic pressure requirements not exceeding 6000 psi.
                         </p>
-                    </li>
-                    <li>
-                        <b><u> Where can ESD push-button stations be installed?</u></b> 
-                        <p>
-                            <b style="color: blueviolet;"><u>Answer:</u></b> 
+</li>
+<li>
+<b><u> Where can ESD push-button stations be installed?</u></b>
+<p>
+<b style="color: blueviolet;"><u>Answer:</u></b> 
                             The high-pressure pilot is triggered when flowline pressure rises above a preset threshold, indicating potential issues like choke plugging.
                         </p>
-                    </li>
-                    <li>
-                        <b><u> What triggers the high-pressure pilot in the ESD system?</u></b> 
-                        <p>
-                            <b style="color: blueviolet;"><u>Answer:</u></b> 
+</li>
+<li>
+<b><u> What triggers the high-pressure pilot in the ESD system?</u></b>
+<p>
+<b style="color: blueviolet;"><u>Answer:</u></b> 
                             The high-pressure pilot is triggered when flowline pressure rises above a preset threshold, indicating potential issues like choke plugging.
                         </p>
-                    </li>
-                    <li>
-                        <b><u> What happens when the high or low pilot is triggered?</u></b> 
-                        <p>
-                            <b style="color: blueviolet;"><u>Answer:</u></b> 
+</li>
+<li>
+<b><u> What happens when the high or low pilot is triggered?</u></b>
+<p>
+<b style="color: blueviolet;"><u>Answer:</u></b> 
                             When triggered, the air pressure is vented, the interface valve releases hydraulic pressure, and the shutdown valve closes.
                         </p>
-                    </li>
-                    <li>
-                        <b><u> What pressure is typically used by the high/low pilots and ESD stations?</u></b> 
-                        <p>
-                            <b style="color: blueviolet;"><u>Answer:</u></b> 
+</li>
+<li>
+<b><u> What pressure is typically used by the high/low pilots and ESD stations?</u></b>
+<p>
+<b style="color: blueviolet;"><u>Answer:</u></b> 
                             Both the high/low pilots and ESD stations typically operate at 30 psi.
                         </p>
-                    </li>
-                    <li>
-                        <b><u> What is the role of the interface valve in the ESD system?</u></b> 
-                        <p>
-                            <b style="color: blueviolet;"><u>Answer:</u></b> 
+</li>
+<li>
+<b><u> What is the role of the interface valve in the ESD system?</u></b>
+<p>
+<b style="color: blueviolet;"><u>Answer:</u></b> 
                             The interface valve controls the release of hydraulic pressure from the actuator when triggered by pilot signals or manual stations, leading to valve closure.
                         </p>
-                    </li>
-                    <li>
-                        <b><u> What is the function of the surface safety valve (SSV) in the ESD system?</u></b> 
-                        <p>
-                            <b style="color: blueviolet;"><u>Answer:</u></b> 
+</li>
+<li>
+<b><u> What is the function of the surface safety valve (SSV) in the ESD system?</u></b>
+<p>
+<b style="color: blueviolet;"><u>Answer:</u></b> 
                             The SSV is an optional component located upstream of the choke manifold and helps isolate the well during an emergency.
                         </p>
-                    </li>
-                    <li>
-                        <b><u> What equipment makes up the ESD panel?</u></b> 
-                        <p>
-                            <b style="color: blueviolet;"><u>Answer:</u></b> 
+</li>
+<li>
+<b><u> What equipment makes up the ESD panel?</u></b>
+<p>
+<b style="color: blueviolet;"><u>Answer:</u></b> 
                             The ESD panel includes:
                             <ul>
-                                <li>Hydraulic pump</li>
-                                <li>Hydraulic oil tank</li>
-                                <li>Air vessel (150 psi)</li>
-                                <li>Interface valve</li>
-                                <li>Check valve</li>
-                                <li>Quick exhaust valve</li>
-                                <li>Reset valve</li>
-                                <li>Bypass valve</li>
-                            </ul>
-                        </p>
-                    </li>
-                </ol>
-            </div>
-        </div>
-
-        <!----------------------    fourth section  ------->
-
-        <div class="tab-content" id="tab4">
-            <div class="explain">
-                <h3>course Exam</h3>
-                
-                    <span>Finaly you are in the last step of achieving your Goal</span>
-                    <h4>✅ Important Notes Before You Start the Exam</h4>
-                        <span style="border-left: 3px solid blueviolet;">📌 Please read these carefully before pressing the “Start Exam” button:</span>
-                        <ol>
-                            <li>🧘‍♂️ Take a deep breath and stay calm – This exam is about understanding, not just memorizing.</li>
-                            <li>⏰ Make sure you're in a quiet, distraction-free space – Turn off notifications and focus.</li>
-                            <li>🔌 Ensure a stable internet connection – Losing connection may end your exam session.</li>
-                            <li>📝 Have everything you need ready – Paper, pen, calculator (if allowed), or any permitted tools.</li>
-                            <li>🚫 No cheating or switching tabs – Some exams monitor your activity for fairness.</li>
-                            <li>🧠 Read each question carefully – Don’t rush. Understand before you answer.</li>
-                            <li>🎯 Only click the button when you're 100% ready – The exam timer will start immediately.</li>
-                        </ol>
-                    <h4>⚠️ Note:</h4>
-                        <span style="border-left: 3px solid blueviolet;">Leaving the page or refreshing the browser may result in automatic submission or loss of progress.</span>
-
-                    <h4>🚀 Ready to begin?</h4>
-                    <span style="border-left: 3px solid blueviolet; text-align: center; margin: auto;">Click the button below to start your exam. Good luck! 💪</span>
-                    
-                    <a href="Exam.html" style="text-decoration: none;">
-                            <p style="text-align: center; font-size: 500%;">
-                                <button class="button-49" role="button"><b>Go to Exam</b></button>
-
-                            </p></a> 
-
-                    
-                
-            </div>
-        </div>
-        </div>
+<li>Hydraulic pump</li>
+<li>Hydraulic oil tank</li>
+<li>Air vessel (150 psi)</li>
+<li>Interface valve</li>
+<li>Check valve</li>
+<li>Quick exhaust valve</li>
+<li>Reset valve</li>
+<li>Bypass valve</li>
+</ul>
+</p>
+</li>
+</ol>
 </div>
-
+<div class="navigation-control-panel">
+<button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+<button class="nav-btn-modern next" onclick="openTab('tab4')">Next &rarr;</button>
+</div>
+</div>
+<div class="big-div tab-content" id="tab4">
+<button class="back-to-index" onclick="openTab('tab0')">Back to Course Index</button>
+<div class="explain-modern">
+<h3>course Exam</h3>
+<span>Finaly you are in the last step of achieving your Goal</span>
+<h4>✅ Important Notes Before You Start the Exam</h4>
+<span style="border-left: 3px solid blueviolet;">📌 Please read these carefully before pressing the “Start Exam” button:</span>
+<ol>
+<li>🧘‍♂️ Take a deep breath and stay calm – This exam is about understanding, not just memorizing.</li>
+<li>⏰ Make sure you're in a quiet, distraction-free space – Turn off notifications and focus.</li>
+<li>🔌 Ensure a stable internet connection – Losing connection may end your exam session.</li>
+<li>📝 Have everything you need ready – Paper, pen, calculator (if allowed), or any permitted tools.</li>
+<li>🚫 No cheating or switching tabs – Some exams monitor your activity for fairness.</li>
+<li>🧠 Read each question carefully – Don’t rush. Understand before you answer.</li>
+<li>🎯 Only click the button when you're 100% ready – The exam timer will start immediately.</li>
+</ol>
+<h4>⚠️ Note:</h4>
+<span style="border-left: 3px solid blueviolet;">Leaving the page or refreshing the browser may result in automatic submission or loss of progress.</span>
+<h4>🚀 Ready to begin?</h4>
+<span style="border-left: 3px solid blueviolet; text-align: center; margin: auto;">Click the button below to start your exam. Good luck! 💪</span>
+<a href="Exam.html" style="text-decoration: none;">
+<p style="text-align: center; font-size: 500%;">
+<button class="button-49" role="button"><b>Go to Exam</b></button>
+</p></a>
+</div>
+<div class="navigation-control-panel">
+<button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+</div>
+</div>
+</div>
 <script>
-    function openTab(event, tabId) {
-        // Hide all tab contents
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabContents.forEach(content => content.classList.remove('active'));
-
-        // Remove active class from all buttons
-        const tabButtons = document.querySelectorAll('.tab-button');
-        tabButtons.forEach(button => button.classList.remove('active'));
-
-        // Show the selected tab and add active class to the button
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
+function openTab(tabId){document.querySelectorAll(".tab-content").forEach(function(c){c.classList.remove("active")});var p=document.getElementById(tabId);if(p){p.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}}
 </script>
-
-<!--------------------------------------------------------->
-
     </main>
 
     <!-- Footer -->

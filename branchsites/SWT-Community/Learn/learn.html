@@ -906,6 +906,9 @@
     </script>
 
 
-    <script src="../js/auth.js"></script>
+    <script>/* ofu-card-click: whole course card opens the course */
+document.querySelectorAll(".library-card").forEach(function(c){var a=c.querySelector("a[href]");if(!a)return;c.style.cursor="pointer";c.addEventListener("click",function(e){if(e.target.closest("a,button,input,select,textarea,label"))return;if(e.metaKey||e.ctrlKey){window.open(a.href,"_blank");}else{window.location.href=a.href;}});});
+</script>
+<script src="../js/auth.js"></script>
 </body>
 </html>

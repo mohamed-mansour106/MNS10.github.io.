@@ -12,6 +12,15 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script data-goatcounter="https://ofu-mansour.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+/* ofu-mobile-fit: main used auto side margins, so wide media (video) widened the whole page on phones */
+main{width:100%;min-width:0;max-width:100%}
+@media (min-width:1200px){main{max-width:72rem}}
+.lesson-card{min-width:0}
+.lesson-card table,.lesson-card pre{display:block;max-width:100%;overflow-x:auto}
+.lesson-card mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}
+.lesson-card img,.lesson-card svg,.lesson-card video{max-width:100%;height:auto}
+</style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased">
     <canvas id="bg"></canvas>

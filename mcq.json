@@ -1,10 +1,15 @@
 {
-  "active": false,
-  "id": "example-1",
-  "publishedAt": "2026-01-01T00:00:00Z",
+  "active": true,
+  "id": "api-gravity-2026-11-26",
+  "publishedAt": "2026-11-26T14:26:28Z",
   "hours": 24,
-  "question": "Write the question here",
-  "options": ["Option A", "Option B", "Option C", "Option D"],
+  "question": "What does a higher API gravity indicate about a crude oil?",
+  "options": [
+    "The oil is lighter (lower density)",
+    "The oil is heavier (higher density)",
+    "The oil has a higher water content",
+    "The oil has a higher H2S content"
+  ],
   "answer": 0,
-  "explanation": "Optional short explanation shown after the visitor answers"
+  "explanation": "API gravity = 141.5 / SG - 131.5. A lower specific gravity gives a higher API gravity, so light oils have high API (for example 40 degrees) and heavy oils have low API (below about 20 degrees)."
 }

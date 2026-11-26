@@ -1,0 +1,25 @@
+{
+  "name": "OilField University",
+  "short_name": "OFU",
+  "description": "Practical well testing and oilfield learning: courses, calculators, library and dictionary.",
+  "start_url": "/MNS10.github.io./branchsites/College/OFU.html?source=pwa",
+  "scope": "/MNS10.github.io./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#071426",
+  "theme_color": "#071426",
+  "icons": [
+    {
+      "src": "branchsites/College/img/logo/MMM.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "branchsites/College/img/logo/MMM.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

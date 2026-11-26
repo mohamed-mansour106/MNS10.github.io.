@@ -1,0 +1,33 @@
+name: Send OFU notification
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "Notification title"
+        required: true
+      body:
+        description: "Notification text"
+        required: true
+      url:
+        description: "Page to open when tapped (full link)"
+        required: false
+        default: "https://mohamed-mansour106.github.io/MNS10.github.io./branchsites/College/OFU.html"
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install firebase-admin
+        run: npm install --no-save firebase-admin@12
+      - name: Send
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          N_TITLE: ${{ inputs.title }}
+          N_BODY: ${{ inputs.body }}
+          N_URL: ${{ inputs.url }}
+        run: node .github/send-notification.mjs

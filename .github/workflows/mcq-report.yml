@@ -1,0 +1,25 @@
+name: MCQ answers report
+
+on:
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: "Hours to look back"
+        required: false
+        default: "24"
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install firebase-admin
+        run: npm install --no-save firebase-admin@12
+      - name: Build report
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          HOURS: ${{ inputs.hours }}
+        run: node .github/mcq-report.mjs

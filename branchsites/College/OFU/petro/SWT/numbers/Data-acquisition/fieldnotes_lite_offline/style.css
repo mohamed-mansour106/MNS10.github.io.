@@ -356,3 +356,19 @@ canvas {
   .panel-grid.two { grid-template-columns: 1fr; }
   .split-v { grid-template-rows: auto auto; }
 }
+
+/* Mobile layout: stack panels, wrap toolbars, no sideways page scroll */
+@media (max-width: 900px) {
+  html, body { height: auto; min-height: 100%; }
+  .desktop-window { height: auto; min-height: 100vh; }
+  .workspace { display: flex; flex-direction: column; overflow: visible; padding: 6px; }
+  .center-area { order: -1; min-width: 0; min-height: 70vh; }
+  .left-dock, .right-dock { max-height: none; min-width: 0; }
+  .menubar, .toolbar { flex-wrap: wrap; gap: 4px; }
+  .toolbar button { padding: 5px 8px; }
+  .tabs { overflow-x: auto; flex-wrap: nowrap; }
+  .tab { flex: 0 0 auto; }
+  .grid-wrap, .tab-panel { overflow: auto; }
+  .panel-grid.two { grid-template-columns: 1fr; }
+  canvas { max-width: 100%; }
+}

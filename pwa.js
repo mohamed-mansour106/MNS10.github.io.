@@ -56,21 +56,34 @@
   });
   window.addEventListener("appinstalled", function () { removeBtn("ofuInstallBtn"); removeBtn("ofuIosBtn"); });
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function init() {
     if (isIOS && !standalone && !deferred) {
       addBtn("ofuIosBtn", "Install the OFU app", function () {
         alert("To install on iPhone: open this page in Safari, tap the Share button, then \"Add to Home Screen\". Notifications work after you open OFU from the Home Screen icon.");
       });
     }
     setupPush();
-  });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 
   // ---- Notifications ----
   function setupPush() {
     if (!VAPID_KEY) return;
-    if (!("Notification" in window) || !("serviceWorker" in navigator) || !("PushManager" in window)) return;
     if (isIOS && !standalone) return; // iPhone only allows push for installed Home Screen apps
-    if (Notification.permission === "denied") return;
+    var supported = ("Notification" in window) && ("serviceWorker" in navigator) && ("PushManager" in window);
+    if (!supported) {
+      addBtn("ofuPushBtn", "Get notifications", function () {
+        alert("This browser cannot show notifications here (often a browser built into another app). Open this page in Chrome and try again.");
+      });
+      return;
+    }
+    if (Notification.permission === "denied") {
+      addBtn("ofuPushBtn", "Get notifications", function () {
+        alert("Notifications are blocked for this site. Tap the lock icon next to the address, open Permissions, set Notifications to Allow, then reload the page.");
+      });
+      return;
+    }
     if (localStorage.getItem("ofu_push") === "1" && Notification.permission === "granted") return;
     addBtn("ofuPushBtn", "Get notifications", subscribe);
   }

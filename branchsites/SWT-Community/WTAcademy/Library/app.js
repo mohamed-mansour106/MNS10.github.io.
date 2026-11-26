@@ -105,10 +105,13 @@ let state = {
       const isBookmarked = state.bookmarks.includes(mod.id);
       
       // Dynamically calculate progress based on active module slide count
-      let totalModSlides = ESD_SLIDES.length;
+      // Inside renderModulesGrid():
+        let totalModSlides = ESD_SLIDES.length;
         if (mod.id === 'mod-04') totalModSlides = HEAT_EXCHANGER_SLIDES.length;
         if (mod.id === 'mod-06') totalModSlides = TANKS_SLIDES.length;
         if (mod.id === 'mod-08') totalModSlides = VALVES_SLIDES.length;
+        if (mod.id === 'mod-10') totalModSlides = BURNERS_SLIDES.length;
+
 
   
       const modProgress = isAvailable
@@ -165,12 +168,12 @@ let state = {
     document.getElementById('bookmark-count').textContent = state.bookmarks.length;
   }
   
-  // Helper to get active slides array based on current modal module
   function getActiveSlidesArray() {
     if (state.activeModalModuleId === 'mod-04') return HEAT_EXCHANGER_SLIDES;
     if (state.activeModalModuleId === 'mod-06') return TANKS_SLIDES;
     if (state.activeModalModuleId === 'mod-08') return VALVES_SLIDES;
-    return ESD_SLIDES; // Default for mod-01
+    if (state.activeModalModuleId === 'mod-10') return BURNERS_SLIDES;
+    return ESD_SLIDES;
   }
   
   
@@ -189,16 +192,30 @@ let state = {
     const footer = document.getElementById('modal-slide-footer');
   
     // Check if module has an active slide deck (Mod-01, Mod-04, or Mod-06)
-    if (modId === 'mod-01' || modId === 'mod-04' || modId === 'mod-06' || modId === 'mod-08') {
-        sidebar.classList.remove('hidden');
-        footer.classList.remove('hidden');
-        renderSlideIndex();
-        renderActiveSlide();
-      } else {
-        sidebar.classList.add('hidden');
-        footer.classList.add('hidden');
-        renderSyllabusView(mod);
-      }
+    // Inside renderModulesGrid():
+    let totalModSlides = ESD_SLIDES.length;
+    if (mod.id === 'mod-04') totalModSlides = HEAT_EXCHANGER_SLIDES.length;
+    if (mod.id === 'mod-06') totalModSlides = TANKS_SLIDES.length;
+    if (mod.id === 'mod-08') totalModSlides = VALVES_SLIDES.length;
+    if (mod.id === 'mod-10') totalModSlides = BURNERS_SLIDES.length;
+
+    // Inside openModuleModal():
+    if (
+      modId === 'mod-01' ||
+      modId === 'mod-04' ||
+      modId === 'mod-06' ||
+      modId === 'mod-08' ||
+      modId === 'mod-10'
+    ) {
+      sidebar.classList.remove('hidden');
+      footer.classList.remove('hidden');
+      renderSlideIndex();
+      renderActiveSlide();
+    } else {
+      sidebar.classList.add('hidden');
+      footer.classList.add('hidden');
+      renderSyllabusView(mod);
+    }
       
   
     document.getElementById('module-modal').classList.remove('hidden');
@@ -612,7 +629,8 @@ let state = {
         state.activeModalModuleId === 'mod-01' ||
         state.activeModalModuleId === 'mod-04' ||
         state.activeModalModuleId === 'mod-06' ||
-        state.activeModalModuleId === 'mod-08'
+        state.activeModalModuleId === 'mod-08' ||
+        state.activeModalModuleId === 'mod-10'
       ) {
         if (e.key === 'ArrowRight') changeSlide(1);
         if (e.key === 'ArrowLeft') changeSlide(-1);

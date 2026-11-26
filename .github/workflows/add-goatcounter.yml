@@ -1,0 +1,30 @@
+name: Add visit counter to all pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "true = only count, change nothing"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - name: Insert counter tag
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then python3 .github/add-goatcounter.py dry; else python3 .github/add-goatcounter.py; fi
+      - name: Commit
+        if: ${{ inputs.dry_run != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Nothing to commit"; else git commit -m "Add GoatCounter visit counter to all pages" && git push origin HEAD:refs/heads/master; fi

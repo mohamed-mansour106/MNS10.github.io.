@@ -30,7 +30,7 @@ document.querySelectorAll(".card").forEach((card, index) => {
     const count = card.querySelector(".like-count");
 
     const saved = localStorage.getItem("like_" + index);
-    const baseLikes = saved ? JSON.parse(saved).count : Math.floor(Math.random() * 120) + 10;
+    const baseLikes = saved ? JSON.parse(saved).count : 0;
     const liked = saved ? JSON.parse(saved).liked : false;
     count.textContent = baseLikes;
     if (liked) btn.classList.add("liked");

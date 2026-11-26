@@ -129,7 +129,21 @@ const ACADEMY_MODULES = [
         duration: '60 mins',
         summary: 'High, medium, and low pressure valves: Gate (WOM, McEvoy), Needle (Kerotest, Autoclave), Ball, Plug, Butterfly, Globe, Control, Check, and Relief valves.',
         keywords: ['valves', 'gate valve', 'needle valve', 'ball valve', 'plug valve', 'butterfly valve', 'globe valve', 'relief valve', 'wom', 'mcevoy', 'farris']
+    },
+
+    // library-data.js (Add Burners module)
+    {
+      id: 'mod-10',
+      code: 'MOD-10',
+      title: '10 - Surface Well Testing Burners & Atomization',
+      category: 'Surface Well Testing',
+      status: 'Available Now',
+      slideCount: 34,
+      duration: '75 mins',
+      summary: 'Effluent atomization, propane pilot ignition, swivel joints, air/oil/water circuits, and Spitfire, Green Dragon, Mud Burner, and Evergreen (Sunflower) systems.',
+      keywords: ['burners', 'atomization', 'spitfire', 'green dragon', 'sea dragon', 'mud burner', 'evergreen', 'sunflower', 'swivel joint', 'propane', 'brfi-bb']
     }
+
 
   ];
   

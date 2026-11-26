@@ -96,6 +96,17 @@ service cloud.firestore {
       allow delete: if isAdmin() || (signedIn() && resource.data.authorId == request.auth.uid);
     }
 
+    // Push notification subscribers (written by the OFU "Get notifications" button, read only by admin/server)
+    match /pushTokens/{tokenId} {
+      allow create: if request.resource.data.keys().hasOnly(['token', 'createdAt', 'ua'])
+        && request.resource.data.token is string
+        && request.resource.data.token == tokenId
+        && request.resource.data.token.size() < 500
+        && (!('ua' in request.resource.data) || (request.resource.data.ua is string && request.resource.data.ua.size() <= 200));
+      allow read, delete: if isAdmin();
+      allow update: if false;
+    }
+
     // Anything else: closed
     match /{document=**} {
       allow read, write: if false;

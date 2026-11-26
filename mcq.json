@@ -1,0 +1,10 @@
+{
+  "active": false,
+  "id": "example-1",
+  "publishedAt": "2026-01-01T00:00:00Z",
+  "hours": 24,
+  "question": "Write the question here",
+  "options": ["Option A", "Option B", "Option C", "Option D"],
+  "answer": 0,
+  "explanation": "Optional short explanation shown after the visitor answers"
+}

@@ -47,6 +47,7 @@
   window.addEventListener("beforeinstallprompt", function (e) {
     e.preventDefault();
     deferred = e;
+    removeBtn("ofuIosBtn");
     if (!standalone) addBtn("ofuInstallBtn", "Install the OFU app", function () {
       if (!deferred) return;
       deferred.prompt();
@@ -56,7 +57,7 @@
   window.addEventListener("appinstalled", function () { removeBtn("ofuInstallBtn"); removeBtn("ofuIosBtn"); });
 
   document.addEventListener("DOMContentLoaded", function () {
-    if (isIOS && !standalone) {
+    if (isIOS && !standalone && !deferred) {
       addBtn("ofuIosBtn", "Install the OFU app", function () {
         alert("To install on iPhone: open this page in Safari, tap the Share button, then \"Add to Home Screen\". Notifications work after you open OFU from the Home Screen icon.");
       });

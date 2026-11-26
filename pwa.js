@@ -48,11 +48,28 @@
     e.preventDefault();
     deferred = e;
     removeBtn("ofuIosBtn");
-    if (!standalone) addBtn("ofuInstallBtn", "Install the OFU app", function () {
+    if (!standalone && !document.querySelector("[data-ofu-install]")) addBtn("ofuInstallBtn", "Install the OFU app", function () {
       if (!deferred) return;
       deferred.prompt();
       deferred.userChoice.finally(function () { deferred = null; removeBtn("ofuInstallBtn"); });
     });
+  });
+  // Any link marked data-ofu-install installs the app (or shows clear steps when the browser cannot prompt).
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("[data-ofu-install]") : null;
+    if (!a) return;
+    e.preventDefault();
+    if (standalone) { alert("The OFU app is already installed on this device."); return; }
+    if (deferred) {
+      deferred.prompt();
+      deferred.userChoice.finally(function () { deferred = null; removeBtn("ofuInstallBtn"); });
+      return;
+    }
+    if (isIOS) {
+      alert("To install on iPhone: open this page in Safari, tap the Share button, then \"Add to Home Screen\".");
+    } else {
+      alert("To install the OFU app: open this page in Chrome, tap the three-dot menu at the top right, then tap \"Install app\" or \"Add to Home screen\".\n\nIf you opened this link inside Facebook, WhatsApp or another app, open it in Chrome first.");
+    }
   });
   window.addEventListener("appinstalled", function () { removeBtn("ofuInstallBtn"); removeBtn("ofuIosBtn"); });
 

@@ -3,7 +3,7 @@
   "use strict";
   // Public Web Push key from Firebase console (Project settings > Cloud Messaging > Web Push certificates).
   // Public key, not a secret. Notifications button stays hidden until this is filled in.
-  var VAPID_KEY = "";
+  var VAPID_KEY = "BHXXtikm9Jaq8Xxzin7z9iWhMr3pocNbMGNF8z9JET7UDOB7qMs5lZPSH2OOMwHD7vDbQ2qF27mwLeVrXMwEO0g";
 
   var scriptEl = document.currentScript;
   var base = new URL("./", scriptEl ? scriptEl.src : location.href).href; // site root, where pwa.js lives

@@ -1,0 +1,36 @@
+name: Notify new community questions
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "true = only log, send nothing"
+        required: false
+        default: "false"
+      since_hours:
+        description: "Test only: treat questions from the last N hours as new"
+        required: false
+        default: ""
+
+concurrency:
+  group: notify-questions
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install firebase-admin
+        run: npm install --no-save firebase-admin@12
+      - name: Check for new questions
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          SINCE_HOURS: ${{ inputs.since_hours }}
+        run: node .github/notify-questions.mjs

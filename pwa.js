@@ -110,8 +110,8 @@
           removeBtn("ofuPushBtn");
           alert("Done. You will get OFU notifications.");
         });
-    }).catch(function () {
-      alert("Could not turn on notifications. Please try again later.");
+    }).catch(function (err) {
+      alert("Could not turn on notifications. Error: " + ((err && (err.code || err.message)) || "unknown"));
     });
   }
 })();

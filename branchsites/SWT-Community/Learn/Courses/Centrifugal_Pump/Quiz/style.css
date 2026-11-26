@@ -657,3 +657,60 @@ body.dark .option {
     border: 2px solid #000;
   }
 }
+
+/* ofu-cert-fit: certificate text scales with the card width so it stays inside the
+   frame and never covers the banner, corner ornaments or the seal (phones and PDF). */
+.certificate-container {
+  container-type: inline-size;
+  aspect-ratio: 716 / 555;
+  display: block !important;
+  position: relative;
+  padding: 0 !important;
+  gap: 0 !important;
+  overflow: hidden;
+  text-align: center;
+  background-size: 100% 100% !important;
+}
+.certificate-container > * { margin: 0; padding: 0; }
+.certificate-container .certificate-header {
+  margin-top: 22.5cqw !important;
+  font-size: 2.1cqw !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.2 !important;
+}
+.certificate-container .certificate-title {
+  font-size: 4.4cqw !important;
+  line-height: 1.1 !important;
+  margin-top: 0.8cqw !important;
+  padding: 0 13cqw !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+.certificate-container .certificate-name { display: inline !important; max-width: none !important; }
+.certificate-container .certificate-subtitle {
+  font-size: 2.7cqw !important;
+  line-height: 1.1 !important;
+  margin-top: 0.4cqw !important;
+}
+.certificate-container .certificate-content {
+  font-size: 2.5cqw !important;
+  line-height: 1.2 !important;
+  margin-top: 0.4cqw !important;
+}
+.certificate-container .certificate-footer {
+  position: absolute !important;
+  left: 15cqw;
+  right: 15cqw;
+  top: 46cqw;
+  margin: 0 !important;
+  width: auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 1cqw !important;
+  font-size: 1.8cqw !important;
+  line-height: 1.25 !important;
+}
+.certificate-container .certificate-footer span {
+  font-size: 2.2cqw !important;
+  margin-top: 0.2cqw !important;
+}

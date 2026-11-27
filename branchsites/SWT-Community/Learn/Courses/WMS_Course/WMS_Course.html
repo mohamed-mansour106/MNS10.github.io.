@@ -550,6 +550,16 @@
 }
     </style>
 <script data-goatcounter="https://ofu-mansour.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+/* ofu-mobile-fit: main used auto side margins in a flex column, so wide content widened the whole page on phones; wide tables now scroll inside their card */
+@media (max-width:768px){
+main{width:100%;min-width:0;box-sizing:border-box}
+.tabs-container,.big-div,.explain-modern{min-width:0}
+.explain-modern table,.big-div table{display:block!important;max-width:100%!important;overflow-x:auto!important;min-width:0!important;width:100%!important;box-sizing:border-box}
+.explain-modern pre,.big-div pre{max-width:100%;overflow-x:auto}
+.explain-modern img,.big-div img,.big-div video{max-width:100%;height:auto}
+}
+</style>
 </head>
 <body>
 

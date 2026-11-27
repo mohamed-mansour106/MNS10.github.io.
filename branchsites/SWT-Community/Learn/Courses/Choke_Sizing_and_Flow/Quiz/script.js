@@ -472,31 +472,23 @@ function startAfterAuth() {
 }
 
 function sendQuizResultEmail({ userName, userEmail, scorePercent, scoreRaw, courseName }) {
-  if (!window.emailjs || !emailjs.init || !emailjs.send) {
-    console.warn("EmailJS is not loaded. Skipping result email.");
-    return;
-  }
-
+  // Sends the result to the OFU Google Apps Script mailer (one email to the owner).
   try {
-    emailjs.init(EMAILJS_CONFIG.publicKey);
+    fetch("https://script.google.com/macros/s/AKfycbyqeYWre8BPTqTcQskjXSfNjlL4hDOmIHBdy670HHUHnv1En1Mv3HebDNYV08OIoWicXA/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        name: userName,
+        result: `${scoreRaw} (${scorePercent}%)`,
+        course: courseName,
+        time: new Date().toISOString()
+      }),
+      keepalive: true
+    }).catch(() => {});
   } catch (err) {
-    console.error("EmailJS init failed:", err);
-    return;
+    console.error("Result email failed:", err);
   }
-
-  const templateParams = {
-    name: userName,
-    result: `${scoreRaw} (${scorePercent}%)`
-  };
-
-  emailjs
-    .send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, templateParams)
-    .then(() => {
-      console.log("Quiz result email sent.");
-    })
-    .catch((error) => {
-      console.error("Failed to send quiz result email:", error);
-    });
 }
 
 function loadScriptOnce(src) {

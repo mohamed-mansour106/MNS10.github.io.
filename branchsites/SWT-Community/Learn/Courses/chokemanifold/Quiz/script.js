@@ -115,7 +115,7 @@ const questions = [
   }
 ]
 
-];
+].flat();
 
 /* ===== State ===== */
 let state = {

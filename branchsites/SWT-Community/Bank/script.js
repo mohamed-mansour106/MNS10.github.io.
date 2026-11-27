@@ -4031,6 +4031,2827 @@ const questions =  [
     explanation: ' API is Oil Specific Gravity and it means measure oil density compared to water density.'
   },
 
+  // --- COURSE QUIZ QUESTIONS (added Nov 27 from all course quizzes; unique and standalone) ---
+  {
+    question: "What API gravity does water (SG = 1.000) have?",
+    options: ["1.0 API", "31.1 API", "100 API", "10.0 API"],
+    correctIndex: 3,
+    explanation: "141.5 / 1 - 131.5 = 10.0 API."
+  },
+  {
+    question: "An oil has an SG of 0.85. What is its API gravity?",
+    options: ["About 34.97 API", "About 0.85 API", "About 59.6 API", "About 12.4 API"],
+    correctIndex: 0,
+    explanation: "API = 141.5 / 0.85 - 131.5 = 34.97."
+  },
+  {
+    question: "An oil of 35 API has an SG of 0.8498. What is its approximate density in kg/m3?",
+    options: ["About 85 kg/m3", "About 8,490 kg/m3", "About 0.85 kg/m3", "About 849 kg/m3"],
+    correctIndex: 3,
+    explanation: "0.8498 x 999.016 = 849.0 kg/m3."
+  },
+  {
+    question: "Which volume correction factor expression does the API Gravity Correction use?",
+    options: ["T / 60", "1 - 0.5 x dT", "exp(-0.000413 x dT x (1 + 0.8 x 0.000413 x dT)), with dT = T - 60", "141.5 / (131.5 + dT)"],
+    correctIndex: 2,
+    explanation: "VCF = e^[-0.000413 dT (1 + 0.8 x 0.000413 dT)]."
+  },
+  {
+    question: "An observed API of 43.2 at 100 F is corrected to 60 F with the VCF formula. About what API does it give?",
+    options: ["About 43.2 API", "About 40.3 API", "About 50.0 API", "About 30.0 API"],
+    correctIndex: 1,
+    explanation: "dT = 40, so SG60 = 0.8236 and API60 = 141.5 / 0.8236 - 131.5 = 40.3."
+  },
+  {
+    question: "In the Oil Gravity Temperature Correction, what temperature is used if the temperature field is empty?",
+    options: ["0 F", "60 F", "100 F", "32 F"],
+    correctIndex: 1,
+    explanation: "The calculator uses 60 when the temperature is empty."
+  },
+  {
+    question: "During high-rate oil transfer, the 'Breather Valve' (PV Valve) fails to open while emptying. What is the immediate physical risk to the tank structure?",
+    options: ["Internal overpressure causing a roof rupture", "Thermal expansion of the remaining crude", "Structural implosion (vacuum collapse) due to atmospheric pressure", "Flame arrestor saturation"],
+    correctIndex: 2,
+    explanation: "When liquid is removed without air intake, internal pressure drops. External atmospheric pressure (14.7 psi) can easily crush a non-coded atmospheric tank."
+  },
+  {
+    question: "What is the primary function of a Nitrogen (N2) 'Blanketing' system in a storage tank containing high-volatility condensate?",
+    options: ["To increase the flow rate of the transfer pump", "To displace Oxygen and keep the vapor space below the Lower Explosive Limit (LEL)", "To cool the liquid temperature during summer operations", "To act as a chemical scavenger for H2S"],
+    correctIndex: 1,
+    explanation: "Nitrogen is inert. By displacing Oxygen, you remove one leg of the fire triangle, preventing internal combustion."
+  },
+  {
+    question: "A tank is rated for 'Atmospheric' service. If the pressure gauge shows 18 psig, what is the status of the vessel?",
+    options: ["Normal operating range for well testing", "Slightly high but safe for temporary use", "Critical Condition: The tank is exceeding its design limit and is at risk of catastrophic failure", "Ideal pressure for ensuring the flame arrestor works"],
+    correctIndex: 2,
+    explanation: "Atmospheric tanks are generally designed for very low pressures (usually <0.5 psi to 15 psi max depending on API code). 18 psig is dangerously high."
+  },
+  {
+    question: "Why must the Vent Line always be directed to a Flare or Burner rather than vented locally at the tank site?",
+    options: ["To prevent the accumulation of heavier-than-air hydrocarbon vapors at ground level", "To reduce the noise of the gas flow", "To save space on the well pad", "Because the gas is too cold for local venting"],
+    correctIndex: 0,
+    explanation: "Hydrocarbon vapors (like Propane/Butane) are heavier than air and can pool on the ground, creating a massive explosion risk if they find an ignition source."
+  },
+  {
+    question: "If the Flame Arrestor element becomes fouled with wax or debris, what 'hidden' danger is created?",
+    options: ["The tank will become too cold", "The vent line will effectively be blocked, leading to overpressure during filling", "The oil will become contaminated", "The transfer pump will lose suction"],
+    correctIndex: 1,
+    explanation: "A blocked flame arrestor acts like a closed valve. If you keep pumping fluid in, the gas cannot escape, leading to a tank rupture."
+  },
+  {
+    question: "What is the standard 'Safety Buffer' (Max Fill Level) for an atmospheric tank to prevent liquid carryover?",
+    options: ["95%", "50%", "80%", "100% (until the high-level alarm sounds)"],
+    correctIndex: 2,
+    explanation: "80% is the industry standard to allow for gas breakout and thermal expansion without pushing liquid into the vent lines."
+  },
+  {
+    question: "During an H2S survey, the tank hatch area measures 50 ppm H2S. What is the immediate requirement before proceeding with manual gauging?",
+    options: ["Hold your breath while opening the hatch", "Wear a filtered dust mask", "Use Supplied Air Respirator (SCBA) and follow H2S safety protocols", "Stand upwind and use a long stick"],
+    correctIndex: 2,
+    explanation: "50 ppm is above the Short Term Exposure Limit (STEL). SCBA or supplied air is mandatory for life safety."
+  },
+  {
+    question: "You notice the tank walls 'throbbing' or vibrating during a high-rate flow-back. What is the most likely cause?",
+    options: ["The pump is running too fast", "Slug flow causing rapid pressure/vacuum cycles (the tank is struggling to breathe)", "The oil is boiling", "Normal operation for this tank type"],
+    correctIndex: 1,
+    explanation: "Vibration or 'panting' indicates the venting system cannot handle the volume of gas/liquid displacement occurring."
+  },
+  {
+    question: "How does the 'Static Electricity' risk change when using a plastic/non-conductive hose for oil transfer?",
+    options: ["It decreases because plastic is an insulator", "It increases significantly as static charge builds up and cannot dissipate safely to ground", "It stays the same", "Static electricity is only a risk with gas, not liquid"],
+    correctIndex: 1,
+    explanation: "Non-conductive hoses prevent the dissipation of static. Bonding and grounding are essential to prevent sparks."
+  },
+  {
+    question: "What is the specific purpose of the 'Vacuum Breaker' internal to a Breather Valve?",
+    options: ["To let gas out to the flare", "To let atmospheric air in if the internal pressure drops below a set point", "To measure the level of the tank", "To filter the crude oil"],
+    correctIndex: 1,
+    explanation: "The vacuum breaker is the 'emergency lung' that pulls air in to prevent the tank from being crushed."
+  },
+  {
+    question: "Which environmental factor can cause a 'Thermal Vacuum' in a tank even if no liquid is being pumped out?",
+    options: ["Heavy rain or a sudden cold front cooling the tank vapor space rapidly", "Extremely high noon-day sun", "High humidity", "Low wind speeds"],
+    correctIndex: 0,
+    explanation: "Rapid cooling shrinks the vapor inside. If the breather valve is stuck, this shrinkage creates a vacuum that can collapse the tank."
+  },
+  {
+    question: "When offloading to a tanker truck, why do we limit the truck fill to 95%?",
+    options: ["To save weight for road regulations", "To allow room for the fluid to expand as it warms up during transport", "To prevent the truck from tipping over", "To keep the truck pump primed"],
+    correctIndex: 1,
+    explanation: "Liquid expansion due to temperature changes can rupture a sealed truck tank if there is no 'ullage' (air space)."
+  },
+  {
+    question: "What does 'Flashback' mean in the context of a storage tank?",
+    options: ["When the pump reverses direction", "When a flame from the flare travels back through the vent line into the tank vapor space", "When the operator forgets a step", "When the oil changes color"],
+    correctIndex: 1,
+    explanation: "Flashback is the movement of a flame front through a flammable mixture. This is what the Flame Arrestor is designed to stop."
+  },
+  {
+    question: "In a 'Closed Loop' well test, what is the role of the atmospheric tank?",
+    options: ["It is the primary separator", "It acts as the final stage of separation and surge volume before disposal/sale", "It is used to store high-pressure gas for the compressor", "It is not used in closed-loop systems"],
+    correctIndex: 1,
+    explanation: "The tank allows any remaining gas to break out of the liquid at atmospheric pressure before the liquid is moved off-site."
+  },
+  {
+    question: "You find liquid oil dripping from the Flame Arrestor vent. What should you do?",
+    options: ["Ignore it; it's normal condensation", "Immediately stop flow, as this indicates overfilling or 'carryover' into the safety system", "Tighten the bolts on the arrestor", "Increase the Nitrogen purge rate"],
+    correctIndex: 1,
+    explanation: "Liquid in the arrestor blocks gas flow and creates a fire hazard. It means the tank level was likely too high or the gas flow was too violent."
+  },
+  {
+    question: "What is 'H2S Scavenging' in a storage tank?",
+    options: ["Using a vacuum to pull gas out", "Adding chemicals to the liquid to neutralize Hydrogen Sulfide", "Cleaning the tank with water", "Testing for gas with a hand-held monitor"],
+    correctIndex: 1,
+    explanation: "Scavengers are chemical agents that react with H2S to turn it into a non-toxic liquid byproduct."
+  },
+  {
+    question: "Which of these is a 'Golden Rule' for tank vent lines?",
+    options: ["They must have as many bends as possible", "They must NEVER be equipped with a check valve or block valve that can stay closed", "They should be as small as possible to save money", "They should be painted red"],
+    correctIndex: 1,
+    explanation: "A vent line must remain open and unobstructed. A closed valve on a vent line is a 'bomb' waiting to happen."
+  },
+  {
+    question: "Before performing a 'Nitrogen Purge', what must be verified regarding the tank hatches?",
+    options: ["They must be wide open", "They must be secured/closed to allow the N2 to displace the oxygen toward the vent line", "They must be removed from the tank", "They must be painted white"],
+    correctIndex: 1,
+    explanation: "To purge effectively, the system must be closed so the Nitrogen can push the Oxygen out through the designated vent path."
+  },
+  {
+    question: "What is 'Slug Flow' and how does it affect tank safety?",
+    options: ["Very slow moving oil; no risk", "Large bursts of gas and liquid; causes sudden pressure spikes in the tank", "A type of chemical additive", "The sound the pump makes"],
+    correctIndex: 1,
+    explanation: "Slugs cause 'surges.' An atmospheric tank cannot handle sudden high-volume gas expansion easily."
+  },
+  {
+    question: "If an operator must climb to the top of the tank, what is the most critical atmospheric hazard?",
+    options: ["Lack of wind", "Oxygen deficiency or Toxic gas (H2S/HC) clouds near the vents", "The height of the ladder", "The temperature of the metal"],
+    correctIndex: 1,
+    explanation: "Vents release gases that can be toxic or can displace oxygen. Operators should always wear personal gas monitors when climbing tanks."
+  },
+  {
+    question: "A well test shows 150 STB/d of water and 1,000 STB/d of total liquid. What is the BS&W?",
+    options: ["85%", "15%", "6.7%", "150%"],
+    correctIndex: 1,
+    explanation: "BS&W = (150 / 1,000) x 100 = 15%."
+  },
+  {
+    question: "What do BS&W and WC both represent?",
+    options: ["The gas share of total production", "The oil share of total liquid", "The sand content of the gas", "The water share of the total liquid production"],
+    correctIndex: 3,
+    explanation: "The field note says BS&W and WC represent the water share of total liquid production."
+  },
+  {
+    question: "Water rate is 150 STB/d and oil rate is 850 STB/d. What is the water cut as a fraction?",
+    options: ["0.1765", "1.5000", "0.1500", "0.8500"],
+    correctIndex: 2,
+    explanation: "WC = 150 / (150 + 850) = 0.1500."
+  },
+  {
+    question: "A gross liquid rate of 1,000 STB/d has a water cut of 25%. What is the water rate?",
+    options: ["750 STB/d", "25 STB/d", "250 STB/d", "2,500 STB/d"],
+    correctIndex: 2,
+    explanation: "Q_W = 1,000 x (25 / 100) = 250 STB/d."
+  },
+  {
+    question: "For the same well (gross 1,000 STB/d, WC 25%), what is the net oil rate?",
+    options: ["750 STB/d", "250 STB/d", "1,250 STB/d", "975 STB/d"],
+    correctIndex: 0,
+    explanation: "Q_oil = Gross - Q_W = 1,000 - 250 = 750 STB/d."
+  },
+  {
+    question: "What is the oil cut when WC is 25%?",
+    options: ["25%", "75%", "125%", "0.75%"],
+    correctIndex: 1,
+    explanation: "Oil Cut (%) = 100 - WC = 75%."
+  },
+  {
+    question: "Gross liquid rate is 1,500 STB/d and water rate is 300 STB/d. What is the net oil rate?",
+    options: ["1,200 STB/d", "1,800 STB/d", "5 STB/d", "450,000 STB/d"],
+    correctIndex: 0,
+    explanation: "Net Oil Rate = Gross - Water Rate = 1,500 - 300 = 1,200 STB/d."
+  },
+  {
+    question: "For the same well (gross 1,500 STB/d, water 300 STB/d), what is the water cut?",
+    options: ["80%", "5%", "20%", "0.2%"],
+    correctIndex: 2,
+    explanation: "WC = (300 / 1,500) x 100 = 20%."
+  },
+  {
+    question: "What is the LWC formula used in the Pen Reading to LWC converter?",
+    options: ["(Pen Reading x Chart Range) / DPU Range", "(Pen Reading / Chart Range) x DPU Range", "Pen Reading + Chart Range + DPU Range", "Chart Range / DPU Range"],
+    correctIndex: 1,
+    explanation: "The course page gives LWC = (Pen Reading / Chart Range) x DPU Range."
+  },
+  {
+    question: "Pen reading is 40, chart range is 100 and DPU range is 200. What is the LWC?",
+    options: ["20", "500", "8,000", "80"],
+    correctIndex: 3,
+    explanation: "LWC = (40 / 100) x 200 = 80."
+  },
+  {
+    question: "In the argentometric titration formula, what is the number 35,450?",
+    options: ["The sample volume in ml", "The milliequivalent weight of chlorine x 1,000, to give mg/L", "The AgNO3 strength in normality", "A pressure correction in psi"],
+    correctIndex: 1,
+    explanation: "The course page notes that 35,450 is the milliequivalent weight of chlorine multiplied by 1,000 to convert to mg/L. The value 1.84 belongs to the refractometer conversion, where ppm chlorides = mgNaCl / 1.84."
+  },
+  {
+    question: "Titration data: A = 10 ml, B = 0.2 ml, N = 0.0282 and D = 1 ml. What is the chloride concentration?",
+    options: ["979.70 mg/L", "1,000 mg/L", "9,796.96 mg/L", "9.80 mg/L"],
+    correctIndex: 2,
+    explanation: "Cl = (10 - 0.2) x 0.0282 x 35,450 / 1 = 9,796.96 mg/L."
+  },
+  {
+    question: "What is the main purpose of using a standard measurement system?",
+    options: ["To eliminate all field calculations", "To provide an accepted reference for measuring quantities", "To increase fluid pressure", "To reduce equipment size"],
+    correctIndex: 1,
+    explanation: "A standard provides an exact, agreed-upon quantity for comparison to ensure consistent measurement results."
+  },
+  {
+    question: "Which of the following is commonly used as an oilfield pressure unit?",
+    options: ["psi", "kg/m³", "°C", "bbl"],
+    correctIndex: 0,
+    explanation: "Pounds per square inch (psi) is a standard unit for measuring pressure in oilfield operations."
+  },
+  {
+    question: "What does accuracy describe in measurement?",
+    options: ["How consistently measurements are repeated", "How close a measurement is to the true or accepted value", "How quickly the measurement is taken", "The size of the measuring instrument"],
+    correctIndex: 1,
+    explanation: "Accuracy refers to how close a given measurement is to the true or accepted target value."
+  },
+  {
+    question: "What does precision describe in measurement?",
+    options: ["How close a measurement is to the true value", "How consistently repeated measurements agree with each other", "The maximum pressure of the equipment", "The volume of the fluid"],
+    correctIndex: 1,
+    explanation: "Precision describes the reproducibility or how closely repeated measurements agree with one another."
+  },
+  {
+    question: "Which equation is used to calculate the volume of a cylinder?",
+    options: ["V = L × W × H", "V = πr²h", "V = πr²h / 3", "V = F / A"],
+    correctIndex: 1,
+    explanation: "The volume of a standard cylinder is calculated using the geometric formula V = πr²h."
+  },
+  {
+    question: "Which equation is used to calculate the volume of a cuboid?",
+    options: ["V = πr²h", "V = πd²h / 4", "V = L × W × H", "V = MW × 0.052 × TVD"],
+    correctIndex: 2,
+    explanation: "Cuboid volume is found by multiplying its Length, Width, and Height (V = L × W × H)."
+  },
+  {
+    question: "If the diameter of a cylinder is known, which equation can be used to calculate its volume?",
+    options: ["V = πd²h / 4", "V = πdh", "V = d² / h", "V = πd² / 4h"],
+    correctIndex: 0,
+    explanation: "When utilizing diameter instead of radius, the cylinder volume formula becomes V = πd²h / 4."
+  },
+  {
+    question: "Which equation converts Celsius temperature to Fahrenheit?",
+    options: ["°F = 32 + (9/5)°C", "°F = °C + 273", "°F = °C − 32", "°F = °C × 5/9"],
+    correctIndex: 0,
+    explanation: "Fahrenheit is calculated from Celsius using the relation °F = 32 + (9/5)°C (or °F = 1.8°C + 32)."
+  },
+  {
+    question: "What is the temperature above which a substance can no longer be liquefied by increasing pressure?",
+    options: ["Bubble point", "Dew point", "Critical temperature", "Flash point"],
+    correctIndex: 2,
+    explanation: "Critical temperature is the threshold above which a gas cannot be liquefied regardless of how much pressure is applied."
+  },
+  {
+    question: "What does Specific Gravity represent?",
+    options: ["The pressure of a fluid", "The ratio of the density of a substance to the density of a reference substance", "The temperature of crude oil", "The volume of a substance"],
+    correctIndex: 1,
+    explanation: "Specific gravity is a dimensionless ratio comparing a substance's density against a standard reference (like water)."
+  },
+  {
+    question: "At what reference temperature is API Gravity used to classify crude oil in the BOC material?",
+    options: ["32°F", "60°F", "100°F", "212°F"],
+    correctIndex: 1,
+    explanation: "API gravity standardizes crude oil weight classifications at a baseline reference temperature of 60°F."
+  },
+  {
+    question: "What is the relationship between API Gravity and Specific Gravity?",
+    options: ["API = 131.5 − 141.5/SG", "API = 141.5/SG − 131.5", "API = SG × 141.5", "API = SG + 131.5"],
+    correctIndex: 1,
+    explanation: "The standard API formula is derived as API = (141.5 / SG) − 131.5."
+  },
+  {
+    question: "A fluid with a pH less than 7 is classified as:",
+    options: ["Basic", "Neutral", "Acidic", "Compressible"],
+    correctIndex: 2,
+    explanation: "On the pH scale, values below 7 indicate acidic solutions, while values above 7 are basic."
+  },
+  {
+    question: "What is pressure?",
+    options: ["Mass per unit volume", "Force per unit area", "Volume per unit time", "Temperature per unit volume"],
+    correctIndex: 1,
+    explanation: "Pressure is physically defined as the amount of force exerted per unit area (P = F / A)."
+  },
+  {
+    question: "Which equation is used to calculate absolute pressure from gauge pressure?",
+    options: ["Pabs = Pgauge − Patm", "Pabs = Pgauge × Patm", "Pabs = Patm + Pgauge", "Pabs = Patm / Pgauge"],
+    correctIndex: 2,
+    explanation: "Absolute pressure accounts for total pressure by adding atmospheric pressure to gauge pressure."
+  },
+  {
+    question: "Which depth should be used in the hydrostatic pressure equation?",
+    options: ["MD", "TVD", "Horizontal displacement", "Pipe length only"],
+    correctIndex: 1,
+    explanation: "True Vertical Depth (TVD) must always be used for hydrostatic pressure calculations, not Measured Depth (MD)."
+  },
+  {
+    question: "What is the hydrostatic pressure of a 9.2 ppg fluid at 8,200 ft TVD?",
+    options: ["820 psi", "392.29 psi", "3,922.88 psi", "4,095 psi"],
+    correctIndex: 2,
+    explanation: "Calculated using HP = 0.052 × MW × TVD -> 0.052 × 9.2 × 8200 = 3,922.88 psi."
+  },
+  {
+    question: "What is the pressure gradient of a 13.5 ppg fluid?",
+    options: ["0.052 psi/ft", "0.351 psi/ft", "0.702 psi/ft", "13.5 psi/ft"],
+    correctIndex: 2,
+    explanation: "Pressure gradient is Mud Weight × 0.052. For 13.5 ppg, 13.5 × 0.052 = 0.702 psi/ft."
+  },
+  {
+    question: "A Transfer Centrifugal Pump is configured in the field as a booster pump upstream of a High-Pressure injection pump. What is its primary hydraulic function in this setup?",
+    options: ["To artificially increase fluid velocity to induce turbulent flow patterns inside the high-pressure manifold.", "To provide adequate Net Positive Suction Head (NPSH) and eliminate the risk of cavitation inside the HP pump.", "To completely separate dissolved gas phases from the oil stream before compression occurs.", "To elevate fluid pressure significantly past its specific bubble point inside the suction manifold."],
+    correctIndex: 1,
+    explanation: "Booster pumps increase the pressure at the inlet of high-pressure pumps. This ensures the pressure stays well above the vapor pressure of the liquid, providing sufficient Net Positive Suction Head (NPSH) to prevent destructive cavitation."
+  },
+  {
+    question: "During a tank circulation operation to mix H2S scavenger with sour crude, your objective is to safely lower the tank's H2S concentration. What is the standard target range expected before safe export or transport?",
+    options: ["0.5 – 2.0 ppm", "15 – 30 ppm", "100 – 150 ppm", "500 – 800 ppm"],
+    correctIndex: 1,
+    explanation: "Circulating sour crude and mixing it with H2S scavenger chemicals aims to sweeten the oil by reducing toxic Hydrogen Sulfide concentration down to safe storage and shipping specs, typically between 15 and 30 ppm."
+  },
+  {
+    question: "You switch the electric transfer pump ON, but the discharge pressure gauge remains static at 0 psig and no fluid circulation is observed. What is the most likely cause and immediate field remedy?",
+    options: ["The casing is experiencing an air lock; shut down immediately and vent trapped air through the sample point or vent valve.", "The impeller is rotating backward; keep running while the electrician swaps the phases under full load.", "The fluid density is too high; throttle the suction valve completely to restrict fluid entry and save the motor.", "The mechanical seal oil cup is empty; pack the stuffing box with grease while the shaft is spinning."],
+    correctIndex: 0,
+    explanation: "Centrifugal pumps cannot pump air/gases due to low fluid density. If an air lock occurs, the pump will lose prime and show zero pressure. Running it dry will damage mechanical seals, so you must shut down immediately and vent the air."
+  },
+  {
+    question: "When reviewing your setup's electrical safety and compliance in hazardous zones, which of the following mechanical or electrical components is recognized as a valid 'Energy Isolating Device' for LOTO?",
+    options: ["The red emergency push-button selector switch on the local control panel.", "A closed pneumatic control valve controlled by an automated ESD loop.", "A manually operated electrical circuit breaker that physically breaks or blocks the power path.", "A green 'Stop' push button on the magnetic contactor housing."],
+    correctIndex: 2,
+    explanation: "An Energy Isolating Device must physically prevent the transmission or release of energy. Push buttons, control switches, and interlocks do not provide safe physical isolation; a manual circuit breaker or blind flange does."
+  },
+  {
+    question: "You are setting up a water treatment circulation loop to neutralize acidic produced water inside a storage tank. If the initial water pH is highly acidic (around 3 to 5), what is the targeted pH range you are trying to achieve after proper chemical mixing?",
+    options: ["pH 1 to 2", "pH 5 to 6", "pH 7 to 8", "pH 12 to 14"],
+    correctIndex: 2,
+    explanation: "The operational goal of acidic water treatment in well testing is to neutralize the fluid before disposal or further processing, bringing the pH up from an acidic 3–5 range to a neutral/slightly alkaline 7–8 range."
+  },
+  {
+    question: "What distinguishes a Two-Stage Centrifugal Pump from a Single-Stage Centrifugal Pump when planning fluid transfer operations over long distances or high system resistance?",
+    options: ["A two-stage pump contains two impellers arranged in series to deliver higher discharge pressure.", "A two-stage pump handles large solid drilling muds, while single-stage pumps only handle clean diesel.", "A two-stage pump uses a diesel engine drive and an electric motor simultaneously on the same shaft.", "A two-stage pump separates gas from oil in the first stage and pumps fluid in the second stage."],
+    correctIndex: 0,
+    explanation: "Single-stage pumps use one impeller for lower pressure targets. Two-stage centrifugal pumps line up two impellers in series: the discharge of the first stage feeds the suction of the second, doubling the pressure head output."
+  },
+  {
+    question: "A Transfer Centrifugal Pump is running under normal, stable operating conditions to transfer fluid from an atmospheric tank. What is the typical expected discharge pressure range for this class of equipment?",
+    options: ["0 – 10 psig", "50 – 150 psig", "600 – 1200 psig", "3000 – 5000 psig"],
+    correctIndex: 1,
+    explanation: "Transfer centrifugal pumps are designed to relocate fluids within a facility rather than inject them into high-pressure lines. Their typical operating discharge pressure ranges moderately between 50 to 150 psig (3.5 to 10 bar)."
+  },
+  {
+    question: "The pump impeller must rotate in the exact direction indicated by the arrow on the casing. What is the direct consequence of running a centrifugal pump with an incorrect motor shaft rotation?",
+    options: ["The discharge pressure will instantly double, rupturing the discharge hose.", "The mechanical seal will immediately begin pumping seal oil back into the suction line.", "Poor pump performance, highly reduced flow rates, low pressure head, and potential mechanical wear.", "The fluid will flow backward from the discharge line directly into the suction line."],
+    correctIndex: 2,
+    explanation: "If a motor is wired backward, the impeller still throws fluid outward due to centrifugal force, but the blades run backwards. This severely drops pump efficiency, resulting in low flow, low pressure, and friction damage."
+  },
+  {
+    question: "When performing pre-operational checks on a transfer pump handling sour production streams containing H2S or CO2, what material constraint must the equipment satisfy?",
+    options: ["It must comply with NACE sour-service standards using corrosion-resistant alloys and specialized elastomers.", "It must utilize standard ASTM A36 structural carbon steel configurations with soft paper gaskets.", "It must be constructed out of high-plasticity PVC composite piping layouts to completely eliminate spark hazards.", "It only requires Zone II explosion-proof lubrication systems, ignoring internal fluid chemistry completely."],
+    correctIndex: 0,
+    explanation: "Sour service environments containing H2S present a major risk for sulfide stress cracking (SSC) and hydrogen-induced cracking. Equipment must meet strict NACE standards, utilizing highly specific alloys and chemical-resistant elastomers."
+  },
+  {
+    question: "What is the correct sequential procedure for transitioning a centrifugal pump from a stable bypass circulation loop to transferring fluid to its final destination (such as a loading truck or flare burner)?",
+    options: ["Shut off the pump, close all valves completely, restart the pump, and quickly slap open the destination valve.", "Open the suction sample point, close the suction valve completely, and throttle the bypass line down.", "Keep the bypass valve wide open and restrict the main suction line valve until the discharge pressure surges to maximum.", "Open the discharge ball valve to the required destination gradually while simultaneously closing the bypass line valve."],
+    correctIndex: 3,
+    explanation: "To smoothly transition flow without shocking the piping system or deadheading the pump, you must open the path to the new destination gradually while systematically blocking off the bypass circulation loop."
+  },
+  {
+    question: "What does a dosage in ppm mean in the formula?",
+    options: ["It is multiplied by 42", "It is divided by 1440", "It is added to the flowrate", "It is divided by 1,000,000 to give a fraction"],
+    correctIndex: 3,
+    explanation: "The first step turns ppm into a decimal fraction."
+  },
+  {
+    question: "What is the simplified injection rate formula?",
+    options: ["Rate = Q x ppm x 0.0001104", "Rate = Q / ppm", "Rate = Q x 42", "Rate = ppm x 1440"],
+    correctIndex: 0,
+    explanation: "42 x 3785.41 / (1,000,000 x 1440) is about 0.0001104."
+  },
+  {
+    question: "1,000 bpd with 20 ppm. What is the rate in cc/min?",
+    options: ["About 22", "About 0.22", "About 2.2", "About 220"],
+    correctIndex: 2,
+    explanation: "1,000 x 20 x 0.0001104 = 2.21."
+  },
+  {
+    question: "What does antifoam do?",
+    options: ["Breaks emulsions", "Stops scale", "Reduces foam in the separator and prevents carry-over", "Cools the gas"],
+    correctIndex: 2,
+    explanation: "This is the purpose listed on the course page."
+  },
+  {
+    question: "What does a demulsifier do?",
+    options: ["Breaks the oil-water emulsion", "Reduces foam", "Stops scale", "Raises the API"],
+    correctIndex: 0,
+    explanation: "It lets water separate quickly and cleanly from crude."
+  },
+  {
+    question: "What does a scale inhibitor do?",
+    options: ["Breaks emulsions", "Reduces foam", "Measures flow", "Prevents mineral scale in flowlines and surface equipment"],
+    correctIndex: 3,
+    explanation: "This is its purpose on the course page."
+  },
+  {
+    question: "A 6 in liner, 12 in stroke and 95% efficiency give about how many bbl/stk?",
+    options: ["About 0.997", "About 0.0097", "About 0.0997", "About 9.97"],
+    correctIndex: 2,
+    explanation: "0.000243 x 36 x 12 x 0.95 = 0.0997."
+  },
+  {
+    question: "How do you get gallons per stroke?",
+    options: ["Divide by 42", "Multiply bbl/stk by 42", "Multiply by 1440", "Multiply by SPM"],
+    correctIndex: 1,
+    explanation: "There are 42 gallons in a barrel."
+  },
+  {
+    question: "How do you get the flow rate in BPM?",
+    options: ["bbl/stk / SPM", "bbl/stk x 42", "1 / bbl/stk", "bbl/stk x SPM"],
+    correctIndex: 3,
+    explanation: "Output per stroke times strokes per minute."
+  },
+  {
+    question: "What is the bottoms up time formula?",
+    options: ["Flowrate x volume", "Volume x 1440", "Flowrate / 1440 / 60", "Tubing volume / flowrate in bpm"],
+    correctIndex: 3,
+    explanation: "T(min) = V / q(bpm)."
+  },
+  {
+    question: "How do you convert bpd to bpm?",
+    options: ["Divide by 24", "Divide by 1440", "Multiply by 1440", "Divide by 60"],
+    correctIndex: 1,
+    explanation: "There are 1,440 minutes in a day."
+  },
+  {
+    question: "4,320 bpd and a 180 bbl tubing volume give a bottoms up time of?",
+    options: ["30 min", "120 min", "60 min", "24 min"],
+    correctIndex: 2,
+    explanation: "4,320 / 1440 = 3 bpm, and 180 / 3 = 60."
+  },
+  {
+    question: "In which unit is the required choke size given?",
+    options: ["Inches only", "Millimetres", "psi", "1/64 inch"],
+    correctIndex: 3,
+    explanation: "The course page says the choke size is expressed in 1/64-inch units."
+  },
+  {
+    question: "What area ratio results from changing a choke bean from 16/64 to 24/64?",
+    options: ["2.25", "1.5", "3.0", "0.44"],
+    correctIndex: 0,
+    explanation: "The area ratio is (24 / 16)^2 = 2.25."
+  },
+  {
+    question: "The initial flow is 600 STB/d and the bean goes from 16/64 to 24/64. What is the estimated new flow?",
+    options: ["900 STB/d", "1,200 STB/d", "1,350 STB/d", "267 STB/d"],
+    correctIndex: 2,
+    explanation: "Q2 = 2.25 x 600 = 1,350 STB/d."
+  },
+  {
+    question: "What does the bean flow scaling assume?",
+    options: ["Gas flow at critical pressure ratio only", "A bean larger than 64/64", "No change in choke bean", "Comparable pressures upstream and downstream and steady liquid flow"],
+    correctIndex: 3,
+    explanation: "The field note says the simple area-ratio scaling assumes comparable upstream and downstream pressures and single-phase, steady liquid behavior."
+  },
+  {
+    question: "In the choke calibration, which erosion status applies when the effective choke is more than 3.0/64 larger than nominal?",
+    options: ["Intact: normal operations", "Washed Out: switch to the standby choke and inspect the bean", "Worn: monitor for sand", "Calibrated: no action"],
+    correctIndex: 1,
+    explanation: "The guide on the course page says a variance of more than 3.0/64 is Washed Out, with the action to switch to the standby choke and inspect the bean."
+  },
+  {
+    question: "To prevent condensation in the fuel tank, what level should be maintained at the end of the day?",
+    options: ["50%", "75%", "90%", "100%"],
+    correctIndex: 2,
+    explanation: "Maintaining a 90% fuel level minimizes the air space where moisture can condense into liquid water."
+  },
+  {
+    question: "What safety device is mandatory for all air rubber hose connections to prevent injury?",
+    options: ["Padlocks", "Whip checks / Safety clips", "Zip ties", "Check valves"],
+    correctIndex: 1,
+    explanation: "Whip checks prevent the hose from lashing out violently if a coupling fails under pressure."
+  },
+  {
+    question: "On an Ingersoll Rand unit, which key position is used specifically for the grid heater?",
+    options: ["Position 0", "Position 1", "Position 2", "Position 3"],
+    correctIndex: 2,
+    explanation: "Position 2 activates the grid heater for cold starts; Position 3 is for cranking the engine."
+  },
+  {
+    question: "What is the required specific gravity (density) for the engine cooling system?",
+    options: ["1.00 (62.4 PCF)", "1.07 (66.8 PCF)", "1.25 (78.0 PCF)", "0.90 (56.1 PCF)"],
+    correctIndex: 1,
+    explanation: "The manual specifies a specific gravity of 1.07 to ensure proper thermal regulation and corrosion protection."
+  },
+  {
+    question: "How long should the engine warm up before pressing the service air switch to load?",
+    options: ["1 minute", "2 minutes", "5 minutes", "10 minutes"],
+    correctIndex: 2,
+    explanation: "A 5-minute warm-up ensures oil circulation and stable temperatures before the unit is placed under load."
+  },
+  {
+    question: "At what temperature threshold is the Atlas Copco unit ready to be loaded via the F1 button?",
+    options: ["25°C (77°F)", "40°C (104°F)", "60°C (140°F)", "80°C (176°F)"],
+    correctIndex: 1,
+    explanation: "The control logic requires the coolant to reach 40°C (104°F) before allowing the compressor to load."
+  },
+  {
+    question: "How long should the engine idle for cooling during a normal shutdown procedure?",
+    options: ["1 minute", "2-3 minutes", "5-10 minutes", "15 minutes"],
+    correctIndex: 2,
+    explanation: "A 5-10 minute idle period allows the turbocharger and engine components to cool down gradually."
+  },
+  {
+    question: "What must be manually operated if an Atlas Copco unit runs out of fuel?",
+    options: ["The hand pump", "The service valve", "The battery switch", "The E-stop button"],
+    correctIndex: 0,
+    explanation: "The hand pump must be used to prime the fuel system and remove air until the system is under pressure."
+  },
+  {
+    question: "What is the immediate result of pressing the red mushroom (Emergency Stop) button?",
+    options: ["The engine idles", "The service valve closes", "All power (hardware/software) is terminated", "The battery disconnects"],
+    correctIndex: 2,
+    explanation: "The E-stop kills all power immediately to prevent injury or further mechanical damage."
+  },
+  {
+    question: "To reset after an Emergency Stop, what must be done after unlocking the physical button?",
+    options: ["Turn key to Position 3", "Press the Start button", "Press F1 to reset the software lock", "Refuel the engine"],
+    correctIndex: 2,
+    explanation: "Once the physical button is unlocked, the operator must press F1 on the panel to clear the software lock."
+  },
+  {
+    question: "How many automatic cranking attempts will the Atlas Copco make before a 'START FAILURE' message?",
+    options: ["1 attempt", "3 attempts", "5 attempts", "10 attempts"],
+    correctIndex: 2,
+    explanation: "The system is programmed to attempt starting 5 times before timing out and requiring a manual reset."
+  },
+  {
+    question: "The regulating valve should be set to how many bar higher than the required working pressure?",
+    options: ["0.5 bar", "1 bar", "2 bar (29 psi)", "5 bar"],
+    correctIndex: 2,
+    explanation: "A 2 bar buffer ensures the system can maintain the required pressure consistently under load."
+  },
+  {
+    question: "Where should the compressor oil level be visually checked before operation?",
+    options: ["Engine dipstick", "Radiator cap", "Sight glass on the separator tank", "Air discharge valve"],
+    correctIndex: 2,
+    explanation: "The compressor oil (different from engine oil) is monitored via the sight glass on the separator tank."
+  },
+  {
+    question: "Why is it forbidden to operate the compressor with the enclosure doors open?",
+    options: ["To prevent theft", "To keep it clean", "To prevent overheating and high noise exposure", "To save fuel"],
+    correctIndex: 2,
+    explanation: "Closed doors are critical for directing cooling airflow and protecting operators from high noise levels."
+  },
+  {
+    question: "What is the first step in the Pre-Operational Checks & Safety sequence?",
+    options: ["Turn key to Position 1", "Perform a 'walk-around' inspection", "Check the battery", "Press the F1 button"],
+    correctIndex: 1,
+    explanation: "A walk-around inspection identifies leaks, loose fittings, or safety hazards before the unit is energized."
+  },
+  {
+    question: "Which message confirms the system is energized and ready after the initial power-on self-test?",
+    options: ["UNCONTROLLED STOP", "READY TO START", "LOADING", "STOPPING"],
+    correctIndex: 1,
+    explanation: "'READY TO START' indicates the digital logic is clear and the engine can be cranked."
+  },
+  {
+    question: "On an Ingersoll Rand unit, what should you do as soon as the engine starts?",
+    options: ["Hold key in Position 3", "Release the key switch", "Turn key to Position 0", "Press the F1 button"],
+    correctIndex: 1,
+    explanation: "The key should be released so it returns to Position 1 to avoid damaging the starter motor."
+  },
+  {
+    question: "What is the required status of the battery isolation switch for operation?",
+    options: ["OFF", "ON", "Locked", "Removed"],
+    correctIndex: 1,
+    explanation: "The isolation switch must be turned to 'ON' to provide battery power to the control panel and starter."
+  },
+  {
+    question: "What is the primary safety rule regarding the engine when refueling?",
+    options: ["Keep it at full speed", "Keep it at idle", "It must be switched OFF", "Keep the doors open"],
+    correctIndex: 2,
+    explanation: "The engine must be completely OFF to prevent ignition of fuel vapors from heat or sparks."
+  },
+  {
+    question: "If the Atlas Copco does not reach warm-up temperature within 5 minutes, what state does it enter?",
+    options: ["Automatic loading", "Emergency stop", "Idle / NO LOADED status", "System restart"],
+    correctIndex: 2,
+    explanation: "The unit will default to an idle/no-load state to protect the engine if it fails to reach operating temperature."
+  },
+  {
+    question: "During indirect fired heater operation, why must the shell be filled with water/glycol above the coil level before start-up?",
+    options: ["To increase fuel efficiency", "To prevent coil overheating and failure", "To reduce separator pressure", "To increase gas flow rate"],
+    correctIndex: 1,
+    explanation: "The water/glycol bath is the heat transfer medium. Without proper level, the coil will overheat and can be permanently damaged due to direct burner heat exposure."
+  },
+  {
+    question: "What is the main purpose of glycol in the heater shell?",
+    options: ["Increase gas density", "Prevent freezing and improve heat transfer stability", "Increase burner flame temperature", "Reduce coil pressure drop"],
+    correctIndex: 1,
+    explanation: "Glycol is added to prevent freezing in cold environments and to stabilize heat transfer properties of the heating medium."
+  },
+  {
+    question: "What is the primary risk if heater coil pressure exceeds design limits?",
+    options: ["Improved separation efficiency", "Coil rupture and catastrophic release of hydrocarbons", "Increased burner efficiency", "Reduced temperature control accuracy"],
+    correctIndex: 1,
+    explanation: "Coils are high-pressure rated (5K–10K psi). Overpressure can lead to mechanical failure and dangerous hydrocarbon release."
+  },
+  {
+    question: "Why is a bypass line used during heater operation?",
+    options: ["To increase heating efficiency", "To protect the coil from pressure and allow flow diversion", "To increase gas production", "To reduce fuel consumption"],
+    correctIndex: 1,
+    explanation: "The bypass line allows fluid to avoid the heater during unstable conditions or startup, protecting the coil from sudden pressure/temperature changes."
+  },
+  {
+    question: "What is the typical function of the burner in an indirect fired heater?",
+    options: ["Directly heat the oil flow", "Heat the water/glycol bath", "Compress the gas stream", "Measure flow rate"],
+    correctIndex: 1,
+    explanation: "The burner heats the water/glycol bath, which then indirectly transfers heat to the process fluid through the coil."
+  },
+  {
+    question: "What is the consequence of insufficient air in burner combustion?",
+    options: ["High efficiency flame", "Orange flame and black smoke formation", "Increased gas flow stability", "Lower coil pressure"],
+    correctIndex: 1,
+    explanation: "Insufficient air leads to incomplete combustion, producing soot (black smoke) and unstable flame conditions."
+  },
+  {
+    question: "What is the purpose of the ESD system in heater operation?",
+    options: ["Increase heating rate", "Automatically shut down system during unsafe conditions", "Increase fuel pressure", "Improve gas quality"],
+    correctIndex: 1,
+    explanation: "ESD (Emergency Shutdown) protects equipment and personnel by stopping operation during abnormal or hazardous conditions."
+  },
+  {
+    question: "Why is purging required before burner ignition?",
+    options: ["To increase flame size", "To remove accumulated gas and prevent explosion risk", "To increase coil temperature", "To stabilize water level"],
+    correctIndex: 1,
+    explanation: "Purging removes any trapped combustible gases in the firebox, reducing explosion risk during ignition."
+  },
+  {
+    question: "What is the main reason for maintaining water level above the coil?",
+    options: ["To reduce pressure drop", "To ensure proper heat transfer and prevent coil damage", "To increase gas velocity", "To improve fuel injection"],
+    correctIndex: 1,
+    explanation: "Proper water level ensures full immersion of coils in heating medium, preventing overheating and maintaining efficiency."
+  },
+  {
+    question: "What is the role of thermostat in heater operation?",
+    options: ["Measure gas flow", "Control burner operation based on temperature setpoint", "Increase coil pressure", "Open bypass valve automatically"],
+    correctIndex: 1,
+    explanation: "The thermostat controls burner on/off cycles to maintain desired water bath temperature."
+  },
+  {
+    question: "What happens if bypass valve is left closed during startup?",
+    options: ["Improved heating efficiency", "Possible overpressure and thermal shock in coil", "Lower fuel consumption", "Increased separator efficiency"],
+    correctIndex: 1,
+    explanation: "Closing bypass during unstable conditions can trap expanding fluid causing overpressure and thermal stress."
+  },
+  {
+    question: "What is the purpose of the chimney stack?",
+    options: ["Increase burner pressure", "Safely vent combustion gases", "Increase oil temperature", "Reduce coil pressure"],
+    correctIndex: 1,
+    explanation: "The chimney safely releases combustion gases away from personnel and equipment."
+  },
+  {
+    question: "What is the effect of excessive primary air in burner?",
+    options: ["Stable flame", "Blasting and unstable flame", "Higher oil rate", "Lower pressure drop"],
+    correctIndex: 1,
+    explanation: "Too much air disrupts combustion stability, causing flame turbulence and inefficiency."
+  },
+  {
+    question: "What is the purpose of pressure testing the coil?",
+    options: ["Increase production rate", "Verify mechanical integrity under design pressure", "Reduce fuel consumption", "Increase gas quality"],
+    correctIndex: 1,
+    explanation: "Pressure testing ensures the coil can safely handle operational pressures without leaks or failure."
+  },
+  {
+    question: "Why is diesel burner rotation direction important?",
+    options: ["To control pressure drop", "To ensure proper air flow and combustion efficiency", "To increase oil API", "To reduce coil thickness"],
+    correctIndex: 1,
+    explanation: "Incorrect rotation affects air supply from blower, leading to poor combustion."
+  },
+  {
+    question: "What is the consequence of overheating the water bath above design temperature?",
+    options: ["Improved efficiency", "Boiling, pressure increase, and potential safety shutdown", "Lower gas flow", "Increased shrinkage factor"],
+    correctIndex: 1,
+    explanation: "Overheating can cause boiling, pressure spikes, and automatic shutdown via HTSD system."
+  },
+  {
+    question: "Why must fuel gas pressure be regulated in stages?",
+    options: ["To increase flame color", "To ensure stable and safe burner operation", "To reduce oil viscosity", "To increase coil diameter"],
+    correctIndex: 1,
+    explanation: "Multi-stage regulation ensures safe delivery pressure for pilot and main burner systems."
+  },
+  {
+    question: "What is the main function of the firebox?",
+    options: ["Directly heat oil stream", "Contain combustion and transfer heat indirectly", "Measure flow rate", "Increase gas pressure"],
+    correctIndex: 1,
+    explanation: "Firebox contains combustion gases and transfers heat to the water bath safely."
+  },
+  {
+    question: "What is the result of poor fuel/air ratio adjustment?",
+    options: ["Higher efficiency always", "Smoke, soot, or flame instability", "Lower pressure drop", "Higher API gravity"],
+    correctIndex: 1,
+    explanation: "Incorrect ratio leads to incomplete combustion and unstable burner operation."
+  },
+  {
+    question: "What is the key safety requirement before switching flow into heater coil?",
+    options: ["Increase burner pressure", "Ensure proper pressure testing, stable temperature, and correct valve alignment", "Close all valves", "Increase gas flow rate"],
+    correctIndex: 1,
+    explanation: "All safety checks and valve alignment must be verified before introducing process flow into the heater."
+  },
+  {
+    question: "What is the primary purpose of a Diverter Manifold?",
+    options: ["To increase fluid pressure", "To separate oil from water", "To divert flow to different destinations", "To measure flow rate"],
+    correctIndex: 2,
+    explanation: "A Diverter Manifold is designed to direct fluid flow from one inlet to different outlet paths."
+  },
+  {
+    question: "How many ball valves are typically installed in a Diverter Manifold?",
+    options: ["One", "Minimum of two", "Four", "Six"],
+    correctIndex: 1,
+    explanation: "A standard Diverter Manifold consists of a minimum of two ball valves."
+  },
+  {
+    question: "What shape is commonly formed by a Diverter Manifold?",
+    options: ["L Shape", "Y Shape", "T Shape", "U Shape"],
+    correctIndex: 2,
+    explanation: "A Diverter Manifold typically consists of one inlet and two outlets forming a T configuration."
+  },
+  {
+    question: "Which Hammer Union type is commonly used on Diverter Manifolds?",
+    options: ["Figure 100", "Figure 206", "Figure 602", "Figure 1502"],
+    correctIndex: 2,
+    explanation: "Figure 602 Hammer Unions are commonly used on 3-inch and 4-inch Diverter Manifolds."
+  },
+  {
+    question: "What is the typical Cold Working Pressure (CWP) range of a Diverter Manifold?",
+    options: ["500-1000 psig", "1000-1500 psig", "2000-3000 psig", "5000-10000 psig"],
+    correctIndex: 2,
+    explanation: "Most Diverter Manifolds used in SWT applications are rated between 2000 and 3000 psig."
+  },
+  {
+    question: "What factor determines which flare boom should be selected?",
+    options: ["Separator pressure", "Oil API gravity", "Wind direction", "Tank level"],
+    correctIndex: 2,
+    explanation: "The selected flare boom depends primarily on prevailing wind direction."
+  },
+  {
+    question: "Where can a Diverter Manifold be installed on a Test Separator?",
+    options: ["Gas outlet only", "Oil outlet only", "Water outlet only", "Water, oil, and gas outlet lines"],
+    correctIndex: 3,
+    explanation: "Diverter Manifolds may be used on water, oil, and gas outlet lines."
+  },
+  {
+    question: "Why is a Diverter Manifold used during meter calibration?",
+    options: ["To increase separator pressure", "To divert flow to surge or calibration tanks", "To remove sand from flow", "To reduce temperature"],
+    correctIndex: 1,
+    explanation: "Flow is diverted to a calibration system for meter verification and testing."
+  },
+  {
+    question: "Can a Diverter Manifold be installed between storage tanks?",
+    options: ["No", "Only between gas tanks", "Only on offshore rigs", "Yes"],
+    correctIndex: 3,
+    explanation: "It can be installed between oil tanks or water tanks to facilitate transfer operations."
+  },
+  {
+    question: "Where is a Diverter Manifold permitted on a High Pressure Pump system?",
+    options: ["Discharge side only", "Suction side only", "Both suction and discharge", "Neither side"],
+    correctIndex: 1,
+    explanation: "A Diverter Manifold may be installed on the suction side of an HP Pump."
+  },
+  {
+    question: "Why should a Diverter Manifold never be installed on the discharge side of an HP Pump?",
+    options: ["It reduces flow rate", "It increases temperature", "High pressure may damage the manifold", "It causes cavitation"],
+    correctIndex: 2,
+    explanation: "High discharge pressure may shear off or damage the manifold, creating serious safety hazards."
+  },
+  {
+    question: "What does the term 'sheared off' mean?",
+    options: ["Flow diverted", "Pressure reduced", "Broken away due to force", "Valve lubricated"],
+    correctIndex: 2,
+    explanation: "Sheared off means physically broken or separated due to excessive force or pressure."
+  },
+  {
+    question: "Before opening the well, what should be checked on the Diverter Manifold?",
+    options: ["Tank level", "Valve free movement", "Pump speed", "Oil viscosity"],
+    correctIndex: 1,
+    explanation: "Both ball valves should be cycled fully open and fully closed to verify proper operation."
+  },
+  {
+    question: "When the valve indicator is aligned with the flow direction, the valve is:",
+    options: ["Closed", "Partially open", "Open", "Locked"],
+    correctIndex: 2,
+    explanation: "An indicator parallel to flow direction indicates an open ball valve."
+  },
+  {
+    question: "When the valve indicator is perpendicular to the flow direction, the valve is:",
+    options: ["Open", "Closed", "Partially open", "Damaged"],
+    correctIndex: 1,
+    explanation: "A crossing indicator position means the ball valve is closed."
+  },
+  {
+    question: "What is the purpose of the interlocking handle system?",
+    options: ["Increase pressure", "Increase flow rate", "Ensure one valve remains open while the other is closed", "Reduce valve maintenance"],
+    correctIndex: 2,
+    explanation: "The interlock prevents both valves from being closed simultaneously."
+  },
+  {
+    question: "What problem does the interlocking system help prevent?",
+    options: ["Corrosion", "Back pressure to the separator", "Wax formation", "Scale buildup"],
+    correctIndex: 1,
+    explanation: "The system prevents dangerous back pressure and operator error."
+  },
+  {
+    question: "Before diverting gas to a flare boom, what must be confirmed?",
+    options: ["Separator level", "Tank temperature", "Pilot flame is burning", "Pump discharge pressure"],
+    correctIndex: 2,
+    explanation: "The propane or diesel pilot flame must be active before directing gas to the burner."
+  },
+  {
+    question: "In an emergency, which equipment should be used to shut in the well?",
+    options: ["Diverter Manifold", "Storage Tank Valve", "Breather Valve", "Choke Manifold or ESD System"],
+    correctIndex: 3,
+    explanation: "Well shut-in should be performed using proper well-control equipment."
+  },
+  {
+    question: "Why should a pipe wrench or cheater bar never be used on Diverter Manifold hand wheels?",
+    options: ["It reduces pressure", "It may damage valve components", "It causes corrosion", "It changes flow direction"],
+    correctIndex: 1,
+    explanation: "Excessive force can damage the valve stem, hand wheel, seats, and sealing components."
+  },
+  {
+    question: "What is the primary function of the Emergency Shutdown (ESD) system?",
+    options: ["To increase the flow rate during high demand", "To quickly close the well in emergencies like fire or pipe breaks", "To separate oil and gas more efficiently", "To provide electricity to the rig floor"],
+    correctIndex: 1,
+    explanation: "The ESD system is a safety barrier designed to isolate the well immediately during critical events to protect personnel and equipment."
+  },
+  {
+    question: "Which of the following is NOT a component of the ESD control skid?",
+    options: ["Hydraulic pump and oil tank", "Air reservoir", "Three hose reels", "Three-phase separator vessel"],
+    correctIndex: 3,
+    explanation: "The ESD skid contains the control components like pumps, tanks, and reels; the separator is a separate piece of process equipment."
+  },
+  {
+    question: "The ESD system supports fail-safe hydraulic actuators with pressure requirements not exceeding:",
+    options: ["1440 psi", "3000 psi", "6000 psi", "15000 psi"],
+    correctIndex: 2,
+    explanation: "The system is designed to handle single-action fail-safe hydraulic actuators up to a maximum of 6000 psi."
+  },
+  {
+    question: "What specifically triggers the high-pressure pilot in an ESD system?",
+    options: ["A decrease in ambient temperature", "Flowline pressure rising above a preset threshold", "A signal from the burner head", "Opening the choke manifold fixed bean"],
+    correctIndex: 1,
+    explanation: "The high-pressure pilot monitors the flowline; if pressure spikes (e.g., due to a plugged choke), it triggers a shutdown."
+  },
+  {
+    question: "When a pilot or ESD station is triggered, what is the first physical action that occurs in the control logic?",
+    options: ["The hydraulic pump starts running", "Air pressure is vented from the system", "The separator pressure increases", "The hydraulic oil tank is drained"],
+    correctIndex: 1,
+    explanation: "The system uses a 'fail-safe' air loop; venting the air pressure causes the interface valve to release hydraulic pressure and close the well."
+  },
+  {
+    question: "What is the typical operating air pressure for high/low pilots and ESD push-button stations?",
+    options: ["30 psi", "150 psi", "600 psi", "1440 psi"],
+    correctIndex: 0,
+    explanation: "While the air vessel stores higher pressure, the pilot loop and remote stations typically operate at 30 psi."
+  },
+  {
+    question: "What is the role of the interface valve in the ESD panel?",
+    options: ["To mix oil and gas before they reach the burner", "To control the release of hydraulic pressure from the actuator", "To measure the temperature of the air reservoir", "To act as a primary check valve for the flowline"],
+    correctIndex: 1,
+    explanation: "The interface valve is the link between the air control signal and the hydraulic power, releasing hydraulic pressure to close the valve when triggered."
+  },
+  {
+    question: "Where is the Surface Safety Valve (SSV) usually located?",
+    options: ["Downstream of the oil manifold", "Inside the hydraulic oil tank", "Upstream of the choke manifold", "At the very end of the flare boom"],
+    correctIndex: 2,
+    explanation: "The SSV is positioned upstream of the choke manifold to provide primary isolation of the well during an emergency shutdown."
+  },
+  {
+    question: "What is the purpose of the air vessel (tank) located on the ESD panel?",
+    options: ["To provide breathing air for the crew", "To store 150 psi air pressure for system operation", "To cool down the hydraulic oil", "To collect gas samples from the well"],
+    correctIndex: 1,
+    explanation: "The air vessel stores the compressed air (typically at 150 psi) required to maintain the control loop pressure."
+  },
+  {
+    question: "Which component is used to quickly dump the air pressure to speed up the shutdown process?",
+    options: ["Bypass valve", "Check valve", "Quick exhaust valve", "Hydraulic pump"],
+    correctIndex: 2,
+    explanation: "The quick exhaust valve allows air to vent rapidly from the lines, ensuring the shutdown happens as fast as possible."
+  },
+  {
+    question: "What is the primary purpose of an Emergency Shutdown Valve (ESDV)?",
+    options: ["Increase production rate", "Control sand production", "Provide emergency well flow isolation", "Measure well pressure"],
+    correctIndex: 2,
+    explanation: "The ESDV is designed as a safety device to isolate well flow during emergency conditions."
+  },
+  {
+    question: "What type of valve is an ESDV?",
+    options: ["Butterfly valve", "Hydraulic-operated gate valve", "Globe valve", "Check valve"],
+    correctIndex: 1,
+    explanation: "The ESDV is a hydraulic pressure-controlled gate valve."
+  },
+  {
+    question: "What does 'Fail Close' mean for an ESDV?",
+    options: ["The valve stays open when pressure is lost", "The valve automatically closes when hydraulic pressure is lost", "The valve locks in position", "The valve requires manual closure"],
+    correctIndex: 1,
+    explanation: "The spring-loaded actuator closes the valve automatically if hydraulic pressure is removed."
+  },
+  {
+    question: "Where is the ESDV normally installed?",
+    options: ["Downstream of flare burner", "Upstream of the choke manifold", "Inside separator vessel", "After storage tanks"],
+    correctIndex: 1,
+    explanation: "The ESDV is commonly located upstream of the choke manifold for emergency well isolation."
+  },
+  {
+    question: "Which system normally controls the ESDV?",
+    options: ["Chemical injection pump", "Control panel and pressure pilots", "Diesel engine governor", "Transfer pump"],
+    correctIndex: 1,
+    explanation: "The valve is normally controlled through an ESD control panel and Hi/Lo pressure pilots."
+  },
+  {
+    question: "What is the recommended hydraulic operating pressure when opening the ESDV?",
+    options: ["500-1000 psig", "1000-1500 psig", "1500-2000 psig", "5000-7000 psig"],
+    correctIndex: 2,
+    explanation: "Normal hydraulic pressure required to open the valve is between 1500 and 2000 psig."
+  },
+  {
+    question: "Before opening the ESDV, the hydraulic oil reservoir should be approximately:",
+    options: ["20% full", "40% full", "60% full", "80% full"],
+    correctIndex: 3,
+    explanation: "The reservoir should be about 80% full to ensure sufficient hydraulic oil for operation."
+  },
+  {
+    question: "What air supply pressure is required for proper ESD panel operation?",
+    options: ["20-40 psig", "50-60 psig", "80-100 psig", "150-200 psig"],
+    correctIndex: 2,
+    explanation: "The ESD control panel typically requires 80-100 psig air supply."
+  },
+  {
+    question: "What should be monitored while opening the ESDV?",
+    options: ["Tank level only", "Separator temperature only", "Valve stem movement and pressure gauge", "Flare burner flame color"],
+    correctIndex: 2,
+    explanation: "The operator should observe stem movement and hydraulic pressure to verify opening."
+  },
+  {
+    question: "Why is a hydraulic quick release system recommended in gas wells?",
+    options: ["To increase production", "To reduce fuel consumption", "To provide fast emergency shutdown", "To reduce separator pressure"],
+    correctIndex: 2,
+    explanation: "Quick release systems allow rapid valve closure within approximately 5-10 seconds."
+  },
+  {
+    question: "What should the hydraulic pressure gauge read when the ESDV is fully closed?",
+    options: ["500 psig", "1000 psig", "2000 psig", "0 psig"],
+    correctIndex: 3,
+    explanation: "A reading of 0 psig indicates hydraulic pressure has been released and the valve is closed."
+  },
+  {
+    question: "How can the ESDV be manually closed?",
+    options: ["Increase hydraulic pressure", "Turn SERVICE position to SHUT IN", "Open the choke manifold", "Close the separator outlet"],
+    correctIndex: 1,
+    explanation: "Changing the manifold indicator from SERVICE to SHUT IN releases hydraulic pressure."
+  },
+  {
+    question: "What causes the ESDV to physically close after hydraulic pressure is released?",
+    options: ["Gravity", "Gas pressure", "Internal spring force", "Flow pressure"],
+    correctIndex: 2,
+    explanation: "The spring-loaded actuator automatically forces the valve closed."
+  },
+  {
+    question: "Which button initiates a total emergency shutdown?",
+    options: ["Green Reset Button", "Start Button", "Yellow Alarm Button", "Red Emergency Shutdown Button"],
+    correctIndex: 3,
+    explanation: "Pressing the red ESD button initiates a complete emergency shutdown."
+  },
+  {
+    question: "Why should pressure be equalized across the ESDV before reopening after a shutdown?",
+    options: ["To increase production", "To reduce erosion and valve damage", "To reduce separator level", "To improve flare efficiency"],
+    correctIndex: 1,
+    explanation: "Pressure equalization protects the gate from erosion and excessive stress."
+  },
+  {
+    question: "What should be closed before re-energizing the ESD system after an emergency shutdown?",
+    options: ["Storage tank valve", "Chemical pump", "Choke manifold", "Flare ignitor"],
+    correctIndex: 2,
+    explanation: "Closing the choke manifold helps prevent hammer effect and pressure surges."
+  },
+  {
+    question: "What standard are ESDV gate valves manufactured in compliance with?",
+    options: ["ISO 9001", "API Standards", "ASTM D86", "NACE SP0502"],
+    correctIndex: 1,
+    explanation: "ESDV gate valves are manufactured according to API standards."
+  },
+  {
+    question: "Which connection type may be used on ESDVs?",
+    options: ["Victaulic only", "Camlock only", "Hammer Union or Greylock", "PVC threaded connection"],
+    correctIndex: 2,
+    explanation: "ESDVs are commonly supplied with Hammer Union or Greylock connections."
+  },
+  {
+    question: "For which service are hydraulic-operated ESDVs certified?",
+    options: ["Fresh water service only", "Steam service only", "Sour service (H₂S/CO₂)", "Food grade service"],
+    correctIndex: 2,
+    explanation: "The valves are certified for sour service applications containing H₂S and CO₂."
+  },
+  {
+    question: "What is the full load current formula for a three phase motor?",
+    options: ["kW x V x PF", "kW x 1000 / (sqrt(3) x V x PF)", "kW / V", "V x PF / kW"],
+    correctIndex: 1,
+    explanation: "It uses the line-to-line voltage and the power factor."
+  },
+  {
+    question: "What is the approximate start up current?",
+    options: ["About 2 x FLC", "About equal to FLC", "About 0.5 x FLC", "About 7 x the full load current"],
+    correctIndex: 3,
+    explanation: "The course page uses 7 as the start up multiple."
+  },
+  {
+    question: "What does V mean in the 3 Phase formula?",
+    options: ["Line-to-line voltage", "Volume", "Velocity", "Valve opening"],
+    correctIndex: 0,
+    explanation: "The symbols table defines V as line-to-line voltage."
+  },
+  {
+    question: "How many hp is 100 kW (using 1 kW = 1.34 hp)?",
+    options: ["About 75", "About 746", "About 134", "About 13"],
+    correctIndex: 2,
+    explanation: "The course page uses 1 kW = 1.34 hp."
+  },
+  {
+    question: "What is 1 hp in kW?",
+    options: ["0.7457", "1.34", "7.457", "0.0746"],
+    correctIndex: 0,
+    explanation: "The hp to kW conversion uses 0.7457."
+  },
+  {
+    question: "What is the voltage drop formula for a cable?",
+    options: ["K x L / I", "L x I / R", "K x R x 1000", "K x L x I x R / 1000"],
+    correctIndex: 3,
+    explanation: "R is in ohm per km and L in meters."
+  },
+  {
+    question: "What is K for a 3-phase system?",
+    options: ["2", "1.732", "1", "3"],
+    correctIndex: 1,
+    explanation: "K is 1.732 for 3-phase and 2 for 1-phase."
+  },
+  {
+    question: "Which law is used to find the wire cable length between the king post and the boom tie point?",
+    options: ["The law of sines", "The law of cosines", "Boyle law", "Ohm law"],
+    correctIndex: 1,
+    explanation: "c = sqrt(a^2 + b^2 - 2ab cos C)."
+  },
+  {
+    question: "a = 40 ft, b = 30 ft and C = 90 degrees. What is c?",
+    options: ["70 ft", "10 ft", "35 ft", "50 ft"],
+    correctIndex: 3,
+    explanation: "With cos 90 = 0, c = sqrt(1600 + 900) = 50."
+  },
+  {
+    question: "What is the transducer scaling formula?",
+    options: ["Vraw x Range", "Range / Vraw", "(Vmax - Vraw) x Range", "(Vraw - Vzero) x Range / (Vmax - Vzero)"],
+    correctIndex: 3,
+    explanation: "It is a linear scale from the zero value to the max value."
+  },
+  {
+    question: "A 10,000 psi WHP channel reads 3 V with a 1 to 5 V signal. What is the reading?",
+    options: ["3,000 psi", "5,000 psi", "7,500 psi", "2,500 psi"],
+    correctIndex: 1,
+    explanation: "(3 - 1) x 10,000 / 4 = 5,000."
+  },
+  {
+    question: "What does WHT stand for in the channel guide?",
+    options: ["Well head tension", "Water hold time", "Wellhead temperature", "Wire height tie"],
+    correctIndex: 2,
+    explanation: "WHT has a typical range of 0 to 400 F."
+  },
+  {
+    question: "What is the primary function of an ESD (Emergency Shut Down) Panel?",
+    options: ["Measure well production rates", "Control and shut down hydraulic safety valves during emergencies", "Separate oil, gas, and water", "Inject chemicals into the well"],
+    correctIndex: 1,
+    explanation: "The ESD Panel controls hydraulic safety valves and provides emergency shutdown capability to protect personnel, equipment, and the environment."
+  },
+  {
+    question: "Which valve is a subsurface safety valve controlled by the ESD Panel?",
+    options: ["MV", "WV", "SCSSSV", "ESDV"],
+    correctIndex: 2,
+    explanation: "SCSSSV stands for Surface Controlled Sub-Surface Safety Valve."
+  },
+  {
+    question: "What supplies hydraulic control line pressure to the SCSSSV?",
+    options: ["Electric motor pump", "Air driven diaphragm pump", "Centrifugal pump", "Gear pump"],
+    correctIndex: 1,
+    explanation: "The SCSSSV hydraulic pressure is supplied by an air driven diaphragm pump."
+  },
+  {
+    question: "What is the working pressure of the SCSSSV diaphragm pump?",
+    options: ["3,000 psi", "5,000 psi", "7,000 psi", "10,000 psi"],
+    correctIndex: 3,
+    explanation: "The air-driven diaphragm pump has a 10,000 psi working pressure."
+  },
+  {
+    question: "At what pilot line pressure will the ESD Panel automatically trip?",
+    options: ["20 psi", "30 psi", "40 psi", "80 psi"],
+    correctIndex: 2,
+    explanation: "The panel trips when pilot line pressure falls below 40 psi."
+  },
+  {
+    question: "What happens when pilot pressure drops below 40 psi?",
+    options: ["The pump speeds up", "Hydraulic pressure is dumped and safety valves close", "The separator shuts down", "The flare ignites automatically"],
+    correctIndex: 1,
+    explanation: "Loss of pilot pressure causes hydraulic pressure to dump and safety valves to close."
+  },
+  {
+    question: "What is the purpose of the hydraulic relief valve?",
+    options: ["Increase pump speed", "Reduce air consumption", "Limit hydraulic pressure to a safe value", "Open the SCSSSV"],
+    correctIndex: 2,
+    explanation: "The hydraulic relief valve protects the system by limiting hydraulic pressure."
+  },
+  {
+    question: "A typical hydraulic relief valve setting is:",
+    options: ["1,000 psi", "3,000 psi", "6,000 psi", "10,000 psi"],
+    correctIndex: 2,
+    explanation: "The hydraulic relief valve is commonly set at approximately 6,000 psi."
+  },
+  {
+    question: "What is the purpose of the air relief valve installed before the air-driven pump?",
+    options: ["Increase hydraulic pressure", "Prevent output pressure exceeding 7,000 psi", "Reduce pilot pressure", "Control flare temperature"],
+    correctIndex: 1,
+    explanation: "The air relief valve prevents excessive hydraulic output pressure."
+  },
+  {
+    question: "Before opening hydraulic valves, the hydraulic regulator should initially be turned:",
+    options: ["Clockwise", "Anticlockwise", "Halfway open", "Locked"],
+    correctIndex: 1,
+    explanation: "Turning the regulator anticlockwise prevents hydraulic oil from passing through initially."
+  },
+  {
+    question: "Approximately what pressure is required to fully open hydraulic actuator valves?",
+    options: ["500 psi", "1,500 psi", "3,000 psi", "10,000 psi"],
+    correctIndex: 2,
+    explanation: "Hydraulic actuator valves are normally opened at approximately 3,000 psi."
+  },
+  {
+    question: "What indicates that a hydraulic actuator valve is fully open?",
+    options: ["Pump stops cycling", "Pilot pressure reaches 80 psi", "Full stem movement is observed", "Reservoir level increases"],
+    correctIndex: 2,
+    explanation: "Complete stem travel confirms the valve is fully open."
+  },
+  {
+    question: "What is the recommended pilot supply pressure range?",
+    options: ["10–20 psi", "20–40 psi", "50–80 psi", "100–150 psi"],
+    correctIndex: 2,
+    explanation: "Pilot pressure should be maintained between 50 and 80 psi."
+  },
+  {
+    question: "What is the purpose of the 'Push to Close - Pull to Reset' relay valve?",
+    options: ["Control separator level", "Reset or shut down the ESD system", "Control flare ignition", "Regulate pump speed"],
+    correctIndex: 1,
+    explanation: "The relay valve is used to either shut down or reset the ESD system."
+  },
+  {
+    question: "What must be achieved before releasing the relay valve lock pin?",
+    options: ["Pilot pressure above 40 psi", "Hydraulic pressure above 10,000 psi", "Tank level above 50%", "Separator pressure below 10 psi"],
+    correctIndex: 0,
+    explanation: "Pilot pressure must exceed 40 psi before releasing the lock pin."
+  },
+  {
+    question: "What is the quickest way to shut down all hydraulic safety valves?",
+    options: ["Close the separator outlet", "Turn off the generator", "Push the RED Emergency Stop Button", "Close the flare valve"],
+    correctIndex: 2,
+    explanation: "Pressing the RED Emergency Stop Button initiates a complete shutdown."
+  },
+  {
+    question: "How can a single hydraulic valve such as MV be closed without tripping the entire panel?",
+    options: ["Press the emergency button", "Disconnect the pilot line", "Operate the manual ball valve", "Reduce separator pressure"],
+    correctIndex: 2,
+    explanation: "The manual ball valve can isolate and close a specific hydraulic valve."
+  },
+  {
+    question: "What indicates that a hydraulic valve is fully closed?",
+    options: ["Pilot pressure reaches 80 psi", "Pump stops", "The stem is fully extended outward", "The reservoir becomes full"],
+    correctIndex: 2,
+    explanation: "A fully extended stem indicates the valve is completely closed."
+  },
+  {
+    question: "Before restarting the ESD system after a shutdown, what must be done?",
+    options: ["Drain the oil reservoir", "Release the RED ESD button and reset ESD stations", "Replace the pilot line", "Close all valves"],
+    correctIndex: 1,
+    explanation: "The emergency button must be released and all ESD stations reset."
+  },
+  {
+    question: "What is the function of Hi/Lo Pressure Pilots connected to the ESD loop?",
+    options: ["Increase well production", "Control chemical injection", "Automatically initiate shutdown during abnormal pressures", "Measure tank volume"],
+    correctIndex: 2,
+    explanation: "Hi/Lo pressure pilots automatically trigger an ESD shutdown when unsafe process pressures occur."
+  },
+  {
+    question: "What is the primary purpose of an Eruption Manifold?",
+    options: ["To separate oil, gas, and water", "To control and direct flow from a dual-string well", "To measure flow rate", "To store well fluids"],
+    correctIndex: 1,
+    explanation: "The Eruption Manifold is used to control, monitor, and direct flow from dual-string wells (Long String and Short String)."
+  },
+  {
+    question: "Which standard ensures suitability for H₂S and CO₂ service?",
+    options: ["API 6A", "ASME VIII", "NACE MR-0175", "ISO 9001"],
+    correctIndex: 2,
+    explanation: "NACE MR-0175 specifies material requirements for sour service applications containing H₂S."
+  },
+  {
+    question: "How many inlet connections are provided on the Eruption Manifold?",
+    options: ["2", "3", "4", "6"],
+    correctIndex: 2,
+    explanation: "The manifold is equipped with four 2-inch Figure 1502 threaded inlet connections."
+  },
+  {
+    question: "What is the size of the outlet connection?",
+    options: ["2-inch Fig 1502", "3-inch Fig 1502 Wing", "4-inch Fig 1502", "6-inch Flange"],
+    correctIndex: 1,
+    explanation: "The outlet connection is a 3-inch Figure 1502 Wing connection."
+  },
+  {
+    question: "One major benefit of the Eruption Manifold is:",
+    options: ["Increasing separator pressure", "Eliminating the need for choke manifolds", "Switching between strings without disconnecting pipework", "Reducing reservoir pressure"],
+    correctIndex: 2,
+    explanation: "The manifold saves time by allowing operators to switch between strings without disconnecting lines."
+  },
+  {
+    question: "Which valve is associated with the Long String (LS)?",
+    options: ["Valve 1", "Valve 3", "Valve 5", "Valve 8"],
+    correctIndex: 3,
+    explanation: "Valve No. 8 is used for Long String operations."
+  },
+  {
+    question: "Which valve is associated with the Short String (SS)?",
+    options: ["Valve 1", "Valve 5", "Valve 6", "Valve 8"],
+    correctIndex: 1,
+    explanation: "Valve No. 5 is connected to the Short String."
+  },
+  {
+    question: "Before flowing the Long String, which valves should be opened?",
+    options: ["Valves 1 and 5", "Valves 2 and 8", "Valves 3 and 6", "Valves 4 and 8"],
+    correctIndex: 1,
+    explanation: "The Long String flow path is established by opening Valves 2 and 8."
+  },
+  {
+    question: "Before flowing the Short String, which valves should be opened?",
+    options: ["Valves 1 and 5", "Valves 2 and 8", "Valves 3 and 6", "Valves 4 and 8"],
+    correctIndex: 0,
+    explanation: "The Short String flow path requires opening Valves 1 and 5."
+  },
+  {
+    question: "What should be recorded before opening the Choke Manifold for testing?",
+    options: ["Fluid temperature", "Pump speed", "WHCIP", "Tank level"],
+    correctIndex: 2,
+    explanation: "WHCIP (Wellhead Closed-In Pressure) must be recorded before starting the test."
+  },
+  {
+    question: "What does WHCIP stand for?",
+    options: ["Wellhead Closed-In Pressure", "Working Hydraulic Control Injection Pressure", "Wellhead Choke Isolation Point", "Wellhead Control Injection Procedure"],
+    correctIndex: 0,
+    explanation: "WHCIP means Wellhead Closed-In Pressure."
+  },
+  {
+    question: "When shutting in the Long String, what should be closed first?",
+    options: ["Valve 8", "Valve 2", "Choke Manifold", "Valve 6"],
+    correctIndex: 2,
+    explanation: "The Choke Manifold must be closed before isolating the string."
+  },
+  {
+    question: "Which valve is commonly used as the Pump/Kill line connection?",
+    options: ["Valve 1", "Valve 3", "Valve 6", "Valve 8"],
+    correctIndex: 2,
+    explanation: "Valve No. 6 is used for pumping acid or kill fluids."
+  },
+  {
+    question: "To pump acid into the Short String, which valves are opened?",
+    options: ["1, 5, and 8", "5, 3, and 6", "2, 4, and 8", "1, 3, and 6"],
+    correctIndex: 1,
+    explanation: "Acid pumping to the Short String requires opening Valves 5, 3, and 6."
+  },
+  {
+    question: "To pump acid into the Long String, which valves are opened?",
+    options: ["5, 3, and 6", "1, 5, and 6", "8, 4, and 6", "2, 3, and 6"],
+    correctIndex: 2,
+    explanation: "Acid pumping to the Long String requires opening Valves 8, 4, and 6."
+  },
+  {
+    question: "What is Bullheading?",
+    options: ["Measuring pressure with a DWT", "Pumping fluid directly into the well against formation pressure", "Flowing both strings simultaneously", "Opening all manifold valves"],
+    correctIndex: 1,
+    explanation: "Bullheading is the process of pumping fluid into the well without allowing return flow to surface."
+  },
+  {
+    question: "Which annulus pressures can be monitored using the Eruption Manifold?",
+    options: ["Only A Annulus", "Only B Annulus", "A and B Annulus", "Separator Pressure Only"],
+    correctIndex: 2,
+    explanation: "The manifold allows monitoring of both Production-Casing (A) and Casing-Casing (B) annulus pressures."
+  },
+  {
+    question: "Why should valves be opened gradually?",
+    options: ["To increase production rate", "To reduce pressure shock and equipment damage", "To improve fluid separation", "To increase WHCIP"],
+    correctIndex: 1,
+    explanation: "Gradual valve operation prevents pressure surges and protects equipment."
+  },
+  {
+    question: "Which statement is TRUE regarding Eruption Manifold operations?",
+    options: ["Valve 8 is connected to the Short String", "Valve 5 is connected to the Long String", "Valve 6 is used as a Pump/Kill connection", "The Choke Manifold must remain open during shut-in operations"],
+    correctIndex: 2,
+    explanation: "Valve No. 6 is commonly used for acid pumping and well kill operations."
+  },
+  {
+    question: "What is the primary cause of oil shrinkage during production?",
+    options: ["Water evaporation from crude oil", "Gas liberation due to pressure reduction", "Increase in oil viscosity", "Thermal expansion of oil"],
+    correctIndex: 1,
+    explanation: "Oil shrinkage occurs when pressure decreases and dissolved gas comes out of solution, reducing the oil volume."
+  },
+  {
+    question: "Why does dissolved gas separate from crude oil in a separator?",
+    options: ["Because oil temperature decreases", "Because oil density increases", "Because separator pressure is lower than reservoir pressure", "Because water content increases"],
+    correctIndex: 2,
+    explanation: "Gas remains dissolved at high reservoir pressure. When pressure drops in the separator, gas flashes out of solution."
+  },
+  {
+    question: "What does the Oil Formation Volume Factor (Bo) represent?",
+    options: ["Gas production rate", "Reservoir pressure", "Relationship between reservoir and stock tank oil volume", "Oil viscosity correction"],
+    correctIndex: 2,
+    explanation: "Bo is used to convert reservoir oil volume into stock tank oil volume."
+  },
+  {
+    question: "What does a high API gravity indicate?",
+    options: ["Heavy oil", "High water cut", "Light crude oil", "Low gas content"],
+    correctIndex: 2,
+    explanation: "Higher API gravity means lighter crude oil, which often contains more dissolved gas."
+  },
+  {
+    question: "Why is gas gravity corrected during shrinkage calculations?",
+    options: ["To account for temperature effects", "To remove water contamination", "To increase separator efficiency", "To calculate API gravity"],
+    correctIndex: 0,
+    explanation: "Gas density changes with temperature, so gas gravity is corrected to standard conditions."
+  },
+  {
+    question: "What is separator pressure?",
+    options: ["Pressure inside the storage tank", "Pressure inside the reservoir", "Operating pressure where oil and gas are separated", "Pipeline design pressure"],
+    correctIndex: 2,
+    explanation: "Separator pressure is the pressure maintained inside the separator during fluid processing."
+  },
+  {
+    question: "What happens when separator pressure decreases?",
+    options: ["Less gas is released", "Oil volume increases", "More gas is liberated from the oil", "Bo decreases to zero"],
+    correctIndex: 2,
+    explanation: "Lower separator pressure causes more dissolved gas to flash out of the oil."
+  },
+  {
+    question: "What effect does increasing separator temperature generally have?",
+    options: ["Less gas liberation", "More gas liberation and more shrinkage", "No effect on oil volume", "Increased water production"],
+    correctIndex: 1,
+    explanation: "Higher temperatures encourage dissolved gas to leave the oil, increasing shrinkage."
+  },
+  {
+    question: "Why is observed temperature included in the calculation?",
+    options: ["To estimate water cut", "To calculate separator efficiency", "To correct gas gravity", "To determine API gravity"],
+    correctIndex: 2,
+    explanation: "Observed temperature is used to adjust gas gravity to standard reference conditions."
+  },
+  {
+    question: "What is the purpose of the parameter F1?",
+    options: ["Estimate reservoir permeability", "Relate separator pressure and corrected gas gravity", "Calculate water production", "Determine oil density"],
+    correctIndex: 1,
+    explanation: "F1 is an intermediate parameter derived from separator pressure and corrected gas gravity."
+  },
+  {
+    question: "What does F2 primarily account for?",
+    options: ["Gas compressibility", "Separator temperature", "Oil gravity correction", "Reservoir pressure depletion"],
+    correctIndex: 2,
+    explanation: "F2 adjusts the calculation based on oil API gravity."
+  },
+  {
+    question: "What is Fvol used for?",
+    options: ["Estimating the volume factor input to Bo calculation", "Calculating separator pressure", "Determining water cut", "Calculating gas flow rate"],
+    correctIndex: 0,
+    explanation: "Fvol combines pressure, temperature, and fluid properties into a volume-related parameter."
+  },
+  {
+    question: "How is Shrinkage Factor calculated?",
+    options: ["Bo × API", "Bo ÷ API", "1 ÷ Bo", "API ÷ Bo"],
+    correctIndex: 2,
+    explanation: "Shrinkage Factor is calculated as the inverse of the Oil Formation Volume Factor."
+  },
+  {
+    question: "What does a shrinkage factor of 0.85 indicate?",
+    options: ["Oil volume increases by 15%", "1 separator barrel becomes 0.85 stock tank barrels", "No gas is liberated", "Separator pressure is too low"],
+    correctIndex: 1,
+    explanation: "A shrinkage factor of 0.85 means 15% of the volume is lost due to gas liberation."
+  },
+  {
+    question: "What does a shrinkage factor of 0.95 typically indicate?",
+    options: ["Large gas liberation", "Extremely heavy oil", "Very little gas liberated", "Separator malfunction"],
+    correctIndex: 2,
+    explanation: "A value close to 1 means only a small amount of gas has come out of solution."
+  },
+  {
+    question: "Where is shrinkage factor commonly used?",
+    options: ["Drilling mud calculations", "Well testing and production reporting", "Cement design", "Pipeline pigging operations"],
+    correctIndex: 1,
+    explanation: "Shrinkage factor is widely used in well testing and oil production calculations."
+  },
+  {
+    question: "Why is laboratory PVT analysis preferred over empirical correlations?",
+    options: ["It is faster", "It requires fewer measurements", "It provides more accurate fluid properties", "It eliminates separator requirements"],
+    correctIndex: 2,
+    explanation: "PVT analysis directly measures fluid behavior under controlled laboratory conditions."
+  },
+  {
+    question: "Can shrinkage factor normally be greater than 1?",
+    options: ["Yes, always", "Only for water wells", "No, because oil volume decreases after gas liberation", "Only for heavy oils"],
+    correctIndex: 2,
+    explanation: "Shrinkage factors are typically less than 1 because separator oil volume is larger than stock tank oil volume."
+  },
+  {
+    question: "What is Stock Tank Oil (STO)?",
+    options: ["Oil inside the separator", "Oil remaining after gas separation at atmospheric conditions", "Reservoir oil before production", "Oil mixed with produced water"],
+    correctIndex: 1,
+    explanation: "Stock Tank Oil is stabilized oil after gas has been removed and atmospheric conditions are reached."
+  },
+  {
+    question: "Why is shrinkage important for production reporting?",
+    options: ["It estimates drilling costs", "It calculates separator efficiency only", "It converts measured separator volumes into actual saleable oil volumes", "It determines reservoir pressure"],
+    correctIndex: 2,
+    explanation: "Production reports are based on stock tank oil volumes, making shrinkage correction essential."
+  },
+  {
+    question: "What does HTML stand for?",
+    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyperlink Marking Language", "Home Tool Markup Language"],
+    correctIndex: 0,
+    explanation: "HTML stands for Hyper Text Markup Language."
+  },
+  {
+    question: "Which CSS property controls text size?",
+    options: ["font-style", "text-size", "font-size", "font-weight"],
+    correctIndex: 2,
+    explanation: "The correct property for text size is font-size."
+  },
+  {
+    question: "Which method is used to select an element by ID in JavaScript?",
+    options: ["getElementByClass", "querySelectorAll", "getElementById", "getElementsByName"],
+    correctIndex: 2,
+    explanation: "getElementById selects a single element by its ID."
+  },
+  {
+    question: "What does CSS stand for?",
+    options: ["Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Creative Style System"],
+    correctIndex: 1,
+    explanation: "CSS means Cascading Style Sheets."
+  },
+  {
+    question: "Which tag is used to include JavaScript in HTML?",
+    options: ["<js>", "<javascript>", "<script>", "<code>"],
+    correctIndex: 2,
+    explanation: "The <script> tag is used to embed JavaScript."
+  },
+  {
+    question: "Which array method adds an item to the end?",
+    options: ["push()", "pop()", "shift()", "unshift()"],
+    correctIndex: 0,
+    explanation: "push() adds an item to the end of the array."
+  },
+  {
+    question: "What is the correct HTML5 doctype?",
+    options: ["<!DOCTYPE HTML5>", "<!DOCTYPE html>", "<!DOCTYPE HTML PUBLIC>", "<!DOCTYPE XHTML>"],
+    correctIndex: 1,
+    explanation: "<!DOCTYPE html> is the standard HTML5 doctype."
+  },
+  {
+    question: "Which CSS layout is best for a 2D grid?",
+    options: ["Flexbox", "Float", "Grid", "Position"],
+    correctIndex: 2,
+    explanation: "CSS Grid is designed for 2D layouts."
+  },
+  {
+    question: "What does JSON stand for?",
+    options: ["Java Script Object Notation", "Java Source Object Notation", "Java Standard Output Network", "Java Script Output Name"],
+    correctIndex: 0,
+    explanation: "JSON stands for JavaScript Object Notation."
+  },
+  {
+    question: "Which event runs when a button is clicked?",
+    options: ["mouseover", "onchange", "onclick", "onload"],
+    correctIndex: 2,
+    explanation: "The onclick event runs when a button is clicked."
+  },
+  {
+    question: "A well flows 2 MMSCF/day of gas and 800 STB/day of oil. Using GOR = (Gas Rate x 10^6) / Oil Rate, what is the GOR?",
+    options: ["1,600 scf/STB", "2,500 scf/STB", "400 scf/STB", "25,000 scf/STB"],
+    correctIndex: 1,
+    explanation: "GOR = (2 x 1,000,000) / 800 = 2,500 scf/STB."
+  },
+  {
+    question: "An OGR calculation uses an oil rate of 40 STB/day and a gas rate of 2,000,000 scf/day. What is the OGR?",
+    options: ["80 STB/MMSCF", "0.02 STB/MMSCF", "20 STB/MMSCF", "200 STB/MMSCF"],
+    correctIndex: 2,
+    explanation: "OGR = (40 x 1,000,000) / 2,000,000 = 20 STB/MMSCF."
+  },
+  {
+    question: "A gas-condensate well produces 150 STB/d of condensate and 5 MMSCFD of gas. What is the CGR?",
+    options: ["750 STB/MMSCF", "30 STB/MMSCF", "3 STB/MMSCF", "300 STB/MMSCF"],
+    correctIndex: 1,
+    explanation: "CGR = Condensate Rate (STB/d) / Gas Rate (MMSCFD) = 150 / 5 = 30 STB/MMSCF."
+  },
+  {
+    question: "A CGR of 25 STB/MMSCF is converted to the Gas to Condensate Ratio (GCR). What is the GCR?",
+    options: ["40,000 scf/STB", "25,000,000 scf/STB", "4,000 scf/STB", "0.000025 scf/STB"],
+    correctIndex: 0,
+    explanation: "GCR = 1,000,000 / CGR = 1,000,000 / 25 = 40,000 scf/STB."
+  },
+  {
+    question: "In the Vasquez & Beggs correlation used by the calculators, which set of constants applies when the oil API is above 30?",
+    options: ["C1 = 0.0178, C2 = 1.187, C3 = 23.931", "C1 = 0.0362, C2 = 1.0937, C3 = 25.724", "C1 = 1, C2 = 1, C3 = 1", "C1 = 0.00005912, C2 = 114.7, C3 = 460"],
+    correctIndex: 0,
+    explanation: "For API above 30 the calculators use C1 = 0.0178, C2 = 1.187 and C3 = 23.931. For API of 30 or less they use 0.0362, 1.0937 and 25.724."
+  },
+  {
+    question: "Which ratio, in STB/MMSCF, describes the liquid yield of a gas-condensate reservoir?",
+    options: ["CGR", "GOR", "OGR for a dry gas", "Rs"],
+    correctIndex: 0,
+    explanation: "The CGR is the condensate-to-gas ratio, expressed in STB/MMSCF."
+  },
+  {
+    question: "In the choke nipple calculation, how is the absolute pressure found?",
+    options: ["WHP in psig x 14.7", "WHP in psig - 14.7", "WHP in psig / 14.7", "WHP in psig + 14.7"],
+    correctIndex: 3,
+    explanation: "P_abs = WHP + 14.7, and T_abs = WHT + 460."
+  },
+  {
+    question: "WHP = 1,000 psig, choke = 32/64, gas gravity 0.7 and WHT = 100 F. What is the choke nipple gas rate?",
+    options: ["About 578 MSCF/D", "About 57,770 MSCF/D", "About 5,777 MSCF/D", "About 112 MSCF/D"],
+    correctIndex: 2,
+    explanation: "Q = 112.72 x 1,014.7 / sqrt(0.7 x 560) = 5,776.9, about 5,777 MSCF/D."
+  },
+  {
+    question: "What is the area of a 32/64 inch choke?",
+    options: ["0.5 sq in", "0.0491 sq in", "0.1963 sq in", "0.7854 sq in"],
+    correctIndex: 2,
+    explanation: "The reference table on the course page gives 0.1963 sq in for 32/64 (0.500 inch)."
+  },
+  {
+    question: "The Quick Gas Rate Estimation uses a coefficient of 0.11817 times what?",
+    options: ["The choke size", "The choke size squared", "The wellhead pressure", "The gas gravity"],
+    correctIndex: 1,
+    explanation: "The coefficient = 0.11817 x choke^2."
+  },
+  {
+    question: "Which unit does the Quick Gas Rate Estimation give its result in?",
+    options: ["MMscf/day", "bbl/d", "mscf/day", "psig"],
+    correctIndex: 2,
+    explanation: "The course page gives the estimated dry gas rate in mscf/day."
+  },
+  {
+    question: "What is the equivalent twin choke size formula?",
+    options: ["Deq = d1 + d2", "Deq = sqrt(d1^2 + d2^2)", "Deq = d1 x d2", "Deq = d1 / d2"],
+    correctIndex: 1,
+    explanation: "The areas add, so the diameters combine as a square root of the sum of squares."
+  },
+  {
+    question: "Twin chokes of 16/64 and 24/64 give about what equivalent size?",
+    options: ["About 40/64", "About 8/64", "About 20/64", "About 29/64"],
+    correctIndex: 3,
+    explanation: "sqrt(256 + 576) = 28.8."
+  },
+  {
+    question: "What is the choke / pressure-based gas volume formula?",
+    options: ["Q = P x (d64/64)^2 x 24", "Q = P / d64", "Q = d64 x 24", "Q = P x 64"],
+    correctIndex: 0,
+    explanation: "The course page uses pressure in psia, the choke in inches squared and 24."
+  },
+  {
+    question: "1,000 psia and a 32/64 choke. What is Q by that method?",
+    options: ["600", "2,400", "6,000", "12,000"],
+    correctIndex: 2,
+    explanation: "1,000 x 0.25 x 24 = 6,000."
+  },
+  {
+    question: "What is the constant 2122 used for?",
+    options: ["The shrinkage factor", "The twin choke", "The gas velocity and volume formulas", "The DPU chart"],
+    correctIndex: 2,
+    explanation: "It appears in V = 2122 x Bg x Q / d^2."
+  },
+  {
+    question: "What does Bg mean in the gas velocity formula?",
+    options: ["Gas formation volume factor", "Gas gravity", "Barrels of gas", "Back pressure gauge"],
+    correctIndex: 0,
+    explanation: "The symbols table lists Bg as the gas formation volume factor in ft3/scf."
+  },
+  {
+    question: "What is API at 60 F from the SG at 60 F?",
+    options: ["141.5 / SG - 131.5", "141.5 x SG", "SG / 131.5", "131.5 / SG"],
+    correctIndex: 0,
+    explanation: "This is the standard API conversion."
+  },
+  {
+    question: "The actual DPU reading is 60, the chart range is 100 and the DPU range is 150. What is the chart reading?",
+    options: ["90", "60", "40", "25"],
+    correctIndex: 2,
+    explanation: "60 x 100 / 150 = 40."
+  },
+  {
+    question: "What is the main purpose of the H₂S Sweetening Unit?",
+    options: ["Increase oil viscosity for storage", "Remove Hydrogen Sulfide (H₂S) from produced fluids", "Separate water from crude oil only", "Increase gas pressure in flow lines"],
+    correctIndex: 1,
+    explanation: "The unit is designed to reduce H₂S concentration in produced fluids to safe levels (0–20 ppm) using chemical injection."
+  },
+  {
+    question: "What type of signal does the H₂S analyzer send to the PLC?",
+    options: ["Digital ON/OFF signal", "Hydraulic pressure signal", "4–20 mA analog signal", "Wireless RF signal"],
+    correctIndex: 2,
+    explanation: "The H₂S probe transmits a 4–20 mA signal proportional to the H₂S concentration to the PLC system."
+  },
+  {
+    question: "What happens when H₂S concentration increases in the process stream?",
+    options: ["PLC stops the pump immediately", "Chemical injection is reduced", "PLC increases chemical injection rate", "System switches to manual mode"],
+    correctIndex: 2,
+    explanation: "The PLC automatically increases scavenger chemical dosing to reduce higher H₂S levels."
+  },
+  {
+    question: "What is the role of the PLC in the sweetening system?",
+    options: ["Manually operate valves only", "Monitor temperature only", "Control chemical injection based on H₂S signal", "Increase gas production rate"],
+    correctIndex: 2,
+    explanation: "The PLC receives sensor input and automatically controls the injection pump to maintain safe H₂S levels."
+  },
+  {
+    question: "What is the function of EMO-XXXX chemical?",
+    options: ["Increase gas flow rate", "Act as corrosion inhibitor only", "Scavenge and neutralize H₂S", "Separate oil and water phases"],
+    correctIndex: 2,
+    explanation: "EMO-XXXX is an organic scavenger chemical used to neutralize Hydrogen Sulfide in produced fluids."
+  },
+  {
+    question: "Why is instrument air required for the system?",
+    options: ["To cool down the PLC", "To operate pneumatic metering pump", "To increase H₂S detection accuracy", "To pressurize storage tanks"],
+    correctIndex: 1,
+    explanation: "Instrument air drives the pneumatic pump that injects chemical into the process line."
+  },
+  {
+    question: "What is the safe H₂S concentration target after treatment?",
+    options: ["50–100 ppm", "0–20 ppm", "200–300 ppm", "Above 500 ppm"],
+    correctIndex: 1,
+    explanation: "The system aims to reduce H₂S to an acceptable operational limit of 0–20 ppm."
+  },
+  {
+    question: "What is the first step before operating the system?",
+    options: ["Start chemical injection immediately", "Verify all P&ID connections", "Open all valves fully", "Increase air pressure to maximum"],
+    correctIndex: 1,
+    explanation: "All mechanical, electrical, and process connections must be verified according to P&ID before operation."
+  },
+  {
+    question: "What happens if the PLC is switched OFF during operation?",
+    options: ["System continues automatically", "Chemical injection continues at max rate", "Automatic control and injection stop", "H₂S analyzer increases sensitivity"],
+    correctIndex: 2,
+    explanation: "Turning off the PLC stops automatic control and halts injection operations."
+  },
+  {
+    question: "What is the purpose of flushing the system with water during shutdown?",
+    options: ["Increase chemical concentration", "Cool down the pump", "Remove residual chemicals and prevent corrosion", "Increase flow rate in lines"],
+    correctIndex: 2,
+    explanation: "Flushing removes leftover scavenger chemicals and prevents internal corrosion or blockage."
+  },
+  {
+    question: "Why must the system be depressurized before disconnection?",
+    options: ["To increase pump efficiency", "To avoid pressure buildup in storage tanks", "To prevent sudden release of hazardous pressure", "To improve chemical mixing"],
+    correctIndex: 2,
+    explanation: "Depressurization prevents uncontrolled release of pressure, protecting personnel and equipment."
+  },
+  {
+    question: "What is the function of the H₂S probe?",
+    options: ["Measure temperature of crude oil", "Detect H₂S concentration in the process stream", "Control pump speed directly", "Separate gas from liquid"],
+    correctIndex: 1,
+    explanation: "The probe continuously measures H₂S levels and sends a proportional signal to the PLC."
+  },
+  {
+    question: "What is the correct PLC mode during normal operation?",
+    options: ["Manual override mode", "Shutdown mode", "Auto mode", "Calibration mode only"],
+    correctIndex: 2,
+    explanation: "The system operates in AUTO mode for continuous and automatic chemical injection control."
+  },
+  {
+    question: "What is the role of the pneumatic metering pump?",
+    options: ["Measure H₂S concentration", "Inject scavenger chemical into process line", "Separate oil phases", "Cool down process stream"],
+    correctIndex: 1,
+    explanation: "The pump injects controlled amounts of scavenger chemical based on PLC signals."
+  },
+  {
+    question: "What is the main risk if H₂S is not treated?",
+    options: ["Increased oil density", "Corrosion and toxicity hazards", "Improved flow rate", "Reduced pump efficiency only"],
+    correctIndex: 1,
+    explanation: "Untreated H₂S causes severe corrosion and poses serious health risks to personnel."
+  },
+  {
+    question: "What is the purpose of ESD integration in the system?",
+    options: ["Increase chemical injection rate", "Provide emergency shutdown in hazardous situations", "Improve oil quality only", "Increase pump stroke frequency"],
+    correctIndex: 1,
+    explanation: "ESD ensures safe shutdown during emergency conditions to protect people and equipment."
+  },
+  {
+    question: "What is required before system start-up?",
+    options: ["Open discharge valves fully", "Fill chemical tank and verify connections", "Bypass PLC control", "Increase pressure beyond limits"],
+    correctIndex: 1,
+    explanation: "All system checks, chemical filling, and connection verification must be completed before start-up."
+  },
+  {
+    question: "What happens when H₂S levels decrease?",
+    options: ["Pump stops completely", "PLC increases injection", "PLC reduces chemical injection", "System switches to emergency mode"],
+    correctIndex: 2,
+    explanation: "The PLC reduces dosing to optimize chemical usage when H₂S levels are low."
+  },
+  {
+    question: "Why is chemical injection point located upstream?",
+    options: ["To reduce pump vibration", "To ensure better mixing time and efficiency", "To increase pressure drop", "To cool down the fluid"],
+    correctIndex: 1,
+    explanation: "Upstream injection allows better mixing and more effective H₂S scavenging."
+  },
+  {
+    question: "What is the final objective of the sweetening process?",
+    options: ["Increase gas production pressure", "Reduce H₂S to safe acceptable limits", "Remove all hydrocarbons from flow", "Increase chemical consumption"],
+    correctIndex: 1,
+    explanation: "The main goal is to reduce H₂S to safe levels while maintaining operational efficiency and safety."
+  },
+  {
+    question: "What is the primary purpose of a Portable High Pressure Strainer Package?",
+    options: ["Increase gas production rate", "Heat the process stream", "Remove solids from produced hydrocarbons", "Separate oil and water"],
+    correctIndex: 2,
+    explanation: "The strainer package is designed to remove sand, scale, rust, and other solids from oil and gas streams before they reach downstream equipment."
+  },
+  {
+    question: "Why does the package contain two strainers?",
+    options: ["To separate oil and gas", "To increase flow rate", "To allow duty and standby operation", "To reduce pressure"],
+    correctIndex: 2,
+    explanation: "The dual-strainer arrangement allows one strainer to operate while the other remains on standby for maintenance or changeover."
+  },
+  {
+    question: "What type of control system is installed on the package?",
+    options: ["PLC automatic control", "SCADA control", "Remote monitoring system", "Manual operation only"],
+    correctIndex: 3,
+    explanation: "The package operates manually and does not require external control or monitoring systems."
+  },
+  {
+    question: "What instrument is used to monitor the condition of the strainers?",
+    options: ["Flow meter", "Temperature transmitter", "Differential Pressure Indicator (PDI-200)", "Level gauge"],
+    correctIndex: 2,
+    explanation: "PDI-200 monitors the pressure difference across the strainer and indicates blockage or solids accumulation."
+  },
+  {
+    question: "What does a high differential pressure across a strainer usually indicate?",
+    options: ["The screen is clean", "The process pressure is low", "The strainer is becoming blocked", "The well is dead"],
+    correctIndex: 2,
+    explanation: "As solids accumulate in the strainer screen, flow resistance increases, causing differential pressure to rise."
+  },
+  {
+    question: "Before startup, what must be confirmed regarding the strainer covers?",
+    options: ["They are painted", "They are removed", "They are securely fitted", "They are heated"],
+    correctIndex: 2,
+    explanation: "The covers must be securely fitted before introducing pressure into the system."
+  },
+  {
+    question: "Why must the manifold be purged before introducing hydrocarbons?",
+    options: ["To increase pressure", "To cool the system", "To remove air and prevent explosive mixtures", "To clean the gauges"],
+    correctIndex: 2,
+    explanation: "Air mixed with hydrocarbons can create an explosive atmosphere, so purging is essential."
+  },
+  {
+    question: "Which strainer is selected during startup?",
+    options: ["The standby strainer", "Either S-200A or S-200B as the duty strainer", "Both simultaneously", "Neither strainer"],
+    correctIndex: 1,
+    explanation: "One strainer is selected as the duty strainer while the other remains isolated on standby."
+  },
+  {
+    question: "During startup, which isolation valves should generally be opened first?",
+    options: ["Upstream valves", "Drain valves", "Downstream valves", "Vent valves"],
+    correctIndex: 2,
+    explanation: "The procedure specifies gradually opening downstream isolation valves before upstream valves."
+  },
+  {
+    question: "What is the purpose of a strainer changeover?",
+    options: ["Increase temperature", "Switch flow to a clean standby strainer", "Reduce production", "Perform pressure testing"],
+    correctIndex: 1,
+    explanation: "Changeover allows maintenance and cleaning while production continues through the standby unit."
+  },
+  {
+    question: "What should be done before opening a blocked strainer for cleaning?",
+    options: ["Increase pressure", "Inject chemicals", "Bleed off pressure safely", "Open all valves"],
+    correctIndex: 2,
+    explanation: "The strainer must be isolated and depressurized before any maintenance activity."
+  },
+  {
+    question: "What is the preferred purging medium for the package?",
+    options: ["Air", "Nitrogen", "Oxygen", "Natural gas"],
+    correctIndex: 1,
+    explanation: "Nitrogen is inert and does not support combustion, making it ideal for purging."
+  },
+  {
+    question: "Approximately what pressure is used during nitrogen purging?",
+    options: ["0.1 bar", "1 bar", "10 bar", "50 bar"],
+    correctIndex: 1,
+    explanation: "The package is typically pressurized with nitrogen to approximately 1 bar during the purge procedure."
+  },
+  {
+    question: "Why is a slight positive pressure maintained after nitrogen purging?",
+    options: ["To increase production", "To prevent air re-entering the system", "To improve filtration", "To test valves"],
+    correctIndex: 1,
+    explanation: "Positive pressure prevents atmospheric air from entering the package after purging."
+  },
+  {
+    question: "What is a major limitation of water purging?",
+    options: ["Water is explosive", "It requires a suitable vent point", "Water damages steel immediately", "It cannot remove air"],
+    correctIndex: 1,
+    explanation: "Because the package lacks a dedicated high-point vent, water purging can be less effective than nitrogen purging."
+  },
+  {
+    question: "Before inspection, strainer pots should be checked for the presence of which hazardous gas?",
+    options: ["Helium", "Nitrogen", "Hydrogen Sulfide (H₂S)", "Argon"],
+    correctIndex: 2,
+    explanation: "Personnel must verify that the vessel is free from H₂S and explosive gas mixtures before opening."
+  },
+  {
+    question: "Why are hammer union seals and O-rings replaced during maintenance?",
+    options: ["To increase temperature", "To improve appearance", "To maintain pressure integrity", "To increase flow rate"],
+    correctIndex: 2,
+    explanation: "Seals and O-rings are critical pressure-containing components and must be replaced to prevent leaks."
+  },
+  {
+    question: "What should be inspected inside the strainer vessel after removing the screen?",
+    options: ["Paint color", "Corrosion, erosion, and flow damage", "Temperature readings", "Production rates"],
+    correctIndex: 1,
+    explanation: "Internal inspection helps identify corrosion, erosion, and damage caused by solids and high-velocity flow."
+  },
+  {
+    question: "What is the most important safety rule before opening any strainer vessel?",
+    options: ["Increase line pressure", "Open all valves", "Ensure the vessel is isolated and depressurized", "Remove gauges first"],
+    correctIndex: 2,
+    explanation: "Opening a pressurized vessel can result in serious injury or fatality. Isolation and depressurization are mandatory."
+  },
+  {
+    question: "What is the meter factor (MF)?",
+    options: ["The ratio of API to temperature", "The ratio of the actual volume to the meter indicated volume", "The pressure drop across the meter", "The meter size in inches"],
+    correctIndex: 1,
+    explanation: "MF = Prover Volume / Meter Indicated Volume."
+  },
+  {
+    question: "The prover volume is 100 bbl and the meter indicated 99.5 bbl. What is MF?",
+    options: ["About 0.995", "About 0.5", "About 199.5", "About 1.005"],
+    correctIndex: 3,
+    explanation: "100 / 99.5 = 1.00503."
+  },
+  {
+    question: "How is the composite meter factor found?",
+    options: ["CMF = MF + SF", "CMF = MF / API", "CMF = MF x SF", "CMF = SF - 1"],
+    correctIndex: 2,
+    explanation: "The course page says CMF = MF x SF, with SF = 1 - shrinkage."
+  },
+  {
+    question: "MF = 1.005 and shrinkage is 4%. What is the CMF?",
+    options: ["0.9648", "1.045", "0.96", "1.005"],
+    correctIndex: 0,
+    explanation: "SF = 0.96 and 1.005 x 0.96 = 0.9648."
+  },
+  {
+    question: "In the Advanced Meter Factor Calibration, which correction does the tank volume use?",
+    options: ["A pressure factor only", "The choke size", "The BS&W", "A temperature K factor based on API and the tank temperature"],
+    correctIndex: 3,
+    explanation: "K tank = 1 - [(0.066 x API + 2.75) x (T tank - 60) x 10^-4]."
+  },
+  {
+    question: "How does the Advanced calibration get the correction factor Cf?",
+    options: ["Cf = meter volume x tank volume", "Cf = tank volume / meter volume", "Cf = API / 60", "Cf = Mf x 42"],
+    correctIndex: 1,
+    explanation: "The code divides the temperature corrected tank increase by the temperature corrected meter increase."
+  },
+  {
+    question: "What is the tank increase formula in the calibration?",
+    options: ["(Final tank - Initial tank) x Tank factor", "Final tank + Initial tank", "Final meter x API", "Tank factor / 60"],
+    correctIndex: 0,
+    explanation: "The course page gives the tank factor in bbl/cm and the tank readings in cm."
+  },
+  {
+    question: "A turbine meter has 100 pulses/gal. How many pulses per bbl is that?",
+    options: ["100", "42", "4,200", "2,400"],
+    correctIndex: 2,
+    explanation: "Kbbl = Kgal x 42 = 4,200."
+  },
+  {
+    question: "Gilbert at 500 psig, 24/64 choke and GOR 800 gives about how many bpd?",
+    options: ["About 53 bpd", "About 5,270 bpd", "About 840 bpd", "About 527 bpd"],
+    correctIndex: 3,
+    explanation: "500 x 24^1.89 / [435 x 0.8^0.546] = about 527 bpd."
+  },
+  {
+    question: "Oil rate is 1,000 STB/d and GOR is 500 scf/STB. How much associated gas is that?",
+    options: ["5,000 MSCFD", "2 MSCFD", "50 MSCFD", "500 MSCFD"],
+    correctIndex: 3,
+    explanation: "1,000 x 500 / 1,000 = 500 MSCFD."
+  },
+  {
+    question: "Should these equations be used as a metered oil rate?",
+    options: ["Yes, they replace the separator", "Yes, they are fiscal values", "No, they are quick field estimates", "Only above 1,000 psig"],
+    correctIndex: 2,
+    explanation: "The pages call them estimates, so confirm with the metered rate."
+  },
+  {
+    question: "A well makes 2,500 STBPD of oil at a GOR of 1,200 scf/STB. What is the gas rate in MMSCFD?",
+    options: ["0.300 MMSCFD", "3.000 MMSCFD", "3,000 MMSCFD", "2.083 MMSCFD"],
+    correctIndex: 1,
+    explanation: "Gas rate = (2,500 x 1,200) / 10^6 = 3.000 MMSCFD."
+  },
+  {
+    question: "The gas rate from GOR and oil rate is 3,000,000 SCFD. What is it in MSCFD?",
+    options: ["3,000 MSCFD", "3 MSCFD", "300 MSCFD", "3,000,000 MSCFD"],
+    correctIndex: 0,
+    explanation: "MSCFD = MMSCFD x 1,000. 3 MMSCFD x 1,000 = 3,000 MSCFD."
+  },
+  {
+    question: "A well makes 2 MMSCFD of gas at a GOR of 4,000 scf/STB. What is the oil rate?",
+    options: ["8,000,000 STBPD", "50 STBPD", "500 STBPD", "5,000 STBPD"],
+    correctIndex: 2,
+    explanation: "Oil rate = (2 x 10^6) / 4,000 = 500 STBPD."
+  },
+  {
+    question: "Which input must be greater than zero in the oil-rate-from-GOR calculators?",
+    options: ["GOR, because it is the divisor", "Gas rate, because it is the divisor", "Oil rate, because it is an input", "Neither input is checked"],
+    correctIndex: 0,
+    explanation: "GOR is the divisor in Q_oil = Q_gas x 10^6 / GOR, so it must be greater than zero. The gas rate only has to be zero or greater."
+  },
+  {
+    question: "The oil rate from GOR is 500 STBPD. About how many m3/d is this, using 1 STB = 0.158987 m3?",
+    options: ["3,145 m3/d", "500 m3/d", "0.32 m3/d", "79.49 m3/d"],
+    correctIndex: 3,
+    explanation: "500 x 0.158987 = 79.49 m3/d."
+  },
+  {
+    question: "Measured gas is 5 MMSCFD and lift gas is 1.5 MMSCFD. What is the true produced gas?",
+    options: ["3.5 MMSCFD", "6.5 MMSCFD", "7.5 MMSCFD", "3.33 MMSCFD"],
+    correctIndex: 0,
+    explanation: "5 - 1.5 = 3.5 MMSCFD."
+  },
+  {
+    question: "Measured gas is 5 MMSCFD and lift gas is 1.5 MMSCFD. What share of the measured gas is lift gas?",
+    options: ["70%", "15%", "30%", "3.3%"],
+    correctIndex: 2,
+    explanation: "Lift Share = (1.5 / 5) x 100 = 30%."
+  },
+  {
+    question: "True gas is 3,500,000 scfd and the oil rate is 700 STB/d. What is the true GOR?",
+    options: ["500 scf/STB", "5,000 scf/STB", "2,450,000,000 scf/STB", "0.0002 scf/STB"],
+    correctIndex: 1,
+    explanation: "GOR true = 3,500,000 / 700 = 5,000 scf/STB."
+  },
+  {
+    question: "Before subtracting lift gas from measured gas, what should you check?",
+    options: ["Both are in different units", "Only the lift gas is corrected", "The oil rate is above 1,000 STB/d", "Both are at the same base conditions and in the same unit"],
+    correctIndex: 3,
+    explanation: "The field note says to normalize both rates to the same base conditions and units before subtracting."
+  },
+  {
+    question: "Which inputs does the Khuff gas estimate use?",
+    options: ["Oil rate, water cut and GOR", "Pipe diameter and wall thickness", "Wellhead pressure, wellhead temperature, choke size, gas S.G. and wet factor", "Meter factor and K-factor"],
+    correctIndex: 2,
+    explanation: "The course page lists wellhead pressure (psig), wellhead temperature (F), choke size (1/64 in), gas S.G. and a wet factor."
+  },
+  {
+    question: "How is the combined flow factor C found?",
+    options: ["By multiplying Fb, Fg, Ftf, Fpv, Fr, Y2, Ftb and Fpb", "By adding all the factors", "By dividing Fb by Fg", "It is always 1"],
+    correctIndex: 0,
+    explanation: "C is the product of the eight factors."
+  },
+  {
+    question: "What do Ftb and Fpb default to?",
+    options: ["0", "14.7", "1", "60"],
+    correctIndex: 2,
+    explanation: "The course page lists the temperature base and pressure base factors with a default of 1."
+  },
+  {
+    question: "In what unit is the separator pressure Pf entered?",
+    options: ["psig", "bar gauge", "psia", "kPa gauge"],
+    correctIndex: 2,
+    explanation: "The course page labels it Separator Pressure Pf (psia)."
+  },
+  {
+    question: "Int.T = 1, Pf = 500 psia, HW = 100 and C = 1.2. What is Q gas?",
+    options: ["6,000", "600", "60,000", "500"],
+    correctIndex: 0,
+    explanation: "1 x 1.2 x 500 x sqrt(100) = 6,000."
+  },
+  {
+    question: "What is the beta ratio?",
+    options: ["Pipe ID divided by orifice diameter", "Orifice diameter divided by pipe internal diameter", "Pressure ratio across the orifice", "Gas S.G. divided by API"],
+    correctIndex: 1,
+    explanation: "Beta = d / D."
+  },
+  {
+    question: "An orifice of 2 in is in a 4 in pipe. What is beta?",
+    options: ["0.5", "2", "0.25", "0.8"],
+    correctIndex: 0,
+    explanation: "2 / 4 = 0.5. The area ratio is 0.25."
+  },
+  {
+    question: "What does C.A. stand for in the wall thickness formulas?",
+    options: ["Casing area", "Choke angle", "Calibration adjustment", "Corrosion allowance"],
+    correctIndex: 3,
+    explanation: "C.A. is the corrosion allowance in inches."
+  },
+  {
+    question: "What happens to the minimum wall when the pressure goes up?",
+    options: ["It decreases", "It stays the same", "It increases", "It becomes zero"],
+    correctIndex: 2,
+    explanation: "Pressure is in the numerator, so a higher pressure needs a thicker wall."
+  },
+  {
+    question: "A 4 in pipe has an OD of 4.500 in and a Sch 40 wall of 0.237 in. What is its ID?",
+    options: ["4.263 in", "4.737 in", "3.826 in", "4.026 in"],
+    correctIndex: 3,
+    explanation: "4.500 - 2 x 0.237 = 4.026."
+  },
+  {
+    question: "Which schedule has the thicker wall for the same NPS?",
+    options: ["Schedule 40 (Standard)", "Schedule 80 (Extra Strong)", "They are the same", "Neither has a wall"],
+    correctIndex: 1,
+    explanation: "For a 4 in pipe, Sch 80 is 0.337 in and Sch 40 is 0.237 in."
+  },
+  {
+    question: "Which plates is the ASME vessel tool valid for?",
+    options: ["Any plastic", "Aluminium only", "SA 285 Grade C or ASTM 516 Grade 70", "Glass"],
+    correctIndex: 2,
+    explanation: "The course page says calculations are valid for these two plates."
+  },
+  {
+    question: "What allowable stress does the ASME vessel tool use?",
+    options: ["1,750 psi", "17,500 psi", "175,000 psi", "60 psi"],
+    correctIndex: 1,
+    explanation: "The constants are S = 17,500 psi, E = 1 and C.A. = 0.125 in."
+  },
+  {
+    question: "What is the shell formula in the ASME vessel tool?",
+    options: ["t = P x D / (2 S E - 0.2 P)", "t = S / P", "t = R / P", "t = P x R / (S x E - 0.6 x P) + C.A."],
+    correctIndex: 3,
+    explanation: "The second option is the head formula."
+  },
+  {
+    question: "What is the head type in the tool?",
+    options: ["Flat", "Hemispherical", "Conical", "2:1 elliptical"],
+    correctIndex: 3,
+    explanation: "The head formula is for a 2:1 elliptical head."
+  },
+  {
+    question: "Which columns can you change in the ASME vessel tool?",
+    options: ["S and E", "P (pressure) and R/D (radius or diameter)", "C.A. only", "Nothing"],
+    correctIndex: 1,
+    explanation: "The course page says to modify only the P and R/D columns."
+  },
+  {
+    question: "What is the total strainer pressure drop?",
+    options: ["Basket drop plus body drop", "Basket drop minus body drop", "Body drop only", "Velocity times SG"],
+    correctIndex: 0,
+    explanation: "dP total = dP basket + dP body."
+  },
+  {
+    question: "What is the J factor?",
+    options: ["A flow rate", "A pressure rating", "A mesh correction factor", "A gas gravity"],
+    correctIndex: 2,
+    explanation: "The course page lists J as the mesh correction factor, dimensionless."
+  },
+  {
+    question: "What does Ktot represent?",
+    options: ["Resistance coefficient (expansion plus contraction)", "Total flow", "Tank constant", "Meter factor"],
+    correctIndex: 0,
+    explanation: "The course page defines Ktot as expansion plus contraction resistance."
+  },
+  {
+    question: "How does the body pressure drop change if the velocity doubles?",
+    options: ["It doubles", "It halves", "It stays the same", "It becomes 4 times larger"],
+    correctIndex: 3,
+    explanation: "The formula uses V squared."
+  },
+  {
+    question: "What is the constant 148.1 used for?",
+    options: ["Converting GPM to bpd", "Converting velocity head to psi", "Converting inches to mm", "Water density in kg/m3"],
+    correctIndex: 1,
+    explanation: "The course page says it is the conversion constant for velocity head to psi."
+  },
+  {
+    question: "What is the outlet velocity formula?",
+    options: ["V2 = P1 x P2", "V2 = P1 / P2", "V2 = D x Q", "V2 = sqrt(2 x (P1 - P2))"],
+    correctIndex: 3,
+    explanation: "It uses the square root of 2 times the pressure difference."
+  },
+  {
+    question: "Q = 5, D = 4 in and P1 = 1,000 psia. What is V1?",
+    options: ["1 ft/s", "10 ft/s", "100 ft/s", "0.5 ft/s"],
+    correctIndex: 1,
+    explanation: "32,000 x 5 / (16 x 1,000) = 10."
+  },
+  {
+    question: "A line has a working pressure of 1,000 psig. What is its hydrotest pressure with the standard factor?",
+    options: ["1,000 psig", "2,500 psig", "150 psig", "1,500 psig"],
+    correctIndex: 3,
+    explanation: "1,000 x 1.5 = 1,500 psig."
+  },
+  {
+    question: "What is P in the torque formulas?",
+    options: ["The pressure", "The thread pitch, 1 / threads per inch", "The pipe size", "The pump rate"],
+    correctIndex: 1,
+    explanation: "P = 1 / N."
+  },
+  {
+    question: "The torque result is divided by 12. Why?",
+    options: ["To convert psi to bar", "To get the number of studs", "To apply the friction factor", "To convert in-lbf to ft-lbf"],
+    correctIndex: 3,
+    explanation: "The code divides the in-lbf total by 12 to give ft-lbf."
+  },
+  {
+    question: "Which stud condition needs less torque for the same bolt stress?",
+    options: ["Dry / zinc (f = 0.13)", "Both need the same", "Neither needs torque", "Lubricated (f = 0.07)"],
+    correctIndex: 3,
+    explanation: "A lower friction coefficient needs less torque."
+  },
+  {
+    question: "What does the Full ANSI and API Flange Database look up for a rating and NPS?",
+    options: ["The oil API", "Studs, stud diameter and length, ring gasket and spanner size", "The meter factor", "The choke size"],
+    correctIndex: 1,
+    explanation: "It lists number of studs, stud diameter, RTJ stud length, ring gasket and spanner."
+  },
+  {
+    question: "500 lbf acts on 2 in2. What is the pressure?",
+    options: ["1,000 psi", "2.5 psi", "25 psi", "250 psi"],
+    correctIndex: 3,
+    explanation: "500 / 2 = 250 psi."
+  },
+  {
+    question: "How do you get the area of a circular piston from its diameter d?",
+    options: ["A = pi/4 x d^2", "A = 2 x pi x d", "A = d / 4", "A = pi x d"],
+    correctIndex: 0,
+    explanation: "The field note gives A = pi/4 x d squared."
+  },
+  {
+    question: "S.G. 0.85 and TVD 10,000 ft. What is the hydrostatic pressure?",
+    options: ["About 3,683 psi", "About 4,333 psi", "About 368 psi", "About 8,500 psi"],
+    correctIndex: 0,
+    explanation: "0.85 x 0.4333 x 10,000 = 3,683 psi."
+  },
+  {
+    question: "What does 0.4333 represent?",
+    options: ["The Z-factor of gas", "The conversion from bar to psi", "The drawdown ratio", "The pressure gradient of water in psi/ft"],
+    correctIndex: 3,
+    explanation: "The course page defines it as the pressure gradient of water."
+  },
+  {
+    question: "What is the exponential static BHP formula?",
+    options: ["Pws = Pwh x e^(0.01875 x SG x D / (Z x T))", "Pws = Pwh + D", "Pws = Pwh / D", "Pws = 0.052 x D"],
+    correctIndex: 0,
+    explanation: "The barometric formula uses an exponent of 0.01875 SG D / (Z T)."
+  },
+  {
+    question: "What is the simplified static BHP method?",
+    options: ["Pws = Pwh x D", "Pws = 2 x Pwh", "Pws = Pwh + 0.25 x (Pwh/100) x (D/100)", "Pws = Pwh - D"],
+    correctIndex: 2,
+    explanation: "It is a field rule of thumb for when gas properties are unknown."
+  },
+  {
+    question: "A 10 ppg mud at 10,000 ft gives what BHP?",
+    options: ["520 psi", "52,000 psi", "1,000 psi", "5,200 psi"],
+    correctIndex: 3,
+    explanation: "10 x 0.052 x 10,000 = 5,200."
+  },
+  {
+    question: "What is drawdown?",
+    options: ["Wellhead pressure minus reservoir pressure", "Reservoir pressure minus bottomhole flowing pressure", "Bottomhole pressure plus wellhead pressure", "The pressure of the mud column"],
+    correctIndex: 1,
+    explanation: "Drawdown = Pr - Pwf."
+  },
+  {
+    question: "Pr = 4,000 psi and Pwf = 3,200 psi. What is the drawdown?",
+    options: ["7,200 psi", "3,200 psi", "800 psi", "80 psi"],
+    correctIndex: 2,
+    explanation: "4,000 - 3,200 = 800 psi."
+  },
+  {
+    question: "What does the calculated length exclude?",
+    options: ["The liquid", "The diameter", "The gas", "The heads of the vessel"],
+    correctIndex: 3,
+    explanation: "The note says it is based on the cylindrical volume, excluding heads."
+  },
+  {
+    question: "Which equation is used for the gas capacity check?",
+    options: ["Souders-Brown", "Gilbert", "Katz", "Darcy"],
+    correctIndex: 0,
+    explanation: "Vmax = K x sqrt((rhoL - rhog) / rhog)."
+  },
+  {
+    question: "What does low gas velocity in the upper vessel help avoid?",
+    options: ["Corrosion", "Foaming of water", "Carry-over of oil droplets", "Scale"],
+    correctIndex: 2,
+    explanation: "High gas speed would entrain oil droplets downstream."
+  },
+  {
+    question: "How many ft3 are in a barrel in the vessel sizing code?",
+    options: ["5.61458", "7.48052", "42", "0.158987"],
+    correctIndex: 0,
+    explanation: "The code converts barrels to ft3 using 5.61458."
+  },
+  {
+    question: "In the sizing example, 5,000 bpd and 3 min need about how many barrels?",
+    options: ["About 104 bbl", "About 1.04 bbl", "About 15,000 bbl", "About 10.4 bbl"],
+    correctIndex: 3,
+    explanation: "5,000 / 1440 x 3 = 10.42 bbl."
+  },
+  {
+    question: "What is the retention time formula?",
+    options: ["t = V x Q", "t = (V x Level%) / Q x 1440", "t = Q / V", "t = Level / 1440"],
+    correctIndex: 1,
+    explanation: "Q is in bpd, so multiplying by 1440 gives minutes."
+  },
+  {
+    question: "A 100 bbl separator at 50% level takes 5,000 bpd. What is the retention time?",
+    options: ["14.4 min (14:24)", "1.44 min", "144 min", "4 min"],
+    correctIndex: 0,
+    explanation: "50 / 5,000 x 1440 = 14.4 min."
+  },
+  {
+    question: "What does a Low status (1.0 to 2.0 min) risk?",
+    options: ["A perfect separation", "Liquid carry-over in the gas line", "Gas bubbles only", "Lower pipe pressure"],
+    correctIndex: 1,
+    explanation: "The guide says it risks liquid carry-over in the gas line."
+  },
+  {
+    question: "How is the desander velocity found from the flow velocity?",
+    options: ["It is half the flow velocity", "It equals the WHP", "It is the square root", "It is 3 times the flow velocity"],
+    correctIndex: 3,
+    explanation: "The code multiplies the flow velocity by 3."
+  },
+  {
+    question: "WHP is 1,000 psia and the gas rate is 5 MMscf/day. What is the flow velocity?",
+    options: ["1 ft/s", "10 ft/s", "100 ft/s", "0.1 ft/s"],
+    correctIndex: 1,
+    explanation: "32,000 x 5 / (16 x 1,000) = 10."
+  },
+  {
+    question: "What is shrinkage in well testing?",
+    options: ["The increase of water in the sample", "The loss of oil volume when dissolved gas leaves between separator and stock tank at 60 F", "The drop of choke size over time", "The pipe wall loss from corrosion"],
+    correctIndex: 1,
+    explanation: "Dissolved gas leaves the oil, so the stock tank volume is smaller than the separator volume."
+  },
+  {
+    question: "In the Estimate of Shrinkage Factor model, how is the shrinkage calculated from Bo?",
+    options: ["Shrinkage = Bo x 60", "Shrinkage = Bo - 1", "Shrinkage = Bo / 12", "Shrinkage = 1 / Bo"],
+    correctIndex: 3,
+    explanation: "The course page says Shrinkage = 1 / Bo."
+  },
+  {
+    question: "Which formula gives Bo in the estimate model?",
+    options: ["Bo = 0.9759 + 12e-5 x (Fvol)^1.2", "Bo = 141.5 / (API + 131.5)", "Bo = 1 - 0.00069 x T", "Bo = Psep / 1000"],
+    correctIndex: 0,
+    explanation: "Bo = 0.9759 + 12 x 10^-5 x Fvol^1.2."
+  },
+  {
+    question: "In the estimate model, what is the first step before calculating Fvol?",
+    options: ["Convert the pressure to kPa", "Subtract the water cut", "Adjust the observed gas gravity for temperature", "Round the API to a whole number"],
+    correctIndex: 2,
+    explanation: "The model first calculates the adjusted gas gravity with the 0.00069 - 0.0003725 x S.G. term."
+  },
+  {
+    question: "What is the shrinkage factor from the Katz table at 100 psig and 40 API?",
+    options: ["0.912", "0.866", "1.000", "0.976"],
+    correctIndex: 3,
+    explanation: "The table value at 100 psig and 40 API is 0.976."
+  },
+  {
+    question: "In the Katz table, what happens to the shrinkage factor when the separator pressure goes up at the same API?",
+    options: ["It gets lower, so there is more shrinkage", "It gets higher", "It stays at 1.000", "It becomes negative"],
+    correctIndex: 0,
+    explanation: "For 40 API it falls from 0.976 at 100 psig to 0.866 at 1000 psig."
+  },
+  {
+    question: "1,000 BBL/D measured liquid, 10% BS&W and a shrinkage of 0.976. What is the net oil?",
+    options: ["900 STB/D", "878.4 STB/D", "976 STB/D", "100 STB/D"],
+    correctIndex: 1,
+    explanation: "1,000 x 0.90 x 0.976 = 878.4."
+  },
+  {
+    question: "Net oil is 850 bbl/d and shrinkage is 0.92. What is the STO?",
+    options: ["850 bbl/d", "922 bbl/d", "58 bbl/d", "782 bbl/d"],
+    correctIndex: 3,
+    explanation: "850 x 0.92 = 782. The loss is 68."
+  },
+  {
+    question: "How do you get gallons from barrels?",
+    options: ["Divide by 42", "Multiply by 5.61458", "Multiply by 144", "Multiply by 42"],
+    correctIndex: 3,
+    explanation: "There are 42 gallons in a barrel."
+  },
+  {
+    question: "A tank is 72 in high, 240 in long and 96 in wide. What is its volume?",
+    options: ["About 171 bbl", "About 17 bbl", "About 1,710 bbl", "About 7,182 bbl"],
+    correctIndex: 0,
+    explanation: "72 x 240 x 96 / 9702 = 170.99 bbl."
+  },
+  {
+    question: "How is fluid weight in tons calculated?",
+    options: ["Gallons / ppg", "Barrels x 144", "Gallons x ppg / 2240", "ppg x 42"],
+    correctIndex: 2,
+    explanation: "The course page divides pounds by 2240 lb per long ton."
+  },
+  {
+    question: "What is the deck loading formula?",
+    options: ["Total weight x 2240 / ((L x W) / 144)", "Total weight / 2240", "L x W x 144", "Weight x ppg"],
+    correctIndex: 0,
+    explanation: "It is the weight in pounds divided by the area in ft2."
+  },
+  {
+    question: "Why is 144 used in the deck load?",
+    options: ["To convert bbl to gal", "To convert tons to lb", "It is the tank height", "To convert in2 to ft2"],
+    correctIndex: 3,
+    explanation: "There are 144 square inches in a square foot."
+  },
+  {
+    question: "What does the Horizontal Cylindrical Tank part give?",
+    options: ["Only the weight", "Total and partial fill volume", "The pump rate", "The gas rate"],
+    correctIndex: 1,
+    explanation: "It calculates the total volume and the fluid volume at a level."
+  },
+  {
+    question: "What is the total volume formula for the horizontal tank?",
+    options: ["pi x r^2 x L / 5.61458", "L x W x H / 9702", "pi x d x L", "r x L / 42"],
+    correctIndex: 0,
+    explanation: "With r and L in feet, the result in ft3 is divided by 5.61458 for barrels."
+  },
+  {
+    question: "A horizontal tank is filled to half its diameter. What fraction of the volume is fluid?",
+    options: ["25%", "75%", "50%", "100%"],
+    correctIndex: 2,
+    explanation: "At h = r the fill fraction is 0.5."
+  },
+  {
+    question: "What is the Estimated Flow Returns formula for volume change?",
+    options: ["dV = H x Vinit", "dV = (H(cm) - Vinit) x Ktank", "dV = Ktank / H", "dV = H + Ktank"],
+    correctIndex: 1,
+    explanation: "The course page prints dV = (Hcm - Vinit) x Ktank."
+  },
+  {
+    question: "How is the tank rate in bpd calculated?",
+    options: ["dV x dt", "dV / 1440", "dt / dV", "dV / dt(min) x 1440"],
+    correctIndex: 3,
+    explanation: "The minutes are converted to a day with 1440."
+  },
+  {
+    question: "dV is 17.39 bbl over 60 minutes. What is the rate in bpd?",
+    options: ["About 17 bpd", "About 417 bpd", "About 1,043 bpd", "About 4 bpd"],
+    correctIndex: 1,
+    explanation: "17.39 / 60 x 1440 = 417.4."
+  },
+  {
+    question: "What is the primary function of a transfer pump in a well testing setup?",
+    options: ["To separate gas from oil inside the surge tank", "To move fluid from the storage/gauge tank to the oil manifold", "To inject chemicals into the high-pressure flowline", "To increase the pressure of the gas for the flare"],
+    correctIndex: 1,
+    explanation: "Transfer pumps are used to move the processed oil from the tanks to the next stage, usually the oil manifold for disposal or transport."
+  },
+  {
+    question: "Which of the following is a key characteristic of a Positive Displacement (PD) pump?",
+    options: ["It uses high-speed impellers to create velocity", "It moves a fixed volume of liquid for every revolution or stroke", "It is only suitable for very low viscosity fluids like water", "It has a very simple design with almost no moving parts"],
+    correctIndex: 1,
+    explanation: "Positive displacement pumps trap a specific volume of fluid and move it through the system, making them very accurate for metering."
+  },
+  {
+    question: "Why is 'dry running' considered catastrophic for positive displacement pumps?",
+    options: ["Because the pump will start rotating in the opposite direction", "Due to close clearances or interference between parts like the rotor and stator", "Because it causes the oil to become too viscous", "Because it creates a vacuum that collapses the tank"],
+    correctIndex: 1,
+    explanation: "Because PD pumps often have very tight tolerances (close clearances), running them without fluid for lubrication/cooling can cause immediate mechanical failure."
+  },
+  {
+    question: "What is the main advantage of a Centrifugal pump over a Positive Displacement pump?",
+    options: ["It is much better at handling high-viscosity fluids", "It has a more complex design for higher accuracy", "It is simpler, has fewer moving parts, and is better for high flow rates", "It does not require a motor or engine to operate"],
+    correctIndex: 2,
+    explanation: "Centrifugal pumps are favored for their simplicity and ability to move large volumes of low-viscosity fluid with minimal maintenance."
+  },
+  {
+    question: "How does a Diaphragm pump move fluid?",
+    options: ["Using two meshed gears to trap fluid in teeth cavities", "Using a spinning impeller to create centrifugal force", "Using a reciprocating rubber or Teflon membrane and check valves", "Using a high-speed screw thread to push fluid forward"],
+    correctIndex: 2,
+    explanation: "A diaphragm (or membrane) pump uses the back-and-forth motion of a flexible diaphragm combined with non-return valves to move liquid."
+  },
+  {
+    question: "Which pump type is specifically noted for being H2S-proof and capable of handling oil impurities?",
+    options: ["Viking pump", "Sundyne pump", "Standard Gear pump", "Radial flow pump"],
+    correctIndex: 1,
+    explanation: "The Sundyne pump is a centrifugal type designed to handle H2S environments and fluids containing impurities."
+  },
+  {
+    question: "In a Screw pump, why is the volumetric efficiency higher with viscous fluids?",
+    options: ["Because the motor runs faster when the fluid is thick", "Because viscosity reduces the 'slippage' of fluid back to the suction side", "Because viscous fluids create less friction in the screw threads", "Because the screw expands when it touches thick oil"],
+    correctIndex: 1,
+    explanation: "High-viscosity fluids do not leak through the close clearances as easily, reducing 'slip' and maintaining high efficiency."
+  },
+  {
+    question: "What is a major disadvantage of Diaphragm pumps mentioned in the text?",
+    options: ["They are too expensive for well testing", "They produce high pulsations in the flow", "They require high-pressure steam to operate", "They cannot handle corrosive fluids"],
+    correctIndex: 1,
+    explanation: "Due to their reciprocating nature, diaphragm pumps create significant pulsations, which can lead to vibration in the piping."
+  },
+  {
+    question: "How does a Gear pump move fluid to the discharge side?",
+    options: ["By spinning the fluid so fast that it gains pressure", "By trapping fluid between the teeth of rotating gears", "By using a piston to push the fluid through a nozzle", "By heating the fluid until it expands toward the outlet"],
+    correctIndex: 1,
+    explanation: "In gear pumps, fluid is trapped in the cavities between the gear teeth and the pump casing, then carried to the discharge side."
+  },
+  {
+    question: "Which of the following is a mandatory safety component for Positive Displacement pumps?",
+    options: ["A cooling fan", "A pressure relief valve", "A sight glass", "A sand filter"],
+    correctIndex: 1,
+    explanation: "Because PD pumps will continue to push fluid regardless of downstream blockages, a pressure relief valve is essential to prevent pipe or pump bursts."
+  },
+  {
+    question: "Which unit does the pressure converter use internally as its base?",
+    options: ["bar", "psig", "kPa", "atm"],
+    correctIndex: 1,
+    explanation: "The converter divides the entered value by its factor to get psig, then multiplies by the factor of each other unit."
+  },
+  {
+    question: "What is the pressure converter factor for kPa, per 1 psig?",
+    options: ["0.0689476", "68.9476", "14.696", "6.89476"],
+    correctIndex: 3,
+    explanation: "The course page lists 6.89476 kPa per psig and 0.0689476 bar per psig."
+  },
+  {
+    question: "About how many bar is 100 psig, with the converter's factor?",
+    options: ["6.89 bar", "68.9 bar", "1,450 bar", "0.69 bar"],
+    correctIndex: 0,
+    explanation: "100 x 0.0689476 = 6.89 bar."
+  },
+  {
+    question: "Which unit does the volume converter use as its base?",
+    options: ["Barrels", "Cubic metres", "Litres", "US gallons"],
+    correctIndex: 2,
+    explanation: "The volume factors are units per litre."
+  },
+  {
+    question: "How many litres is one barrel, using the converter's factor of 0.00628981 bbl per litre?",
+    options: ["About 0.159 L", "About 42 L", "About 158.99 L", "About 1,590 L"],
+    correctIndex: 2,
+    explanation: "1 / 0.00628981 = 158.99 L."
+  },
+  {
+    question: "A temperature of 100 F is entered. What is it in Celsius?",
+    options: ["37.78 C", "68 C", "212 C", "55.56 C"],
+    correctIndex: 0,
+    explanation: "C = (100 - 32) x 5/9 = 37.78."
+  },
+  {
+    question: "How does the temperature converter get Rankine from Celsius?",
+    options: ["C x 9/5 + 32", "C + 273.15", "(C - 32) x 5/9", "(C + 273.15) x 9/5"],
+    correctIndex: 3,
+    explanation: "R = (C + 273.15) x 9/5."
+  },
+  {
+    question: "What unit is the base of the length converter?",
+    options: ["Metres", "Inches", "Feet", "Millimetres"],
+    correctIndex: 1,
+    explanation: "The length factors are inches per unit, so the base is inches."
+  },
+  {
+    question: "What is the length converter factor for a foot?",
+    options: ["12", "3", "0.0833", "36"],
+    correctIndex: 0,
+    explanation: "1 ft = 12 inches."
+  },
+  {
+    question: "What does the rates converter use as its base?",
+    options: ["gal/min", "m3/day", "bbl/day", "L/s"],
+    correctIndex: 2,
+    explanation: "The rates factors are bbl/day per unit."
+  },
+  {
+    question: "Why is the factor for bbl/min 1,440 in the rates converter?",
+    options: ["There are 1,440 gallons in a barrel", "There are 1,440 minutes in a day", "1 bbl equals 1,440 litres", "It is the API gravity constant"],
+    correctIndex: 1,
+    explanation: "1 bbl/min = 1,440 bbl/day."
+  },
+  {
+    question: "What is the formula in the density converter that gives S.G. from API gravity?",
+    options: ["S.G. = 141.5 x (API + 131.5)", "S.G. = API / 141.5", "S.G. = 131.5 / (API + 141.5)", "S.G. = 141.5 / (API + 131.5)"],
+    correctIndex: 3,
+    explanation: "The course page uses SG = 141.5 / (API + 131.5) and API = 141.5 / SG - 131.5."
+  },
+  {
+    question: "What S.G. does an oil of 35 API have?",
+    options: ["About 1.1765", "About 0.35", "About 0.0285", "About 0.8498"],
+    correctIndex: 3,
+    explanation: "141.5 / (35 + 131.5) = 0.8498."
+  },
+  {
+    question: "How does the flow rate converter work internally?",
+    options: ["It converts to barrels per day", "It converts the input to litres per second and then to each unit", "It converts to gallons per minute", "It converts to cubic feet per day"],
+    correctIndex: 1,
+    explanation: "The converter uses litres per second as its base."
+  },
+  {
+    question: "A choke size of 32/64 is entered in the Choke Size Conversion. What is it in mm?",
+    options: ["0.5 mm", "1.27 mm", "12.70 mm", "32 mm"],
+    correctIndex: 2,
+    explanation: "32 / 64 = 0.5 in, and 0.5 x 25.4 = 12.70 mm."
+  },
+  {
+    question: "What is the primary Environmental reason for using burners during well testing?",
+    options: ["To heat the rig for worker comfort", "To dispose of oil at the surface to prevent storage and pollution problems", "To provide light light for night time", "To increase the pressure of the reservoir"],
+    correctIndex: 1,
+    explanation: "Think about what happens to the oil produced during a test if there isn’t enough storage space on the rig."
+  },
+  {
+    question: "A Green Dragon burner type is typically rated for what flow capacity?",
+    options: [" 4,000 BOPD ", "9,000 BOPD", "15,000 BOPD", "7,000 BOPD"],
+    correctIndex: 3,
+    explanation: "The Spitfire handles the lowest capacity, while the Evergreen handles the highest. The Green Dragon sits in the middle."
+  },
+  {
+    question: "Why are burners mounted on long booms (60–85 feet) rather than directly on the rig? ",
+    options: ["To allow for easier cleaning.", "To ensure the oil stays liquid.", "To reduce heat radiation and keep the fire at a safe distance from the rig. ", "Because the burners are too heavy for the rig deck."],
+    correctIndex: 2,
+    explanation: "Fire produces intense heat; the further away it is, the safer the rig crew and structure are."
+  },
+  {
+    question: "Which of the following is NOT a required system for a burner to function? ",
+    options: ["Propane for pilot ignition. ", "Rig air (from general rig compressors). ", "Dedicated air compressors. ", " Water for heat radiation control. "],
+    correctIndex: 1,
+    explanation: "The summary notes explicitly warn that you should never use a certain type of air for these systems."
+  },
+  {
+    question: "What is the purpose of the Water Curtain on a boom?",
+    options: [" To wash the boom after use. ", " To extinguish the pilot light. ", " To control heat radiation and enhance combustion efficiency. ", "To provide drinking water to the personnel on the boom."],
+    correctIndex: 2,
+    explanation: "Combustion at high rates creates massive thermal energy; the water acts as a shield. "
+  },
+  {
+    question: " Which boom structure is considered heavy-duty and features two gas flare lines?",
+    options: ["U-shaped", "V-shaped ", "I-beam shaped", " L-shaped "],
+    correctIndex: 1,
+    explanation: "Look at the visual diagrams of the boom cross-sections in your notes; one is for single lines, the other is for dual."
+  },
+  {
+    question: "Which system ignition for the burner flare?",
+    options: ["Water pump", "Separator pressure", "Propane pilot system", "Choke manifold"],
+    correctIndex: 2,
+    explanation: "A small controlled flame is needed to ignite the oil."
+  },
+  {
+    question: "What is the function of atomizers in burner systems?",
+    options: ["Increase oil into fine droplets for better combusion", "cool the burner system", "Increase reservoir productivity", "Java Script Output Name"],
+    correctIndex: 0,
+    explanation: "JSON stands for JavaScript Object Notation."
+  },
+  {
+    question: "What is the function of check valve in burner systems?",
+    options: ["Increase oil flow", "Prevent backflow between air and oil lines", "Increase burner pressure", "Control reservoir pressure"],
+    correctIndex: 1,
+    explanation: "They are mainly used for safety."
+  },
+  {
+    question: "What is the primary function of a choke manifold in well testing?",
+    options: ["To separate oil, gas, and water into different streams", "To control flow rate and pressure to ensure stable conditions before processing", "To measure the total depth of the well during drilling", "To pump chemicals into the wellhead to prevent corrosion"],
+    correctIndex: 1,
+    explanation: "The choke manifold is used to regulate the pressure and flow of fluids from the wellhead to ensure stability before they reach surface equipment."
+  },
+  {
+    question: "Where is the choke manifold typically located in a well testing setup?",
+    options: ["Upstream of the flow head", "Inside the reservoir", "Downstream of the flow head", "At the end of the flare line"],
+    correctIndex: 2,
+    explanation: "In the flow path, the choke manifold is positioned immediately downstream of the flow head."
+  },
+  {
+    question: "What does 'critical flow' imply in the context of a choke manifold?",
+    options: ["The well is underperforming and requires maintenance", "Fluid flow has completely stopped due to a blockage", "Upstream pressure and flow are no longer affected by downstream pressure changes", "The pressure has exceeded the manifold's maximum rating"],
+    correctIndex: 2,
+    explanation: "Critical flow occurs when downstream pressure variations do not impact the upstream pressure or flow rate, which is vital for stable testing."
+  },
+  {
+    question: "Which component is specifically used for inserting calibrated choke beans?",
+    options: ["Adjustable choke", "Fixed choke box", "Thermowell", "Gate valve"],
+    correctIndex: 1,
+    explanation: "The fixed choke box is the part of the manifold designed to hold interchangeable, calibrated choke beans."
+  },
+  {
+    question: "What is the main benefit of having an adjustable choke alongside a fixed one?",
+    options: ["It provides on-the-fly flow control and flexibility", "It is cheaper to maintain than a fixed choke", "It filters out sand and debris automatically", "It increases the temperature of the fluid"],
+    correctIndex: 0,
+    explanation: "Adjustable chokes allow for immediate changes to flow and pressure, while fixed chokes offer more stable, long-term control."
+  },
+  {
+    question: "What is the first step in the process of diverting flow from an adjustable choke to a fixed choke?",
+    options: ["Bleed off all pressure immediately", "Open the upstream valve on the fixed side", "Stabilize the flow and prepare the fixed choke", "Close the flow head master valve"],
+    correctIndex: 2,
+    explanation: "Before switching, you must ensure the flow is stable and the fixed choke side is ready for service."
+  },
+  {
+    question: "Which of the following is a safety feature provided by the choke manifold?",
+    options: ["Prevents water/gas coning and sand production by limiting flow", "Automatically shuts in the well if oxygen is detected", "Increases the pressure to prevent the well from dying", "Separates toxic gases from the oil stream"],
+    correctIndex: 0,
+    explanation: "By controlling drawdown and pressure, the manifold helps prevent reservoir issues like coning and sand influx."
+  },
+  {
+    question: "What are the common pressure ratings for choke manifolds mentioned in the summary?",
+    options: ["1000, 2000, and 3000 psi", "5000, 10000, and 15000 psi", "2500, 7500, and 12500 psi", "20000, 25000, and 30000 psi"],
+    correctIndex: 1,
+    explanation: "Standard choke manifolds used in well testing are typically rated for 5K, 10K, or 15K psi."
+  },
+  {
+    question: "What is the purpose of the thermowell in the manifold?",
+    options: ["To house a pressure gauge", "To inject chemicals into the flow", "To measure fluid temperature", "To act as a secondary safety relief"],
+    correctIndex: 2,
+    explanation: "The thermowell is a specialized port used to measure the temperature of the fluid as it passes through the manifold."
+  },
+  {
+    question: "Why is the downstream valve opened first when equalizing pressure in the manifold?",
+    options: ["To ensure the flow goes to the separator faster", "To avoid sudden pressure surges and ensure a smoother balance", "To check if the fixed bean is the correct size", "To prevent the fluid from freezing the valves"],
+    correctIndex: 1,
+    explanation: "Opening the downstream valve first is a safety measure to balance pressure gradually across the system."
+  },
+  {
+    question: "What is the primary purpose of an oil and gas manifold in surface well testing?",
+    options: ["To increase the pressure of the fluid before it enters the separator", "To divert flow to different destinations like burners or tanks without stopping the well", "To separate the oil from the gas using gravity", "To measure the chemical concentration of H2S in the stream"],
+    correctIndex: 1,
+    explanation: "Manifolds act as routing hubs that allow operators to change the destination of the flow without interrupting the continuous operation of the well."
+  },
+  {
+    question: "Why are two burners (port and starboard) used in offshore operations?",
+    options: ["To allow for maintenance on one while the other is in use", "To burn oil and gas separately at the same time", "To allow continuous testing regardless of which way the wind is blowing", "To double the disposal capacity for high-flow wells"],
+    correctIndex: 2,
+    explanation: "Having burners on both sides of the rig ensures that flames and heat are always blown away from the platform by the wind."
+  },
+  {
+    question: "Which destination is common for oil passing through the oil manifold?",
+    options: ["The air compressor inlet", "The chemical injection pump", "Storage tanks or burners", "The wellhead flow head"],
+    correctIndex: 2,
+    explanation: "Oil is typically routed through the manifold to either storage tanks for measurement or burners for disposal."
+  },
+  {
+    question: "How many ball valves are typically found on the oil manifold described?",
+    options: ["Two 3-inch valves", "Four gate valves", "Five 2-inch valves", "Ten needle valves"],
+    correctIndex: 2,
+    explanation: "The oil manifold consists of five 2-inch ball valves to manage its various routing paths."
+  },
+  {
+    question: "What is the structure of the gas manifold compared to the oil manifold?",
+    options: ["It has five 2-inch valves and is trailer mounted", "It has two 3-inch ball valves and is skid mounted", "It uses only gate valves for higher pressure", "It is integrated directly into the separator vessel"],
+    correctIndex: 1,
+    explanation: "The gas manifold uses larger (3-inch) but fewer (2) valves and is skid mounted with a 1440 PSI rating."
+  },
+  {
+    question: "What is the 'golden rule' for safety when switching flow between valves?",
+    options: ["Close the active valve completely before opening the new one", "Open the new valve before closing the old one", "Close both valves and wait 5 minutes for pressure to settle", "Use a cheater bar to ensure the valves are turned as fast as possible"],
+    correctIndex: 1,
+    explanation: "Always opening a new valve before closing the old one ensures the fluid always has an exit path, preventing dangerous pressure buildup."
+  },
+  {
+    question: "Why should you avoid using 'cheater bars' or extra tools to operate the valves?",
+    options: ["They make the valve turn too slowly for the test", "They can damage the valve stem or cause mechanical failure", "They are too heavy for one person to carry safely", "They interfere with the pressure gauge readings"],
+    correctIndex: 1,
+    explanation: "Using tools other than the provided handles can apply excessive torque, leading to broken valve components and leaks."
+  },
+  {
+    question: "What should be clearly labeled on every manifold valve?",
+    options: ["The date the valve was manufactured", "The correct flow path (e.g., 'Separator to Starboard Burner')", "The name of the operator who last used it", "The price of the valve for insurance purposes"],
+    correctIndex: 1,
+    explanation: "Clear labeling of flow paths is a critical safety practice to prevent routing fluids to the wrong or unsafe destination."
+  },
+  {
+    question: "Where does the gas manifold receive its flow from?",
+    options: ["Directly from the wellhead", "From the oil manifold exit", "From the gas outlet of the separator", "From the storage tank vent lines"],
+    correctIndex: 2,
+    explanation: "The gas manifold is positioned to take gas that has already been separated from the liquids inside the separator."
+  },
+  {
+    question: "What is the primary difference between a flow head and a Christmas tree?",
+    options: ["The flow head is for permanent production, while the Christmas tree is temporary", "The flow head is a temporary device used during testing before completion", "The Christmas tree is used only for drilling, not production", "There is no difference; they are the exact same equipment"],
+    correctIndex: 1,
+    explanation: "A flow head is temporary surface equipment used during the well testing phase, whereas a Christmas tree is the permanent installation for the production life of the well."
+  },
+  {
+    question: "Which valve is used to isolate the surface equipment from the downhole string?",
+    options: ["Swab valve", "Kill line valve", "Master valve", "Flow line valve"],
+    correctIndex: 2,
+    explanation: "The master valve is the primary isolation valve that separates the surface equipment from the subsurface test string."
+  },
+  {
+    question: "What is the main function of the Swab valve?",
+    options: ["To allow the entry of high-pressure kill mud", "To divert oil to the burners", "To facilitate the insertion and retrieval of wireline or slickline tools", "To rotate the test string under high pressure"],
+    correctIndex: 2,
+    explanation: "The swab valve is located at the top of the flow head block and is opened to allow tools to pass into the wellbore."
+  },
+  {
+    question: "Which valve on the flow head is typically connected to the Emergency Shutdown (ESD) system?",
+    options: ["Master valve", "Swab valve", "Flow line (outlet wing) valve", "Kill line (inlet wing) valve"],
+    correctIndex: 2,
+    explanation: "The flow line valve is usually equipped with a hydraulic actuator linked to the ESD system to shut in the well automatically in case of an emergency."
+  },
+  {
+    question: "What is the primary use of the Kill line (inlet wing) valve?",
+    options: ["To bleed off gas to the atmosphere", "To pump stimulation fluids or heavy mud into the well", "To measure the temperature of the flowing fluid", "To support the weight of the elevators"],
+    correctIndex: 1,
+    explanation: "The kill line allows for 'killing' the well (controlling pressure) or pumping treatment fluids like acid into the wellbore."
+  },
+  {
+    question: "What does the swivel component allow the operator to do?",
+    options: ["Rotate the entire flow head block continuously while drilling", "Rotate the subsurface test string independently of the flow/kill lines", "Increase the pressure rating of the manifold", "Filter out sand before it reaches the master valve"],
+    correctIndex: 1,
+    explanation: "The swivel allows the test string to rotate without tangling or disconnecting the surface lines, which is especially important on floating rigs."
+  },
+  {
+    question: "Regarding the swivel, which of the following is a critical operational constraint?",
+    options: ["It must be rotated at high speeds at all times", "It should NOT be rotated under pressure", "It only works with water-based fluids", "It must be removed before using the master valve"],
+    correctIndex: 1,
+    explanation: "The swivel is designed for low-speed positioning and should not be rotated when the system is under pressure to prevent seal damage."
+  },
+  {
+    question: "What is the purpose of using 'subs' above and below the flow head valves?",
+    options: ["To increase the flow rate of the oil", "To act as a primary seal against high-pressure gas", "To protect threads and make handling with rig elevators easier", "To measure the salinity of the produced water"],
+    correctIndex: 2,
+    explanation: "Handling subs protect the flow head's internal threads and provide a safe area for the rig's elevators to latch onto."
+  },
+  {
+    question: "In a flow head, the two 'wing' valves serve which two distinct purposes?",
+    options: ["One for oil and one for gas", "One for high pressure and one for low pressure", "One for fluid exit (outlet) and one for fluid entry (inlet)", "One for manual operation and one for remote operation"],
+    correctIndex: 2,
+    explanation: "The flow line wing is the outlet for production, while the kill line wing is the inlet for pumping fluids into the well."
+  },
+  {
+    question: "Why is the master valve considered a 'fail-safe' or critical component?",
+    options: ["It is the only valve that can be replaced while the well is flowing", "It provides the ultimate surface barrier between the reservoir and the environment", "It automatically cleans the oil as it passes through", "It is the only valve that does not require maintenance"],
+    correctIndex: 1,
+    explanation: "As the lowest valve on the flow head, the master valve is the primary surface barrier used to isolate the entire well's pressure."
+  },
+  {
+    question: "What is the main function of an atmospheric gauge tank?",
+    options: ["To separate gas from oil at extremely high pressures", "To measure low oil flow rates or calibrate metering devices", "To heat the oil before it reaches the burners", "To provide high-pressure air to the ESD system"],
+    correctIndex: 1,
+    explanation: "Gauge tanks are non-pressurized vessels used to measure flow when it is too low to drive oil to the burners or when meter calibration is required."
+  },
+  {
+    question: "Why is the use of gauge tanks strictly prohibited when H₂S is present?",
+    options: ["Because H₂S causes the oil to expand too much", "Because gauge tanks vent gas directly to the atmosphere, posing a toxic hazard", "Because H₂S makes the oil too thick to be measured manually", "Because the flame arrestors do not work with H₂S gas"],
+    correctIndex: 1,
+    explanation: "Atmospheric tanks vent gas to the air. If H₂S is present, it would create a lethal environment for the crew around the tank."
+  },
+  {
+    question: "How does a flame arrestor prevent explosions on a gauge tank?",
+    options: ["By chemically neutralizing the gas in the tank", "By closing a mechanical shutter when it detects a spark", "By absorbing heat and lowering gas temperature below the autoignition point", "By injecting nitrogen into the vent line automatically"],
+    correctIndex: 2,
+    explanation: "Flame arrestors use a thermal mass to absorb heat from a flame, cooling the gas-air mixture so the flame cannot pass through the vent into the tank."
+  },
+  {
+    question: "What is a primary operational difference between a surge tank and a gauge tank?",
+    options: ["Surge tanks are pressurized and suitable for H₂S service", "Gauge tanks have dual compartments while surge tanks do not", "Surge tanks cannot be used for second-stage separation", "Gauge tanks are made of plastic while surge tanks are steel"],
+    correctIndex: 0,
+    explanation: "Unlike atmospheric gauge tanks, surge tanks are pressurized vessels that safely contain gas, making them safe for H₂S service."
+  },
+  {
+    question: "Which component is found on a vertical surge tank to prevent gas from entering the liquid outlet?",
+    options: ["Flame arrestor", "Vortex breaker", "Stiffening rings", "Grounding strap"],
+    correctIndex: 1,
+    explanation: "The vortex breaker is installed at the outlet to prevent the formation of a whirlpool that could pull gas into the liquid line."
+  },
+  {
+    question: "What is the purpose of the 'dual compartments' found in many surge tanks?",
+    options: ["To separate oil from water inside the tank", "To allow for continuous measurement and flow while emptying one side", "To store oil in one side and gas in the other", "To provide extra weight so the tank does not move"],
+    correctIndex: 1,
+    explanation: "Dual compartments allow one side to be filled while the other is being emptied, ensuring the well test can continue without interruption."
+  },
+  {
+    question: "To calculate a meter factor using a tank, you compare the oil meter reading to:",
+    options: ["The pressure drop across the choke", "The actual volume measured in the tank using levels and coefficients", "The weight of the tank when it is full", "The flow rate recorded by the gas orifice meter"],
+    correctIndex: 1,
+    explanation: "The 'true' volume is determined by the tank level change multiplied by its volume coefficient; this is then compared to the meter's reading."
+  },
+  {
+    question: "What safety feature is required to prevent static electricity buildup on a gauge tank?",
+    options: ["Pressure relief valve", "Grounding strap", "Pilot-operated valve", "Magnetic level system"],
+    correctIndex: 1,
+    explanation: "A grounding strap ensures that any static charge generated by fluid movement is safely discharged to the earth, preventing sparks."
+  },
+  {
+    question: "What must be done before a technician enters a tank for repairs?",
+    options: ["Fill the tank with water to cool it down", "Steam clean and degas the tank to ensure it is safe to breathe", "Turn off the ESD system to prevent accidental closure", "Increase the back pressure to check for leaks"],
+    correctIndex: 1,
+    explanation: "Entering a confined space requires the tank to be completely emptied, steam cleaned of oil residue, and degassed to prevent asphyxiation or explosion."
+  },
+  {
+    question: "When would a surge tank act as a 'second-stage separator'?",
+    options: ["Only when the primary separator fails", "When the pressure is lowered to allow more gas to break out of the oil", "When measuring water flow instead of oil flow", "When the well is first opened and flow is unstable"],
+    correctIndex: 1,
+    explanation: "By operating at a lower pressure than the primary separator, the surge tank allows additional dissolved gas to separate from the oil."
+  },
 
 ];
 

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Gas Rate Through Chokes | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+
+
+        /*******************************************/
+        /* =====================================
+   MODERN EXPLAIN SECTION
+===================================== */
+
+.explain-modern{
+    background: linear-gradient(180deg,#0f172a,#111827);
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0;
+    color: #e2e8f0;
+    line-height: 1.8;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+.explain-modern h3{
+    color: #f1c40f;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #f1c40f;
+    padding-left: 15px;
+}
+
+.explain-modern h4{
+    color: #38bdf8;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.explain-modern p{
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.explain-modern ul{
+    margin: 15px 0 20px 25px;
+}
+
+.explain-modern li{
+    margin-bottom: 8px;
+}
+
+.explain-modern hr{
+    border: none;
+    height: 1px;
+    background: #334155;
+    margin: 25px 0;
+}
+
+/* =====================================
+   TIP BOX
+===================================== */
+
+.tip-box{
+    background: rgba(14,165,233,0.12);
+    border-left: 5px solid #0ea5e9;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #dbeafe;
+}
+
+/* =====================================
+   WARNING BOX
+===================================== */
+
+.warning-box{
+    background: rgba(239,68,68,0.12);
+    border-left: 5px solid #ef4444;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fee2e2;
+}
+
+/* =====================================
+   HIGHLIGHT CARD
+===================================== */
+
+.highlight-card{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    border: 1px solid #475569;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #f8fafc;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================================
+   FLOW DIAGRAM
+===================================== */
+
+.flow-diagram{
+    background: #020617;
+    border: 2px dashed #38bdf8;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    font-weight: 700;
+    color: #7dd3fc;
+    line-height: 2;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+/* =====================================
+   FORMULA BOX
+===================================== */
+
+.formula-box{
+    background: #020617;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    overflow-x: auto;
+    margin: 20px 0;
+    color: #f8fafc;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.modern-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.modern-table thead{
+    background: #f1c40f;
+}
+
+.modern-table thead th{
+    color: #000;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.modern-table tbody tr{
+    background: #111827;
+    border-bottom: 1px solid #334155;
+}
+
+.modern-table tbody tr:nth-child(even){
+    background: #0f172a;
+}
+
+.modern-table td{
+    padding: 14px;
+    color: #e2e8f0;
+}
+
+/* =====================================
+   ENGINEERING NOTE
+===================================== */
+
+.engineering-note{
+    background: rgba(241,196,15,0.12);
+    border-left: 5px solid #f1c40f;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fef3c7;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+    .explain-modern{
+        padding: 20px;
+    }
+
+    .explain-modern h3{
+        font-size: 1.5rem;
+    }
+
+    .explain-modern h4{
+        font-size: 1.1rem;
+    }
+
+    .modern-table{
+        display:block;
+        overflow-x:auto;
+        white-space: nowrap;
+    }
+}
+    </style>
+<script data-goatcounter="https://ofu-mansour.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+/* ofu-mobile-fit: main used auto side margins in a flex column, so wide content widened the whole page on phones; wide tables now scroll inside their card */
+@media (max-width:768px){
+main{width:100%;min-width:0;box-sizing:border-box}
+.tabs-container,.big-div,.explain-modern{min-width:0}
+.explain-modern table,.big-div table{display:block!important;max-width:100%!important;overflow-x:auto!important;min-width:0!important;width:100%!important;box-sizing:border-box}
+.explain-modern pre,.big-div pre{max-width:100%;overflow-x:auto}
+.explain-modern img,.big-div img,.big-div video{max-width:100%;height:auto}
+}
+</style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">Gas Rate Through Chokes</h1>
+        
+        <div class="tabs-container">
+                    
+            <div class="big-div tab-content active" id="tab1">
+                <h3 style="color:#fff;text-align:center;margin:24px 0 12px;font-size:1.1rem;">Video lesson: Gas Rate Through Chokes</h3>
+                <div class="video-container-modern"><video controls preload="metadata" playsinline style="width:100%;height:100%;max-width:960px;border-radius:12px;background:#000" src="https://github.com/mohamed-mansour106/course-videos/releases/download/gas-rate-through-chokes/Gas_Rate_Through_Chokes.mp4"></video></div>
+                <div class="explain-modern">
+<h3>Choke Nipple Gas Rate Calculation</h3>
+<p>This calculator estimates the gas rate through a choke nipple from the wellhead pressure, the choke size, the gas gravity and the wellhead temperature.</p>
+<p>Accurate results need four conditions: critical flow, dry gas, a positive choke bean (6 inch long) and ideal gas.</p>
+<div class="formula-box">Q<sub>mscfd</sub> = (Coefficient &times; P<sub>abs</sub>) / &radic;(G &times; T<sub>abs</sub>)</div>
+<div class="formula-box">P<sub>abs</sub> = WHP + 14.7 and T<sub>abs</sub> = WHT + 460</div>
+<h4>Inputs and units</h4>
+<ul><li>WHP in psig</li><li>Choke size in 64ths (a size from the coefficient table)</li><li>Gas gravity, air = 1 (default 0.7)</li><li>WHT in &deg;F (default 60)</li><li>Result in MSCF/D</li></ul>
+<h4>Input checks in the calculator</h4>
+<ul><li>WHP must be greater than zero, and the choke size must be in the table.</li></ul>
+<h4>Choke coefficients (from the calculator)</h4><table><thead><tr><th>Choke size (64ths)</th><th>Coefficient</th></tr></thead><tbody><tr><td>3</td><td>0.918</td></tr><tr><td>4</td><td>1.638</td></tr><tr><td>5</td><td>2.61</td></tr><tr><td>6</td><td>3.69</td></tr><tr><td>7</td><td>5.166</td></tr><tr><td>8</td><td>6.25</td></tr><tr><td>9</td><td>7.992</td></tr><tr><td>10</td><td>9.954</td></tr><tr><td>11</td><td>12.132</td></tr><tr><td>12</td><td>14.44</td></tr><tr><td>16</td><td>26.51</td></tr><tr><td>24</td><td>61.21</td></tr><tr><td>32</td><td>112.72</td></tr><tr><td>48</td><td>260.99</td></tr><tr><td>64</td><td>479.088</td></tr></tbody></table>
+<h4>Worked example</h4>
+<p>WHP = 1,000 psig, choke = 32/64, G = 0.7 and WHT = 100 &deg;F.</p>
+<div class="flow-diagram">P<sub>abs</sub> = 1,000 + 14.7 = 1,014.7 and T<sub>abs</sub> = 560<br>Q = 112.72 &times; 1,014.7 / &radic;(0.7 &times; 560) = 5,776.9 MSCF/D</div>
+<div class="tip-box">If the flow is not critical, or the gas is not dry, the result is not reliable.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Choke_Nipple_Gas_Rate_Calculation.html" style="color:#38bdf8">Choke Nipple Gas Rate Calculation</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab2">
+                <div class="explain-modern">
+<h3>Dry Gas Flow through a Positive Choke</h3>
+<p>This calculator scales a known calibration point. The page is based on a chart calibration at 3,750 psig, where a 28/64 inch choke passes 15.5 MMscf/day.</p>
+<div class="formula-box">Q<sub>sc</sub> = (15.5 / 3,750) &times; P<sub>up</sub> &times; (size / 28)<sup>2</sup></div>
+<div class="formula-box">Flow is proportional to the pressure and to the choke area (size squared)</div>
+<h4>Inputs and units</h4>
+<ul><li>Upstream pressure in psig</li><li>Choke size: 24, 28, 32, 36, 40, 44 or 48 (in 64ths)</li><li>Gas gravity G</li><li>Result in MMscf/Day</li></ul>
+<h4>Input checks in the calculator</h4>
+<ul><li>Upstream pressure and choke size must be greater than zero.</li></ul>
+<h4>Worked example</h4>
+<p>Upstream pressure = 3,000 psig and choke = 32/64.</p>
+<div class="flow-diagram">(15.5 / 3,750) = 0.0041333<br>Area ratio = (32 / 28)<sup>2</sup> = 1.3061<br>Q = 0.0041333 &times; 3,000 &times; 1.3061 = 16.20 MMscf/Day</div>
+<div class="tip-box">At the calibration point (3,750 psig, 28/64) the result is 15.5 MMscf/Day.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Dry_Gas_Flow_thru_Positive_Choke.html" style="color:#38bdf8">Dry Gas Flow thru Positive Choke Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab3">
+                <div class="explain-modern">
+<h3>Gas Rates by Choke Coefficient</h3>
+<p>This calculator builds the gas rate from the choke area, the upstream pressure and temperature, and the gas gravity. It gives the rate in mscf/d and in mmscf/d.</p>
+<div class="formula-box">mscf/d = (C &times; A &times; P<sub>1</sub> &times; C<sub>d</sub>) / &radic;(T &times; &gamma;<sub>g</sub> &times; Z)</div>
+<div class="formula-box">A = &pi; &times; (d/2)<sup>2</sup>, with d = size / 64 in inches</div>
+<h4>Inputs and units</h4>
+<ul><li>Choke size in 64ths</li><li>Upstream temperature in &deg;F (T = &deg;F + 460)</li><li>Upstream pressure in psig (P<sub>1</sub> = psig + 14.7)</li><li>Gas S.G. (&gamma;<sub>g</sub>)</li><li>Constants in the calculator: C = 605.4, C<sub>d</sub> = 0.83, Z = 0.9</li></ul>
+<h4>Common choke reference (from the page)</h4><table><thead><tr><th>Size (64ths)</th><th>Inch (dec)</th><th>Area (sq in)</th></tr></thead><tbody><tr><td>16</td><td>0.250&quot;</td><td>0.0491</td></tr><tr><td>32</td><td>0.500&quot;</td><td>0.1963</td></tr><tr><td>48</td><td>0.750&quot;</td><td>0.4418</td></tr><tr><td>64</td><td>1.000&quot;</td><td>0.7854</td></tr><tr><td>72</td><td>1.125&quot;</td><td>0.9940</td></tr></tbody></table>
+<h4>Worked example</h4>
+<p>Choke = 32/64, T = 100 &deg;F, P = 1,000 psig and S.G. = 0.7.</p>
+<div class="flow-diagram">A = &pi; &times; (0.25)<sup>2</sup> = 0.1963 sq in<br>mscf/d = 605.4 &times; 0.1963 &times; 1,014.7 &times; 0.83 / &radic;(560 &times; 0.7 &times; 0.9)<br>mscf/d = 5,330.0, which is 5.330 mmscf/d</div>
+<div class="tip-box">mmscf/d is the mscf/d value divided by 1,000.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Gas_Rates_by_Choke_Coefficient.html" style="color:#38bdf8">Gas Rates by Choke Coefficient Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab4">
+                <div class="explain-modern">
+<h3>Gas Flow Rate Estimation</h3>
+<p>This calculator estimates the gas rate through a fixed choke when critical flow exists, meaning the downstream pressure is low enough compared with the upstream pressure. It first builds an empirical choke coefficient.</p>
+<div class="formula-box">C = (D/64)<sup>2.0871</sup> &times; 26.616 &times; 18</div>
+<div class="formula-box">Q = (C &times; P<sub>up</sub>) / &radic;(T &times; G)</div>
+<h4>Inputs and units</h4>
+<ul><li>D: choke size in 1/64 inch</li><li>P<sub>up</sub>: upstream pressure in psig</li><li>T: absolute temperature, &deg;F + 459.67</li><li>G: gas gravity, air = 1.0</li><li>Q: flow rate in Mscfd</li></ul>
+<h4>Worked example</h4>
+<p>Choke = 32/64, P<sub>up</sub> = 1,000 psig, T = 100 &deg;F and G = 0.7.</p>
+<div class="flow-diagram">C = (0.5)<sup>2.0871</sup> &times; 26.616 &times; 18 = 112.75<br>Q = 112.75 &times; 1,000 / &radic;(559.67 &times; 0.7) = 5,697 Mscfd</div>
+<div class="tip-box">The page shows the coefficient C next to the estimated rate, so you can see both.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Gas_Flow_Rate_Estimation.html" style="color:#38bdf8">Gas Flow Rate Estimation Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab5">
+                <div class="explain-modern">
+<h3>Quick Gas Rate Estimation</h3>
+<p>This is the quick estimate of the dry gas rate through a choke, from the choke size, the wellhead pressure and temperature and the gas gravity.</p>
+<div class="formula-box">coefficient = 0.11817 &times; choke<sup>2</sup></div>
+<div class="formula-box">q<sub>g</sub> = (coefficient &times; P<sub>wh</sub> + 14.73) / &radic;(&gamma;<sub>g</sub> &times; (T<sub>wh</sub> + 460)) &times; 10<sup>&minus;3</sup></div>
+<h4>Inputs and units</h4>
+<ul><li>Choke size in 64ths</li><li>Wellhead pressure P<sub>wh</sub> (the page labels it psia)</li><li>Wellhead temperature T<sub>wh</sub> in &deg;F</li><li>Gas gravity (default 0.7)</li><li>Result in mscf/day</li></ul>
+<h4>Input checks in the calculator</h4>
+<ul><li>The calculator needs a choke size and a wellhead pressure greater than zero.</li></ul>
+<h4>Worked example</h4>
+<p>Choke = 32/64, P<sub>wh</sub> = 1,000, T<sub>wh</sub> = 100 &deg;F and gravity = 0.7.</p>
+<div class="flow-diagram">coefficient = 0.11817 &times; 32<sup>2</sup> = 121.006<br>q<sub>g</sub> = (121.006 &times; 1,000 + 14.73) / &radic;(0.7 &times; 560) / 1,000 = 6.11 mscf/day</div>
+<div class="tip-box">This is the quick method. Always read the units on the page and check the result against your test separator readings.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Quick_Gas_Rate_Estimation.html" style="color:#38bdf8">Quick Gas Rate Estimation Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+<h3>Course Summary</h3>
+<table><thead><tr><th>Method</th><th>Key idea</th></tr></thead><tbody>
+<tr><td>Choke nipple</td><td>Coefficient by choke size &times; P<sub>abs</sub> / &radic;(G &times; T<sub>abs</sub>)</td></tr>
+<tr><td>Dry gas, positive choke</td><td>Scaled from 15.5 MMscf/D at 3,750 psig and 28/64</td></tr>
+<tr><td>Choke coefficient</td><td>C &times; A &times; P &times; C<sub>d</sub> / &radic;(T &times; &gamma; &times; Z)</td></tr>
+<tr><td>Gas flow estimation</td><td>(D/64)<sup>2.0871</sup> &times; 26.616 &times; 18 &times; P / &radic;(T &times; G)</td></tr>
+<tr><td>Quick estimate</td><td>0.11817 &times; choke<sup>2</sup> based coefficient</td></tr>
+</tbody></table>
+<div class="content-card">
+<span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Final examination</span>
+<ol><li>Find a quiet place before you start.</li><li>Make sure your connection is stable.</li><li>Do not leave the exam page or refresh it while the timer runs.</li></ol>
+<div style="text-align: center; margin: 40px 0 20px 0;">
+<a href="Quiz/Quiz.html" style="text-decoration: none;"><button class="button-49"><b>START FINAL EXAMINATION</b></button></a>
+</div></div>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 6; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../style.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
+    
     <style>
         /* Modern Design System Tokens */
         :root {
@@ -517,6 +516,12 @@
 }
     </style>
 <script data-goatcounter="https://ofu-mansour.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}};</script>
+<script id="MathJax-script" async src="../../../../../assets/mathjax/tex-svg.js"></script>
+<style>/* ofu-mathjax: keep formulas inside the screen */
+mjx-container{max-width:100%}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden}
+</style>
 </head>
 <body>
 
@@ -621,7 +626,7 @@
                     </p>
                 
                     <div class="formula-box">
-                        Shrinkage Factor = Stock Tank Oil Volume ÷ Separator Oil Volume
+                        $\text{Shrinkage Factor} = \text{Stock Tank Oil Volume} \div \text{Separator Oil Volume}$
                     </div>
                 
                     <h4>Example</h4>
@@ -631,7 +636,7 @@
                     </p>
                 
                     <div class="formula-box">
-                        Shrinkage Factor = 84 ÷ 100 = 0.84
+                        $\text{Shrinkage Factor} = 84 \div 100 = 0.84$
                     </div>
                 
                     <p>
@@ -639,7 +644,7 @@
                     </p>
                 
                     <div class="formula-box">
-                        Oil Shrinkage = (1 − 0.84) × 100 = 16%
+                        $\text{Oil Shrinkage} = (1 - 0.84) \times 100 = 16\%$
                     </div>
                 
                     <h4>Parameters Affecting Shrinkage Factor</h4>
@@ -810,7 +815,7 @@
                     </p>
                 
                     <div class="formula-box">
-                        γg = Gas Density / Air Density
+                        $\gamma_g = \text{Gas Density} / \text{Air Density}$
                     </div>
                 
                     <p>
@@ -1095,7 +1100,7 @@
                     </p>
                 
                     <div class="formula-box">
-                        V60 = Vobs / [ 1 + α × (Tobs − 60) ]
+                        $V_{60} = V_{obs} / [\,1 + \alpha \times (T_{obs} - 60)\,]$
                     </div>
                 
                     <h4>Where:</h4>
@@ -1137,15 +1142,15 @@
                     </p>
                 
                     <div class="formula-box">
-                        ΔT = 100 − 60 = 40°F
+                        $\Delta T = 100 - 60 = 40^\circ\text{F}$
                     </div>
                 
                     <div class="formula-box">
-                        V60 = 1000 / (1 + 0.00040 × 40)
+                        $V_{60} = 1000 / (1 + 0.00040 \times 40)$
                     </div>
                 
                     <div class="formula-box">
-                        V60 = 984.25 BBL
+                        $V_{60} = 984.25\ \text{BBL}$
                     </div>
                 
                     <p>
@@ -1202,9 +1207,9 @@
                     <h4>Calculation Results</h4>
                 
                     <div class="formula-box">
-                        Bo ≈ 1.193
+                        $B_o \approx 1.193$
                 
-                        Shrinkage Factor ≈ 0.838
+                        $\text{Shrinkage Factor} \approx 0.838$
                     </div>
                 
                     <h4>What Does Bo Mean?</h4>
@@ -1238,11 +1243,11 @@
                     <h4>Volume Loss Calculation</h4>
                 
                     <div class="formula-box">
-                        Volume Loss = 1 - 0.838
+                        $\text{Volume Loss} = 1 - 0.838$
                 
-                        = 0.162
+                        $= 0.162$
                 
-                        = 16.2%
+                        $= 16.2\%$
                     </div>
                 
                     <p>
@@ -1259,11 +1264,11 @@
                         </p>
                 
                         <div class="formula-box">
-                            Stock Tank Oil
+                            $\text{Stock Tank Oil}$
                 
-                            = 1000 × 0.838
+                            $= 1000 \times 0.838$
                 
-                            = 838 STB
+                            $= 838\ \text{STB}$
                         </div>
                 
                         <p>
@@ -1767,7 +1772,7 @@
                     </p>
                 
                     <div class="formula-box">
-                        Stock Tank Oil = Separator Oil × Shrinkage Factor
+                        $\text{Stock Tank Oil} = \text{Separator Oil} \times \text{Shrinkage Factor}$
                     </div>
                 
                     <p>
@@ -2070,7 +2075,7 @@
                             <h4>Final Equation</h4>
                     
                             <p>
-                                Shrinkage Factor = 1 / Bo
+                                $\text{Shrinkage Factor} = 1 / B_o$
                             </p>
                     
                             <p>
@@ -2129,7 +2134,7 @@
                             <h3>Result</h3>
                     
                             <div class="formula-box">
-                                Shrinkage Factor ≈ 0.838
+                                $\text{Shrinkage Factor} \approx 0.838$
                             </div>
                     
                             <p>
@@ -2391,7 +2396,7 @@
                                 Shrinkage is calculated by taking the inverse of the Oil Formation Volume Factor:
                             </p>
                             <p>
-                                <strong>Shrinkage = 1 / Bo</strong>
+                                <strong>$\text{Shrinkage} = 1 / B_o$</strong>
                             </p>
                         
                             <h3>Q14: What does a shrinkage factor of 0.85 mean?</h3>

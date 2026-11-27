@@ -1,15 +1,15 @@
 {
   "active": true,
-  "id": "api-gravity-2026-11-26",
-  "publishedAt": "2026-11-26T14:26:28Z",
+  "id": "bottoms-up-2026-11-27",
+  "publishedAt": "2026-11-27T14:45:19Z",
   "hours": 24,
-  "question": "What does a higher API gravity indicate about a crude oil?",
+  "question": "A well flows 4,320 bpd and the tubing volume is 180 bbls. What is the bottoms up time?",
   "options": [
-    "The oil is lighter (lower density)",
-    "The oil is heavier (higher density)",
-    "The oil has a higher water content",
-    "The oil has a higher H2S content"
+    "60 minutes",
+    "30 minutes",
+    "120 minutes",
+    "24 minutes"
   ],
   "answer": 0,
-  "explanation": "API gravity = 141.5 / SG - 131.5. A lower specific gravity gives a higher API gravity, so light oils have high API (for example 40 degrees) and heavy oils have low API (below about 20 degrees)."
+  "explanation": "First convert the flowrate: 4,320 bpd / 1440 = 3 bpm. Then bottoms up time = tubing volume / flowrate = 180 / 3 = 60 minutes."
 }

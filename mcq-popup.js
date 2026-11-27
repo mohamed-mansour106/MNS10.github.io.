@@ -96,7 +96,9 @@
       ".ofu-mcq-opt.bad{background:#fdeaea;border-color:#d64545}" +
       ".ofu-mcq-res{margin:6px 0 2px;font-size:14px;line-height:1.45}" +
       ".ofu-mcq-res b{display:block;margin-bottom:2px}" +
-      ".ofu-mcq-foot{margin-top:8px;font-size:12px;color:#6b7280}";
+      ".ofu-mcq-foot{margin-top:8px;font-size:12px;color:#6b7280}" +
+      ".ofu-mcq-vb{display:block;width:100%;margin:0 0 12px;padding:10px 14px;min-height:44px;font:inherit;font-size:14px;font-weight:600;color:#e85d04;background:#fff4ec;border:2px solid #f5c9a8;border-radius:10px;cursor:pointer;text-align:center}" +
+      ".ofu-mcq-vid{display:block;width:100%;max-height:34vh;margin:0 0 12px;border-radius:10px;background:#000}";
     document.head.appendChild(css);
 
     var wrap = el("div", "ofu-mcq-wrap");
@@ -111,6 +113,25 @@
     var qq = el("p", "ofu-mcq-q", q.question);
     qq.setAttribute("dir", "auto");
     box.appendChild(qq);
+
+    // Optional hint video (concept only, never the answer). Loads only after a tap.
+    var vurl = typeof q.video === "string" && /^https:\/\/[^\s"'<>]+$/.test(q.video) ? q.video : "";
+    if (vurl) {
+      var vb = el("button", "ofu-mcq-vb", "\u25b6 Watch the short hint video");
+      vb.type = "button";
+      vb.addEventListener("click", function () {
+        var v = document.createElement("video");
+        v.className = "ofu-mcq-vid";
+        v.controls = true;
+        v.playsInline = true;
+        v.setAttribute("playsinline", "");
+        v.preload = "auto";
+        v.src = vurl;
+        if (vb.parentNode) vb.parentNode.replaceChild(v, vb);
+        try { var p = v.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {}
+      });
+      box.appendChild(vb);
+    }
 
     var btns = [];
     var res = el("div", "ofu-mcq-res");

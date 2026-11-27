@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Unit Conversions | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+
+
+        /*******************************************/
+        /* =====================================
+   MODERN EXPLAIN SECTION
+===================================== */
+
+.explain-modern{
+    background: linear-gradient(180deg,#0f172a,#111827);
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0;
+    color: #e2e8f0;
+    line-height: 1.8;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+.explain-modern h3{
+    color: #f1c40f;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #f1c40f;
+    padding-left: 15px;
+}
+
+.explain-modern h4{
+    color: #38bdf8;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.explain-modern p{
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.explain-modern ul{
+    margin: 15px 0 20px 25px;
+}
+
+.explain-modern li{
+    margin-bottom: 8px;
+}
+
+.explain-modern hr{
+    border: none;
+    height: 1px;
+    background: #334155;
+    margin: 25px 0;
+}
+
+/* =====================================
+   TIP BOX
+===================================== */
+
+.tip-box{
+    background: rgba(14,165,233,0.12);
+    border-left: 5px solid #0ea5e9;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #dbeafe;
+}
+
+/* =====================================
+   WARNING BOX
+===================================== */
+
+.warning-box{
+    background: rgba(239,68,68,0.12);
+    border-left: 5px solid #ef4444;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fee2e2;
+}
+
+/* =====================================
+   HIGHLIGHT CARD
+===================================== */
+
+.highlight-card{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    border: 1px solid #475569;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #f8fafc;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================================
+   FLOW DIAGRAM
+===================================== */
+
+.flow-diagram{
+    background: #020617;
+    border: 2px dashed #38bdf8;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    font-weight: 700;
+    color: #7dd3fc;
+    line-height: 2;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+/* =====================================
+   FORMULA BOX
+===================================== */
+
+.formula-box{
+    background: #020617;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    overflow-x: auto;
+    margin: 20px 0;
+    color: #f8fafc;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.modern-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.modern-table thead{
+    background: #f1c40f;
+}
+
+.modern-table thead th{
+    color: #000;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.modern-table tbody tr{
+    background: #111827;
+    border-bottom: 1px solid #334155;
+}
+
+.modern-table tbody tr:nth-child(even){
+    background: #0f172a;
+}
+
+.modern-table td{
+    padding: 14px;
+    color: #e2e8f0;
+}
+
+/* =====================================
+   ENGINEERING NOTE
+===================================== */
+
+.engineering-note{
+    background: rgba(241,196,15,0.12);
+    border-left: 5px solid #f1c40f;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fef3c7;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+    .explain-modern{
+        padding: 20px;
+    }
+
+    .explain-modern h3{
+        font-size: 1.5rem;
+    }
+
+    .explain-modern h4{
+        font-size: 1.1rem;
+    }
+
+    .modern-table{
+        display:block;
+        overflow-x:auto;
+        white-space: nowrap;
+    }
+}
+    </style>
+<script data-goatcounter="https://ofu-mansour.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+/* ofu-mobile-fit: main used auto side margins in a flex column, so wide content widened the whole page on phones; wide tables now scroll inside their card */
+@media (max-width:768px){
+main{width:100%;min-width:0;box-sizing:border-box}
+.tabs-container,.big-div,.explain-modern{min-width:0}
+.explain-modern table,.big-div table{display:block!important;max-width:100%!important;overflow-x:auto!important;min-width:0!important;width:100%!important;box-sizing:border-box}
+.explain-modern pre,.big-div pre{max-width:100%;overflow-x:auto}
+.explain-modern img,.big-div img,.big-div video{max-width:100%;height:auto}
+}
+</style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">Unit Conversions</h1>
+        
+        <div class="tabs-container">
+                    
+            <div class="big-div tab-content active" id="tab1">
+                <h3 style="color:#fff;text-align:center;margin:24px 0 12px;font-size:1.1rem;">Video lesson: Unit Conversions</h3>
+                <div class="video-container-modern"><video controls preload="metadata" playsinline style="width:100%;height:100%;max-width:960px;border-radius:12px;background:#000" src="https://github.com/mohamed-mansour106/course-videos/releases/download/unit-conversions/Unit_Conversions.mp4"></video></div>
+                <div class="explain-modern">
+<h3>Pressure Conversion</h3>
+<p>The pressure converter changes a value in any field into all the other units at the same time. Internally it converts the entered value to psig, then to each unit.</p>
+<div class="formula-box">psig = value / factor(unit)</div>
+<div class="formula-box">result = psig &times; factor(result unit)</div>
+<h4>Factors (units per 1 psig)</h4><table><thead><tr><th>Unit</th><th>Factor</th></tr></thead><tbody><tr><td>bar</td><td>0.0689476</td></tr><tr><td>kPa</td><td>6.89476</td></tr><tr><td>atm</td><td>0.068046</td></tr><tr><td>inH<sub>2</sub>O</td><td>27.7076</td></tr><tr><td>ftH<sub>2</sub>O</td><td>2.30896</td></tr><tr><td>inHg</td><td>2.03602</td></tr><tr><td>mmHg</td><td>51.7149</td></tr><tr><td>kgf/cm&sup2;</td><td>0.070307</td></tr></tbody></table>
+<h4>Worked example</h4>
+<p>Convert 100 psig and 10 bar.</p>
+<div class="flow-diagram">100 psig &times; 0.0689476 = 6.8948 bar<br>100 psig &times; 6.89476 = 689.476 kPa<br>10 bar / 0.0689476 = 145.04 psig</div>
+<div class="tip-box">The converter works in psig, so it is a gauge-pressure converter. Check whether your pressure is gauge or absolute before you use it.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Pressure.html" style="color:#38bdf8">Pressure Conversion Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab2">
+                <div class="explain-modern">
+<h3>Volume Conversion</h3>
+<p>The volume converter works from litres. Each unit has a factor in units per litre.</p>
+<div class="formula-box">litres = value / factor(unit)</div>
+<div class="formula-box">result = litres &times; factor(result unit)</div>
+<h4>Factors (units per 1 litre)</h4><table><thead><tr><th>Unit</th><th>Factor</th></tr></thead><tbody><tr><td>US gallons</td><td>0.264172</td></tr><tr><td>Barrels (bbl)</td><td>0.00628981</td></tr><tr><td>in&sup3;</td><td>61.0237</td></tr><tr><td>ft&sup3;</td><td>0.0353147</td></tr><tr><td>cm&sup3;</td><td>1000</td></tr><tr><td>m&sup3;</td><td>0.001</td></tr></tbody></table>
+<h4>Worked example</h4>
+<p>Convert 1 barrel into litres and US gallons.</p>
+<div class="flow-diagram">litres = 1 / 0.00628981 = 158.99 L<br>gallons = 158.99 &times; 0.264172 = 42.00 US gal</div>
+<div class="tip-box">The page also holds a pressure converter, with the same factors as the pressure page.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Volume.html" style="color:#38bdf8">Volume Conversion Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab3">
+                <div class="explain-modern">
+<h3>Temperature Conversion</h3>
+<p>The temperature converter changes between Fahrenheit, Celsius, Kelvin and Rankine. It converts the input to Celsius first.</p>
+<div class="formula-box">&deg;C = (&deg;F &minus; 32) &times; 5/9, or K &minus; 273.15, or (&deg;R &minus; 491.67) &times; 5/9</div>
+<div class="formula-box">&deg;F = &deg;C &times; 9/5 + 32</div>
+<div class="formula-box">K = &deg;C + 273.15</div>
+<div class="formula-box">&deg;R = (&deg;C + 273.15) &times; 9/5</div>
+<h4>Worked example</h4>
+<p>Convert 100 &deg;F.</p>
+<div class="flow-diagram">&deg;C = (100 &minus; 32) &times; 5/9 = 37.78<br>K = 37.78 + 273.15 = 310.93<br>&deg;R = (37.78 + 273.15) &times; 9/5 = 559.67</div>
+<div class="tip-box">Results are shown with two decimals. Rankine is the scale used in gas calculations, for example T = &deg;F + 460.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Temperature.html" style="color:#38bdf8">Temperature Conversion Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab4">
+                <div class="explain-modern">
+<h3>Length Conversion</h3>
+<p>The length converter works from inches. Each unit has a factor in inches per unit.</p>
+<div class="formula-box">inches = value &times; factor(unit)</div>
+<div class="formula-box">result = inches / factor(result unit)</div>
+<h4>Factors (inches per unit)</h4><table><thead><tr><th>Unit</th><th>Factor</th></tr></thead><tbody><tr><td>ft</td><td>12</td></tr><tr><td>yd</td><td>36</td></tr><tr><td>mi</td><td>63,360</td></tr><tr><td>mm</td><td>0.0393700787</td></tr><tr><td>cm</td><td>0.393700787</td></tr><tr><td>m</td><td>39.3700787</td></tr><tr><td>km</td><td>39,370.0787</td></tr></tbody></table>
+<h4>Worked example</h4>
+<p>Convert 5 ft into inches and metres.</p>
+<div class="flow-diagram">inches = 5 &times; 12 = 60<br>metres = 60 / 39.3700787 = 1.5240 m</div>
+<div class="tip-box">These factors are the other way round from the pressure and volume pages: here a bigger factor means a bigger unit.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Length.html" style="color:#38bdf8">Length Conversion Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab5">
+                <div class="explain-modern">
+<h3>Rates Conversion</h3>
+<p>The rates converter changes liquid flow rates between imperial and metric units. It works from bbl/day.</p>
+<div class="formula-box">bbl/day = value &times; factor(unit)</div>
+<div class="formula-box">result = bbl/day / factor(result unit)</div>
+<h4>Factors (bbl/day per unit)</h4><table><thead><tr><th>Unit</th><th>Factor</th></tr></thead><tbody><tr><td>bbl/min</td><td>1,440</td></tr><tr><td>gal/min (US)</td><td>34.2857</td></tr><tr><td>m&sup3;/day</td><td>6.2898</td></tr><tr><td>m&sup3;/min</td><td>9,057.3</td></tr><tr><td>ltr/min</td><td>9.0573</td></tr></tbody></table>
+<h4>Worked example</h4>
+<p>Convert 500 gal/min.</p>
+<div class="flow-diagram">bbl/day = 500 &times; 34.2857 = 17,142.8<br>m&sup3;/day = 17,142.8 / 6.2898 = 2,725.5</div>
+<div class="tip-box">1 bbl/min = 1,440 bbl/day because there are 1,440 minutes in a day.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Rates.html" style="color:#38bdf8">Rates Conversion Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab6')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab6">
+                <div class="explain-modern">
+<h3>Density Conversion</h3>
+<p>The density converter includes API gravity and specific gravity (S.G.). It works from S.G., with water = 1.</p>
+<div class="formula-box">S.G. = 141.5 / (API + 131.5)</div>
+<div class="formula-box">API = (141.5 / S.G.) &minus; 131.5</div>
+<div class="formula-box">S.G. = value &times; factor(unit)</div>
+<h4>Factors (S.G. per unit)</h4><table><thead><tr><th>Unit</th><th>Factor</th></tr></thead><tbody><tr><td>ppg (lb/gal)</td><td>0.119826</td></tr><tr><td>lb/ft&sup3;</td><td>0.016018</td></tr><tr><td>g/cc (kg/L)</td><td>1</td></tr><tr><td>psi/ft (gradient)</td><td>2.30896</td></tr><tr><td>bar/m</td><td>10.209</td></tr></tbody></table>
+<h4>Worked example</h4>
+<p>Convert an oil of 35 &deg;API.</p>
+<div class="flow-diagram">S.G. = 141.5 / (35 + 131.5) = 0.8498<br>ppg = 0.8498 / 0.119826 = 7.0924<br>psi/ft = 0.8498 / 2.30896 = 0.3681</div>
+<div class="tip-box">g/cc and S.G. are the same number (factor 1).</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Density.html" style="color:#38bdf8">Density Conversion Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab5')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab7')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab7">
+                <div class="explain-modern">
+<h3>Flow Rate Conversions</h3>
+<p>This converter covers common field units for liquid and gas flow. It converts the input to litres per second, then to each unit.</p>
+<div class="formula-box">L/s = value &times; input factor</div>
+<div class="formula-box">result = L/s &times; output factor</div>
+<h4>Factors</h4><table><thead><tr><th>Unit</th><th>To L/s</th><th>From L/s</th></tr></thead><tbody><tr><td>gal/min</td><td>0.06309</td><td>15.8503</td></tr><tr><td>ft&sup3;/sec</td><td>28.317</td><td>0.03531</td></tr><tr><td>ft&sup3;/min</td><td>0.47195</td><td>2.11888</td></tr><tr><td>bbl/hour</td><td>0.04415</td><td>22.658</td></tr><tr><td>bbl/day</td><td>0.00184</td><td>543.792</td></tr></tbody></table><p>Fundamental factors on the page: 1 ft&sup3; = 7.4805 gal = 28.317 L, and 1 bbl = 42 gal = 5.6146 ft&sup3;.</p>
+<h4>Worked example</h4>
+<p>Convert 100 gal/min.</p>
+<div class="flow-diagram">L/s = 100 &times; 0.06309 = 6.309<br>bbl/day = 6.309 &times; 543.792 = 3,430.8</div>
+<div class="tip-box">The factors are rounded, so the last digits can differ a little from the Rates converter (for example 100 gal/min gives about 3,428.6 bbl/day there).</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Flow_Rate_Conversions.html" style="color:#38bdf8">Flow Rate Conversions Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab6')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab8')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab8">
+                <div class="explain-modern">
+<h3>Unit Prefix Converter</h3>
+<p>The unit prefix converter multiplies a number by the factor of the chosen prefix, to give the value in the main unit.</p>
+<div class="formula-box">Result = Value &times; prefix factor</div>
+<h4>Prefixes</h4><table><thead><tr><th>Prefix</th><th>Factor</th></tr></thead><tbody><tr><td>exa (E)</td><td>10<sup>18</sup></td></tr><tr><td>peta (P)</td><td>10<sup>15</sup></td></tr><tr><td>tera (T)</td><td>10<sup>12</sup></td></tr><tr><td>giga (G)</td><td>10<sup>9</sup></td></tr><tr><td>mega (M)</td><td>10<sup>6</sup></td></tr><tr><td>kilo (k)</td><td>10<sup>3</sup></td></tr><tr><td>hecto (h)</td><td>10<sup>2</sup></td></tr><tr><td>deca (da)</td><td>10<sup>1</sup></td></tr><tr><td>deci (d)</td><td>10<sup>&minus;1</sup></td></tr><tr><td>centi (c)</td><td>10<sup>&minus;2</sup></td></tr><tr><td>milli (m)</td><td>10<sup>&minus;3</sup></td></tr><tr><td>micro (&mu;)</td><td>10<sup>&minus;6</sup></td></tr><tr><td>nano (n)</td><td>10<sup>&minus;9</sup></td></tr><tr><td>pico (p)</td><td>10<sup>&minus;12</sup></td></tr><tr><td>femto (f)</td><td>10<sup>&minus;15</sup></td></tr></tbody></table>
+<h4>Worked example</h4>
+<p>Convert 5 kilo and 250 milli to the main unit.</p>
+<div class="flow-diagram">5 &times; 10<sup>3</sup> = 5,000<br>250 &times; 10<sup>&minus;3</sup> = 0.25</div>
+<div class="tip-box">Large and very small results are shown in scientific notation.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Unit_Prefix_Converter.html" style="color:#38bdf8">Unit Prefix Converter</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab7')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab9')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab9">
+                <div class="explain-modern">
+<h3>Choke Size Conversion</h3>
+<p>Choke sizes are quoted in 64ths of an inch. This converter links 64ths, decimal inches and millimetres.</p>
+<div class="formula-box">ID<sub>inch</sub> = Choke Size / 64</div>
+<div class="formula-box">ID<sub>mm</sub> = ID<sub>inch</sub> &times; 25.4</div>
+<h4>Inputs and units</h4>
+<ul><li>Choke size in 1/64 inch</li><li>Decimal equivalent in inches (shown with 3 decimals)</li><li>Metric equivalent in mm (shown with 2 decimals)</li></ul>
+<h4>Worked example</h4>
+<p>Convert a 32/64 choke.</p>
+<div class="flow-diagram">ID<sub>inch</sub> = 32 / 64 = 0.500 in<br>ID<sub>mm</sub> = 0.5 &times; 25.4 = 12.70 mm</div>
+<div class="tip-box">1 inch = 64/64 and 1 inch = 25.4 mm. You can type in any of the three fields.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Choke_Size_Conversion.html" style="color:#38bdf8">Choke Size Conversion Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab8')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab10')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab10">
+                <div class="explain-modern">
+<h3>Course Summary</h3>
+<table><thead><tr><th>Converter</th><th>Method</th></tr></thead><tbody>
+<tr><td>Pressure</td><td>Works from psig</td></tr>
+<tr><td>Volume</td><td>Works from litres</td></tr>
+<tr><td>Temperature</td><td>Works from &deg;C</td></tr>
+<tr><td>Length</td><td>Works from inches</td></tr>
+<tr><td>Rates</td><td>Works from bbl/day</td></tr>
+<tr><td>Density</td><td>Works from S.G.; API = 141.5/SG &minus; 131.5</td></tr>
+<tr><td>Flow rate</td><td>Works from L/s</td></tr>
+<tr><td>Prefix</td><td>Value &times; prefix factor</td></tr>
+<tr><td>Choke size</td><td>64ths / 64 = inches; &times; 25.4 = mm</td></tr>
+</tbody></table>
+<div class="content-card">
+<span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Final examination</span>
+<ol><li>Find a quiet place before you start.</li><li>Make sure your connection is stable.</li><li>Do not leave the exam page or refresh it while the timer runs.</li></ol>
+<div style="text-align: center; margin: 40px 0 20px 0;">
+<a href="Quiz/Quiz.html" style="text-decoration: none;"><button class="button-49"><b>START FINAL EXAMINATION</b></button></a>
+</div></div>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab9')">&larr; Previous</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 10; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

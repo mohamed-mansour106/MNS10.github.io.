@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Pressure Testing and Ratings | Well Testing Academy</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --primary-glow: #00E6F6;
+            --primary-blue: #007bff;
+            --dark-bg: #0b0f19;
+            --card-glass: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fixed Course Progress Bar Container */
+        .course-progress-container {
+            position: fixed;
+            top: 70px; /* Aligned beneath standard navbar height */
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 999;
+        }
+
+        .course-progress-bar {
+            width: 14.28%; /* Dynamically calculated based on Tab 1 of 7 */
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-glow));
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        /* Hardware Accelerated Slide & Fade Animation for active tabs */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aspect-Ratio Video & Graphic Wrappers (Eliminates fixed layouts) */
+        .video-container-modern {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            aspect-ratio: 16 / 9;
+            background: #01011a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container-modern iframe, 
+        .video-container-modern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* Modernized Glassmorphic Lesson Modules */
+        .explain-modern {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .explain-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 4px solid var(--primary-glow);
+            padding-left: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .explain-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Glass Cards Inside Content Modules */
+        .content-card {
+            background: rgba(11, 15, 25, 0.6) !important;
+            border: 1px solid var(--border-glass);
+            color: var(--text-main) !important;
+            width: 100% !important;
+            max-width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-card ol, .content-card ul {
+            padding-left: 20px;
+            color: #d1d5db;
+        }
+
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        mark {
+            background: rgba(0, 230, 246, 0.2);
+            color: var(--primary-glow);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Refined Mobile-Responsive Dark Data Tables */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(11, 15, 25, 0.8);
+            color: var(--text-main);
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgba(31, 41, 55, 0.9);
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+            color: #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Modernized Interactive Form Buttons */
+        .navigation-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .nav-btn-modern {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .nav-btn-modern:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(0, 230, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-modern.next {
+            background: linear-gradient(135deg, #2a6df3, #1a4bb8);
+            margin-left: auto;
+        }
+
+        .nav-btn-modern.next:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Cyberpunk Glitch Exam Action Link Button */
+        .button-49 {
+            height: 65px;
+            padding: 0 40px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+            border: 0;
+            color: #fff;
+            box-shadow: 4px 0px 0px var(--primary-glow);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .button-49:hover {
+            box-shadow: 0 0 20px rgba(255, 1, 60, 0.6);
+            transform: scale(1.03);
+        }
+
+        /* Layout Utility Fixes */
+        .text-danger-custom { color: #f87171; font-weight: bold; }
+
+        /* ==========================================================================
+           📱 ADVANCED RESPONSIVE MEDIA QUERIES (Small Screens & Mobile Tuning)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 15px;
+                margin-top: 25px !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+
+            .video-container-modern {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+
+            .explain-modern {
+                padding: 20px;
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+
+            .explain-modern h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+            .content-card ol, .content-card ul {
+                padding-left: 15px;
+            }
+
+            .navigation-control-panel {
+                margin: 25px auto;
+            }
+            
+            .nav-btn-modern {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-progress-container {
+                top: 60px; /* Adapts to narrower top navbars on small phones */
+                height: 4px;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .explain-modern {
+                padding: 15px;
+            }
+
+            .content-card b {
+                font-size: 1rem !important;
+            }
+
+            /* Stack navigation buttons vertically for thumb ergonomic safety */
+            .navigation-control-panel {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 12px;
+                padding: 0;
+            }
+
+            .nav-btn-modern {
+                width: 100%;
+                text-align: center;
+                margin-left: 0 !important; /* Resets desktop auto-margin overrides */
+            }
+
+            .button-49 {
+                width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                height: 55px;
+            }
+        }
+
+
+        /*******************************************/
+        /* =====================================
+   MODERN EXPLAIN SECTION
+===================================== */
+
+.explain-modern{
+    background: linear-gradient(180deg,#0f172a,#111827);
+    border: 1px solid #334155;
+    border-radius: 18px;
+    padding: 30px;
+    margin: 25px 0;
+    color: #e2e8f0;
+    line-height: 1.8;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+.explain-modern h3{
+    color: #f1c40f;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #f1c40f;
+    padding-left: 15px;
+}
+
+.explain-modern h4{
+    color: #38bdf8;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.explain-modern p{
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.explain-modern ul{
+    margin: 15px 0 20px 25px;
+}
+
+.explain-modern li{
+    margin-bottom: 8px;
+}
+
+.explain-modern hr{
+    border: none;
+    height: 1px;
+    background: #334155;
+    margin: 25px 0;
+}
+
+/* =====================================
+   TIP BOX
+===================================== */
+
+.tip-box{
+    background: rgba(14,165,233,0.12);
+    border-left: 5px solid #0ea5e9;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #dbeafe;
+}
+
+/* =====================================
+   WARNING BOX
+===================================== */
+
+.warning-box{
+    background: rgba(239,68,68,0.12);
+    border-left: 5px solid #ef4444;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fee2e2;
+}
+
+/* =====================================
+   HIGHLIGHT CARD
+===================================== */
+
+.highlight-card{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    border: 1px solid #475569;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #f8fafc;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* =====================================
+   FLOW DIAGRAM
+===================================== */
+
+.flow-diagram{
+    background: #020617;
+    border: 2px dashed #38bdf8;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    font-weight: 700;
+    color: #7dd3fc;
+    line-height: 2;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+/* =====================================
+   FORMULA BOX
+===================================== */
+
+.formula-box{
+    background: #020617;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    overflow-x: auto;
+    margin: 20px 0;
+    color: #f8fafc;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.modern-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.modern-table thead{
+    background: #f1c40f;
+}
+
+.modern-table thead th{
+    color: #000;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.modern-table tbody tr{
+    background: #111827;
+    border-bottom: 1px solid #334155;
+}
+
+.modern-table tbody tr:nth-child(even){
+    background: #0f172a;
+}
+
+.modern-table td{
+    padding: 14px;
+    color: #e2e8f0;
+}
+
+/* =====================================
+   ENGINEERING NOTE
+===================================== */
+
+.engineering-note{
+    background: rgba(241,196,15,0.12);
+    border-left: 5px solid #f1c40f;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #fef3c7;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:768px){
+
+    .explain-modern{
+        padding: 20px;
+    }
+
+    .explain-modern h3{
+        font-size: 1.5rem;
+    }
+
+    .explain-modern h4{
+        font-size: 1.1rem;
+    }
+
+    .modern-table{
+        display:block;
+        overflow-x:auto;
+        white-space: nowrap;
+    }
+}
+    </style>
+<script data-goatcounter="https://ofu-mansour.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+/* ofu-mobile-fit: main used auto side margins in a flex column, so wide content widened the whole page on phones; wide tables now scroll inside their card */
+@media (max-width:768px){
+main{width:100%;min-width:0;box-sizing:border-box}
+.tabs-container,.big-div,.explain-modern{min-width:0}
+.explain-modern table,.big-div table{display:block!important;max-width:100%!important;overflow-x:auto!important;min-width:0!important;width:100%!important;box-sizing:border-box}
+.explain-modern pre,.big-div pre{max-width:100%;overflow-x:auto}
+.explain-modern img,.big-div img,.big-div video{max-width:100%;height:auto}
+}
+</style>
+</head>
+<body>
+
+    <!-- Course Dynamic Completion Progress Tracker -->
+    <div class="course-progress-container">
+        <div class="course-progress-bar" id="courseProgressBar"></div>
+    </div>
+
+    <!-- Navigation Bar Header Layer -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <div class="logo-icon">W</div>
+                <span class="logo-text">Well Testing</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../WTAcademy/Academy.html" class="nav-link">Home</a>
+                <a href="../../../ask.html" class="nav-link" id="askNavLink">Ask Question</a>
+                <a href="../../learn.html" class="nav-link">Learn</a>
+                <a href="../../../News/News.html" class="nav-link">Posts</a>
+                <a href="../../../profile.html" class="nav-link" id="profileNavLink" style="display: none;">Profile</a>
+                <a href="../../../login.html" class="nav-link btn-outline" id="loginNavLink">Login</a>
+                <button class="nav-link btn-danger" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Menu UI -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <div class="mobile-menu-header">
+            <div class="logo-icon">W</div>
+            <button class="close-btn" id="closeMobileMenu">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="../../../WTAcademy/Academy.html" class="mobile-menu-item btn-primary">Home</a>
+            <a href="../../learn.html" class="mobile-menu-item">Learn</a>
+            <a href="../../../News/News.html" class="mobile-menu-item">Posts</a>
+            <a href="../../../profile.html" class="mobile-menu-item" id="mobileProfileLink" style="display: none;">Profile</a>
+            <a href="../../../login.html" class="mobile-menu-item" id="mobileLoginLink">Login</a>
+            <button class="mobile-menu-item text-danger" id="mobileLogoutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Primary Interface Main Layout Frame Workspace -->
+    <main class="container main-content" style="margin-top: 40px;">
+        <h1 style="color: #fff; text-align: center; margin-bottom: 10px; font-weight: 700;">Pressure Testing and Ratings</h1>
+        
+        <div class="tabs-container">
+                    
+            <div class="big-div tab-content active" id="tab1">
+                <h3 style="color:#fff;text-align:center;margin:24px 0 12px;font-size:1.1rem;">Video lesson: Pressure Testing and Ratings</h3>
+                <div class="video-container-modern"><video controls preload="metadata" playsinline style="width:100%;height:100%;max-width:960px;border-radius:12px;background:#000" src="https://github.com/mohamed-mansour106/course-videos/releases/download/pressure-testing-and-ratings/Pressure_Testing_and_Ratings.mp4"></video></div>
+                <div class="explain-modern">
+<h3>Hydrotest Pressure Calculator</h3>
+<p>This calculator gives the hydrostatic test pressure from the working pressure with the standard field rule of 1.5 times the working pressure.</p>
+<div class="formula-box">P<sub>test</sub> = P<sub>working</sub> &times; 1.5</div>
+<div class="formula-box">1 bar &asymp; 14.5038 psi, 1 bar = 100 kPa</div>
+<h4>Inputs and units</h4>
+<ul><li>Working pressure in psig, bar or kPa (zero or greater)</li><li>Test factor multiplier (1.5 is the standard field factor, it must be above zero)</li><li>Results: test pressure in psig, bar and kPa</li></ul>
+<h4>Worked example</h4>
+<p>Working pressure 1,000 psig with the standard factor.</p>
+<div class="flow-diagram">P<sub>test</sub> = 1,000 &times; 1.5 = 1,500 psig<br>In bar: 103.4</div>
+<div class="tip-box">Always verify the equipment MAWP, the lowest-rated downstream component, temperature derating and site HSE permits before pressurizing any line or skid.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Hydrotest_Pressure_Calculator.html" style="color:#38bdf8">Hydrotest Pressure Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern next" onclick="openTab('tab2')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab2">
+                <div class="explain-modern">
+<h3>Flanged Equipment Working Pressure</h3>
+<p>This is a quick field estimate of the approximate maximum allowable working pressure (MAWP) of flanged equipment such as a separator, from the ANSI flange class.</p>
+<div class="formula-box">Low pressure (class 150 or lower): WP = Class &times; 1.9</div>
+<div class="formula-box">Medium pressure (class above 150): WP = Class &times; 2.4</div>
+<h4>Inputs and units</h4>
+<ul><li>Flange class: 150, 300, 600 or 900, or a custom class number above zero</li><li>Results: working pressure in psig, bar and kPa</li></ul>
+<h4>Worked example</h4>
+<p>Classes 150, 300 and 600.</p>
+<div class="flow-diagram">Class 150: 150 &times; 1.9 = 285 psig<br>Class 300: 300 &times; 2.4 = 720 psig<br>Class 600: 600 &times; 2.4 = 1,440 psig</div>
+<div class="tip-box">The page calls these multipliers rapid field rules of thumb. Real ratings depend on the material group, gasket type, temperature and the vessel nameplate (ASME B16.5 / B16.34).</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Flanged_Equipment_Working_Pressure.html" style="color:#38bdf8">Flanged Equipment Working Pressure Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab1')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab3')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab3">
+                <div class="explain-modern">
+<h3>Flange Bolt Torque</h3>
+<p>This calculator gives the torque needed on a flange stud from the stud diameter, the threads per inch, the bolt stress and the friction coefficient.</p>
+<div class="formula-box">A<sub>s</sub> = (&pi;/4) &times; [D &minus; 0.9743 &times; P]&sup2;, with P = 1 / N</div>
+<div class="formula-box">F = Stress &times; A<sub>s</sub></div>
+<div class="formula-box">T = F E (P + &pi; f E S) / [2 (&pi; E &minus; P f S)] + F f (H + D + K) / 4</div>
+<div class="formula-box">E = D &minus; 0.649519 P, S = 1.1547, H = 1.5 D + 0.125, K = 0.125</div>
+<div class="formula-box">Torque in ft-lbf = T (in-lbf) / 12</div>
+<h4>Inputs and units</h4>
+<ul><li>Stud diameter D in inches</li><li>Threads per inch N</li><li>Bolt stress in psi</li><li>Friction coefficient f: 0.07 (lubricated) or 0.13 (dry / zinc)</li><li>Results: tension force F in lbf and required torque in ft-lbf</li></ul>
+<h4>A few rows from the API flange torque master chart on the page (ft-lb, lubricated)</h4><table><thead><tr><th>Stud dia (in)</th><th>Threads</th><th>40 ksi</th><th>52.5 ksi</th><th>47.5 ksi</th></tr></thead><tbody><tr><td>0.750</td><td>10</td><td>90</td><td>118</td><td>107</td></tr><tr><td>1.000</td><td>8</td><td>213</td><td>279</td><td>252</td></tr><tr><td>1.500</td><td>8</td><td>733</td><td>962</td><td>871</td></tr></tbody></table><p>The page multiplies the chart by 1.85 for the dry / zinc friction coefficient.</p>
+<h4>Worked example</h4>
+<p>A 1 in stud with 8 threads per inch at 52,500 psi, dry / zinc (f = 0.13).</p>
+<div class="flow-diagram">A<sub>s</sub> = 0.6057 in&sup2;<br>F = 52,500 &times; 0.6057 = 31,802 lbf<br>T = 474 ft-lbf<br>With a lubricated stud (f = 0.07): 279 ft-lbf</div>
+<div class="tip-box">Lubricated studs need much less torque for the same bolt stress, so always use the friction coefficient that matches the stud condition.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Flange_Bolt_Torque.html" style="color:#38bdf8">Recommended Flange Bolt Torque Calculator</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab2')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab4')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab4">
+                <div class="explain-modern">
+<h3>Full ANSI and API Flange Database</h3>
+<p>This lookup gives the connection hardware for a flange: number of studs, stud diameter, stud length for RTJ, ring gasket and spanner size.</p>
+<div class="formula-box">No formula. The page looks the values up from its table by rating and nominal pipe size.</div>
+<h4>Inputs and units</h4>
+<ul><li>Service rating: ANSI 150# (275 psi), ANSI 300# (720 psi), ANSI 600# (1440 psi), API 5000 (5K) or API 10000 (10K)</li><li>Nominal pipe size (NPS)</li><li>Results: number of studs, stud diameter, stud length (RTJ), ring gasket and spanner size in mm</li></ul>
+<h4>Examples from the page</h4><table><thead><tr><th>Rating / NPS</th><th>Studs</th><th>Stud dia</th><th>Stud length</th><th>Ring</th><th>Spanner (mm)</th></tr></thead><tbody><tr><td>150# 2 in</td><td>4</td><td>5/8 in</td><td>3 1/4</td><td>R-22</td><td>27</td></tr><tr><td>150# 6 in</td><td>8</td><td>3/4 in</td><td>4 1/2</td><td>R-43</td><td>32</td></tr><tr><td>300# 4 in</td><td>8</td><td>3/4 in</td><td>5 1/4</td><td>R-37</td><td>32</td></tr></tbody></table>
+<h4>Worked example</h4>
+<p>A 300# flange on a 4 in line.</p>
+<div class="flow-diagram">8 studs of 3/4 in, 5 1/4 in long<br>Ring gasket R-37 and a 32 mm spanner</div>
+<div class="tip-box">Ring Joint (RTJ) gaskets are R or BX types for high-pressure sealing. Check the actual flange drawing and the pressure rating before ordering hardware.</div>
+<p>Use the <a href="../../../WTAcademy/Equations/Full_ANSI_API_Flange.html" style="color:#38bdf8">Full ANSI &amp; API Flange Database</a> to check your own numbers.</p>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab3')">&larr; Previous</button>
+                    <button class="nav-btn-modern next" onclick="openTab('tab5')">Next Module &rarr;</button>
+                </div>
+            </div>
+
+            <div class="big-div tab-content" id="tab5">
+                <div class="explain-modern">
+<h3>Course Summary</h3>
+<table><thead><tr><th>Calculation</th><th>Formula</th></tr></thead><tbody>
+<tr><td>Hydrotest pressure</td><td>Working pressure &times; 1.5</td></tr>
+<tr><td>Flange working pressure (low)</td><td>Class &times; 1.9 (class 150 or lower)</td></tr>
+<tr><td>Flange working pressure (medium)</td><td>Class &times; 2.4 (class above 150)</td></tr>
+<tr><td>Bolt tension</td><td>F = Stress &times; A<sub>s</sub></td></tr>
+<tr><td>Flange hardware</td><td>Lookup by rating and NPS</td></tr>
+</tbody></table>
+<div class="content-card">
+<span style="display: block; font-size: 1.1rem; margin-bottom: 20px; color: var(--primary-glow); font-weight: 600;">Final examination</span>
+<ol><li>Find a quiet place before you start.</li><li>Make sure your connection is stable.</li><li>Do not leave the exam page or refresh it while the timer runs.</li></ol>
+<div style="text-align: center; margin: 40px 0 20px 0;">
+<a href="Quiz/Quiz.html" style="text-decoration: none;"><button class="button-49"><b>START FINAL EXAMINATION</b></button></a>
+</div></div>
+                </div>
+                <div class="navigation-control-panel">
+                    <button class="nav-btn-modern" onclick="openTab('tab4')">&larr; Previous</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Area Block Container -->
+    <footer class="footer" style="background: rgba(11, 15, 25, 0.9); border-top: 1px solid var(--border-glass); padding: 20px 0; margin-top: 60px;">
+        <div class="container" style="text-align: center; color: #9ca3af; font-size: 0.9rem;">
+            <p>&copy; 2026 Well Testing Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase App Platform Production Client SDK Hook Modules Setup -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom Runtime Domain Core Architecture Source Logic Hooks dependencies -->
+    <script src="../../../js/auth.js"></script>
+    <script src="../../../js/firestore.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- UI Core Automation Engine Controller Functions Module -->
+    <script>
+        /**
+         * Orchestrates tab transitions and calculates exact completion progress metrics.
+         * @param {string} tabId Target navigation card identifier string.
+         */
+        function openTab(tabId) {
+            const currentStep = parseInt(tabId.replace('tab', ''));
+            const totalSteps = 5; 
+            
+            const activePercentage = (currentStep / totalSteps) * 100;
+            
+            const progressBar = document.getElementById('courseProgressBar');
+            if (progressBar) {
+                progressBar.style.width = activePercentage + '%';
+            }
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        const openBtn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenu");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        
+        if(openBtn && closeBtn && overlay) {
+            openBtn.addEventListener("click", () => overlay.classList.add("active"));
+            closeBtn.addEventListener("click", () => overlay.classList.remove("active"));
+        }
+    </script>
+</body>
+</html>

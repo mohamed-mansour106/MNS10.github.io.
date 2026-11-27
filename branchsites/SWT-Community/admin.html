@@ -6,6 +6,15 @@
     <title>Admin Panel - Well Testing Community</title>
     <link rel="stylesheet" href="css/style.css">
 <script data-goatcounter="https://ofu-mansour.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+/* ofu-admin-fit: admin page only, phone width */
+@media (max-width: 768px) {
+  .main-content, #adminPanel { min-width: 0; max-width: 100%; }
+  .profile-tabs { overflow-x: auto; max-width: 100%; }
+  .profile-tabs .tab-btn { white-space: nowrap; }
+  .profile-stats { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+}
+</style>
 </head>
 <body>
     <!-- Navigation -->
@@ -151,10 +160,7 @@
         });
 
         async function loadAdminData() {
-            await loadAllQuestions();
-            await loadAllAnswers();
-            await loadAllUsers();
-            await loadStats();
+            await Promise.all([loadAllQuestions(), loadAllAnswers(), loadAllUsers(), loadStats()]);
         }
 
         async function loadAllQuestions() {
@@ -188,6 +194,9 @@
                 `).join('');
             } catch (error) {
                 console.error('Error loading questions:', error);
+                loading.style.display = 'none';
+                container.style.display = 'block';
+                container.innerHTML = '<p>Could not load questions. Please refresh.</p>';
             }
         }
 
@@ -199,15 +208,24 @@
                 const snapshot = await db.collection('answers').orderBy('createdAt', 'desc').limit(50).get();
                 const answers = [];
 
-                for (const doc of snapshot.docs) {
+                const titleCache = {};
+                const lookups = snapshot.docs.map(doc => {
+                    const qid = doc.data().questionId;
+                    if (!titleCache[qid]) {
+                        titleCache[qid] = db.collection('questions').doc(qid).get();
+                    }
+                    return titleCache[qid];
+                });
+                const questionDocs = await Promise.all(lookups);
+                snapshot.docs.forEach((doc, i) => {
                     const answerData = doc.data();
-                    const questionDoc = await db.collection('questions').doc(answerData.questionId).get();
+                    const questionDoc = questionDocs[i];
                     answers.push({
                         id: doc.id,
                         ...answerData,
                         questionTitle: questionDoc.exists ? questionDoc.data().title : 'Deleted Question'
                     });
-                }
+                });
 
                 loading.style.display = 'none';
                 container.style.display = 'block';
@@ -227,6 +245,9 @@
                 `).join('');
             } catch (error) {
                 console.error('Error loading answers:', error);
+                loading.style.display = 'none';
+                container.style.display = 'block';
+                container.innerHTML = '<p>Could not load answers. Please refresh.</p>';
             }
         }
 
@@ -256,6 +277,9 @@
                 `).join('');
             } catch (error) {
                 console.error('Error loading users:', error);
+                loading.style.display = 'none';
+                container.style.display = 'block';
+                container.innerHTML = '<p>Could not load users. Please refresh.</p>';
             }
         }
 

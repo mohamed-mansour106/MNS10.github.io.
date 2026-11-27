@@ -1,3 +1,5 @@
+const QUIZ_KEY = "quizState:" + location.pathname;
+const HIGH_KEY = "highScore:" + location.pathname;
 /* ===== Quiz Data ===== */
 const questions = [
   {
@@ -190,13 +192,14 @@ function shuffleArray(arr) {
 }
 
 function saveProgress() {
-  localStorage.setItem("quizState", JSON.stringify(state));
+  if (isQuizFinished) return;
+  localStorage.setItem(QUIZ_KEY, JSON.stringify(state));
   localStorage.setItem("darkMode", darkMode ? "1" : "0");
   localStorage.setItem("soundEnabled", soundEnabled ? "1" : "0");
 }
 
 function loadProgress() {
-  const saved = localStorage.getItem("quizState");
+  const saved = localStorage.getItem(QUIZ_KEY);
   if (saved) return JSON.parse(saved);
   return null;
 }
@@ -266,12 +269,13 @@ function startTimer() {
 function finishQuiz() {
   if (isQuizFinished) return;
   isQuizFinished = true;
+  if (timerInterval) clearInterval(timerInterval);
 
   playSound(finishSound);
   quizSection.classList.add("hidden");
   resultSection.classList.remove("hidden");
   certificateSection.classList.add("hidden");
-  localStorage.removeItem("quizState");
+  localStorage.removeItem(QUIZ_KEY);
 
   let correct = 0;
   state.shuffled.forEach((q, i) => {
@@ -282,8 +286,8 @@ function finishQuiz() {
   scoreValue.textContent = `${finalScorePercent}%`;
 
   // High score
-  const best = Math.max(finalScorePercent, Number(localStorage.getItem("highScore") || 0));
-  localStorage.setItem("highScore", best);
+  const best = Math.max(finalScorePercent, Number(localStorage.getItem(HIGH_KEY) || 0));
+  localStorage.setItem(HIGH_KEY, best);
   highScore.textContent = `${best}%`;
 
   // Animated score ring
@@ -407,7 +411,7 @@ function startAfterAuth() {
     initQuiz();
   }
 
-  const best = localStorage.getItem("highScore") || 0;
+  const best = localStorage.getItem(HIGH_KEY) || 0;
   highScore.textContent = `${best}%`;
 }
 
@@ -500,7 +504,7 @@ continueBtn.addEventListener("click", () => {
 
 startOverBtn.addEventListener("click", () => {
   resumeModal.classList.add("hidden");
-  localStorage.removeItem("quizState");
+  localStorage.removeItem(QUIZ_KEY);
   initQuiz();
 });
 

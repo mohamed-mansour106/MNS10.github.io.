@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>شركة منصور الافتراضية</title>
+<style>
+  :root{
+    --bg:#0b1220; --bg2:#16233f; --card:#16233f; --line:#26334f;
+    --txt:#e8eefc; --dim:#93a4c4; --green:#34d399; --gray:#8a97ad;
+  }
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent}
+  body{
+    font-family:"Segoe UI", Tahoma, Arial, sans-serif;
+    background:radial-gradient(1200px 600px at 50% -10%, #16294d 0%, var(--bg) 60%);
+    color:var(--txt); min-height:100vh; padding-bottom:40px;
+  }
+  header{max-width:920px; margin:0 auto; padding:22px 16px 6px; text-align:center}
+  header h1{font-size:24px; letter-spacing:.5px}
+  header .mgr{color:var(--dim); font-size:13px; margin-top:6px}
+  .summary{display:flex; gap:10px; justify-content:center; margin-top:12px; flex-wrap:wrap}
+  .chip{background:var(--card); border:1px solid var(--line); border-radius:999px;
+        padding:6px 14px; font-size:13px; display:flex; align-items:center; gap:7px}
+  .dot{width:9px;height:9px;border-radius:50%; display:inline-block}
+  .dot.green{background:var(--green); box-shadow:0 0 8px var(--green)}
+  .dot.gray{background:var(--gray)}
+  .updated{color:var(--dim); font-size:12px; margin-top:10px}
+  .floor-wrap{max-width:860px; margin:6px auto 0; padding:0 6px}
+  svg{width:100%; height:auto; display:block}
+  .hint{text-align:center; color:var(--dim); font-size:12.5px; margin-top:2px}
+  .cards{max-width:920px; margin:14px auto 0; padding:0 14px;
+         display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px;
+        padding:14px; cursor:pointer; transition:transform .15s, border-color .15s}
+  .card:hover{transform:translateY(-2px); border-color:#3b4f7a}
+  .card .top{display:flex; align-items:center; gap:10px}
+  .avatar{width:38px;height:38px;border-radius:10px; display:flex;align-items:center;justify-content:center;
+          font-weight:bold; font-size:17px; color:#0b1220}
+  .card .name{font-size:16px; font-weight:600}
+  .card .role{font-size:12px; color:var(--dim)}
+  .card .statusline{margin-top:10px; font-size:13px; display:flex; align-items:center; gap:7px}
+  .card .task{margin-top:6px; font-size:12.5px; color:var(--dim); line-height:1.6}
+  footer{max-width:920px; margin:26px auto 0; padding:0 16px; text-align:center;
+         color:var(--dim); font-size:12.5px; line-height:1.9}
+  /* pop-up */
+  .overlay{position:fixed; inset:0; background:rgba(4,8,18,.7); opacity:0; pointer-events:none; transition:.2s; z-index:40}
+  .overlay.open{opacity:1; pointer-events:auto}
+  .panel{position:fixed; left:50%; top:50%; z-index:50; background:var(--bg2);
+         border:1px solid var(--line); border-radius:18px;
+         width:min(470px, calc(100vw - 26px)); max-height:84vh; overflow-y:auto;
+         padding:18px 18px 24px; opacity:0; pointer-events:none;
+         transform:translate(-50%,-48%) scale(.94); transition:opacity .2s, transform .22s ease}
+  .panel.open{opacity:1; pointer-events:auto; transform:translate(-50%,-50%) scale(1)}
+  .panel .head{display:flex; align-items:center; gap:12px}
+  .panel .avatar{width:46px;height:46px;font-size:20px;border-radius:12px}
+  .panel h2{font-size:19px}
+  .panel .role{color:var(--dim); font-size:13px}
+  .badge{margin-inline-start:auto; font-size:12px; padding:5px 12px; border-radius:999px; border:1px solid var(--line); white-space:nowrap}
+  .badge.working{color:var(--green); border-color:var(--green)}
+  .badge.idle{color:var(--gray)}
+  .sect{margin-top:16px}
+  .sect h3{font-size:13.5px; color:var(--dim); font-weight:600; margin-bottom:8px; letter-spacing:.3px}
+  .nowtask{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:11px 13px; font-size:14px; line-height:1.7}
+  .taskrow{display:flex; align-items:center; gap:9px; padding:7px 2px; font-size:14px; border-bottom:1px dashed #1d2c4a}
+  .taskrow:last-child{border-bottom:none}
+  .tick{width:19px;height:19px;border-radius:6px;border:1.5px solid var(--line); flex:none;
+        display:flex; align-items:center; justify-content:center; font-size:11px; color:#0b1220}
+  .taskrow.done .tick{background:var(--green); border-color:var(--green)}
+  .taskrow.done span{text-decoration:line-through; color:var(--dim)}
+  .rule{padding:6px 2px; font-size:13.5px; color:var(--dim); display:flex; gap:8px; line-height:1.7}
+  .rule::before{content:"•"; color:#f87171}
+  .lastdone{margin-top:14px; background:#102a22; border:1px solid #1c4a3a; color:#a7e9cd;
+            border-radius:12px; padding:10px 13px; font-size:13px; line-height:1.7}
+  .closebtn{margin-top:18px; width:100%; background:var(--card); color:var(--txt); border:1px solid var(--line);
+            border-radius:12px; padding:12px; font-size:15px; cursor:pointer; font-family:inherit}
+  @keyframes pulse{0%{opacity:.7; transform:scale(1)}100%{opacity:0; transform:scale(2.6)}}
+  .pulse{transform-origin:center; transform-box:fill-box; animation:pulse 1.6s ease-out infinite}
+  .roomhit{cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="companyName">شركة منصور الافتراضية</h1>
+  <div class="mgr">تحت إدارة <b id="managerName">مساعدك الذكي</b> - بتتحدث الحالات أول بأول من الشغل الحقيقي</div>
+  <div class="summary" id="summary"></div>
+  <div class="updated" id="updatedAt"></div>
+</header>
+<div class="floor-wrap"><svg id="floor" viewBox="-390 -205 800 670" role="img" aria-label="مكتب الشركة"></svg></div>
+<div class="hint">دوس على أي موظف في المكتب عشان تشوف كل تفاصيله</div>
+<div class="cards" id="cards"></div>
+<footer>
+  الحالة اللي شايفها دي حقيقية: مساعدك بيحدّث ملف الحالة مع كل شغل بيحصل.<br>
+  عايز تغيّر اسم موظف أو وظيفة أو تضيف مكتب؟ قول لمساعدك في أي وقت.
+</footer>
+<div class="overlay" id="overlay"></div>
+<div class="panel" id="panel"></div>
+<script>
+const FALLBACK = {"company":"شركة منصور الافتراضية","manager":"مساعدك الذكي","updatedAt":"28 نوفمبر 2026 - 8:00 م","employees":[
+{"id":"jobs","name":"سامي","role":"مسؤول التقديم على الوظائف","office":"مكتب الوظائف","accent":"#f59e0b","status":"working","currentTask":"بيجهّز دفعة تقديمات جديدة على الوظائف المناسبة","dailyTasks":[{"text":"مراجعة الوظائف الجديدة المطابقة","done":true},{"text":"التقديم على دفعة وظائف جديدة","done":false},{"text":"متابعة ردود الإيميل","done":false}],"weeklyTasks":[{"text":"تحديث تراكر الوظائف في Notion","done":false},{"text":"توسيع البحث لشركات ومنصات جديدة","done":false}],"rules":["ممنوع التقديم بمعلومات غلط","أي رد من شركة يتبلّغ بيه محمد فوراً","الـ CV يتظبط على حسب الوظيفة"],"lastDone":"أكتر من 66 تقديم لحد دلوقتي"},
+{"id":"ofu","name":"ليلى","role":"مسؤولة محتوى الأكاديمية","office":"مكتب المحتوى","accent":"#38bdf8","status":"working","currentTask":"بتحوّل كورسات Batch 24 وبتبني نظام الـ XP والـ positions","dailyTasks":[{"text":"تحويل ملفات الـ PDF لكورسات","done":true},{"text":"نشر Batch 23 بصوت","done":true},{"text":"بناء نظام الـ XP (مخفي لحد التفعيل)","done":false}],"weeklyTasks":[{"text":"رفع فيديوهات الكورسات الجديدة","done":false},{"text":"تحديث صفحة Learn","done":true}],"rules":["أي لينك يتغيّر محمد يعرف قبلها","كل حاجة مجانية","اختبار على الموبايل قبل النشر"],"lastDone":"Batch 23 بقى live - صفحة Learn بقت 133 كورس"},
+{"id":"promo","name":"كريم","role":"مسؤول التسويق والنشر","office":"مكتب التسويق","accent":"#f472b6","status":"idle","currentTask":"مستني مراجعة محمد لمنشورات الترويج","dailyTasks":[{"text":"تجهيز مسودات منشورات LinkedIn وTelegram","done":true},{"text":"متابعة فرص النشر الجديدة","done":false}],"weeklyTasks":[{"text":"خطة نشر أسبوعية","done":false},{"text":"تقرير زيارات الموقع","done":false}],"rules":["محمد هو اللي ينشر بنفسه من حساباته","ممنوع أي منصة أو إعلان مدفوع"],"lastDone":"حسابات Reddit وegpet اتجهزت للنشر"},
+{"id":"admin","name":"منى","role":"المسؤولة الإدارية","office":"المكتب الإداري","accent":"#34d399","status":"working","currentTask":"بتنظّم قواعد نظام الترقيات والشهادات","dailyTasks":[{"text":"تحديث حالات الموظفين في الشركة","done":true},{"text":"تنظيم الملفات والنسخ الاحتياطي","done":false}],"weeklyTasks":[{"text":"تقرير أسبوعي شامل لمحمد","done":false},{"text":"مراجعة قواعد الشغل","done":false}],"rules":["أي تغيير في Firebase محمد يعمله بنفسه من موبايله","نسخة احتياطية قبل أي تعديل كبير"],"lastDone":"تصميم نظام الـ positions والـ XP اتفق عليه"}]};
+
+const STATUS_AR = {working:"شغال دلوقتي", idle:"فاضي", done:"خلّص شغل النهاردة"};
+let DATA = FALLBACK;
+
+/* ---------- isometric helpers ---------- */
+const EX={x:86.6,y:50}, EY={x:-86.6,y:50}, UH=100;
+function P(u,v,h){ h=h||0; return [EX.x*u+EY.x*v, EX.y*u+EY.y*v-UH*h]; }
+function pts(a){ return a.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" "); }
+function poly(a,fill,extra){ return '<polygon points="'+pts(a)+'" fill="'+fill+'" '+(extra||"")+'/>'; }
+function shade(hex,f){ const n=parseInt(hex.slice(1),16); let r=(n>>16)&255,g=(n>>8)&255,b=n&255;
+  r=Math.min(255,Math.round(r*f)); g=Math.min(255,Math.round(g*f)); b=Math.min(255,Math.round(b*f));
+  return "#"+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1); }
+function box(u0,v0,u1,v1,h0,h1,c){
+  return poly([P(u0,v0,h1),P(u1,v0,h1),P(u1,v1,h1),P(u0,v1,h1)], shade(c,1.12))
+       + poly([P(u0,v1,h1),P(u1,v1,h1),P(u1,v1,h0),P(u0,v1,h0)], shade(c,0.82))
+       + poly([P(u1,v0,h1),P(u1,v1,h1),P(u1,v1,h0),P(u1,v0,h0)], shade(c,0.62));
+}
+function circleAt(u,v,h,r,fill,extra){ const p=P(u,v,h);
+  return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+r+'" fill="'+fill+'" '+(extra||"")+'/>'; }
+function ellAt(u,v,h,rx,ry,fill,extra){ const p=P(u,v,h);
+  return '<ellipse cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" rx="'+rx+'" ry="'+ry+'" fill="'+fill+'" '+(extra||"")+'/>'; }
+function textAt(x,y,str,size,fill,extra){ return '<text x="'+x+'" y="'+y+'" font-size="'+size+'" fill="'+fill+
+  '" text-anchor="middle" font-family="Segoe UI, Tahoma, Arial" '+(extra||"")+'>'+str+'</text>'; }
+
+/* ---------- one desk cluster (desk + monitor + chair + person) ---------- */
+function cluster(emp, du, dv){
+  const A = emp.accent;
+  let s = "";
+  // rug
+  s += poly([P(du-0.15,dv-0.12,0.01),P(du+1.05,dv-0.12,0.01),P(du+1.05,dv+1.25,0.01),P(du-0.15,dv+1.25,0.01)], A, 'opacity="0.22"');
+  // desk
+  s += box(du, dv, du+0.9, dv+0.32, 0, 0.42, "#f2f5fa");
+  // monitor
+  s += box(du+0.41, dv+0.12, du+0.51, dv+0.22, 0.42, 0.48, "#5b6a80");
+  s += box(du+0.21, dv+0.12, du+0.65, dv+0.18, 0.48, 0.86, "#2c3a52");
+  s += poly([P(du+0.21,dv+0.18,0.48),P(du+0.65,dv+0.18,0.48),P(du+0.65,dv+0.18,0.86),P(du+0.21,dv+0.18,0.86)], shade(A,1.25));
+  s += poly([P(du+0.27,dv+0.181,0.54),P(du+0.55,dv+0.181,0.54),P(du+0.55,dv+0.181,0.80),P(du+0.27,dv+0.181,0.80)], "#0b1220", 'opacity="0.25"');
+  // keyboard
+  s += box(du+0.19, dv+0.22, du+0.63, dv+0.28, 0.42, 0.445, "#c9d2e0");
+  // chair
+  s += box(du+0.35, dv+0.70, du+0.61, dv+0.98, 0.10, 0.24, "#31435f");
+  s += box(du+0.35, dv+0.88, du+0.61, dv+0.98, 0.24, 0.60, "#31435f");
+  // person (seated, facing the desk)
+  s += box(du+0.37, dv+0.62, du+0.59, dv+0.80, 0.24, 0.56, "#3b4a63");
+  const hp = P(du+0.48, dv+0.71, 0.66);
+  s += '<circle cx="'+hp[0].toFixed(1)+'" cy="'+hp[1].toFixed(1)+'" r="13.5" fill="#f2c9a0"/>';
+  s += '<path d="M '+hp[0].toFixed(1)+' '+(hp[1]-13.5).toFixed(1)+
+       ' a 13.5 13.5 0 0 1 11 13.2 l -5.5 0.4 a 9 9 0 0 0 -5.5 -8.4 z" fill="#2b2118"/>';
+  s += box(du+0.39, dv+0.58, du+0.47, dv+0.67, 0.40, 0.50, "#f2c9a0");
+  // click target over the whole cluster
+  s += poly([P(du-0.15,dv-0.12,1.15),P(du+1.05,dv-0.12,1.15),P(du+1.05,dv+1.25,0),P(du-0.15,dv+1.25,0)], "rgba(0,0,0,0)", 'class="roomhit" data-id="'+emp.id+'"');
+  s += poly([P(du-0.15,dv-0.12,0),P(du+1.05,dv-0.12,0),P(du+1.05,dv+1.25),P(du-0.15,dv+1.25)], "rgba(0,0,0,0)", 'class="roomhit" data-id="'+emp.id+'"');
+  return s;
+}
+
+/* floor name plate, drawn above everything in a labels pass */
+function plateOf(emp, pu, pv){
+  const p = P(pu, pv, 0);
+  const fx = p[0], topY = p[1] - 12;
+  const stColor = emp.status==="working" ? "#34d399" : "#8a97ad";
+  let s = '<g class="roomhit" data-id="'+emp.id+'" style="cursor:pointer">';
+  s += '<rect x="'+(fx-88)+'" y="'+topY+'" width="176" height="66" rx="11"'
+     + ' fill="rgba(9,15,28,0.88)" stroke="'+emp.accent+'" stroke-opacity="0.55"/>';
+  s += textAt(fx, topY+23, emp.office, 14, "#e8eefc", 'font-weight="600"');
+  s += '<circle cx="'+fx+'" cy="'+(topY+36)+'" r="5" fill="'+stColor+'"/>';
+  if(emp.status==="working")
+    s += '<circle class="pulse" cx="'+fx+'" cy="'+(topY+36)+'" r="5" fill="none" stroke="'+stColor+'" stroke-width="2" pointer-events="none"/>';
+  s += textAt(fx, topY+56, (STATUS_AR[emp.status]||emp.status)+" - "+emp.name, 11, stColor);
+  return s + "</g>";
+}
+
+/* ---------- the open-plan office ---------- */
+const FLOOR = 4.2;
+const SLOTS = [           // desk origin (du, dv) + plate position (pu, pv) per employee
+  {du:0.35, dv:0.50, pu:1.70, pv:1.15},   // back-left
+  {du:2.75, dv:0.50, pu:3.85, pv:1.90},   // back-right
+  {du:0.35, dv:2.55, pu:0.80, pv:4.10},   // front-left
+  {du:2.75, dv:2.55, pu:3.20, pv:4.10}    // front-right
+];
+
+function renderFloor(){
+  const emps = DATA.employees;
+  const items = [];
+  let s = "";
+  // ground shadow
+  const gc = P(FLOOR/2, FLOOR/2, 0);
+  s += '<ellipse cx="'+gc[0]+'" cy="'+(gc[1]+14)+'" rx="'+(FLOOR*105)+'" ry="'+(FLOOR*52)+'" fill="rgba(2,6,14,0.5)"/>';
+  // walls
+  s += poly([P(0,0,0),P(FLOOR,0,0),P(FLOOR,0,1.6),P(0,0,1.6)], "#dfe7f2");
+  s += poly([P(0,0,0),P(0,FLOOR,0),P(0,FLOOR,1.6),P(0,0,1.6)], "#c7d2e3");
+  // windows on wall A
+  [[0.4,1.3],[2.8,3.7]].forEach(w=>{
+    s += poly([P(w[0],0,0.55),P(w[1],0,0.55),P(w[1],0,1.35),P(w[0],0,1.35)], "#ffffff");
+    s += poly([P(w[0]+0.05,0,0.60),P(w[1]-0.05,0,0.60),P(w[1]-0.05,0,1.30),P(w[0]+0.05,0,1.30)], "#9fd7f5");
+    const mid=(w[0]+w[1])/2;
+    s += poly([P(mid-0.03,0,0.60),P(mid+0.03,0,0.60),P(mid+0.03,0,1.30),P(mid-0.03,0,1.30)], "#ffffff");
+  });
+  // windows on wall B
+  [[0.4,1.3],[2.8,3.7]].forEach(w=>{
+    s += poly([P(0,w[0],0.55),P(0,w[1],0.55),P(0,w[1],1.35),P(0,w[0],1.35)], "#ffffff");
+    s += poly([P(0,w[0]+0.05,0.60),P(0,w[1]-0.05,0.60),P(0,w[1]-0.05,1.30),P(0,w[0]+0.05,1.30)], "#8fcdf0");
+    const mid=(w[0]+w[1])/2;
+    s += poly([P(0,mid-0.03,0.60),P(0,mid+0.03,0.60),P(0,mid+0.03,1.30),P(0,mid-0.03,1.30)], "#ffffff");
+  });
+  // picture frame on wall A between the windows
+  s += poly([P(1.75,0,0.85),P(2.35,0,0.85),P(2.35,0,1.3),P(1.75,0,1.3)], "#31435f");
+  s += poly([P(1.82,0,0.92),P(2.28,0,0.92),P(2.28,0,1.23),P(1.82,0,1.23)], "#e8b04e");
+  // floor
+  s += poly([P(0,0),P(FLOOR,0),P(FLOOR,FLOOR),P(0,FLOOR)], "#0f4c5c");
+  s += poly([P(0,0),P(FLOOR,0),P(FLOOR,FLOOR),P(0,FLOOR)], "#38bdf8", 'opacity="0.06"');
+  // shelf with books on wall B (between the two left clusters)
+  let shelf = box(0.0,1.55,0.16,2.4,0.72,0.80,"#eef2f8")
+    + box(0.02,1.65,0.14,1.8,0.80,1.06,"#e2574c")
+    + box(0.02,1.84,0.14,1.99,0.80,1.02,"#f2c14e")
+    + box(0.02,2.03,0.14,2.18,0.80,1.08,"#4f8fe8")
+    + box(0.02,2.22,0.14,2.34,0.80,1.0,"#7bc47f");
+  items.push({sum:1.7, svg:shelf});
+  // central planter
+  let plant = box(1.9,1.9,2.3,2.3,0,0.30,"#c96f4a")
+    + ellAt(2.10,2.10,0.42,14,19,"#4c9a5b")
+    + ellAt(2.00,2.02,0.55,11,15,"#63b473")
+    + ellAt(2.20,2.02,0.60,11,16,"#3f8a4e");
+  items.push({sum:4.2, svg:plant});
+  // water cooler in the back-right corner
+  let cooler = box(3.82,0.14,4.08,0.40,0,0.5,"#eef2f8")
+    + box(3.86,0.18,4.04,0.36,0.5,0.8,"#7cc7ee");
+  items.push({sum:4.3, svg:cooler});
+  // desk clusters
+  emps.forEach((e,i)=>{
+    const sl = SLOTS[i % SLOTS.length];
+    items.push({sum:(sl.du+0.45)+(sl.dv+0.45), svg:cluster(e, sl.du, sl.dv)});
+  });
+  items.sort((a,b)=>a.sum-b.sum).forEach(it=>{ s += it.svg; });
+  // name plates last so nothing hides them
+  emps.forEach((e,i)=>{
+    const sl = SLOTS[i % SLOTS.length];
+    s += plateOf(e, sl.pu, sl.pv);
+  });
+  document.getElementById("floor").innerHTML = s;
+}
+
+function renderCards(){
+  const el = document.getElementById("cards");
+  el.innerHTML = DATA.employees.map(e=>{
+    const stColor = e.status==="working" ? "var(--green)" : "var(--gray)";
+    return '<div class="card" data-id="'+e.id+'">'
+      + '<div class="top"><div class="avatar" style="background:'+e.accent+'">'+e.name.charAt(0)+'</div>'
+      + '<div><div class="name">'+e.name+'</div><div class="role">'+e.role+'</div></div></div>'
+      + '<div class="statusline"><span class="dot '+(e.status==="working"?"green":"gray")+'"></span>'
+      + '<span style="color:'+stColor+'">'+(STATUS_AR[e.status]||e.status)+'</span></div>'
+      + '<div class="task">'+e.currentTask+'</div></div>';
+  }).join("");
+}
+
+function renderSummary(){
+  const w = DATA.employees.filter(e=>e.status==="working").length;
+  const i = DATA.employees.length - w;
+  document.getElementById("summary").innerHTML =
+    '<div class="chip"><span class="dot green"></span> شغال دلوقتي: '+w+'</div>'
+    + '<div class="chip"><span class="dot gray"></span> فاضي: '+i+'</div>'
+    + '<div class="chip">عدد المكاتب: '+DATA.employees.length+'</div>';
+  document.getElementById("updatedAt").textContent = "آخر تحديث: " + DATA.updatedAt;
+  document.getElementById("companyName").textContent = DATA.company;
+  document.getElementById("managerName").textContent = DATA.manager;
+  document.title = DATA.company;
+}
+
+function openPanel(id){
+  const e = DATA.employees.find(x=>x.id===id); if(!e) return;
+  const t = (t)=> t.map(x=>'<div class="taskrow '+(x.done?"done":"")+'"><div class="tick">'+(x.done?"✓":"")+'</div><span>'+x.text+'</span></div>').join("");
+  document.getElementById("panel").innerHTML =
+    '<div class="head"><div class="avatar" style="background:'+e.accent+'">'+e.name.charAt(0)+'</div>'
+    + '<div><h2>'+e.name+'</h2><div class="role">'+e.role+' - '+e.office+'</div></div>'
+    + '<div class="badge '+e.status+'">'+(STATUS_AR[e.status]||e.status)+'</div></div>'
+    + '<div class="sect"><h3>بيشتغل على</h3><div class="nowtask">'+e.currentTask+'</div></div>'
+    + '<div class="sect"><h3>تاسكات النهاردة</h3>'+t(e.dailyTasks)+'</div>'
+    + '<div class="sect"><h3>تاسكات الأسبوع</h3>'+t(e.weeklyTasks)+'</div>'
+    + '<div class="sect"><h3>قواعد الشغل</h3>'+e.rules.map(r=>'<div class="rule">'+r+'</div>').join("")+'</div>'
+    + '<div class="lastdone">آخر حاجة خلّصها: '+e.lastDone+'</div>'
+    + '<button class="closebtn" id="closePanel">قفل</button>';
+  document.getElementById("overlay").classList.add("open");
+  document.getElementById("panel").classList.add("open");
+  document.getElementById("closePanel").onclick = closePanel;
+}
+function closePanel(){
+  document.getElementById("overlay").classList.remove("open");
+  document.getElementById("panel").classList.remove("open");
+}
+document.getElementById("overlay").onclick = closePanel;
+document.addEventListener("click", ev=>{
+  const hit = ev.target.closest("[data-id]");
+  if(hit) openPanel(hit.getAttribute("data-id"));
+});
+
+function renderAll(){ renderSummary(); renderFloor(); renderCards();
+  const h = (location.hash||"").replace("#","");
+  if(h && DATA.employees.some(e=>e.id===h)) openPanel(h);
+}
+renderAll();
+fetch("status.json", {cache:"no-store"}).then(r=>{ if(!r.ok) throw 0; return r.json(); })
+  .then(d=>{ if(d && d.employees){ DATA=d; renderAll(); } }).catch(()=>{});
+</script>
+</body>
+</html>

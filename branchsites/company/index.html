@@ -448,6 +448,17 @@ function renderSummary(){
   document.title = DATA.company;
 }
 
+function coursesHtml(e){
+  if(!e.courses||!e.courses.length) return "";
+  const ST=["مستني","بيتبني","الصوت","بيتنشر","اتنشر"];
+  const COL=["#64748b","#fbbf24","#38bdf8","#a78bfa","#34d399"];
+  let last="", h='<div class="sect"><h3>الكورسات اللي بتتضاف</h3>';
+  e.courses.forEach(c=>{
+    if(c.batch!==last){ last=c.batch; h+='<div class="gtext" style="margin-top:10px;color:#9fb0c8">'+c.batch+'</div>'; }
+    h+='<div class="goalrow"><div class="gtext" dir="ltr" style="text-align:right">'+c.name+'</div><div class="gbar"><i style="width:'+(c.stage*25)+'%;background:'+COL[c.stage]+'"></i></div><div class="glab">'+(c.stage?ST[c.stage]+' - مرحلة '+c.stage+' من 4':ST[0])+'</div></div>';
+  });
+  return h+'<div class="glab">المراحل: بناء الكورس، الصوت، النشر، كارت Learn</div></div>';
+}
 function openPanel(id){
   const f = findEmployee(id); if(!f) return;
   const e = f.emp;
@@ -470,6 +481,7 @@ function openPanel(id){
     + '<div class="badge '+e.status+'">'+(STATUS_AR[e.status]||e.status)+'</div></div>'
     + '<div class="sect"><h3>بيشتغل على</h3><div class="nowtask">'+e.currentTask+'</div></div>'
     + goalHtml(e)
+    + coursesHtml(e)
     + '<div class="sect"><h3>قواعد الشغل</h3>'+e.rules.map(r=>'<div class="rule">'+r+'</div>').join("")+'</div>'
     + '<div class="lastdone">آخر حاجة خلّصها: '+e.lastDone+'</div>'
     + '<button class="closebtn" id="closePanel">قفل</button>';

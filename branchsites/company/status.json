@@ -200,7 +200,7 @@
      "office": "مكتب المحتوى",
      "accent": "#38bdf8",
      "status": "idle",
-     "currentTask": "مستنية ملفات PDF جديدة عشان تبدأ Batch 25",
+     "currentTask": "بتبني Batch 26 من كتيب Gas Well Testing",
      "dailyTasks": [
       {
        "text": "نشر Batch 24 بصوت",
@@ -217,23 +217,23 @@
       "أي لينك يتغيّر محمد يعرف قبلها",
       "اختبار على الموبايل قبل النشر"
      ],
-     "lastDone": "Batch 24 بقى live وصفحة Learn بقت 137 كارت",
+     "lastDone": "Batch 25 بقى live (4 كورسات بصوت)",
      "goal": {
       "title": "تحويل ملفات الـ PDF لكورسات كاملة بكويز وفيديو",
       "items": [
        {
         "text": "كورسات جديدة اتحولت من PDF ونزلت live",
-        "done": 93,
+        "done": 97,
         "unit": "كورس"
        },
        {
         "text": "كورسات فيها كويز",
-        "done": 142,
-        "total": 144,
+        "done": 146,
+        "total": 148,
         "unit": "كورس"
        },
        {
-        "text": "الدفعة الجاية (Batch 25)",
+        "text": "الدفعة الجاية (Batch 26)",
         "done": 0,
         "total": 4,
         "unit": "كورس"
@@ -248,7 +248,7 @@
      "office": "مكتب صفحة الكورسات",
      "accent": "#2dd4bf",
      "status": "working",
-     "currentTask": "بتراجع صفحة Learn وبتجهّز كروت الدفعة الجاية",
+     "currentTask": "بتتابع الكورسات اللي بتتضاف (Batch 26 بيتبني دلوقتي)",
      "dailyTasks": [],
      "weeklyTasks": [],
      "goal": {
@@ -256,16 +256,16 @@
       "items": [
        {
         "text": "كروت كورسات ظاهرة في صفحة Learn",
-        "done": 137,
+        "done": 141,
         "unit": "كارت"
        },
        {
         "text": "كروت كورسات جديدة اتضافت للصفحة",
-        "done": 93,
+        "done": 97,
         "unit": "كارت"
        },
        {
-        "text": "كروت الدفعة الجاية",
+        "text": "كروت الدفعة الجاية (Batch 26)",
         "done": 0,
         "total": 4,
         "unit": "كارت"
@@ -277,7 +277,109 @@
       "اختبار الصفحة على الموبايل (390px) قبل أي نشر",
       "أرقام الصفحة تتحسب من الموقع نفسه، مفيش أرقام متأليفة"
      ],
-     "lastDone": "Batch 24 اتضاف وصفحة Learn بقت 137 كارت"
+     "lastDone": "Batch 24 اتضاف وصفحة Learn بقت 137 كارت",
+     "courses": [
+      {
+       "batch": "Batch 25",
+       "name": "Surface Test Tree Components",
+       "stage": 4
+      },
+      {
+       "batch": "Batch 25",
+       "name": "Surface Safety Valve",
+       "stage": 4
+      },
+      {
+       "batch": "Batch 25",
+       "name": "Ignition Sources and Static Electricity",
+       "stage": 4
+      },
+      {
+       "batch": "Batch 25",
+       "name": "Well Test Types Overview",
+       "stage": 4
+      },
+      {
+       "batch": "Batch 26",
+       "name": "Steady, Pseudo-Steady and Transient Flow",
+       "stage": 1
+      },
+      {
+       "batch": "Batch 26",
+       "name": "Non-Darcy Turbulence in Gas Wells",
+       "stage": 1
+      },
+      {
+       "batch": "Batch 26",
+       "name": "Radius of Investigation and Drainage Radius",
+       "stage": 1
+      },
+      {
+       "batch": "Batch 26",
+       "name": "Skin Types, Partial Penetration and Perforation",
+       "stage": 1
+      },
+      {
+       "batch": "Batch 27",
+       "name": "Type Curve Matching",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 27",
+       "name": "Decline Curve Analysis",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 27",
+       "name": "Real Gas Pseudopressure Concept",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 27",
+       "name": "Flowing Bottomhole Pressure from Wellhead",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 28",
+       "name": "Horizontal Well Testing",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 28",
+       "name": "Fractured Well Flow Behavior",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 28",
+       "name": "Interference and Pulse Tests",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 28",
+       "name": "Layered Reservoirs and Crossflow",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 29",
+       "name": "Reservoir Heterogeneity and Flow Barriers",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 29",
+       "name": "Selecting Gas Wells for Stimulation",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 29",
+       "name": "Gas Reserves and Economic Limit",
+       "stage": 0
+      },
+      {
+       "batch": "Batch 29",
+       "name": "Well Testing Glossary",
+       "stage": 0
+      }
+     ]
     },
     {
      "id": "media",
@@ -312,8 +414,8 @@
       "items": [
        {
         "text": "كورسات فيها فيديو",
-        "done": 133,
-        "total": 144,
+        "done": 137,
+        "total": 148,
         "unit": "كورس"
        },
        {

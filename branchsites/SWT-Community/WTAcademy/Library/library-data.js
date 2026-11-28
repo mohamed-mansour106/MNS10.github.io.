@@ -102,9 +102,9 @@ const ACADEMY_MODULES = [
       ]
     },
     {
-      id: 'mod-08',
-      code: 'MOD-08',
-      title: '08 - Data Acquisition & Well Testing Calculations',
+      id: 'mod-09',
+      code: 'MOD-09',
+      title: '09 - Data Acquisition & Well Testing Calculations',
       category: 'Measurement & Sampling',
       status: 'Preview / Syllabus',
       slideCount: 24,
@@ -138,7 +138,7 @@ const ACADEMY_MODULES = [
       title: '10 - Surface Well Testing Burners & Atomization',
       category: 'Surface Well Testing',
       status: 'Available Now',
-      slideCount: 34,
+      slideCount: 10,
       duration: '75 mins',
       summary: 'Effluent atomization, propane pilot ignition, swivel joints, air/oil/water circuits, and Spitfire, Green Dragon, Mud Burner, and Evergreen (Sunflower) systems.',
       keywords: ['burners', 'atomization', 'spitfire', 'green dragon', 'sea dragon', 'mud burner', 'evergreen', 'sunflower', 'swivel joint', 'propane', 'brfi-bb']

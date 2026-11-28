@@ -1,15 +1,15 @@
 {
   "active": true,
-  "id": "bottoms-up-2026-11-27",
-  "publishedAt": "2026-11-27T14:45:19Z",
+  "id": "gor-2026-11-28",
+  "publishedAt": "2026-11-28T15:17:26Z",
   "hours": 24,
-  "question": "A well flows 4,320 bpd and the tubing volume is 180 bbls. What is the bottoms up time?",
+  "question": "A well produces 500 bbl of oil and 250,000 scf of gas per day. What is the GOR?",
   "options": [
-    "60 minutes",
-    "30 minutes",
-    "120 minutes",
-    "24 minutes"
+    "500 scf/bbl",
+    "50 scf/bbl",
+    "5,000 scf/bbl",
+    "0.5 scf/bbl"
   ],
   "answer": 0,
-  "explanation": "First convert the flowrate: 4,320 bpd / 1440 = 3 bpm. Then bottoms up time = tubing volume / flowrate = 180 / 3 = 60 minutes."
+  "explanation": "GOR = gas rate / oil rate = 250,000 / 500 = 500 scf/bbl."
 }

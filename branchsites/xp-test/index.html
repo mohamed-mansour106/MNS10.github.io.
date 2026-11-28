@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>OFU XP test (hidden)</title>
+<style>
+body{margin:0;font-family:system-ui,sans-serif;background:#0b1220;color:#e8eefc;padding:16px}
+h1{font-size:1.2rem;margin:0 0 6px}.card{background:#14203a;border-radius:12px;padding:12px;margin:12px 0}
+button{background:#2563eb;color:#fff;border:0;border-radius:8px;padding:10px 12px;margin:4px 4px 0 0;font-size:.95rem}
+.bar{height:10px;background:#223;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:#34d399}
+table{width:100%;border-collapse:collapse;font-size:.9rem}td{padding:4px 2px;border-bottom:1px solid #223}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.8rem}.off{background:#7f1d1d}.on{background:#14532d}
+small{color:#9fb0d0}
+</style></head><body>
+<h1>OFU positions and XP: test page</h1>
+<small>Hidden test page. Uses only this browser's memory. Nothing is sent anywhere and no real user data is touched.</small>
+<div class="card">Site flag: <span id="flag" class="tag off">loading</span><br><small>The real site features stay hidden until the flag in ofu-progression.json is set to true.</small></div>
+<div class="card"><div id="pos" style="font-weight:700;font-size:1.1rem"></div><div id="xp"></div><div class="bar"><i id="fill" style="width:0"></i></div><small id="next"></small></div>
+<div class="card"><b>Simulate events</b><br>
+<button data-e='{"type":"courseQuiz","slug":"Course_A","percent":95}'>Quiz A 95%</button>
+<button data-e='{"type":"courseQuiz","slug":"Course_B","percent":75}'>Quiz B 75%</button>
+<button data-e='{"type":"courseQuiz","slug":"Course_C","percent":50}'>Quiz C 50%</button>
+<button data-e='{"type":"bankCorrect"}'>Bank correct</button>
+<button data-e='{"type":"dailyQuestion","id":"q1"}'>Daily question</button>
+<button data-e='{"type":"communityAnswer"}'>Helpful answer</button>
+<button id="reset" style="background:#7f1d1d">Reset</button>
+<div id="log" style="margin-top:8px"><small></small></div></div>
+<div class="card"><b>Positions from the config</b><table id="tbl"></table><small>New courses are not listed here. They earn XP by the same rules automatically.</small></div>
+<script src="../../ofu-xp.js"></script>
+<script>
+var KEY="ofu-xp-test",today=new Date().toISOString().slice(0,10),S=JSON.parse(localStorage.getItem(KEY)||'{"xp":0,"done":{},"daily":{}}');
+OFUXP.load("../../ofu-progression.json").then(function(c){
+  var f=document.getElementById("flag");f.textContent=c.enabled?"ON":"OFF (hidden from users)";f.className="tag "+(c.enabled?"on":"off");
+  document.getElementById("tbl").innerHTML=c.positions.map(function(p){return "<tr><td>"+p.id+". "+p.name+"</td><td style='text-align:right'>"+p.xp+" XP</td></tr>"}).join("");
+  function draw(){var p=OFUXP.positionForXp(c,S.xp),n=OFUXP.nextPosition(c,p.id);
+    document.getElementById("pos").textContent="Position "+p.id+": "+p.name;
+    document.getElementById("xp").textContent=S.xp+" XP";
+    var pct=n?Math.min(100,(S.xp-p.xp)/(n.xp-p.xp)*100):100;document.getElementById("fill").style.width=pct+"%";
+    document.getElementById("next").textContent=n?(n.xp-S.xp>0?(n.xp-S.xp)+" XP to "+n.name+" (a promotion still needs the admin and an interview)":"Enough XP for "+n.name+": waiting for the admin and an interview"):"Top position";}
+  draw();
+  document.querySelectorAll("button[data-e]").forEach(function(b){b.onclick=function(){var r=OFUXP.apply(c,S,JSON.parse(b.dataset.e),today);S=r.state;localStorage.setItem(KEY,JSON.stringify(S));document.querySelector("#log small").textContent="+"+r.award+" XP";draw();}});
+  document.getElementById("reset").onclick=function(){S={xp:0,done:{},daily:{}};localStorage.removeItem(KEY);document.querySelector("#log small").textContent="reset";draw();};
+});
+</script></body></html>

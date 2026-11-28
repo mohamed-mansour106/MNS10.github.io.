@@ -117,6 +117,7 @@
   .roomhit{cursor:pointer}
 .goalrow{padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.08)}.gtext{font-size:14px;margin-bottom:6px}.gbar{height:8px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden}.gbar i{display:block;height:100%;border-radius:6px}.glab{font-size:12px;color:#9fb0c8;margin-top:5px}
 .floorpages{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}.pgbtn{background:#1b2a44;color:#cfe0f5;border:1px solid #2c4166;border-radius:14px;padding:8px 14px;font:inherit;font-size:14px}.pgbtn.on{background:#38bdf8;color:#04121f;border-color:#38bdf8}
+.roomnote{width:100%;text-align:center;font-size:14px;color:#9fd8ff;margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -352,7 +353,7 @@ function renderFloor(){
   const emps = allEmps.slice(FLOOR_PAGE*PER_ROOM, FLOOR_PAGE*PER_ROOM+PER_ROOM);
   let pg=document.getElementById('floorpages');
   if(!pg){ pg=document.createElement('div'); pg.id='floorpages'; pg.className='floorpages'; svgEl.parentNode.insertBefore(pg, svgEl.nextSibling); }
-  pg.innerHTML = rooms>1 ? Array.from({length:rooms},(_,k)=>'<button class="pgbtn'+(k===FLOOR_PAGE?' on':'')+'" data-page="'+k+'">غرفة '+(k+1)+'</button>').join('') : '';
+  pg.innerHTML = rooms>1 ? '<div class="roomnote">الغرفة '+(FLOOR_PAGE+1)+' من '+rooms+' - ظاهر '+emps.length+' من '+allEmps.length+' موظف. دوس على رقم الغرفة تشوف الباقي</div>'+Array.from({length:rooms},(_,k)=>'<button class="pgbtn'+(k===FLOOR_PAGE?' on':'')+'" data-page="'+k+'">غرفة '+(k+1)+'</button>').join('') : '';
   const layout = LAYOUTS[Math.min(emps.length,5)] || LAYOUTS[5];
   const items = [];
   let s = "";
@@ -503,7 +504,10 @@ const qt = qs.get("t");
 if(qt){ const st=document.createElement("style"); st.textContent="*{animation-delay:-"+parseInt(qt,10)+"ms !important}"; document.head.appendChild(st); }
 const h = (location.hash||"").replace("#","");
 if(h){ const f = findEmployee(h); if(f){ ACTIVE_DEPT=f.dept.id; renderTabs(); renderFloor(); renderCards(); openPanel(f.emp.id); } }
-if("serviceWorker" in navigator && location.protocol==="https:"){ navigator.serviceWorker.register("sw.js").catch(()=>{}); }
+if("serviceWorker" in navigator && location.protocol==="https:"){ navigator.serviceWorker.register("sw.js").then(r=>{ r.update(); }).catch(()=>{});
+  let hadCtl = !!navigator.serviceWorker.controller, reloaded=false;
+  navigator.serviceWorker.addEventListener("controllerchange", ()=>{ if(hadCtl && !reloaded){ reloaded=true; location.reload(); } hadCtl=true; });
+}
 fetch("status.json", {cache:"no-store"}).then(r=>{ if(!r.ok) throw 0; return r.json(); })
   .then(d=>{ if(d && (d.departments || d.employees)){ DATA=d; renderAll(); } }).catch(()=>{});
 </script>

@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "enabled": false,
+  "positions": [
+    { "id": 1, "name": "Trainee", "xp": 0 },
+    { "id": 2, "name": "Assistant", "xp": 300 },
+    { "id": 3, "name": "Operator", "xp": 800 },
+    { "id": 4, "name": "Senior Operator", "xp": 1500 },
+    { "id": 5, "name": "Lead Operator", "xp": 2400 },
+    { "id": 6, "name": "Specialist", "xp": 3500 },
+    { "id": 7, "name": "Senior Specialist", "xp": 5000 },
+    { "id": 8, "name": "Supervisor", "xp": 7000 },
+    { "id": 9, "name": "Superintendent", "xp": 9500 },
+    { "id": 10, "name": "Well Testing Master", "xp": 13000 }
+  ],
+  "xpRules": {
+    "courseQuizPass":   { "xp": 100, "minPercent": 70, "oncePerCourse": true },
+    "courseQuizTop":    { "xp": 20,  "minPercent": 90, "oncePerCourse": true },
+    "bankCorrectAnswer":{ "xp": 5,   "maxPerDay": 50 },
+    "dailyQuestion":    { "xp": 10,  "oncePerQuestion": true },
+    "streak7":          { "xp": 30,  "days": 7 },
+    "communityHelpfulAnswer": { "xp": 20, "maxPerDay": 5 },
+    "communityQuestion":{ "xp": 5 },
+    "completeProfile":  { "xp": 20,  "once": true }
+  },
+  "rules": {
+    "defaultCoursePosition": 1,
+    "lockedCoursesGiveXp": false,
+    "promotionNeedsAdmin": true,
+    "promotionNeedsInterview": true,
+    "existingUsersStartAt": 1
+  },
+  "courses": {}
+}

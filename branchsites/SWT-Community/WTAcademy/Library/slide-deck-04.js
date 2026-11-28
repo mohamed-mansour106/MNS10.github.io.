@@ -1,48 +1,48 @@
 // slide-deck-04.js
 const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
     {
-      q: 'What are the principal functions of a heat exchanger / indirect heater in well testing[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span)?',
+      q: 'What are the principal functions of a heat exchanger / indirect heater in well testing?',
       options: [
-        'Hydrates prevention, viscosity reduction, foam/emulsion breaking, and increased burning efficiency[span_2](start_span)[span_2](end_span)',
+        'Hydrates prevention, viscosity reduction, foam/emulsion breaking, and increased burning efficiency',
         'Only to increase wellhead pressure above 15,000 psi',
         'To filter out sand and solids from the wellbore',
         'To compress natural gas for pipeline export'
       ],
       answer: 0,
-      explanation: 'Slide 04 lists the 5 principal functions: hydrates prevention, viscosity reduction, foam reduction, emulsion breaking, and increased burning efficiency[span_3](start_span)[span_3](end_span).'
+      explanation: 'Slide 04 lists the 5 principal functions: hydrates prevention, viscosity reduction, foam reduction, emulsion breaking, and increased burning efficiency.'
     },
     {
-      q: 'What is the maximum effluent temperature and working pressure specifications for standard indirect heaters[span_4](start_span)[span_4](end_span)?',
+      q: 'What is the maximum effluent temperature and working pressure specifications for standard indirect heaters?',
       options: [
-        'Max effluent temperature: 200°F (Manifold inlet: 250°F); available in 3k psi and 5k psi WP[span_5](start_span)[span_5](end_span)',
+        'Max effluent temperature: 200°F (Manifold inlet: 250°F); available in 3k psi and 5k psi WP',
         'Max effluent temperature: 500°F; available in 15k psi WP',
         'Max effluent temperature: 100°F; available in 1k psi WP only',
         'Max effluent temperature: 372°F; 235 psi vessel'
       ],
       answer: 0,
-      explanation: 'Slide 10 specifies 3k psi (heliportable) and 5k psi WP options, with a maximum effluent temperature of 200°F[span_6](start_span)[span_6](end_span).'
+      explanation: 'Slide 10 specifies 3k psi (heliportable) and 5k psi WP options, with a maximum effluent temperature of 200°F.'
     },
     {
-      q: 'What is the function of the CMA (CMA Flameout Shut Down System) on the indirect heater[span_7](start_span)[span_7](end_span)?',
+      q: 'What is the function of the CMA (CMA Flameout Shut Down System) on the indirect heater?',
       options: [
-        'Monitors pilot flame via mercury bulb and automatically trips the ASV (Automatic Shutdown Valve) if flameout occurs[span_8](start_span)[span_8](end_span)',
+        'Monitors pilot flame via mercury bulb and automatically trips the ASV (Automatic Shutdown Valve) if flameout occurs',
         'Regulates steam condensate return to the generator',
         'Measures gas flowrate using an orifice plate',
         'Controls the hydraulic pump pressure on the ESD panel'
       ],
       answer: 0,
-      explanation: 'Slide 07 illustrates the CMA safety system closing the ASV if the pilot flame goes out[span_9](start_span)[span_9](end_span).'
+      explanation: 'Slide 07 illustrates the CMA safety system closing the ASV if the pilot flame goes out.'
     },
     {
-      q: 'Which critical safety precaution must be observed when operating and storing heaters and steam exchangers[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span)?',
+      q: 'Which critical safety precaution must be observed when operating and storing heaters and steam exchangers?',
       options: [
-        'Never transport when full of water/condensate, verify outlet/choke are open before starting to prevent thermal expansion coil bursting, and flush/inhibit after the job[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span)',
+        'Never transport when full of water/condensate, verify outlet/choke are open before starting to prevent thermal expansion coil bursting, and flush/inhibit after the job',
         'Keep burner running continuously during transport',
         'Use gate valves as chokes to regulate flow',
         'Touch the vessel bare-handed to check operating temperature'
       ],
       answer: 0,
-      explanation: 'Slides 17 and 18 emphasize checking that outlet valves/chokes are open (to prevent thermal expansion bursts), never transporting full vessels, and flushing/inhibiting after jobs[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span).'
+      explanation: 'Slides 17 and 18 emphasize checking that outlet valves/chokes are open (to prevent thermal expansion bursts), never transporting full vessels, and flushing/inhibiting after jobs.'
     }
   ];
   
@@ -90,12 +90,12 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
           <h3 style="font-size:1.2rem; font-weight:700;">Module Contents &amp; Engineering Architecture</h3>
           <div class="grid-2">
             ${[
-              { idx: '01', name: 'Heat-Exchanger Functions', desc: 'Hydrates prevention, viscosity reduction, foam/emulsion breaking, burning efficiency[span_16](start_span)[span_16](end_span).', target: 3 },
-              { idx: '02', name: 'Indirect Heater Description', desc: 'Fire tube, water bath, diesel burner, CMA control box, and thermostatic valve[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span).', target: 4 },
-              { idx: '03', name: 'Heater Operation & Start-Up', desc: 'Step-by-step safety lighting procedure, diesel burner start, and shutdown[span_21](start_span)[span_21](end_span).', target: 8 },
-              { idx: '04', name: 'Heater Selection', desc: 'Onshore/offshore ratings, 3k/5k WP, heating capacity, and utility requirements[span_22](start_span)[span_22](end_span)[span_23](start_span)[span_23](end_span).', target: 9 },
-              { idx: '05', name: 'Steam-Exchanger Description', desc: 'Steam inlet, condensate outlet, choke box, 235 psi vessel, and 372°F steam[span_24](start_span)[span_24](end_span).', target: 11 },
-              { idx: '06', name: 'Steam Trap & Safety', desc: 'Trap operating states, safety relief valves, thermal expansion, and maintenance[span_25](start_span)[span_25](end_span)[span_26](start_span)[span_26](end_span)[span_27](start_span)[span_27](end_span)[span_28](start_span)[span_28](end_span)[span_29](start_span)[span_29](end_span).', target: 13 }
+              { idx: '01', name: 'Heat-Exchanger Functions', desc: 'Hydrates prevention, viscosity reduction, foam/emulsion breaking, burning efficiency.', target: 3 },
+              { idx: '02', name: 'Indirect Heater Description', desc: 'Fire tube, water bath, diesel burner, CMA control box, and thermostatic valve.', target: 4 },
+              { idx: '03', name: 'Heater Operation & Start-Up', desc: 'Step-by-step safety lighting procedure, diesel burner start, and shutdown.', target: 8 },
+              { idx: '04', name: 'Heater Selection', desc: 'Onshore/offshore ratings, 3k/5k WP, heating capacity, and utility requirements.', target: 9 },
+              { idx: '05', name: 'Steam-Exchanger Description', desc: 'Steam inlet, condensate outlet, choke box, 235 psi vessel, and 372°F steam.', target: 11 },
+              { idx: '06', name: 'Steam Trap & Safety', desc: 'Trap operating states, safety relief valves, thermal expansion, and maintenance.', target: 13 }
             ].map(item => `
               <button onclick="goToSlide(${item.target})" class="inner-box" style="text-align:left; display:flex; flex-direction:column; gap:0.4rem;">
                 <div style="display:flex; justify-content:space-between; width:100%;">
@@ -118,13 +118,13 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
         <div style="display:flex; flex-direction:column; gap:0.85rem;">
           <div class="inner-box">
             <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:0.2rem;">Lecture Objectives</h3>
-            <p class="font-mono text-muted" style="font-size:0.72rem;">BY THE END OF THIS LECTURE, FIELD PERSONNEL MUST BE ABLE TO[span_30](start_span)[span_30](end_span):</p>
+            <p class="font-mono text-muted" style="font-size:0.72rem;">BY THE END OF THIS LECTURE, FIELD PERSONNEL MUST BE ABLE TO:</p>
           </div>
           ${[
-            { code: 'OBJ-01', title: 'Explain the Functions of Heat-Exchangers', detail: 'Articulate how indirect heaters and steam exchangers prevent hydrates and reduce oil viscosity[span_31](start_span)[span_31](end_span)[span_32](start_span)[span_32](end_span).' },
-            { code: 'OBJ-02', title: 'Describe Principles of Operation', detail: 'Understand water bath indirect heating, CMA flameout control, and steam trap cycling[span_33](start_span)[span_33](end_span)[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span)[span_36](start_span)[span_36](end_span).' },
-            { code: 'OBJ-03', title: 'Select Equipment Properly', detail: 'Evaluate working pressure ratings (3k, 5k, 10k, 15k psi WP), heating capacities, and utility supplies[span_37](start_span)[span_37](end_span)[span_38](start_span)[span_38](end_span)[span_39](start_span)[span_39](end_span)[span_40](start_span)[span_40](end_span).' },
-            { code: 'OBJ-04', title: 'List All Safety Aspects', detail: 'Master pressure relief settings, thermal expansion coil precautions, and post-job flushing protocols[span_41](start_span)[span_41](end_span)[span_42](start_span)[span_42](end_span)[span_43](start_span)[span_43](end_span)[span_44](start_span)[span_44](end_span).' }
+            { code: 'OBJ-01', title: 'Explain the Functions of Heat-Exchangers', detail: 'Articulate how indirect heaters and steam exchangers prevent hydrates and reduce oil viscosity.' },
+            { code: 'OBJ-02', title: 'Describe Principles of Operation', detail: 'Understand water bath indirect heating, CMA flameout control, and steam trap cycling.' },
+            { code: 'OBJ-03', title: 'Select Equipment Properly', detail: 'Evaluate working pressure ratings (3k, 5k, 10k, 15k psi WP), heating capacities, and utility supplies.' },
+            { code: 'OBJ-04', title: 'List All Safety Aspects', detail: 'Master pressure relief settings, thermal expansion coil precautions, and post-job flushing protocols.' }
           ].map(obj => `
             <div class="inner-box" style="display:flex; align-items:flex-start; gap:0.85rem;">
               <span class="badge badge-emerald" style="flex-shrink:0; margin-top:0.15rem;">${obj.code}</span>
@@ -148,17 +148,17 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
             <div class="inner-box amber-border">
               <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700;">FUNCTION 01</div>
               <div style="font-weight:700; font-size:1rem; margin:0.35rem 0;">Hydrates Prevention</div>
-              <p class="text-muted" style="font-size:0.78rem;">Heats wellbore fluids to counteract temperature drops caused by pressure reduction across the choke manifold[span_45](start_span)[span_45](end_span).</p>
+              <p class="text-muted" style="font-size:0.78rem;">Heats wellbore fluids to counteract temperature drops caused by pressure reduction across the choke manifold.</p>
             </div>
             <div class="inner-box emerald-border">
               <div class="font-mono text-emerald" style="font-size:0.72rem; font-weight:700;">FUNCTION 02</div>
               <div style="font-weight:700; font-size:1rem; margin:0.35rem 0;">Viscosity Reduction</div>
-              <p class="text-muted" style="font-size:0.78rem;">Lowers heavy crude viscosity to improve fluid flow and separation efficiency in the test separator[span_46](start_span)[span_46](end_span).</p>
+              <p class="text-muted" style="font-size:0.78rem;">Lowers heavy crude viscosity to improve fluid flow and separation efficiency in the test separator.</p>
             </div>
             <div class="inner-box sky-border">
               <div class="font-mono text-sky" style="font-size:0.72rem; font-weight:700;">FUNCTION 03 // OTHERS</div>
               <div style="font-weight:700; font-size:1rem; margin:0.35rem 0;">Emulsions &amp; Burning</div>
-              <p class="text-muted" style="font-size:0.78rem;">Reduces foam, assists emulsion breaking, and increases overall flare burner efficiency[span_47](start_span)[span_47](end_span).</p>
+              <p class="text-muted" style="font-size:0.78rem;">Reduces foam, assists emulsion breaking, and increases overall flare burner efficiency.</p>
             </div>
           </div>
         </div>
@@ -173,12 +173,12 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
           <h3 style="font-size:1.2rem; font-weight:700;">Indirect Heater Hardware &amp; Internal Layout</h3>
           <div class="grid-2">
             <div class="inner-box" style="display:flex; flex-direction:column; gap:0.5rem;">
-              <div class="font-mono text-amber" style="font-size:0.75rem; font-weight:700;">MAJOR ASSEMBLY COMPONENTS[span_48](start_span)[span_48](end_span)</div>
-              <div class="inner-box font-mono" style="background:var(--panel); font-size:0.75rem;">&bull; Water Bath Vessel &amp; Fire Tube Liner[span_49](start_span)[span_49](end_span)</div>
-              <div class="inner-box font-mono" style="background:var(--panel); font-size:0.75rem;">&bull; Diesel Burner &amp; Mixing Chamber[span_50](start_span)[span_50](end_span)</div>
-              <div class="inner-box font-mono" style="background:var(--panel); font-size:0.75rem;">&bull; Stack / Chimney &amp; Spark Arrestor[span_51](start_span)[span_51](end_span)</div>
-              <div class="inner-box font-mono" style="background:var(--panel); font-size:0.75rem;">&bull; Compressed Air &amp; Propane Lines[span_52](start_span)[span_52](end_span)</div>
-              <div class="inner-box font-mono" style="background:var(--panel); font-size:0.75rem;">&bull; Flame Arrestor &amp; Adjustable Flap[span_53](start_span)[span_53](end_span)</div>
+              <div class="font-mono text-amber" style="font-size:0.75rem; font-weight:700;">MAJOR ASSEMBLY COMPONENTS</div>
+              <div class="inner-box font-mono" style="background:var(--panel); font-size:0.75rem;">&bull; Water Bath Vessel &amp; Fire Tube Liner</div>
+              <div class="inner-box font-mono" style="background:var(--panel); font-size:0.75rem;">&bull; Diesel Burner &amp; Mixing Chamber</div>
+              <div class="inner-box font-mono" style="background:var(--panel); font-size:0.75rem;">&bull; Stack / Chimney &amp; Spark Arrestor</div>
+              <div class="inner-box font-mono" style="background:var(--panel); font-size:0.75rem;">&bull; Compressed Air &amp; Propane Lines</div>
+              <div class="inner-box font-mono" style="background:var(--panel); font-size:0.75rem;">&bull; Flame Arrestor &amp; Adjustable Flap</div>
             </div>
             <div class="inner-box" style="display:flex; flex-direction:column; justify-content:center; gap:0.75rem;">
               <div class="font-mono text-emerald" style="font-size:0.75rem; font-weight:700;">PROCESS CONNECTIONS</div>
@@ -187,7 +187,7 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
                 <span class="font-mono text-amber" style="font-weight:700;">3" Weco-Union</span>
               </div>
               <p class="text-muted" style="font-size:0.78rem;">
-                Well effluent passes through coils immersed in a heated water bath, preventing direct flame contact with hydrocarbon lines[span_54](start_span)[span_54](end_span)[span_55](start_span)[span_55](end_span).
+                Well effluent passes through coils immersed in a heated water bath, preventing direct flame contact with hydrocarbon lines.
               </p>
             </div>
           </div>
@@ -202,14 +202,14 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
         <div style="display:flex; flex-direction:column; gap:1rem;">
           <h3 style="font-size:1.2rem; font-weight:700;">Indirect Heater Control Schematic &amp; Flow Path</h3>
           <p class="text-muted" style="font-size:0.8rem;">
-            Shows the integration of propane pilot supply, diesel burner loop, thermostatic water bath control valve, and effluent coil choke box[span_56](start_span)[span_56](end_span).
+            Shows the integration of propane pilot supply, diesel burner loop, thermostatic water bath control valve, and effluent coil choke box.
           </p>
           <div class="inner-box" style="background:#111827; padding:1rem; text-align:center;">
             <div class="font-mono text-amber" style="font-size:0.85rem; font-weight:bold; margin-bottom:0.5rem;">HEATER SCHEMATIC SUMMARY</div>
             <div class="font-mono text-muted" style="font-size:0.75rem; line-height:1.6;">
-              Propane (35 psi) &rarr; CMA Control Box &rarr; Pilot Light (5 psi)[span_57](start_span)[span_57](end_span)[span_58](start_span)[span_58](end_span)<br/>
-              Diesel Burner + Air Supply &rarr; Fire Tube Heating &rarr; Water Bath Thermostatic Valve[span_59](start_span)[span_59](end_span)[span_60](start_span)[span_60](end_span)<br/>
-              Effluent In &rarr; Choke Box &rarr; Coils (Water Bath) &rarr; Effluent Out (Bypass equipped)[span_61](start_span)[span_61](end_span)
+              Propane (35 psi) &rarr; CMA Control Box &rarr; Pilot Light (5 psi)<br/>
+              Diesel Burner + Air Supply &rarr; Fire Tube Heating &rarr; Water Bath Thermostatic Valve<br/>
+              Effluent In &rarr; Choke Box &rarr; Coils (Water Bath) &rarr; Effluent Out (Bypass equipped)
             </div>
           </div>
         </div>
@@ -227,14 +227,14 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
               <div class="font-mono text-crimson" style="font-size:0.72rem; font-weight:700;">PILOT FLAME SENSING</div>
               <div style="font-size:0.95rem; font-weight:700;">Mercury Bulb &amp; Capillary Tube</div>
               <p class="text-muted" style="font-size:0.78rem;">
-                The pilot flame heats the mercury bulb, generating pressure to hold the 3-way valve open and keep the Automatic Shutdown Valve (ASV) open[span_62](start_span)[span_62](end_span).
+                The pilot flame heats the mercury bulb, generating pressure to hold the 3-way valve open and keep the Automatic Shutdown Valve (ASV) open.
               </p>
             </div>
             <div class="inner-box amber-border" style="display:flex; flex-direction:column; gap:0.65rem;">
               <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700;">AUTOMATIC TRIP ACTION</div>
               <div style="font-size:0.95rem; font-weight:700;">ASV Fuel Cut-Off</div>
               <p class="text-muted" style="font-size:0.78rem;">
-                If the pilot flame extinguishes, mercury cools, pressure drops, the return spring shifts the 3-way valve, and the ASV instantly shuts off diesel supply to the burner[span_63](start_span)[span_63](end_span).
+                If the pilot flame extinguishes, mercury cools, pressure drops, the return spring shifts the 3-way valve, and the ASV instantly shuts off diesel supply to the burner.
               </p>
             </div>
           </div>
@@ -251,23 +251,23 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
           <div class="grid-2" style="align-items:center;">
             <div style="display:flex; flex-direction:column; gap:0.75rem;">
               <p class="text-muted" style="font-size:0.88rem;">
-                Maintains stable water bath temperature by modulating fuel gas/diesel flow to the burner via an expansible fluid thermal bulb and capillary tube[span_64](start_span)[span_64](end_span).
+                Maintains stable water bath temperature by modulating fuel gas/diesel flow to the burner via an expansible fluid thermal bulb and capillary tube.
               </p>
               <div class="inner-box" style="display:flex; justify-content:space-between; font-size:0.78rem;">
                 <span class="font-mono text-muted">SENSING ELEMENT</span>
-                <span class="font-mono text-amber" style="font-weight:700;">Temperature Bulb &amp; Capillary Tube[span_65](start_span)[span_65](end_span)</span>
+                <span class="font-mono text-amber" style="font-weight:700;">Temperature Bulb &amp; Capillary Tube</span>
               </div>
               <div class="inner-box" style="display:flex; justify-content:space-between; font-size:0.78rem;">
                 <span class="font-mono text-muted">ACTUATION</span>
-                <span class="font-mono text-emerald" style="font-weight:700;">Expansible Fluid Chamber &amp; Stem[span_66](start_span)[span_66](end_span)</span>
+                <span class="font-mono text-emerald" style="font-weight:700;">Expansible Fluid Chamber &amp; Stem</span>
               </div>
             </div>
             <div class="inner-box" style="font-family:monospace; font-size:0.75rem; display:flex; flex-direction:column; gap:0.35rem;">
               <div class="text-amber" style="font-weight:700;">KEY COMPONENTS:</div>
-              <div>&bull; Temperature bulb in water bath[span_67](start_span)[span_67](end_span)</div>
-              <div>&bull; Capillary tube &amp; expansible fluid chamber[span_68](start_span)[span_68](end_span)</div>
-              <div>&bull; Valve control stem &amp; adjusting screw[span_69](start_span)[span_69](end_span)</div>
-              <div>&bull; Return spring &amp; regulating index[span_70](start_span)[span_70](end_span)</div>
+              <div>&bull; Temperature bulb in water bath</div>
+              <div>&bull; Capillary tube &amp; expansible fluid chamber</div>
+              <div>&bull; Valve control stem &amp; adjusting screw</div>
+              <div>&bull; Return spring &amp; regulating index</div>
             </div>
           </div>
         </div>
@@ -282,29 +282,29 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
           <h3 style="font-size:1.2rem; font-weight:700;">Indirect Heater Operating Procedures</h3>
           <div class="grid-2">
             <div class="inner-box amber-border" style="display:flex; flex-direction:column; gap:0.5rem;">
-              <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700;">A) PILOT LIGHT START-UP[span_71](start_span)[span_71](end_span)</div>
+              <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700;">A) PILOT LIGHT START-UP</div>
               <div style="font-size:0.78rem; line-height:1.5;">
-                1. Flush fire tube thoroughly[span_72](start_span)[span_72](end_span)<br/>
-                2. Open propane supply (35 psi)[span_73](start_span)[span_73](end_span)<br/>
-                3. Turn CMA knob to manual (ASV open)[span_74](start_span)[span_74](end_span)[span_75](start_span)[span_75](end_span)<br/>
-                4. Open propane to pilot (5 psi)[span_76](start_span)[span_76](end_span)[span_77](start_span)[span_77](end_span)<br/>
-                5. Light pilot via spark plug[span_78](start_span)[span_78](end_span)<br/>
-                6. Wait for knob to click to automatic[span_79](start_span)[span_79](end_span)<br/>
-                7. Close propane to pilot[span_80](start_span)[span_80](end_span)<br/>
-                8. Wait (&le; 30 sec) for ASV to stay closed[span_81](start_span)[span_81](end_span)<br/>
-                9. Flush fire tube[span_82](start_span)[span_82](end_span)
+                1. Flush fire tube thoroughly<br/>
+                2. Open propane supply (35 psi)<br/>
+                3. Turn CMA knob to manual (ASV open)<br/>
+                4. Open propane to pilot (5 psi)<br/>
+                5. Light pilot via spark plug<br/>
+                6. Wait for knob to click to automatic<br/>
+                7. Close propane to pilot<br/>
+                8. Wait (&le; 30 sec) for ASV to stay closed<br/>
+                9. Flush fire tube
               </div>
             </div>
             <div class="inner-box emerald-border" style="display:flex; flex-direction:column; gap:0.5rem;">
-              <div class="font-mono text-emerald" style="font-size:0.72rem; font-weight:700;">B) DIESEL BURNER &amp; C) SHUT-DOWN[span_83](start_span)[span_83](end_span)</div>
+              <div class="font-mono text-emerald" style="font-size:0.72rem; font-weight:700;">B) DIESEL BURNER &amp; C) SHUT-DOWN</div>
               <div style="font-size:0.78rem; line-height:1.5;">
                 <strong>Diesel Burner Start:</strong><br/>
-                Repeat 1-6 &rarr; Apply 1 bar air &rarr; Open diesel valve &rarr; Start diesel pump &rarr; Increase to 4 bar air &rarr; Check smokeless chimney &rarr; Adjust[span_84](start_span)[span_84](end_span).<br/>
+                Repeat 1-6 &rarr; Apply 1 bar air &rarr; Open diesel valve &rarr; Start diesel pump &rarr; Increase to 4 bar air &rarr; Check smokeless chimney &rarr; Adjust.<br/>
                 <strong>Shut-Down Procedure:</strong><br/>
-                13. Stop diesel pump &amp; close valve[span_85](start_span)[span_85](end_span)<br/>
-                14. Close propane &amp; air supply valves[span_86](start_span)[span_86](end_span)<br/>
-                15. Wait for ASV to close[span_87](start_span)[span_87](end_span)<br/>
-                16. Flush fire tube[span_88](start_span)[span_88](end_span)
+                13. Stop diesel pump &amp; close valve<br/>
+                14. Close propane &amp; air supply valves<br/>
+                15. Wait for ASV to close<br/>
+                16. Flush fire tube
               </div>
             </div>
           </div>
@@ -320,23 +320,23 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
           <h3 style="font-size:1.2rem; font-weight:700;">Indirect Heater Selection &amp; Utilities</h3>
           <div class="grid-2">
             <div class="inner-box">
-              <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700; margin-bottom:0.4rem;">SELECTION CRITERIA[span_89](start_span)[span_89](end_span)</div>
+              <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700; margin-bottom:0.4rem;">SELECTION CRITERIA</div>
               <div style="font-size:0.8rem; line-height:1.6;">
-                &bull; Safety regulations (Onshore / Offshore)[span_90](start_span)[span_90](end_span)<br/>
-                &bull; Working Pressures: 3k psi (heliportable) &amp; 5k psi WP[span_91](start_span)[span_91](end_span)<br/>
-                &bull; Heating Capacity: 2.0 MMBtu/hr (3k WP) vs 0.6 MMBtu/hr (5k WP)[span_92](start_span)[span_92](end_span)<br/>
-                &bull; Max Effluent Temp: 200°F (Manifold inlet: 250°F)[span_93](start_span)[span_93](end_span)<br/>
-                &bull; H2S service compliance &amp; available footprint[span_94](start_span)[span_94](end_span)
+                &bull; Safety regulations (Onshore / Offshore)<br/>
+                &bull; Working Pressures: 3k psi (heliportable) &amp; 5k psi WP<br/>
+                &bull; Heating Capacity: 2.0 MMBtu/hr (3k WP) vs 0.6 MMBtu/hr (5k WP)<br/>
+                &bull; Max Effluent Temp: 200°F (Manifold inlet: 250°F)<br/>
+                &bull; H2S service compliance &amp; available footprint
               </div>
             </div>
             <div class="inner-box">
-              <div class="font-mono text-emerald" style="font-size:0.72rem; font-weight:700; margin-bottom:0.4rem;">REQUIRED UTILITIES[span_95](start_span)[span_95](end_span)</div>
+              <div class="font-mono text-emerald" style="font-size:0.72rem; font-weight:700; margin-bottom:0.4rem;">REQUIRED UTILITIES</div>
               <div style="font-size:0.8rem; line-height:1.6;">
-                &bull; Compressed air supply for burner &amp; sweep[span_96](start_span)[span_96](end_span)<br/>
-                &bull; Electricity supply for pilot light ignition[span_97](start_span)[span_97](end_span)<br/>
-                &bull; Diesel supply &amp; pump for burner[span_98](start_span)[span_98](end_span)<br/>
-                &bull; Propane gas supply for pilot light[span_99](start_span)[span_99](end_span)<br/>
-                &bull; Water &amp; corrosion inhibitors for vessel[span_100](start_span)[span_100](end_span)
+                &bull; Compressed air supply for burner &amp; sweep<br/>
+                &bull; Electricity supply for pilot light ignition<br/>
+                &bull; Diesel supply &amp; pump for burner<br/>
+                &bull; Propane gas supply for pilot light<br/>
+                &bull; Water &amp; corrosion inhibitors for vessel
               </div>
             </div>
           </div>
@@ -356,22 +356,22 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
                 Uses saturated steam from a steam generator to heat well effluent flowing through internal coils. Highly efficient for high-pressure operations.
               </p>
               <div class="inner-box font-mono text-amber" style="font-size:0.78rem;">
-                MAX EFFLUENT TEMP: 250°F[span_101](start_span)[span_101](end_span)
+                MAX EFFLUENT TEMP: 250°F
               </div>
               <div class="inner-box font-mono text-sky" style="font-size:0.78rem;">
-                MAX STEAM TEMP: 372°F[span_102](start_span)[span_102](end_span)
+                MAX STEAM TEMP: 372°F
               </div>
               <div class="inner-box font-mono text-emerald" style="font-size:0.78rem;">
-                MAX VESSEL PRESSURE: 235 psi[span_103](start_span)[span_103](end_span)
+                MAX VESSEL PRESSURE: 235 psi
               </div>
             </div>
             <div class="inner-box" style="display:flex; flex-direction:column; gap:0.5rem; font-size:0.78rem;">
-              <div class="font-mono text-amber" style="font-weight:700;">KEY COMPONENTS[span_104](start_span)[span_104](end_span):</div>
-              <div>&bull; Effluent Inlet &amp; Outlet (3" Weco-Union)[span_105](start_span)[span_105](end_span)</div>
-              <div>&bull; Choke box &amp; manual valves[span_106](start_span)[span_106](end_span)</div>
-              <div>&bull; Steam inlet &amp; automatic control valve (ACV)[span_107](start_span)[span_107](end_span)[span_108](start_span)[span_108](end_span)</div>
-              <div>&bull; Steam trap &amp; condensate outlet[span_109](start_span)[span_109](end_span)[span_110](start_span)[span_110](end_span)</div>
-              <div>&bull; Safety relief valve &amp; thermometric well[span_111](start_span)[span_111](end_span)</div>
+              <div class="font-mono text-amber" style="font-weight:700;">KEY COMPONENTS:</div>
+              <div>&bull; Effluent Inlet &amp; Outlet (3" Weco-Union)</div>
+              <div>&bull; Choke box &amp; manual valves</div>
+              <div>&bull; Steam inlet &amp; automatic control valve (ACV)</div>
+              <div>&bull; Steam trap &amp; condensate outlet</div>
+              <div>&bull; Safety relief valve &amp; thermometric well</div>
             </div>
           </div>
         </div>
@@ -385,14 +385,14 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
         <div style="display:flex; flex-direction:column; gap:1rem;">
           <h3 style="font-size:1.2rem; font-weight:700;">Steam-Exchanger Temperature Regulation</h3>
           <p class="text-muted" style="font-size:0.8rem;">
-            The controller monitors effluent outlet temperature via a temperature bulb and modulates the automatic control valve (ACV) on the steam inlet line[span_112](start_span)[span_112](end_span).
+            The controller monitors effluent outlet temperature via a temperature bulb and modulates the automatic control valve (ACV) on the steam inlet line.
           </p>
           <div class="inner-box" style="background:#111827; padding:1rem; text-align:center;">
             <div class="font-mono text-sky" style="font-size:0.85rem; font-weight:bold; margin-bottom:0.5rem;">REGULATION LOOP FLOW</div>
             <div class="font-mono text-muted" style="font-size:0.75rem; line-height:1.6;">
-              Air Supply &rarr; Pressure Regulator &rarr; Controller[span_113](start_span)[span_113](end_span)<br/>
-              Effluent Temperature Bulb &rarr; Controller &rarr; Automatic Control Valve (ACV)[span_114](start_span)[span_114](end_span)<br/>
-              Steam Inlet Modulated &rarr; Effluent Coils &rarr; Steam Trap Condensate Return[span_115](start_span)[span_115](end_span)[span_116](start_span)[span_116](end_span)
+              Air Supply &rarr; Pressure Regulator &rarr; Controller<br/>
+              Effluent Temperature Bulb &rarr; Controller &rarr; Automatic Control Valve (ACV)<br/>
+              Steam Inlet Modulated &rarr; Effluent Coils &rarr; Steam Trap Condensate Return
             </div>
           </div>
         </div>
@@ -407,19 +407,19 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
           <h3 style="font-size:1.2rem; font-weight:700;">Steam Trap Operating States</h3>
           <div class="grid-3">
             <div class="inner-box" style="font-size:0.78rem;">
-              <strong class="text-amber">1. Start:</strong><br/>Trap open, clearing initial condensate[span_117](start_span)[span_117](end_span).
+              <strong class="text-amber">1. Start:</strong><br/>Trap open, clearing initial condensate.
             </div>
             <div class="inner-box" style="font-size:0.78rem;">
-              <strong class="text-amber">2. Circulation:</strong><br/>Steam bubbles present, trap open[span_118](start_span)[span_118](end_span).
+              <strong class="text-amber">2. Circulation:</strong><br/>Steam bubbles present, trap open.
             </div>
             <div class="inner-box" style="font-size:0.78rem;">
-              <strong class="text-emerald">3. No Circulation:</strong><br/>100% steam, trap closed[span_119](start_span)[span_119](end_span).
+              <strong class="text-emerald">3. No Circulation:</strong><br/>100% steam, trap closed.
             </div>
             <div class="inner-box" style="font-size:0.78rem;">
-              <strong class="text-emerald">4. Circulation:</strong><br/>Still steam, trap closed[span_120](start_span)[span_120](end_span).
+              <strong class="text-emerald">4. Circulation:</strong><br/>Still steam, trap closed.
             </div>
             <div class="inner-box" style="font-size:0.78rem;">
-              <strong class="text-sky">5. Circulation:</strong><br/>Water only, trap open to return condensate[span_121](start_span)[span_121](end_span).
+              <strong class="text-sky">5. Circulation:</strong><br/>Water only, trap open to return condensate.
             </div>
           </div>
         </div>
@@ -433,17 +433,17 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
         <div style="display:flex; flex-direction:column; gap:1rem;">
           <h3 style="font-size:1.2rem; font-weight:700;">Steam-Exchanger Selection Criteria</h3>
           <div class="inner-box">
-            <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700; margin-bottom:0.5rem;">KEY SELECTION PARAMETERS[span_122](start_span)[span_122](end_span)</div>
+            <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700; margin-bottom:0.5rem;">KEY SELECTION PARAMETERS</div>
             <div class="grid-2" style="font-size:0.8rem; line-height:1.6;">
               <div>
-                &bull; Safety regulations (Onshore / Offshore)[span_123](start_span)[span_123](end_span)<br/>
-                &bull; Working Pressures: 5k, 10k, 15k psi WP[span_124](start_span)[span_124](end_span)<br/>
-                &bull; Heating Capacity: 4.3 MMBtu/hr[span_125](start_span)[span_125](end_span)
+                &bull; Safety regulations (Onshore / Offshore)<br/>
+                &bull; Working Pressures: 5k, 10k, 15k psi WP<br/>
+                &bull; Heating Capacity: 4.3 MMBtu/hr
               </div>
               <div>
-                &bull; Max Effluent Temperature: 250°F[span_126](start_span)[span_126](end_span)<br/>
-                &bull; Steam Supply availability[span_127](start_span)[span_127](end_span)<br/>
-                &bull; H2S service &amp; 3" Weco-Union connections[span_128](start_span)[span_128](end_span)
+                &bull; Max Effluent Temperature: 250°F<br/>
+                &bull; Steam Supply availability<br/>
+                &bull; H2S service &amp; 3" Weco-Union connections
               </div>
             </div>
           </div>
@@ -460,18 +460,18 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
           <div class="grid-2">
             <div class="inner-box crimson-border" style="display:flex; flex-direction:column; gap:0.65rem;">
               <div class="font-mono text-crimson" style="font-size:0.72rem; font-weight:700;">VESSEL RATING &amp; RELIEF SIZING</div>
-              <div style="font-size:0.95rem; font-weight:700;">Vessel Working Pressure: 235 psi[span_129](start_span)[span_129](end_span)</div>
+              <div style="font-size:0.95rem; font-weight:700;">Vessel Working Pressure: 235 psi</div>
               <p class="text-muted" style="font-size:0.78rem;">
-                &bull; <strong>10k &amp; 15k psi WP units:</strong> Equipped with two 6" safety relief valves set to 100% vessel WP[span_130](start_span)[span_130](end_span).<br/>
-                &bull; <strong>5k psi WP units:</strong> Equipped with one 1½" safety relief valve set to 100% vessel WP[span_131](start_span)[span_131](end_span).
+                &bull; <strong>10k &amp; 15k psi WP units:</strong> Equipped with two 6" safety relief valves set to 100% vessel WP.<br/>
+                &bull; <strong>5k psi WP units:</strong> Equipped with one 1½" safety relief valve set to 100% vessel WP.
               </p>
             </div>
             <div class="inner-box" style="display:flex; flex-direction:column; justify-content:center; gap:0.5rem;">
               <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700;">VALVE DESIGN FEATURES</div>
               <div style="font-size:0.78rem; line-height:1.5;">
-                &bull; Balanced bellows design ("Balan" seal bellow)[span_132](start_span)[span_132](end_span)<br/>
-                &bull; Atmospheric pressure balancing[span_133](start_span)[span_133](end_span)<br/>
-                &bull; Adjustable pressure screw[span_134](start_span)[span_134](end_span)
+                &bull; Balanced bellows design ("Balan" seal bellow)<br/>
+                &bull; Atmospheric pressure balancing<br/>
+                &bull; Adjustable pressure screw
               </div>
             </div>
           </div>
@@ -489,17 +489,17 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
             <div class="inner-box crimson-border">
               <div class="font-mono text-crimson" style="font-size:0.72rem; font-weight:700;">RULE 01 // TRANSPORT</div>
               <div style="font-weight:700; font-size:0.9rem; margin:0.35rem 0;">Never Transport Full</div>
-              <p class="text-muted" style="font-size:0.78rem;">Do not transport heater when full of water, or steam-exchanger when full of condensate. Frames cannot support this extra weight[span_135](start_span)[span_135](end_span).</p>
+              <p class="text-muted" style="font-size:0.78rem;">Do not transport heater when full of water, or steam-exchanger when full of condensate. Frames cannot support this extra weight.</p>
             </div>
             <div class="inner-box crimson-border">
               <div class="font-mono text-crimson" style="font-size:0.72rem; font-weight:700;">RULE 02 // PRE-START CHECK</div>
               <div style="font-weight:700; font-size:0.9rem; margin:0.35rem 0;">Verify Valves Open</div>
-              <p class="text-muted" style="font-size:0.78rem;">Before starting, verify that outlet valves and chokes are fully open[span_136](start_span)[span_136](end_span).</p>
+              <p class="text-muted" style="font-size:0.78rem;">Before starting, verify that outlet valves and chokes are fully open.</p>
             </div>
             <div class="inner-box crimson-border">
               <div class="font-mono text-crimson" style="font-size:0.72rem; font-weight:700;">RULE 03 // THERMAL EXPANSION</div>
               <div style="font-weight:700; font-size:0.9rem; margin:0.35rem 0;">Coil Bursting Risk</div>
-              <p class="text-muted" style="font-size:0.78rem;">If coils are filled with liquid and valves closed, thermal expansion can generate enough pressure to burst the coils[span_137](start_span)[span_137](end_span).</p>
+              <p class="text-muted" style="font-size:0.78rem;">If coils are filled with liquid and valves closed, thermal expansion can generate enough pressure to burst the coils.</p>
             </div>
           </div>
         </div>
@@ -514,19 +514,19 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
           <h3 style="font-size:1.2rem; font-weight:700;">Heater &amp; Steam-Exchanger Safety — Part 2</h3>
           <div class="grid-2">
             <div class="inner-box crimson-border" style="display:flex; flex-direction:column; gap:0.5rem;">
-              <div class="font-mono text-crimson" style="font-size:0.72rem; font-weight:700;">OPERATIONAL WARNINGS[span_138](start_span)[span_138](end_span)[span_139](start_span)[span_139](end_span)</div>
+              <div class="font-mono text-crimson" style="font-size:0.72rem; font-weight:700;">OPERATIONAL WARNINGS</div>
               <div style="font-size:0.8rem; line-height:1.6;">
-                &bull; Never touch the vessel with bare hands when working[span_140](start_span)[span_140](end_span)[span_141](start_span)[span_141](end_span).<br/>
-                &bull; Never flow well through coils if a choke is not installed (sand/fluids erode choke box threads)[span_142](start_span)[span_142](end_span)[span_143](start_span)[span_143](end_span).<br/>
-                &bull; Do not use adjustable choke to stop flow; you can break the stem tip[span_144](start_span)[span_144](end_span)[span_145](start_span)[span_145](end_span).<br/>
-                &bull; Do not use inlet/outlet gate valves as chokes[span_146](start_span)[span_146](end_span)[span_147](start_span)[span_147](end_span).
+                &bull; Never touch the vessel with bare hands when working.<br/>
+                &bull; Never flow well through coils if a choke is not installed (sand/fluids erode choke box threads).<br/>
+                &bull; Do not use adjustable choke to stop flow; you can break the stem tip.<br/>
+                &bull; Do not use inlet/outlet gate valves as chokes.
               </div>
             </div>
             <div class="inner-box amber-border" style="display:flex; flex-direction:column; gap:0.5rem;">
-              <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700;">POST-JOB MAINTENANCE[span_148](start_span)[span_148](end_span)[span_149](start_span)[span_149](end_span)</div>
+              <div class="font-mono text-amber" style="font-size:0.72rem; font-weight:700;">POST-JOB MAINTENANCE</div>
               <div style="font-size:0.8rem; line-height:1.6;">
-                &bull; After job completion, flush the coils thoroughly with soft water[span_150](start_span)[span_150](end_span)[span_151](start_span)[span_151](end_span).<br/>
-                &bull; Fill coils with corrosion inhibitor before storage[span_152](start_span)[span_152](end_span)[span_153](start_span)[span_153](end_span).<br/>
+                &bull; After job completion, flush the coils thoroughly with soft water.<br/>
+                &bull; Fill coils with corrosion inhibitor before storage.<br/>
                 &bull; Inspect all Weco-unions, safety relief valves, and CMA control systems.
               </div>
             </div>
@@ -544,16 +544,16 @@ const HEAT_EXCHANGER_QUIZ_QUESTIONS = [
           <div class="grid-2">
             <div class="inner-box">
               <div class="font-mono text-amber" style="font-size:0.72rem; margin-bottom:0.35rem;">REF-01 // FIELD OPERATIONS</div>
-              <div style="font-size:1rem; font-weight:700; margin-bottom:0.35rem;">FOH for SWT (Run, Chapter 2)[span_154](start_span)[span_154](end_span)</div>
+              <div style="font-size:1rem; font-weight:700; margin-bottom:0.35rem;">FOH for SWT (Run, Chapter 2)</div>
               <p class="text-muted" style="font-size:0.8rem;">
                 Field Operations Handbook guidelines for indirect heater and steam-exchanger rig-up, operation, and safety testing.
               </p>
             </div>
             <div class="inner-box">
               <div class="font-mono text-emerald" style="font-size:0.72rem; margin-bottom:0.35rem;">REF-02 // TECHNICAL DATA</div>
-              <div style="font-size:1rem; font-weight:700; margin-bottom:0.35rem;">InTouch &amp; ST Training Manuals[span_155](start_span)[span_155](end_span)</div>
+              <div style="font-size:1rem; font-weight:700; margin-bottom:0.35rem;">InTouch &amp; ST Training Manuals</div>
               <p class="text-muted" style="font-size:0.8rem;">
-                Technical data sheets, maintenance manuals, CMA troubleshooting guides, and Surface Training course materials[span_156](start_span)[span_156](end_span).
+                Technical data sheets, maintenance manuals, CMA troubleshooting guides, and Surface Training course materials.
               </p>
             </div>
           </div>

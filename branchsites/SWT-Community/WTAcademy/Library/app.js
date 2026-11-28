@@ -250,6 +250,8 @@ let state = {
   function renderSlideIndex() {
     const slides = getActiveSlidesArray();
     const list = document.getElementById('slide-index-list');
+    const idxLabel = document.getElementById('sidebar-index-label');
+    if (idxLabel) idxLabel.textContent = `SLIDE INDEX (${slides.length})`;
     document.getElementById('sidebar-completion-count').textContent = `${state.completedSlides.length}/${slides.length} Done`;
   
     list.innerHTML = slides.map((s, idx) => {

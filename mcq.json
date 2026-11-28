@@ -11,5 +11,6 @@
     "0.5 scf/bbl"
   ],
   "answer": 0,
-  "explanation": "GOR = gas rate / oil rate = 250,000 / 500 = 500 scf/bbl."
+  "explanation": "GOR = gas rate / oil rate = 250,000 / 500 = 500 scf/bbl.",
+  "video": "https://github.com/mohamed-mansour106/course-videos/releases/download/mcq-gor/mcq-gor.mp4"
 }
